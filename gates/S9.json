@@ -1,0 +1,50 @@
+{
+  "gate": "S9",
+  "title": "JLC cart insertion (no payment)",
+  "status": "pass",
+  "timestamp": "2026-08-28T18:46+08:00",
+  "operator": "Claude (claude-in-chrome, user's logged-in JLCPCB session)",
+  "cart_url": "https://cart.jlcpcb.com/shopcart/cart",
+  "order_page": "https://cart.jlcpcb.com/smt-order/?pcbFileNo=92dc7072630740c4975c194212989b6b",
+  "items": [
+    {
+      "kind": "PCB",
+      "name": "Therapia_EEG-HRV_Rev.A_Y5",
+      "order_no": "Y5-10641515A",
+      "spec": "4 layers, 1.6 mm, Green, ENIG, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm",
+      "qty_panels": 5,
+      "build_time": "3 days",
+      "price_usd": 46.00
+    },
+    {
+      "kind": "Standard PCBA",
+      "name": "Therapia_EEG-HRV_Rev.A_Y5",
+      "order_no": "SMT026082861630-10641515A",
+      "spec": "Top side, 30 BOM rows / 133 parts per board, Confirm Parts Placement = Yes (do not confirm automatically), edge rails/fiducials by JLCPCB, Product Description = Research/Education/DIY -> Development Board (HS 847330)",
+      "qty_panels": 2,
+      "build_time": "5-6 days",
+      "price_usd": 226.48
+    }
+  ],
+  "total_usd_excl_shipping": 272.48,
+  "payment": "NOT made (user decision pending)",
+  "untouched_cart_items": ["Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A", "Ganglion_01_JLCPCB_gerbers_Y4 PCBA SMT026081261592-10641515A"],
+  "bom_checks": {
+    "rows_detected": 30,
+    "rows_confirmed": 30,
+    "rows_shortfall": 0,
+    "cart_vs_repo_bom": "all 30 LCSC numbers identical after the two recorded substitutions",
+    "substitutions": [
+      {"designator": "D_LED", "from": "C72044", "to": "C84268", "reason": "JLC assembly stock 0 (Everlight 19-217 series discontinued); NCD0603Y1 same package LED0603-RD, pin1=K, stock 605,820"},
+      {"designator": "F1", "from": "C369159", "to": "C43379", "reason": "JLC assembly stock 0; SMD1206P050TF/13.2 identical rating 0.5A/1A/13.2V 1206, stock 19,984"},
+      {"designator": "U_USB", "from": "C7464026 (JLC auto-match)", "to": "C84681", "reason": "restored the repo's part number (same WCH CH340C, JLC stock 62,653)"}
+    ],
+    "why_standard_pcba": "ESP32-WROOM-32E-N4 (C701341) is 'Standard Only' at JLC; board < 70x70 mm so JLC panelisation was used instead of a single board"
+  },
+  "placement_checks": {
+    "method": "JLC Component Placements viewer (row click zooms, purple dot = JLC library pin 1) vs pcbnew pad dx/dy/net dump from board/Therapia_EEG-HRV.kicad_pcb",
+    "verified_ok": ["AMS1117 (pin1 GND bottom-right, tab left)", "D_ESD (pin1 bottom-left)", "D_LED (cathode/GND left, anode right)", "LM2664 (pin1 bottom-right)", "Q_EN, Q_IO0 (pin1 bottom-right, single pin left)", "TLV70025 (pin1 bottom-right, 3 pins right)", "TPS72325 (pin1 bottom-right, 3 pins right)", "U_ADS (pin1 top-left)", "U_USB (pin1 bottom-left)", "U_MCU (antenna zone left, pads top/bottom/right)", "J1 USB-C (receptacle at right edge)"],
+    "cpl_rotation_changes": "none"
+  },
+  "next": ["user pays at JLC", "answer JLC DFM / Confirm Parts Placement within 72 h", "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR)"]
+}

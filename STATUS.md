@@ -1,14 +1,40 @@
 # STATUS — brain_canvas_kicad
 
-最終更新: 2026-08-28 / 担当: S0–S2（前任）→ S3・S4 → S5・S6 → **S7・S8**
+最終更新: 2026-08-28 18:50 / 担当: S0–S2 → S3・S4 → S5・S6 → S7・S8 → **S9（lead, claude-in-chrome）**
 
 ## 現在地
 
-**S0〜S8 の 21 ゲートすべて pass（221 チェック）。`ACCEPTANCE.md` の A〜G を
-40 項目すべて満たした。製造データは `fab/` に出力済みで、JLC にアップロードできる状態。**
+**S0〜S9 完了。JLC のカートに入っている（決済はしていない）。** `gates/S9.json`。
 
-残りは **S9 = カートに入れて在庫と Confirm Parts Placement を人が見る**ことだけ。
-手順は `fab/README_発注手順.md`。**決済はしない。**
+| | |
+|---|---|
+| カート | https://cart.jlcpcb.com/shopcart/cart |
+| PCB | `Y5-10641515A` — 4 層 / 1.6 mm / Green / ENIG / **JLC パネル化 1×1・四辺 12.5 mm レール（86.82×70.01 mm）** / **5 パネル** / 3 日 / **$46.00** |
+| PCBA | `SMT026082861630-10641515A` — **Standard** / Top 片面 / **2 パネル** / 5〜6 日 / **$226.48**（部品 $141.29・フィーダー $44.37・段取り $25.56・ステンシル $8.21 ほか）/ Confirm Parts Placement = Yes（自動確認しない） |
+| 合計 | **$272.48 ＋送料**（同カートの Ganglion 2 品目は触っていない） |
+
+Economic ではなく **Standard** なのは、`U_MCU`（ESP32-WROOM-32E, C701341）が JLC で
+「Standard Only」だったため。基板 61.8×45 は Standard 単板の最小 70×70 未満なので
+**JLC 側のパネル化**で寸法を満たした（ユーザー指示: 手はんだはしない、全部実装してもらう）。
+
+カート投入時に JLC 実装在庫 0 だった 2 点を差し替えた（正本 `data/bom_fixes_2026-08-28.json`、
+BOM/parts table は再生成済み・Gerber は不変）:
+
+| 部品 | 旧 | 新 | 根拠 |
+|---|---|---|---|
+| `D_LED` | C72044（Everlight 赤、**廃番・在庫 0**） | **C84268** NCD0603Y1（NationStar 黄） | EasyEDA パッケージ名 `LED0603-RD` が同一実体、生ピンデータ pin1=K で基板の pad1=GND=カソードと一致。在庫 605,820。**CPL 回転変更なし** |
+| `F1` | C369159（在庫 0） | **C43379** SMD1206P050TF/13.2（RUILON） | 0.5 A hold / 1 A trip / 13.2 V の定格が旧品と同一、F1206 同一パッド。在庫 19,984 |
+
+`U_USB` は JLC の自動照合が C7464026（WCH CH340C の別リスティング）に当てていたので
+repo BOM と同じ **C84681** に戻した（在庫 62,653）。**30 行すべて repo BOM と一致**。
+
+配置プレビュー（Component Placements）で極性部品の pin 1 を KiCad のパッド座標
+（`pcbnew` で dx/dy/net をダンプ）と突合し、**11 種すべて一致**:
+AMS1117 / D_ESD / D_LED（− 左 + 右）/ LM2664 / Q_EN・Q_IO0 / TLV70025 / TPS72325 /
+U_ADS（pin1 左上）/ U_USB（pin1 左下）/ U_MCU（アンテナ側＝パッド無し側が左）/ J1。
+
+**次にやること（人）**: ①決済 ②JLC の DFM 指摘と Confirm Parts Placement に 72 h 以内に応答
+③到着後 `reports/bringup_checklist.md` で火入れ（MISC1=0x00、tPOR 後に RESET パルス）。
 
 | | |
 |---|---|
@@ -638,22 +664,31 @@ KiCad 同梱 python では PIL・numpy・matplotlib が**import できてしま�
 > 8 月版に対する実測は **−0.10 mm**。S5_L5 のログは 1 反復ぶんの値で、
 > S6 のループがもう一度動かしていた。基板が正で、DRC も通っている。
 
-## S9（カート投入）への申し送り
+## S9 — カート投入（2026-08-28 18:46 完了、決済なし）
 
-**やること**: `fab/README_発注手順.md` のとおりに JLC のカートへ入れ、
-在庫と Confirm Parts Placement を人が見る。**決済はしない。**
+結果は「現在地」と `gates/S9.json`。ここには**手順どおりに行かなかった点**だけ残す。
 
-投入前に必ず見る 4 点（README §4 に詳細）:
+1. **Economic は使えなかった。** ESP32-WROOM-32E が「Standard Only」。Standard は単板 70×70 mm
+   以上が条件なので、PCB タブの Delivery Format を **Panel by JLCPCB（1×1、Edge Rails: four sides
+   12.5 mm）** にして 86.82×70.01 mm にした。PCBA 数量の単位はパネル（最小 2）
+2. **在庫は BOM 画面で初めて分かる。** partdetail ページや LCSC の在庫は当てにならない。
+   `C72044` と `C72038`（Everlight 19-217 系）は JLC 在庫 0（廃番）、`C369159` も 0。
+   BOM 行の虫眼鏡 → C 番号検索 → Select で差し替えると自動保存される
+3. 予定していた F1 代替 `C883122`（6 V）は一度選んだあと、旧品と定格が同じ 13.2 V の
+   `C43379` に替えた（同じ F1206 パッド）
+4. JLC の自動照合は `U_USB` を C7464026 に当てた（同じ WCH CH340C の別リスティング）。
+   repo BOM と揃えるため `C84681` に戻した。**カートの 30 行を repo BOM と C 番号で突合すること**
+5. Confirm Parts Placement のビューは**右表の行をクリックすると部品にズーム**し、
+   **紫の点が JLC ライブラリの pin 1**、LED は「−/+」で出る。右表はホイールで動かず
+   スクロールバーをドラッグする。突合の相手は `pcbnew` で出した各パッドの dx/dy/net
+   （y は下向き正）。SOT-23 系で恐れていた 270° 食い違いは出なかった
+   （EasyEDA 由来のフットプリントをそのまま取り込んだので回転基準が JLC と同じ）
+6. Product Description（HS コード）は必須。Research/Education/DIY → Development Board
+   (HS 847330) にした。決済前に変更可
+7. ブラウザ操作: 入力欄で cmd+A はページ全選択になる → triple_click で欄内を選択してから type
 
-1. **在庫**: `C69932`(TPS72325) が要注意 — 代替が少なく、欠品すると基板が動かない。
-   `C369159`(F1) は LCSC ページが "Not available now"、代替 `C883122` を用意してある
-2. **Extended 13 品番 / 20 個** が手数料対象
-3. **DNP 2 点は BOM にも CPL にも入っていない**。`fab/assembly_top.pdf` で × が付いている
-4. **向き**: `U_ADS` の 1 番ピンが左上、`D_LED` の pad1 がカソード
-
-**Economic PCBA はスルーホールを実装しない。** `J1` と `J2` が «not supported» と
-出たらその 2 点を Do Not Place にして手はんだ。**そのためのレジスト開口は
-S8 で直してある**（この修正が無ければ手はんだもできなかった）。
+**Confirm Parts Placement の応答が 72 h 以内に必要**（決済後に JLC がメールで指摘を出す）。
+`D_LED` の向きは「− が GND 側（左）」、`U_ADS` は pin 1 左上、で答える。
 
 ### 未解決・人の判断が要るもの
 
