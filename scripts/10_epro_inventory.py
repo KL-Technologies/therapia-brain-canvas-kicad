@@ -57,7 +57,7 @@ def parse_pcb(records):
     pours, regions, fills, poured = [], [], [], []
     nets_declared, rules, layers, pad_nets = [], [], [], []
     attrs = collections.defaultdict(dict)
-    outline_pts = []
+    outline_pts, board_milled = [], []
     unhandled = collections.Counter()
 
     for rec in records:
@@ -116,14 +116,17 @@ def parse_pcb(records):
             pts, shapes = poly_all(E.get(rec, 6))
             regions.append({"id": E.get(rec, 1), "layer": E.get(rec, 3),
                             "bbox": E.bbox(pts), "shapes": shapes})
+            board_milled.extend(multi_circles(rec))
         elif t == "FILL":
             pts, _ = poly_all(E.get(rec, 7))
             fills.append({"id": E.get(rec, 1), "net": E.get(rec, 3),
                           "layer": E.get(rec, 4), "bbox": E.bbox(pts)})
+            board_milled.extend(multi_circles(rec))
         elif t == "POLY":
             pts, shapes = poly_all(E.get(rec, 6))
             if E.get(rec, 4) in (11, "11"):
                 outline_pts.extend(pts)
+            board_milled.extend(multi_circles(rec))
         elif t in ("DOCTYPE", "HEAD", "CANVAS", "ACTIVE_LAYER", "PRIMITIVE",
                    "LAYER_PHYS", "SILK_OPTS", "PREFERENCE", "PANELIZE",
                    "PANELIZE_STAMP", "PANELIZE_SIDE", "STRING", "IMAGE", "OBJ",
@@ -141,7 +144,8 @@ def parse_pcb(records):
                 tracks=tracks, arcs=arcs, pours=pours, regions=regions,
                 fills=fills, poured=poured, nets_declared=nets_declared,
                 rules=rules, layers=layers, attrs=attrs, pad_nets=pad_nets,
-                outline_pts=outline_pts, unhandled=unhandled)
+                outline_pts=outline_pts, board_milled=board_milled,
+                unhandled=unhandled)
 
 
 def poly_all(data):
@@ -163,13 +167,39 @@ def pad_dict(rec, parent):
             "hole": E.get(rec, 9), "shape": E.get(rec, 10)}
 
 
+MULTI_LAYER = 12          # EasyEDA "Multi-Layer": milled through-board shapes
+
+
+def multi_circles(rec):
+    """Circles drawn on the Multi layer -- these are real milled holes.
+
+    The USB-C positioning pegs are FILL records with a CIRCLE path on layer 12,
+    not PAD holes and not REGION records. Miss this and the two 0.7mm NPTH
+    vanish from the inventory without anything looking wrong.
+    """
+    t = E.rtype(rec)
+    if t == "REGION":
+        layer, data = E.get(rec, 3), E.get(rec, 6)
+    elif t == "FILL":
+        layer, data = E.get(rec, 4), E.get(rec, 7)
+    elif t == "POLY":
+        layer, data = E.get(rec, 4), E.get(rec, 6)
+    else:
+        return []
+    if layer not in (MULTI_LAYER, str(MULTI_LAYER)):
+        return []
+    _, shapes = poly_all(data)
+    return [dict(s, id=E.get(rec, 1), record=t)
+            for s in shapes if s.get("kind") == "circle"]
+
+
 def load_footprints(ep):
-    """uuid -> {title, pads, counts}. .efoo blocks are split on blank lines."""
+    """uuid -> {title, pads, multi_shapes, counts}."""
     out = {}
     for name in ep.footprint_documents():
         uuid = os.path.splitext(os.path.basename(name))[0]
         recs, _ = E.parse_jsonl(ep.read_text(name))
-        title, pads, counts = "", [], collections.Counter()
+        title, pads, circles, counts = "", [], [], collections.Counter()
         for rec in recs:
             t = E.rtype(rec)
             if t is None:
@@ -181,8 +211,10 @@ def load_footprints(ep):
                 uuid = head.get("uuid") or uuid
             elif t == "PAD":
                 pads.append(pad_dict(rec, parent=uuid))
-        out[uuid] = {"title": title, "pads": pads, "records": dict(counts),
-                     "document": name}
+            else:
+                circles.extend(multi_circles(rec))
+        out[uuid] = {"title": title, "pads": pads, "multi_circles": circles,
+                     "records": dict(counts), "document": name}
     return out
 
 
@@ -209,7 +241,7 @@ def build_inventory(p, fps):
     for cid, num, net in p["pad_nets"]:
         net_of[(cid, num)] = net
 
-    pad_rows, missing_fp = [], []
+    pad_rows, missing_fp, milled = [], [], []
     for cid, c in comps.items():
         ref = designators[cid]
         fu = fp_of.get(cid)
@@ -217,6 +249,12 @@ def build_inventory(p, fps):
         if not fp:
             missing_fp.append({"ref": ref, "footprint_uuid": fu})
             continue
+        for s in fp.get("multi_circles", []):
+            bx, by = place(c["x"], c["y"], c["rotation"], s["cx"], s["cy"])
+            milled.append({"ref": ref, "id": s["id"], "record": s["record"],
+                           "x_mm": E.mil2mm(bx), "y_mm": E.mil2mm(by),
+                           "dia_mm": E.mil2mm(s["r"] * 2),
+                           "footprint": fp["title"]})
         for pd in fp["pads"]:
             bx, by = place(c["x"], c["y"], c["rotation"], pd["x"], pd["y"])
             pad_rows.append({
@@ -244,15 +282,13 @@ def build_inventory(p, fps):
                       "hole_shape": hs[0], "dia_mm": E.mil2mm(max(hs[1], hs[2])),
                       "size_mm": [E.mil2mm(hs[1]), E.mil2mm(hs[2])],
                       "standalone": r["standalone"], "footprint": r["footprint"]})
-    for reg in p["regions"]:
-        for s in reg["shapes"]:
-            if s.get("kind") == "circle":
-                holes.append({"source": "REGION", "ref": "", "pad": "", "net": "",
-                              "x_mm": E.mil2mm(s["cx"]), "y_mm": E.mil2mm(s["cy"]),
-                              "hole_shape": "CIRCLE",
-                              "dia_mm": E.mil2mm(s["r"] * 2),
-                              "size_mm": [E.mil2mm(s["r"] * 2)] * 2,
-                              "standalone": True, "footprint": ""})
+    board_milled = [dict(m, ref="", footprint="") for m in p["board_milled"]]
+    for m in milled + board_milled:
+        holes.append({"source": "MULTI_LAYER/%s" % m["record"], "ref": m["ref"],
+                      "pad": m["id"], "net": "", "x_mm": m["x_mm"],
+                      "y_mm": m["y_mm"], "hole_shape": "CIRCLE",
+                      "dia_mm": m["dia_mm"], "size_mm": [m["dia_mm"]] * 2,
+                      "standalone": not m["ref"], "footprint": m["footprint"]})
 
     matched = []
     for name, ex, ey, ed in E.EXPECTED_NPTH:

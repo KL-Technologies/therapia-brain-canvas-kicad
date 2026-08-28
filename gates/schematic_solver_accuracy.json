@@ -1,0 +1,72 @@
+{
+  "components_missed": [
+    "R_EN_UP",
+    "R_IO0_UP",
+    "R_IO15_DN",
+    "R_IO2_DN",
+    "R_LED",
+    "R_Q_EN_B",
+    "R_Q_IO0_B"
+  ],
+  "nc_pins_identified_correctly": 34,
+  "nc_pins_in_contract": 34,
+  "resolved_pins_agreeing": 366,
+  "resolved_pins_disagreeing": 9,
+  "disagreements": [
+    {
+      "ref": "R_IN1N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_IN2N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_IN3N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_IN5N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_IN6N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_IN7N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_IN8N",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "R_SRB_SER",
+      "pin": "1",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "18",
+      "geometric": "SRB2",
+      "contract": "SRB1"
+    }
+  ],
+  "verdict": "cross-check only -- never use as the contract"
+}

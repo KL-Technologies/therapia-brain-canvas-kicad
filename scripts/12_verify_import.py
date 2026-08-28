@@ -96,29 +96,52 @@ def board_inventory(board, pcbnew):
               "dia_mm": max(r["drill_mm"]), "size_mm": r["drill_mm"],
               "npth": r["npth"]}
              for r in pad_rows if max(r["drill_mm"]) > 0]
+    # Milled shapes reach KiCad as Edge.Cuts drawings -- board-level for the
+    # outline, and INSIDE the footprint for anything the footprint owned. The
+    # USB-C pegs are footprint-level polygons on Edge.Cuts, so scanning only
+    # board drawings would report them missing.
     edge_shapes, edge_pts = [], []
-    for d in board.GetDrawings():
+
+    def scan_shape(d, owner):
         if d.GetClass() != "PCB_SHAPE":
-            continue
-        st = d.GetShape()
+            return
+        st = int(d.GetShape())
         on_edge = d.GetLayer() == pcbnew.Edge_Cuts
-        entry = {"layer": board.GetStandardLayerName(d.GetLayer()), "shape": int(st)}
+        entry = {"owner": owner, "layer": board.GetStandardLayerName(d.GetLayer()),
+                 "shape": st}
+        c = d.GetCenter()
+        entry.update({"cx_mm": mm(c.x), "cy_mm": mm(c.y)})
+        bb = d.GetBoundingBox()
+        dia = round(min(mm(bb.GetWidth()), mm(bb.GetHeight())), 6)
         if st == pcbnew.SHAPE_T_CIRCLE:
-            c = d.GetCenter()
-            r = mm(d.GetRadius())
-            entry.update({"cx_mm": mm(c.x), "cy_mm": mm(c.y), "r_mm": r})
-            if on_edge:
-                holes.append({"source": "EdgeCuts.circle", "ref": "", "pad": "",
-                              "net": "", "x_mm": entry["cx_mm"],
-                              "y_mm": entry["cy_mm"],
-                              "dia_mm": round(r * 2, 6),
-                              "size_mm": [round(r * 2, 6)] * 2, "npth": True})
-                edge_pts.extend([(entry["cx_mm"] - r, entry["cy_mm"] - r),
-                                 (entry["cx_mm"] + r, entry["cy_mm"] + r)])
-        elif on_edge:
+            dia = round(mm(d.GetRadius()) * 2, 6)
+        entry["dia_mm"] = dia
+        edge_shapes.append(entry)
+        if not on_edge:
+            return
+        if owner:                      # footprint-owned: a milled feature
+            holes.append({"source": "EdgeCuts.shape%d" % st, "ref": owner,
+                          "pad": "", "net": "", "x_mm": entry["cx_mm"],
+                          "y_mm": entry["cy_mm"], "dia_mm": dia,
+                          "size_mm": [dia, dia], "npth": False,
+                          "note": "milled outline, not a drilled NPTH pad"})
+            return                     # board outline comes from board level only
+        if st == pcbnew.SHAPE_T_CIRCLE:
+            r = round(dia / 2, 6)
+            holes.append({"source": "EdgeCuts.circle", "ref": "", "pad": "",
+                          "net": "", "x_mm": entry["cx_mm"], "y_mm": entry["cy_mm"],
+                          "dia_mm": dia, "size_mm": [dia, dia], "npth": False})
+            edge_pts.extend([(entry["cx_mm"] - r, entry["cy_mm"] - r),
+                             (entry["cx_mm"] + r, entry["cy_mm"] + r)])
+        else:
             edge_pts.append((mm(d.GetStart().x), mm(d.GetStart().y)))
             edge_pts.append((mm(d.GetEnd().x), mm(d.GetEnd().y)))
-        edge_shapes.append(entry)
+
+    for d in board.GetDrawings():
+        scan_shape(d, "")
+    for f in fps:
+        for d in f.GraphicalItems():
+            scan_shape(d, f.GetReference() or "(anon)")
 
     # GetBoardEdgesBoundingBox() pads the box by the outline's line width
     # (4 mil here), which would read 61.925 x 45.111 instead of the drawn size.
@@ -330,16 +353,50 @@ def main():
         hit = next((k for k in inv_k["holes"]
                     if E.approx(k["x_mm"], tx, 0.01) and E.approx(k["y_mm"], ty, 0.01)), None)
         brief_npth.append({"name": name, "expected_easyeda_mm": [ex, ey],
-                           "expected_dia_mm": ed, "found": hit})
+                           "expected_kicad_mm": [round(tx, 6), round(ty, 6)],
+                           "expected_dia_mm": ed, "found": hit,
+                           "is_npth": bool(hit) and hit.get("npth")})
     observations["brief_npth_expectation"] = {
-        "matched": sum(1 for b in brief_npth if b["found"]),
-        "of": len(brief_npth), "detail": brief_npth,
-        "note": "The two PEG entries come from the 2026-08-16 ECO note "
-                "(round NPTH, dia 0.700mm). This export has no such holes; J1 "
-                "carries four plated SLOT holes on CHASSIS_GND instead. Not an "
-                "import defect -- every one of these holes round-trips. S3 must "
-                "re-derive ECO item L4 against the geometry that is actually "
-                "there."}
+        "geometry_present": sum(1 for b in brief_npth if b["found"]),
+        "actually_npth": sum(1 for b in brief_npth if b["is_npth"]),
+        "of": len(brief_npth), "detail": brief_npth}
+
+    # ---- known import defects (expected failures, owned by 13_fix_import.py)
+    npth_pads = [h for h in inv_k["holes"] if h.get("npth")]
+    m2 = [h for h in inv_k["holes"]
+          if h["source"] == "PAD" and not h["ref"] and h["dia_mm"] > 2.0]
+    pegs = [h for h in inv_k["holes"] if h["source"].startswith("EdgeCuts.shape")]
+    observations["known_import_defects"] = {
+        "note": "As-imported state. Each of these is a KiCad EasyEDA-importer "
+                "behaviour, not lost data -- the geometry is all present. "
+                "13_fix_import.py is expected to correct them.",
+        "npth_pad_count": {"expected_after_fix": 6, "as_imported": len(npth_pads),
+                           "expected_fail": True},
+        "mounting_holes_are_PTH": {
+            "expected_fail": True,
+            "detail": [{"footprint": h["ref"] or "(anon)", "pad": h["pad"],
+                        "dia_mm": h["dia_mm"], "npth": h["npth"]} for h in m2],
+            "note": "The importer makes every pad with drill>0 a PTH. The four "
+                    "M2 holes arrive as single-pad footprints Pad_<uuid> with "
+                    "drill == pad size. Fix: SetAttribute(PAD_ATTRIB_NPTH), no "
+                    "copper."},
+        "usb_pegs_are_edge_cuts_shapes": {
+            "expected_fail": True,
+            "detail": pegs,
+            "note": "The two 0.7mm positioning pegs are FILL records with a "
+                    "CIRCLE path on EasyEDA layer 12 (Multi) inside the USB-C "
+                    "footprint. Layer 12 maps to Edge.Cuts, so they arrive as "
+                    "Edge.Cuts polygons owned by J1 -- correct position and "
+                    "size, but they will not appear in the NPTH drill file. "
+                    "Fix: replace with NPTH pads at the coordinates above."},
+        "no_kicad_pro_design_rules": {
+            "expected_fail": True,
+            "note": "board/*.kicad_pro is a minimal stub. JLC 4-layer rules "
+                    "(clearance 0.0889mm, hole-to-hole 0.2, edge 0.2, via drill "
+                    ">=0.3, annular >=0.076 ...) still have to be written, with "
+                    "the EasyEDA values in contract/easyeda_rules.json as the "
+                    "reference."},
+    }
 
     fb5 = by_ref.get("FB5", {})
     observations["FB5"] = {"pads": fb5,
@@ -423,9 +480,11 @@ def main():
             print("  FAIL %s: expected=%s actual=%s"
                   % (c["name"], json.dumps(c["expected"])[:90],
                      json.dumps(c["actual"])[:160]))
-    print("FB5 pin1=%s pin2=%s | AVDD pads=%d | brief NPTH matched %d/6"
+    b = observations["brief_npth_expectation"]
+    print("FB5 pin1=%s pin2=%s | AVDD pads=%d | 6 mounting holes: %d/6 present as "
+          "geometry, %d/6 actually NPTH (known defect, 13_fix_import.py)"
           % (fb5.get("1"), fb5.get("2"), kp.get("AVDD", 0),
-             observations["brief_npth_expectation"]["matched"]))
+             b["geometry_present"], b["actually_npth"]))
     return 0 if ok else 1
 
 

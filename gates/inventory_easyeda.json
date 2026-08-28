@@ -2509,6 +2509,38 @@
         ],
         "standalone": true,
         "footprint": ""
+      },
+      {
+        "source": "MULTI_LAYER/FILL",
+        "ref": "J1",
+        "pad": "e36",
+        "net": "",
+        "x_mm": 56.861075,
+        "y_mm": -33.877885,
+        "hole_shape": "CIRCLE",
+        "dia_mm": 0.700024,
+        "size_mm": [
+          0.700024,
+          0.700024
+        ],
+        "standalone": false,
+        "footprint": "USB-C-SMD_TYPE-C-6PIN-2MD-073"
+      },
+      {
+        "source": "MULTI_LAYER/FILL",
+        "ref": "J1",
+        "pad": "e37",
+        "net": "",
+        "x_mm": 56.861075,
+        "y_mm": -28.097861,
+        "hole_shape": "CIRCLE",
+        "dia_mm": 0.700024,
+        "size_mm": [
+          0.700024,
+          0.700024
+        ],
+        "standalone": false,
+        "footprint": "USB-C-SMD_TYPE-C-6PIN-2MD-073"
       }
     ],
     "expected_match": [
@@ -2519,8 +2551,23 @@
           "y_mm": -33.877885,
           "dia_mm": 0.7
         },
-        "found": null,
-        "dia_ok": false
+        "found": {
+          "source": "MULTI_LAYER/FILL",
+          "ref": "J1",
+          "pad": "e36",
+          "net": "",
+          "x_mm": 56.861075,
+          "y_mm": -33.877885,
+          "hole_shape": "CIRCLE",
+          "dia_mm": 0.700024,
+          "size_mm": [
+            0.700024,
+            0.700024
+          ],
+          "standalone": false,
+          "footprint": "USB-C-SMD_TYPE-C-6PIN-2MD-073"
+        },
+        "dia_ok": true
       },
       {
         "name": "PEG2",
@@ -2529,8 +2576,23 @@
           "y_mm": -28.097861,
           "dia_mm": 0.7
         },
-        "found": null,
-        "dia_ok": false
+        "found": {
+          "source": "MULTI_LAYER/FILL",
+          "ref": "J1",
+          "pad": "e37",
+          "net": "",
+          "x_mm": 56.861075,
+          "y_mm": -28.097861,
+          "hole_shape": "CIRCLE",
+          "dia_mm": 0.700024,
+          "size_mm": [
+            0.700024,
+            0.700024
+          ],
+          "standalone": false,
+          "footprint": "USB-C-SMD_TYPE-C-6PIN-2MD-073"
+        },
+        "dia_ok": true
       },
       {
         "name": "M2_NW",
@@ -2633,7 +2695,7 @@
         "dia_ok": true
       }
     ],
-    "all_expected_found": false
+    "all_expected_found": true
   },
   "outline_bbox_mm": {
     "min_x_mm": 0.0,

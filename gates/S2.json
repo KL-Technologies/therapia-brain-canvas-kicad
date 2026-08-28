@@ -77,8 +77,8 @@
     },
     {
       "name": "all_easyeda_holes_present",
-      "expected": "20/20 within 0.01mm",
-      "actual": "20/20 (board offset [120.0, 80.0] mm)",
+      "expected": "22/22 within 0.01mm",
+      "actual": "22/22 (board offset [120.0, 80.0] mm)",
       "pass": true
     },
     {
@@ -129,7 +129,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T13:35:34",
+  "timestamp": "2026-08-28T13:42:24",
   "notes": "KiCad relocated the board origin by [120.0, 80.0] mm. Geometry is intact, but every EasyEDA-derived coordinate in the ECO notes must be shifted by this before use in KiCad. | FB5 pin1=VDD_ESP pin2=DVDD | ECO-1 NOT APPLIED on the PCB: TPS72325 pin3(EN)='GND', AVDD pads=21",
   "hole_detail": [
     {
@@ -670,6 +670,62 @@
           2.3875
         ],
         "npth": false
+      }
+    },
+    {
+      "ref": "J1",
+      "pad": "e36",
+      "easyeda_mm": [
+        56.861075,
+        -33.877885
+      ],
+      "expected_kicad_mm": [
+        176.861075,
+        113.877885
+      ],
+      "dia_mm": 0.700024,
+      "found": {
+        "source": "EdgeCuts.shape4",
+        "ref": "J1",
+        "pad": "",
+        "net": "",
+        "x_mm": 176.861,
+        "y_mm": 113.878,
+        "dia_mm": 0.694012,
+        "size_mm": [
+          0.694012,
+          0.694012
+        ],
+        "npth": false,
+        "note": "milled outline, not a drilled NPTH pad"
+      }
+    },
+    {
+      "ref": "J1",
+      "pad": "e37",
+      "easyeda_mm": [
+        56.861075,
+        -28.097861
+      ],
+      "expected_kicad_mm": [
+        176.861075,
+        108.097861
+      ],
+      "dia_mm": 0.700024,
+      "found": {
+        "source": "EdgeCuts.shape4",
+        "ref": "J1",
+        "pad": "",
+        "net": "",
+        "x_mm": 176.861,
+        "y_mm": 108.098,
+        "dia_mm": 0.694012,
+        "size_mm": [
+          0.694012,
+          0.694012
+        ],
+        "npth": false,
+        "note": "milled outline, not a drilled NPTH pad"
       }
     }
   ],

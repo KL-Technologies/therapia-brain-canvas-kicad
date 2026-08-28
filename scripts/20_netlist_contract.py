@@ -131,6 +131,41 @@ def main():
     }
     E.dump_json(os.path.join(root, "gates", "netlist_diff.json"), diff)
 
+    # How good was the geometric solve of the .esch? Only meaningful against the
+    # contract, and the answer decides whether anyone may rely on it.
+    geo_path = os.path.join(root, "contract", "netlist_from_epro_schematic.json")
+    geo_report = None
+    if os.path.exists(geo_path):
+        geo = E.load_json(geo_path).get("by_designator", {})
+        tsv_nc = {(r["ref"], r["pin"]) for r in rows if r["net"] in NC_NETS}
+        geo_unres = {(ref, pin) for ref, pins in geo.items()
+                     for pin, net in pins.items() if not net}
+        agree, wrong = 0, []
+        want = {(r["ref"], r["pin"]): r["net"] for r in rows}
+        for ref, pins in geo.items():
+            for pin, net in pins.items():
+                if not net:
+                    continue
+                w = want.get((ref, pin))
+                if w is None:
+                    continue
+                if w == net:
+                    agree += 1
+                else:
+                    wrong.append({"ref": ref, "pin": pin, "geometric": net,
+                                  "contract": w})
+        geo_report = {
+            "components_missed": sorted(set(sch) - set(geo)),
+            "nc_pins_identified_correctly": len(tsv_nc & geo_unres),
+            "nc_pins_in_contract": len(tsv_nc),
+            "resolved_pins_agreeing": agree,
+            "resolved_pins_disagreeing": len(wrong),
+            "disagreements": wrong,
+            "verdict": "cross-check only -- never use as the contract",
+        }
+        E.dump_json(os.path.join(root, "gates", "schematic_solver_accuracy.json"),
+                    geo_report)
+
     nets_sch = {n for n in contract["net_pin_counts"]}
     nets_pcb = {n for n, c in E.load_json(pcb_path)["net_pad_counts"].items()}
     checks = [
@@ -145,12 +180,23 @@ def main():
         E.gate_check("diff_written", "gates/netlist_diff.json",
                      "gates/netlist_diff.json", ok=True),
     ]
+    new_pads = sum(len(sch[r]) for r in only_sch)
     notes = ("schematic %d components / %d pins vs PCB %d components. "
-             "ECO-1 delta: %d components to add (%s), %d pins with a different "
-             "net, %d pins absent from the PCB. Nets only in the schematic: %s"
-             % (len(sch), len(rows), len(pcb), len(only_sch), ", ".join(only_sch),
-                len(pin_diff), len(pin_missing),
+             "ECO-1 delta = %d pin-level changes: %d nets to change on existing "
+             "pins + %d pads on %d new components (%s). %d pins absent from the "
+             "PCB. Nets only in the schematic: %s"
+             % (len(sch), len(rows), len(pcb),
+                len(pin_diff) + new_pads, len(pin_diff), new_pads, len(only_sch),
+                ", ".join(only_sch), len(pin_missing),
                 ", ".join(sorted(nets_sch - nets_pcb - NC_NETS)) or "none"))
+    if geo_report:
+        notes += ("; geometric .esch solve: %d/%d NC pins identified, %d agree, "
+                  "%d disagree, %d components missed -- cross-check only"
+                  % (geo_report["nc_pins_identified_correctly"],
+                     geo_report["nc_pins_in_contract"],
+                     geo_report["resolved_pins_agreeing"],
+                     geo_report["resolved_pins_disagreeing"],
+                     len(geo_report["components_missed"])))
     E.write_gate(os.path.join(root, "gates", "S2B.json"), "S2B", checks,
                  notes=notes, extra={"diff": "gates/netlist_diff.json",
                                      "contract": "contract/netlist_contract.json"})

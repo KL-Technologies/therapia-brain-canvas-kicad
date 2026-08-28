@@ -112,7 +112,7 @@ s2() {
 run_step S2 "import .epro and reconcile against the EasyEDA inventory" s2 || exit 1
 
 run_step S2B "build the contract netlist and diff the PCB against the schematic" \
-  "$PY3" "$ROOT/scripts/13_netlist_contract.py" --root "$ROOT" || {
+  "$PY3" "$ROOT/scripts/20_netlist_contract.py" --root "$ROOT" || {
   echo
   echo "S2B needs the EasyEDA schematic netlist. In the EasyEDA Pro editor run"
   echo "sch_ManufactureData.getNetlistFile() and save its pinInfoMap as"
