@@ -6,6 +6,18 @@
       "decision": "M1",
       "why": "The regulator body overhangs the M2 mounting hole H4 after the L1 repair moved it clear of the hole's copper. H4 is a bare drilled hole, not a part: nothing is placed there, so nothing collides at assembly. What it constrains is the enclosure -- the screw head and washer have to clear the SOT-223 body -- which is a mechanical decision taken outside this pipeline.",
       "recorded": "2026-08-28"
+    },
+    {
+      "pair": ["J1", "PEG1"],
+      "decision": "L4 / S4a",
+      "why": "PEG1 is one of the two NPTH locating pegs of J1 itself. The USB-C receptacle's own body drawing contains them -- that is what they are for -- so the connector's outline is bound to contain them. They are holes, not parts: nothing is placed there and nothing collides at assembly. They exist as separate footprints only because EasyEDA put the drill on the board rather than in the connector, and 13_fix_import.py had to synthesise them as NPTH footprints (S4a) to get them into the drill file at all. 64_body_overlap.py already distinguishes them in the report as part-on-hole rather than part-on-part; this entry stops that distinction being an ACCEPTANCE H failure.",
+      "recorded": "2026-08-28"
+    },
+    {
+      "pair": ["J1", "PEG2"],
+      "decision": "L4 / S4a",
+      "why": "The second of J1's own NPTH locating pegs. Same reasoning as J1/PEG1 above.",
+      "recorded": "2026-08-28"
     }
   ]
 }

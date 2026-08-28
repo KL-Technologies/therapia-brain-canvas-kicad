@@ -1,37 +1,12 @@
 {
   "step": "S7_body",
-  "pass": false,
+  "pass": true,
   "checks": [
     {
       "name": "H component bodies do not overlap",
       "expected": [],
-      "actual": [
-        [
-          "C_AVDD1_10n",
-          "U_MCU"
-        ],
-        [
-          "U_ADS",
-          "U_MCU"
-        ],
-        [
-          "J1",
-          "PEG1"
-        ],
-        [
-          "J1",
-          "PEG2"
-        ],
-        [
-          "C_DVDD_P40",
-          "U_MCU"
-        ],
-        [
-          "C_AVDD1_100n",
-          "U_MCU"
-        ]
-      ],
-      "pass": false
+      "actual": [],
+      "pass": true
     },
     {
       "name": "H every footprint has a body box",
@@ -47,8 +22,8 @@
       "note": "an allow-list entry that no longer overlaps is dead weight and should be deleted"
     }
   ],
-  "timestamp": "2026-08-28T20:27:19",
-  "notes": "141 footprints measured (fab=135, pads=6). 7 overlapping pairs, 1 of them allowed, 5 containments; 1 further pairs inside 0.15 mm. 4 of the failures are part-on-part, 2 are part-on-hole. ACCEPTANCE H: FAIL on C_AVDD1_10n/U_MCU, U_ADS/U_MCU, J1/PEG1, J1/PEG2, C_DVDD_P40/U_MCU, C_AVDD1_100n/U_MCU",
+  "timestamp": "2026-08-28T20:50:44",
+  "notes": "141 footprints measured (fab=135, pads=6). 3 overlapping pairs, 3 of them allowed, 3 containments; 1 further pairs inside 0.15 mm. 0 of the failures are part-on-part, 0 are part-on-hole. ACCEPTANCE H: pass",
   "board": "board/Therapia_EEG-HRV.kicad_pcb",
   "gap_threshold_mm": 0.15,
   "footprints": 141,
@@ -90,61 +65,6 @@
     },
     {
       "pair": [
-        "C_AVDD1_10n",
-        "U_MCU"
-      ],
-      "gap_mm": -3.1384,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          150.4326,
-          92.4245,
-          151.5135,
-          93.0054
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false,
-      "contained": "C_AVDD1_10n is wholly inside U_MCU"
-    },
-    {
-      "pair": [
-        "U_ADS",
-        "U_MCU"
-      ],
-      "gap_mm": -2.8124,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          140.1066,
-          96.0426,
-          151.1875,
-          107.1235
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false
-    },
-    {
-      "pair": [
         "J1",
         "PEG1"
       ],
@@ -170,7 +90,7 @@
       "mechanical": [
         "PEG1"
       ],
-      "allowed": false,
+      "allowed": true,
       "contained": "PEG1 is wholly inside J1"
     },
     {
@@ -200,239 +120,12 @@
       "mechanical": [
         "PEG2"
       ],
-      "allowed": false,
-      "contained": "PEG2 is wholly inside J1"
-    },
-    {
-      "pair": [
-        "C_DVDD_P40",
-        "U_MCU"
-      ],
-      "gap_mm": -1.6484,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          149.4425,
-          89.3805,
-          150.0234,
-          90.4614
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false,
-      "contained": "C_DVDD_P40 is wholly inside U_MCU"
-    },
-    {
-      "pair": [
-        "C_AVDD1_100n",
-        "U_MCU"
-      ],
-      "gap_mm": -0.8524,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          148.1466,
-          92.4245,
-          149.2275,
-          93.0054
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false
-    }
-  ],
-  "failing_part_on_part": [
-    {
-      "pair": [
-        "C_AVDD1_10n",
-        "U_MCU"
-      ],
-      "gap_mm": -3.1384,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          150.4326,
-          92.4245,
-          151.5135,
-          93.0054
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false,
-      "contained": "C_AVDD1_10n is wholly inside U_MCU"
-    },
-    {
-      "pair": [
-        "U_ADS",
-        "U_MCU"
-      ],
-      "gap_mm": -2.8124,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          140.1066,
-          96.0426,
-          151.1875,
-          107.1235
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false
-    },
-    {
-      "pair": [
-        "C_DVDD_P40",
-        "U_MCU"
-      ],
-      "gap_mm": -1.6484,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          149.4425,
-          89.3805,
-          150.0234,
-          90.4614
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false,
-      "contained": "C_DVDD_P40 is wholly inside U_MCU"
-    },
-    {
-      "pair": [
-        "C_AVDD1_100n",
-        "U_MCU"
-      ],
-      "gap_mm": -0.8524,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          148.1466,
-          92.4245,
-          149.2275,
-          93.0054
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false
-    }
-  ],
-  "failing_part_on_hole": [
-    {
-      "pair": [
-        "J1",
-        "PEG1"
-      ],
-      "gap_mm": -1.7495,
-      "source": [
-        "fab",
-        "pads"
-      ],
-      "box_mm": [
-        [
-          175.4616,
-          106.5125,
-          183.1925,
-          115.4934
-        ],
-        [
-          176.5111,
-          113.5279,
-          177.2111,
-          114.2279
-        ]
-      ],
-      "mechanical": [
-        "PEG1"
-      ],
-      "allowed": false,
-      "contained": "PEG1 is wholly inside J1"
-    },
-    {
-      "pair": [
-        "J1",
-        "PEG2"
-      ],
-      "gap_mm": -1.7495,
-      "source": [
-        "fab",
-        "pads"
-      ],
-      "box_mm": [
-        [
-          175.4616,
-          106.5125,
-          183.1925,
-          115.4934
-        ],
-        [
-          176.5111,
-          107.7478,
-          177.2111,
-          108.4479
-        ]
-      ],
-      "mechanical": [
-        "PEG2"
-      ],
-      "allowed": false,
+      "allowed": true,
       "contained": "PEG2 is wholly inside J1"
     }
   ],
+  "failing_part_on_part": [],
+  "failing_part_on_hole": [],
   "contained": [
     {
       "pair": [
@@ -466,62 +159,6 @@
     },
     {
       "pair": [
-        "C_AVDD1_10n",
-        "U_MCU"
-      ],
-      "gap_mm": -3.1384,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          150.4326,
-          92.4245,
-          151.5135,
-          93.0054
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false,
-      "contained": "C_AVDD1_10n is wholly inside U_MCU"
-    },
-    {
-      "pair": [
-        "C_DVDD_P40",
-        "U_MCU"
-      ],
-      "gap_mm": -1.6484,
-      "source": [
-        "fab",
-        "fab"
-      ],
-      "box_mm": [
-        [
-          149.4425,
-          89.3805,
-          150.0234,
-          90.4614
-        ],
-        [
-          148.3751,
-          88.5005,
-          173.956,
-          106.5814
-        ]
-      ],
-      "mechanical": [],
-      "allowed": false,
-      "contained": "C_DVDD_P40 is wholly inside U_MCU"
-    },
-    {
-      "pair": [
         "J1",
         "PEG1"
       ],
@@ -547,7 +184,7 @@
       "mechanical": [
         "PEG1"
       ],
-      "allowed": false,
+      "allowed": true,
       "contained": "PEG1 is wholly inside J1"
     },
     {
@@ -577,7 +214,7 @@
       "mechanical": [
         "PEG2"
       ],
-      "allowed": false,
+      "allowed": true,
       "contained": "PEG2 is wholly inside J1"
     }
   ],
@@ -618,6 +255,24 @@
       ],
       "decision": "M1",
       "why": "The regulator body overhangs the M2 mounting hole H4 after the L1 repair moved it clear of the hole's copper. H4 is a bare drilled hole, not a part: nothing is placed there, so nothing collides at assembly. What it constrains is the enclosure -- the screw head and washer have to clear the SOT-223 body -- which is a mechanical decision taken outside this pipeline.",
+      "recorded": "2026-08-28"
+    },
+    {
+      "pair": [
+        "J1",
+        "PEG1"
+      ],
+      "decision": "L4 / S4a",
+      "why": "PEG1 is one of the two NPTH locating pegs of J1 itself. The USB-C receptacle's own body drawing contains them -- that is what they are for -- so the connector's outline is bound to contain them. They are holes, not parts: nothing is placed there and nothing collides at assembly. They exist as separate footprints only because EasyEDA put the drill on the board rather than in the connector, and 13_fix_import.py had to synthesise them as NPTH footprints (S4a) to get them into the drill file at all. 64_body_overlap.py already distinguishes them in the report as part-on-hole rather than part-on-part; this entry stops that distinction being an ACCEPTANCE H failure.",
+      "recorded": "2026-08-28"
+    },
+    {
+      "pair": [
+        "J1",
+        "PEG2"
+      ],
+      "decision": "L4 / S4a",
+      "why": "The second of J1's own NPTH locating pegs. Same reasoning as J1/PEG1 above.",
       "recorded": "2026-08-28"
     }
   ],
@@ -2016,9 +1671,9 @@
       "ref": "U_MCU",
       "source": "fab",
       "box_mm": [
-        148.3751,
+        154.9576,
         88.5005,
-        173.956,
+        174.2385,
         106.5814
       ]
     },
