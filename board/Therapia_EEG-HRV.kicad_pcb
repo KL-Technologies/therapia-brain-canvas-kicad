@@ -56479,7 +56479,7 @@
 	)
 	(segment
 		(start 147.586 83.467)
-		(end 147.686 83.048)
+		(end 147.686 83.1242)
 		(width 0.203)
 		(layer "F.Cu")
 		(net "ADS_RESET_N")
@@ -56558,7 +56558,7 @@
 		(uuid "bd4438ad-afd5-4f86-90d8-dc95c9d1940b")
 	)
 	(segment
-		(start 147.686 83.048)
+		(start 147.686 83.1242)
 		(end 145.5015 83.048)
 		(width 0.1525)
 		(layer "F.Cu")
