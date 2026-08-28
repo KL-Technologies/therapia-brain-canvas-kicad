@@ -139,8 +139,10 @@ class Router(object):
         x, y = self._xy(ix, iy)
         layer = self.layers[li]
         reach = int(width / 2.0)
-        skip = set(ignore_ids)
         from route import uid as _uid
+        # ignore_ids holds board items, not keys -- the SWIG proxies are not
+        # hashable, so the set has to be built from their KIIDs.
+        skip = {_uid(i) for i in ignore_ids}
         for item, inet, sh in self.idx._query(layer, x - reach, y - reach,
                                               x + reach, y + reach):
             if inet != net or _uid(item) in skip:
@@ -273,7 +275,7 @@ class Router(object):
     # --- public ----------------------------------------------------------
     def route(self, starts, net, goals=(), goal_net_copper=False, width=None,
               ignore=(), window=None, margin_mm=3.0, max_nodes=250000,
-              verify_passes=4):
+              verify_passes=4, max_length_mm=None):
         """Route from `starts` to `goals` (and/or to any copper of `net`).
 
         starts/goals are (x, y, layer) in internal units. The first and last
@@ -359,6 +361,17 @@ class Router(object):
                 plan["length_mm"] = round(sum(
                     math.hypot(b[0] - a[0], b[1] - a[1])
                     for a, b, _l in plan["tracks"]) / float(IU), 4)
+                # A repair that has to cross the board is not a repair. Left
+                # unbounded, the healer answered a broken VDD_ESP link with a
+                # 24.7 mm, 106-segment snake -- legal by every clearance rule
+                # and useless as a power connection.
+                if max_length_mm is not None and \
+                        plan["length_mm"] > max_length_mm:
+                    return {"ok": False,
+                            "reason": "shortest legal path is %.3f mm, over "
+                                      "the %.3f mm limit for this repair"
+                                      % (plan["length_mm"], max_length_mm),
+                            "length_mm": plan["length_mm"]}
                 return plan
             tried.append({"segment_mm": [round(bad[0][0] / float(IU), 4),
                                          round(bad[0][1] / float(IU), 4),

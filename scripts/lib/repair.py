@@ -51,6 +51,11 @@ BOARD_BOX_MM = (120.0, 80.0, 181.8236, 125.0088)
 TARGET_HOLE_MARGIN = int(0.3 * IU)
 HOLE_MARGIN_STEPS = [int(v * IU) for v in (0.30, 0.28, 0.25, 0.22, 0.20)]
 CLEARANCE_STEPS = [int(v * IU) for v in (0.127, 0.11, 0.0889)]
+# The longest route a reconnection may lay. A repair is local; when the only
+# legal path is centimetres long the answer is to report the break, not to
+# snake copper across the board -- the unbounded version answered one broken
+# VDD_ESP link with 24.7 mm of track in 106 segments.
+MAX_HEAL_MM = 8.0
 
 
 def mm(v):
@@ -293,28 +298,67 @@ def net_components(pcbnew, board, idx, netcode):
                 if R.touches(pcbnew, a, b):
                     union(ua, ub)
 
-    zones = [z for z in idx.zones if z.GetNetCode() == netcode]
-    if zones:
-        zkey = "zone:%d" % netcode
-        parent[zkey] = zkey
-        for it in items:
-            hit = False
-            for z in zones:
-                for layer in R.item_layers(pcbnew, it):
-                    if not z.GetLayerSet().Contains(layer):
-                        continue
-                    try:
-                        sh = it.GetEffectiveShape(layer)
-                    except Exception:
-                        continue
-                    fill = z.GetFilledPolysList(layer)
-                    if fill is not None and fill.Collide(sh, 0):
-                        hit = True
-                        break
-                if hit:
-                    break
-            if hit:
-                union(R.uid(it), zkey)
+    # Each filled island of each zone is its own conductor. Treating a net's
+    # zones as one node says VDD_ESP is whole when it is actually three
+    # separate pours -- which is exactly the split DRC found after L1 and this
+    # check did not.
+    islands = []
+    for z in idx.zones:
+        if z.GetNetCode() != netcode:
+            continue
+        for layer in z.GetLayerSet().CuStack():
+            try:
+                fill = z.GetFilledPolysList(layer)
+            except Exception:
+                continue
+            if fill is None:
+                continue
+            for i in range(fill.OutlineCount()):
+                ps = pcbnew.SHAPE_POLY_SET()
+                ps.AddOutline(fill.Outline(i))
+                # The holes matter. A plane is one outline with a hole punched
+                # round every foreign pad and via; rebuilt without them it is
+                # a solid rectangle, and then every item over the plane looks
+                # connected to every other one.
+                for j in range(fill.HoleCount(i)):
+                    ps.AddHole(fill.Hole(i, j), 0)
+                bb = ps.BBox(0)
+                key = "Z:%s:%d:%d" % (R.uid(z), int(layer), i)
+                parent[key] = key
+                islands.append((key, layer, ps, bb))
+    # Two zones of the same net can overlap -- the board has three VDD_ESP
+    # pours -- and where they do they are one conductor. Without this the
+    # check reported VDD_ESP split on a board DRC calls whole.
+    for i in range(len(islands)):
+        for j in range(i + 1, len(islands)):
+            ka, la, pa, ba = islands[i]
+            kb, lb, pb, bb2 = islands[j]
+            if la != lb or find(ka) == find(kb):
+                continue
+            if (ba.GetRight() < bb2.GetLeft() or ba.GetLeft() > bb2.GetRight()
+                    or ba.GetBottom() < bb2.GetTop()
+                    or ba.GetTop() > bb2.GetBottom()):
+                continue
+            if pa.Collide(pb, 0):
+                union(ka, kb)
+
+    for it in items:
+        ibb = it.GetBoundingBox()
+        for key, layer, ps, bb in islands:
+            if (bb.GetRight() < ibb.GetLeft() or bb.GetLeft() > ibb.GetRight()
+                    or bb.GetBottom() < ibb.GetTop()
+                    or bb.GetTop() > ibb.GetBottom()):
+                continue
+            if layer not in R.item_layers(pcbnew, it):
+                continue
+            if find(R.uid(it)) == find(key):
+                continue
+            try:
+                sh = it.GetEffectiveShape(layer)
+            except Exception:
+                continue
+            if ps.Collide(sh, 0):
+                union(R.uid(it), key)
 
     groups = {}
     for u, it in by_uid.items():
@@ -473,7 +517,8 @@ def reconnect_island(pcbnew, board, idx, island, netcode, router=None,
                                                                 mm(q[1])]}
 
     plan = rt.route(starts, netcode, goal_net_copper=True, width=width,
-                    ignore=list(island), margin_mm=margin_mm)
+                    ignore=list(island), margin_mm=margin_mm,
+                    max_length_mm=MAX_HEAL_MM)
     if plan.get("ok"):
         return {"ok": True, "method": "maze route", "plan": plan,
                 "length_mm": plan.get("length_mm")}
@@ -622,6 +667,63 @@ def run_drc(out_path, root=None, refill=True, board=None):
 def load_drc(path):
     with open(path) as f:
         return json.load(f)
+
+
+def unconnected_count(pcbnew, board):
+    """KiCad's own answer, in-process. Matches DRC's unconnected_items count.
+
+    `net_components` above is a locator, not an oracle -- it was measured
+    calling VDD_ESP whole while DRC drew a ratsnest line across it. This is the
+    connectivity engine itself, so it is what the repairs check before saving.
+    """
+    board.BuildConnectivity()
+    conn = board.GetConnectivity()
+    conn.RecalculateRatsnest()
+    return conn.GetUnconnectedCount(True)
+
+
+def kicad_python():
+    return os.environ.get(
+        "KPY", "/Applications/KiCad/KiCad.app/Contents/Frameworks/"
+               "Python.framework/Versions/Current/bin/python3")
+
+
+def drc_with_healing(root, tag, rounds=2, log=None):
+    """DRC, then route back anything it says is unconnected, then DRC again.
+
+    Returns (ok, doc, path). The healing runs as a subprocess because pcbnew
+    refuses a second LoadBoard in the process that saved the board.
+    """
+    root = root or ROOT
+    path = os.path.join(root, "logs", "drc_%s.json" % tag)
+    ok, _proc, blob = run_drc(path, root)
+    if not ok:
+        if log is not None:
+            log["drc_error"] = blob[-400:]
+        return False, None, path
+    doc = load_drc(path)
+    for r in range(rounds):
+        if not doc.get("unconnected_items"):
+            break
+        script = os.path.join(root, "scripts", "39_fix_unconnected.py")
+        proc = subprocess.run([kicad_python(), script, "--root", root,
+                               "--drc", path], capture_output=True, text=True)
+        try:
+            heal = json.loads(proc.stdout)
+        except ValueError:
+            heal = {"stdout": proc.stdout[-400:],
+                    "stderr": proc.stderr[-400:]}
+        if log is not None:
+            log.setdefault("unconnected_healing", []).append(heal)
+        if not heal.get("fixed"):
+            break
+        ok, _proc, blob = run_drc(path, root)
+        if not ok:
+            if log is not None:
+                log["drc_error"] = blob[-400:]
+            return False, doc, path
+        doc = load_drc(path)
+    return True, doc, path
 
 
 def error_keys(doc):

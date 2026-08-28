@@ -26,11 +26,35 @@ CELL = 2 * IU                                  # spatial bucket, 2 mm
 
 
 def uid(item):
-    """A stable key for a board item.
+    """A stable, unique key for a board item.
 
     id() is useless here: pcbnew hands out a fresh SWIG proxy every time an
     item is reached through the board, so `pad is pad` is False for the same
-    pad fetched twice. The KIID survives that."""
+    pad fetched twice.
+
+    The KIID alone is not enough either, and that is not a theoretical worry:
+    the EasyEDA importer gave every instance of a library footprint the same
+    KIID, so on this board 38 footprints share one uuid and their 38 pin-1 pads
+    share another. Keyed on the KIID, `ignore` lists silently covered parts
+    they were never meant to, CopperIndex's per-query de-duplication dropped
+    real obstacles, and the connectivity check merged 38 unrelated pads into
+    one node -- which is how it came to call VDD_ESP whole while DRC was
+    drawing a ratsnest line across it.
+
+    So pads and footprints carry their reference as well. The pad's position is
+    taken relative to its footprint, not the board, so the key survives the
+    footprint being moved -- an `ignore` list built before a move has to still
+    match after it.
+    """
+    cls = item.GetClass()
+    if cls == "PAD":
+        fp = item.GetParentFootprint()
+        p = item.GetFPRelativePosition()
+        return "P:%s:%s:%s:%d:%d" % (item.m_Uuid.AsString(),
+                                     fp.GetReference() if fp else "?",
+                                     item.GetNumber(), p.x, p.y)
+    if cls == "FOOTPRINT":
+        return "F:%s:%s" % (item.m_Uuid.AsString(), item.GetReference())
     return item.m_Uuid.AsString()
 
 

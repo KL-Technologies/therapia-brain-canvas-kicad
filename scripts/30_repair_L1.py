@@ -399,23 +399,20 @@ def main():
     diffs, mech_refs = P.contract_diff(board, pcbnew, root)
     log["contract_diffs"] = diffs[:20]
     log["counts_after"] = P.counts(board, pcbnew)
+    log["unconnected_before_save"] = P.unconnected_count(pcbnew, board)
     pcbnew.SaveBoard(bpath, board)
 
     # --- 5. gate ------------------------------------------------------------
     drc_ok, cur, delta, sig = False, None, {}, {}
     if not a.skip_drc:
-        out = os.path.join(root, "logs", "drc_after_L1.json")
-        drc_ok, _proc, blob = P.run_drc(out, root)
+        drc_ok, cur, out = P.drc_with_healing(root, "after_L1", log=log)
         if drc_ok:
-            cur = P.load_drc(out)
             base = P.load_drc(os.path.join(root, "logs", "drc_S5_before.json"))
             delta = P.drc_delta(base, cur)
             sig = D.compare(base, cur)
             log["drc_after"] = {"errors_by_type": P.by_type(cur),
                                 "unconnected": P.unconnected(cur)}
             log["drc_delta"] = delta
-        else:
-            log["drc_error"] = blob[-400:]
 
     h4_left = 0
     if cur:
