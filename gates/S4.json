@@ -1,0 +1,715 @@
+{
+  "step": "S4",
+  "pass": true,
+  "checks": [
+    {
+      "name": "net_changes_applied",
+      "expected": 8,
+      "actual": 8,
+      "pass": true
+    },
+    {
+      "name": "new_parts_placed",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "name": "footprint_swaps",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    },
+    {
+      "name": "vcap_nets_exist",
+      "expected": [
+        "VCAP2",
+        "VCAP3"
+      ],
+      "actual": [
+        "VCAP2",
+        "VCAP3"
+      ],
+      "pass": true
+    },
+    {
+      "name": "pad_net_map_matches_contract",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "component_count",
+      "expected": 135,
+      "actual": 135,
+      "pass": true
+    },
+    {
+      "name": "all_parts_have_lcsc",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc_ran",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "no_unconnected_on_eco_nets",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc_no_new_failure_signatures",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T15:35:57",
+  "notes": "ECO-1/2/3 applied to the PCB. 8 pin net changes, 4 new parts, 2 footprint swaps. DRC after: {\"hole_clearance\": 35, \"clearance\": 20, \"solder_mask_bridge\": 8, \"hole_to_hole\": 4}",
+  "net_changes": [
+    {
+      "ref": "TPS72325",
+      "pad": "3",
+      "want": "V_NLDO_IN",
+      "note": "ECO-1#1 EN to IN -- the fatal B1",
+      "was": "GND",
+      "removed_stub": [
+        {
+          "class": "PCB_TRACK",
+          "net": "GND",
+          "at_mm": [
+            153.0455,
+            117.897
+          ]
+        },
+        {
+          "class": "PCB_VIA",
+          "net": "GND",
+          "at_mm": [
+            153.0505,
+            117.912
+          ]
+        },
+        {
+          "class": "PCB_VIA",
+          "net": "GND",
+          "at_mm": [
+            153.0455,
+            117.1855
+          ]
+        }
+      ],
+      "created_net": false,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "pad TPS72325/2",
+        "length_mm": 0.95,
+        "to_mm": [
+          153.05,
+          118.862
+        ],
+        "vias": []
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "31",
+      "want": "GND",
+      "note": "ECO-1#2 RESV1 to DGND",
+      "was": "AVDD",
+      "removed_stub": [
+        {
+          "class": "PCB_TRACK",
+          "net": "AVDD",
+          "at_mm": [
+            149.408,
+            107.648
+          ]
+        },
+        {
+          "class": "PCB_TRACK",
+          "net": "AVDD",
+          "at_mm": [
+            149.408,
+            108.702
+          ]
+        },
+        {
+          "class": "PCB_VIA",
+          "net": "AVDD",
+          "at_mm": [
+            149.1085,
+            109.159
+          ]
+        }
+      ],
+      "created_net": false,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "route to existing copper (L on F.Cu)",
+        "anchor": "pad U_ADS/33",
+        "length_mm": 2.920616,
+        "to_mm": [
+          151.712,
+          105.848
+        ],
+        "vias": []
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "42",
+      "want": "GND",
+      "note": "ECO-1#3 GPIO1",
+      "was": "",
+      "removed_stub": [],
+      "created_net": false,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "pad U_ADS/41",
+        "length_mm": 0.5,
+        "to_mm": [
+          151.712,
+          101.848
+        ],
+        "vias": []
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "44",
+      "want": "GND",
+      "note": "ECO-1#3 GPIO2",
+      "was": "",
+      "removed_stub": [],
+      "created_net": false,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "pad U_ADS/45",
+        "length_mm": 0.5,
+        "to_mm": [
+          151.712,
+          99.848
+        ],
+        "vias": []
+      },
+      "plane_drop": {
+        "ok": true,
+        "method": "new via into the GND plane",
+        "via_mm": [
+          151.204,
+          100.221
+        ],
+        "length_mm": 0.523634,
+        "zones_here": [
+          "AVDD",
+          "GND"
+        ]
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "45",
+      "want": "GND",
+      "note": "ECO-1#3 GPIO3",
+      "was": "",
+      "removed_stub": [],
+      "created_net": false,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "already touching",
+        "items": 1
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "46",
+      "want": "GND",
+      "note": "ECO-1#3 GPIO4",
+      "was": "",
+      "removed_stub": [],
+      "created_net": false,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "pad U_ADS/45",
+        "length_mm": 0.5,
+        "to_mm": [
+          151.712,
+          99.848
+        ],
+        "vias": []
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "30",
+      "want": "VCAP2",
+      "note": "ECO-1#4 VCAP2",
+      "was": "",
+      "removed_stub": [],
+      "created_net": true,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "deferred",
+        "note": "net VCAP2 has no other member yet; the capacitor placed in phase 3 makes the connection"
+      }
+    },
+    {
+      "ref": "U_ADS",
+      "pad": "55",
+      "want": "VCAP3",
+      "note": "ECO-1#5 VCAP3",
+      "was": "",
+      "removed_stub": [],
+      "created_net": true,
+      "ok": true,
+      "action": "net changed",
+      "connect": {
+        "ok": true,
+        "method": "deferred",
+        "note": "net VCAP3 has no other member yet; the capacitor placed in phase 3 makes the connection"
+      }
+    }
+  ],
+  "new_parts": [
+    {
+      "ref": "C_VCAP2",
+      "pad1_net": "VCAP2",
+      "pad2_net": "AVSS",
+      "targets": "U_ADS/30",
+      "ok": true,
+      "action": "placed",
+      "candidates_tried": 3,
+      "courtyard_overlap": {
+        "with": "U_ADS",
+        "area_mm2": 0.4975
+      },
+      "at_mm": [
+        149.166,
+        109.172
+      ],
+      "rotation": 0.0,
+      "pad1_mm": [
+        148.746,
+        109.172
+      ],
+      "distance_to_pin_mm": 1.533014,
+      "within_eco_window": true,
+      "pad2_connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "track_end",
+        "length_mm": 0.362259,
+        "to_mm": [
+          149.9085,
+          109.007
+        ],
+        "vias": []
+      },
+      "pad1_route": "straight",
+      "footprint": "ProPrj_The-easyedapro:C0402",
+      "pad1_route_mm": 1.533014
+    },
+    {
+      "ref": "C_VCAP3",
+      "pad1_net": "VCAP3",
+      "pad2_net": "AVSS",
+      "targets": "U_ADS/55",
+      "ok": true,
+      "action": "placed",
+      "candidates_tried": 2,
+      "courtyard_overlap": {
+        "with": "C_AVDD1_10u",
+        "area_mm2": 0.11427
+      },
+      "at_mm": [
+        144.118,
+        94.262
+      ],
+      "rotation": 90.0,
+      "pad1_mm": [
+        144.118,
+        94.682
+      ],
+      "distance_to_pin_mm": 3.35982,
+      "within_eco_window": true,
+      "pad2_connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "track_end",
+        "length_mm": 0.71466,
+        "to_mm": [
+          144.8285,
+          93.919
+        ],
+        "vias": []
+      },
+      "pad1_route": "via hop",
+      "footprint": "ProPrj_The-easyedapro:C0402",
+      "pad1_route_mm": 3.35982,
+      "review_route": "pin 1 reaches VCAP3 over 3.36 mm of track. For a bypass capacitor that is a long path; a human should check it."
+    },
+    {
+      "ref": "C_VCAP3_H",
+      "pad1_net": "VCAP3",
+      "pad2_net": "AVSS",
+      "targets": "U_ADS/55",
+      "ok": true,
+      "action": "placed",
+      "candidates_tried": 8,
+      "courtyard_overlap": {
+        "with": "U_ADS",
+        "area_mm2": 0.7588
+      },
+      "at_mm": [
+        141.832,
+        95.024
+      ],
+      "rotation": 270.0,
+      "pad1_mm": [
+        141.832,
+        94.604
+      ],
+      "distance_to_pin_mm": 5.439259,
+      "within_eco_window": true,
+      "pad2_connect": {
+        "ok": true,
+        "method": "route to existing copper (L on F.Cu)",
+        "anchor": "track_end",
+        "length_mm": 1.647348,
+        "to_mm": [
+          141.209,
+          93.919
+        ],
+        "vias": []
+      },
+      "pad1_route": "L on F.Cu",
+      "footprint": "ProPrj_The-easyedapro:C0402",
+      "pad1_route_mm": 2.28733,
+      "review_route": "pin 1 reaches VCAP3 over 2.29 mm of track. For a bypass capacitor that is a long path; a human should check it."
+    },
+    {
+      "ref": "C_VCAP1_H",
+      "pad1_net": "VCAP1",
+      "pad2_net": "AVSS",
+      "targets": "U_ADS/28",
+      "ok": true,
+      "action": "placed",
+      "candidates_tried": 6,
+      "courtyard_overlap": {
+        "with": "C_VREFP_100n",
+        "area_mm2": 0.49514
+      },
+      "at_mm": [
+        147.912,
+        109.426
+      ],
+      "rotation": 270.0,
+      "pad1_mm": [
+        147.912,
+        109.006
+      ],
+      "distance_to_pin_mm": 1.358,
+      "within_eco_window": true,
+      "pad2_connect": {
+        "ok": true,
+        "method": "route to existing copper (straight)",
+        "anchor": "track_mid",
+        "length_mm": 0.090868,
+        "to_mm": [
+          147.86375,
+          109.769
+        ],
+        "vias": []
+      },
+      "pad1_route": "straight",
+      "footprint": "ProPrj_The-easyedapro:C0402",
+      "pad1_route_mm": 0.002693
+    }
+  ],
+  "footprint_swaps": [
+    {
+      "ref": "C_VCAP1",
+      "to": "Capacitor_SMD:C_1206_3216Metric",
+      "from_fpid": "ProPrj_The-easyedapro:C0603",
+      "at_mm": [
+        151.242,
+        112.766
+      ],
+      "rotation": 0.0,
+      "pad_nets": {
+        "1": "VCAP1",
+        "2": "AVSS"
+      },
+      "placed_rotation": 90.0,
+      "ok": true,
+      "moved_mm": 2.50161,
+      "courtyard_overlap": {
+        "with": "C_AVSS_P60",
+        "area_mm2": 0.6551
+      },
+      "review": "moved 2.50 mm to fit the 1206 body. That is further than a decoupling part should drift from its pin; a human should check the result against the ADS1299 layout guidance.",
+      "placed_at_mm": [
+        152.258,
+        115.052
+      ],
+      "new_pads_mm": {
+        "1": [
+          152.258,
+          116.527
+        ],
+        "2": [
+          152.258,
+          113.577
+        ]
+      },
+      "old_pads_mm": {
+        "1": [
+          150.542,
+          112.766
+        ],
+        "2": [
+          151.942,
+          112.766
+        ]
+      },
+      "bridge": [
+        {
+          "ok": true,
+          "method": "route to existing copper (via hop)",
+          "anchor": "track_end",
+          "length_mm": 2.622079,
+          "to_mm": [
+            150.81,
+            114.341
+          ],
+          "vias": [
+            [
+              151.75,
+              116.527
+            ],
+            [
+              150.302,
+              114.341
+            ]
+          ],
+          "pad": "1"
+        },
+        {
+          "ok": true,
+          "method": "route to existing copper (straight)",
+          "anchor": "track_mid",
+          "length_mm": 0.617893,
+          "to_mm": [
+            151.7195,
+            113.274
+          ],
+          "vias": [],
+          "pad": "2"
+        }
+      ]
+    },
+    {
+      "ref": "C_VREFP_10u",
+      "to": "Capacitor_SMD:C_1206_3216Metric",
+      "from_fpid": "ProPrj_The-easyedapro:C0603",
+      "at_mm": [
+        150.429,
+        110.48
+      ],
+      "rotation": 0.0,
+      "pad_nets": {
+        "1": "VREFP",
+        "2": "AVSS"
+      },
+      "placed_rotation": 90.0,
+      "ok": true,
+      "moved_mm": 0.567961,
+      "courtyard_overlap": {
+        "with": "U_ADS",
+        "area_mm2": 2.14027
+      },
+      "placed_at_mm": [
+        150.937,
+        110.226
+      ],
+      "new_pads_mm": {
+        "1": [
+          150.937,
+          111.701
+        ],
+        "2": [
+          150.937,
+          108.751
+        ]
+      },
+      "old_pads_mm": {
+        "1": [
+          149.729,
+          110.48
+        ],
+        "2": [
+          151.129,
+          110.48
+        ]
+      },
+      "bridge": [
+        {
+          "ok": true,
+          "method": "route to existing copper (straight)",
+          "anchor": "track_mid",
+          "length_mm": 0.28414,
+          "to_mm": [
+            150.74025,
+            111.496
+          ],
+          "vias": [],
+          "pad": "1"
+        },
+        {
+          "ok": true,
+          "method": "route to existing copper (straight)",
+          "anchor": "track_end",
+          "length_mm": 1.031453,
+          "to_mm": [
+            149.9085,
+            108.829
+          ],
+          "vias": [],
+          "pad": "2"
+        }
+      ]
+    }
+  ],
+  "fields": {
+    "fields_set": 135,
+    "no_table_entry": []
+  },
+  "contract_diffs": [],
+  "mechanical_footprints": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "PEG1",
+    "PEG2"
+  ],
+  "counts_before": {
+    "footprints": 137,
+    "tracks": 1191,
+    "vias": 238
+  },
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1213,
+    "vias": 240
+  },
+  "nets_added": [
+    "VCAP2",
+    "VCAP3"
+  ],
+  "drc_summary": {
+    "violations": 528,
+    "errors": 67,
+    "warnings": 461,
+    "unconnected": 0,
+    "by_type": {
+      "silk_overlap": 199,
+      "silk_over_copper": 151,
+      "courtyards_overlap": 77,
+      "hole_clearance": 35,
+      "track_dangling": 25,
+      "clearance": 24,
+      "solder_mask_bridge": 8,
+      "hole_to_hole": 4,
+      "via_dangling": 2,
+      "silk_edge_clearance": 2,
+      "starved_thermal": 1
+    },
+    "errors_by_type": {
+      "hole_clearance": 35,
+      "clearance": 20,
+      "solder_mask_bridge": 8,
+      "hole_to_hole": 4
+    },
+    "signatures": [
+      "clearance nets=ADS_DIN_LOC,GND",
+      "clearance nets=ADS_DRDY_N,ADS_PWDN_N",
+      "clearance nets=ADS_RESET_N,GND",
+      "clearance nets=ADS_START,USB_5V",
+      "clearance nets=ADS_START,USB_VBUS_RAW",
+      "clearance nets=AVDD,AVSS",
+      "clearance nets=AVDD,GND",
+      "clearance nets=AVSS,VDD_ESP",
+      "clearance nets=BIAS_OUT_INT,DVDD",
+      "clearance nets=DVDD,GND",
+      "clearance nets=ESP_TXD,USB_DM",
+      "clearance nets=GND,VDD_ESP",
+      "clearance nets=TPS_NR,VDD_ESP",
+      "clearance nets=USB_DM,USB_DP",
+      "clearance nets=VNEG5,V_NLDO_IN",
+      "hole_clearance nets=AVSS,VDD_ESP",
+      "hole_clearance nets=CHASSIS_GND",
+      "hole_clearance nets=ESP_TXD",
+      "hole_clearance nets=GND",
+      "hole_clearance nets=USB_VBUS_RAW",
+      "hole_to_hole nets=USB_VBUS_RAW",
+      "solder_mask_bridge nets=ADS_START,ESP_IO0",
+      "solder_mask_bridge nets=AVSS,VDD_ESP",
+      "solder_mask_bridge nets=ESP_IO0,GND",
+      "solder_mask_bridge nets=GND",
+      "solder_mask_bridge nets=GND,VDD_ESP",
+      "solder_mask_bridge nets=TPS_NR,VDD_ESP"
+    ]
+  },
+  "drc_vs_baseline": {
+    "new_signatures": [],
+    "new_but_harmless": [],
+    "resolved_signatures": [],
+    "baseline_errors": 67,
+    "current_errors": 67,
+    "error_delta": 0,
+    "count_jitter_allowed": 2,
+    "count_within_jitter": true,
+    "regressed": false
+  },
+  "unconnected_on_eco_nets": [],
+  "blocked_needs_layout_work": [],
+  "placed_but_review": [
+    {
+      "item": "C_VCAP3",
+      "note": "pin 1 reaches VCAP3 over 3.36 mm of track. For a bypass capacitor that is a long path; a human should check it."
+    },
+    {
+      "item": "C_VCAP3_H",
+      "note": "pin 1 reaches VCAP3 over 2.29 mm of track. For a bypass capacitor that is a long path; a human should check it."
+    },
+    {
+      "item": "C_VCAP1",
+      "note": "moved 2.50 mm to fit the 1206 body. That is further than a decoupling part should drift from its pin; a human should check the result against the ADS1299 layout guidance."
+    }
+  ]
+}

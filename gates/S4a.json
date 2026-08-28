@@ -64,8 +64,8 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T14:06:38",
-  "notes": "NPTH synthesis + outline closure. Counts before={\"npth_pads\": 6, \"pth_pads\": 16, \"vias\": 238} after={\"npth_pads\": 6, \"pth_pads\": 16, \"vias\": 238, \"copper_layers\": 4}",
+  "timestamp": "2026-08-28T15:35:24",
+  "notes": "NPTH synthesis + outline closure. Counts before={\"npth_pads\": 0, \"pth_pads\": 20, \"vias\": 238} after={\"npth_pads\": 6, \"pth_pads\": 16, \"vias\": 238, \"copper_layers\": 4}",
   "log": [
     {
       "step": "m2",
@@ -129,7 +129,24 @@
     },
     {
       "step": "edge_cuts",
-      "removed": [],
+      "removed": [
+        {
+          "owner": "J1",
+          "shape": 4,
+          "center_mm": [
+            176.861,
+            108.098
+          ]
+        },
+        {
+          "owner": "J1",
+          "shape": 4,
+          "center_mm": [
+            176.861,
+            113.878
+          ]
+        }
+      ],
       "rectangle_mm": [
         [
           120.0,
@@ -151,6 +168,12 @@
       "ref": "PEG2",
       "x_mm": 176.861075,
       "y_mm": 108.097861,
+      "dia_mm": 0.700024
+    },
+    {
+      "ref": "PEG1",
+      "x_mm": 176.861075,
+      "y_mm": 113.877885,
       "dia_mm": 0.700024
     },
     {
@@ -176,12 +199,6 @@
       "x_mm": 176.9468,
       "y_mm": 83.048,
       "dia_mm": 2.3876
-    },
-    {
-      "ref": "PEG1",
-      "x_mm": 176.861075,
-      "y_mm": 113.877885,
-      "dia_mm": 0.700024
     }
   ],
   "drill_files": [

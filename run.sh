@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -30,7 +30,7 @@ show_status() {
 import json, os, sys
 root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
-for step in ("S0", "S1", "S1B", "S2", "S2B"):
+for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -119,6 +119,24 @@ run_step S2B "build the contract netlist and diff the PCB against the schematic"
   echo "contract/netlist_easyeda_api_<date>.tsv, then re-run ./run.sh"
   exit 1
 }
+
+# S4a before S3 on purpose: until the six mounting holes are real NPTH pads,
+# a hole-clearance rule has nothing to fire on and the S3 gate cannot prove
+# that the rules detect L1, L2 and L4.
+run_step S4a "synthesise the NPTH holes and close the board outline" \
+  "$KPY" "$ROOT/scripts/13_fix_import.py" --root "$ROOT" || exit 1
+
+s3() {
+  "$PY3" "$ROOT/scripts/14_make_rules.py" --root "$ROOT" || return 1
+  "$PY3" "$ROOT/scripts/15_gate_s3.py" --root "$ROOT" || return 1
+}
+run_step S3 "write the JLC design rules and take the DRC baseline" s3 || exit 1
+
+s4() {
+  "$PY3" "$ROOT/scripts/19_make_parts_table.py" --root "$ROOT" || return 1
+  "$KPY" "$ROOT/scripts/20_apply_eco.py" --root "$ROOT" || return 1
+}
+run_step S4 "apply ECO-1/2/3 to the PCB" s4 || exit 1
 
 echo
 show_status

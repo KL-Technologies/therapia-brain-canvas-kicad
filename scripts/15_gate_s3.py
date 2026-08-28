@@ -123,8 +123,27 @@ def rules_are_current(root):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", default=ROOT)
+    ap.add_argument("--force-baseline", action="store_true",
+                    help="regenerate the baseline even though the ECO has "
+                         "already been applied to the board")
     args = ap.parse_args()
     root = args.root
+
+    # The baseline describes the board BEFORE the ECO, and S4 compares against
+    # it. Re-running this step after S4 would quietly overwrite it with the
+    # post-ECO board, after which S4 could never detect a regression again.
+    s4 = os.path.join(root, "gates", "S4.json")
+    if os.path.exists(s4) and not args.force_baseline:
+        try:
+            done = E.load_json(s4).get("pass")
+        except ValueError:
+            done = False
+        if done:
+            print("S3: refusing to re-measure the DRC baseline -- S4 has "
+                  "already applied the ECO to this board, so the result would "
+                  "no longer be a pre-ECO reference. Pass --force-baseline if "
+                  "that is really what you want.")
+            return 0
     board_path = os.path.join(root, "board", BOARD_NAME + ".kicad_pcb")
     pro = os.path.join(root, "board", BOARD_NAME + ".kicad_pro")
     dru = os.path.join(root, "board", BOARD_NAME + ".kicad_dru")

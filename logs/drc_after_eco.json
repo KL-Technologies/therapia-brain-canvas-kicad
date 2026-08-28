@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-08-28T15:35:25",
+    "date": "2026-08-28T15:35:57",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -46,52 +46,6 @@
     "source": "Therapia_EEG-HRV.kicad_pcb",
     "unconnected_items": [],
     "violations": [
-        {
-            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0580 mm)",
-            "items": [
-                {
-                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
-                    "pos": {
-                        "x": 155.6615,
-                        "y": 114.964
-                    },
-                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
-                },
-                {
-                    "description": "Track [GND] on Top Layer, length 0.0090 mm",
-                    "pos": {
-                        "x": 145.5105,
-                        "y": 110.48
-                    },
-                    "uuid": "f05d1dfd-2640-4dec-8dce-494f30d8acc8"
-                }
-            ],
-            "severity": "error",
-            "type": "clearance"
-        },
-        {
-            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0658 mm)",
-            "items": [
-                {
-                    "description": "Via [GND] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 145.908,
-                        "y": 114.4895
-                    },
-                    "uuid": "39025287-516e-4c88-9a7e-a2352011f8ba"
-                },
-                {
-                    "description": "Track [AVDD] on Bottom Layer, length 0.6368 mm",
-                    "pos": {
-                        "x": 146.111,
-                        "y": 115.103
-                    },
-                    "uuid": "c68acca7-133f-4928-ad75-b46c59b91818"
-                }
-            ],
-            "severity": "error",
-            "type": "clearance"
-        },
         {
             "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
@@ -162,52 +116,6 @@
             "type": "clearance"
         },
         {
-            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0307 mm)",
-            "items": [
-                {
-                    "description": "Via [VNEG5] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 143.825,
-                        "y": 122.3165
-                    },
-                    "uuid": "0392f073-9b0b-4fa6-a1de-dcb4a734ef15"
-                },
-                {
-                    "description": "Track [V_NLDO_IN] on Bottom Layer, length 0.2543 mm",
-                    "pos": {
-                        "x": 143.571,
-                        "y": 121.961
-                    },
-                    "uuid": "13f5bd2c-9350-4448-b4ff-8a372734ab49"
-                }
-            ],
-            "severity": "error",
-            "type": "clearance"
-        },
-        {
-            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0307 mm)",
-            "items": [
-                {
-                    "description": "Via [VNEG5] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 143.825,
-                        "y": 122.3165
-                    },
-                    "uuid": "0392f073-9b0b-4fa6-a1de-dcb4a734ef15"
-                },
-                {
-                    "description": "Track [V_NLDO_IN] on Bottom Layer, length 2.2860 mm",
-                    "pos": {
-                        "x": 141.285,
-                        "y": 121.961
-                    },
-                    "uuid": "64bb6d01-ebb2-4ffd-be1a-9449c456b02d"
-                }
-            ],
-            "severity": "error",
-            "type": "clearance"
-        },
-        {
             "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0762 mm)",
             "items": [
                 {
@@ -234,6 +142,52 @@
             "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
                 {
+                    "description": "NPTH pad of PEG2",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 108.097861
+                    },
+                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 177.201,
+                        "y": 108.143
+                    },
+                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0213 mm)",
+            "items": [
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 176.693,
+                        "y": 113.223
+                    },
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                },
+                {
+                    "description": "NPTH pad of PEG1",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 113.877885
+                    },
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
+            "items": [
+                {
                     "description": "Track [USB_VBUS_RAW] on Bottom Layer, length 4.7755 mm",
                     "pos": {
                         "x": 177.201,
@@ -254,92 +208,23 @@
             "type": "hole_clearance"
         },
         {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0213 mm)",
             "items": [
-                {
-                    "description": "NPTH pad of PEG2",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 108.097861
-                    },
-                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
-                },
                 {
                     "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
                     "pos": {
-                        "x": 177.201,
-                        "y": 108.143
+                        "x": 176.693,
+                        "y": 113.223
                     },
-                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
-            "items": [
-                {
-                    "description": "NPTH pad of PEG2",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 108.097861
-                    },
-                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
                 },
                 {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 177.201,
-                        "y": 108.143
-                    },
-                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
-            "items": [
-                {
-                    "description": "NPTH pad of PEG2",
+                    "description": "NPTH pad of PEG1",
                     "pos": {
                         "x": 176.861075,
-                        "y": 108.097861
+                        "y": 113.877885
                     },
-                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
-                },
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 177.201,
-                        "y": 108.143
-                    },
-                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
-            "items": [
-                {
-                    "description": "NPTH pad of PEG2",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 108.097861
-                    },
-                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
-                },
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 177.201,
-                        "y": 108.143
-                    },
-                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
                 }
             ],
             "severity": "error",
@@ -386,75 +271,6 @@
                         "y": 108.097861
                     },
                     "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0213 mm)",
-            "items": [
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 176.693,
-                        "y": 113.223
-                    },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
-                },
-                {
-                    "description": "NPTH pad of PEG1",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
-                    },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0213 mm)",
-            "items": [
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 176.693,
-                        "y": 113.223
-                    },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
-                },
-                {
-                    "description": "NPTH pad of PEG1",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
-                    },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0213 mm)",
-            "items": [
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 176.693,
-                        "y": 113.223
-                    },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
-                },
-                {
-                    "description": "NPTH pad of PEG1",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
-                    },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
                 }
             ],
             "severity": "error",
@@ -510,6 +326,52 @@
             "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
                 {
+                    "description": "NPTH pad of PEG2",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 108.097861
+                    },
+                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 177.201,
+                        "y": 108.143
+                    },
+                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
+            "items": [
+                {
+                    "description": "NPTH pad of PEG2",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 108.097861
+                    },
+                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 177.201,
+                        "y": 108.143
+                    },
+                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
+            "items": [
+                {
                     "description": "Track [USB_VBUS_RAW] on Top Layer, length 0.5312 mm",
                     "pos": {
                         "x": 176.185,
@@ -524,6 +386,52 @@
                         "y": 108.097861
                     },
                     "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
+            "items": [
+                {
+                    "description": "NPTH pad of PEG2",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 108.097861
+                    },
+                    "uuid": "5de5df2f-58da-4028-affe-7410e296b9f0"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 177.201,
+                        "y": 108.143
+                    },
+                    "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0213 mm)",
+            "items": [
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 176.693,
+                        "y": 113.223
+                    },
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                },
+                {
+                    "description": "NPTH pad of PEG1",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 113.877885
+                    },
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
                 }
             ],
             "severity": "error",
@@ -760,16 +668,8 @@
             "type": "clearance"
         },
         {
-            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0465 mm)",
+            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0727 mm)",
             "items": [
-                {
-                    "description": "Track [GND] on Top Layer, length 0.6779 mm",
-                    "pos": {
-                        "x": 145.095,
-                        "y": 111.0895
-                    },
-                    "uuid": "868e83fe-a235-4a1e-ab25-8cd4350d0dc3"
-                },
                 {
                     "description": "Via [AVDD] on Top Layer - Bottom Layer",
                     "pos": {
@@ -777,6 +677,37 @@
                         "y": 111.3435
                     },
                     "uuid": "8e3624ea-a6d6-4654-a445-533fa42dc429"
+                },
+                {
+                    "description": "Track [GND] on Top Layer, length 0.3969 mm",
+                    "pos": {
+                        "x": 145.3155,
+                        "y": 110.7595
+                    },
+                    "uuid": "8e5c74c5-62b1-41db-b5f9-ac03cac26412"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0307 mm)",
+            "items": [
+                {
+                    "description": "Via [VNEG5] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 143.825,
+                        "y": 122.3165
+                    },
+                    "uuid": "0392f073-9b0b-4fa6-a1de-dcb4a734ef15"
+                },
+                {
+                    "description": "Track [V_NLDO_IN] on Bottom Layer, length 0.2543 mm",
+                    "pos": {
+                        "x": 143.571,
+                        "y": 121.961
+                    },
+                    "uuid": "13f5bd2c-9350-4448-b4ff-8a372734ab49"
                 }
             ],
             "severity": "error",
@@ -919,6 +850,52 @@
             ],
             "severity": "error",
             "type": "hole_clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0658 mm)",
+            "items": [
+                {
+                    "description": "Via [GND] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 145.908,
+                        "y": 114.4895
+                    },
+                    "uuid": "39025287-516e-4c88-9a7e-a2352011f8ba"
+                },
+                {
+                    "description": "Track [AVDD] on Bottom Layer, length 0.6368 mm",
+                    "pos": {
+                        "x": 146.111,
+                        "y": 115.103
+                    },
+                    "uuid": "c68acca7-133f-4928-ad75-b46c59b91818"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0580 mm)",
+            "items": [
+                {
+                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
+                    "pos": {
+                        "x": 155.6615,
+                        "y": 114.964
+                    },
+                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
+                },
+                {
+                    "description": "Track [GND] on Top Layer, length 0.0090 mm",
+                    "pos": {
+                        "x": 145.5105,
+                        "y": 110.48
+                    },
+                    "uuid": "f05d1dfd-2640-4dec-8dce-494f30d8acc8"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
         },
         {
             "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0631 mm)",
@@ -1085,29 +1062,6 @@
             "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
                 {
-                    "description": "Pad 1 [GND] of AMS1117 on Top Layer",
-                    "pos": {
-                        "x": 176.564,
-                        "y": 122.2795
-                    },
-                    "uuid": "4530e947-3d45-435c-9e0c-f3275851fa57"
-                },
-                {
-                    "description": "NPTH pad of H4",
-                    "pos": {
-                        "x": 176.9468,
-                        "y": 121.9608
-                    },
-                    "uuid": "8ebfd648-2d4f-4c6f-9baa-e37f834b43de"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
-            "items": [
-                {
                     "description": "NPTH pad of PEG2",
                     "pos": {
                         "x": 176.861075,
@@ -1151,6 +1105,29 @@
             "type": "hole_clearance"
         },
         {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
+            "items": [
+                {
+                    "description": "NPTH pad of PEG1",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 113.877885
+                    },
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 176.693,
+                        "y": 113.223
+                    },
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
             "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
                 {
@@ -1174,23 +1151,92 @@
             "type": "hole_clearance"
         },
         {
-            "description": "Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1870 mm)",
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
             "items": [
                 {
-                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
+                    "description": "NPTH pad of PEG1",
                     "pos": {
-                        "x": 155.6615,
-                        "y": 114.964
+                        "x": 176.861075,
+                        "y": 113.877885
                     },
-                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
                 },
                 {
-                    "description": "Via [AVSS] on Top Layer - Bottom Layer",
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
                     "pos": {
-                        "x": 148.2955,
-                        "y": 116.119
+                        "x": 176.693,
+                        "y": 113.223
                     },
-                    "uuid": "d554a7b1-41ac-41ff-9d57-a5910a01484a"
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
+            "items": [
+                {
+                    "description": "NPTH pad of PEG1",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 113.877885
+                    },
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 176.693,
+                        "y": 113.223
+                    },
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
+            "items": [
+                {
+                    "description": "NPTH pad of PEG1",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 113.877885
+                    },
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
+                },
+                {
+                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "pos": {
+                        "x": 176.693,
+                        "y": 113.223
+                    },
+                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1712 mm)",
+            "items": [
+                {
+                    "description": "Pad 1 [GND] of J1 on Top Layer",
+                    "pos": {
+                        "x": 175.791,
+                        "y": 114.188
+                    },
+                    "uuid": "626284d3-a5db-4117-a6a3-e62cee17694d"
+                },
+                {
+                    "description": "NPTH pad of PEG1",
+                    "pos": {
+                        "x": 176.861075,
+                        "y": 113.877885
+                    },
+                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
                 }
             ],
             "severity": "error",
@@ -1220,115 +1266,46 @@
             "type": "clearance"
         },
         {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1712 mm)",
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1870 mm)",
             "items": [
                 {
-                    "description": "Pad 1 [GND] of J1 on Top Layer",
+                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
                     "pos": {
-                        "x": 175.791,
-                        "y": 114.188
+                        "x": 155.6615,
+                        "y": 114.964
                     },
-                    "uuid": "626284d3-a5db-4117-a6a3-e62cee17694d"
+                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
                 },
                 {
-                    "description": "NPTH pad of PEG1",
+                    "description": "Via [AVSS] on Top Layer - Bottom Layer",
                     "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
+                        "x": 148.2955,
+                        "y": 116.119
                     },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
+                    "uuid": "d554a7b1-41ac-41ff-9d57-a5910a01484a"
                 }
             ],
             "severity": "error",
             "type": "hole_clearance"
         },
         {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
+            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
                 {
-                    "description": "NPTH pad of PEG1",
+                    "description": "Pad 1 [GND] of AMS1117 on Top Layer",
                     "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
+                        "x": 176.564,
+                        "y": 122.2795
                     },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
+                    "uuid": "4530e947-3d45-435c-9e0c-f3275851fa57"
                 },
                 {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+                    "description": "NPTH pad of H4",
                     "pos": {
-                        "x": 176.693,
-                        "y": 113.223
+                        "x": 176.9468,
+                        "y": 121.9608
                     },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
-            "items": [
-                {
-                    "description": "NPTH pad of PEG1",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
-                    },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
-                },
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 176.693,
-                        "y": 113.223
-                    },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
-            "items": [
-                {
-                    "description": "NPTH pad of PEG1",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
-                    },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
-                },
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 176.693,
-                        "y": 113.223
-                    },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "Hole clearance violation (rule 'npth_hole_to_copper' clearance 0.2000 mm; actual 0.1736 mm)",
-            "items": [
-                {
-                    "description": "NPTH pad of PEG1",
-                    "pos": {
-                        "x": 176.861075,
-                        "y": 113.877885
-                    },
-                    "uuid": "682f1ce1-7ebc-4ca1-a0fa-860ca6bb2075"
-                },
-                {
-                    "description": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-                    "pos": {
-                        "x": 176.693,
-                        "y": 113.223
-                    },
-                    "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+                    "uuid": "8ebfd648-2d4f-4c6f-9baa-e37f834b43de"
                 }
             ],
             "severity": "error",
@@ -1430,6 +1407,29 @@
             "description": "Front solder mask aperture bridges items with different nets",
             "items": [
                 {
+                    "description": "Pad 2 [AVSS] of C_VCAP1_H on Top Layer",
+                    "pos": {
+                        "x": 147.912,
+                        "y": 109.846
+                    },
+                    "uuid": "4083ff31-7ce5-453f-8487-5acd437ec352"
+                },
+                {
+                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
+                    "pos": {
+                        "x": 155.6615,
+                        "y": 114.964
+                    },
+                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "Front solder mask aperture bridges items with different nets",
+            "items": [
+                {
                     "description": "NPTH pad of H4",
                     "pos": {
                         "x": 176.9468,
@@ -1444,6 +1444,75 @@
                         "y": 122.2795
                     },
                     "uuid": "4530e947-3d45-435c-9e0c-f3275851fa57"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "Front solder mask aperture bridges items with different nets",
+            "items": [
+                {
+                    "description": "Track [TPS_NR] on Top Layer, length 1.0665 mm",
+                    "pos": {
+                        "x": 155.103,
+                        "y": 114.595
+                    },
+                    "uuid": "104a2c45-b622-46ae-ac31-27992ee28db1"
+                },
+                {
+                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
+                    "pos": {
+                        "x": 155.6615,
+                        "y": 114.964
+                    },
+                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "Front solder mask aperture bridges items with different nets",
+            "items": [
+                {
+                    "description": "Pad 3 [ESP_IO0] of Q_IO0 on Top Layer",
+                    "pos": {
+                        "x": 164.9995,
+                        "y": 109.464
+                    },
+                    "uuid": "e24ae55d-d238-4a9e-8ad4-45468ebd8717"
+                },
+                {
+                    "description": "Pad 1 [ADS_START] of R_START_DN on Top Layer",
+                    "pos": {
+                        "x": 171.308,
+                        "y": 108.7105
+                    },
+                    "uuid": "b58efad3-fc63-403f-9773-98cd05cfee64"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "Front solder mask aperture bridges items with different nets",
+            "items": [
+                {
+                    "description": "Pad 3 [ESP_IO0] of Q_IO0 on Top Layer",
+                    "pos": {
+                        "x": 164.9995,
+                        "y": 109.464
+                    },
+                    "uuid": "e24ae55d-d238-4a9e-8ad4-45468ebd8717"
+                },
+                {
+                    "description": "Pad 2 [GND] of R_START_DN on Top Layer",
+                    "pos": {
+                        "x": 171.308,
+                        "y": 110.2175
+                    },
+                    "uuid": "6c01f818-3216-4e47-903d-8a18f80c603a"
                 }
             ],
             "severity": "error",
@@ -1499,29 +1568,6 @@
             "description": "Front solder mask aperture bridges items with different nets",
             "items": [
                 {
-                    "description": "Track [TPS_NR] on Top Layer, length 1.0665 mm",
-                    "pos": {
-                        "x": 155.103,
-                        "y": 114.595
-                    },
-                    "uuid": "104a2c45-b622-46ae-ac31-27992ee28db1"
-                },
-                {
-                    "description": "Pad 1 [VDD_ESP] of C_3V3_H on Top Layer",
-                    "pos": {
-                        "x": 155.6615,
-                        "y": 114.964
-                    },
-                    "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
-                }
-            ],
-            "severity": "error",
-            "type": "solder_mask_bridge"
-        },
-        {
-            "description": "Front solder mask aperture bridges items with different nets",
-            "items": [
-                {
                     "description": "Via [AVSS] on Top Layer - Bottom Layer",
                     "pos": {
                         "x": 148.2955,
@@ -1536,52 +1582,6 @@
                         "y": 114.964
                     },
                     "uuid": "1dbff4d9-4ab9-4d01-a5a6-11c1b1a3cade"
-                }
-            ],
-            "severity": "error",
-            "type": "solder_mask_bridge"
-        },
-        {
-            "description": "Front solder mask aperture bridges items with different nets",
-            "items": [
-                {
-                    "description": "Pad 3 [ESP_IO0] of Q_IO0 on Top Layer",
-                    "pos": {
-                        "x": 164.9995,
-                        "y": 109.464
-                    },
-                    "uuid": "e24ae55d-d238-4a9e-8ad4-45468ebd8717"
-                },
-                {
-                    "description": "Pad 1 [ADS_START] of R_START_DN on Top Layer",
-                    "pos": {
-                        "x": 171.308,
-                        "y": 108.7105
-                    },
-                    "uuid": "b58efad3-fc63-403f-9773-98cd05cfee64"
-                }
-            ],
-            "severity": "error",
-            "type": "solder_mask_bridge"
-        },
-        {
-            "description": "Front solder mask aperture bridges items with different nets",
-            "items": [
-                {
-                    "description": "Pad 3 [ESP_IO0] of Q_IO0 on Top Layer",
-                    "pos": {
-                        "x": 164.9995,
-                        "y": 109.464
-                    },
-                    "uuid": "e24ae55d-d238-4a9e-8ad4-45468ebd8717"
-                },
-                {
-                    "description": "Pad 2 [GND] of R_START_DN on Top Layer",
-                    "pos": {
-                        "x": 171.308,
-                        "y": 110.2175
-                    },
-                    "uuid": "6c01f818-3216-4e47-903d-8a18f80c603a"
                 }
             ],
             "severity": "error",
@@ -1846,12 +1846,27 @@
             "description": "Track has unconnected end",
             "items": [
                 {
-                    "description": "Track [VREFP] on Top Layer, length 2.0195 mm",
+                    "description": "Track [VREFP] on Top Layer, length 1.0160 mm",
                     "pos": {
                         "x": 149.7305,
-                        "y": 111.496
+                        "y": 110.48
                     },
-                    "uuid": "8ebed0dc-3a21-48d1-8ab1-c36f3a3e5995"
+                    "uuid": "abd5ed14-6a1d-492d-8a5b-9902404c1eb4"
+                }
+            ],
+            "severity": "warning",
+            "type": "track_dangling"
+        },
+        {
+            "description": "Track has unconnected end",
+            "items": [
+                {
+                    "description": "Track [VCAP1] on Top Layer, length 1.1685 mm",
+                    "pos": {
+                        "x": 150.81,
+                        "y": 114.341
+                    },
+                    "uuid": "e869ae47-5712-4369-bef1-b32e82327ddb"
                 }
             ],
             "severity": "warning",
@@ -1978,52 +1993,6 @@
             "type": "track_dangling"
         },
         {
-            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.0574 mm)",
-            "items": [
-                {
-                    "description": "Track [USB_DP] on Bottom Layer, length 0.6910 mm",
-                    "pos": {
-                        "x": 175.7785,
-                        "y": 104.943
-                    },
-                    "uuid": "9ec253b0-8cc7-44b9-b8de-4e567b47a1e0"
-                },
-                {
-                    "description": "Track [ESP_IO0] on Bottom Layer, length 0.9326 mm",
-                    "pos": {
-                        "x": 175.2705,
-                        "y": 104.7905
-                    },
-                    "uuid": "c71cc2b3-6f8d-4ca0-83b9-232b734576ff"
-                }
-            ],
-            "severity": "warning",
-            "type": "clearance"
-        },
-        {
-            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1173 mm)",
-            "items": [
-                {
-                    "description": "Track [ESP_IO0] on Bottom Layer, length 16.4085 mm",
-                    "pos": {
-                        "x": 175.2705,
-                        "y": 88.382
-                    },
-                    "uuid": "6f4f1c50-e811-4129-ae98-e50ad2f0ee77"
-                },
-                {
-                    "description": "Track [USB_DP] on Bottom Layer, length 0.6910 mm",
-                    "pos": {
-                        "x": 175.7785,
-                        "y": 104.943
-                    },
-                    "uuid": "9ec253b0-8cc7-44b9-b8de-4e567b47a1e0"
-                }
-            ],
-            "severity": "warning",
-            "type": "clearance"
-        },
-        {
             "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.0941 mm)",
             "items": [
                 {
@@ -2050,12 +2019,12 @@
             "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.0867 mm)",
             "items": [
                 {
-                    "description": "Track [USB_DM] on Bottom Layer, length 2.6925 mm",
+                    "description": "Track [USB_DM] on Bottom Layer, length 0.3697 mm",
                     "pos": {
-                        "x": 175.0165,
-                        "y": 108.245
+                        "x": 175.372,
+                        "y": 105.451
                     },
-                    "uuid": "6f6b5313-c076-488c-8aca-b3143d5024f2"
+                    "uuid": "9a9ebe6f-4036-45cd-ac6c-e96cf2945fd3"
                 },
                 {
                     "description": "Track [USB_DP] on Bottom Layer, length 0.5400 mm",
@@ -2064,6 +2033,29 @@
                         "y": 105.146
                     },
                     "uuid": "a429cd68-0baf-45a9-8725-acbf0d751d80"
+                }
+            ],
+            "severity": "warning",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1173 mm)",
+            "items": [
+                {
+                    "description": "Track [ESP_IO0] on Bottom Layer, length 16.4085 mm",
+                    "pos": {
+                        "x": 175.2705,
+                        "y": 88.382
+                    },
+                    "uuid": "6f4f1c50-e811-4129-ae98-e50ad2f0ee77"
+                },
+                {
+                    "description": "Track [USB_DP] on Bottom Layer, length 0.6910 mm",
+                    "pos": {
+                        "x": 175.7785,
+                        "y": 104.943
+                    },
+                    "uuid": "9ec253b0-8cc7-44b9-b8de-4e567b47a1e0"
                 }
             ],
             "severity": "warning",
@@ -2104,12 +2096,150 @@
                     "uuid": "04e891b7-d9b0-4fd0-bb8e-8e0200f6eaee"
                 },
                 {
+                    "description": "Footprint C_VCAP1_H",
+                    "pos": {
+                        "x": 147.912,
+                        "y": 109.426
+                    },
+                    "uuid": "16521492-c195-4de6-b28f-8f51edd1f31e"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint U_ADS",
+                    "pos": {
+                        "x": 146.162,
+                        "y": 102.098
+                    },
+                    "uuid": "04e891b7-d9b0-4fd0-bb8e-8e0200f6eaee"
+                },
+                {
                     "description": "Footprint U_MCU",
                     "pos": {
                         "x": 164.958,
                         "y": 97.526
                     },
                     "uuid": "954d8bef-9666-4629-9d8d-5a68f0c4b61b"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint U_ADS",
+                    "pos": {
+                        "x": 146.162,
+                        "y": 102.098
+                    },
+                    "uuid": "04e891b7-d9b0-4fd0-bb8e-8e0200f6eaee"
+                },
+                {
+                    "description": "Footprint C_VCAP2",
+                    "pos": {
+                        "x": 149.166,
+                        "y": 109.172
+                    },
+                    "uuid": "a502fdbf-a7af-4dcd-87dd-8369c66a4d41"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint U_ADS",
+                    "pos": {
+                        "x": 146.162,
+                        "y": 102.098
+                    },
+                    "uuid": "04e891b7-d9b0-4fd0-bb8e-8e0200f6eaee"
+                },
+                {
+                    "description": "Footprint C_VCAP3_H",
+                    "pos": {
+                        "x": 141.832,
+                        "y": 95.024
+                    },
+                    "uuid": "dcaffa7c-b44b-42aa-8c28-07730c6f574e"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint U_ADS",
+                    "pos": {
+                        "x": 146.162,
+                        "y": 102.098
+                    },
+                    "uuid": "04e891b7-d9b0-4fd0-bb8e-8e0200f6eaee"
+                },
+                {
+                    "description": "Footprint C_VREFP_10u",
+                    "pos": {
+                        "x": 150.937,
+                        "y": 110.226
+                    },
+                    "uuid": "f296ee52-dbea-4140-aad7-ae39e173661b"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_VCAP1_H",
+                    "pos": {
+                        "x": 147.912,
+                        "y": 109.426
+                    },
+                    "uuid": "16521492-c195-4de6-b28f-8f51edd1f31e"
+                },
+                {
+                    "description": "Footprint C_3V3_H",
+                    "pos": {
+                        "x": 155.6615,
+                        "y": 114.544
+                    },
+                    "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_VCAP1_H",
+                    "pos": {
+                        "x": 147.912,
+                        "y": 109.426
+                    },
+                    "uuid": "16521492-c195-4de6-b28f-8f51edd1f31e"
+                },
+                {
+                    "description": "Footprint C_VCAP2",
+                    "pos": {
+                        "x": 149.166,
+                        "y": 109.172
+                    },
+                    "uuid": "a502fdbf-a7af-4dcd-87dd-8369c66a4d41"
                 }
             ],
             "severity": "warning",
@@ -2219,29 +2349,6 @@
                     "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
                 },
                 {
-                    "description": "Footprint C_3V3_H",
-                    "pos": {
-                        "x": 155.6615,
-                        "y": 114.544
-                    },
-                    "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_H",
-                    "pos": {
-                        "x": 155.6615,
-                        "y": 114.544
-                    },
-                    "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
-                },
-                {
                     "description": "Footprint U_MCU",
                     "pos": {
                         "x": 164.958,
@@ -2357,12 +2464,12 @@
                     "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
                 },
                 {
-                    "description": "Footprint C_3V3_B2",
+                    "description": "Footprint C_3V3_H",
                     "pos": {
-                        "x": 162.164,
-                        "y": 121.148
+                        "x": 155.6615,
+                        "y": 114.544
                     },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                    "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
                 }
             ],
             "severity": "warning",
@@ -2449,12 +2556,380 @@
                     "uuid": "425d7f3c-0afc-449f-b8a4-ce211395ef8c"
                 },
                 {
+                    "description": "Footprint C_VCAP1",
+                    "pos": {
+                        "x": 152.258,
+                        "y": 115.052
+                    },
+                    "uuid": "cadc8a5f-bb48-475e-9eb4-57d60a0a4f27"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
                     "description": "Footprint C_3V3_B2",
                     "pos": {
                         "x": 162.164,
                         "y": 121.148
                     },
                     "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_DIF8",
+                    "pos": {
+                        "x": 131.43,
+                        "y": 92.116
+                    },
+                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
                 }
             ],
             "severity": "warning",
@@ -2478,374 +2953,6 @@
                         "y": 97.526
                     },
                     "uuid": "954d8bef-9666-4629-9d8d-5a68f0c4b61b"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
-                }
-            ],
-            "severity": "warning",
-            "type": "courtyards_overlap"
-        },
-        {
-            "description": "Courtyards overlap",
-            "items": [
-                {
-                    "description": "Footprint C_3V3_B2",
-                    "pos": {
-                        "x": 162.164,
-                        "y": 121.148
-                    },
-                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
-                },
-                {
-                    "description": "Footprint C_DIF8",
-                    "pos": {
-                        "x": 131.43,
-                        "y": 92.116
-                    },
-                    "uuid": "4dc4f76c-b4ab-434e-a990-5a7d64fc5aa3"
                 }
             ],
             "severity": "warning",
@@ -2892,6 +2999,29 @@
                         "y": 118.862
                     },
                     "uuid": "80b3153d-289d-4618-982f-0131ff28cf0e"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_3V3_B2",
+                    "pos": {
+                        "x": 162.164,
+                        "y": 121.148
+                    },
+                    "uuid": "44abdcc0-4308-44e1-9486-a1060829cc4d"
+                },
+                {
+                    "description": "Footprint C_VCAP3",
+                    "pos": {
+                        "x": 144.118,
+                        "y": 94.262
+                    },
+                    "uuid": "e7e64177-f9da-47b0-97fd-194645e77bf9"
                 }
             ],
             "severity": "warning",
@@ -3329,6 +3459,29 @@
                         "y": 92.649
                     },
                     "uuid": "792ed887-64b1-4041-bd96-2a600e46e585"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint TPS72325",
+                    "pos": {
+                        "x": 151.75,
+                        "y": 118.862
+                    },
+                    "uuid": "80b3153d-289d-4618-982f-0131ff28cf0e"
+                },
+                {
+                    "description": "Footprint C_VCAP1",
+                    "pos": {
+                        "x": 152.258,
+                        "y": 115.052
+                    },
+                    "uuid": "cadc8a5f-bb48-475e-9eb4-57d60a0a4f27"
                 }
             ],
             "severity": "warning",
@@ -3582,6 +3735,29 @@
                         "y": 89.144
                     },
                     "uuid": "f1d758dd-597e-4d06-a401-d6bd83d3c17a"
+                }
+            ],
+            "severity": "warning",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C_VCAP2",
+                    "pos": {
+                        "x": 149.166,
+                        "y": 109.172
+                    },
+                    "uuid": "a502fdbf-a7af-4dcd-87dd-8369c66a4d41"
+                },
+                {
+                    "description": "Footprint C_VREFP_10u",
+                    "pos": {
+                        "x": 150.937,
+                        "y": 110.226
+                    },
+                    "uuid": "f296ee52-dbea-4140-aad7-ae39e173661b"
                 }
             ],
             "severity": "warning",
@@ -3726,7 +3902,7 @@
             "type": "silk_edge_clearance"
         },
         {
-            "description": "Thermal relief connection to zone incomplete (layer Top Layer; zone min spoke count 2; actual 1)",
+            "description": "Thermal relief connection to zone incomplete (layer Top Layer; 1 spokes connected to isolated island)",
             "items": [
                 {
                     "description": "Zone [CHASSIS_GND] on Top Layer, priority 500",
@@ -3949,6 +4125,21 @@
                 {
                     "description": "Segment of C_3V3_H on Top Silkscreen Layer",
                     "pos": {
+                        "x": 155.164,
+                        "y": 115.2655
+                    },
+                    "uuid": "fd815744-d127-4002-bf45-c199497fe546"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
+                    "pos": {
                         "x": 155.162,
                         "y": 114.3225
                     },
@@ -4084,40 +4275,10 @@
                 {
                     "description": "Segment of C_3V3_H on Top Silkscreen Layer",
                     "pos": {
-                        "x": 155.164,
-                        "y": 115.2655
-                    },
-                    "uuid": "fd815744-d127-4002-bf45-c199497fe546"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_over_copper"
-        },
-        {
-            "description": "Silkscreen clipped by solder mask",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
                         "x": 156.161,
                         "y": 114.7655
                     },
                     "uuid": "ca044bfb-1631-4acc-92a8-1239365e88e0"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_over_copper"
-        },
-        {
-            "description": "Silkscreen clipped by solder mask",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.316499,
-                        "y": 115.265501
-                    },
-                    "uuid": "e65c87fb-952f-490f-84f6-fb6f9960dd28"
                 }
             ],
             "severity": "warning",
@@ -4744,51 +4905,6 @@
                 {
                     "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
                     "pos": {
-                        "x": 161.764,
-                        "y": 119.758
-                    },
-                    "uuid": "e2b028df-1269-460f-8eb4-487cb4d81e5e"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_over_copper"
-        },
-        {
-            "description": "Silkscreen clipped by solder mask",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.76485,
-                        "y": 120.06835
-                    },
-                    "uuid": "079d10b6-74ec-4f28-9069-21ba1388aa1f"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_over_copper"
-        },
-        {
-            "description": "Silkscreen clipped by solder mask",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.564,
-                        "y": 120.068
-                    },
-                    "uuid": "b0fa2ca4-8671-41bb-adda-87e400eb2e7e"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_over_copper"
-        },
-        {
-            "description": "Silkscreen clipped by solder mask",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
                         "x": 161.454,
                         "y": 121.428
                     },
@@ -4838,21 +4954,6 @@
                         "y": 122.228852
                     },
                     "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_over_copper"
-        },
-        {
-            "description": "Silkscreen clipped by solder mask",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.538
-                    },
-                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
                 }
             ],
             "severity": "warning",
@@ -7773,6 +7874,29 @@
                 {
                     "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
                     "pos": {
+                        "x": 162.5635,
+                        "y": 122.228
+                    },
+                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
+                },
+                {
+                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 155.314,
+                        "y": 113.67
+                    },
+                    "uuid": "ce5dc94b-0a8f-43a9-b604-7f853e1d7729"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
                         "x": 161.76485,
                         "y": 120.06835
                     },
@@ -7817,282 +7941,6 @@
             "description": "Silkscreen clearance",
             "items": [
                 {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.228
-                    },
-                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.314,
-                        "y": 113.67
-                    },
-                    "uuid": "ce5dc94b-0a8f-43a9-b604-7f853e1d7729"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.764,
-                        "y": 119.758
-                    },
-                    "uuid": "e2b028df-1269-460f-8eb4-487cb4d81e5e"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.164,
-                        "y": 115.2655
-                    },
-                    "uuid": "fd815744-d127-4002-bf45-c199497fe546"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.76485,
-                        "y": 120.06835
-                    },
-                    "uuid": "079d10b6-74ec-4f28-9069-21ba1388aa1f"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.164,
-                        "y": 115.2655
-                    },
-                    "uuid": "fd815744-d127-4002-bf45-c199497fe546"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 156.161,
-                        "y": 114.7655
-                    },
-                    "uuid": "ca044bfb-1631-4acc-92a8-1239365e88e0"
-                },
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.764,
-                        "y": 119.758
-                    },
-                    "uuid": "e2b028df-1269-460f-8eb4-487cb4d81e5e"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.564,
-                        "y": 120.068
-                    },
-                    "uuid": "b0fa2ca4-8671-41bb-adda-87e400eb2e7e"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 156.161,
-                        "y": 114.7655
-                    },
-                    "uuid": "ca044bfb-1631-4acc-92a8-1239365e88e0"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.76485,
-                        "y": 120.06835
-                    },
-                    "uuid": "079d10b6-74ec-4f28-9069-21ba1388aa1f"
-                },
-                {
-                    "description": "Arc of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.316499,
-                        "y": 115.265501
-                    },
-                    "uuid": "e65c87fb-952f-490f-84f6-fb6f9960dd28"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.162,
-                        "y": 114.3225
-                    },
-                    "uuid": "d83b478e-67ba-414d-9eb1-291f9f4659ce"
-                },
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.763148,
-                        "y": 122.228852
-                    },
-                    "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.314,
-                        "y": 113.67
-                    },
-                    "uuid": "ce5dc94b-0a8f-43a9-b604-7f853e1d7729"
-                },
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.763148,
-                        "y": 122.228852
-                    },
-                    "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.3145,
-                        "y": 113.8225
-                    },
-                    "uuid": "d103824c-c8b0-4f2a-8cce-2bbde768e0e8"
-                },
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 161.763148,
-                        "y": 122.228852
-                    },
-                    "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.228
-                    },
-                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 156.159,
-                        "y": 113.8225
-                    },
-                    "uuid": "7402ec07-8196-4f6a-a3ca-6ad305776c9e"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.228
-                    },
-                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.314,
-                        "y": 113.67
-                    },
-                    "uuid": "ce5dc94b-0a8f-43a9-b604-7f853e1d7729"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 156.0065,
-                        "y": 113.8225
-                    },
-                    "uuid": "052ca63c-df14-4f3b-bb26-6f744e30e802"
-                },
-                {
-                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.228
-                    },
-                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
                     "description": "Segment of C_3V3_H on Top Silkscreen Layer",
                     "pos": {
                         "x": 155.314,
@@ -9671,121 +9519,6 @@
                         "y": 115.265501
                     },
                     "uuid": "5fd430ab-10cf-4b33-8373-204ee61b95ef"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.538
-                    },
-                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.162,
-                        "y": 114.3225
-                    },
-                    "uuid": "d83b478e-67ba-414d-9eb1-291f9f4659ce"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 156.159,
-                        "y": 113.8225
-                    },
-                    "uuid": "7402ec07-8196-4f6a-a3ca-6ad305776c9e"
-                },
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.538
-                    },
-                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.538
-                    },
-                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
-                },
-                {
-                    "description": "Segment of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.314,
-                        "y": 113.67
-                    },
-                    "uuid": "ce5dc94b-0a8f-43a9-b604-7f853e1d7729"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.538
-                    },
-                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
-                },
-                {
-                    "description": "Arc of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 155.3145,
-                        "y": 113.8225
-                    },
-                    "uuid": "d103824c-c8b0-4f2a-8cce-2bbde768e0e8"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen clearance",
-            "items": [
-                {
-                    "description": "Arc of C_3V3_H on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 156.0065,
-                        "y": 113.8225
-                    },
-                    "uuid": "052ca63c-df14-4f3b-bb26-6f744e30e802"
-                },
-                {
-                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
-                    "pos": {
-                        "x": 162.5635,
-                        "y": 122.538
-                    },
-                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
                 }
             ],
             "severity": "warning",
@@ -10660,6 +10393,374 @@
                         "y": 122.228852
                     },
                     "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.5635,
+                        "y": 122.538
+                    },
+                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
+                },
+                {
+                    "description": "Segment of C_DIF8 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 131.831,
+                        "y": 93.0195
+                    },
+                    "uuid": "debae069-5c30-47d2-931d-da8696c9dc3a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_DIF8 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 133.3935,
+                        "y": 92.867
+                    },
+                    "uuid": "1a544e05-34f6-4576-b848-208259b1282d"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.454,
+                        "y": 121.428
+                    },
+                    "uuid": "ee7d99e9-982d-4c92-b670-e06ca404158f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_DIF8 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 133.3935,
+                        "y": 92.867
+                    },
+                    "uuid": "1a544e05-34f6-4576-b848-208259b1282d"
+                },
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.763148,
+                        "y": 122.228852
+                    },
+                    "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.4545,
+                        "y": 120.8675
+                    },
+                    "uuid": "66828392-5337-4074-b2ee-084f2e50940b"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.874,
+                        "y": 120.8675
+                    },
+                    "uuid": "be3b0676-368e-4575-bdf0-a461c046f7a7"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.4545,
+                        "y": 120.8675
+                    },
+                    "uuid": "66828392-5337-4074-b2ee-084f2e50940b"
+                },
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.564,
+                        "y": 120.068
+                    },
+                    "uuid": "b0fa2ca4-8671-41bb-adda-87e400eb2e7e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.4545,
+                        "y": 120.8675
+                    },
+                    "uuid": "66828392-5337-4074-b2ee-084f2e50940b"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.874,
+                        "y": 120.8675
+                    },
+                    "uuid": "be3b0676-368e-4575-bdf0-a461c046f7a7"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.76485,
+                        "y": 120.06835
+                    },
+                    "uuid": "079d10b6-74ec-4f28-9069-21ba1388aa1f"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.874,
+                        "y": 120.8675
+                    },
+                    "uuid": "be3b0676-368e-4575-bdf0-a461c046f7a7"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.76485,
+                        "y": 120.06835
+                    },
+                    "uuid": "079d10b6-74ec-4f28-9069-21ba1388aa1f"
+                },
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.564,
+                        "y": 120.068
+                    },
+                    "uuid": "b0fa2ca4-8671-41bb-adda-87e400eb2e7e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.4545,
+                        "y": 120.8675
+                    },
+                    "uuid": "66828392-5337-4074-b2ee-084f2e50940b"
+                },
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.564,
+                        "y": 120.068
+                    },
+                    "uuid": "b0fa2ca4-8671-41bb-adda-87e400eb2e7e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.5635,
+                        "y": 122.538
+                    },
+                    "uuid": "b4ba4e31-a8bd-41db-aa4b-4c40fa538a09"
+                },
+                {
+                    "description": "Segment of C_DIF8 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 133.241,
+                        "y": 91.2125
+                    },
+                    "uuid": "f5bf34ed-91d4-4a37-ac58-5a44bb7328cf"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.5635,
+                        "y": 122.228
+                    },
+                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.454,
+                        "y": 121.428
+                    },
+                    "uuid": "ee7d99e9-982d-4c92-b670-e06ca404158f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.8735,
+                        "y": 121.428
+                    },
+                    "uuid": "d449d3e3-4253-457a-8675-ac15a03621ab"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.454,
+                        "y": 121.428
+                    },
+                    "uuid": "ee7d99e9-982d-4c92-b670-e06ca404158f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.5635,
+                        "y": 122.228
+                    },
+                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
+                },
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.763148,
+                        "y": 122.228852
+                    },
+                    "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.8735,
+                        "y": 121.428
+                    },
+                    "uuid": "d449d3e3-4253-457a-8675-ac15a03621ab"
+                },
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.763148,
+                        "y": 122.228852
+                    },
+                    "uuid": "fa08180e-2943-451a-a6b3-ccd712df99c6"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Arc of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.5635,
+                        "y": 122.228
+                    },
+                    "uuid": "0593316d-fa7e-46f0-afcc-f531d9064ecc"
+                },
+                {
+                    "description": "Segment of C_DIF8 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 131.831,
+                        "y": 93.0195
+                    },
+                    "uuid": "debae069-5c30-47d2-931d-da8696c9dc3a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 161.4545,
+                        "y": 120.8675
+                    },
+                    "uuid": "66828392-5337-4074-b2ee-084f2e50940b"
+                },
+                {
+                    "description": "Segment of C_3V3_B2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 162.874,
+                        "y": 120.8675
+                    },
+                    "uuid": "be3b0676-368e-4575-bdf0-a461c046f7a7"
                 }
             ],
             "severity": "warning",

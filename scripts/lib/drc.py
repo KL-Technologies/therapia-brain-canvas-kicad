@@ -49,21 +49,21 @@ def actual_mm(violation):
 
 
 def signature(violation):
-    """(type, nets, refs) -- everything about a violation that does not depend
-    on which of several equivalent items DRC decided to name."""
-    return (violation.get("type"),
-            tuple(sorted(nets_of(violation))),
-            tuple(sorted(refs_of(violation))))
+    """(type, nets) -- the part of a violation that does not depend on which of
+    several equivalent items DRC decided to name.
+
+    Component references are deliberately NOT in the key. They looked like
+    useful detail, but the same jitter that swaps one track segment for another
+    also swaps a track (which names no component) for a pad (which names one),
+    and a run-to-run diff then showed ten "new" and ten "resolved" signatures
+    on an unchanged board. Nets survive that; references do not.
+    """
+    return (violation.get("type"), tuple(sorted(nets_of(violation))))
 
 
 def sig_text(sig):
-    kind, nets, refs = sig
-    parts = [kind]
-    if nets:
-        parts.append("nets=" + ",".join(nets))
-    if refs:
-        parts.append("refs=" + ",".join(refs))
-    return " ".join(parts)
+    kind, nets = sig
+    return kind + (" nets=" + ",".join(nets) if nets else "")
 
 
 def load(path):
@@ -89,6 +89,22 @@ def summarize(doc, severity="error"):
     }
 
 
+def harmless(sig):
+    """Signatures that are reported but cannot represent a defect.
+
+    A solder mask aperture that merges two pads of the SAME net is one: the
+    opening is wider than intended, but there is nothing for it to short.
+    KiCad words the message "bridges items with different nets" even when both
+    named items carry one net, because it reports the two extremes of a merged
+    aperture rather than an adjacent pair.
+
+    Nothing else is exempt. In particular a mask bridge naming two different
+    nets stays a failure, because that one can short.
+    """
+    kind, nets = sig
+    return kind == "solder_mask_bridge" and len(nets) == 1
+
+
 def compare(baseline_doc, current_doc, severity="error"):
     """Did the board get worse? Signature-level, so DRC's jitter cannot flip it."""
     def sigs(doc):
@@ -96,7 +112,8 @@ def compare(baseline_doc, current_doc, severity="error"):
                 if not severity or v.get("severity") == severity}
 
     base, cur = sigs(baseline_doc), sigs(current_doc)
-    new = sorted(sig_text(s) for s in cur - base)
+    exempt = sorted(sig_text(s) for s in cur - base if harmless(s))
+    new = sorted(sig_text(s) for s in cur - base if not harmless(s))
     gone = sorted(sig_text(s) for s in base - cur)
     b_err = sum(1 for v in baseline_doc.get("violations", [])
                 if v.get("severity") == "error")
@@ -104,6 +121,7 @@ def compare(baseline_doc, current_doc, severity="error"):
                 if v.get("severity") == "error")
     return {
         "new_signatures": new,
+        "new_but_harmless": exempt,
         "resolved_signatures": gone,
         "baseline_errors": b_err,
         "current_errors": c_err,

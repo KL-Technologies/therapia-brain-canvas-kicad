@@ -36,7 +36,7 @@
       "expected": true,
       "actual": true,
       "pass": true,
-      "note": "Found 526 violations\nFound 0 unconnected items\nSaved DRC Report to /Users/dev/projects/therapia-device/brain_canvas_kicad/logs/drc_baseline_rules.json\n"
+      "note": "Found 525 violations\nFound 0 unconnected items\nSaved DRC Report to /Users/dev/projects/therapia-device/brain_canvas_kicad/logs/drc_baseline_rules.json\n"
     },
     {
       "name": "detects_L1",
@@ -74,13 +74,13 @@
       "note": "a via drill overlapping a USB-C peg drill"
     }
   ],
-  "timestamp": "2026-08-28T14:12:46",
-  "notes": "DRC baseline with JLC rules: 526 violations (68 error / 458 warning), unconnected 0",
+  "timestamp": "2026-08-28T15:35:25",
+  "notes": "DRC baseline with JLC rules: 525 violations (67 error / 458 warning), unconnected 0",
   "acceptance": "ACCEPTANCE.md",
   "drc_baseline": "logs/drc_baseline_rules.json",
   "drc_summary": {
-    "violations": 526,
-    "errors": 68,
+    "violations": 525,
+    "errors": 67,
     "warnings": 458,
     "unconnected": 0,
     "by_type": {
@@ -88,7 +88,7 @@
       "silk_over_copper": 156,
       "courtyards_overlap": 69,
       "hole_clearance": 35,
-      "clearance": 27,
+      "clearance": 26,
       "track_dangling": 24,
       "solder_mask_bridge": 7,
       "hole_to_hole": 4,
@@ -98,7 +98,7 @@
     },
     "errors_by_type": {
       "hole_clearance": 35,
-      "clearance": 22,
+      "clearance": 21,
       "solder_mask_bridge": 7,
       "hole_to_hole": 4
     },
@@ -106,38 +106,30 @@
       "clearance nets=ADS_DIN_LOC,GND",
       "clearance nets=ADS_DRDY_N,ADS_PWDN_N",
       "clearance nets=ADS_RESET_N,GND",
-      "clearance nets=ADS_RESET_N,GND refs=C_AVSS_P37",
-      "clearance nets=ADS_START,USB_5V refs=R_START_DN",
-      "clearance nets=ADS_START,USB_VBUS_RAW refs=R_START_DN",
+      "clearance nets=ADS_START,USB_5V",
+      "clearance nets=ADS_START,USB_VBUS_RAW",
       "clearance nets=AVDD,AVSS",
       "clearance nets=AVDD,GND",
-      "clearance nets=AVSS refs=C_AVSS_P37",
-      "clearance nets=AVSS,GND refs=C_AVSS_P37",
-      "clearance nets=AVSS,TPS_NR refs=C_AVSS_P37",
+      "clearance nets=AVSS,VDD_ESP",
       "clearance nets=BIAS_OUT_INT,DVDD",
-      "clearance nets=DVDD,GND refs=C_3V3_B2",
+      "clearance nets=DVDD,GND",
       "clearance nets=ESP_TXD,USB_DM",
-      "clearance nets=GND,VDD_ESP refs=C_3V3_B2,C_AVSS_P37",
+      "clearance nets=GND,VDD_ESP",
+      "clearance nets=TPS_NR,VDD_ESP",
       "clearance nets=USB_DM,USB_DP",
       "clearance nets=VNEG5,V_NLDO_IN",
-      "hole_clearance nets=AVSS refs=C_AVSS_P37",
-      "hole_clearance nets=CHASSIS_GND refs=H1",
-      "hole_clearance nets=ESP_TXD refs=H4",
-      "hole_clearance nets=GND refs=AMS1117,H4",
-      "hole_clearance nets=GND refs=H4",
-      "hole_clearance nets=GND refs=J1,PEG1",
-      "hole_clearance nets=GND refs=J1,PEG2",
-      "hole_clearance nets=USB_VBUS_RAW refs=PEG1",
-      "hole_clearance nets=USB_VBUS_RAW refs=PEG2",
-      "hole_to_hole nets=USB_VBUS_RAW refs=PEG1",
-      "hole_to_hole nets=USB_VBUS_RAW refs=PEG2",
-      "solder_mask_bridge nets=ADS_START,ESP_IO0 refs=Q_IO0,R_START_DN",
-      "solder_mask_bridge nets=AVSS refs=C_AVSS_P37",
-      "solder_mask_bridge nets=AVSS,GND refs=C_3V3_B2,C_AVSS_P37",
-      "solder_mask_bridge nets=AVSS,TPS_NR refs=C_AVSS_P37",
-      "solder_mask_bridge nets=ESP_IO0,GND refs=Q_IO0,R_START_DN",
-      "solder_mask_bridge nets=GND refs=AMS1117,H4",
-      "solder_mask_bridge nets=GND,VDD_ESP refs=C_3V3_B2,C_AVSS_P37"
+      "hole_clearance nets=AVSS,VDD_ESP",
+      "hole_clearance nets=CHASSIS_GND",
+      "hole_clearance nets=ESP_TXD",
+      "hole_clearance nets=GND",
+      "hole_clearance nets=USB_VBUS_RAW",
+      "hole_to_hole nets=USB_VBUS_RAW",
+      "solder_mask_bridge nets=ADS_START,ESP_IO0",
+      "solder_mask_bridge nets=AVSS,VDD_ESP",
+      "solder_mask_bridge nets=ESP_IO0,GND",
+      "solder_mask_bridge nets=GND",
+      "solder_mask_bridge nets=GND,VDD_ESP",
+      "solder_mask_bridge nets=TPS_NR,VDD_ESP"
     ],
     "npth_hole_violations": {
       "H1": [
@@ -156,12 +148,12 @@
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
-          "against": "Track [GND] on Top Layer, length 0.8922 mm"
+          "against": "Track [GND] on Top Layer, length 0.2005 mm"
         },
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
-          "against": "Track [GND] on Top Layer, length 0.2005 mm"
+          "against": "Track [GND] on Top Layer, length 0.8922 mm"
         },
         {
           "type": "hole_clearance",
@@ -255,21 +247,6 @@
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
-          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
-        },
-        {
-          "type": "hole_clearance",
-          "actual_mm": 0.0,
-          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
-        },
-        {
-          "type": "hole_clearance",
-          "actual_mm": 0.0,
-          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
-        },
-        {
-          "type": "hole_clearance",
-          "actual_mm": 0.0,
           "against": "Track [USB_VBUS_RAW] on Bottom Layer, length 4.7755 mm"
         },
         {
@@ -280,7 +257,17 @@
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
-          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.2035 mm"
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
         },
         {
           "type": "hole_clearance",
@@ -290,12 +277,17 @@
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
-          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.2276 mm"
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.2035 mm"
         },
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
           "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.5312 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.2276 mm"
         },
         {
           "type": "hole_clearance",
@@ -399,7 +391,7 @@
           "type": "hole_clearance",
           "actual_mm": 0.0,
           "items": [
-            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "Track [USB_VBUS_RAW] on Bottom Layer, length 4.7755 mm",
             "NPTH pad of PEG2"
           ]
         },
@@ -407,16 +399,16 @@
           "type": "hole_clearance",
           "actual_mm": 0.0,
           "items": [
-            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-            "NPTH pad of PEG2"
+            "NPTH pad of PEG2",
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
           ]
         },
         {
           "type": "hole_clearance",
           "actual_mm": 0.0,
           "items": [
-            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-            "NPTH pad of PEG2"
+            "NPTH pad of PEG2",
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
           ]
         }
       ]
@@ -439,16 +431,16 @@
           "type": "hole_to_hole",
           "actual_mm": 0.0,
           "items": [
-            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-            "NPTH pad of PEG2"
+            "NPTH pad of PEG2",
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
           ]
         },
         {
           "type": "hole_to_hole",
           "actual_mm": 0.0,
           "items": [
-            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
-            "NPTH pad of PEG2"
+            "NPTH pad of PEG2",
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
           ]
         }
       ]

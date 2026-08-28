@@ -2,8 +2,12 @@
   "kicad_pro": "/Users/dev/projects/therapia-device/brain_canvas_kicad/board/Therapia_EEG-HRV.kicad_pro",
   "kicad_dru": "/Users/dev/projects/therapia-device/brain_canvas_kicad/board/Therapia_EEG-HRV.kicad_dru",
   "board_setup": {
-    "patched": false,
-    "values": {}
+    "patched": true,
+    "values": {
+      "pad_to_mask_clearance": 0.0508,
+      "solder_mask_min_width": 0.0508,
+      "pad_to_paste_clearance": 0.0
+    }
   },
   "rules": {
     "allow_blind_buried_vias": false,

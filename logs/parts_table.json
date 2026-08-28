@@ -1,0 +1,26 @@
+{
+  "csv": "/Users/dev/projects/therapia-device/brain_canvas_kicad/data/parts_lcsc.csv",
+  "count": 135,
+  "contract_count": 135,
+  "missing_from_table": [],
+  "not_in_contract": [],
+  "problems": [],
+  "eco_applied": [
+    "ECO-1#4",
+    "ECO-1#5",
+    "ECO-2#10",
+    "ECO-2#6",
+    "ECO-2#7",
+    "ECO-2#8",
+    "ECO-2#9",
+    "ECO-3#11",
+    "ECO-3#12"
+  ],
+  "footprint_changes": {
+    "C_VCAP1": "Capacitor_SMD:C_1206_3216Metric",
+    "C_VREFP_10u": "Capacitor_SMD:C_1206_3216Metric"
+  },
+  "unverified_lcsc": {
+    "C13585": "ECO-3#12 says this C-number must be confirmed against the JLC part API before ordering; if it cannot be, substitute C15008."
+  }
+}
