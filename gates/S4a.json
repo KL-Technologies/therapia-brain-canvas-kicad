@@ -1,0 +1,273 @@
+{
+  "step": "S4a",
+  "pass": true,
+  "checks": [
+    {
+      "name": "npth_pads",
+      "expected": 6,
+      "actual": 6,
+      "pass": true
+    },
+    {
+      "name": "drilled_pads_total",
+      "expected": 22,
+      "actual": 22,
+      "pass": true
+    },
+    {
+      "name": "pth_pads",
+      "expected": 16,
+      "actual": 16,
+      "pass": true,
+      "note": "J2 header 12 + J1 shell slots 4"
+    },
+    {
+      "name": "vias_unchanged",
+      "expected": 238,
+      "actual": 238,
+      "pass": true
+    },
+    {
+      "name": "copper_layers",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "name": "edge_cuts_is_4_segments",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "name": "no_edge_cuts_inside_footprints",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drill_export_ok",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "npth_drill_file_holes",
+      "expected": 6,
+      "actual": 6,
+      "pass": true
+    },
+    {
+      "name": "npth_matches_old_drl_within_2um",
+      "expected": "6/6",
+      "actual": "6/6",
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T14:06:38",
+  "notes": "NPTH synthesis + outline closure. Counts before={\"npth_pads\": 6, \"pth_pads\": 16, \"vias\": 238} after={\"npth_pads\": 6, \"pth_pads\": 16, \"vias\": 238, \"copper_layers\": 4}",
+  "log": [
+    {
+      "step": "m2",
+      "ref": "H1",
+      "kicad_mm": [
+        123.048,
+        83.048
+      ],
+      "dia_mm": 2.3876,
+      "result": "npth"
+    },
+    {
+      "step": "m2",
+      "ref": "H2",
+      "kicad_mm": [
+        176.9468,
+        83.048
+      ],
+      "dia_mm": 2.3876,
+      "result": "npth"
+    },
+    {
+      "step": "m2",
+      "ref": "H3",
+      "kicad_mm": [
+        123.048,
+        121.9608
+      ],
+      "dia_mm": 2.3876,
+      "result": "npth"
+    },
+    {
+      "step": "m2",
+      "ref": "H4",
+      "kicad_mm": [
+        176.9468,
+        121.9608
+      ],
+      "dia_mm": 2.3876,
+      "result": "npth"
+    },
+    {
+      "step": "peg",
+      "ref": "PEG1",
+      "kicad_mm": [
+        176.861075,
+        113.87788499999999
+      ],
+      "dia_mm": 0.700024,
+      "result": "npth"
+    },
+    {
+      "step": "peg",
+      "ref": "PEG2",
+      "kicad_mm": [
+        176.861075,
+        108.097861
+      ],
+      "dia_mm": 0.700024,
+      "result": "npth"
+    },
+    {
+      "step": "edge_cuts",
+      "removed": [],
+      "rectangle_mm": [
+        [
+          120.0,
+          80.0
+        ],
+        [
+          181.8236,
+          125.00880000000001
+        ]
+      ],
+      "size_mm": [
+        61.8236,
+        45.0088
+      ]
+    }
+  ],
+  "npth_pads_on_board": [
+    {
+      "ref": "PEG2",
+      "x_mm": 176.861075,
+      "y_mm": 108.097861,
+      "dia_mm": 0.700024
+    },
+    {
+      "ref": "H4",
+      "x_mm": 176.9468,
+      "y_mm": 121.9608,
+      "dia_mm": 2.3876
+    },
+    {
+      "ref": "H1",
+      "x_mm": 123.048,
+      "y_mm": 83.048,
+      "dia_mm": 2.3876
+    },
+    {
+      "ref": "H3",
+      "x_mm": 123.048,
+      "y_mm": 121.9608,
+      "dia_mm": 2.3876
+    },
+    {
+      "ref": "H2",
+      "x_mm": 176.9468,
+      "y_mm": 83.048,
+      "dia_mm": 2.3876
+    },
+    {
+      "ref": "PEG1",
+      "x_mm": 176.861075,
+      "y_mm": 113.877885,
+      "dia_mm": 0.700024
+    }
+  ],
+  "drill_files": [
+    "Therapia_EEG-HRV-NPTH.drl",
+    "Therapia_EEG-HRV-PTH.drl"
+  ],
+  "npth_tools": {
+    "T1": 0.7,
+    "T2": 2.388
+  },
+  "npth_vs_old_drl": {
+    "matched": [
+      {
+        "reference_kicad_mm": [
+          176.861075,
+          113.877885
+        ],
+        "reference_dia_mm": 0.700024,
+        "found": {
+          "x_mm": 176.861,
+          "y_mm": 113.878,
+          "dia_mm": 0.7
+        }
+      },
+      {
+        "reference_kicad_mm": [
+          176.861075,
+          108.097861
+        ],
+        "reference_dia_mm": 0.700024,
+        "found": {
+          "x_mm": 176.861,
+          "y_mm": 108.098,
+          "dia_mm": 0.7
+        }
+      },
+      {
+        "reference_kicad_mm": [
+          123.048,
+          83.048
+        ],
+        "reference_dia_mm": 2.3876,
+        "found": {
+          "x_mm": 123.048,
+          "y_mm": 83.048,
+          "dia_mm": 2.388
+        }
+      },
+      {
+        "reference_kicad_mm": [
+          176.9468,
+          83.048
+        ],
+        "reference_dia_mm": 2.3876,
+        "found": {
+          "x_mm": 176.947,
+          "y_mm": 83.048,
+          "dia_mm": 2.388
+        }
+      },
+      {
+        "reference_kicad_mm": [
+          123.048,
+          121.9608
+        ],
+        "reference_dia_mm": 2.3876,
+        "found": {
+          "x_mm": 123.048,
+          "y_mm": 121.961,
+          "dia_mm": 2.388
+        }
+      },
+      {
+        "reference_kicad_mm": [
+          176.9468,
+          121.9608
+        ],
+        "reference_dia_mm": 2.3876,
+        "found": {
+          "x_mm": 176.947,
+          "y_mm": 121.961,
+          "dia_mm": 2.388
+        }
+      }
+    ],
+    "unmatched": []
+  },
+  "pth_holes_in_export": 254
+}
