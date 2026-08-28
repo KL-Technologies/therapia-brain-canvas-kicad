@@ -33,7 +33,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T13:44:45",
+  "timestamp": "2026-08-28T13:45:26",
   "notes": "schematic 135 components / 423 pins vs PCB 131 components. ECO-1 delta = 16 pin-level changes: 8 nets to change on existing pins + 8 pads on 4 new components (C_VCAP1_H, C_VCAP2, C_VCAP3, C_VCAP3_H). 0 pins absent from the PCB. Nets only in the schematic: VCAP2, VCAP3; geometric .esch solve: 34/34 NC pins identified, 366 agree, 9 disagree, 7 components missed -- cross-check only",
   "diff": "gates/netlist_diff.json",
   "contract": "contract/netlist_contract.json"
