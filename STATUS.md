@@ -45,9 +45,13 @@ EasyEDA の内容と完全一致（17/17 チェック）。S3 に引き渡せる
    `board/Therapia_EEG-HRV.kicad_pro` は最小構成のダミーで、ネットクラスも custom rule も未設定。
    **今の DRC 件数（1025）は KiCad 既定ルールに対する数字で、EasyEDA の DRC とは比較できない**
 3. **座標の読み替え**: EasyEDA メモの `(x, y)` [mm] → KiCad `(x+120, −y+80)` [mm]
-4. **`lib_footprint_issues` 131 件**はライブラリ未リンクによるもので実害なし。気になるなら
+4. **NPTH を合成すること（`13_fix_import.py`）。** 取り込み直後は NPTH が 0 個。
+   下記「取り込み時の既知欠陥」の表 1〜3。ゲートは
+   `kicad-cli pcb export drill --excellon-separate-th` の NPTH ファイルが 6 穴・
+   旧 DRL 座標 ±2µm でよい
+5. **`lib_footprint_issues` 131 件**はライブラリ未リンクによるもので実害なし。気になるなら
    フットプリントをプロジェクトライブラリに書き出して紐付ける
-5. **ECO L4 の前提を取り直すこと。** 下記「ブリーフとの差分」参照
+6. **ECO L4 の前提を取り直すこと。** 下記「取り込み時の既知欠陥」のペグの項
 
 ## 設計上の発見（取り込みの不具合ではない）
 
@@ -145,7 +149,7 @@ track_width 90 / courtyards_overlap 69。**KiCad 既定ルールに対する数�
 ```
 board/Therapia_EEG-HRV.kicad_pcb   取り込み済み基板（ゾーン充填済み・パッド網補修済み）
 board/Therapia_EEG-HRV.kicad_pro   最小プロジェクト。設計ルールは未設定（S3 の作業）
-gates/S0.json S1.json S1B.json S2.json
+gates/S0.json S1.json S1B.json S2.json S2B.json
 gates/inventory_easyeda.json       EasyEDA 側の員数表（基準）
 gates/inventory_kicad.json         KiCad 側の同じ測定
 gates/design_observations.json     ECO 状態・FB5・取り込み既知欠陥・DRC 内訳
