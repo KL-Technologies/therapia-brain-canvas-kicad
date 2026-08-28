@@ -8,6 +8,14 @@
     "size": 227363
   },
   {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/patched.epro",
+    "valid": true,
+    "kind": "epro",
+    "why": "classic .epro: project.json=True .epcb=1 .esch=5",
+    "mtime": 1787894154.4695094,
+    "size": 227363
+  },
+  {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28.epro2",
     "valid": true,
     "kind": "epro2",

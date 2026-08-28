@@ -5,13 +5,13 @@
     {
       "name": "candidates_scanned",
       "expected": ">=0",
-      "actual": 5,
+      "actual": 6,
       "pass": true
     },
     {
       "name": "valid_epro_found",
       "expected": 1,
-      "actual": 4,
+      "actual": 5,
       "pass": true
     },
     {
@@ -27,11 +27,19 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T13:18:10",
+  "timestamp": "2026-08-28T13:35:31",
   "notes": "staged ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro (227363 bytes, sha256=83c096a6c23aa482) from /Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro; classic .epro: project.json=True .epcb=1 .esch=5",
   "candidates": [
     {
       "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+      "valid": true,
+      "kind": "epro",
+      "why": "classic .epro: project.json=True .epcb=1 .esch=5",
+      "mtime": 1787894154.4695094,
+      "size": 227363
+    },
+    {
+      "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/patched.epro",
       "valid": true,
       "kind": "epro",
       "why": "classic .epro: project.json=True .epcb=1 .esch=5",
