@@ -282,7 +282,12 @@ def build_inventory(p, fps):
                       "hole_shape": hs[0], "dia_mm": E.mil2mm(max(hs[1], hs[2])),
                       "size_mm": [E.mil2mm(hs[1]), E.mil2mm(hs[2])],
                       "standalone": r["standalone"], "footprint": r["footprint"]})
-    board_milled = [dict(m, ref="", footprint="") for m in p["board_milled"]]
+    # footprint-level circles were already placed into board mil above; the
+    # board-level ones are still raw shape dicts
+    board_milled = [{"ref": "", "footprint": "", "id": m["id"],
+                     "record": m["record"], "x_mm": E.mil2mm(m["cx"]),
+                     "y_mm": E.mil2mm(m["cy"]),
+                     "dia_mm": E.mil2mm(m["r"] * 2)} for m in p["board_milled"]]
     for m in milled + board_milled:
         holes.append({"source": "MULTI_LAYER/%s" % m["record"], "ref": m["ref"],
                       "pad": m["id"], "net": "", "x_mm": m["x_mm"],
