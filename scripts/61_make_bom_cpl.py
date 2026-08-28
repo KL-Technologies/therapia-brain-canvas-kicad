@@ -55,6 +55,8 @@ MAKER = {
     "C2146": "Jiangsu Changjing", "C17514": "UNI-ROYAL", "C23186": "UNI-ROYAL",
     "C25804": "UNI-ROYAL", "C25744": "UNI-ROYAL", "C17477": "UNI-ROYAL",
     "C23138": "UNI-ROYAL",
+    # substituted at the JLC cart on 2026-08-28 (data/bom_fixes_2026-08-28.json)
+    "C84268": "NationStar", "C43379": "RUILON",
 }
 
 

@@ -115,15 +115,29 @@
     "D_LED": {
       "value": [
         "LED_Y",
-        "LED red 0603 Vf1.95V"
+        "LED yellow 0603 Vf1.6-2.6V"
       ],
       "mpn": [
         "19-217/GHC-YR1S2/3T",
-        "19-217/R6C-AL1M2VY/3T"
+        "NCD0603Y1"
       ],
       "lcsc": [
         "C72043",
-        "C72044"
+        "C84268"
+      ]
+    },
+    "F1": {
+      "value": [
+        "PTC_500mA",
+        "PTC 0.5A hold / 1A trip / 13.2V 1206"
+      ],
+      "mpn": [
+        "JK-NSMD050-13.2V",
+        "SMD1206P050TF/13.2"
+      ],
+      "lcsc": [
+        "C369159",
+        "C43379"
       ]
     },
     "R_RST_UP": {

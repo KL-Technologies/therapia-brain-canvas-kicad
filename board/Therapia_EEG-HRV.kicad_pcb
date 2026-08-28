@@ -10294,7 +10294,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "PTC_500mA"
+		(property "Value" "PTC 0.5A hold / 1A trip / 13.2V 1206"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "436a7bd8-fc2a-4158-904f-7c524162d540")
@@ -10353,7 +10353,7 @@
 				)
 			)
 		)
-		(property "MPN" "JK-NSMD050-13.2V"
+		(property "MPN" "SMD1206P050TF/13.2"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -10365,7 +10365,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C369159"
+		(property "LCSC" "C43379"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -13401,7 +13401,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "LED red 0603 Vf1.95V"
+		(property "Value" "LED yellow 0603 Vf1.6-2.6V"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "2724e2ca-4f73-4d03-985e-bac0765fa73a")
@@ -13460,7 +13460,7 @@
 				)
 			)
 		)
-		(property "MPN" "19-217/R6C-AL1M2VY/3T"
+		(property "MPN" "NCD0603Y1"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -13472,7 +13472,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C72044"
+		(property "LCSC" "C84268"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)

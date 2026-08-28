@@ -36,6 +36,7 @@
   - D_LED 第 2 候補。ピン生データは pin1='C' / pin2='A' で**現基板の極性と一致**（`P~show~1~1~...C~start` / `P~show~1~2~...A~end`）。BOM の value 'LED_Y'（黄）とも色が一致し、輝度は C72044 より高い。ただしパッケージ名は 'LED0603-RD-**YELLOW**' で現フットプリント名と厳密には別名（0603 ランド自体は同等とみられるがカート投入時に要プレビュー確認）。Vf 2.0V 換算で (3.3-2.0)/330 = 約 3.9mA。
   - 出典: https://jlcpcb.com/partdetail/C72038 , https://easyeda.com/api/products/C72038/components
 - 出典: https://www.lcsc.com/product-detail/C72043.html , https://jlcpcb.com/partdetail/EverlightElec-19_217_GHC_YR1S23T/C72043 , https://easyeda.com/api/products/C72043/components
+- **【確定】この推奨は覆った。** カート投入時（2026-08-28）に `C72044` / `C72038` とも JLC 実装在庫 0。**採用は `C84268`**（末尾「カート投入時の差替 2026-08-28」）。
 
 ### `C94221` — FB1, FB2, FB3, FB4, FB5（5 点）
 
@@ -90,6 +91,7 @@
 - **代替候補**: `C883122` BSMD1206-050-6V / F1206 / PPTC リセッタブルヒューズ hold 500mA / 6V / 1206 / JLC **Extended** / 在庫 3,420
   - F1 の同一フットプリント代替。定格電圧は 13.2V→6V に下がる点に注意。
 - 出典: https://www.lcsc.com/product-detail/C369159.html , https://easyeda.com/api/products/C369159/components
+- **【確定】** カート投入時（2026-08-28）に `C369159` は JLC 実装在庫 0。**採用は `C43379`**（13.2V を維持。末尾「カート投入時の差替 2026-08-28」）。
 
 ### `C69932` — TPS72325（1 点）
 
@@ -281,3 +283,22 @@ JLC 区分は Extended だが、差し替え前の `C72043` も同シリーズ�
 - `C52037853`: https://easyeda.com/api/eda/product/search?keyword=1.5nF%200402%20C0G&needAggs=false&currPage=1&pageSize=20  (検索一覧)
 - `C14442`: https://easyeda.com/api/products/C14442/components
 - `C52923`: https://www.lcsc.com/product-detail/C52923.html , https://easyeda.com/api/products/C52923/components
+
+# カート投入時の差替 2026-08-28
+
+JLC のカートに入れた時点で 2 品番が**実装在庫 0（20 shortfall）**となり、その場で差し替えた。正本は
+`data/bom_fixes_2026-08-28.json`。**どちらもフットプリント・銅箔・CPL は不変**で、変わったのは
+`data/parts_lcsc.csv` と基板の Value/MPN/LCSC フィールド、`fab/BOM_JLCPCB.csv` の当該 2 行だけ。
+
+| designator | 旧 | 新 | 根拠 |
+|---|---|---|---|
+| `D_LED` | `C72044`（Everlight 赤 Vf1.95V） | **`C84268`** NationStar NCD0603Y1 / 黄 595nm / Vf≈2.0V | EasyEDA パッケージ名が `LED0603-RD` で現フットプリントと完全一致、生データ pin1=K / pin2=A で現基板 pad1=GND（カソード）と一致するため**回転補正なし（CPL 0° のまま）**。(3.3−2.0)/330 ≈ 3.9mA。JLC Extended / 実装在庫 605,820 / Economic 対応。BOM value 'LED_Y'（黄）とも整合。不採用: `C2286`（Basic・在庫最大だが pin1=A で極性反転、CPL 180° 補正が要る）、`C84263`（赤・pin1=K だが Standard 専用） |
+| `F1` | `C369159`（JK-NSMD050-13.2V） | **`C43379`** RUILON SMD1206P050TF/13.2 | 1206・hold 500mA / trip 1A / **13.2V** で旧品と定格が同一＝設計変更なし。本体 3.6×1.9mm は現 `F1206` ランド（パッド 1.19×1.728 @ ±1.445mm）に対し長手は余裕、幅は片側 0.086mm はみ出し（PPTC では許容）。**CPL 90° のまま**。JLC Extended / 実装在庫 19,984。6V 品 `C69688` / `C883122` より 13.2V の余裕を優先 |
+
+Extended 品番数は増減なし（`C72044`→`C84268`、`C369159`→`C43379` とも Extended）。
+再生成後の照合: Gerber・ドリル 14 ファイルは生成時刻行を除いて**全ファイル一致**、`fab/CPL_JLCPCB.csv` は**完全一致**、
+`fab/BOM_JLCPCB.csv` は 30 行中この 2 行のみ差分。S7a 16/16・S8 30/30・ACCEPTANCE A–G 40/40 いずれも pass。
+
+> この節は手書き。`scripts/40_gen_bom_report.py` はこのファイルの生成元だが、ECO-5 で
+> `C23967` 等が `data/parts_lcsc.csv` に入って以降 `JUDGE` に定義が無く `KeyError` で止まるため、
+> 本レポートは 2026-08-28 時点の凍結スナップショットとして手で追記している（本件以前からの既存事象）。

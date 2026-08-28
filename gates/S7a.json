@@ -120,11 +120,11 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T17:21:45",
+  "timestamp": "2026-08-28T18:41:44",
   "notes": "ECO-5 moves one pad from GND to BIAS_OUT_INT and reroutes it; the BOM corrections are field-only. Parity is measured against contract/netlist_contract.json with contract/contract_overrides.json applied.",
   "before": {
     "footprints": 141,
-    "tracks": 1250,
+    "tracks": 1252,
     "vias": 239,
     "npth_pads": 6,
     "pth_pads": 16
@@ -136,118 +136,10 @@
       142.44,
       90.414
     ],
-    "net_before": "GND",
+    "net_before": "BIAS_OUT_INT",
     "net_after": "BIAS_OUT_INT",
-    "removed": [
-      {
-        "kind": "track",
-        "net": "GND",
-        "layer": "Top Layer",
-        "start_mm": [
-          142.441,
-          90.414
-        ],
-        "end_mm": [
-          142.441,
-          90.2785
-        ],
-        "width_mm": 0.203,
-        "uuid": "34443888-994a-4297-bf15-88426e2a38fd"
-      },
-      {
-        "kind": "via",
-        "net": "GND",
-        "pos_mm": [
-          142.441,
-          90.414
-        ],
-        "dia_mm": 0.6095,
-        "drill_mm": 0.305,
-        "uuid": "edd24bbb-8514-4a4e-9ab6-da2545d17209"
-      }
-    ],
-    "landing": {
-      "track": {
-        "kind": "track",
-        "net": "BIAS_OUT_INT",
-        "layer": "Bottom Layer",
-        "start_mm": [
-          130.49,
-          87.7215
-        ],
-        "end_mm": [
-          148.702,
-          87.7215
-        ],
-        "width_mm": 0.254,
-        "uuid": "a4ff6213-cc6c-410b-acd8-0a29a601d958"
-      },
-      "y_mm": 87.7215
-    },
-    "via_sites_tried": [
-      {
-        "x_mm": 141.8852,
-        "why": "via land clear of the pad",
-        "via_site": true,
-        "front_stub": true,
-        "back_drop": true,
-        "lands_on_trunk": true
-      }
-    ],
     "ok": true,
-    "action": "rerouted",
-    "via_mm": [
-      141.8852,
-      90.414
-    ],
-    "via_choice": "via land clear of the pad",
-    "front_stub_mm": 0.5548,
-    "back_drop_mm": 2.6925,
-    "added": [
-      {
-        "kind": "via",
-        "net": "BIAS_OUT_INT",
-        "pos_mm": [
-          141.8852,
-          90.414
-        ],
-        "dia_mm": 0.6096,
-        "drill_mm": 0.3048,
-        "uuid": "6f88e9e7-0b05-46f2-9d17-d20ad1641121"
-      },
-      {
-        "kind": "track",
-        "net": "BIAS_OUT_INT",
-        "layer": "Top Layer",
-        "start_mm": [
-          142.44,
-          90.414
-        ],
-        "end_mm": [
-          141.8852,
-          90.414
-        ],
-        "width_mm": 0.2032,
-        "uuid": "a9fcb4d9-aed5-42a1-a921-1e4b7017dc55"
-      },
-      {
-        "kind": "track",
-        "net": "BIAS_OUT_INT",
-        "layer": "Bottom Layer",
-        "start_mm": [
-          141.8852,
-          90.414
-        ],
-        "end_mm": [
-          141.8852,
-          87.7215
-        ],
-        "width_mm": 0.2032,
-        "uuid": "abde341c-140f-45e6-9ce6-648b7d1f3dc9"
-      }
-    ],
-    "vias_removed": 1,
-    "vias_added": 1
+    "action": "already applied"
   },
   "fields": {
     "parts_with_fields": 135,
@@ -259,7 +151,7 @@
   },
   "after": {
     "footprints": 141,
-    "tracks": 1251,
+    "tracks": 1252,
     "vias": 239,
     "npth_pads": 6,
     "pth_pads": 16
@@ -289,15 +181,15 @@
     }
   },
   "drc": {
-    "violations": 465,
+    "violations": 470,
     "errors": 0,
-    "warnings": 465,
+    "warnings": 470,
     "unconnected": 0,
     "by_type": {
       "silk_overlap": 199,
-      "silk_over_copper": 152,
-      "courtyards_overlap": 78,
-      "track_dangling": 25,
+      "silk_over_copper": 157,
+      "courtyards_overlap": 77,
+      "track_dangling": 26,
       "clearance": 5,
       "via_dangling": 3,
       "silk_edge_clearance": 2,
@@ -360,7 +252,7 @@
     "npth_count": 6,
     "counts": {
       "footprints": 141,
-      "tracks": 1251,
+      "tracks": 1252,
       "vias": 239,
       "npth_pads": 6,
       "pth_pads": 16
@@ -380,70 +272,70 @@
       {
         "net": "CHASSIS_GND",
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ],
         "filled_outlines": 2
       },
       {
         "net": "GND",
         "layers": [
-          "Inner1"
+          "In1.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "USB_5V",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "AVDD",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "AVSS",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 7
       },
       {
         "net": "USB_5V",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 8
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 9
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 3
       }

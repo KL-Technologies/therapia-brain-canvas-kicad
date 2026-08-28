@@ -32,22 +32,25 @@
     {
       "designators": ["D_LED"],
       "old_lcsc": "C72043",
-      "new_lcsc": "C72044",
-      "new_mpn": "19-217/R6C-AL1M2VY/3T",
-      "new_value": "LED red 0603 Vf1.95V",
-      "reason": "C72043 は Emerald Green Vf 3.3V で 3.3V GPIO + 330Ω では点灯しない。C72044（Everlight 赤 617.5nm、Vf 1.95V@5mA）は EasyEDA パッケージ名 LED0603-RD が現フットプリントと完全一致・ピン生データ pin1=C/pin2=A も同一ライブラリで一致。3.3V−1.95V=1.35V/330Ω≈4.1mA。JLC Extended（在庫 SZ 902,100）。第2候補 C72038（黄、Vf 1.7〜2.3V）はパッケージ名 LED0603-RD-YELLOW で別名のため不採用",
+      "new_lcsc": "C84268",
+      "new_mpn": "NCD0603Y1",
+      "new_value": "LED yellow 0603 Vf1.6-2.6V",
+      "superseded_lcsc": "C72044",
+      "reason": "C72043 は Emerald Green Vf 3.3V で 3.3V GPIO + 330Ω では点灯しない。当初 C72044（Everlight 赤 Vf 1.95V、LED0603-RD 一致）を選定したが、カート投入時（2026-08-28）に C72044/C72038 とも JLC 実装在庫 0（20 shortfall）。代替 C84268（NationStar NCD0603Y1、黄 595nm）は EasyEDA パッケージ名 LED0603-RD が現フットプリントと完全一致・ピン生データ pin1=K/pin2=A で現基板 pad1=GND=カソードと一致（opusQ1 裏取り）。Vf≈2.0V → (3.3−2.0)/330≈3.9mA。JLC Extended・実装在庫 605,820・Economic/Standard 両対応。BOM value 'LED_Y'（黄）とも整合。不採用: C2286（Basic・在庫最大だが pin1=A で極性反転、CPL 180° 補正が要る）/ C84263（赤・pin1=K だが Standard 専用）",
       "footprint_change": false,
-      "status": "decided",
-      "sources": ["https://www.lcsc.com/product-detail/C72044.html", "https://jlcpcb.com/partdetail/EverlightElec-19_217_R6C_AL1M2VY3T/C72044"]
+      "status": "decided at cart 2026-08-28",
+      "sources": ["https://jlcpcb.com/partdetail/C84268", "https://easyeda.com/api/products/C84268/components", "https://jlcpcb.com/parts/2nd/Optoelectronics/LED_Indication_Discrete_71"]
     },
     {
       "designators": ["F1"],
       "old_lcsc": "C369159",
-      "new_lcsc": "C369159",
-      "alternative_lcsc": "C883122",
-      "reason": "LCSC ページが 'Not available now'。JLC カート投入時に在庫を確認し、無ければ同一フットプリント（F1206）の C883122 に切替",
+      "new_lcsc": "C43379",
+      "new_mpn": "SMD1206P050TF/13.2",
+      "new_value": "PTC 0.5A hold / 1A trip / 13.2V 1206",
+      "alternatives_lcsc": ["C69688 (nSMD050, 6V, JLC 34,230)", "C883122 (BSMD1206-050-6V, 6V, JLC 34,906)"],
+      "reason": "LCSC ページが 'Not available now'。JLC カート投入時（2026-08-28）に C369159 は JLC 実装在庫 0（20 shortfall）と確認。C43379（RUILON、1206・hold 500mA・trip 1A・13.2V）は現行 JK-NSMD050-13.2V と定格が同一で設計変更なし（opusQ1 裏取り、JLC 実装在庫 19,984・Extended）。本体 3.6×1.9mm は現 F1206 ランド（パッド 1.19×1.728 @ ±1.445mm）で長手は余裕、幅は片側 0.086mm はみ出し（PPTC では許容）。6V 品（C69688/C883122）でも USB 5V には足りるが、13.2V の余裕を優先",
       "footprint_change": false,
-      "status": "check_at_cart"
+      "status": "decided at cart 2026-08-28"
     }
   ],
   "bringup_review_fixes": [
@@ -113,7 +116,9 @@
     }
   ],
   "cart_notes": [
-    "基板 61.8×45mm は JLC Standard PCBA の単板最小 70×70mm 未満 → Economic PCBA で発注（部品要件は全て Economic 範囲内: 最小 0402・TQFP 0.5mm）。Standard を使うならパネル化が必要",
+    "【2026-08-28 カート確定】ESP32-WROOM-32E（C701341）が JLC で 'Standard Only' のため Economic 不可 → Standard PCBA に変更し、JLC 側パネル化（1×1、四辺 12.5mm レール、パネル 86.82×70.01mm）で 70×70mm 最小を満たした。PCB 5 パネル・PCBA 2 パネル・Top 片面・Confirm Parts Placement=Yes（自動確認しない）",
+    "U_USB（CH340C）は JLC の自動照合で C84681 ではなく C7464026（JLCPCB 調達の WCH CH340C 別リスティング）に当たっていたが、C84681 は JLC 実装在庫 62,653 で入手可のため、repo BOM と一致させる目的でカート上で C84681 に戻した（2 個 $1.1696）",
+    "基板 61.8×45mm は JLC Standard PCBA の単板最小 70×70mm 未満 → 当初は Economic PCBA の想定だったが上記のとおり Standard＋パネル化に変更",
     "Extended 部品: ADS1299 / LM2664 / TPS72325 / TLV70025 / C72044(LED) 等は手数料対象",
     "CHASSIS_GND は GND に対してフローティング（Rev.A 受容）。J2 pin12(SHLD) は Rev.A では電極ケーブルに接続しない運用"
   ],
