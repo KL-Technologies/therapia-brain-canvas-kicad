@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-08-28T18:21:31",
+    "date": "2026-08-28T18:24:15",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -482,29 +482,6 @@
             "type": "track_dangling"
         },
         {
-            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1092 mm)",
-            "items": [
-                {
-                    "description": "Track [USB_DM] on B.Cu, length 0.3697 mm",
-                    "pos": {
-                        "x": 175.372,
-                        "y": 105.451
-                    },
-                    "uuid": "9a9ebe6f-4036-45cd-ac6c-e96cf2945fd3"
-                },
-                {
-                    "description": "Track [USB_DP] on B.Cu, length 0.5401 mm",
-                    "pos": {
-                        "x": 175.118,
-                        "y": 105.146
-                    },
-                    "uuid": "edee6021-d914-4874-a260-aa49c3705e0f"
-                }
-            ],
-            "severity": "warning",
-            "type": "clearance"
-        },
-        {
             "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.0941 mm)",
             "items": [
                 {
@@ -522,29 +499,6 @@
                         "y": 108.0415
                     },
                     "uuid": "a5439b5e-3828-48f1-906e-a063d14dd005"
-                }
-            ],
-            "severity": "warning",
-            "type": "clearance"
-        },
-        {
-            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1019 mm)",
-            "items": [
-                {
-                    "description": "Track [USB_DP] on B.Cu, length 0.8518 mm",
-                    "pos": {
-                        "x": 174.813,
-                        "y": 108.448
-                    },
-                    "uuid": "224a11b5-03f0-4167-8804-c5fbacc03c10"
-                },
-                {
-                    "description": "Track [USB_DM] on B.Cu, length 2.6925 mm",
-                    "pos": {
-                        "x": 175.0165,
-                        "y": 108.245
-                    },
-                    "uuid": "6f6b5313-c076-488c-8aca-b3143d5024f2"
                 }
             ],
             "severity": "warning",
@@ -577,6 +531,29 @@
             "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1092 mm)",
             "items": [
                 {
+                    "description": "Track [USB_DM] on B.Cu, length 0.3697 mm",
+                    "pos": {
+                        "x": 175.372,
+                        "y": 105.451
+                    },
+                    "uuid": "9a9ebe6f-4036-45cd-ac6c-e96cf2945fd3"
+                },
+                {
+                    "description": "Track [USB_DP] on B.Cu, length 0.5401 mm",
+                    "pos": {
+                        "x": 175.118,
+                        "y": 105.146
+                    },
+                    "uuid": "edee6021-d914-4874-a260-aa49c3705e0f"
+                }
+            ],
+            "severity": "warning",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1092 mm)",
+            "items": [
+                {
                     "description": "Track [USB_DP] on B.Cu, length 0.5401 mm",
                     "pos": {
                         "x": 175.118,
@@ -591,6 +568,29 @@
                         "y": 105.451
                     },
                     "uuid": "9a9ebe6f-4036-45cd-ac6c-e96cf2945fd3"
+                }
+            ],
+            "severity": "warning",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (rule 'track_to_track_5mil_preferred' clearance 0.1270 mm; actual 0.1019 mm)",
+            "items": [
+                {
+                    "description": "Track [USB_DP] on B.Cu, length 0.8518 mm",
+                    "pos": {
+                        "x": 174.813,
+                        "y": 108.448
+                    },
+                    "uuid": "224a11b5-03f0-4167-8804-c5fbacc03c10"
+                },
+                {
+                    "description": "Track [USB_DM] on B.Cu, length 2.6925 mm",
+                    "pos": {
+                        "x": 175.0165,
+                        "y": 108.245
+                    },
+                    "uuid": "6f6b5313-c076-488c-8aca-b3143d5024f2"
                 }
             ],
             "severity": "warning",

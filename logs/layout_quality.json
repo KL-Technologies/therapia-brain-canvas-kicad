@@ -86,7 +86,7 @@
         "length_mm": 9.3992,
         "hops": 8,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -109,7 +109,7 @@
         "length_mm": 6.4657,
         "hops": 7,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -132,7 +132,7 @@
         "length_mm": 2.5525,
         "hops": 3,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -155,10 +155,10 @@
         "length_mm": 8.9997,
         "hops": 10,
         "layers": [
-          "Bottom Layer",
-          "Inner1",
-          "Inner2",
-          "Top Layer"
+          "B.Cu",
+          "F.Cu",
+          "In1.Cu",
+          "In2.Cu"
         ]
       },
       "vias_in_path": 2,
@@ -181,10 +181,10 @@
         "length_mm": 12.1583,
         "hops": 11,
         "layers": [
-          "Bottom Layer",
-          "Inner1",
-          "Inner2",
-          "Top Layer"
+          "B.Cu",
+          "F.Cu",
+          "In1.Cu",
+          "In2.Cu"
         ]
       },
       "vias_in_path": 2,
@@ -207,7 +207,7 @@
         "length_mm": 1.359,
         "hops": 3,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -230,7 +230,7 @@
         "length_mm": 1.533,
         "hops": 3,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -349,10 +349,10 @@
         "length_mm": 3.6664,
         "hops": 5,
         "layers": [
-          "Bottom Layer",
-          "Inner1",
-          "Inner2",
-          "Top Layer"
+          "B.Cu",
+          "F.Cu",
+          "In1.Cu",
+          "In2.Cu"
         ]
       },
       "vias_in_path": 2,
@@ -375,7 +375,7 @@
         "length_mm": 2.1,
         "hops": 3,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -414,7 +414,7 @@
         "length_mm": 22.1103,
         "hops": 17,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -437,7 +437,7 @@
         "length_mm": 17.1393,
         "hops": 14,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -460,7 +460,7 @@
         "length_mm": 13.671,
         "hops": 6,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -483,7 +483,7 @@
         "length_mm": 18.0088,
         "hops": 14,
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ]
       },
       "vias_in_path": 0,
@@ -598,10 +598,10 @@
       "own_net": false,
       "net_is_a_plane": true,
       "zones_over_pad": {
-        "Inner1": [
+        "In1.Cu": [
           "GND"
         ],
-        "Inner2": [
+        "In2.Cu": [
           "AVDD"
         ]
       },
@@ -616,10 +616,10 @@
       "own_net": false,
       "net_is_a_plane": true,
       "zones_over_pad": {
-        "Inner1": [
+        "In1.Cu": [
           "GND"
         ],
-        "Inner2": [
+        "In2.Cu": [
           "AVDD"
         ]
       },
@@ -917,167 +917,167 @@
       "input": "IN8N",
       "gap_mm": 8.1904,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN8P",
       "gap_mm": 9.5102,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN2N",
       "gap_mm": 9.741,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN2P",
       "gap_mm": 9.7538,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN3P",
       "gap_mm": 9.7538,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN1N",
       "gap_mm": 9.7921,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN3N",
       "gap_mm": 9.7921,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN1P",
       "gap_mm": 9.8556,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN4P",
       "gap_mm": 9.8557,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN4N",
       "gap_mm": 9.944,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN5P",
       "gap_mm": 10.0563,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN5N",
       "gap_mm": 10.1919,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN6P",
       "gap_mm": 10.3499,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN6N",
       "gap_mm": 10.5293,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN7P",
       "gap_mm": 10.7289,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     },
     {
       "input": "IN7N",
       "gap_mm": 10.8865,
       "to": "ADS_RESET_N",
-      "layer": "Top Layer"
+      "layer": "F.Cu"
     }
   ],
   "crossings": [],
   "zone_fill": [
     {
       "net": "CHASSIS_GND",
-      "layer": "Top Layer",
+      "layer": "F.Cu",
       "outlines": 2,
       "holes": 0,
       "area_mm2": 40.17
     },
     {
       "net": "GND",
-      "layer": "Inner1",
+      "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
       "area_mm2": 2493.44
     },
     {
       "net": "USB_5V",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
       "area_mm2": 282.47
     },
     {
       "net": "VDD_ESP",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
       "area_mm2": 329.6
     },
     {
       "net": "AVDD",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
       "area_mm2": 278.81
     },
     {
       "net": "AVSS",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 7,
       "holes": 0,
       "area_mm2": 841.93
     },
     {
       "net": "USB_5V",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 8,
       "holes": 0,
       "area_mm2": 359.39
     },
     {
       "net": "VDD_ESP",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
       "area_mm2": 75.36
     },
     {
       "net": "VDD_ESP",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 9,
       "holes": 0,
       "area_mm2": 215.61
     },
     {
       "net": "VDD_ESP",
-      "layer": "Inner2",
+      "layer": "In2.Cu",
       "outlines": 3,
       "holes": 0,
       "area_mm2": 0.0

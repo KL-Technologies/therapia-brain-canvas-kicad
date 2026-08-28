@@ -65,8 +65,8 @@ DS §11: *"AVDD1 provides the supply to the charge pump block and has transients
 
 | ピン | 名前 | 回路図のネット | 独立ネット | パッド下のゾーン | 所見 |
 |---|---|---|---|---|---|
-| 54 | AVDD1 | `AVDD` | **いいえ** | Inner1=GND, Inner2=AVDD | shares the AVDD net and the AVDD plane -- a star connection would need a separate AVDD1 net in the schematic (Rev.B) |
-| 53 | AVSS1 | `AVSS` | **いいえ** | Inner1=GND, Inner2=AVDD | shares the AVSS net and the AVSS plane -- a star connection would need a separate AVSS1 net in the schematic (Rev.B) |
+| 54 | AVDD1 | `AVDD` | **いいえ** | In1.Cu=GND, In2.Cu=AVDD | shares the AVDD net and the AVDD plane -- a star connection would need a separate AVDD1 net in the schematic (Rev.B) |
+| 53 | AVSS1 | `AVSS` | **いいえ** | In1.Cu=GND, In2.Cu=AVDD | shares the AVSS net and the AVSS plane -- a star connection would need a separate AVSS1 net in the schematic (Rev.B) |
 
 > **影響**: ADS1299 は内部チャージポンプを 2.048 MHz で回しており、そのリップルが AVDD / AVSS 全体に載る。Rev.A では受容し、火入れ時に AVDD のリップルを実測して Rev.B の判断材料にすること。
 
@@ -128,22 +128,22 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
 | 入力 | 相手 | 層 | 間隔 [mm] |
 |---|---|---|---|
-| IN8N | ADS_RESET_N | Top Layer | 8.190 |
-| IN8P | ADS_RESET_N | Top Layer | 9.510 |
-| IN2N | ADS_RESET_N | Top Layer | 9.741 |
-| IN2P | ADS_RESET_N | Top Layer | 9.754 |
-| IN3P | ADS_RESET_N | Top Layer | 9.754 |
-| IN1N | ADS_RESET_N | Top Layer | 9.792 |
-| IN3N | ADS_RESET_N | Top Layer | 9.792 |
-| IN1P | ADS_RESET_N | Top Layer | 9.856 |
-| IN4P | ADS_RESET_N | Top Layer | 9.856 |
-| IN4N | ADS_RESET_N | Top Layer | 9.944 |
-| IN5P | ADS_RESET_N | Top Layer | 10.056 |
-| IN5N | ADS_RESET_N | Top Layer | 10.192 |
-| IN6P | ADS_RESET_N | Top Layer | 10.350 |
-| IN6N | ADS_RESET_N | Top Layer | 10.529 |
-| IN7P | ADS_RESET_N | Top Layer | 10.729 |
-| IN7N | ADS_RESET_N | Top Layer | 10.886 |
+| IN8N | ADS_RESET_N | F.Cu | 8.190 |
+| IN8P | ADS_RESET_N | F.Cu | 9.510 |
+| IN2N | ADS_RESET_N | F.Cu | 9.741 |
+| IN2P | ADS_RESET_N | F.Cu | 9.754 |
+| IN3P | ADS_RESET_N | F.Cu | 9.754 |
+| IN1N | ADS_RESET_N | F.Cu | 9.792 |
+| IN3N | ADS_RESET_N | F.Cu | 9.792 |
+| IN1P | ADS_RESET_N | F.Cu | 9.856 |
+| IN4P | ADS_RESET_N | F.Cu | 9.856 |
+| IN4N | ADS_RESET_N | F.Cu | 9.944 |
+| IN5P | ADS_RESET_N | F.Cu | 10.056 |
+| IN5N | ADS_RESET_N | F.Cu | 10.192 |
+| IN6P | ADS_RESET_N | F.Cu | 10.350 |
+| IN6N | ADS_RESET_N | F.Cu | 10.529 |
+| IN7P | ADS_RESET_N | F.Cu | 10.729 |
+| IN7N | ADS_RESET_N | F.Cu | 10.886 |
 
 ## 8. 入力配線とデジタル配線の交差（層違い）
 
@@ -155,20 +155,20 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
 | ネット | 層 | 外形 | 面積 [mm²] | 基板面積比 |
 |---|---|---|---|---|
-| GND | Inner1 | 1 | 2493.44 | 89.6% |
-| AVSS | Inner2 | 7 | 841.93 | 30.3% |
-| USB_5V | Inner2 | 8 | 359.39 | 12.9% |
-| VDD_ESP | Inner2 | 1 | 329.60 | 11.8% |
-| USB_5V | Inner2 | 1 | 282.47 | 10.2% |
-| AVDD | Inner2 | 1 | 278.81 | 10.0% |
-| VDD_ESP | Inner2 | 9 | 215.61 | 7.7% |
-| VDD_ESP | Inner2 | 1 | 75.36 | 2.7% |
-| VDD_ESP | Inner2 | 3 | 0.00 | 0.0% |
-| CHASSIS_GND | Top Layer | 2 | 40.17 | 1.4% |
+| CHASSIS_GND | F.Cu | 2 | 40.17 | 1.4% |
+| GND | In1.Cu | 1 | 2493.44 | 89.6% |
+| AVSS | In2.Cu | 7 | 841.93 | 30.3% |
+| USB_5V | In2.Cu | 8 | 359.39 | 12.9% |
+| VDD_ESP | In2.Cu | 1 | 329.60 | 11.8% |
+| USB_5V | In2.Cu | 1 | 282.47 | 10.2% |
+| AVDD | In2.Cu | 1 | 278.81 | 10.0% |
+| VDD_ESP | In2.Cu | 9 | 215.61 | 7.7% |
+| VDD_ESP | In2.Cu | 1 | 75.36 | 2.7% |
+| VDD_ESP | In2.Cu | 3 | 0.00 | 0.0% |
 
 **In1 = GND が 1 枚もので 2493.4 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
 
-**空に近いベタが 1 枚ある**: VDD_ESP@Inner2 (3 外形, 0.0000 mm²)。VDD_ESP は 3 枚のベタに分かれており（S5 の申し送り）、そのうち 1 枚は充填の結果ほぼ何も残っていない。電気的には他の 2 枚が VDD_ESP を配っているので実害は無いが、**この 1 枚は何もしていない**。DRC も `isolated_copper` / `copper_sliver` を報告していない。
+**空に近いベタが 1 枚ある**: VDD_ESP@In2.Cu (3 外形, 0.0000 mm²)。VDD_ESP は 3 枚のベタに分かれており（S5 の申し送り）、そのうち 1 枚は充填の結果ほぼ何も残っていない。電気的には他の 2 枚が VDD_ESP を配っているので実害は無いが、**この 1 枚は何もしていない**。DRC も `isolated_copper` / `copper_sliver` を報告していない。
 
 ## 10. チェックリスト J3〜J11
 
