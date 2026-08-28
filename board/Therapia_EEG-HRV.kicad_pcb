@@ -13043,7 +13043,7 @@
 	(footprint "ProPrj_The-easyedapro:C0402"
 		(layer "F.Cu")
 		(uuid "3f7f27d5-0bd4-4102-b2f5-32324d753125")
-		(at 147.636 83.048 90)
+		(at 147.586 83.048 90)
 		(property "Reference" "C_RST_DLY"
 			(at -0.95 -0.703 90)
 			(layer "F.SilkS")
@@ -50023,7 +50023,7 @@
 	)
 	(segment
 		(start 148.0415 82.6415)
-		(end 147.636 82.629)
+		(end 147.586 82.629)
 		(width 0.203)
 		(layer "F.Cu")
 		(net "GND")
@@ -56478,7 +56478,7 @@
 		(uuid "ed0ec4d3-654a-421d-80ea-9c2c6dc10951")
 	)
 	(segment
-		(start 147.636 83.467)
+		(start 147.586 83.467)
 		(end 147.686 83.048)
 		(width 0.203)
 		(layer "F.Cu")
