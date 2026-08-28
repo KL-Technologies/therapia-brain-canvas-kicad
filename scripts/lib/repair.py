@@ -578,6 +578,62 @@ def commit(pcbnew, board, result, net, width=None, rules_obj=None):
 
 
 # --- moving copper away from a hole ------------------------------------------
+def split_track_around(pcbnew, board, track, hole, reach, pad_mm=0.5,
+                       min_keep_mm=0.3):
+    """Cut a long track down to just the piece that is near a hole.
+
+    L3's ESP_TXD track is 11.68 mm long and clips H4 by 76 um in the middle.
+    Re-routing the whole thing would redraw eleven millimetres of working
+    copper to fix a tenth of one, and hand the reviewer a diff that hides the
+    actual repair. This replaces the track with up to three: the part before,
+    the part near the hole, and the part after. Only the middle one is then
+    detoured.
+
+    Returns the middle track, or the original if it is near the hole
+    end-to-end.
+    """
+    s, e = track.GetStart(), track.GetEnd()
+    hx, hy, hr = hole
+    dx, dy = e.x - s.x, e.y - s.y
+    L2 = float(dx * dx + dy * dy)
+    if L2 == 0:
+        return track, []
+    # where the centreline enters and leaves a circle of radius `reach`
+    R2 = float(reach) ** 2
+    fx, fy = s.x - hx, s.y - hy
+    a = L2
+    b = 2.0 * (fx * dx + fy * dy)
+    c = fx * fx + fy * fy - R2
+    disc = b * b - 4 * a * c
+    if disc <= 0:
+        return track, []
+    root = math.sqrt(disc)
+    t0 = (-b - root) / (2 * a)
+    t1 = (-b + root) / (2 * a)
+    pad = pad_mm * IU / math.sqrt(L2)
+    t0 = max(0.0, t0 - pad)
+    t1 = min(1.0, t1 + pad)
+    length = math.sqrt(L2)
+    if t0 * length < min_keep_mm * IU and (1 - t1) * length < min_keep_mm * IU:
+        return track, []
+
+    def at(t):
+        return (int(s.x + dx * t), int(s.y + dy * t))
+
+    p0, p1 = at(t0), at(t1)
+    layer, width, net = track.GetLayer(), track.GetWidth(), track.GetNetCode()
+    kept = []
+    if t0 * length >= min_keep_mm * IU:
+        kept.append(R.add_track(pcbnew, board, (s.x, s.y), p0, layer, width,
+                                net))
+    if (1 - t1) * length >= min_keep_mm * IU:
+        kept.append(R.add_track(pcbnew, board, p1, (e.x, e.y), layer, width,
+                                net))
+    middle = R.add_track(pcbnew, board, p0, p1, layer, width, net)
+    R.remove_items(board, [track])
+    return middle, kept
+
+
 def detour_track(pcbnew, board, idx, track, router=None, rules_obj=None,
                  ignore=(), max_factor=3.0, min_extra_mm=2.0):
     """Replace a track with a routed path between the same two endpoints.
@@ -712,23 +768,45 @@ def clear_hole(pcbnew, board, idx, name, hole, margin, nets=None,
         progress = False
         for g, it in bad:
             cls = it.GetClass()
+            item_uid = R.uid(it)          # before any edit can remove it
             if cls == "PAD":
                 results.append({"ok": False, "kind": "pad",
                                 "reason": "a pad only moves with its "
                                           "footprint",
-                                "gap_mm": mm(g), "uid": R.uid(it),
+                                "gap_mm": mm(g), "uid": item_uid,
                                 "item": describe(board, it)})
                 continue
-            router = M.Router(pcbnew, board, idx, rl)
-            if cls == "PCB_VIA":
-                res = retreat_via(pcbnew, board, idx, it,
-                                  {name: hole}, margin, rules_obj=rl,
-                                  ignore=exclude)
-            else:
-                res = detour_track(pcbnew, board, idx, it, router=router,
-                                   rules_obj=rl, ignore=exclude)
+            # Try for the target margin, then settle for less, never below the
+            # rule. A via wedged between the USB-C peg and the ESP32 UART pair
+            # has room for 0.22 mm and not for 0.30, and refusing the 0.22 mm
+            # answer would leave a real violation standing.
+            ladder = [m for m in HOLE_MARGIN_STEPS if m <= margin] or [margin]
+            res = None
+            for attempt in ladder:
+                rl_m = rules(hole_clearance=attempt)
+                if cls == "PCB_VIA":
+                    res = retreat_via(pcbnew, board, idx, it, {name: hole},
+                                      attempt, rules_obj=rl_m, ignore=exclude)
+                else:
+                    reach = hole[2] + attempt + it.GetWidth() / 2.0
+                    target, kept = split_track_around(pcbnew, board, it, hole,
+                                                      reach)
+                    if kept:
+                        idx.rebuild()
+                    router = M.Router(pcbnew, board, idx, rl_m)
+                    res = detour_track(pcbnew, board, idx, target,
+                                       router=router, rules_obj=rl_m,
+                                       ignore=exclude)
+                    res["split_kept_segments"] = len(kept)
+                    if not res.get("ok") and kept:
+                        # the split stands even when the detour fails; the next
+                        # margin works on the shorter middle piece
+                        it = target
+                res["margin_mm"] = mm(attempt)
+                if res.get("ok"):
+                    break
             res["gap_before_mm"] = mm(g)
-            res["uid"] = R.uid(it)
+            res["uid"] = item_uid
             res["hole"] = name
             results.append(res)
             if res.get("ok"):
@@ -923,7 +1001,7 @@ def unconnected(doc):
 
 def run_hole_step(step, hole_names, nets, notes, root=None, skip_drc=False,
                   baseline="drc_S5_before", margin=None, before_save=None,
-                  after_clear=None):
+                  after_clear=None, extra_checks=None):
     """The whole of an L2/L3/L4-shaped repair: clear holes, heal, gate.
 
     L2 and L3 differ from each other only in which hole and which net, and L4
@@ -967,14 +1045,18 @@ def run_hole_step(step, hole_names, nets, notes, root=None, skip_drc=False,
     log["islands_reconnected"] = healed
     log["islands_still_floating"] = floating
 
-    after = {}
+    after, after_all = {}, {}
     for name in hole_names:
-        after[name] = [dict(describe(board, it), gap_mm=mm(g))
-                       for g, it in copper_near_hole(pcbnew, board,
-                                                     holes[name],
-                                                     HOLE_CLEARANCE)
-                       if nets is None or it.GetNetname() in nets]
+        rows = [dict(describe(board, it), gap_mm=mm(g))
+                for g, it in copper_near_hole(pcbnew, board, holes[name],
+                                              HOLE_CLEARANCE)]
+        after_all[name] = rows
+        after[name] = [r for r in rows
+                       if nets is None or r.get("net") in nets]
     log["violating_after"] = after
+    # Everything still inside the ring, whatever its net -- the step gates on
+    # the nets it was asked to move, but a reader needs to see the rest.
+    log["inside_ring_after_any_net"] = after_all
 
     if before_save:
         before_save(ctx)
@@ -1009,6 +1091,8 @@ def run_hole_step(step, hole_names, nets, notes, root=None, skip_drc=False,
               sig.get("new_signatures", ["drc did not run"]),
               ok=(drc_ok and not sig.get("new_signatures"))),
     ]
+    if extra_checks:
+        checks += extra_checks(log)
     gate(root, step, checks, notes=notes, extra=log)
     return all(c["pass"] for c in checks), log
 

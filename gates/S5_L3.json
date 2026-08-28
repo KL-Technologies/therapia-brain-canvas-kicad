@@ -1,0 +1,294 @@
+{
+  "step": "S5_L3",
+  "pass": true,
+  "checks": [
+    {
+      "name": "target_copper_cleared",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_floating_islands",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "contract_parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc_ran",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_new_drc_signatures",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T16:27:24",
+  "notes": "ESP_TXD split and its middle re-routed clear of H4.",
+  "holes": [
+    "H4"
+  ],
+  "nets": [
+    "ESP_TXD"
+  ],
+  "violating_before": {
+    "H4": [
+      {
+        "kind": "track",
+        "net": "ESP_TXD",
+        "layer": "Bottom Layer",
+        "start_mm": [
+          179.182,
+          120.7415
+        ],
+        "end_mm": [
+          167.498,
+          120.7415
+        ],
+        "width_mm": 0.203,
+        "uuid": "2d43f579-6e2c-4b21-8803-0b8878e84036",
+        "gap_mm": -0.076
+      }
+    ]
+  },
+  "clear_hole": {
+    "H4": [
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            178.4755,
+            120.7415
+          ],
+          "end_mm": [
+            175.4181,
+            120.7415
+          ],
+          "width_mm": 0.203,
+          "uuid": "75797100-ac3c-4a48-9fca-e8d498c8d7fb"
+        },
+        "direct_mm": 3.0575,
+        "length_mm": 3.1632,
+        "vias": [],
+        "segments": 3,
+        "split_kept_segments": 2,
+        "gap_before_mm": -0.076,
+        "uid": "2d43f579-6e2c-4b21-8803-0b8878e84036",
+        "hole": "H4"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.1015,
+            120.4595
+          ],
+          "end_mm": [
+            175.895,
+            120.4595
+          ],
+          "width_mm": 0.203,
+          "uuid": "6b4eed8f-95af-4f4a-aa3f-757d002e40f0"
+        },
+        "direct_mm": 1.2065,
+        "length_mm": 1.2065,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "gap_before_mm": 0.206,
+        "uid": "6b4eed8f-95af-4f4a-aa3f-757d002e40f0",
+        "hole": "H4"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            178.4755,
+            120.7415
+          ],
+          "end_mm": [
+            177.1015,
+            120.4595
+          ],
+          "width_mm": 0.203,
+          "uuid": "3cdc27b4-b664-42f1-8dd5-e38a806eec11"
+        },
+        "direct_mm": 1.4027,
+        "length_mm": 1.4027,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "gap_before_mm": 0.206448,
+        "uid": "3cdc27b4-b664-42f1-8dd5-e38a806eec11",
+        "hole": "H4"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.1015,
+            120.4595
+          ],
+          "end_mm": [
+            175.895,
+            120.4595
+          ],
+          "width_mm": 0.203,
+          "uuid": "a85b8f20-959f-46bb-a4ca-d8a3eea216dd"
+        },
+        "direct_mm": 1.2065,
+        "length_mm": 1.2065,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "gap_before_mm": 0.206,
+        "uid": "a85b8f20-959f-46bb-a4ca-d8a3eea216dd",
+        "hole": "H4"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            178.4755,
+            120.7415
+          ],
+          "end_mm": [
+            177.1015,
+            120.4595
+          ],
+          "width_mm": 0.203,
+          "uuid": "21854fff-d525-4196-8204-767998fa9908"
+        },
+        "direct_mm": 1.4027,
+        "length_mm": 1.4027,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "gap_before_mm": 0.206448,
+        "uid": "21854fff-d525-4196-8204-767998fa9908",
+        "hole": "H4"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.1015,
+            120.4595
+          ],
+          "end_mm": [
+            175.895,
+            120.4595
+          ],
+          "width_mm": 0.203,
+          "uuid": "21dfe8ab-526f-4e66-a3af-8cbbc19f4d5e"
+        },
+        "direct_mm": 1.2065,
+        "length_mm": 1.2065,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "gap_before_mm": 0.206,
+        "uid": "21dfe8ab-526f-4e66-a3af-8cbbc19f4d5e",
+        "hole": "H4"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_TXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            178.4755,
+            120.7415
+          ],
+          "end_mm": [
+            177.1015,
+            120.4595
+          ],
+          "width_mm": 0.203,
+          "uuid": "dbf06491-7cc2-4a9a-9d6e-09eae0a8a2f1"
+        },
+        "direct_mm": 1.4027,
+        "length_mm": 1.4027,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "gap_before_mm": 0.206448,
+        "uid": "dbf06491-7cc2-4a9a-9d6e-09eae0a8a2f1",
+        "hole": "H4"
+      }
+    ]
+  },
+  "islands_reconnected": [],
+  "islands_still_floating": [],
+  "violating_after": {
+    "H4": []
+  },
+  "contract_diffs": [],
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1233,
+    "vias": 240,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "unconnected_before_save": 0,
+  "drc_after": {
+    "errors_by_type": {
+      "hole_clearance": 25,
+      "clearance": 20,
+      "solder_mask_bridge": 7,
+      "hole_to_hole": 4
+    },
+    "unconnected": 0
+  },
+  "drc_delta": {
+    "resolved": [
+      "hole_clearance NPTH+Track nets=ESP_TXD at (176.947,121.961) (179.182,120.742)"
+    ],
+    "new": [],
+    "before": 39,
+    "after": 38
+  }
+}
