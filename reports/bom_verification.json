@@ -1,0 +1,1127 @@
+{
+  "generated": "2026-08-28",
+  "board": "board/Therapia_EEG-HRV.kicad_pcb",
+  "parts_table": "data/parts_lcsc.csv",
+  "total_placements": 135,
+  "unique_part_numbers": 30,
+  "method": "各 C 番号を LCSC 商品ページ / EasyEDA 部品 API / JLCPCB partdetail の いずれか複数で取得し、data/parts_lcsc.csv の値・パッケージと kicad_pcb のフットプリント実測パッド寸法、および contract/netlist_from_kicad_pcb.json の実接続ネットに突合した。",
+  "summary": {
+    "ng": [
+      "C72043",
+      "C94221"
+    ],
+    "needs_check": [
+      "C1546",
+      "C13585",
+      "C369159",
+      "C2840012",
+      "C19619",
+      "C69932",
+      "C701341"
+    ],
+    "ok": [
+      "C6186",
+      "C19702",
+      "C1525",
+      "C52923",
+      "C1588",
+      "C237168",
+      "C12530",
+      "C15195",
+      "C15008",
+      "C7519",
+      "C2765186",
+      "C108573",
+      "C2146",
+      "C17514",
+      "C23186",
+      "C25804",
+      "C25744",
+      "C23138",
+      "C17477",
+      "C476817",
+      "C84681"
+    ],
+    "extended_part_numbers": [
+      "C237168",
+      "C7519",
+      "C369159",
+      "C2765186",
+      "C2840012",
+      "C108573",
+      "C19619",
+      "C69932",
+      "C476817",
+      "C701341",
+      "C84681"
+    ]
+  },
+  "rows": [
+    {
+      "lcsc": "C6186",
+      "designators": [
+        "AMS1117"
+      ],
+      "qty": 1,
+      "csv_value": "AMS1117-3.3",
+      "csv_mpn": "AMS1117-3.3",
+      "csv_package": "SOT-223",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR",
+      "eco": [],
+      "fetched_mpn": "AMS1117-3.3",
+      "fetched_manufacturer": "Advanced Monolithic Systems",
+      "fetched_package": "SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR",
+      "fetched_spec": "LDO 3.3V fixed, SOT-223-3",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 222228,
+      "stock_szlcsc": 113340,
+      "design_intent": "AMS1117-3.3 / SOT-223 / USB5V→3.3V",
+      "verdict": "OK",
+      "reason": "MPN・パッケージ・機能すべて一致。フットプリント SOT-223-3(4パッド) 一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C6186/components",
+        "https://jlcpcb.com/partdetail/C6186"
+      ]
+    },
+    {
+      "lcsc": "C19702",
+      "designators": [
+        "C_3V3_B",
+        "C_3V3_B2",
+        "C_3V3_OUT",
+        "C_AVDD1_10u",
+        "C_AVDD_B",
+        "C_AVSS_B",
+        "C_BULK",
+        "C_DVDD_10u",
+        "C_DVDD_B",
+        "C_LM_FLY",
+        "C_LM_OUT",
+        "C_USB5V_B"
+      ],
+      "qty": 12,
+      "csv_value": "10uF",
+      "csv_mpn": "CL10A106KP8NNNC",
+      "csv_package": "0603",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0603",
+      "eco": [
+        "ECO-2#10"
+      ],
+      "fetched_mpn": "CL10A106KP8NNNC",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C0603",
+      "fetched_spec": "10uF / 10V / X5R / +-10% / 0603",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 6738300,
+      "stock_szlcsc": 0,
+      "design_intent": "ECO-2#10: 10uF 10V X5R 0603（12個スイープ）",
+      "verdict": "OK",
+      "reason": "10uF/10V/X5R/0603 が ECO 指定と完全一致。実接続ネットの最大は USB_5V(5V)/VNEG5(-5V)/LM フライングキャップ(約5V)で 10V 定格に収まる。",
+      "note": "LCSC ページ 6,738,300 / EasyEDA API 225,880（SZ 0）。値は両者一致。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C19702.html",
+        "https://easyeda.com/api/products/C19702/components"
+      ]
+    },
+    {
+      "lcsc": "C1525",
+      "designators": [
+        "C_3V3_H",
+        "C_3V3_H2",
+        "C_AVDD1_100n",
+        "C_AVDD_H",
+        "C_AVDD_P19",
+        "C_AVDD_P3",
+        "C_AVDD_P31",
+        "C_AVDD_P36",
+        "C_AVDD_P59",
+        "C_AVDD_P64",
+        "C_AVSS_H",
+        "C_AVSS_P17",
+        "C_AVSS_P30",
+        "C_AVSS_P37",
+        "C_AVSS_P60",
+        "C_BIAS_INV",
+        "C_DVDD_H",
+        "C_DVDD_P40",
+        "C_DVDD_P58",
+        "C_EN_DLY",
+        "C_HF",
+        "C_RST_DLY",
+        "C_USB5V_H",
+        "C_USB_V3",
+        "C_USB_VCC",
+        "C_VCAP1_H",
+        "C_VCAP3_H",
+        "C_VREFP_100n"
+      ],
+      "qty": 28,
+      "csv_value": "100nF",
+      "csv_mpn": "CL05B104KO5NNNC",
+      "csv_package": "0402",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0402",
+      "eco": [
+        "ECO-1#5",
+        "ECO-3#11"
+      ],
+      "fetched_mpn": "CL05B104KO5NNNC",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C0402",
+      "fetched_spec": "100nF / 16V / X7R / +-10% / 0402",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 869375,
+      "stock_szlcsc": 4941800,
+      "design_intent": "100nF 0402（HF デカップ全般）",
+      "verdict": "OK",
+      "reason": "100nF/0402 一致。定格 16V。最大電位は USB_5V(5V) 系なので 3 倍以上の余裕。",
+      "note": null,
+      "not_placed_on_pcb": [
+        "C_VCAP1_H",
+        "C_VCAP3_H"
+      ],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C1525/components"
+      ]
+    },
+    {
+      "lcsc": "C52923",
+      "designators": [
+        "C_3V3_IN",
+        "C_3V3_M",
+        "C_AVDD1_1u",
+        "C_LM_IN",
+        "C_NLDO_IN",
+        "C_PLDO_IN",
+        "C_PLDO_OUT",
+        "C_VCAP2",
+        "C_VCAP3",
+        "C_VCAP4"
+      ],
+      "qty": 10,
+      "csv_value": "1uF",
+      "csv_mpn": "CL05A105KA5NQNC",
+      "csv_package": "0402",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0402",
+      "eco": [
+        "ECO-1#4",
+        "ECO-1#5"
+      ],
+      "fetched_mpn": "CL05A105KA5NQNC",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C0402",
+      "fetched_spec": "1uF / 25V / X5R / +-10% / 0402",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 3790400,
+      "stock_szlcsc": 3663900,
+      "design_intent": "1uF 0402（LDO 入出力・VCAP2/3/4）",
+      "verdict": "OK",
+      "reason": "1uF/0402 一致。定格 25V は USB_5V(5V) 系・V_NLDO_IN(-5V) に対し十分。",
+      "note": "定格 25V は LCSC ページと EasyEDA API の 2 ソースで一致。",
+      "not_placed_on_pcb": [
+        "C_VCAP2",
+        "C_VCAP3"
+      ],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C52923.html",
+        "https://easyeda.com/api/products/C52923/components"
+      ]
+    },
+    {
+      "lcsc": "C1546",
+      "designators": [
+        "C_AVDD1_10n",
+        "C_VREFP_10n"
+      ],
+      "qty": 2,
+      "csv_value": "100pF",
+      "csv_mpn": "0402CG101J500NT",
+      "csv_package": "0402",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0402",
+      "eco": [],
+      "fetched_mpn": "0402CG101J500NT",
+      "fetched_manufacturer": "FH (Fenghua)",
+      "fetched_package": "C0402",
+      "fetched_spec": "100pF / 50V / C0G(NP0, 型番 CG) / +-5% / 0402",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 558700,
+      "stock_szlcsc": 1401500,
+      "design_intent": "designator は C_AVDD1_10n / C_VREFP_10n（= 10nF を示唆）",
+      "verdict": "要確認",
+      "reason": "実体は 100pF C0G。ECO-2#7 が C_NR で修正したのと同型の 『名前は 10n・中身は 100pF』の不整合が 2 個所残っている。AVDD/VREFP には別途 100nF+10uF が並列なので実害は小さいが意図確認を推奨。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C1546/components"
+      ]
+    },
+    {
+      "lcsc": "C1588",
+      "designators": [
+        "C_CM1N",
+        "C_CM1P",
+        "C_CM2N",
+        "C_CM2P",
+        "C_CM3N",
+        "C_CM3P",
+        "C_CM4N",
+        "C_CM4P",
+        "C_CM5N",
+        "C_CM5P",
+        "C_CM6N",
+        "C_CM6P",
+        "C_CM7N",
+        "C_CM7P",
+        "C_CM8N",
+        "C_CM8P"
+      ],
+      "qty": 16,
+      "csv_value": "1nF",
+      "csv_mpn": "CL10B102KB8NNNC",
+      "csv_package": "0603",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0603",
+      "eco": [],
+      "fetched_mpn": "CL10B102KB8NNNC",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C0603",
+      "fetched_spec": "1nF / 50V / X7R(型番 B) / +-10% / 0603",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 673512,
+      "stock_szlcsc": 123000,
+      "design_intent": "C_CM 1nF 0603（ECO で X7R 継続を明示的に受容）",
+      "verdict": "OK",
+      "reason": "1nF/50V/X7R/0603 一致。ECO『意図的に見送り』欄で Rev.A 受容と明記済み。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C1588/components"
+      ]
+    },
+    {
+      "lcsc": "C237168",
+      "designators": [
+        "C_DIF1",
+        "C_DIF2",
+        "C_DIF3",
+        "C_DIF4",
+        "C_DIF5",
+        "C_DIF6",
+        "C_DIF7",
+        "C_DIF8"
+      ],
+      "qty": 8,
+      "csv_value": "10nF_NP0_50V",
+      "csv_mpn": "0805N103J500CT",
+      "csv_package": "0805",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0805",
+      "eco": [
+        "ECO-2#6"
+      ],
+      "fetched_mpn": "0805N103J500CT",
+      "fetched_manufacturer": "Walsin",
+      "fetched_package": "C0805",
+      "fetched_spec": "10nF / 50V / NP0 / +-5% / 0805",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 152260,
+      "stock_szlcsc": 5820,
+      "design_intent": "ECO-2#6: 10nF ±5% 50V NP0 0805（C_DIF、NP0 必須）",
+      "verdict": "OK",
+      "reason": "10nF/50V/NP0/±5%/0805 が ECO 指定と完全一致。C_DIF の NP0 要件を満たす。",
+      "note": "LCSC ページ 152,260 / EasyEDA API 9,790。API の Voltage Rated 500V は 型番 '...J500CT' の誤パース、LCSC ページの 50V を採用。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C237168.html",
+        "https://easyeda.com/api/products/C237168/components"
+      ]
+    },
+    {
+      "lcsc": "C12530",
+      "designators": [
+        "C_NLDO_OUT"
+      ],
+      "qty": 1,
+      "csv_value": "2.2uF",
+      "csv_mpn": "CL05A225MQ5NSNC",
+      "csv_package": "0402",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0402",
+      "eco": [
+        "ECO-2#8"
+      ],
+      "fetched_mpn": "CL05A225MQ5NSNC",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C0402",
+      "fetched_spec": "2.2uF / 6.3V / X5R / +-20% / 0402",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 5406800,
+      "stock_szlcsc": 282800,
+      "design_intent": "ECO-2#8: 2.2uF 6.3V X5R 0402（C_NLDO_OUT）",
+      "verdict": "OK",
+      "reason": "2.2uF/6.3V/X5R/0402 一致。AVSS(-2.5V) に対し 6.3V は 2.5 倍の余裕。",
+      "note": "LCSC ページ 5,406,800 / EasyEDA API 0（SZ 282,800）。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C12530.html",
+        "https://easyeda.com/api/products/C12530/components"
+      ]
+    },
+    {
+      "lcsc": "C15195",
+      "designators": [
+        "C_NR"
+      ],
+      "qty": 1,
+      "csv_value": "10nF",
+      "csv_mpn": "CL05B103KB5NNNC",
+      "csv_package": "0402",
+      "kicad_footprint": "ProPrj_The-easyedapro:C0402",
+      "eco": [
+        "ECO-2#7"
+      ],
+      "fetched_mpn": "CL05B103KB5NNNC",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C0402",
+      "fetched_spec": "10nF / 50V / X7R / +-10% / 0402",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 4411600,
+      "stock_szlcsc": 266400,
+      "design_intent": "ECO-2#7: 10nF X7R 0402（C_NR）",
+      "verdict": "OK",
+      "reason": "10nF/50V/X7R/0402 一致。TPS_NR ノードは低電圧なので定格十分。",
+      "note": "LCSC ページ 4,411,600 / EasyEDA API 230（SZ 266,400）。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C15195.html",
+        "https://easyeda.com/api/products/C15195/components"
+      ]
+    },
+    {
+      "lcsc": "C15008",
+      "designators": [
+        "C_VCAP1"
+      ],
+      "qty": 1,
+      "csv_value": "100uF",
+      "csv_mpn": "CL31A107MQHNNNE",
+      "csv_package": "1206",
+      "kicad_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "eco": [
+        "ECO-3#11"
+      ],
+      "fetched_mpn": "CL31A107MQHNNNE",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C1206",
+      "fetched_spec": "100uF / 6.3V / X5R / +-20% / 1206",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 2054820,
+      "stock_szlcsc": 107937,
+      "design_intent": "ECO-3#11: 100uF 6.3V X5R 1206（C_VCAP1）",
+      "verdict": "OK",
+      "reason": "100uF/6.3V/X5R/1206 一致。VCAP1-AVSS 間の最大は VREFP=4.5V 相当で 6.3V に収まる（設計意図でも 6.3V 可と明記）。",
+      "note": "LCSC ページ 2,054,820 / EasyEDA API 0（SZ 107,937）。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C15008.html",
+        "https://easyeda.com/api/products/C15008/components"
+      ]
+    },
+    {
+      "lcsc": "C13585",
+      "designators": [
+        "C_VREFP_10u"
+      ],
+      "qty": 1,
+      "csv_value": "10uF_25V",
+      "csv_mpn": "CL31A106KAHNNNE",
+      "csv_package": "1206",
+      "kicad_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "eco": [
+        "ECO-3#12"
+      ],
+      "fetched_mpn": "CL31A106KBHNNNE",
+      "fetched_manufacturer": "Samsung Electro-Mechanics",
+      "fetched_package": "C1206",
+      "fetched_spec": "10uF / 50V / X5R / +-10% / 1206",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": null,
+      "stock_lcsc": 917300,
+      "stock_szlcsc": 0,
+      "design_intent": "ECO-3#12: 10uF 1206 25V（VREFP=4.5V の DC バイアス減衰対策）",
+      "verdict": "要確認",
+      "reason": "【裏取り完了】実体は CL31A106K**B**HNNNE = 10uF **50V** X5R 1206。CSV の MPN 'CL31A106KAHNNNE' は誤り。値・パッケージ・材質は意図を満たし、50V なので 25V 品より DC バイアス減衰が小さく設計上はむしろ良好。→ C15008 での代替は不要。BOM の MPN 文字列のみ訂正。",
+      "note": "CSV の MPN 'CL31A106KAHNNNE' は誤り。LCSC ページ・JLC partdetail・EasyEDA API の 3 ソースとも 'CL31A106K**B**HNNNE / 50V'。在庫は LCSC ページ 917,300 に対し EasyEDA API 0/0 で食い違う。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C13585.html",
+        "https://jlcpcb.com/partdetail/C13585",
+        "https://easyeda.com/api/products/C13585/components"
+      ]
+    },
+    {
+      "lcsc": "C7519",
+      "designators": [
+        "D_ESD"
+      ],
+      "qty": 1,
+      "csv_value": "USBLC6-2SC6",
+      "csv_mpn": "USBLC6-2SC6",
+      "csv_package": "SOT-23-6",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL",
+      "eco": [],
+      "fetched_mpn": "USBLC6-2SC6",
+      "fetched_manufacturer": "STMicroelectronics",
+      "fetched_package": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL",
+      "fetched_spec": "USB ESD 保護ダイオードアレイ, SOT-23-6",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 28668,
+      "stock_szlcsc": 3590,
+      "design_intent": "USBLC6-2SC6 / SOT-23-6 / USB ESD 保護",
+      "verdict": "OK",
+      "reason": "MPN・パッケージ一致。EasyEDA パッケージ名が KiCad フットプリント名と完全一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C7519/components"
+      ]
+    },
+    {
+      "lcsc": "C72043",
+      "designators": [
+        "D_LED"
+      ],
+      "qty": 1,
+      "csv_value": "LED_Y",
+      "csv_mpn": "19-217/GHC-YR1S2/3T",
+      "csv_package": "0805",
+      "kicad_footprint": "ProPrj_The-easyedapro:LED0603-RD",
+      "eco": [],
+      "fetched_mpn": "19-217/GHC-YR1S2/3T",
+      "fetched_manufacturer": "Everlight Elec",
+      "fetched_package": "LED0603-RD",
+      "fetched_spec": "LED 0603 / Emerald Green(518nm) / Vf 3.3V @20mA / 199mcd",
+      "jlc_part_class": "取得不能",
+      "jlc_on_sale": true,
+      "stock_lcsc": 54300,
+      "stock_szlcsc": 1440000,
+      "design_intent": "value='LED_Y'（黄）+ R_LED 330Ω で ESP32 GPIO(3.3V) から駆動",
+      "verdict": "NG",
+      "reason": "実体は Emerald Green・**Vf 3.3V**。3.3V GPIO − Vf3.3V = 0V となり 330Ω では電流がほぼ流れず点灯しない/極端に暗い。また BOM value 'LED_Y'（黄）と実体（緑）が不一致。ECO-2#9 で 10kΩ→330Ω に変えた前提は Vf≈2V の赤/黄 LED。",
+      "note": "色（緑）と Vf 3.3V は LCSC ページ・JLC partdetail の 2 ソースで一致。JLC 実装区分は 3 URL とも表示されず取得不能。",
+      "not_placed_on_pcb": [],
+      "alternatives": [
+        {
+          "lcsc": "C2286",
+          "mpn": "KT-0603R",
+          "pkg": "LED-SMD_L1.6-W0.8-R-RD",
+          "spec": "LED 0603 / 赤 645nm / Vf 1.8-2.4V @20mA / If max 25mA",
+          "jlc_part_class": "Basic",
+          "stock_lcsc": 624750,
+          "note": "D_LED の代替候補。3.3V 駆動 + 330Ω で約 3.9mA 流れる。",
+          "source_urls": [
+            "https://jlcpcb.com/partdetail/C2286",
+            "https://easyeda.com/api/products/C2286/components"
+          ]
+        }
+      ],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C72043.html",
+        "https://jlcpcb.com/partdetail/C72043",
+        "https://easyeda.com/api/products/C72043/components"
+      ]
+    },
+    {
+      "lcsc": "C369159",
+      "designators": [
+        "F1"
+      ],
+      "qty": 1,
+      "csv_value": "PTC_500mA",
+      "csv_mpn": "JK-NSMD050-13.2V",
+      "csv_package": "1206",
+      "kicad_footprint": "ProPrj_The-easyedapro:F1206",
+      "eco": [],
+      "fetched_mpn": "JK-NSMD050-13.2V",
+      "fetched_manufacturer": "JK (Jinrui)",
+      "fetched_package": "F1206",
+      "fetched_spec": "PPTC リセッタブルヒューズ / hold 500mA / trip 1A / 13.2V / 1206",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 6160,
+      "stock_szlcsc": 53060,
+      "design_intent": "Polyfuse hold 500mA / 1206（USB_VBUS_RAW→USB_5V）",
+      "verdict": "要確認",
+      "reason": "仕様（500mA hold / 1206）は意図と一致し F1206 フットプリントとも整合。ただし LCSC 商品ページが 'Not available now' 表示で在庫要確認。",
+      "note": "LCSC 商品ページは 'Not available now'。EasyEDA API は 6,160/53,060。",
+      "not_placed_on_pcb": [],
+      "alternatives": [
+        {
+          "lcsc": "C883122",
+          "mpn": "BSMD1206-050-6V",
+          "pkg": "F1206",
+          "spec": "PPTC リセッタブルヒューズ hold 500mA / 6V / 1206",
+          "jlc_part_class": "Extended",
+          "stock_lcsc": 3420,
+          "note": "F1 の同一フットプリント代替。定格電圧は 13.2V→6V に下がる点に注意。",
+          "source_urls": [
+            "https://jlcpcb.com/partdetail/C883122",
+            "https://easyeda.com/api/products/C883122/components"
+          ]
+        }
+      ],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C369159.html",
+        "https://easyeda.com/api/products/C369159/components"
+      ]
+    },
+    {
+      "lcsc": "C94221",
+      "designators": [
+        "FB1",
+        "FB2",
+        "FB3",
+        "FB4",
+        "FB5"
+      ],
+      "qty": 5,
+      "csv_value": "FB_600R",
+      "csv_mpn": "GZ2012D601TF",
+      "csv_package": "0805",
+      "kicad_footprint": "ProPrj_The-easyedapro:L0805",
+      "eco": [],
+      "fetched_mpn": "取得不能（部品が存在しない）",
+      "fetched_manufacturer": "-",
+      "fetched_package": "-",
+      "fetched_spec": "-",
+      "jlc_part_class": "存在しない",
+      "jlc_on_sale": false,
+      "stock_lcsc": null,
+      "stock_szlcsc": null,
+      "design_intent": "FB_600R 600Ω@100MHz フェライトビーズ 0805 x5",
+      "verdict": "NG",
+      "reason": "**この C 番号は LCSC/JLC に存在しない**（3 ソースで不存在を確認）。このまま発注すると JLC 側で部品が引けない。正しい品番は C1017。",
+      "note": "LCSC 商品ページ HTTP 404 / EasyEDA API 'Component not found' 404 / JLC partdetail は空欄（No specifications available）。3 ソースとも不存在。CSV が意図した GZ2012D601TF の正しい品番は C1017。",
+      "not_placed_on_pcb": [],
+      "alternatives": [
+        {
+          "lcsc": "C1017",
+          "mpn": "GZ2012D601TF",
+          "pkg": "L0805",
+          "spec": "フェライトビーズ 600Ω@100MHz +-25% / 定格 500mA / DCR 300mΩ / 0805",
+          "jlc_part_class": "Basic",
+          "stock_lcsc": 75200,
+          "note": "C94221 が意図していた GZ2012D601TF の正しい品番。EasyEDA パッケージ名 'L0805' は KiCad 側フットプリントと完全一致。",
+          "source_urls": [
+            "https://jlcpcb.com/partdetail/C1017",
+            "https://easyeda.com/api/products/C1017/components"
+          ]
+        }
+      ],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C94221.html",
+        "https://easyeda.com/api/products/C94221/components",
+        "https://jlcpcb.com/partdetail/C94221"
+      ]
+    },
+    {
+      "lcsc": "C2765186",
+      "designators": [
+        "J1"
+      ],
+      "qty": 1,
+      "csv_value": "USB-C_16P",
+      "csv_mpn": "TYPE-C 16PIN 2MD(073)",
+      "csv_package": "USB-C-SMD",
+      "kicad_footprint": "ProPrj_The-easyedapro:USB-C-SMD_TYPE-C-6PIN-2MD-073",
+      "eco": [],
+      "fetched_mpn": "TYPE-C 16PIN 2MD(073)",
+      "fetched_manufacturer": "SHOU HAN",
+      "fetched_package": "USB-C-SMD_TYPE-C-16PIN-2MD-073",
+      "fetched_spec": "USB Type-C レセプタクル 16P / SMD + 位置決めペグ / 5V 5A",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 940940,
+      "stock_szlcsc": null,
+      "design_intent": "USB-C 16P 2MD(073) レセプタクル",
+      "verdict": "OK",
+      "reason": "MPN 一致。KiCad フットプリントのパッド実体は 12 SMD(0.5mm ピッチ) + 4 TH シェルタブ = 16 パッドで 16P 品として正しい。フットプリント名の '6PIN' は変換時の名称欠落で実害なし。ピン割当も EasyEDA シンボルの pinName（GND/VBUS/SBU2/CC1/DN2/DP1/DN1/DP2/SBU1/CC2/VBUS/GND/SHELL）と netlist が一致。",
+      "note": "EasyEDA 側パッケージ名は '16PIN'、KiCad 側は '6PIN'（変換時の名称欠落）。パッド実体は 12 SMD + 4 TH シェルの 16 パッドで正しい。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C2765186.html",
+        "https://easyeda.com/api/products/C2765186/components"
+      ]
+    },
+    {
+      "lcsc": "C2840012",
+      "designators": [
+        "J2"
+      ],
+      "qty": 1,
+      "csv_value": "Header_2x6",
+      "csv_mpn": "PZ254V-11-12P",
+      "csv_package": "HDR-2.54-2x6",
+      "kicad_footprint": "ProPrj_The-easyedapro:HDR-TH_12P-P2.54-V-M",
+      "eco": [],
+      "fetched_mpn": "PZ254V-11-12P",
+      "fetched_manufacturer": "XFCN",
+      "fetched_package": "HDR-TH_12P-P2.54-V-M",
+      "fetched_spec": "ピンヘッダ 1 列 x 12P / 2.54mm / スルーホール垂直 / 250V 3A",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 28720,
+      "stock_szlcsc": null,
+      "design_intent": "CSV value='Header_2x6' / package='HDR-2.54-2x6'",
+      "verdict": "要確認",
+      "reason": "実体は **1 列 x 12 ピン**（row=1）。PCB フットプリント HDR-TH_12P-P2.54-V-M も 12 パッド全て y=0 の 1 列なので**部品と基板は整合**。CSV のラベル表記のみ誤り。",
+      "note": "1 列 12 ピン（2x6 ではない）。LCSC ページ・EasyEDA API とも row=1。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C2840012.html",
+        "https://easyeda.com/api/products/C2840012/components"
+      ]
+    },
+    {
+      "lcsc": "C108573",
+      "designators": [
+        "LM2664"
+      ],
+      "qty": 1,
+      "csv_value": "LM2664",
+      "csv_mpn": "LM2664M6X/NOPB",
+      "csv_package": "SOT-23-6",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR",
+      "eco": [],
+      "fetched_mpn": "LM2664M6X/NOPB",
+      "fetched_manufacturer": "Texas Instruments",
+      "fetched_package": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR",
+      "fetched_spec": "スイッチトキャパシタ電圧反転 / 1.8-5.5V in / 40mA / SOT-23-6",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 49955,
+      "stock_szlcsc": 1620,
+      "design_intent": "LM2664 チャージポンプ / SOT-23-6",
+      "verdict": "OK",
+      "reason": "MPN・パッケージ一致。EasyEDA パッケージ名が KiCad フットプリント名と完全一致。",
+      "note": "LCSC ページ 49,955 / EasyEDA API 0（SZ 1,620）。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C108573.html",
+        "https://easyeda.com/api/products/C108573/components"
+      ]
+    },
+    {
+      "lcsc": "C2146",
+      "designators": [
+        "Q_EN",
+        "Q_IO0"
+      ],
+      "qty": 2,
+      "csv_value": "S8050",
+      "csv_mpn": "S8050 J3Y(RANGE:200-350)",
+      "csv_package": "SOT-23-3",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR",
+      "eco": [],
+      "fetched_mpn": "S8050 J3Y(RANGE:200-350)",
+      "fetched_manufacturer": "CJ (Changjiang)",
+      "fetched_package": "SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR",
+      "fetched_spec": "NPN トランジスタ / hFE 200-350 / SOT-23-3",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 451617,
+      "stock_szlcsc": 508750,
+      "design_intent": "S8050 NPN / SOT-23-3（EN・IO0 の自動書込回路）",
+      "verdict": "OK",
+      "reason": "MPN・パッケージ一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C2146/components"
+      ]
+    },
+    {
+      "lcsc": "C17514",
+      "designators": [
+        "R_BIAS_FB",
+        "R_BIAS_SER"
+      ],
+      "qty": 2,
+      "csv_value": "1M",
+      "csv_mpn": "0805W8F1004T5E",
+      "csv_package": "0805",
+      "kicad_footprint": "ProPrj_The-easyedapro:R0805",
+      "eco": [],
+      "fetched_mpn": "0805W8F1004T5E",
+      "fetched_manufacturer": "UNI-ROYAL",
+      "fetched_package": "R0805",
+      "fetched_spec": "1MΩ / +-1% / 0805",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 203700,
+      "stock_szlcsc": 872900,
+      "design_intent": "1MΩ 0805（BIAS 帰還・直列）",
+      "verdict": "OK",
+      "reason": "抵抗値・パッケージ一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C17514/components"
+      ]
+    },
+    {
+      "lcsc": "C23186",
+      "designators": [
+        "R_CC1",
+        "R_CC2"
+      ],
+      "qty": 2,
+      "csv_value": "5.1k",
+      "csv_mpn": "0603WAF5101T5E",
+      "csv_package": "0603",
+      "kicad_footprint": "ProPrj_The-easyedapro:R0603",
+      "eco": [],
+      "fetched_mpn": "0603WAF5101T5E",
+      "fetched_manufacturer": "UNI-ROYAL",
+      "fetched_package": "R0603",
+      "fetched_spec": "5.1kΩ / +-1% / 0603",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 897098,
+      "stock_szlcsc": 1796800,
+      "design_intent": "5.1kΩ 0603（USB-C CC プルダウン、UFP 宣言）",
+      "verdict": "OK",
+      "reason": "抵抗値・パッケージ一致。CC1/CC2 → GND 接続を netlist で確認。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C23186/components"
+      ]
+    },
+    {
+      "lcsc": "C25804",
+      "designators": [
+        "R_CS_UP",
+        "R_DRDY_UP",
+        "R_EN_UP",
+        "R_IO0_UP",
+        "R_IO15_DN",
+        "R_IO2_DN",
+        "R_PWDN_UP",
+        "R_Q_EN_B",
+        "R_Q_IO0_B",
+        "R_RST_UP",
+        "R_START_DN"
+      ],
+      "qty": 11,
+      "csv_value": "10k",
+      "csv_mpn": "0603WAF1002T5E",
+      "csv_package": "0603",
+      "kicad_footprint": "ProPrj_The-easyedapro:R0603",
+      "eco": [],
+      "fetched_mpn": "0603WAF1002T5E",
+      "fetched_manufacturer": "UNI-ROYAL",
+      "fetched_package": "R0603",
+      "fetched_spec": "10kΩ / +-1% / 0603",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 8999650,
+      "stock_szlcsc": 0,
+      "design_intent": "10kΩ 0603（プルアップ/ダウン群）",
+      "verdict": "OK",
+      "reason": "抵抗値・パッケージ一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C25804/components"
+      ]
+    },
+    {
+      "lcsc": "C25744",
+      "designators": [
+        "R_IN1N",
+        "R_IN1P",
+        "R_IN2N",
+        "R_IN2P",
+        "R_IN3N",
+        "R_IN3P",
+        "R_IN4N",
+        "R_IN4P",
+        "R_IN5N",
+        "R_IN5P",
+        "R_IN6N",
+        "R_IN6P",
+        "R_IN7N",
+        "R_IN7P",
+        "R_IN8N",
+        "R_IN8P"
+      ],
+      "qty": 16,
+      "csv_value": "10k",
+      "csv_mpn": "0402WGF1002TCE",
+      "csv_package": "0402",
+      "kicad_footprint": "ProPrj_The-easyedapro:R0402",
+      "eco": [],
+      "fetched_mpn": "0402WGF1002TCE",
+      "fetched_manufacturer": "UNI-ROYAL",
+      "fetched_package": "R0402",
+      "fetched_spec": "10kΩ / +-1% / 0402",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 235900,
+      "stock_szlcsc": 2745500,
+      "design_intent": "10kΩ 0402（電極入力直列 R_IN*）",
+      "verdict": "OK",
+      "reason": "抵抗値・パッケージ一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C25744/components"
+      ]
+    },
+    {
+      "lcsc": "C23138",
+      "designators": [
+        "R_LED"
+      ],
+      "qty": 1,
+      "csv_value": "330R",
+      "csv_mpn": "0603WAF3300T5E",
+      "csv_package": "0603",
+      "kicad_footprint": "ProPrj_The-easyedapro:R0603",
+      "eco": [
+        "ECO-2#9"
+      ],
+      "fetched_mpn": "0603WAF3300T5E",
+      "fetched_manufacturer": "UNI-ROYAL",
+      "fetched_package": "R0603",
+      "fetched_spec": "330Ω / +-1% / 0603",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 470600,
+      "stock_szlcsc": 359100,
+      "design_intent": "ECO-2#9: 330Ω 0603（R_LED）",
+      "verdict": "OK",
+      "reason": "330Ω/0603 が ECO 指定と一致。ただし直列の D_LED 側に問題あり（C72043 参照）。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C23138/components"
+      ]
+    },
+    {
+      "lcsc": "C17477",
+      "designators": [
+        "R_MISO",
+        "R_MOSI",
+        "R_SCLK",
+        "R_SRB_SER"
+      ],
+      "qty": 4,
+      "csv_value": "0R",
+      "csv_mpn": "0805W8F0000T5E",
+      "csv_package": "0805",
+      "kicad_footprint": "ProPrj_The-easyedapro:R0805",
+      "eco": [],
+      "fetched_mpn": "0805W8F0000T5E",
+      "fetched_manufacturer": "UNI-ROYAL",
+      "fetched_package": "R0805",
+      "fetched_spec": "0Ω ジャンパ / 0805",
+      "jlc_part_class": "Basic",
+      "jlc_on_sale": true,
+      "stock_lcsc": 433289,
+      "stock_szlcsc": 2148400,
+      "design_intent": "0Ω 0805（SPI 直列ジャンパ・SRB 直列）",
+      "verdict": "OK",
+      "reason": "抵抗値・パッケージ一致。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://easyeda.com/api/products/C17477/components"
+      ]
+    },
+    {
+      "lcsc": "C19619",
+      "designators": [
+        "TLV70025"
+      ],
+      "qty": 1,
+      "csv_value": "TLV70025",
+      "csv_mpn": "TLV70025DDCR",
+      "csv_package": "SOT-353",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "eco": [],
+      "fetched_mpn": "TLV70025DDCR",
+      "fetched_manufacturer": "Texas Instruments",
+      "fetched_package": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "fetched_spec": "LDO +2.5V 固定 / 200mA / SOT-23-5(TI DDC)",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 2186,
+      "stock_szlcsc": 1577,
+      "design_intent": "TLV70025 +2.5V LDO / CSV package='SOT-353'",
+      "verdict": "要確認",
+      "reason": "実体は SOT-23-5（TI DDC パッケージ）。PCB フットプリントは SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR で **正しい**（EasyEDA パッケージ名と完全一致）。CSV の 'SOT-353' 表記のみ誤り。在庫 1,480-2,186 でやや薄い。",
+      "note": "LCSC ページ 1,480 / EasyEDA API 2,186（SZ 1,577）。CSV の package 'SOT-353' は誤りで実体は SOT-23-5。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C19619.html",
+        "https://easyeda.com/api/products/C19619/components"
+      ]
+    },
+    {
+      "lcsc": "C69932",
+      "designators": [
+        "TPS72325"
+      ],
+      "qty": 1,
+      "csv_value": "TPS72325",
+      "csv_mpn": "TPS72325DBVR",
+      "csv_package": "SOT-23-5",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "eco": [],
+      "fetched_mpn": "TPS72325DBVR",
+      "fetched_manufacturer": "Texas Instruments",
+      "fetched_package": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "fetched_spec": "負電圧 LDO -2.5V / 200mA / 超低ノイズ 60uVrms / SOT-23-5",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 7086,
+      "stock_szlcsc": 3843,
+      "design_intent": "TPS72325 -2.5V LDO / SOT-23-5",
+      "verdict": "要確認",
+      "reason": "MPN・パッケージ一致（EasyEDA パッケージ名が KiCad と完全一致）。LCSC 在庫 0（SZ 3,843）で在庫リスクあり。",
+      "note": "LCSC ページ 7,086 / EasyEDA API 0（SZ 3,843）。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C69932.html",
+        "https://easyeda.com/api/products/C69932/components"
+      ]
+    },
+    {
+      "lcsc": "C476817",
+      "designators": [
+        "U_ADS"
+      ],
+      "qty": 1,
+      "csv_value": "ADS1299",
+      "csv_mpn": "ADS1299IPAGR",
+      "csv_package": "TQFP-64",
+      "kicad_footprint": "ProPrj_The-easyedapro:TQFP-64_L10.0-W10.0-P0.50-LS12.0-TL",
+      "eco": [],
+      "fetched_mpn": "ADS1299IPAGR",
+      "fetched_manufacturer": "Texas Instruments",
+      "fetched_package": "TQFP-64_L10.0-W10.0-P0.50-LS12.0-TL",
+      "fetched_spec": "24bit 8ch 生体電位 AFE / TQFP-64(10x10) / MSL3 / $60.31",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 3126,
+      "stock_szlcsc": null,
+      "design_intent": "ADS1299IPAGR / TQFP-64",
+      "verdict": "OK",
+      "reason": "MPN・パッケージ一致。KiCad フットプリント 64 パッド（サーマルパッド無し）は PAG パッケージの実体と整合。Extended かつ $60/個。",
+      "note": null,
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C476817.html",
+        "https://jlcpcb.com/partdetail/C476817",
+        "https://easyeda.com/api/products/C476817/components"
+      ]
+    },
+    {
+      "lcsc": "C701341",
+      "designators": [
+        "U_MCU"
+      ],
+      "qty": 1,
+      "csv_value": "ESP32-WROOM-32E-N4",
+      "csv_mpn": "ESP32-WROOM-32E-N4",
+      "csv_package": "MODULE",
+      "kicad_footprint": "ProPrj_The-easyedapro:WIFI-SMD_ESP32-WROOM-32E",
+      "eco": [],
+      "fetched_mpn": "ESP32-WROOM-32E-N4",
+      "fetched_manufacturer": "Espressif",
+      "fetched_package": "WIFI-SMD_ESP32-WROOM-32E",
+      "fetched_spec": "ESP32 モジュール 4MB flash / SMD 25.5x18mm",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 29577,
+      "stock_szlcsc": 916,
+      "design_intent": "ESP32-WROOM-32E-N4 / SMD モジュール",
+      "verdict": "要確認",
+      "reason": "MPN・パッケージ一致（47 パッド = 38 ピン + サーマル 9 分割）。在庫が LCSC ページ 29,577 と EasyEDA API 6 で大きく乖離。要カート確認。",
+      "note": "LCSC ページ 29,577 / EasyEDA API 6（SZ 916）。乖離が大きく要カート確認。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C701341.html",
+        "https://easyeda.com/api/products/C701341/components"
+      ]
+    },
+    {
+      "lcsc": "C84681",
+      "designators": [
+        "U_USB"
+      ],
+      "qty": 1,
+      "csv_value": "CH340C",
+      "csv_mpn": "CH340C",
+      "csv_package": "SOP-16",
+      "kicad_footprint": "ProPrj_The-easyedapro:SOP-16_L10.0-W3.9-P1.27-LS6.0-BL",
+      "eco": [],
+      "fetched_mpn": "CH340C",
+      "fetched_manufacturer": "WCH",
+      "fetched_package": "SOP-16_L10.0-W3.9-P1.27-LS6.0-BL",
+      "fetched_spec": "USB-UART ブリッジ / 内蔵クロック（水晶不要）/ SOP-16",
+      "jlc_part_class": "Extended",
+      "jlc_on_sale": true,
+      "stock_lcsc": 61409,
+      "stock_szlcsc": 63893,
+      "design_intent": "CH340C / SOP-16",
+      "verdict": "OK",
+      "reason": "MPN・パッケージ一致。EasyEDA パッケージ名が KiCad フットプリント名と完全一致。",
+      "note": "LCSC ページ 61,409 / EasyEDA API 17,584（SZ 63,893）。",
+      "not_placed_on_pcb": [],
+      "alternatives": [],
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C84681.html",
+        "https://easyeda.com/api/products/C84681/components"
+      ]
+    }
+  ]
+}

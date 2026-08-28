@@ -1,0 +1,77 @@
+{
+  "step": "S5_uuids",
+  "pass": true,
+  "checks": [
+    {
+      "name": "no_duplicate_uuids",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "token_count_unchanged",
+      "expected": 5933,
+      "actual": 5933,
+      "pass": true
+    },
+    {
+      "name": "board_unchanged",
+      "expected": {
+        "footprints": 141,
+        "pads": 439,
+        "tracks": 1232,
+        "vias": 239,
+        "zones": 10,
+        "pad_net_digest": "4e74270b2ec72461"
+      },
+      "actual": {
+        "footprints": 141,
+        "pads": 439,
+        "tracks": 1232,
+        "vias": 239,
+        "zones": 10,
+        "pad_net_digest": "4e74270b2ec72461"
+      },
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T16:37:45",
+  "notes": "Renumbered 2625 duplicated KIIDs so DRC can name the items in a violation correctly.",
+  "before": {
+    "tokens": 5933,
+    "distinct": 3308,
+    "duplicated_uuids": 231,
+    "excess_occurrences": 2625,
+    "worst": [
+      38,
+      38,
+      38,
+      38,
+      38
+    ]
+  },
+  "measure_before": {
+    "footprints": 141,
+    "pads": 439,
+    "tracks": 1232,
+    "vias": 239,
+    "zones": 10,
+    "pad_net_digest": "4e74270b2ec72461"
+  },
+  "uuids_replaced": 2625,
+  "after": {
+    "tokens": 5933,
+    "distinct": 5933,
+    "duplicated_uuids": 0,
+    "excess_occurrences": 0,
+    "worst": []
+  },
+  "measure_after": {
+    "footprints": 141,
+    "pads": 439,
+    "tracks": 1232,
+    "vias": 239,
+    "zones": 10,
+    "pad_net_digest": "4e74270b2ec72461"
+  }
+}

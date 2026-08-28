@@ -34,6 +34,7 @@ Idempotent: with no duplicates left it rewrites nothing.
 
 import argparse
 import collections
+import hashlib
 import json
 import os
 import re
@@ -94,7 +95,11 @@ def measure(path):
         "tracks": len(tracks),
         "vias": len(vias),
         "zones": len(list(b.Zones())),
-        "pad_net_digest": hash(tuple(sorted(pads))),
+        # hashlib, not hash(): the before and after measurements run in
+        # different processes and Python randomises str hashing per process,
+        # so the built-in would report a change on an identical board.
+        "pad_net_digest": hashlib.sha256(
+            repr(sorted(pads)).encode()).hexdigest()[:16],
     }
 
 
