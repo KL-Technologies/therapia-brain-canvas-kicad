@@ -1,0 +1,268 @@
+{
+  "step": "S7b",
+  "pass": true,
+  "checks": [
+    {
+      "name": "baseline board extracted",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "analog nets measured",
+      "expected": 40,
+      "actual": 40,
+      "pass": true,
+      "note": "nets that carry no copper on either board still count as measured"
+    },
+    {
+      "name": "differences on IN1P-IN8N, SRB1 and the electrode nets",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "unexplained differences",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "every difference attributed",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T17:27:29",
+  "notes": "Imported board (22513e4) vs the board now, over 40 analog nets. Keyed by geometry because S5 renumbered every uuid.",
+  "baseline": "22513e4",
+  "items_before": 770,
+  "items_after": 806,
+  "differences": 119,
+  "by_declared_change": {
+    "ECO-1#2 RESV1": 3,
+    "ECO-3#11 VCAP1 to 1206": 21,
+    "ECO-1#4/5 VCAP2, VCAP3": 45,
+    "ECO-3#12 VREFP 10u to 1206": 9,
+    "S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)": 7,
+    "eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159)": 3,
+    "drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700)": 6,
+    "ECO-5 BIAS feedback": 17,
+    "S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317)": 6,
+    "ECO-1#1 TPS72325 EN": 2
+  },
+  "unexplained": [],
+  "moved_pads": [
+    {
+      "ref": "C_AVSS_B",
+      "pad": "1",
+      "net": [
+        "AVSS",
+        "AVSS"
+      ],
+      "at_mm": [
+        [
+          149.21,
+          115.368
+        ],
+        [
+          149.36,
+          115.368
+        ]
+      ],
+      "size_mm": [
+        [
+          0.8,
+          0.9
+        ],
+        [
+          0.8,
+          0.9
+        ]
+      ],
+      "moved_mm": 0.15,
+      "declared": "ECO-3#11 VCAP1 to 1206"
+    },
+    {
+      "ref": "C_VCAP1",
+      "pad": "1",
+      "net": [
+        "VCAP1",
+        "VCAP1"
+      ],
+      "at_mm": [
+        [
+          150.542,
+          112.766
+        ],
+        [
+          152.258,
+          116.527
+        ]
+      ],
+      "size_mm": [
+        [
+          0.8,
+          0.9
+        ],
+        [
+          1.15,
+          1.8
+        ]
+      ],
+      "moved_mm": 4.134,
+      "declared": "ECO-3#11 VCAP1 to 1206"
+    },
+    {
+      "ref": "C_VCAP1",
+      "pad": "2",
+      "net": [
+        "AVSS",
+        "AVSS"
+      ],
+      "at_mm": [
+        [
+          151.942,
+          112.766
+        ],
+        [
+          152.258,
+          113.577
+        ]
+      ],
+      "size_mm": [
+        [
+          0.8,
+          0.9
+        ],
+        [
+          1.15,
+          1.8
+        ]
+      ],
+      "moved_mm": 0.8704,
+      "declared": "ECO-1#4/5 VCAP2, VCAP3"
+    },
+    {
+      "ref": "C_VREFP_10n",
+      "pad": "1",
+      "net": [
+        "VREFP",
+        "VREFP"
+      ],
+      "at_mm": [
+        [
+          145.92,
+          110.48
+        ],
+        [
+          145.97,
+          110.48
+        ]
+      ],
+      "size_mm": [
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ]
+      ],
+      "moved_mm": 0.05,
+      "declared": "ECO-3#12 VREFP 10u to 1206"
+    },
+    {
+      "ref": "C_VREFP_10n",
+      "pad": "2",
+      "net": [
+        "AVSS",
+        "AVSS"
+      ],
+      "at_mm": [
+        [
+          146.76,
+          110.48
+        ],
+        [
+          146.81,
+          110.48
+        ]
+      ],
+      "size_mm": [
+        [
+          0.5,
+          0.54
+        ],
+        [
+          0.5,
+          0.54
+        ]
+      ],
+      "moved_mm": 0.05,
+      "declared": "ECO-1#4/5 VCAP2, VCAP3"
+    },
+    {
+      "ref": "C_VREFP_10u",
+      "pad": "1",
+      "net": [
+        "VREFP",
+        "VREFP"
+      ],
+      "at_mm": [
+        [
+          149.729,
+          110.48
+        ],
+        [
+          150.937,
+          111.701
+        ]
+      ],
+      "size_mm": [
+        [
+          0.8,
+          0.9
+        ],
+        [
+          1.15,
+          1.8
+        ]
+      ],
+      "moved_mm": 1.7176,
+      "declared": "ECO-3#12 VREFP 10u to 1206"
+    },
+    {
+      "ref": "C_VREFP_10u",
+      "pad": "2",
+      "net": [
+        "AVSS",
+        "AVSS"
+      ],
+      "at_mm": [
+        [
+          151.129,
+          110.48
+        ],
+        [
+          150.937,
+          108.751
+        ]
+      ],
+      "size_mm": [
+        [
+          0.8,
+          0.9
+        ],
+        [
+          1.15,
+          1.8
+        ]
+      ],
+      "moved_mm": 1.7396,
+      "declared": "ECO-1#4/5 VCAP2, VCAP3"
+    }
+  ]
+}
