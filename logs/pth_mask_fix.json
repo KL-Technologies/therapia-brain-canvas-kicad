@@ -1,0 +1,457 @@
+{
+  "pads_fixed": [
+    {
+      "ref": "PEG2",
+      "pad": "",
+      "attr": "NPTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        176.861075,
+        108.097861
+      ],
+      "size_mm": [
+        0.700024,
+        0.700024
+      ],
+      "drill_mm": 0.700024,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "H4",
+      "pad": "",
+      "attr": "NPTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        176.9468,
+        121.9608
+      ],
+      "size_mm": [
+        2.3876,
+        2.3876
+      ],
+      "drill_mm": 2.3876,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "1",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        115.2045
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "2",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        112.6645
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "3",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        110.1245
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "4",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        107.5845
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "5",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        105.0445
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "6",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        102.5045
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "7",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        99.9645
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "8",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        97.4245
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "9",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        94.8845
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "10",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        92.3445
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "11",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        89.8045
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J2",
+      "pad": "12",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.556,
+        87.2645
+      ],
+      "size_mm": [
+        1.524,
+        1.524
+      ],
+      "drill_mm": 1.05,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "H1",
+      "pad": "",
+      "attr": "NPTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.048,
+        83.048
+      ],
+      "size_mm": [
+        2.3876,
+        2.3876
+      ],
+      "drill_mm": 2.3876,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J1",
+      "pad": "13",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        176.341,
+        115.313
+      ],
+      "size_mm": [
+        1.1,
+        2.0
+      ],
+      "drill_mm": 0.6,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J1",
+      "pad": "13",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        180.541,
+        115.313
+      ],
+      "size_mm": [
+        1.2,
+        1.8
+      ],
+      "drill_mm": 0.6,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J1",
+      "pad": "14",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        176.341,
+        106.663
+      ],
+      "size_mm": [
+        1.1,
+        2.0
+      ],
+      "drill_mm": 0.6,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "J1",
+      "pad": "14",
+      "attr": "PTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        180.541,
+        106.663
+      ],
+      "size_mm": [
+        1.2,
+        1.8
+      ],
+      "drill_mm": 0.6,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "H3",
+      "pad": "",
+      "attr": "NPTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        123.048,
+        121.9608
+      ],
+      "size_mm": [
+        2.3876,
+        2.3876
+      ],
+      "drill_mm": 2.3876,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "H2",
+      "pad": "",
+      "attr": "NPTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        176.9468,
+        83.048
+      ],
+      "size_mm": [
+        2.3876,
+        2.3876
+      ],
+      "drill_mm": 2.3876,
+      "mask_margin_mm": 0.0
+    },
+    {
+      "ref": "PEG1",
+      "pad": "",
+      "attr": "NPTH",
+      "added": [
+        "F.Mask",
+        "B.Mask"
+      ],
+      "at_mm": [
+        176.861075,
+        113.877885
+      ],
+      "size_mm": [
+        0.700024,
+        0.700024
+      ],
+      "drill_mm": 0.700024,
+      "mask_margin_mm": 0.0
+    }
+  ],
+  "count": 22,
+  "counts_before": {
+    "footprints": 141,
+    "tracks": 1252,
+    "vias": 239,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1252,
+    "vias": 239,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "contract_diffs": 0,
+  "mechanical": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "PEG1",
+    "PEG2"
+  ],
+  "unconnected": 0,
+  "by_reference": {
+    "PEG2": 1,
+    "H4": 1,
+    "J2": 12,
+    "H1": 1,
+    "J1": 4,
+    "H3": 1,
+    "H2": 1,
+    "PEG1": 1
+  }
+}
