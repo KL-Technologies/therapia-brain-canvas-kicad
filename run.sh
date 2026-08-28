@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_mask S6)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_mask S6 S7a S7b S7c S7 S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,7 +32,7 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_mask", "S6"):
+             "S5_mask", "S6", "S7a", "S7b", "S7c", "S7", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -170,6 +170,39 @@ run_step S5_mask "close the merged solder mask openings" s5_mask || exit 1
 # --- S6: iterate DRC and repair until it is clean ----------------------------
 run_step S6 "run the DRC repair loop to convergence" \
   "$PY3" "$ROOT/scripts/40_drc_loop.py" --root "$ROOT" --no-commit || exit 1
+
+# --- S7: the ECO, the reviews and the acceptance gate -----------------------
+run_step S7a "apply ECO-5 and the BOM corrections" \
+  "$KPY" "$ROOT/scripts/45_apply_eco5_and_bom.py" --root "$ROOT" || exit 1
+
+run_step S7b "prove the analog signal path was never touched" \
+  "$KPY" "$ROOT/scripts/46_analog_untouched.py" --root "$ROOT" || exit 1
+
+# 48 moves a capacitor only if it finds a position that is both nearer and
+# free of vias, and saves nothing otherwise, so it is safe to re-run: on a
+# board already improved it reports "no improvement available" and stops.
+s7c() {
+  "$KPY" "$ROOT/scripts/48_improve_vcap3.py" --root "$ROOT" || return 1
+  "$KPY" "$ROOT/scripts/47_layout_quality.py" --root "$ROOT" || return 1
+}
+run_step S7c "measure the layout against the ADS1299 checklist" s7c || exit 1
+
+# --- S8: the manufacturing package ------------------------------------------
+# The mask fix and the layer rename both change the board, so they run before
+# the export rather than after it.
+s8() {
+  "$KPY" "$ROOT/scripts/43_fix_pth_mask.py" --root "$ROOT" || return 1
+  "$KPY" "$ROOT/scripts/49_normalize_layer_names.py" --root "$ROOT" || return 1
+  bash "$ROOT/scripts/60_export_fab.sh" || return 1
+  "$KPY" "$ROOT/scripts/61_make_bom_cpl.py" --root "$ROOT" || return 1
+  "$PY3" "$ROOT/scripts/63_gate_s8.py" --root "$ROOT" || return 1
+}
+run_step S8 "export the manufacturing package and check it independently" s8 \
+  || exit 1
+
+# S7 last: ACCEPTANCE D-G read the package S8 produces.
+run_step S7 "ACCEPTANCE A-G" \
+  "$KPY" "$ROOT/scripts/50_final_check.py" --root "$ROOT" || exit 1
 
 echo
 show_status

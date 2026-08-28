@@ -1,11 +1,31 @@
 # STATUS — brain_canvas_kicad
 
-最終更新: 2026-08-28 / 担当: S0–S2（前任）→ S3・S4 → **S5・S6**
+最終更新: 2026-08-28 / 担当: S0–S2（前任）→ S3・S4 → S5・S6 → **S7・S8**
 
 ## 現在地
 
-**S0〜S6 の 16 ゲートすべて pass。DRC error 0 / unconnected 0。
-L1〜L5 のレイアウト修理は全部入った。残りは S7（最終検査・製造データ出力）だけ。**
+**S0〜S8 の 21 ゲートすべて pass（172 チェック）。`ACCEPTANCE.md` の A〜G を
+32 項目すべて満たした。製造データは `fab/` に出力済みで、JLC にアップロードできる状態。**
+
+残りは **S9 = カートに入れて在庫と Confirm Parts Placement を人が見る**ことだけ。
+手順は `fab/README_発注手順.md`。**決済はしない。**
+
+| | |
+|---|---|
+| DRC | error **0** / unconnected **0** / warning 470（全て ACCEPTANCE A の許容種別） |
+| 契約パリティ | **0 差分**（`contract_overrides.json` の ECO-5 を適用した契約に対して） |
+| 部品 | 141 = 実装 133 ＋ DNP 2 ＋ 機械 6 |
+| 製造データ | Gerber 14 ファイル / BOM 30 行 133 点 / CPL 133 行 |
+| 8 月版との照合 | 129 部品中 **122 が位置・回転とも完全一致**、動いた 7 点は全て記録済みの判断 |
+
+### S7・S8 で見つけて直した、発注を止めていた欠陥
+
+**スルーホール部品のレジストが表裏とも開いていなかった。** 取り込みで PTH/NPTH
+パッド 22 個すべてが「銅箔層だけ」のレイヤ構成になっており（F.Mask も B.Mask も無い）、
+そのまま出すと **`J2` の 12 ピンヘッダ全部と `J1` の USB-C シェル脚 4 本が
+両面レジストで覆われ、はんだ付けできない基板**になっていた。
+DRC は何も言わない（開口を要求していないパッドは違反ではない）。
+`scripts/43_fix_pth_mask.py` で修正。詳細は下記 S8 の節。
 
 | ステップ | 結果 | 内容 |
 |---|---|---|
@@ -25,17 +45,30 @@ L1〜L5 のレイアウト修理は全部入った。残りは S7（最終検査
 | S5_L5 | **pass** 7/7 | 残り 27 箇所の近接を解消（`34_repair_L5.py`） |
 | S5_mask | **pass** 2/2 | レジスト開口の合体 3 件をパッド個別マージンで解消（`35_mask_bridges.py`） |
 | S6 | **pass** 11/11 | DRC 自動ループが `clean` で停止（`40_drc_loop.py` / `41_drc_fix_pass.py`） |
+| S7a | **pass** 16/16 | ECO-5（銅箔 1 パッド）＋ BOM 修正 8 件 ＋ DNP 2 点（`45_apply_eco5_and_bom.py`） |
+| S7b | **pass** 5/5 | アナログ信号路が 1 件も動いていないことを実証（`46_analog_untouched.py`） |
+| S7c | **pass** 6/6 | ADS1299 チェックリストで実測・VCAP3 のビアを 2 個除去（`47_layout_quality.py` / `48_improve_vcap3.py`） |
+| S8 | **pass** 23/23 | 製造データ出力と独立パーサでの検査（`60_export_fab.sh` 〜 `63_gate_s8.py`） |
+| S7 | **pass** 32/32 | **ACCEPTANCE A〜G**（`50_final_check.py`） |
 
 `./run.sh --status` でいつでも同じ表が出る。**DRC を含むステップはサンドボックス外で実行すること。**
 
-### 最終 DRC（`logs/drc_s6_final.json`）
+`run.sh` の実行順は S8 → S7。ACCEPTANCE の D〜G は S8 が出力した製造データを読むので、
+先に出力しないと最終ゲートが検査対象を持たない。
+
+### 最終 DRC（`logs/drc_final.json`、S7d 実行時）
 
 ```
-violations 465   error 0   warning 465   unconnected 0
-warning 内訳: silk_overlap 199 / silk_over_copper 152 / courtyards_overlap 78 /
-              track_dangling 25 / clearance 5 / via_dangling 3 /
+violations 470   error 0   warning 470   unconnected 0
+warning 内訳: silk_overlap 199 / silk_over_copper 157 / courtyards_overlap 77 /
+              track_dangling 26 / clearance 5 / via_dangling 3 /
               silk_edge_clearance 2 / starved_thermal 1
 ```
+
+S6 時点（465 件）との差は S7・S8 の変更ぶんだけで、**error は一貫して 0、
+新規の error 署名も 0**: `silk_over_copper` +5 は PTH のレジスト開口を直したことで
+シルクの下の銅が露出したため、`track_dangling` +1 は `C_VCAP3_H` を移した際に
+共有 AVSS 島に残した短いスタブ、`courtyards_overlap` −1 は同じ移動の副産物。
 
 **warning はすべて ACCEPTANCE A の許容リストに載っている種別だけ。**
 `clearance` の 5 件は error ではなく、ACCEPTANCE C が warning と定めた
@@ -328,29 +361,230 @@ J1 はほかに CHASSIS_GND のメッキ済みスロット穴 4 個を持つ
 track_width 90 / courtyards_overlap 69。**KiCad 既定ルールに対する数字**なので、
 設計ルールを入れるまで意味のある値ではない。
 
-## S7（最終検査・製造データ）への申し送り
+## S7 — ECO-5、レビュー、受け入れ判定
 
-`ACCEPTANCE.md` が発注可の定義。**凍結済みで、S5/S6 でも一文字も変えていない。**
-A（DRC）と B（契約）と D の一部は S6 のゲートで既に満たしている。
-残りは E（Gerber）/ F（BOM・CPL）/ G（プレビュー）と、それらを A〜G として
-束ねる `scripts/50_final_check.py`。
+`ACCEPTANCE.md` は**凍結したまま一文字も変えていない**。S7 はその実装。
 
-### いま基板がどうなっているか（`KPY scripts/42_board_facts.py` でいつでも再測定できる）
+### S7a — ECO-5 と BOM 修正（`scripts/45_apply_eco5_and_bom.py`）
 
-| 項目 | 値 | 備考 |
+**ECO-5（銅箔の変更は 1 パッドだけ）**: `C_BIAS_INV` pad2 を `GND` → `BIAS_OUT_INT`。
+これで容量が `R_BIAS_FB` の 1 MΩ と**並列**になり、BIAS 加算節点を GND に落とす
+現状（位相余裕を削り、50 Hz での DRL 利得を失う）から TI SBAS499 の推奨形に戻る。
+
+配線は素直ではなかった。2 つのパッドは **5.23 mm 離れており、その直線上に
+`BIAS_INV` のパッドが 2 つ**（`C_BIAS_INV` 自身の pad1 と `R_BIAS_FB` pad1）ある。
+表面を回り込むと 7 mm 超。**ところが `BIAS_OUT_INT` は B.Cu に
+y = 87.7215 の 18.2 mm の幹線を持っていて、それが部品の真下を通っている。**
+そこへ落とすほうが短い:
+
+| | |
+|---|---|
+| via | (141.8852, 90.414) ← **旧 GND via はパッドの真下**にあった。0.55 mm 西へ動かしてランドから外した（0402 のパッド下 via はリフローではんだを吸う） |
+| 表面スタブ | 0.5548 mm |
+| B.Cu の降り | 2.6925 mm、既存幹線に着地 |
+| 員数 | via 239 のまま（GND via を 1 個外して 1 個足した）、トラック 1250 → 1251 |
+| ネット員数 | GND 86 → **85**、BIAS_OUT_INT 3 → **4**（契約と一致） |
+
+部品は `C23967`（Samsung CL05B152KB5NNNC、1.5 nF 50V X7R 0402、JLC Extended）。
+opusQ1 の選定で、S7 が独立に調べても同スペックを確認した。
+**JLC Basic に 1.5 nF 0402 は 1 点も無い**（部品検索 API に `componentLibraryType=base`
+を付けて走査、ヒット 0。同形式で `100nF 0402 + base` は `C1525` を返すのでフィルタは効いている）。
+C0G が要るなら `C668348`（Murata GRM1555C1H152JA01D、同一 C0402）が代替になるが、
+帰還 C の両端 DC 差は≈0 で X7R の DC バイアス減衰は効かず、
+温度ドリフト ±15% も 1 MΩ∥1.5 nF の極 106 Hz を ±15% 動かすだけなので採らなかった。
+
+**BOM 修正 8 件**（フットプリントは全て不変）: FB1〜FB5 → `C1017` /
+`C_AVDD1_10n`・`C_VREFP_10n` → `C15195` / `C_VREFP_10u` の MPN を `CL31A106KBHNNNE` に訂正 /
+`D_LED` → `C72044`（赤 Vf 1.95V）/ `C_EN_DLY` → `C52923`（1 µF）/
+`C_BIAS_INV` → `C23967`。
+
+**DNP 2 点**: `R_RST_UP`（ESP32 の IO12 起動ストラップ違反）と
+`R_IO15_DN`（ROM ブートログが止まる）。**フットプリント・ネット・銅は基板に残し**、
+`SetDNP` ＋ BOM/POS 除外だけを立てた。
+
+そのために `lib/repair.py` を 2 つ直した:
+
+- パリティ検査が `contract/contract_overrides.json` を適用するようになった
+- **「BOM 除外 ＝ 機械部品」ではなくなった。** DNP 部品は実在する部品で
+  ネットも持つので、パッド網の突合対象から外してはいけない
+  （`mechanical = BOM 除外 かつ DNP でない`）
+
+`19_make_parts_table.py` が `data/bom_fixes_2026-08-28.json` を**生成の最後に重ねる**ので、
+CSV を再生成しても修正が消えない。品番だけを指定した修正（B2）では MPN を
+C 番号から引き直す — そうしないと `C_EN_DLY` が「1 µF」と書かれた 100 nF の品番になる。
+
+### S7b — アナログ配線は 1 件も動いていない（`scripts/46_analog_untouched.py`）
+
+取り込み直後（git `22513e4`）と現在をアナログ 40 ネットについて 1 アイテムずつ突合。
+**uuid ではなく幾何（ネット・層・座標・寸法）を鍵にする** — S5 が 2,625 個の uuid を
+振り直しているので、uuid で突き合わせると全アイテムが「変更」に見える。
+
+> **`IN1P`〜`IN8N`（差動 8 対）、`SRB1`、`*_ELEC` 11 本 ＝ コネクタから ADC までの
+> 信号路の差分は 0 件。** 追加も削除も移動もリサイズも 1 つも無い。
+
+その他のアナログ 12 ネットには 120 件の差分があり、**全件が記録から説明できた**。
+説明は手で書き写すのではなく**記録から読む**ようにした:
+
+- `logs/eco_apply.json` / `logs/eco5_bom_apply.json` は撤去・敷設したアイテムを座標付きで持っている
+- `gates/S5_*.json` / `gates/S6.json` は解決した違反をネットと座標付きで持っている
+- 修理前の DRC レポートは、その修理が動いてよい根拠そのもの
+
+これが要るのは実際に 4 箇所あった。RESV1 のスタブ via は `U_ADS` から 7 mm 離れており
+「部品の周囲◯ mm」では届かないし、AVDD の via が 0.89 mm 動いたのは
+**取り込み時 DRC が最初に出した AVDD/AVSS の clearance** が理由だった。
+
+### S7c — レイアウト品質（`scripts/47_layout_quality.py` / `reports/layout_review.md`）
+
+`docs/ads1299_layout_checklist.md`（opusQ3、一次資料ベース）の J1〜J11 を実測。
+チェックリストが冒頭で釘を刺しているとおり
+**TI はデカップリングの距離に数値基準を出していないので、距離は測定値として載せるだけで合否にしない。**
+合否は TI が規則として書いている J1（バイパス C と IC の間にビアを置かない・同一層）で取る。
+
+**実施した改善**: `C_VCAP3_H`（0.1 µF）が ADS1299 pin55 まで **5.95 mm・ビア 2 個**で、
+1 µF の `C_VCAP3`（3.36 mm）より**遠かった** — 高周波バイパスとしては逆順。
+**2.10 mm・ビア 0・全て F.Cu** に移した（`scripts/48_improve_vcap3.py`）。
+
+先に 1 µF のほうを動かす案を試して**捨てた**: `C_VCAP3` を東に寄せると
+`C_VCAP3_H` が 4.6 mm 先に取り残され、`plan_route` でも迷路ルータでも届かなかった。
+**部品 1 個と、その部品だけに繋がる銅だけを触る**形にしたので、
+失敗しても「経路が無い」で終わって基板は変わらない。
+
+`C_VCAP1` / `C_VCAP3` / `C_VCAP4` はより近い合法位置が無い（`C_VCAP4` は 62 箇所探索）。
+
+**測り方を 2 回間違えて直した。両方とも「あるように見えて無い問題」だった:**
+
+1. GND ベタが無いサンプル点をそのまま数えると、**ビアのアンチパッド 187 点が
+   「プレーン分割」に見えた**。全点がその配線自身のビアから 0.2 mm 以内で、
+   リターン電流もそこで層を替える。原因別に分類したら**本物の断絶は 0**
+2. J2（スター接続）をパッドの銅島にあるビアで判定すると「違反」と出たが、
+   **これはレイアウトではなく回路図で決まる**。ピン 54 は `AVDD`、ピン 53 は `AVSS` に
+   直結されていて**別ネットですらない**ので、銅箔をどう引いてもスターにはならない
+
+### S7d — ACCEPTANCE A〜G（`scripts/50_final_check.py`）
+
+32 項目すべて pass。**文書が挙げている数値をコードに書き写して測定値と並べてある**ので、
+読む人は「文書を正しく読んだか」ではなく「コードと文書が一致するか」を確かめられる。
+D と E は KiCad ではなく `lib/gerber_parse.py` が出力ファイルを読んで判定する。
+
+## S8 — 製造データ
+
+### 発注を止めていた欠陥: スルーホールのレジストが両面とも開いていなかった
+
+**自前パーサで Gerber を読み直したから見つかった。**
+B.Mask が 466 バイト — アパーチャ 0・フラッシュ 0・リージョン 0 の**空ファイル**だった。
+
+原因は取り込み側。**PTH / NPTH パッド 22 個すべてが「銅箔層だけ」のレイヤ構成**
+（F.Cu・B.Cu ＋ 内層 30 枚、F.Mask も B.Mask も無い）で入っていた。
+SMD パッド 417 個は `F.Cu / F.Mask / F.Paste` で正常だったので、
+表面のレジストには 403 開口があり**基板を見ているかぎり健全に見えた**。
+DRC も何も言わない — 「開口を要求していないパッド」は違反ではない。
+
+そのまま発注すると **`J2` の 12 ピンヘッダ全部と `J1` の USB-C シェル脚 4 本が
+表裏ともレジストで覆われ、はんだ付けできない**。電極ケーブルが挿さらない基板になる。
+2026-08-16 の EasyEDA パッケージは 22 個すべてを両面で開けているので、
+**これは設計ではなく KiCad 取り込みが持ち込んだ退行**。
+
+`scripts/43_fix_pth_mask.py` が 22 パッドに F.Mask / B.Mask を足す。銅箔は不変
+（部品・トラック・via・パッド数が同一、パリティ 0、未接続 0、DRC error 0、新規違反署名 0）。
+F.Mask 403 → 425 開口、B.Mask 0 → 22 開口、J2 の 12 ピンが両面で開いていることを
+プロット済みデータで再確認し、`fab/preview_bottom.png` でも金色に見える。
+
+**教訓**: KiCad に自分の出力を読み直させても、**自分と矛盾していないこと**しか分からない。
+
+### 外形の Gerber が `Multi-Layer.gm1` という名前で出ていた
+
+取り込みが EasyEDA のレイヤ名を KiCad の表示名として引き継いでいたため、
+出力ファイル名が `Therapia_EEG-HRV-Multi-Layer.gm1`（外形）、
+`...-Top Solder Mask Layer.gts` のようになっていた。拡張子と X2 属性
+（`TF.FileFunction,Profile`）は正しいので機械は間違えないが、
+**EasyEDA の "Multi-Layer" は「全層」の意味**であり、それがルータの切断線を決める
+ファイルの名前になっているのは人が読み違える。名前に空白が入るのも、他社の受付を通すうえで不要な引っかかりになる。
+`scripts/49_normalize_layer_names.py` が KiCad 正規名に戻した。
+表示名だけの変更である証拠: 基板本体はレイヤを正規名でしか参照していない
+（`(layer "F.Cu")` が 1079 箇所、`(layer "Top Layer")` が 0 箇所）。
+
+### 出力（`scripts/60_export_fab.sh` / `61_make_bom_cpl.py`）
+
+設定は **JLC が実際に受理した `ganglion_clone/jlcpcb_order` に合わせた**:
+Protel 拡張子・X2・4.6 mm・Excellon は PTH/NPTH 分割でメートル法 decimal・絶対座標。
+どれも kicad-cli 10 の既定なので、コマンドラインに並んでいるのは既定と違う分だけ。
+
+| 成果物 | 中身 |
+|---|---|
+| `fab/Therapia_EEG-HRV_Rev.A.zip` | Gerber 11 ＋ `.gbrjob` ＋ ドリル 2 ＝ **14 ファイル** |
+| `fab/BOM_JLCPCB.csv` | **30 行 / 133 点**。全行に LCSC あり |
+| `fab/CPL_JLCPCB.csv` | **133 行**、全て Top |
+| `fab/preview_top.png` / `preview_bottom.png` | 3D レンダ |
+| `fab/assembly_top.pdf` | 部品番号入り実装図。**DNP 2 点に × が入る** |
+| `fab/README_発注手順.md` | JLC 設定・投入前の確認 4 点・在庫監視・Extended 13 品番・発注しない条件 |
+
+BOM の Footprint 列は **CSV のパッケージ表記ではなく基板のフットプリント名**から取る。
+CSV の表記は 3 箇所で誤っている（`D_LED` が 0603 のランドなのに "0805"、
+`C2840012` と `C19619` は `csv_label_fixes` に記載）。**作るのは基板のほう。**
+
+### 独立パーサ（`scripts/lib/gerber_parse.py` / `62_check_fab.py`）
+
+標準ライブラリだけの RS-274X ＋ Excellon リーダ。
+C/R/O/P アパーチャと KiCad の `RoundRect` マクロ、G36/G37 リージョン、
+G75 円弧、LPD/LPC 極性を扱う。**未知のマクロは外接円に落とす** —
+穴クリアランス検査で銅を過大評価する側なので、誤警報は出しても見逃しは出さない。
+
+実測:
+
+| 検査 | 結果 |
+|---|---|
+| 外形 | **61.8236 × 45.0088 mm**（2026-08-16 版と一致） |
+| NPTH 6 穴 | 全て ACCEPTANCE D の座標から **0.3 µm 以内**、径も一致 |
+| 穴 + 0.2 mm 内の銅 | **4 銅箔層すべてでゼロ** |
+| ベタ充填 | In1 **95.4%** / In2 **93.6%**（内層が実際に埋まっている） |
+| 銅箔層の極性 | 加算のみ（LPC 無し）＝ 上の判定が減算を見落としていない |
+
+**極性の扱いは途中で直した。** `--subtract-soldermask` が吐く `%LPC%` の
+クリアリージョンを加算として数えていたため、実際は空の B.SilkS が
+「22 個の図形を持つ」ように見えていた。
+
+### 8 月版との照合 — 一番強い証拠
+
+`fab/CPL_JLCPCB.csv` を 2026-08-16 の CPL と突合（座標系は (120, 80) 平行移動 ＋ Y 反転）:
+
+- **129 部品中 122 が位置・回転とも完全一致**
+- 動いた 7 点は全て記録済みの判断: `AMS1117` +3.25/−1.25（L1、H4 から退避）、
+  `C_VCAP1` 2.50 mm＋90°・`C_VREFP_10u` 0.57 mm＋90°（ECO-3 の 1206 化）、
+  `C_AVSS_B` +0.15 / `C_VREFP_10n` +0.05 / `C_3V3_H` 0.05 / `C_RST_DLY` 0.10（S5 の微動）
+- 新規 4 点 = ECO-1/ECO-3 の `C_VCAP1_H` `C_VCAP2` `C_VCAP3` `C_VCAP3_H`
+- 「消えた」2 点 = DNP の `R_RST_UP` `R_IO15_DN`（正しく除外されている）
+
+> **旧 STATUS の訂正**: S5 は `C_RST_DLY` の移動を「−0.05 mm」と記録していたが、
+> 8 月版に対する実測は **−0.10 mm**。S5_L5 のログは 1 反復ぶんの値で、
+> S6 のループがもう一度動かしていた。基板が正で、DRC も通っている。
+
+## S9（カート投入）への申し送り
+
+**やること**: `fab/README_発注手順.md` のとおりに JLC のカートへ入れ、
+在庫と Confirm Parts Placement を人が見る。**決済はしない。**
+
+投入前に必ず見る 4 点（README §4 に詳細）:
+
+1. **在庫**: `C69932`(TPS72325) が要注意 — 代替が少なく、欠品すると基板が動かない。
+   `C369159`(F1) は LCSC ページが "Not available now"、代替 `C883122` を用意してある
+2. **Extended 13 品番 / 20 個** が手数料対象
+3. **DNP 2 点は BOM にも CPL にも入っていない**。`fab/assembly_top.pdf` で × が付いている
+4. **向き**: `U_ADS` の 1 番ピンが左上、`D_LED` の pad1 がカソード
+
+**Economic PCBA はスルーホールを実装しない。** `J1` と `J2` が «not supported» と
+出たらその 2 点を Do Not Place にして手はんだ。**そのためのレジスト開口は
+S8 で直してある**（この修正が無ければ手はんだもできなかった）。
+
+### 未解決・人の判断が要るもの
+
+| # | 内容 | いま何をしているか |
 |---|---|---|
-| DRC error / unconnected | **0 / 0** | `logs/drc_s6_final.json` |
-| 契約パリティ | **0 差分** | 全 439 パッドの designator→pad→net |
-| 部品 | 141（実装 135 ＋ 機械 6） | 機械 = H1〜H4 / PEG1 / PEG2 |
-| トラック / via | 1250 / **239** | S2 実測 238 → S4 で 240 → L4 で 1 本削除して 239 |
-| PTH / NPTH | **16 / 6** | S2 から不変 |
-| ゾーン | 10、**全部フィル済みで保存** | |
-| パッドのレジストマージン個別指定 | **5 パッド** | 上表。Gerber 出力に効く |
-
-NPTH 6 穴は ACCEPTANCE D の表と一致（S6 ゲートが assert 済み）:
-PEG1 (176.8611, 113.8779) / PEG2 (176.8611, 108.0979) φ0.700、
-H1 (123.048, 83.048) / H2 (176.9468, 83.048) / H3 (123.048, 121.9608) /
-H4 (176.9468, 121.9608) φ2.3876。
+| A-6 | **AVDD1(54) / AVSS1(53) がスター接続でない。** 回路図が `AVDD` / `AVSS` に直結しており別ネットですらないので **PCB 側では直せない** | Rev.A 受容。火入れで AVDD のリップルを実測して Rev.B の判断材料にする |
+| J1 | `C_VCAP1`(100 µF) が pin28 から 9.89 mm・銅箔 12.16 mm・ビア 2 個。`C_VCAP4` も 5.24 mm / ビア 2 個 | より近い合法位置が無いことを探索で確認済み。TI は距離の数値基準を示していない |
+| J4 | `C_VCAP1` が **X5R**。TI DS §11 は振動環境の VCAP1 に C0G/NP0 かタンタルを推奨 | Rev.A 受容。装着型なので Rev.B で要検討 |
+| M1 | **AMS1117 の本体が取付穴 H4 の真上** | 筐体側で対応（上面にネジ頭を置かない）。`10_enclosure_design.md` に反映すること |
+| — | In2 の `VDD_ESP` ベタ 3 枚のうち 1 枚が充填後ほぼ面積ゼロ（< 0.005 mm²） | 残り 2 枚が配電している。実害なし |
+| — | `U_MCU` のアンテナが基板内側（右端から 6.34 mm 内側） | Rev.A 受容 |
 
 ### 必ず知っておくべきこと
 
@@ -371,15 +605,21 @@ H4 (176.9468, 121.9608) φ2.3876。
    基板を編集するスクリプトは分けること（S6 がその形）
 5. **DRC はコマンドサンドボックス内では落ちる。** サンドボックス外で実行する
 6. **FB5 は触らないこと。** 決着済み。契約どおりで基板も一致している
-
-### まだ書いていないもの
-
-- `scripts/50_final_check.py`（ACCEPTANCE A〜G の機械化）
-- Gerber / ドリル / BOM / CPL の出力と**独立パーサでの検証**（ACCEPTANCE E・D 後半）。
-  `fab/` は空（`fab/drill_check/` だけ S4a が使う）
-- 実装プレビュー PNG（ACCEPTANCE G）
-- BOM 側は別担当が `scripts/40_gen_bom_report.py` と `reports/` で進めている
-  （こちらは基板側しか触っていない）
+7. **KiCad に自分の出力を読み直させても、自分と矛盾していないことしか分からない。**
+   S8 の PTH レジスト欠落は、`kicad-cli` が書いた Gerber を
+   `lib/gerber_parse.py` で読んだから見つかった。基板を見ても DRC を回しても
+   出てこない種類の欠陥がある（「開口を要求していないパッド」は違反ではない）
+8. **「BOM 除外」は「機械部品」ではない。** DNP 部品は実在してネットも持つので、
+   契約との突合対象から外してはいけない。`repair.pad_net_map` の判定は
+   `BOM 除外 かつ DNP でない` になっている
+9. **ベタの欠落を数えるときはアンチパッドを除くこと。** 素直に数えると
+   ビア周りの穴 187 点が「プレーン分割」に見える。原因（自ネットのビア /
+   他ネットのビア / 説明のつかない空白）で分類する
+10. **Gerber の `%LPC%`（クリア極性）を加算として数えないこと。**
+    `--subtract-soldermask` はレジスト開口を**シルクから引く**ために
+    クリアリージョンを出すので、実際は空の B.SilkS が「22 図形」に見える
+11. **`export pdf --mode-single` の `--output` はディレクトリではなくファイル。**
+    ディレクトリを渡すと "Failed to create file" とだけ言って終わる
 
 ### 使えるもの
 
@@ -391,6 +631,10 @@ H4 (176.9468, 121.9608) φ2.3876。
 | `scripts/27_net_islands.py` | ネットが電気的に分断されていないかを保存前に見る |
 | `scripts/40_drc_loop.py` | 何か直したあとに回せば、DRC が clean になるまで自動で追い込む |
 | `scripts/39_fix_unconnected.py` | DRC が unconnected を出したとき、その 2 点を繋ぎ直す |
+| `scripts/62_check_fab.py` | 製造データを**自前パーサ**で読み直す。KiCad も kicad-cli も使わない |
+| `scripts/50_final_check.py` | ACCEPTANCE A〜G を 32 項目で判定（`gates/S7.json`） |
+| `scripts/47_layout_quality.py` | ADS1299 チェックリスト J1〜J11 を基板から実測 |
+| `scripts/46_analog_untouched.py` | 任意の過去コミットとアナログ配線を突合。`--baseline <sha>` |
 
 ## 途中で直した問題
 
@@ -425,6 +669,30 @@ data/parts_lcsc.csv                designator -> Value / MPN / LCSC（135 行、
 board/Therapia_EEG-HRV.kicad_pcb   ECO 適用＋L1〜L5 修理済み。DRC error 0 / unconnected 0
 board/Therapia_EEG-HRV.kicad_pro   JLC 4 層ルール／ネットクラス／severity（14_make_rules.py が生成）
 board/Therapia_EEG-HRV.kicad_dru   NPTH hole clearance と 5mil 推奨の custom rule（同上）
+
+--- S7/S8 で足したもの ---
+scripts/43_fix_pth_mask.py         PTH/NPTH 22 パッドのレジスト開口を復旧（**発注を止めていた欠陥**）
+scripts/45_apply_eco5_and_bom.py   ECO-5 の銅箔変更＋BOM 修正＋DNP。冪等
+scripts/46_analog_untouched.py     アナログ 40 ネットを取り込み直後と突合。幾何を鍵に
+scripts/47_layout_quality.py       ADS1299 チェックリスト J1〜J11 の実測
+scripts/48_improve_vcap3.py        バイパス C を「より近く・ビア無し」の位置へ。条件を満たさなければ保存しない
+scripts/49_normalize_layer_names.py  レイヤ表示名を KiCad 正規名へ（Gerber のファイル名が直る）
+scripts/50_final_check.py          ACCEPTANCE A〜G（32 項目）
+scripts/60_export_fab.sh           Gerber / ドリル / プレビュー / 実装図 / zip
+scripts/61_make_bom_cpl.py         JLC 書式の BOM・CPL ＋ 8 月版 CPL との照合
+scripts/62_check_fab.py            製造データの独立検査
+scripts/63_gate_s8.py              製造パッケージのゲート
+scripts/lib/gerber_parse.py        RS-274X / Excellon リーダ（標準ライブラリのみ）
+fab/README_発注手順.md              JLC 発注の手順と、投入前に人が見る 4 点
+reports/analog_diff.md             アナログ配線の差分と、その全件の由来
+reports/layout_review.md           レイアウト品質の実測と改善の記録
+gates/S7a.json S7b.json S7c.json S7.json S8.json
+logs/eco5_bom_apply.json           ECO-5 の全操作
+logs/pth_mask_fix.json             レジスト開口を戻した 22 パッド
+logs/vcap3_improve.json            C_VCAP3_H の移設
+logs/layout_quality.json           J1〜J11 の実測値
+logs/bom_cpl.json                  BOM/CPL の突合と 8 月版との照合
+logs/drc_s7a.json drc_s7c.json drc_s8_maskfix.json drc_final.json
 
 --- S5/S6 で足したもの ---
 scripts/26_fix_uuids.py            重複 KIID の採番し直し。**S5 の最初に必ず通す**
