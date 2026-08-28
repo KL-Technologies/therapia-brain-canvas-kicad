@@ -4,15 +4,16 @@
 
 ## 現在地
 
-**S0 / S1 / S1B / S2 すべて pass。KiCad 側の基板 `board/Therapia_EEG-HRV.kicad_pcb` は
+**S0 / S1 / S1B / S2 / S2B すべて pass。KiCad 側の基板 `board/Therapia_EEG-HRV.kicad_pcb` は
 EasyEDA の内容と完全一致（17/17 チェック）。S3 に引き渡せる状態。**
 
 | ステップ | 結果 | 内容 |
 |---|---|---|
 | S0 | **pass** 11/11 | kicad-cli 10.0.5 / KiCad python 3.9.13 / `pcbnew` / `EASYEDAPRO` / `ZONE_FILLER` / `drc --refill-zones` 全て有り |
-| S1 | **pass** 3/3 | `ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro`（227,363 B, sha256 `83c096a6c23aa482…`）を `import/` へ確保 |
+| S1 | **pass** 4/4 | `ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro`（227,363 B, sha256 `83c096a6c23aa482…`）を `import/` へ確保 |
 | S1B | **pass** 6/6 | `.epro2` も同時に確保されていたため変換も実施（`*.converted.epro`）。ただし**正規の旧 `.epro` があるのでそちらを採用**。変換物は使っていない |
 | S2 | **pass** 17/17 | 取り込み・パッド網補修・突合すべて一致 |
+| S2B | **pass** 5/5 | 回路図ネットリスト（EasyEDA API 由来）を契約として取り込み、PCB との差分＝ECO-1 の残作業を列挙 |
 
 `./run.sh --status` でいつでも同じ表が出る。
 
@@ -38,8 +39,8 @@ EasyEDA の内容と完全一致（17/17 チェック）。S3 に引き渡せる
 
 ## 次にやること（S3 への申し送り）
 
-1. **ECO-1 は PCB に入っていない。** 下の「設計上の発見」参照。S3 は L1〜L6 に加えて ECO-1 の
-   銅箔変更も KiCad 上で実施する必要がある
+1. **ECO-1 は PCB に入っていない。** 残作業は `gates/netlist_diff.json` に全量が出ている
+   （部品 4 個の追加 ＋ ピン 8 本のネット変更）。S3 は L1〜L6 に加えてこれも実施する
 2. **設計ルールを移すこと。** `contract/easyeda_rules.json` に EasyEDA の値を出してある。
    `board/Therapia_EEG-HRV.kicad_pro` は最小構成のダミーで、ネットクラスも custom rule も未設定。
    **今の DRC 件数（1025）は KiCad 既定ルールに対する数字で、EasyEDA の DRC とは比較できない**
@@ -52,15 +53,31 @@ EasyEDA の内容と完全一致（17/17 チェック）。S3 に引き渡せる
 
 `gates/design_observations.json` に機械可読な形で置いてある。
 
-### ECO-1 は PCB に未適用（確定）
+### ECO-1 は PCB に未適用（確定）— 残作業の全量
 
-- **TPS72325 pin3 (EN) = `GND`**。ECO-1 項目1 は `V_NLDO_IN` を要求。
-  **致命バグ B1（AVSS が出ず ADS1299 全数不動作）が基板上にそのまま残っている**
-- **AVDD のパッド数 = 21**。`PROJECT_STATUS.md` は ECO 前 21・ECO 後 20 と記録。21 = ECO 前
-- ADS1299 (U_ADS, TQFP-64) の無ネットパッド: `27, 29, 30, 37, 42, 44, 45, 46, 55, 60, 62, 64`。
-  ECO-1 が要求する VCAP2/VCAP3 の結線と GPIO1–4 の GND 直結はどれも未実施
-- 注意: PCB にはパッド**番号**しか無くピン名が無い。RESV1 / GPIO1–4 / VCAP2・3 がどの番号かは
-  回路図シンボル側で確認してから触ること（ECO 文書も「pinNumber ではなく pinName で照合」と指示）
+回路図（ECO-1 適用済み）と PCB（未適用）の差分を機械的に取った結果が
+`gates/netlist_diff.json`。**これが S3 の作業指示そのもの**。
+
+**追加すべき部品 4 個**: `C_VCAP1_H` / `C_VCAP2` / `C_VCAP3` / `C_VCAP3_H`
+（いずれも 2 ピン、片側 `AVSS`）。新規ネット `VCAP2` / `VCAP3` も PCB 側に存在しない。
+
+**ネットを変更すべきピン 8 本**:
+
+| designator | pin | pin name | 回路図（正） | 現 PCB |
+|---|---|---|---|---|
+| TPS72325 | 3 | EN | `V_NLDO_IN` | **`GND`** ← 致命バグ B1 が残存 |
+| U_ADS | 31 | RESV1 | `GND` | `AVDD` |
+| U_ADS | 42 | GPIO1 | `GND` | 未結線 |
+| U_ADS | 44 | GPIO2 | `GND` | 未結線 |
+| U_ADS | 45 | GPIO3 | `GND` | 未結線 |
+| U_ADS | 46 | GPIO4 | `GND` | 未結線 |
+| U_ADS | 30 | VCAP2 | `VCAP2` | 未結線 |
+| U_ADS | 55 | VCAP3 | `VCAP3` | 未結線 |
+
+ECO-1 の表（項目 1〜5）と完全に対応する。`AVDD` のパッド数 21 も
+`PROJECT_STATUS.md` の「ECO 前 21・ECO 後 20」と整合。
+
+KiCad 側には回路図が無いので、**S3 はこの 8 本＋4 部品を PCB 上で手作業で再現する**ことになる。
 
 ### FB5（lead の質問への回答）
 
@@ -115,8 +132,10 @@ gates/S0.json S1.json S1B.json S2.json
 gates/inventory_easyeda.json       EasyEDA 側の員数表（基準）
 gates/inventory_kicad.json         KiCad 側の同じ測定
 gates/design_observations.json     ECO 状態・FB5・ペグ穴・DRC 内訳
-contract/netlist_from_epro_pcb.json        designator→パッド→ネット（PCB 由来・S3 の契約）
-contract/netlist_from_epro_schematic.json  同（回路図由来・後述）
+gates/netlist_diff.json            回路図 ↔ PCB の差分＝ECO-1 の残作業（S3 の作業指示）
+contract/netlist_contract.json     回路図ネットリスト（ピン名付き・正）
+contract/netlist_from_epro_pcb.json        designator→パッド→ネット（PCB の実態）
+contract/netlist_from_epro_schematic.json  同（自前の幾何解き・参考）
 contract/netlist_from_kicad_pcb.json       取り込み後の KiCad 側
 contract/easyeda_rules.json        EasyEDA 設計ルール（未移植・S3 が書き写す）
 logs/drc_import.json               取り込み時 DRC
@@ -124,19 +143,24 @@ logs/pad_net_repair.json           パッド網補修の記録
 logs/import_attempts.json          パッチ段階ごとの試行結果
 ```
 
-### 回路図由来ネットリストについて
+### ネットリストが 2 系統ある。正はどちらか
 
-`.esch` の幾何から解いた（各 WIRE が `ATTR "NET"` に自分のネット名を持っているので、
-ピン位置に重なる WIRE を引くだけで求まる。ラベル伝搬は不要）。
-**128 部品 / ピン 375 本を解決、34 本未解決（91.7%）**。`status: "ok"`。
+| ファイル | 由来 | 位置づけ |
+|---|---|---|
+| `contract/netlist_contract.json` | `contract/netlist_easyeda_api_2026-08-28.tsv`（EasyEDA の `sch_ManufactureData.getNetlistFile()` 出力、135 部品 / 423 ピン、**ピン名付き**） | **正**。回路図の意図。S3 の契約 |
+| `contract/netlist_from_epro_pcb.json` | `.epcb` の `PAD_NET` ＋ `.efoo` のパッド | **正**。現在の基板の実態 |
+| `contract/netlist_from_epro_schematic.json` | `.esch` の幾何を自前で解いたもの | **参考のみ**。相互確認用 |
 
-未解決 34 本は NC ピンや直付けピンとみられるが**未検証**。また PCB 側は 131 部品なのに
-回路図側が 128 なのは、PCB 側だけでリネームした designator（`C_3V3_B`→`C_3V3_B2`、
-`C_3V3_H`→`C_3V3_H2`）が回路図では旧名のままで重複しているため（`PROJECT_STATUS.md` 記載の既知事項）。
+TSV は本作業中に外部から `contract/` に置かれたもの（13:00）で、こちらで生成したものではない。
+中身は ECO-1 適用後の回路図と完全に整合している（TPS72325 EN=`V_NLDO_IN`、RESV1=`GND`、
+GPIO1–4=`GND`、C_VCAP2/3/3_H/1_H 在り）。
 
-**S3 が回路図の正しさを厳密に判定する必要がある場合は、これを使わず
-EasyEDA Pro エディタで `sch_ManufactureData.getNetlistFile()` を実行し、その `pinInfoMap` を
-正とすること**（`11_rev_a_eco_2026-08-16.md` の受け入れ基準もそれ）。本ファイルは相互確認用。
+自前の幾何解きは **128 部品 / ピン 375 本を解決、34 本未解決（91.7%）**。
+未解決分は NC ピンとみられるが**未検証**。PCB 131 部品に対し回路図側が 128 なのは、
+PCB 側だけでリネームした designator（`C_3V3_B`→`C_3V3_B2`、`C_3V3_H`→`C_3V3_H2`）が
+回路図では旧名のまま重複しているため（`PROJECT_STATUS.md` 記載の既知事項）。
+**ピン名が要る作業では必ず TSV 由来の `netlist_contract.json` を使うこと**
+（PCB にはパッド番号しか無い）。
 
 ## 再実行の仕方
 

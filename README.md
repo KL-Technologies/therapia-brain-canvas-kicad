@@ -43,6 +43,7 @@ python3 scripts/99_selftest.py   # 合成 .epro でパーサ／パッチャの�
 | S2 | `scripts/10_epro_inventory.py` | python3 | `.epro` を自前パースして EasyEDA 側の員数表を作る | `gates/inventory_easyeda.json` |
 | S2 | `scripts/11_import_epro.py` | KPY | パッチ段階を変えながら `PCB_IO_MGR.Load(EASYEDAPRO)` → `Save(KICAD_SEXP)` → パッド網の補修 → DRC | `board/*.kicad_pcb` |
 | S2 | `scripts/12_verify_import.py` | KPY | `pcbnew.LoadBoard` で読み直して EasyEDA 側と突合 | `gates/S2.json` |
+| S2B | `scripts/13_netlist_contract.py` | python3 | 回路図ネットリスト TSV を契約化し、PCB との差分（＝ECO-1 の残作業）を列挙 | `gates/S2B.json` |
 
 `import/` に**正規の旧 `.epro`** と `.epro2` が両方あるときは、必ず旧 `.epro` を使う（変換を挟まないぶん確実）。
 `.converted.epro` は最下位。
