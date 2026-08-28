@@ -51,6 +51,23 @@
       "reason": "LCSC ページが 'Not available now'。JLC カート投入時（2026-08-28）に C369159 は JLC 実装在庫 0（20 shortfall）と確認。C43379（RUILON、1206・hold 500mA・trip 1A・13.2V）は現行 JK-NSMD050-13.2V と定格が同一で設計変更なし（opusQ1 裏取り、JLC 実装在庫 19,984・Extended）。本体 3.6×1.9mm は現 F1206 ランド（パッド 1.19×1.728 @ ±1.445mm）で長手は余裕、幅は片側 0.086mm はみ出し（PPTC では許容）。6V 品（C69688/C883122）でも USB 5V には足りるが、13.2V の余裕を優先",
       "footprint_change": false,
       "status": "decided at cart 2026-08-28"
+    },
+    {
+      "designators": ["U_MCU"],
+      "old_lcsc": "C701341",
+      "new_lcsc": "C701344",
+      "new_mpn": "ESP32-WROOM-32UE-N4",
+      "new_value": "ESP32-WROOM-32UE-N4",
+      "reason": "ESP32-WROOM-32E（25.5mm 本体、−X 端に 6.3mm の PCB アンテナ keep-out）の本体が ADS1299 のパッケージに 2.81mm 食い込み、C_AVDD1_100n / C_AVDD1_10n / C_DVDD_P40 を覆っていた（ACCEPTANCE H の 4 件）。32UE はランドパターンが完全に同一（Espressif データシート: 'The pin layout of ESP32-WROOM-32UE is the same as that of ESP32-WROOM-32E, except that ESP32-WROOM-32UE has no keepout zone'）で 38 パッドは 1 枚も動かず、本体は 19.2 × 18 × 3.2mm。同じパッドのまま本体端が ADS1299 のパッドの 3.3mm 手前で終わり、真下には何も無くなる。Rev.A は USB-UART のみでアンテナ不要（Espressif: RF スタックを初期化しないなら RF ピンはオープン可）。JLC 在庫 5,490・Extended・Standard Only（従来と同カテゴリ）・$3.95",
+      "cpl_rotation_override": 90,
+      "cpl_rotation_reason": "C701344 の JLC/EasyEDA フットプリントは長辺が Y 軸方向に描かれており、本 repo のフットプリントに対して +90° CCW 回転している（38 パッドすべてが +90° で一致）。原点はどちらもパッド外接矩形の中心なので Mid X / Mid Y は不変、CPL の Rotation だけ 0 → 90 とする（data/cpl_overrides.json）",
+      "footprint_change": false,
+      "board_change": "footprint graphics only -- F.Fab / F.SilkS / F.CrtYd の 25.5mm 外形を 19.2 × 18 で描き直す（scripts/37_umcu_32ue.py）。パッド・ネット・銅箔は不変",
+      "status": "decided by lead 2026-08-28 after JLC placement review",
+      "sources": [
+        "https://jlcpcb.com/partdetail/C701344",
+        "https://documentation.espressif.com/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.html"
+      ]
     }
   ],
   "bringup_review_fixes": [

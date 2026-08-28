@@ -1,8 +1,8 @@
 {
   "before": {
     "footprints": 141,
-    "tracks": 1252,
-    "vias": 239,
+    "tracks": 1248,
+    "vias": 241,
     "npth_pads": 6,
     "pth_pads": 16
   },
@@ -28,8 +28,8 @@
   },
   "after": {
     "footprints": 141,
-    "tracks": 1252,
-    "vias": 239,
+    "tracks": 1248,
+    "vias": 241,
     "npth_pads": 6,
     "pth_pads": 16
   },

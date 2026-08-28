@@ -120,12 +120,12 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T18:41:44",
+  "timestamp": "2026-08-28T20:44:56",
   "notes": "ECO-5 moves one pad from GND to BIAS_OUT_INT and reroutes it; the BOM corrections are field-only. Parity is measured against contract/netlist_contract.json with contract/contract_overrides.json applied.",
   "before": {
     "footprints": 141,
-    "tracks": 1252,
-    "vias": 239,
+    "tracks": 1248,
+    "vias": 241,
     "npth_pads": 6,
     "pth_pads": 16
   },
@@ -151,8 +151,8 @@
   },
   "after": {
     "footprints": 141,
-    "tracks": 1252,
-    "vias": 239,
+    "tracks": 1248,
+    "vias": 241,
     "npth_pads": 6,
     "pth_pads": 16
   },
@@ -181,14 +181,14 @@
     }
   },
   "drc": {
-    "violations": 470,
+    "violations": 454,
     "errors": 0,
-    "warnings": 470,
+    "warnings": 454,
     "unconnected": 0,
     "by_type": {
       "silk_overlap": 199,
-      "silk_over_copper": 157,
-      "courtyards_overlap": 77,
+      "silk_over_copper": 155,
+      "courtyards_overlap": 63,
       "track_dangling": 26,
       "clearance": 5,
       "via_dangling": 3,
@@ -252,8 +252,8 @@
     "npth_count": 6,
     "counts": {
       "footprints": 141,
-      "tracks": 1252,
-      "vias": 239,
+      "tracks": 1248,
+      "vias": 241,
       "npth_pads": 6,
       "pth_pads": 16
     },

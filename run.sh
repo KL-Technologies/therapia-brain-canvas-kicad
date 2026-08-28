@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_mask S6 S7a S7b S7c S7 S7_body S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7b S7c S7 S7_body S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,8 +32,8 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_L7", "S5_mask", "S6", "S7a", "S7b", "S7c", "S7",
-             "S7_body", "S8"):
+             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7b",
+             "S7c", "S7", "S7_body", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -163,6 +163,12 @@ run_step S5_L5 "pull apart the remaining clearance pinches" \
 # than at the end where it was found.
 run_step S5_L7 "move R_CC1 out from under the USB-C shell" \
   "$KPY" "$ROOT/scripts/36_repair_L7_rcc1.py" --root "$ROOT" || exit 1
+# L8 is the other half of the same review: the ESP32-WROOM-32E's 25.5 mm body
+# lay across the ADC. The 32UE has the identical land pattern and a 19.2 mm
+# body, so only the footprint's F.Fab/F.SilkS/F.CrtYd outline and its fields
+# change -- no copper moves. It is what makes ACCEPTANCE H pass.
+run_step S5_L8 "redraw U_MCU on the ESP32-WROOM-32UE body (25.5 -> 19.2 mm)" \
+  "$KPY" "$ROOT/scripts/37_umcu_32ue.py" --root "$ROOT" || exit 1
 
 s5_mask() {
   "$KC" pcb drc --format json --severity-all --units mm --refill-zones \

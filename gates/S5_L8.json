@@ -1,0 +1,1286 @@
+{
+  "step": "L8",
+  "pass": true,
+  "checks": [
+    {
+      "name": "body size",
+      "expected": [
+        19.2,
+        18.0
+      ],
+      "actual": [
+        19.2,
+        18.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "body rectangle",
+      "expected": [
+        155.013,
+        88.526,
+        174.213,
+        106.526
+      ],
+      "actual": [
+        155.013,
+        88.526,
+        174.213,
+        106.526
+      ],
+      "pass": true,
+      "note": "from the outline's endpoints. The F.Fab bounding box ACCEPTANCE H reads is [154.957567, 88.5005, 174.2385, 106.581433] -- wider by half the 0.051 mm stroke and by the pin-1 marker at the west corner"
+    },
+    {
+      "name": "pads untouched",
+      "expected": 47,
+      "actual": 47,
+      "pass": true
+    },
+    {
+      "name": "value",
+      "expected": "ESP32-WROOM-32UE-N4",
+      "actual": "ESP32-WROOM-32UE-N4",
+      "pass": true
+    },
+    {
+      "name": "MPN",
+      "expected": "ESP32-WROOM-32UE-N4",
+      "actual": "ESP32-WROOM-32UE-N4",
+      "pass": true
+    },
+    {
+      "name": "LCSC",
+      "expected": "C701344",
+      "actual": "C701344",
+      "pass": true
+    },
+    {
+      "name": "silk segments",
+      "expected": 7,
+      "actual": 7,
+      "pass": true
+    },
+    {
+      "name": "courtyard is body + 0.25 mm",
+      "expected": [
+        154.763,
+        88.276,
+        174.463,
+        106.776
+      ],
+      "actual": [
+        154.763,
+        88.276,
+        174.463,
+        106.776
+      ],
+      "pass": true
+    },
+    {
+      "name": "no body overlaps U_ADS or the three capacitors",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "contract parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "copper unchanged",
+      "expected": {
+        "footprints": 141,
+        "tracks": 1248,
+        "vias": 241,
+        "npth_pads": 6,
+        "pth_pads": 16
+      },
+      "actual": {
+        "footprints": 141,
+        "tracks": 1248,
+        "vias": 241,
+        "npth_pads": 6,
+        "pth_pads": 16
+      },
+      "pass": true,
+      "note": "this script adds and removes graphics only -- no pad, track, via or zone is created, moved or deleted"
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc ran",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "drc errors",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no new drc signatures",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T20:44:04",
+  "notes": "U_MCU: ESP32-WROOM-32E-N4 -> ESP32-WROOM-32UE-N4 (C701341 -> C701344). The 25.5 mm outline is replaced by the 19.2 x 18 one on F.Fab, F.SilkS and F.CrtYd; no pad, net or track moved. Body gaps now: C_AVDD1_100n 5.7301 mm, C_AVDD1_10n 3.4441 mm, C_DVDD_P40 4.9341 mm, R_IO15_DN 0.2781 mm, R_IO2_DN 0.2781 mm, U_ADS 3.7701 mm. The four ACCEPTANCE H failures under the 32E outline are cleared; the east end is measured separately by 38_nudge_io_pulldowns.py.",
+  "ref": "U_MCU",
+  "part": {
+    "from": {
+      "value": "ESP32-WROOM-32E-N4",
+      "lcsc": "C701341"
+    },
+    "to": {
+      "value": "ESP32-WROOM-32UE-N4",
+      "mpn": "ESP32-WROOM-32UE-N4",
+      "lcsc": "C701344"
+    }
+  },
+  "origin_mm": [
+    164.958,
+    97.526
+  ],
+  "body_local_mm": [
+    -9.945,
+    -9.0,
+    9.255,
+    9.0
+  ],
+  "body_target_mm": [
+    155.013,
+    88.526,
+    174.213,
+    106.526
+  ],
+  "courtyard_target_mm": [
+    154.763,
+    88.276,
+    174.463,
+    106.776
+  ],
+  "counts_before": {
+    "footprints": 141,
+    "tracks": 1248,
+    "vias": 241,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "before": {
+    "body_mm": [
+      148.375067,
+      88.5005,
+      173.956,
+      106.581433
+    ],
+    "outline_rect_mm": [
+      148.4305,
+      88.526,
+      173.9305,
+      106.526
+    ],
+    "body_size_mm": [
+      25.5,
+      18.0
+    ],
+    "to_bodies_mm": {
+      "C_AVDD1_100n": -0.8524,
+      "C_AVDD1_10n": -3.1384,
+      "C_DVDD_P40": -1.6484,
+      "R_IO15_DN": 0.5606,
+      "R_IO2_DN": 0.5606,
+      "U_ADS": -2.8124
+    },
+    "to_pads_mm": {
+      "C_AVDD1_100n": -0.9969,
+      "C_AVDD1_10n": -3.2829,
+      "C_DVDD_P40": -1.6129,
+      "R_IO15_DN": 0.2592,
+      "R_IO2_DN": 0.2592,
+      "U_ADS": -4.2369
+    },
+    "value": "ESP32-WROOM-32E-N4",
+    "mpn": "ESP32-WROOM-32E-N4",
+    "lcsc": "C701341",
+    "shapes": {
+      "F.Fab": 5,
+      "F.SilkS": 10,
+      "F.CrtYd": 1
+    },
+    "pads": 47,
+    "fab_outline": [
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          148.4305,
+          88.526
+        ],
+        "end_mm": [
+          173.9305,
+          88.526
+        ],
+        "bbox_mm": [
+          148.405,
+          88.5005,
+          173.956,
+          88.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "dd1a6d47-e711-4771-a8eb-5c734d6aae8b"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          148.4305,
+          106.526
+        ],
+        "end_mm": [
+          148.4305,
+          88.526
+        ],
+        "bbox_mm": [
+          148.405,
+          88.5005,
+          148.456,
+          106.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "9d335097-f54e-4ad9-b589-73c1b5bc8daf"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          173.9305,
+          88.526
+        ],
+        "end_mm": [
+          173.9305,
+          106.526
+        ],
+        "bbox_mm": [
+          173.905,
+          88.5005,
+          173.956,
+          106.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "e190f9aa-e6b0-4c5e-9526-1fdbc599652a"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          173.9305,
+          106.526
+        ],
+        "end_mm": [
+          148.4305,
+          106.526
+        ],
+        "bbox_mm": [
+          148.405,
+          106.5005,
+          173.956,
+          106.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "2bf0afe9-56ef-466c-b5d1-8635c8b5feb8"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Polygon",
+        "start_mm": [
+          0.0,
+          0.0
+        ],
+        "end_mm": [
+          0.0,
+          0.0
+        ],
+        "bbox_mm": [
+          148.375067,
+          106.470567,
+          148.485933,
+          106.581433
+        ],
+        "width_mm": 0.0,
+        "uuid": "120b4897-12fa-4a27-b8b9-86786762fff6"
+      }
+    ],
+    "silk_outline": [
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          148.4815,
+          88.526
+        ],
+        "end_mm": [
+          148.4815,
+          106.526
+        ],
+        "bbox_mm": [
+          148.3545,
+          88.399,
+          148.6085,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "3841671b-e6a6-4300-a1b4-cbc1f5c1d586"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          148.4815,
+          88.526
+        ],
+        "end_mm": [
+          154.9475,
+          88.526
+        ],
+        "bbox_mm": [
+          148.3545,
+          88.399,
+          155.0745,
+          88.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "c1023485-04c5-41e6-b241-a086226b67cb"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          148.4815,
+          106.526
+        ],
+        "end_mm": [
+          154.9315,
+          106.526
+        ],
+        "bbox_mm": [
+          148.3545,
+          106.399,
+          155.0585,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "a661701a-4c83-458f-bbff-35f3904344f9"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          154.7655,
+          88.526
+        ],
+        "end_mm": [
+          154.7655,
+          106.526
+        ],
+        "bbox_mm": [
+          154.6385,
+          88.399,
+          154.8925,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "40babe16-acfd-4ba9-9e24-5edcc15e694e"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          154.7655,
+          106.526
+        ],
+        "end_mm": [
+          155.2745,
+          106.526
+        ],
+        "bbox_mm": [
+          154.6385,
+          106.399,
+          155.4015,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "8f64e88d-1244-44b6-940e-3425caf44b74"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          155.2745,
+          88.509
+        ],
+        "end_mm": [
+          154.7655,
+          88.509
+        ],
+        "bbox_mm": [
+          154.6385,
+          88.382,
+          155.4015,
+          88.636
+        ],
+        "width_mm": 0.254,
+        "uuid": "5972efde-f159-4127-832e-d5378a6a6d42"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          173.1465,
+          106.526
+        ],
+        "end_mm": [
+          173.9815,
+          106.526
+        ],
+        "bbox_mm": [
+          173.0195,
+          106.399,
+          174.1085,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "32f81559-9357-4d98-8d01-56b4b0baecee"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          173.9815,
+          88.509
+        ],
+        "end_mm": [
+          173.1465,
+          88.509
+        ],
+        "bbox_mm": [
+          173.0195,
+          88.382,
+          174.1085,
+          88.636
+        ],
+        "width_mm": 0.254,
+        "uuid": "efc62995-7ff3-4781-a438-67a150aa9333"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          173.9815,
+          91.13
+        ],
+        "end_mm": [
+          173.9815,
+          88.509
+        ],
+        "bbox_mm": [
+          173.8545,
+          88.382,
+          174.1085,
+          91.257
+        ],
+        "width_mm": 0.254,
+        "uuid": "abea833c-8aea-4225-948a-cd181248af04"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          173.9815,
+          106.526
+        ],
+        "end_mm": [
+          173.9815,
+          103.922
+        ],
+        "bbox_mm": [
+          173.8545,
+          103.795,
+          174.1085,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "371db702-545a-472c-9821-6282960f429a"
+      }
+    ],
+    "courtyard": [
+      {
+        "layer": "F.Courtyard",
+        "shape": "Rect",
+        "start_mm": [
+          148.125067,
+          87.226
+        ],
+        "end_mm": [
+          175.2605,
+          107.826
+        ],
+        "bbox_mm": [
+          148.100067,
+          87.201,
+          175.2855,
+          107.851
+        ],
+        "width_mm": 0.05,
+        "uuid": "00eaf536-f490-4668-b8d9-7e814f3b0a66"
+      }
+    ]
+  },
+  "kept_metadata": {
+    "JLC_3D_Size": "25.5 18",
+    "JLC_3DModel_Q": "32d362831e524a98b752e42c3a8d73a7",
+    "footprint": "ProPrj_The-easyedapro:WIFI-SMD_ESP32-WROOM-32E",
+    "why": "EasyEDA 3D-preview metadata and the land-pattern name. The land pattern is shared by the 32E and the 32UE, and neither property is read by anything in this pipeline; F.Fab is what ACCEPTANCE H measures. Recorded rather than edited."
+  },
+  "already_swapped": false,
+  "pin1_marker_moved_mm": [
+    6.5825,
+    0.0
+  ],
+  "removed_shapes": [
+    {
+      "layer": "F.Fab",
+      "shape": "Line",
+      "start_mm": [
+        148.4305,
+        88.526
+      ],
+      "end_mm": [
+        173.9305,
+        88.526
+      ],
+      "bbox_mm": [
+        148.405,
+        88.5005,
+        173.956,
+        88.5515
+      ],
+      "width_mm": 0.051,
+      "uuid": "dd1a6d47-e711-4771-a8eb-5c734d6aae8b"
+    },
+    {
+      "layer": "F.Fab",
+      "shape": "Line",
+      "start_mm": [
+        148.4305,
+        106.526
+      ],
+      "end_mm": [
+        148.4305,
+        88.526
+      ],
+      "bbox_mm": [
+        148.405,
+        88.5005,
+        148.456,
+        106.5515
+      ],
+      "width_mm": 0.051,
+      "uuid": "9d335097-f54e-4ad9-b589-73c1b5bc8daf"
+    },
+    {
+      "layer": "F.Fab",
+      "shape": "Line",
+      "start_mm": [
+        173.9305,
+        88.526
+      ],
+      "end_mm": [
+        173.9305,
+        106.526
+      ],
+      "bbox_mm": [
+        173.905,
+        88.5005,
+        173.956,
+        106.5515
+      ],
+      "width_mm": 0.051,
+      "uuid": "e190f9aa-e6b0-4c5e-9526-1fdbc599652a"
+    },
+    {
+      "layer": "F.Fab",
+      "shape": "Line",
+      "start_mm": [
+        173.9305,
+        106.526
+      ],
+      "end_mm": [
+        148.4305,
+        106.526
+      ],
+      "bbox_mm": [
+        148.405,
+        106.5005,
+        173.956,
+        106.5515
+      ],
+      "width_mm": 0.051,
+      "uuid": "2bf0afe9-56ef-466c-b5d1-8635c8b5feb8"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        148.4815,
+        88.526
+      ],
+      "end_mm": [
+        148.4815,
+        106.526
+      ],
+      "bbox_mm": [
+        148.3545,
+        88.399,
+        148.6085,
+        106.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "3841671b-e6a6-4300-a1b4-cbc1f5c1d586"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        148.4815,
+        88.526
+      ],
+      "end_mm": [
+        154.9475,
+        88.526
+      ],
+      "bbox_mm": [
+        148.3545,
+        88.399,
+        155.0745,
+        88.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "c1023485-04c5-41e6-b241-a086226b67cb"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        148.4815,
+        106.526
+      ],
+      "end_mm": [
+        154.9315,
+        106.526
+      ],
+      "bbox_mm": [
+        148.3545,
+        106.399,
+        155.0585,
+        106.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "a661701a-4c83-458f-bbff-35f3904344f9"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        154.7655,
+        88.526
+      ],
+      "end_mm": [
+        154.7655,
+        106.526
+      ],
+      "bbox_mm": [
+        154.6385,
+        88.399,
+        154.8925,
+        106.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "40babe16-acfd-4ba9-9e24-5edcc15e694e"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        154.7655,
+        106.526
+      ],
+      "end_mm": [
+        155.2745,
+        106.526
+      ],
+      "bbox_mm": [
+        154.6385,
+        106.399,
+        155.4015,
+        106.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "8f64e88d-1244-44b6-940e-3425caf44b74"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        155.2745,
+        88.509
+      ],
+      "end_mm": [
+        154.7655,
+        88.509
+      ],
+      "bbox_mm": [
+        154.6385,
+        88.382,
+        155.4015,
+        88.636
+      ],
+      "width_mm": 0.254,
+      "uuid": "5972efde-f159-4127-832e-d5378a6a6d42"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        173.1465,
+        106.526
+      ],
+      "end_mm": [
+        173.9815,
+        106.526
+      ],
+      "bbox_mm": [
+        173.0195,
+        106.399,
+        174.1085,
+        106.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "32f81559-9357-4d98-8d01-56b4b0baecee"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        173.9815,
+        88.509
+      ],
+      "end_mm": [
+        173.1465,
+        88.509
+      ],
+      "bbox_mm": [
+        173.0195,
+        88.382,
+        174.1085,
+        88.636
+      ],
+      "width_mm": 0.254,
+      "uuid": "efc62995-7ff3-4781-a438-67a150aa9333"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        173.9815,
+        91.13
+      ],
+      "end_mm": [
+        173.9815,
+        88.509
+      ],
+      "bbox_mm": [
+        173.8545,
+        88.382,
+        174.1085,
+        91.257
+      ],
+      "width_mm": 0.254,
+      "uuid": "abea833c-8aea-4225-948a-cd181248af04"
+    },
+    {
+      "layer": "F.Silkscreen",
+      "shape": "Line",
+      "start_mm": [
+        173.9815,
+        106.526
+      ],
+      "end_mm": [
+        173.9815,
+        103.922
+      ],
+      "bbox_mm": [
+        173.8545,
+        103.795,
+        174.1085,
+        106.653
+      ],
+      "width_mm": 0.254,
+      "uuid": "371db702-545a-472c-9821-6282960f429a"
+    },
+    {
+      "layer": "F.Courtyard",
+      "shape": "Rect",
+      "start_mm": [
+        148.125067,
+        87.226
+      ],
+      "end_mm": [
+        175.2605,
+        107.826
+      ],
+      "bbox_mm": [
+        148.100067,
+        87.201,
+        175.2855,
+        107.851
+      ],
+      "width_mm": 0.05,
+      "uuid": "00eaf536-f490-4668-b8d9-7e814f3b0a66"
+    }
+  ],
+  "silk_segments": [
+    {
+      "edge": "top",
+      "start_mm": [
+        155.013,
+        88.526
+      ],
+      "end_mm": [
+        155.2745,
+        88.526
+      ],
+      "length_mm": 0.2615
+    },
+    {
+      "edge": "top",
+      "start_mm": [
+        173.1465,
+        88.526
+      ],
+      "end_mm": [
+        174.213,
+        88.526
+      ],
+      "length_mm": 1.0665
+    },
+    {
+      "edge": "bottom",
+      "start_mm": [
+        155.013,
+        106.526
+      ],
+      "end_mm": [
+        155.2745,
+        106.526
+      ],
+      "length_mm": 0.2615
+    },
+    {
+      "edge": "bottom",
+      "start_mm": [
+        173.1465,
+        106.526
+      ],
+      "end_mm": [
+        174.213,
+        106.526
+      ],
+      "length_mm": 1.0665
+    },
+    {
+      "edge": "left",
+      "start_mm": [
+        155.013,
+        88.526
+      ],
+      "end_mm": [
+        155.013,
+        106.526
+      ],
+      "length_mm": 18.0
+    },
+    {
+      "edge": "right",
+      "start_mm": [
+        174.213,
+        88.526
+      ],
+      "end_mm": [
+        174.213,
+        91.13
+      ],
+      "length_mm": 2.604
+    },
+    {
+      "edge": "right",
+      "start_mm": [
+        174.213,
+        103.922
+      ],
+      "end_mm": [
+        174.213,
+        106.526
+      ],
+      "length_mm": 2.604
+    }
+  ],
+  "after": {
+    "body_mm": [
+      154.957567,
+      88.5005,
+      174.2385,
+      106.581433
+    ],
+    "outline_rect_mm": [
+      155.013,
+      88.526,
+      174.213,
+      106.526
+    ],
+    "body_size_mm": [
+      19.2,
+      18.0
+    ],
+    "to_bodies_mm": {
+      "C_AVDD1_100n": 5.7301,
+      "C_AVDD1_10n": 3.4441,
+      "C_DVDD_P40": 4.9341,
+      "R_IO15_DN": 0.2781,
+      "R_IO2_DN": 0.2781,
+      "U_ADS": 3.7701
+    },
+    "to_pads_mm": {
+      "C_AVDD1_100n": 5.5856,
+      "C_AVDD1_10n": 3.2996,
+      "C_DVDD_P40": 4.9696,
+      "R_IO15_DN": -0.0232,
+      "R_IO2_DN": -0.0232,
+      "U_ADS": 2.3456
+    },
+    "value": "ESP32-WROOM-32UE-N4",
+    "mpn": "ESP32-WROOM-32UE-N4",
+    "lcsc": "C701344",
+    "pads": 47,
+    "shapes": {
+      "F.Fab": 5,
+      "F.SilkS": 7,
+      "F.CrtYd": 1
+    },
+    "fab_outline": [
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          155.013,
+          106.526
+        ],
+        "end_mm": [
+          155.013,
+          88.526
+        ],
+        "bbox_mm": [
+          154.9875,
+          88.5005,
+          155.0385,
+          106.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "50d7711e-27c0-45e3-b9b3-638f98547c0a"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          174.213,
+          106.526
+        ],
+        "end_mm": [
+          155.013,
+          106.526
+        ],
+        "bbox_mm": [
+          154.9875,
+          106.5005,
+          174.2385,
+          106.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "2f7af43b-9e6d-4e85-8b14-7a465036be08"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          174.213,
+          88.526
+        ],
+        "end_mm": [
+          174.213,
+          106.526
+        ],
+        "bbox_mm": [
+          174.1875,
+          88.5005,
+          174.2385,
+          106.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "c92ae306-91a0-4292-8f0b-849d9d6e382b"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Line",
+        "start_mm": [
+          155.013,
+          88.526
+        ],
+        "end_mm": [
+          174.213,
+          88.526
+        ],
+        "bbox_mm": [
+          154.9875,
+          88.5005,
+          174.2385,
+          88.5515
+        ],
+        "width_mm": 0.051,
+        "uuid": "9d0da917-6109-4439-a73f-eb475dcad9fc"
+      },
+      {
+        "layer": "F.Fab",
+        "shape": "Polygon",
+        "start_mm": [
+          0.0,
+          0.0
+        ],
+        "end_mm": [
+          0.0,
+          0.0
+        ],
+        "bbox_mm": [
+          154.957567,
+          106.470567,
+          155.068433,
+          106.581433
+        ],
+        "width_mm": 0.0,
+        "uuid": "120b4897-12fa-4a27-b8b9-86786762fff6"
+      }
+    ],
+    "silk_outline": [
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          174.213,
+          103.922
+        ],
+        "end_mm": [
+          174.213,
+          106.526
+        ],
+        "bbox_mm": [
+          174.086,
+          103.795,
+          174.34,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "830a9a71-42a4-4ffd-95d2-549ebf80b769"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          174.213,
+          88.526
+        ],
+        "end_mm": [
+          174.213,
+          91.13
+        ],
+        "bbox_mm": [
+          174.086,
+          88.399,
+          174.34,
+          91.257
+        ],
+        "width_mm": 0.254,
+        "uuid": "229ace1f-5d82-4617-9b0c-7b049e618f98"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          155.013,
+          88.526
+        ],
+        "end_mm": [
+          155.013,
+          106.526
+        ],
+        "bbox_mm": [
+          154.886,
+          88.399,
+          155.14,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "7e8e9411-0025-475e-a7eb-d5fd364e1d1f"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          173.1465,
+          106.526
+        ],
+        "end_mm": [
+          174.213,
+          106.526
+        ],
+        "bbox_mm": [
+          173.0195,
+          106.399,
+          174.34,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "78cc12f0-3ffa-4c4f-ab8a-21d95bf8f24b"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          155.013,
+          106.526
+        ],
+        "end_mm": [
+          155.2745,
+          106.526
+        ],
+        "bbox_mm": [
+          154.886,
+          106.399,
+          155.4015,
+          106.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "eeb5f826-44a5-4875-a24b-d5d9d6e48083"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          173.1465,
+          88.526
+        ],
+        "end_mm": [
+          174.213,
+          88.526
+        ],
+        "bbox_mm": [
+          173.0195,
+          88.399,
+          174.34,
+          88.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "85fa5737-8418-4385-bff6-3d8e4fb861dc"
+      },
+      {
+        "layer": "F.Silkscreen",
+        "shape": "Line",
+        "start_mm": [
+          155.013,
+          88.526
+        ],
+        "end_mm": [
+          155.2745,
+          88.526
+        ],
+        "bbox_mm": [
+          154.886,
+          88.399,
+          155.4015,
+          88.653
+        ],
+        "width_mm": 0.254,
+        "uuid": "b61e17e9-469b-4976-bdde-35b6b9ac850a"
+      }
+    ],
+    "courtyard": [
+      {
+        "layer": "F.Courtyard",
+        "shape": "Rect",
+        "start_mm": [
+          154.763,
+          88.276
+        ],
+        "end_mm": [
+          174.463,
+          106.776
+        ],
+        "bbox_mm": [
+          154.738,
+          88.251,
+          174.488,
+          106.801
+        ],
+        "width_mm": 0.05,
+        "uuid": "28ef7aa3-d31f-4353-9024-355ca84b4f0b"
+      }
+    ]
+  },
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1248,
+    "vias": 241,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "unconnected_before_save": 0,
+  "contract_diffs": [],
+  "drc_signature": {
+    "new_signatures": [],
+    "new_but_harmless": [],
+    "resolved_signatures": [],
+    "baseline_errors": 0,
+    "current_errors": 0,
+    "error_delta": 0,
+    "count_jitter_allowed": 2,
+    "count_within_jitter": true,
+    "regressed": false
+  },
+  "drc_after": {
+    "errors_by_type": {},
+    "unconnected": 0
+  }
+}

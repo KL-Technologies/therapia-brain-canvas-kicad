@@ -57,6 +57,8 @@ MAKER = {
     "C23138": "UNI-ROYAL",
     # substituted at the JLC cart on 2026-08-28 (data/bom_fixes_2026-08-28.json)
     "C84268": "NationStar", "C43379": "RUILON",
+    # the 32E -> 32UE body swap, same day, same file
+    "C701344": "Espressif",
 }
 
 

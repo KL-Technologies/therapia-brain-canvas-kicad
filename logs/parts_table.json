@@ -140,6 +140,20 @@
         "C43379"
       ]
     },
+    "U_MCU": {
+      "value": [
+        "ESP32-WROOM-32E-N4",
+        "ESP32-WROOM-32UE-N4"
+      ],
+      "mpn": [
+        "ESP32-WROOM-32E-N4",
+        "ESP32-WROOM-32UE-N4"
+      ],
+      "lcsc": [
+        "C701341",
+        "C701344"
+      ]
+    },
     "R_RST_UP": {
       "dnp": [
         null,
