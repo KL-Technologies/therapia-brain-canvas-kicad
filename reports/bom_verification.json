@@ -183,10 +183,7 @@
       "verdict": "OK",
       "reason": "100nF/0402 一致。定格 16V。最大電位は USB_5V(5V) 系なので 3 倍以上の余裕。",
       "note": null,
-      "not_placed_on_pcb": [
-        "C_VCAP1_H",
-        "C_VCAP3_H"
-      ],
+      "not_placed_on_pcb": [],
       "alternatives": [],
       "source_urls": [
         "https://easyeda.com/api/products/C1525/components"
@@ -227,10 +224,7 @@
       "verdict": "OK",
       "reason": "1uF/0402 一致。定格 25V は USB_5V(5V) 系・V_NLDO_IN(-5V) に対し十分。",
       "note": "定格 25V は LCSC ページと EasyEDA API の 2 ソースで一致。",
-      "not_placed_on_pcb": [
-        "C_VCAP2",
-        "C_VCAP3"
-      ],
+      "not_placed_on_pcb": [],
       "alternatives": [],
       "source_urls": [
         "https://www.lcsc.com/product-detail/C52923.html",
@@ -534,22 +528,36 @@
       "not_placed_on_pcb": [],
       "alternatives": [
         {
-          "lcsc": "C2286",
-          "mpn": "KT-0603R",
-          "pkg": "LED-SMD_L1.6-W0.8-R-RD",
-          "spec": "LED 0603 / 赤 645nm / Vf 1.8-2.4V @20mA / If max 25mA",
-          "jlc_part_class": "Basic",
-          "stock_lcsc": 624750,
-          "note": "D_LED の代替候補。3.3V 駆動 + 330Ω で約 3.9mA 流れる。",
+          "lcsc": "C72044",
+          "mpn": "19-217/R6C-AL1M2VY/3T",
+          "pkg": "LED0603-RD",
+          "spec": "LED 0603 / 赤 617.5nm / Vf 1.95V @5mA / 11.5-28.5mcd / 120deg / 60mW",
+          "jlc_part_class": "Extended",
+          "stock_lcsc": 215065,
+          "note": "D_LED 第 1 候補。現フットプリントと**パッケージ名が完全一致**（LED0603-RD）で、ピン生データも pin1='C' / pin2='A'（C72043 と同一シリーズ・同一ライブラリ）。3.3V - 1.95V = 1.35V / 330Ω = 約 4.1mA。在庫は EasyEDA API 215,065（SZ 902,100）に対し LCSC 商品ページは 'Not available now' 表示で食い違う。",
           "source_urls": [
-            "https://jlcpcb.com/partdetail/C2286",
-            "https://easyeda.com/api/products/C2286/components"
+            "https://www.lcsc.com/product-detail/C72044.html",
+            "https://jlcpcb.com/partdetail/EverlightElec-19_217_R6C_AL1M2VY3T/C72044",
+            "https://easyeda.com/api/products/C72044/components"
+          ]
+        },
+        {
+          "lcsc": "C72038",
+          "mpn": "19-213/Y2C-CQ2R2L/3T(CY)",
+          "pkg": "LED0603-RD-YELLOW",
+          "spec": "LED 0603 / 黄 / Vf 1.7-2.3V @20mA / 90-180mcd",
+          "jlc_part_class": "Extended",
+          "stock_lcsc": 70862,
+          "note": "D_LED 第 2 候補。ピン生データは pin1='C' / pin2='A' で**現基板の極性と一致**（`P~show~1~1~...C~start` / `P~show~1~2~...A~end`）。BOM の value 'LED_Y'（黄）とも色が一致し、輝度は C72044 より高い。ただしパッケージ名は 'LED0603-RD-**YELLOW**' で現フットプリント名と厳密には別名（0603 ランド自体は同等とみられるがカート投入時に要プレビュー確認）。Vf 2.0V 換算で (3.3-2.0)/330 = 約 3.9mA。",
+          "source_urls": [
+            "https://jlcpcb.com/partdetail/C72038",
+            "https://easyeda.com/api/products/C72038/components"
           ]
         }
       ],
       "source_urls": [
         "https://www.lcsc.com/product-detail/C72043.html",
-        "https://jlcpcb.com/partdetail/C72043",
+        "https://jlcpcb.com/partdetail/EverlightElec-19_217_GHC_YR1S23T/C72043",
         "https://easyeda.com/api/products/C72043/components"
       ]
     },
@@ -587,7 +595,7 @@
           "stock_lcsc": 3420,
           "note": "F1 の同一フットプリント代替。定格電圧は 13.2V→6V に下がる点に注意。",
           "source_urls": [
-            "https://jlcpcb.com/partdetail/C883122",
+            "https://jlcpcb.com/partdetail/BHFUSE-BSMD1206_0506V/C883122",
             "https://easyeda.com/api/products/C883122/components"
           ]
         }
@@ -635,7 +643,7 @@
           "stock_lcsc": 75200,
           "note": "C94221 が意図していた GZ2012D601TF の正しい品番。EasyEDA パッケージ名 'L0805' は KiCad 側フットプリントと完全一致。",
           "source_urls": [
-            "https://jlcpcb.com/partdetail/C1017",
+            "https://jlcpcb.com/partdetail/Sunlord-GZ2012D601TF/C1017",
             "https://easyeda.com/api/products/C1017/components"
           ]
         }
@@ -1121,6 +1129,192 @@
       "source_urls": [
         "https://www.lcsc.com/product-detail/C84681.html",
         "https://easyeda.com/api/products/C84681/components"
+      ]
+    }
+  ],
+  "addendum": {
+    "led_polarity": {
+      "board_footprint": "ProPrj_The-easyedapro:LED0603-RD",
+      "board_pad_geometry": "pad1/pad2 とも 0.8x0.8mm 角、x=-0.749 / +0.749mm（0603 ランド）",
+      "board_polarity": "pad1 = C（カソード）→ GND / pad2 = A（アノード）→ LED_A",
+      "board_polarity_source": "contract/netlist_easyeda_api_2026-08-28.tsv の D_LED 行が pinName を保持: `D_LED 1 C GND` / `D_LED 2 A LED_A`",
+      "first_choice": "C72044",
+      "second_choice": "C72038",
+      "rejected": [
+        "C2286",
+        "C183844"
+      ]
+    },
+    "board_recheck": {
+      "when": "2026-08-28 16:47（board が 16:46 に並行作業で更新されたため読み直し）",
+      "stale_snapshot": "contract/netlist_from_kicad_pcb.json は 13:45 時点",
+      "pad_net_syntax": "この kicad_pcb のパッド net は (net \"名前\") 形式で index を持たない",
+      "findings": {
+        "TPS72325": {
+          "1": "GND",
+          "2": "V_NLDO_IN",
+          "3": "V_NLDO_IN",
+          "4": "TPS_NR",
+          "5": "AVSS"
+        },
+        "ECO-1#1 (EN=V_NLDO_IN)": "適用済み（初版の『未反映』は誤りだったので訂正）",
+        "C_VCAP1_H": {
+          "1": "VCAP1",
+          "2": "AVSS",
+          "footprint": "C0402"
+        },
+        "C_VCAP2": {
+          "1": "VCAP2",
+          "2": "AVSS",
+          "footprint": "C0402"
+        },
+        "C_VCAP3": {
+          "1": "VCAP3",
+          "2": "AVSS",
+          "footprint": "C0402"
+        },
+        "C_VCAP3_H": {
+          "1": "VCAP3",
+          "2": "AVSS",
+          "footprint": "C0402"
+        },
+        "C_VCAP1": {
+          "footprint": "C_1206_3216Metric"
+        },
+        "C_VREFP_10u": {
+          "footprint": "C_1206_3216Metric"
+        },
+        "D_LED": {
+          "1": "GND",
+          "2": "LED_A",
+          "footprint": "LED0603-RD"
+        },
+        "R_LED": {
+          "1": "STATUS_LED_DRV",
+          "2": "LED_A"
+        },
+        "FB5": {
+          "1": "VDD_ESP",
+          "2": "DVDD",
+          "footprint": "L0805"
+        }
+      }
+    },
+    "fb_footprint": {
+      "board_footprint": "ProPrj_The-easyedapro:L0805（FB1-FB5 の 5 点すべて）",
+      "board_pad_geometry": "pad1/pad2 とも 1.1325 x 1.377mm、x=-0.966 / +0.966mm。内側ギャップ 0.8mm / 外形スパン 3.065mm / パッド幅 1.377mm",
+      "part_package": "C1017 の EasyEDA パッケージ名は `L0805`（JLC partdetail の表記は `0805`）",
+      "verdict": "OK",
+      "reason": "フットプリント名が `L0805` で完全一致。MPN の 'GZ2012' は 2012 メートル法 = 0805 インチで、パッド幅 1.377mm > 本体幅 1.25mm、スパン 3.065mm > 本体長 2.0mm とランドが本体を包含する。2 端子無極性なので向きの検討は不要。"
+    }
+  },
+  "addendum_rows": [
+    {
+      "lcsc": "C72044",
+      "role": "D_LED 代替 第1候補",
+      "mpn": "19-217/R6C-AL1M2VY/3T",
+      "manufacturer": "Everlight Elec",
+      "package": "LED0603-RD",
+      "spec": "LED 0603 / 赤 617.5nm / Vf 1.95V @5mA / 11.5-28.5mcd / 120deg / 60mW",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 215065,
+      "stock_szlcsc": 902100,
+      "jlc_on_sale": true,
+      "verdict": "採用推奨",
+      "note": "D_LED 第 1 候補。現フットプリントと**パッケージ名が完全一致**（LED0603-RD）で、ピン生データも pin1='C' / pin2='A'（C72043 と同一シリーズ・同一ライブラリ）。3.3V - 1.95V = 1.35V / 330Ω = 約 4.1mA。在庫は EasyEDA API 215,065（SZ 902,100）に対し LCSC 商品ページは 'Not available now' 表示で食い違う。",
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C72044.html",
+        "https://jlcpcb.com/partdetail/EverlightElec-19_217_R6C_AL1M2VY3T/C72044",
+        "https://easyeda.com/api/products/C72044/components"
+      ]
+    },
+    {
+      "lcsc": "C72038",
+      "role": "D_LED 代替 第2候補",
+      "mpn": "19-213/Y2C-CQ2R2L/3T(CY)",
+      "manufacturer": "Everlight Elec",
+      "package": "LED0603-RD-YELLOW",
+      "spec": "LED 0603 / 黄 / Vf 1.7-2.3V @20mA / 90-180mcd",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 70862,
+      "stock_szlcsc": 187040,
+      "jlc_on_sale": true,
+      "verdict": "採用可",
+      "note": "D_LED 第 2 候補。ピン生データは pin1='C' / pin2='A' で**現基板の極性と一致**（`P~show~1~1~...C~start` / `P~show~1~2~...A~end`）。BOM の value 'LED_Y'（黄）とも色が一致し、輝度は C72044 より高い。ただしパッケージ名は 'LED0603-RD-**YELLOW**' で現フットプリント名と厳密には別名（0603 ランド自体は同等とみられるがカート投入時に要プレビュー確認）。Vf 2.0V 換算で (3.3-2.0)/330 = 約 3.9mA。",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/C72038",
+        "https://easyeda.com/api/products/C72038/components"
+      ]
+    },
+    {
+      "lcsc": "C2286",
+      "role": "D_LED 代替 検討→不採用",
+      "mpn": "KT-0603R",
+      "manufacturer": "Hubei KENTO Elec",
+      "package": "LED-SMD_L1.6-W0.8-R-RD",
+      "spec": "LED 0603 / 赤 645nm / Vf 1.8-2.4V @20mA / If max 25mA",
+      "jlc_part_class": "Basic",
+      "stock_lcsc": 624750,
+      "stock_szlcsc": 0,
+      "jlc_on_sale": true,
+      "verdict": "NG（極性反転）",
+      "note": "【追加調査で不採用】EasyEDA シンボルのピン生データは A=pin**1** / K=pin**2**（`0~1~-5~0~A~end~~~#800^^0~9~-9~0~1~start` と `0~K~start~~~#800^^0~-9~-9~0~2~end`）。現基板は pad1=GND=カソードなので **極性が反転**し、そのまま置換すると LED が逆実装になる。パッケージ名も 'LED-SMD_L1.6-W0.8-R-RD' で現フットプリントと別名。",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/Hubei_KentoElec-KT0603R/C2286",
+        "https://easyeda.com/api/products/C2286/components"
+      ]
+    },
+    {
+      "lcsc": "C183844",
+      "role": "D_LED 代替 検討→不採用",
+      "mpn": "19-217/G7C-AM1N2B/3T",
+      "manufacturer": "Everlight Elec",
+      "package": "LED0603-RD",
+      "spec": "LED 0603 / 黄緑",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 2920,
+      "stock_szlcsc": 540,
+      "jlc_on_sale": true,
+      "verdict": "非推奨（在庫薄）",
+      "note": "パッケージ名は LED0603-RD で一致し 19-217 シリーズだが、在庫が LCSC 2,920 / SZ 540 と薄く非推奨。参考記録のみ。",
+      "source_urls": [
+        "https://easyeda.com/api/products/C183844/components"
+      ]
+    },
+    {
+      "lcsc": "C1017",
+      "role": "FB1-FB5 代替 確定",
+      "mpn": "GZ2012D601TF",
+      "manufacturer": "Sunlord",
+      "package": "L0805",
+      "spec": "フェライトビーズ 600Ω@100MHz +-25% / 定格 500mA / DCR 300mΩ / 0805",
+      "jlc_part_class": "Basic",
+      "stock_lcsc": 75200,
+      "stock_szlcsc": 68250,
+      "jlc_on_sale": true,
+      "verdict": "採用推奨",
+      "note": "C94221 が意図していた GZ2012D601TF の正しい品番。EasyEDA パッケージ名 'L0805' は KiCad 側フットプリントと完全一致。",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/Sunlord-GZ2012D601TF/C1017",
+        "https://easyeda.com/api/products/C1017/components"
+      ]
+    },
+    {
+      "lcsc": "C883122",
+      "role": "F1 代替 候補",
+      "mpn": "BSMD1206-050-6V",
+      "manufacturer": "BHFUSE",
+      "package": "F1206",
+      "spec": "PPTC リセッタブルヒューズ hold 500mA / 6V / 1206",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 3420,
+      "stock_szlcsc": 2940,
+      "jlc_on_sale": true,
+      "verdict": "採用可",
+      "note": "F1 の同一フットプリント代替。定格電圧は 13.2V→6V に下がる点に注意。",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/BHFUSE-BSMD1206_0506V/C883122",
+        "https://easyeda.com/api/products/C883122/components"
       ]
     }
   ]

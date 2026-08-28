@@ -49,16 +49,31 @@ python3 scripts/99_selftest.py   # 合成 .epro でパーサ／パッチャの�
 | S3 | `scripts/15_gate_s3.py` | python3 + KC | DRC ベースラインを取り、**ルールが L1〜L4 を実際に検出することを検定** | `gates/S3.json` |
 | S4 | `scripts/19_make_parts_table.py` | python3 | 旧 BOM ＋ ECO-2/3 の置換表から `data/parts_lcsc.csv`（135 行）を生成 | — |
 | S4 | `scripts/20_apply_eco.py` | KPY + KC | ECO-1/2/3 を PCB へ適用し、契約と全パッド突合、ゾーン再充填して DRC | `gates/S4.json` |
+| S5_uuids | `scripts/26_fix_uuids.py` | python3 (+KPY) | 重複 KIID 2,625 個を採番し直す。**これより前の DRC レポートはアイテムの同定が信用できない** | `gates/S5_uuids.json` |
+| S5_L1 | `scripts/30_repair_L1.py` | KPY + KC | AMS1117 を取付穴 H4 から退避させ、4 ピンを繋ぎ直す | `gates/S5_L1.json` |
+| S5_L2 | `scripts/31_repair_L2.py` | KPY + KC | CHASSIS_GND を H1 の外へ引き直す | `gates/S5_L2.json` |
+| S5_L3 | `scripts/32_repair_L3.py` | KPY + KC | ESP_TXD を分割し、H4 に掛かる中央だけ引き直す | `gates/S5_L3.json` |
+| S5_L4 | `scripts/33_repair_L4.py` | KPY + KC | USB-C ペグ穴 PEG1/PEG2 を空け、J1 の GND ランドを詰める | `gates/S5_L4.json` |
+| S5_L5 | `scripts/34_repair_L5.py` | KPY + KC | 残りの近接を幾何から洗い出して解消 | `gates/S5_L5.json` |
+| S5_mask | `scripts/35_mask_bridges.py` | KPY + KC | 合体したレジスト開口をパッド個別マージンで分ける | `gates/S5_mask.json` |
+| S6 | `scripts/40_drc_loop.py` | python3 + KPY + KC | DRC → 修正 → DRC を clean になるまで反復 | `gates/S6.json` |
 
 **S4a が S3 より先なのは意図的**。取付穴が NPTH になるまで hole clearance ルールに
 引っかかる穴が存在せず、S3 のゲート（L1/L2/L4 の検出）が成立しないため。
+
+**S5_uuids が L1 より先なのも意図的**。KiCad の DRC は違反アイテムを KIID で保存して
+レポート時に引き直すので、KIID が重複していると**別の部品を名指しする**。
+取り込み直後の基板は 231 個の uuid を共有していた（1 個は 38 部品で共有）。
 
 ### 共通ライブラリ
 
 | ファイル | 中身 |
 |---|---|
 | `scripts/lib/epro.py` | `.epro` のパースとパッチ、ゲート JSON の読み書き |
-| `scripts/lib/route.py` | 銅箔の空間索引・衝突判定、スタブ除去、2 層ルータ（直線→L 字→via ホップ）、部品配置探索。**L1〜L5 の修理もこれを使う** |
+| `scripts/lib/route.py` | 銅箔の空間索引・衝突判定、スタブ除去、2 層ルータ（直線→L 字→via ホップ）、部品配置探索 |
+| `scripts/lib/maze.py` | 2 層 A* ルータ。via 遷移つき、DRC と同じ `SHAPE::Collide` で判定し、経路は採用前に線分ごとに再検証してから直線化する。ペグ穴まわりのように「直線も L 字も via ホップも無い」場所はこれでないと通らない |
+| `scripts/lib/repair.py` | S5/S6 共通。ルール値、穴までの距離、接続性（`net_components`）、修理プリミティブ（via 退避・端点退避・トラック分割迂回・穴の排除）、ゲート雛形 |
+| `scripts/lib/viol.py` | DRC レポートを作業リストに変換する。ただし**位置は信用しない**（アイテム自身のアンカーが入っている） |
 | `scripts/lib/drc.py` | DRC レポートの署名比較。`kicad-cli pcb drc` は同一入力で 525〜531 件と揺れるので、件数ではなく（種別, ネット集合）で比較する |
 | `scripts/lib/xlsx.py` | 旧 BOM/CPL の xlsx を標準ライブラリだけで読む |
 
@@ -105,11 +120,29 @@ run B   Track [V_NLDO_IN] on Bottom Layer, length 0.2543 mm  <-> Via [VNEG5]
 部品参照を署名に含めてはいけない ── track（部品名を含まない）と pad（含む）が
 入れ替わるだけで、無変更の基板が「新規 10 件・解決 10 件」に見える。
 
-### 4. pcbnew の SWIG プロキシは `id()` で比較できない
+### 4. KIID は一意ではない（この基板では 231 個が重複）
+
+EasyEDA インポータがライブラリ部品の全インスタンスに同じ KIID を振る。実測で
+**38 個の部品が 1 個の uuid を共有し、その 38 個の 1 番パッドがまた別の 1 個を共有**。
+KiCad は uuid の一意性を前提にしていて、`BOARD::GetItem(KIID)` は最初に見つけた
+ものを返す。
+
+これが効いてくるのは **DRC レポート**で、KiCad は違反アイテムをポインタではなく
+KIID で保存し、レポートを書くときに引き直す。重複があるとレポートは
+**実在しない組み合わせを名指しする** ── 9.3 mm 離れたパッド同士の
+`solder_mask_bridge`、8.9 mm 離れたパッド同士の 0.0420 mm `clearance` など。
+**種別と件数は常に正しく、間違うのはアイテムの同定だけ。**
+
+`scripts/26_fix_uuids.py` が重複を採番し直す（`.kicad_pcb` は uuid を相互参照
+しないので安全。基板の幾何とネットが不変であることを検証してから保存する）。
+**取り込みからやり直す場合は L1 より先にこれを通すこと。**
+
+### 5. pcbnew の SWIG プロキシは `id()` で比較できない
 
 基板から同じパッドを 2 回取り出すと別のプロキシが返り、`id()` が一致しない。
-無視リストや訪問済み集合は `scripts/lib/route.uid()`（KIID 文字列）で持つこと。
-関連して:
+無視リストや訪問済み集合は `scripts/lib/route.uid()` で持つこと
+（KIID 単独では上記のとおり一意でないので、パッドと部品は reference と
+フットプリント相対座標を足した鍵になっている）。関連して:
 
 - `board.Remove()` は board 直下の要素に使うと以後 `GetFootprints()` が生の
   `SwigPyObject` を返すようになる。**`RemoveNative()` を使う**

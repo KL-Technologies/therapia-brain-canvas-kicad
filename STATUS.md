@@ -1,11 +1,11 @@
 # STATUS — brain_canvas_kicad
 
-最終更新: 2026-08-28 / 担当: S0–S2（前任）→ **S3・S4**
+最終更新: 2026-08-28 / 担当: S0–S2（前任）→ S3・S4 → **S5・S6**
 
 ## 現在地
 
-**S0〜S4 の 8 ゲートすべて pass。ECO-1 / ECO-2 / ECO-3 は PCB に入った。
-残りは L1〜L5 のレイアウト修理（S5）と製造データ出力。**
+**S0〜S6 の 16 ゲートすべて pass。DRC error 0 / unconnected 0。
+L1〜L5 のレイアウト修理は全部入った。残りは S7（最終検査・製造データ出力）だけ。**
 
 | ステップ | 結果 | 内容 |
 |---|---|---|
@@ -17,8 +17,31 @@
 | S4a | **pass** 10/10 | NPTH 6 穴を合成、基板外形を閉じた（`scripts/13_fix_import.py`） |
 | S3 | **pass** 10/10 | ACCEPTANCE.md 凍結、JLC ルール生成、DRC ベースラインで L1〜L4 を検出（`14_make_rules.py` / `15_gate_s3.py`） |
 | S4 | **pass** 10/10 | ECO-1/2/3 を PCB へ適用（`19_make_parts_table.py` / `20_apply_eco.py`） |
+| S5_uuids | **pass** 3/3 | 重複 KIID 2,625 個を採番し直した（`26_fix_uuids.py`）。**これを先にやらないと DRC が違う部品を指す** |
+| S5_L1 | **pass** 8/8 | AMS1117 を H4 から退避（`30_repair_L1.py`） |
+| S5_L2 | **pass** 6/6 | CHASSIS_GND を H1 の東へ迂回（`31_repair_L2.py`） |
+| S5_L3 | **pass** 6/6 | ESP_TXD を分割して中央だけ H4 から逃がす（`32_repair_L3.py`） |
+| S5_L4 | **pass** 7/7 | USB-C ペグ穴 PEG1/PEG2 を完全に空けた（`33_repair_L4.py`） |
+| S5_L5 | **pass** 7/7 | 残り 27 箇所の近接を解消（`34_repair_L5.py`） |
+| S5_mask | **pass** 2/2 | レジスト開口の合体 3 件をパッド個別マージンで解消（`35_mask_bridges.py`） |
+| S6 | **pass** 11/11 | DRC 自動ループが `clean` で停止（`40_drc_loop.py` / `41_drc_fix_pass.py`） |
 
 `./run.sh --status` でいつでも同じ表が出る。**DRC を含むステップはサンドボックス外で実行すること。**
+
+### 最終 DRC（`logs/drc_s6_final.json`）
+
+```
+violations 465   error 0   warning 465   unconnected 0
+warning 内訳: silk_overlap 199 / silk_over_copper 152 / courtyards_overlap 78 /
+              track_dangling 25 / clearance 5 / via_dangling 3 /
+              silk_edge_clearance 2 / starved_thermal 1
+```
+
+**warning はすべて ACCEPTANCE A の許容リストに載っている種別だけ。**
+`clearance` の 5 件は error ではなく、ACCEPTANCE C が warning と定めた
+「推奨 5 mil (0.127 mm)」に対するもの（error 級の 0.0889 mm は 0 件）。
+**Amendments は不要だった** — solder_mask_bridge は 8 件とも実際に直せたので、
+ACCEPTANCE.md には一切手を入れていない。
 
 ### 実行順が S4a → S3 → S4 になっている理由
 
@@ -107,13 +130,110 @@ L1 / L2 / L4 が原理的に検出できない。だから NPTH 合成（S4a）�
 結果: 部品 137→**141**（135 実装部品 ＋ 機械 6）、トラック 1191→1213、via 238→240。
 **PCB 全パッドの net map ＝ 契約（差分 0）**、**未接続 0**、DRC error は**ベースラインから増えていない**。
 
-### 人が見るべき 3 点（S5 / 施主向け・機能上の欠陥ではない）
+## S5 — L1〜L5 のレイアウト修理
 
-1. **C_VCAP3 の pin1 が 3.36 mm、C_VCAP3_H が 2.29 mm**。バイパスコンデンサとしては長い。
-   ADS1299 北側は AVDD/AVSS の逃げ配線で埋まっており、これ以上近づけられなかった
-2. **C_VCAP1 が 2.50 mm 移動**。1206 化のため。ADS1299 のレイアウト指針に照らして要確認
-3. **C_VCAP1_H が C_AVSS_P37 とレジスト開口を共有**（`solder_mask_bridge`、**両方 AVSS で短絡し得ない**）。
-   この一帯はベースラインの時点で GND↔VDD_ESP の異ネット開口共有が 3 件あり、L5 の対象
+DRC error の推移: **S4 後 67〜69 → L1 59 → L2 57 → L3 56 → L4 30 →
+（KIID 修正）28 → L5 4 → mask 1 → S6 0**。
+unconnected は全工程を通じて 0、契約パリティも全工程 0 差分。
+
+### 修理の一覧（座標はすべて KiCad mm）
+
+| | 対象 | やったこと | 実測 |
+|---|---|---|---|
+| **L1** | H4 (176.9468, 121.9608) φ2.3876 が AMS1117 pin1(GND) を貫通 | AMS1117 を **+3.25 / +1.25 mm**（東・南）へ移設。原点 (173.594, 119.9795) → **(176.844, 121.2295)**。GND スタブ 3 本と GND via (175.372, 122.418) を撤去し、pin1 は新しい via で GND 面へ落とした。pin2/3/4 は既存銅に接続したまま | 全パッドの穴縁間 **0.4335 mm**（規則 0.2） |
+| **L2** | H1 (123.048, 83.048) を CHASSIS_GND の Bottom 配線が貫通 | J2/12 (123.556, 87.2645) → (124.064, 81.016) を **H1 の東 x≈124.6505 まで膨らませて 4 セグメントで引き直し**（6.43 mm、直線なら 5.84 mm） | 0.3 mm 以上 |
+| **L3** | H4 に ESP_TXD の Bottom 配線が 0.076 mm 食い込み | 11.68 mm の配線を**3 本に分割**し、(178.4755, 120.7415)〜(175.4181, 120.7415) の中央だけ 3 セグメントで引き直し | 0.3 mm 以上 |
+| **L4** | PEG1 (176.8611, 113.8779) / PEG2 (176.8611, 108.0979) φ0.7 | PEG1 は via 退避＋配線 4 本の迂回。**PEG2 は経路そのものを廃止**（下記）。J1 の pin1/pin12 は 0.05 mm/片側 詰めた | 両穴とも**リング内の銅ゼロ**、J1 パッド 0.1712 → **0.2211 mm** |
+| **L5** | 残り 27 箇所の近接 | via 退避 14・配線分割迂回 9・部品微動 4 | すべて 0.0889 mm 以上 |
+| **mask** | レジスト開口の合体 3 件 | 該当 5 パッドのマージンを 0.0508 → 0.0307 / 0.0418 mm | web 0.0508 mm ＋2 µm 確保 |
+
+### L4 の PEG2 は「近接」ではなく「経路の問題」だった
+
+ECO は原因を「Slot Region e54/e55」としているが、実体は EasyEDA layer 12 の
+FILL 円 **id e36 / e37**（S4a が NPTH パッド化済み）。ECO の id は当てにせず、
+**基板の実形状から取り直した**。実測:
+
+```
+PEG2  via [USB_VBUS_RAW] (177.2010, 108.1430)  銅 -0.3119  穴間 -0.1596
+      USB_VBUS_RAW トラック 6 本  -0.1086 〜 -0.3711
+PEG1  via [USB_VBUS_RAW] (176.6930, 113.2230)  銅 +0.0213  穴間 +0.1736
+```
+
+via のドリルとペグのドリルが 0.16 mm 重なる＝**バレルが成立せず VBUS が基板に来ない**
+（ECO の指摘どおり）。しかし PEG2 側は退避では直らなかった:
+VBUS が J1 pin11 に届く唯一の経路が、ペグと裏面 ESP_RXD の間を東へ抜ける通路で、
+**その通路の銅がすべてペグのリング内にある**。トラックは両端がリング内なので
+「自分の両端の間を引き直す」では動かせず、via は 2.5 mm 以内に合法な置き場所が無い。
+→ **その 7 本（トラック 6・via 1）を削除し、J1 pin11 を西側から給電**した
+（2.03 mm。VBUS の via が 2.4 mm 西に既にあり、もう一方の VBUS パッド pin2 は
+もともと西から来ている）。
+
+### J1 pin1 / pin12 のパッドを 0.05 mm 詰めた（フットプリント変更）
+
+USB-C コネクタの**自分の GND パッドが自分のペグ穴から 0.5213 mm** しか離れておらず、
+穴縁間 0.1712 mm ＝ 規則 0.2 mm に **0.0288 mm 足りない**。これは配線ミスではなく
+ベンダのフットプリント形状。基準を緩めるのではなく、
+**ペグ側の軸に 0.05 mm/片側 詰めた**（ランド長 1.10 → 1.00 mm、−9%）。
+USB-C の機械的保持は PTH のシェル脚 pad13/14 が担っており、pin1/12 は信号 GND なので
+接合強度に実害はない。`gates/S5_L4.json` の `pad_trims` に前後の寸法と隙間を記録。
+
+### 部品の微動（L5）
+
+| designator | 移動 |
+|---|---|
+| C_AVSS_B | +0.15 mm (x) |
+| C_3V3_H | +0.05 mm (y) |
+| C_VREFP_10n | +0.05 mm (x) |
+| C_RST_DLY | −0.05 mm (x) |
+
+いずれも 0402。どちらもパッド同士の近接で、動かせる銅が他に無かった箇所。
+
+### レジスト開口（solder_mask_bridge）— 8 件すべて実際に直した
+
+`ACCEPTANCE.md` は**一文字も変えていない**。Amendments 節も作っていない。
+S4 時点の 8 件のうち 5 件は L1〜L5 の銅の移動で自然に消え、残り 3 件は
+パッド個別の `solder_mask_margin` を下げて解決した:
+
+| ペア | 銅の隙間 | マージン |
+|---|---|---|
+| C_VCAP1_H/2 (AVSS) ↔ C_VREFP_100n/1 (VREFP) | 0.1142 mm | 0.0508 → 0.0307 |
+| Q_IO0/3 (ESP_IO0) ↔ R_Q_EN_B/2 (Q_EN_B) | 0.1364 mm | 0.0508 → 0.0418 |
+| Q_IO0/3 (ESP_IO0) ↔ R_Q_EN_B/1 (CH_DTR_N) | 0.1364 mm | 0.0508 → 0.0418 |
+
+板全体の `pad_to_mask_clearance`（ACCEPTANCE C の 0.0508 mm）は不変。
+レジストをパッドの内側に食い込ませてもいない（下限は 0）。
+
+## S6 — DRC 自動ループ
+
+`scripts/40_drc_loop.py`（ドライバ・素の python3）＋
+`scripts/41_drc_fix_pass.py`（1 反復ぶんの修正・KPY）。
+**pcbnew は 1 プロセスで 2 回 LoadBoard できない**ので、DRC を回す側と基板を触る側は
+必ず別プロセスにする。停止条件は 4 つ（`clean` / 20 反復 / 2 連続で解決ゼロ /
+違反集合ハッシュの再出現）。**件数では判定しない**（同一基板でも 525〜531 と揺れる）。
+
+初回は `stalled` で止まり、それが**修正器の本当の穴を炙り出した**:
+最後の 1 件は ADS_RESET_N が C_RST_DLY の自分の GND パッドから 0.0685 mm の位置で
+西へ折れる**トラックの端点そのもの**にあった。端点が違反なのだから、
+同じ両端の間を引き直しても直らない。加えて部品微動は「成功」と報告していたが、
+その合法性検査は**自部品のパッドと自部品に付いた配線を無視する**ので、
+まさに問題のペアを見ていなかった。`retreat_track_end`（角と、そこに集まる配線を
+まとめて動かす）を足し、微動には実際のペアの隙間を検証させた。次の実行で 1 反復で解決。
+
+### 人が見るべき点（施主向け・DRC は通っている）
+
+1. **AMS1117 が 3.48 mm 動き、その本体が H4 の真上に来た。**
+   西・北（ECO が指定した向き）は塞がっている ── 西は pad4 が FB3 pin2 と U_USB pin8 に、
+   北は pad3 が J1 pin13（USB-C シェル）と PEG1 に当たる。空いているのは南東の隅だけ。
+   **移設前から本体は H4 の西半分を覆っていた**が、移設後は穴全体を覆う。
+   H4 に M2 のネジ頭やスペーサが来る設計なら干渉する。**筐体側の確認が要る。**
+   （探索は「本体が穴に掛からない位置」を最優先で走査したが、±8 mm に 1 つも無かった）
+2. **J1 pin1 / pin12 のランドが 1.10 → 1.00 mm。** 上記のとおり。
+3. **C_VCAP3 の pin1 が 3.36 mm、C_VCAP3_H が 2.29 mm**（S4 から未変更）。
+   バイパスコンデンサとしては長い。ADS1299 北側は AVDD/AVSS の逃げ配線で埋まっている
+4. **C_VCAP1 が 2.50 mm 移動**（S4、1206 化のため）。ADS1299 のレイアウト指針に照らして要確認
+5. 旧 STATUS の「C_VCAP1_H が C_AVSS_P37 とレジスト開口を共有」は**誤りだった**。
+   重複 KIID のせいで DRC が別のパッドを指していただけで、実際の相手は
+   **C_VREFP_100n**。上表のとおり解決済み
 
 ## 設計上の発見（取り込みの不具合ではない）
 
@@ -199,24 +319,69 @@ J1 はほかに CHASSIS_GND のメッキ済みスロット穴 4 個を持つ
 track_width 90 / courtyards_overlap 69。**KiCad 既定ルールに対する数字**なので、
 設計ルールを入れるまで意味のある値ではない。
 
-## S5（L1〜L5 修理と DRC ループ）への申し送り
+## S7（最終検査・製造データ）への申し送り
 
-`ACCEPTANCE.md` が発注可の定義。**この文書は凍結済みなので、そこに書いてある基準を満たすまでが仕事。**
+`ACCEPTANCE.md` が発注可の定義。**凍結済みで、S5/S6 でも一文字も変えていない。**
+A（DRC）と B（契約）と D の一部は S6 のゲートで既に満たしている。
+残りは E（Gerber）/ F（BOM・CPL）/ G（プレビュー）と、それらを A〜G として
+束ねる `scripts/50_final_check.py`。
 
-0. **FB5 は触らないこと。** 決着済み（上記）。契約どおりで基板も一致している
-1. **L1〜L5 の修理**。作業リストは `gates/S3.json` の `drc_summary.npth_hole_violations` に
-   穴ごとにまとめてある（H1 1 件 / H4 9 件 / PEG1 11 件 / PEG2 17 件）。加えて `clearance` 20 件が L5。
-   **L4 の干渉は S5 が実形状で取り直す**（S3 のゲートは「検出器が反応すること」しか検定していない）
-2. **`scripts/lib/route.py` を使うこと。** 衝突判定つきのトラック/via 配置、スタブ除去
-   （`trace_island`）、2 層ルータ（`plan_route`: 直線 → L 字 → via ホップ）、部品の本体間隔判定
-   （`BodyIndex`）が入っている。S4 はこれだけで全部やった
-3. **DRC 件数で判定しないこと。** `kicad-cli pcb drc` は同一入力でも 525〜531 件と揺れる
-   （実測）。`scripts/lib/drc.py` の**署名比較**（種別＋ネット集合）を使う。
-   部品参照は署名に入れてはいけない ── 揺れで track↔pad が入れ替わると 10 件が新規／解決に化ける
-4. **S3 のベースラインを上書きしないこと。** `15_gate_s3.py` は S4 適用済みだと再測定を拒否する
-   （`--force-baseline` で上書きできるが、以後 S4 の退行検出が効かなくなる）
-5. **まだ書いていないもの**: `scripts/50_final_check.py`（ACCEPTANCE の A〜G を機械化）、
-   Gerber/BOM/CPL 出力、実装プレビュー PNG。`fab/` は空（`fab/drill_check/` だけ S4a が使う）
+### いま基板がどうなっているか（`KPY scripts/42_board_facts.py` でいつでも再測定できる）
+
+| 項目 | 値 | 備考 |
+|---|---|---|
+| DRC error / unconnected | **0 / 0** | `logs/drc_s6_final.json` |
+| 契約パリティ | **0 差分** | 全 439 パッドの designator→pad→net |
+| 部品 | 141（実装 135 ＋ 機械 6） | 機械 = H1〜H4 / PEG1 / PEG2 |
+| トラック / via | 1250 / **239** | S2 実測 238 → S4 で 240 → L4 で 1 本削除して 239 |
+| PTH / NPTH | **16 / 6** | S2 から不変 |
+| ゾーン | 10、**全部フィル済みで保存** | |
+| パッドのレジストマージン個別指定 | **5 パッド** | 上表。Gerber 出力に効く |
+
+NPTH 6 穴は ACCEPTANCE D の表と一致（S6 ゲートが assert 済み）:
+PEG1 (176.8611, 113.8779) / PEG2 (176.8611, 108.0979) φ0.700、
+H1 (123.048, 83.048) / H2 (176.9468, 83.048) / H3 (123.048, 121.9608) /
+H4 (176.9468, 121.9608) φ2.3876。
+
+### 必ず知っておくべきこと
+
+1. **重複 KIID は直したが、それが何を意味するかは覚えておくこと。**
+   取り込み直後の基板は 231 個の uuid を複数アイテムで共有していた（38 部品が同じ 1 個）。
+   KiCad の DRC は違反アイテムを **KIID で保存して後から引き直す**ので、
+   重複があるとレポートが**別の部品を名指しする**。`26_fix_uuids.py` が採番し直した。
+   **`11_import_epro.py` からやり直す場合は、S5_uuids を必ず先に通すこと。**
+   `scripts/lib/route.uid()` も KIID 単独では一意でないので、パッドと部品は
+   reference とフットプリント相対座標を足した鍵を返すようにしてある
+2. **DRC レポートの `pos` は違反の位置ではない。** アイテム自身のアンカー
+   （トラックなら始点）なので、11 mm のトラックだと違反箇所と数 mm ずれる。
+   位置が要る処理は `scripts/lib/repair.py` の
+   `clearance_pairs` / `hole_pairs` / `copper_near_hole` で**自分で幾何から出す**
+3. **DRC 件数で判定しないこと。** 同一入力で 525〜531 件と揺れる。
+   `scripts/lib/drc.py` の署名比較（種別＋ネット集合）を使う
+4. **`pcbnew` は 1 プロセスで 2 回 `LoadBoard` できない。** DRC を回すスクリプトと
+   基板を編集するスクリプトは分けること（S6 がその形）
+5. **DRC はコマンドサンドボックス内では落ちる。** サンドボックス外で実行する
+6. **FB5 は触らないこと。** 決着済み。契約どおりで基板も一致している
+
+### まだ書いていないもの
+
+- `scripts/50_final_check.py`（ACCEPTANCE A〜G の機械化）
+- Gerber / ドリル / BOM / CPL の出力と**独立パーサでの検証**（ACCEPTANCE E・D 後半）。
+  `fab/` は空（`fab/drill_check/` だけ S4a が使う）
+- 実装プレビュー PNG（ACCEPTANCE G）
+- BOM 側は別担当が `scripts/40_gen_bom_report.py` と `reports/` で進めている
+  （こちらは基板側しか触っていない）
+
+### 使えるもの
+
+| ファイル | 何ができるか |
+|---|---|
+| `scripts/42_board_facts.py` | 上表を基板から再測定して JSON で出す。ゲートはこれを引用する |
+| `scripts/29_drc_report.py` | 保存済み DRC レポートを種別ごとに整形。`--type` `--json` |
+| `scripts/28_board_inspect.py` | KIID / reference / ネット / 座標でアイテムを引く |
+| `scripts/27_net_islands.py` | ネットが電気的に分断されていないかを保存前に見る |
+| `scripts/40_drc_loop.py` | 何か直したあとに回せば、DRC が clean になるまで自動で追い込む |
+| `scripts/39_fix_unconnected.py` | DRC が unconnected を出したとき、その 2 点を繋ぎ直す |
 
 ## 途中で直した問題
 
@@ -233,16 +398,48 @@ track_width 90 / courtyards_overlap 69。**KiCad 既定ルールに対する数�
 | **`pcbnew.FOOTPRINT(src)` は KIID ごと複製する** | 複製した部品のパッドが元と同じ uuid を持つ（実測）。`m_Uuid` は書き込み不可、`FixUuids()` も効かない。新設部品はゼロから組み立てる（`make_chip_footprint`） |
 | **`LoadBoard` / `SaveBoard` の後は基板を走査できない** | 同一プロセスで 2 回目の `LoadBoard`、および `SaveBoard` の後は proxy が生のオブジェクトになる。計測は保存前に済ませる |
 | **DRC が非決定的** | 同じ基板で 525／528／531 件と揺れる。原因は同一箇所を代表する要素の選ばれ方。`lib/drc.py` の署名比較で吸収 |
+| **KIID が一意でない（S5 の最大の発見）** | EasyEDA インポータがライブラリ部品の全インスタンスに同じ KIID を振る。231 個の uuid が重複、うち 1 個は 38 部品で共有。KiCad は uuid の一意性を前提にしており、`BOARD::GetItem(KIID)` は最初に見つけたものを返す。**DRC は違反アイテムを KIID で保存して後から引き直す**ので、レポートが別の部品を名指しする ── 9.3 mm 離れたパッド同士の `solder_mask_bridge`、8.9 mm 離れたパッド同士の 0.0420 mm `clearance`、VDD_ESP のはずが USB_5V のパッドを掴んだ結線修復（24.7 mm・106 本のトラックを敷いた）。**種別と件数は常に正しく、間違っていたのはアイテムの同定だけ**。`26_fix_uuids.py` が 2,625 個を採番し直した（基板の幾何・ネットは不変を検証済み） |
+| `lib/route.uid()` が KIID 単独だった | 上記の重複により、`ignore` リストが無関係な部品まで無視し、`CopperIndex` のクエリ内重複排除が本物の障害物を捨て、接続性チェックが 38 パッドを 1 ノードに融合していた。パッドは reference ＋フットプリント相対座標、部品は reference を鍵に足した。相対座標なのは、部品を動かしても鍵が変わらないようにするため |
+| DRC レポートの `pos` は違反の位置ではない | アイテム自身のアンカー（トラックなら始点）。11 mm のトラックだと違反箇所と数 mm ずれる。位置が要る処理は `lib/repair.py` の `clearance_pairs` / `copper_near_hole` で幾何から出す |
+| ゾーンの塗り潰しを穴なしで再構成すると全部繋がって見える | `net_components` の初版が `SHAPE_POLY_SET::Outline(i)` だけを足していた。ベタは「1 本の外形＋異ネットのパッドごとに開けた穴」なので、穴を落とすと板全体が 1 枚の銅になる。`HoleCount`/`Hole` も足す |
+| 同一ネットのゾーンが複数あると分断に見える | VDD_ESP は 3 枚のベタに分かれている。重なっているベタ同士は 1 つの導体なので、フィル島同士も併合する |
+| 結線修復が板を横断する | 上限を付けないと、切れた VDD_ESP に対して 24.7 mm・106 セグメントの経路を「合法だから」と敷く。`MAX_HEAL_MM` と、直線距離の 3 倍という上限を入れた |
+| 迷路ルータの結果が階段状 | 8 方向グリッドは等コスト経路が大量にあり、A* は最初に到達したものを返す。H1 の迂回が 25 セグメントになった。経路を string-pull（見通しの利く限り直線に置き換える）してから採用する |
+| 部品微動が「成功」と言って何も直さない | 合法性検査が自部品のパッドと自部品に付いた配線を無視するので、その 2 者の近接（C_RST_DLY のケース）が見えない。移動後に**実際のペアの隙間**を測って検証する |
+| 端点にある違反は迂回では直らない | トラックの端点そのものが違反位置だと、同じ両端の間をどう引き直しても直らない。`retreat_track_end` で角ごと（そこに集まる配線ごと）動かす |
 
 ## 成果物
 
 ```
 ACCEPTANCE.md                      発注可の定義（凍結）。最終ゲートの仕様
 data/parts_lcsc.csv                designator -> Value / MPN / LCSC（135 行、ECO-2/3 込み）
-board/Therapia_EEG-HRV.kicad_pcb   ECO 適用済み基板（NPTH 合成・外形閉・ゾーン再充填済み）
+board/Therapia_EEG-HRV.kicad_pcb   ECO 適用＋L1〜L5 修理済み。DRC error 0 / unconnected 0
 board/Therapia_EEG-HRV.kicad_pro   JLC 4 層ルール／ネットクラス／severity（14_make_rules.py が生成）
 board/Therapia_EEG-HRV.kicad_dru   NPTH hole clearance と 5mil 推奨の custom rule（同上）
-scripts/lib/route.py               衝突判定・スタブ除去・2 層ルータ・配置探索（S5 が使う）
+
+--- S5/S6 で足したもの ---
+scripts/26_fix_uuids.py            重複 KIID の採番し直し。**S5 の最初に必ず通す**
+scripts/27_net_islands.py          ネットの電気的分断を保存前に見る
+scripts/28_board_inspect.py        KIID/reference/ネット/座標でアイテムを引く
+scripts/29_drc_report.py           保存済み DRC を種別ごとに整形
+scripts/30_repair_L1.py 〜 34_repair_L5.py   L1〜L5 の修理本体
+scripts/35_mask_bridges.py         レジスト開口の合体をパッド個別マージンで解消
+scripts/39_fix_unconnected.py      DRC の unconnected を読んで 2 点を繋ぎ直す（別プロセス用）
+scripts/40_drc_loop.py             DRC 自動ループのドライバ（素の python3）
+scripts/41_drc_fix_pass.py         1 反復ぶんの修正（KPY）
+scripts/42_board_facts.py          ゲートが assert する事実を基板から再測定
+scripts/lib/maze.py                2 層 A* ルータ（via 遷移つき・DRC と同じ判定・経路を直線化）
+scripts/lib/repair.py              ルール値・穴距離・接続性・修理プリミティブ・ゲート雛形
+scripts/lib/viol.py                DRC レポートを作業リストに変換
+gates/S5_uuids.json S5_L1..L5.json S5_mask.json S6.json
+logs/drc_S5_before.json            S5 開始時（＝S4 直後）の DRC
+logs/drc_after_L1.json 〜 drc_s5_l5.json   各修理後の DRC
+logs/drc_after_uuidfix.json        KIID 修正直後（初めてアイテム同定が正しくなった DRC）
+logs/drc_loop_NN.json              S6 の各反復
+logs/drc_s6_final.json             最終 DRC（error 0 / unconnected 0）
+
+--- S3/S4 まで ---
+scripts/lib/route.py               衝突判定・スタブ除去・2 層ルータ・配置探索
 scripts/lib/drc.py                 DRC の揺れを吸収する署名比較
 gates/S3.json S4.json S4a.json
 logs/drc_baseline_rules.json       ECO 前・JLC ルールでの DRC（S4 の比較基準）

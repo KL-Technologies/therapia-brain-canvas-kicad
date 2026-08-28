@@ -1,0 +1,62 @@
+{
+  "_purpose": "BOM 実体照合（reports/bom_verification.md）で確定した発注前の修正。S7/S8 担当が board の footprint フィールド（LCSC/MPN/Value）と data/parts_lcsc.csv・発注 BOM に反映する。フットプリントは全て不変。",
+  "_decided_by": "lead (Fable) 2026-08-28",
+  "fixes": [
+    {
+      "designators": ["FB1", "FB2", "FB3", "FB4", "FB5"],
+      "old_lcsc": "C94221",
+      "new_lcsc": "C1017",
+      "new_mpn": "GZ2012D601TF",
+      "new_value": "600R@100MHz 0805",
+      "reason": "C94221 は LCSC/JLC に存在しない（3ソースで404）。意図した Sunlord GZ2012D601TF の正しい品番は C1017（L0805、JLC Basic、在庫 75,200）",
+      "footprint_change": false
+    },
+    {
+      "designators": ["C_AVDD1_10n", "C_VREFP_10n"],
+      "old_lcsc": "C1546",
+      "new_lcsc": "C15195",
+      "new_mpn": "CL05B103KB5NNNC",
+      "new_value": "10nF 50V X7R 0402",
+      "reason": "designator と設計意図は 10nF だが C1546 の実体は 100pF C0G（C_NR と同型の誤認）。ECO-2#7 と同じ C15195 に揃える（0402 同一フットプリント）",
+      "footprint_change": false
+    },
+    {
+      "designators": ["C_VREFP_10u"],
+      "old_lcsc": "C13585",
+      "new_lcsc": "C13585",
+      "new_mpn": "CL31A106KBHNNNE",
+      "new_value": "10uF 50V X5R 1206",
+      "reason": "裏取り完了: 実体は 50V 品（CSV の MPN 'CL31A106KAHNNNE' は誤記）。設計上は 25V 品より良好。品番は維持、MPN/値の表記のみ訂正。C15008 代替は不要",
+      "footprint_change": false
+    },
+    {
+      "designators": ["D_LED"],
+      "old_lcsc": "C72043",
+      "new_lcsc": "C72044",
+      "new_mpn": "19-217/R6C-AL1M2VY/3T",
+      "new_value": "LED red 0603 Vf1.95V",
+      "reason": "C72043 は Emerald Green Vf 3.3V で 3.3V GPIO + 330Ω では点灯しない。C72044（Everlight 赤 617.5nm、Vf 1.95V@5mA）は EasyEDA パッケージ名 LED0603-RD が現フットプリントと完全一致・ピン生データ pin1=C/pin2=A も同一ライブラリで一致。3.3V−1.95V=1.35V/330Ω≈4.1mA。JLC Extended（在庫 SZ 902,100）。第2候補 C72038（黄、Vf 1.7〜2.3V）はパッケージ名 LED0603-RD-YELLOW で別名のため不採用",
+      "footprint_change": false,
+      "status": "decided",
+      "sources": ["https://www.lcsc.com/product-detail/C72044.html", "https://jlcpcb.com/partdetail/EverlightElec-19_217_R6C_AL1M2VY3T/C72044"]
+    },
+    {
+      "designators": ["F1"],
+      "old_lcsc": "C369159",
+      "new_lcsc": "C369159",
+      "alternative_lcsc": "C883122",
+      "reason": "LCSC ページが 'Not available now'。JLC カート投入時に在庫を確認し、無ければ同一フットプリント（F1206）の C883122 に切替",
+      "footprint_change": false,
+      "status": "check_at_cart"
+    }
+  ],
+  "stock_watch_at_cart": [
+    {"lcsc": "C69932", "part": "TPS72325DBVR", "note": "LCSC 0 / JLC SZ 3,843。カートで実装在庫を確認"},
+    {"lcsc": "C701341", "part": "ESP32-WROOM-32E-N4", "note": "在庫表示がソース間で乖離。カートで確認"},
+    {"lcsc": "C19619", "part": "TLV70025DDCR", "note": "在庫 1,480〜2,186 でやや薄い"}
+  ],
+  "csv_label_fixes": [
+    {"lcsc": "C2840012", "field": "package_label", "note": "1列×12ピン（CSV 表記のみ誤り。基板は正しい）"},
+    {"lcsc": "C19619", "field": "package_label", "note": "SOT-23-5（CSV の SOT-353 表記は誤り。基板は正しい）"}
+  ]
+}

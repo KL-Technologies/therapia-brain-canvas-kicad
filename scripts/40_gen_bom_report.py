@@ -19,6 +19,22 @@ LCSC = "https://www.lcsc.com/product-detail/{}.html"
 EDA = "https://easyeda.com/api/products/{}/components"
 JLC = "https://jlcpcb.com/partdetail/{}"
 
+# 短縮 URL ではなくフルスラッグで取得した品番（実際に叩いた URL を正確に残す）
+JLC_SLUG = {
+    "C1017": "https://jlcpcb.com/partdetail/Sunlord-GZ2012D601TF/C1017",
+    "C2286": "https://jlcpcb.com/partdetail/Hubei_KentoElec-KT0603R/C2286",
+    "C72043": "https://jlcpcb.com/partdetail/EverlightElec-19_217_GHC_YR1S23T/C72043",
+    "C72044": "https://jlcpcb.com/partdetail/EverlightElec-19_217_R6C_AL1M2VY3T/C72044",
+    "C883122": "https://jlcpcb.com/partdetail/BHFUSE-BSMD1206_0506V/C883122",
+}
+
+
+def url(tpl, lcsc):
+    """出典 URL を組み立てる。フルスラッグで取得したものはそちらを返す。"""
+    if tpl is JLC and lcsc in JLC_SLUG:
+        return JLC_SLUG[lcsc]
+    return tpl.format(lcsc)
+
 # lcsc -> 取得した実体（Web 一次情報のみ。推測は入れない）
 FACTS = {
     "C6186": dict(
@@ -217,8 +233,41 @@ FACTS = {
         mpn="KT-0603R", mfr="Hubei KENTO Elec", pkg="LED-SMD_L1.6-W0.8-R-RD",
         spec="LED 0603 / 赤 645nm / Vf 1.8-2.4V @20mA / If max 25mA",
         cls="Basic", stock_lcsc=624750, stock_sz=0, jlc_onsale=True,
-        note="D_LED の代替候補。3.3V 駆動 + 330Ω で約 3.9mA 流れる。",
+        note="【追加調査で不採用】EasyEDA シンボルのピン生データは "
+             "A=pin**1** / K=pin**2**（`0~1~-5~0~A~end~~~#800^^0~9~-9~0~1~start` と "
+             "`0~K~start~~~#800^^0~-9~-9~0~2~end`）。現基板は pad1=GND=カソードなので "
+             "**極性が反転**し、そのまま置換すると LED が逆実装になる。"
+             "パッケージ名も 'LED-SMD_L1.6-W0.8-R-RD' で現フットプリントと別名。",
         src=[JLC, EDA]),
+    "C72044": dict(
+        mpn="19-217/R6C-AL1M2VY/3T", mfr="Everlight Elec", pkg="LED0603-RD",
+        spec="LED 0603 / 赤 617.5nm / Vf 1.95V @5mA / 11.5-28.5mcd / 120deg / 60mW",
+        cls="Extended", stock_lcsc=215065, stock_sz=902100, jlc_onsale=True,
+        note="D_LED 第 1 候補。現フットプリントと**パッケージ名が完全一致**（LED0603-RD）で、"
+             "ピン生データも pin1='C' / pin2='A'（C72043 と同一シリーズ・同一ライブラリ）。"
+             "3.3V - 1.95V = 1.35V / 330Ω = 約 4.1mA。"
+             "在庫は EasyEDA API 215,065（SZ 902,100）に対し LCSC 商品ページは "
+             "'Not available now' 表示で食い違う。",
+        src=[LCSC, JLC, EDA]),
+    "C72038": dict(
+        mpn="19-213/Y2C-CQ2R2L/3T(CY)", mfr="Everlight Elec", pkg="LED0603-RD-YELLOW",
+        spec="LED 0603 / 黄 / Vf 1.7-2.3V @20mA / 90-180mcd",
+        cls="Extended", stock_lcsc=70862, stock_sz=187040, jlc_onsale=True,
+        _src_note="LCSC 商品ページは未取得（JLC partdetail と EasyEDA API のみ）",
+        note="D_LED 第 2 候補。ピン生データは pin1='C' / pin2='A' で"
+             "**現基板の極性と一致**（`P~show~1~1~...C~start` / `P~show~1~2~...A~end`）。"
+             "BOM の value 'LED_Y'（黄）とも色が一致し、輝度は C72044 より高い。"
+             "ただしパッケージ名は 'LED0603-RD-**YELLOW**' で現フットプリント名と厳密には別名"
+             "（0603 ランド自体は同等とみられるがカート投入時に要プレビュー確認）。"
+             "Vf 2.0V 換算で (3.3-2.0)/330 = 約 3.9mA。",
+        src=[JLC, EDA]),
+    "C183844": dict(
+        mpn="19-217/G7C-AM1N2B/3T", mfr="Everlight Elec", pkg="LED0603-RD",
+        spec="LED 0603 / 黄緑",
+        cls="Extended", stock_lcsc=2920, stock_sz=540, jlc_onsale=True,
+        note="パッケージ名は LED0603-RD で一致し 19-217 シリーズだが、"
+             "在庫が LCSC 2,920 / SZ 540 と薄く非推奨。参考記録のみ。",
+        src=[EDA]),
     "C883122": dict(
         mpn="BSMD1206-050-6V", mfr="BHFUSE", pkg="F1206",
         spec="PPTC リセッタブルヒューズ hold 500mA / 6V / 1206",
@@ -313,9 +362,52 @@ JUDGE = {
 # 在庫リスク → 代替案
 ALTS = {
     "C94221": ["C1017"],
-    "C72043": ["C2286"],
+    "C72043": ["C72044", "C72038"],
     "C369159": ["C883122"],
 }
+
+# 追加調査（2026-08-28、lead 依頼）
+ADDENDUM = dict(
+    led_polarity=dict(
+        board_footprint="ProPrj_The-easyedapro:LED0603-RD",
+        board_pad_geometry="pad1/pad2 とも 0.8x0.8mm 角、x=-0.749 / +0.749mm（0603 ランド）",
+        board_polarity="pad1 = C（カソード）→ GND / pad2 = A（アノード）→ LED_A",
+        board_polarity_source=("contract/netlist_easyeda_api_2026-08-28.tsv の "
+                               "D_LED 行が pinName を保持: `D_LED 1 C GND` / `D_LED 2 A LED_A`"),
+        first_choice="C72044",
+        second_choice="C72038",
+        rejected=["C2286", "C183844"],
+    ),
+    board_recheck=dict(
+        when="2026-08-28 16:47（board が 16:46 に並行作業で更新されたため読み直し）",
+        stale_snapshot="contract/netlist_from_kicad_pcb.json は 13:45 時点",
+        pad_net_syntax='この kicad_pcb のパッド net は (net "名前") 形式で index を持たない',
+        findings={
+            "TPS72325": {"1": "GND", "2": "V_NLDO_IN", "3": "V_NLDO_IN",
+                         "4": "TPS_NR", "5": "AVSS"},
+            "ECO-1#1 (EN=V_NLDO_IN)": "適用済み（初版の『未反映』は誤りだったので訂正）",
+            "C_VCAP1_H": {"1": "VCAP1", "2": "AVSS", "footprint": "C0402"},
+            "C_VCAP2": {"1": "VCAP2", "2": "AVSS", "footprint": "C0402"},
+            "C_VCAP3": {"1": "VCAP3", "2": "AVSS", "footprint": "C0402"},
+            "C_VCAP3_H": {"1": "VCAP3", "2": "AVSS", "footprint": "C0402"},
+            "C_VCAP1": {"footprint": "C_1206_3216Metric"},
+            "C_VREFP_10u": {"footprint": "C_1206_3216Metric"},
+            "D_LED": {"1": "GND", "2": "LED_A", "footprint": "LED0603-RD"},
+            "R_LED": {"1": "STATUS_LED_DRV", "2": "LED_A"},
+            "FB5": {"1": "VDD_ESP", "2": "DVDD", "footprint": "L0805"},
+        },
+    ),
+    fb_footprint=dict(
+        board_footprint="ProPrj_The-easyedapro:L0805（FB1-FB5 の 5 点すべて）",
+        board_pad_geometry=("pad1/pad2 とも 1.1325 x 1.377mm、x=-0.966 / +0.966mm。"
+                            "内側ギャップ 0.8mm / 外形スパン 3.065mm / パッド幅 1.377mm"),
+        part_package="C1017 の EasyEDA パッケージ名は `L0805`（JLC partdetail の表記は `0805`）",
+        verdict="OK",
+        reason=("フットプリント名が `L0805` で完全一致。MPN の 'GZ2012' は 2012 メートル法 = "
+                "0805 インチで、パッド幅 1.377mm > 本体幅 1.25mm、スパン 3.065mm > 本体長 2.0mm と"
+                "ランドが本体を包含する。2 端子無極性なので向きの検討は不要。"),
+    ),
+)
 
 
 def main():
@@ -325,9 +417,12 @@ def main():
     for r in rows:
         grp.setdefault(r["lcsc"], []).append(r)
 
-    # PCB に実在する designator
-    nl = json.load(open(os.path.join(ROOT, "contract/netlist_from_kicad_pcb.json")))
-    on_pcb = set(p["ref"] for p in nl["pads"])
+    # PCB に実在する designator は基板ファイルを直読みする。
+    # contract/netlist_from_kicad_pcb.json は 13:45 のスナップショットで、
+    # その後 board が更新されているため配置判定には使わない。
+    import re
+    board = open(os.path.join(ROOT, "board/Therapia_EEG-HRV.kicad_pcb")).read()
+    on_pcb = set(re.findall(r'\(property "Reference" "([^"]+)"', board))
 
     out = []
     for lcsc, items in grp.items():
@@ -362,9 +457,9 @@ def main():
                                spec=FACTS[a]["spec"], jlc_part_class=FACTS[a]["cls"],
                                stock_lcsc=FACTS[a]["stock_lcsc"],
                                note=FACTS[a].get("note"),
-                               source_urls=[u.format(a) for u in FACTS[a]["src"]])
+                               source_urls=[url(u, a) for u in FACTS[a]["src"]])
                           for a in ALTS.get(lcsc, [])],
-            source_urls=[u.format(lcsc) for u in f["src"]],
+            source_urls=[url(u, lcsc) for u in f["src"]],
         )
         out.append(rec)
 
@@ -386,12 +481,254 @@ def main():
                                    if r["jlc_part_class"] == "Extended"],
         ),
         rows=out,
+        addendum=ADDENDUM,
+        addendum_rows=[
+            dict(lcsc=k, role=role, mpn=FACTS[k]["mpn"],
+                 manufacturer=FACTS[k]["mfr"], package=FACTS[k]["pkg"],
+                 spec=FACTS[k]["spec"], jlc_part_class=FACTS[k]["cls"],
+                 stock_lcsc=FACTS[k]["stock_lcsc"], stock_szlcsc=FACTS[k]["stock_sz"],
+                 jlc_on_sale=FACTS[k]["jlc_onsale"], verdict=verdict,
+                 note=FACTS[k].get("note"),
+                 source_urls=[url(u, k) for u in FACTS[k]["src"]])
+            for k, role, verdict in [
+                ("C72044", "D_LED 代替 第1候補", "採用推奨"),
+                ("C72038", "D_LED 代替 第2候補", "採用可"),
+                ("C2286", "D_LED 代替 検討→不採用", "NG（極性反転）"),
+                ("C183844", "D_LED 代替 検討→不採用", "非推奨（在庫薄）"),
+                ("C1017", "FB1-FB5 代替 確定", "採用推奨"),
+                ("C883122", "F1 代替 候補", "採用可"),
+            ]],
     )
     jp = os.path.join(ROOT, "reports/bom_verification.json")
     with open(jp, "w") as fh:
         json.dump(doc, fh, ensure_ascii=False, indent=2)
     print("wrote", jp, len(out), "rows")
+
+    mp = os.path.join(ROOT, "reports/bom_verification.md")
+    with open(mp, "w") as fh:
+        fh.write(render_md(doc))
+    print("wrote", mp)
     return doc
+
+
+def n(v):
+    if v is None:
+        return "取得不能"
+    return f"{v:,}"
+
+
+def render_md(doc):
+    L = []
+    w = L.append
+    order = {"NG": 0, "要確認": 1, "OK": 2}
+    rows = sorted(doc["rows"], key=lambda r: (order[r["verdict"]], r["lcsc"]))
+    ng = [r for r in rows if r["verdict"] == "NG"]
+    chk = [r for r in rows if r["verdict"] == "要確認"]
+
+    w(f"# Brain Canvas Rev.A — BOM 実体照合レポート（{doc['generated']}）\n")
+    w(f"対象: `{doc['parts_table']}` / `{doc['board']}`  ")
+    w(f"実装点数 **{doc['total_placements']}** ・品番数 **{doc['unique_part_numbers']}**  ")
+    w(f"判定: **NG {len(ng)}** / **要確認 {len(chk)}** / OK {len(doc['summary']['ok'])}\n")
+    w("## 照合方法\n")
+    w(doc["method"] + "\n")
+    w("出典 URL は各行に記録。取得できなかった項目は「取得不能」と明記し、推測では埋めていない。\n")
+
+    w("## 結論（発注前に潰すべき項目）\n")
+    w("| 優先 | 品番 | designator | 問題 | 推奨対処 |")
+    w("|---|---|---|---|---|")
+    w("| **1** | `C94221` | FB1–FB5 (5) | LCSC/JLC に**存在しない品番**。3 ソースで不存在を確認 | "
+      "`C1017`（Sunlord GZ2012D601TF, L0805, **Basic**, 在庫 75,200）へ差し替え |")
+    w("| **2** | `C72043` | D_LED (1) | 実体は緑 LED **Vf 3.3V**。3.3V GPIO + 330Ω では電流ほぼ 0 で点灯しない | "
+      "`C72044`（Everlight 19-217/R6C 赤, Vf 1.95V, フットプリント・極性とも完全一致）へ差し替え。"
+      "330Ω のまま約 4.1mA。詳細は末尾の追記を参照 |")
+    w("| 3 | `C13585` | C_VREFP_10u (1) | CSV の MPN が誤り（実体は …K**B**H…, 50V） | "
+      "**設計上は OK**。BOM の MPN 文字列のみ訂正。C15008 代替は不要 |")
+    w("| 4 | `C1546` | C_AVDD1_10n, C_VREFP_10n (2) | designator は「10n」だが実装は 100pF | "
+      "10nF が正なら `C15195`(0402) 相当へ。現状維持なら designator をリネーム |")
+    w("| 5 | `C369159` `C69932` `C701341` `C19619` | F1 / TPS72325 / U_MCU / TLV70025 | 在庫表示が薄い or ソース間で乖離 | "
+      "JLC カート投入時に実数を確認。F1 の同一フットプリント代替は `C883122` |")
+    w("| 6 | `C2840012` `C19619` `C72043` | J2 / TLV70025 / D_LED | CSV のパッケージ表記が実体と不一致 | "
+      "**基板側フットプリントは全て正しい**。CSV のラベルのみ訂正 |")
+    w("")
+
+    w("## NG（発注前に必ず修正）\n")
+    for r in ng:
+        w(f"### `{r['lcsc']}` — {', '.join(r['designators'])}（{r['qty']} 点）\n")
+        w(f"- **設計意図**: {r['design_intent']}")
+        w(f"- **取得した実体**: {r['fetched_mpn']} / {r['fetched_manufacturer']} / "
+          f"{r['fetched_package']} / {r['fetched_spec']}")
+        w(f"- **判定理由**: {r['reason']}")
+        if r["note"]:
+            w(f"- 補足: {r['note']}")
+        for a in r["alternatives"]:
+            w(f"- **推奨代替**: `{a['lcsc']}` {a['mpn']} / {a['pkg']} / {a['spec']} / "
+              f"JLC **{a['jlc_part_class']}** / 在庫 {n(a['stock_lcsc'])}")
+            if a["note"]:
+                w(f"  - {a['note']}")
+            w(f"  - 出典: " + " , ".join(a["source_urls"]))
+        w(f"- 出典: " + " , ".join(r["source_urls"]))
+        w("")
+
+    w("## 要確認\n")
+    for r in chk:
+        w(f"### `{r['lcsc']}` — {', '.join(r['designators'])}（{r['qty']} 点）\n")
+        w(f"- **設計意図**: {r['design_intent']}")
+        w(f"- **取得した実体**: {r['fetched_mpn']} / {r['fetched_manufacturer']} / "
+          f"{r['fetched_package']} / {r['fetched_spec']}")
+        w(f"- **判定理由**: {r['reason']}")
+        if r["note"]:
+            w(f"- 補足: {r['note']}")
+        for a in r["alternatives"]:
+            w(f"- **代替候補**: `{a['lcsc']}` {a['mpn']} / {a['pkg']} / {a['spec']} / "
+              f"JLC **{a['jlc_part_class']}** / 在庫 {n(a['stock_lcsc'])}")
+            if a["note"]:
+                w(f"  - {a['note']}")
+        w(f"- 出典: " + " , ".join(r["source_urls"]))
+        w("")
+
+    w("## 全品番一覧\n")
+    w("| 判定 | C番号 | designator（数） | 取得した MPN / メーカー | 取得したスペック | "
+      "取得したパッケージ | KiCad フットプリント | JLC 区分 | LCSC 在庫 | SZLCSC 在庫 |")
+    w("|---|---|---|---|---|---|---|---|---|---|")
+    mark = {"NG": "**NG**", "要確認": "要確認", "OK": "OK"}
+    for r in rows:
+        des = ", ".join(r["designators"])
+        if len(des) > 46:
+            des = r["designators"][0] + " ほか"
+        kf = r["kicad_footprint"].replace("ProPrj_The-easyedapro:", "")
+        w(f"| {mark[r['verdict']]} | `{r['lcsc']}` | {des} ({r['qty']}) | "
+          f"{r['fetched_mpn']} / {r['fetched_manufacturer']} | {r['fetched_spec']} | "
+          f"`{r['fetched_package']}` | `{kf}` | {r['jlc_part_class']} | "
+          f"{n(r['stock_lcsc'])} | {n(r['stock_szlcsc'])} |")
+    w("")
+
+    w("## 在庫リスク順位\n")
+    w("在庫はソース間で食い違うことがあるため、最終確定は JLC カート投入時とする。"
+      "以下は「発注前に実数を確認すべき」順。\n")
+    w("| 順位 | 品番 | designator | 取得できた在庫 | JLC 区分 | リスク内容 | 代替 |")
+    w("|---|---|---|---|---|---|---|")
+    w("| 1 | `C94221` | FB1–FB5 | — | 存在しない | 品番自体が引けない（在庫以前の問題） | `C1017` (Basic, 75,200) |")
+    w("| 2 | `C701341` | U_MCU | LCSC ページ 29,577 / API **6** | Extended | ソース間の乖離が最大。ESP32 モジュールは代替が効きにくい | 同等品は要検討 |")
+    w("| 3 | `C69932` | TPS72325 | LCSC ページ 7,086 / API **0**（SZ 3,843） | Extended | 負電圧 LDO は代替品が少ない。欠品時は基板が動かない | ピン互換の TPS723xx 系を要調査 |")
+    w("| 4 | `C13585` | C_VREFP_10u | LCSC ページ 917,300 / API **0/0** | Basic | ソース間の乖離。Basic なので JLC 側は通常確保 | `C15008`(100uF 6.3V 1206) で代替可 |")
+    w("| 5 | `C369159` | F1 | LCSC ページ **Not available now** / API 6,160 | Extended | 商品ページが在庫なし表示 | `C883122`（F1206 同一, 6V 定格に低下） |")
+    w("| 6 | `C19619` | TLV70025 | 1,480〜2,186 | Extended | 絶対数が少ない。10 台分なら足りる | +2.5V 200mA SOT-23-5 LDO を要調査 |")
+    w("| 7 | `C476817` | U_ADS | 3,126 | Extended | 単価 $60.31 と高額。数量確保より価格インパクト大 | 代替不可（設計の中核） |")
+    w("| 8 | `C108573` | LM2664 | LCSC ページ 49,955 / API **0**（SZ 1,620） | Extended | ソース間の乖離 | — |")
+    w("")
+
+    w("## JLC Extended 部品（手数料対象）\n")
+    ext = [r for r in doc["rows"] if r["jlc_part_class"] == "Extended"]
+    w(f"現 BOM の Extended は **{len(ext)} 品番**: "
+      + ", ".join(f"`{r['lcsc']}`({r['designators'][0]})" for r in ext) + "\n")
+    w("推奨差し替え（`C94221`→`C1017`, `C72043`→`C2286`）はいずれも Basic 品なので、"
+      "Extended 品番数は増えない。`C369159`→`C883122` は Extended のままで増減なし。\n")
+
+    w("## BOM 以外に気づいた点（参考・lead 判断用）\n")
+    w("> 注: `contract/netlist_from_kicad_pcb.json` は 13:45 のスナップショットで、"
+      "その後 `board/Therapia_EEG-HRV.kicad_pcb` が 16:46 に更新された（並行作業）。"
+      "以下は **16:47 に基板ファイルを直接読み直した結果**に基づく。\n")
+    w("- **ECO-1 は PCB に反映済み（再確認して訂正）**: 本レポート初版では"
+      "「TPS72325 の pin3(EN) が `GND` のままで B1 致命バグが残存」と書いたが、"
+      "これは 13:45 のネットリストに基づく古い所見だった。"
+      "現在の基板ファイルでは **pin3 = `V_NLDO_IN`**（pin1=GND / pin2=V_NLDO_IN / "
+      "pin4=TPS_NR / pin5=AVSS）で、ECO-1#1 は適用済み。")
+    w("- **ECO-1/ECO-3 の新設・変更部品も配置済み（同上）**: `C_VCAP1_H`(VCAP1-AVSS)、"
+      "`C_VCAP2`(VCAP2-AVSS)、`C_VCAP3`(VCAP3-AVSS)、`C_VCAP3_H`(VCAP3-AVSS) の 4 点が "
+      "`C0402` で配置・結線済み。`C_VCAP1` と `C_VREFP_10u` も `C_1206_3216Metric` に"
+      "差し替わっており ECO-3 の 1206 化も完了している。BOM 135 点と基板の点数は整合する。")
+    w("- **D_LED まわりは未変更**: `D_LED` pad1=`GND` / pad2=`LED_A`、"
+      "`R_LED` pad1=`STATUS_LED_DRV` / pad2=`LED_A` で、上記 LED の判定はそのまま有効。")
+    w("- **DVDD は +3.3V 給電**: FB5 が `VDD_ESP → DVDD`。"
+      "`08_simplified_power_design.md` の「AVDD と DVDD を共通 +2.5V」という記述と食い違う。"
+      "実回路の 3.3V は ADS1299 の DVDD 範囲(1.65–3.6V)内で、ESP32 の 3.3V ロジックとも整合するため "
+      "回路としては妥当。ドキュメント側が古い。")
+    w("- **フェライトビーズの DCR 前提が古い**: `08_simplified_power_design.md` は "
+      "BLM18PG600SN1D（DCR 38mΩ / 2.5A）前提で電圧降下 5.7mV としているが、実体の "
+      "GZ2012D601TF は **DCR 300mΩ / 定格 500mA**。FB3 は ESP32 系 80–240mA を通すため "
+      "降下は 24–72mV（想定の 4〜12 倍）。Rev.A は許容範囲だが、余裕を取るなら低 DCR 品を検討。")
+    w("- **ADS1299 PAG にサーマルパッドは無い**: KiCad フットプリントは 64 パッドのみで実体と整合。"
+      "`08_simplified_power_design.md` の「ADS1299 の thermal pad 直下に 9 個の via」は成立しない。")
+    w("- **USB-C のフットプリント名**: KiCad 側 `USB-C-SMD_TYPE-C-6PIN-2MD-073` は "
+      "EasyEDA 側 `…-16PIN-…` の名称欠落。パッド実体（12 SMD + 4 TH）は正しく、"
+      "ピン割当も EasyEDA シンボルの pinName と netlist が一致しているため実害なし。")
+    w("")
+    w("## 変更しなかったもの\n")
+    w("本レポートは調査のみ。`data/parts_lcsc.csv`・`board/` は一切編集していない。"
+      "差し替えの反映は lead 判断とする。\n")
+
+    a = doc["addendum"]
+    led, fb = a["led_polarity"], a["fb_footprint"]
+    w("---\n")
+    w("# 追記（2026-08-28、追加調査）\n")
+
+    w("## 1. D_LED の代替を確定\n")
+    w("### 前提：現基板側の極性\n")
+    w(f"- フットプリント: `{led['board_footprint']}`")
+    w(f"- パッド実測: {led['board_pad_geometry']}")
+    w(f"- **極性: {led['board_polarity']}**")
+    w(f"- 根拠: {led['board_polarity_source']}")
+    w("")
+    w("シルクの向きではなく **EasyEDA シンボルの pinName** を根拠にした（J1 の "
+      "ピン割当を確定したのと同じ方法）。`pinNumber` はライブラリ内連番で"
+      "データシートと一致しないことがあるため単独では使わない。\n")
+
+    w("### 候補の比較\n")
+    w("| | C番号 | MPN / 色 | EasyEDA パッケージ名 | ピン番号→名 | Vf | 330Ω・3.3V での電流 | "
+      "JLC 区分 | 在庫(LCSC / SZLCSC) | 判定 |")
+    w("|---|---|---|---|---|---|---|---|---|---|")
+    w("| **第1候補** | `C72044` | 19-217/R6C-AL1M2VY/3T / 赤 617.5nm | "
+      "`LED0603-RD` **完全一致** | **1=C, 2=A**（現基板と一致） | 1.95V @5mA | "
+      "**約 4.1mA** | Extended | 215,065 / 902,100 | **採用推奨** |")
+    w("| **第2候補** | `C72038` | 19-213/Y2C-CQ2R2L/3T(CY) / 黄 | "
+      "`LED0603-RD-YELLOW`（別名） | **1=C, 2=A**（現基板と一致） | 1.7–2.3V @20mA | "
+      "約 3.9mA | Extended | 70,862 / 187,040 | 採用可 |")
+    w("| 不採用 | `C2286` | KT-0603R / 赤 645nm | `LED-SMD_L1.6-W0.8-R-RD`（別名） | "
+      "**1=A, 2=K**（**反転**） | 1.8–2.4V | 約 3.9mA | Basic | 624,750 / 0 | "
+      "**NG（逆実装になる）** |")
+    w("| 不採用 | `C183844` | 19-217/G7C-AM1N2B/3T / 黄緑 | `LED0603-RD` 一致 | "
+      "取得不能 | 取得不能 | — | Extended | 2,920 / 540 | 非推奨（在庫薄） |")
+    w("")
+
+    w("### 判定理由\n")
+    w("**`C72044` を第 1 候補とする。** 現在の `C72043` と同じ Everlight 19-217 シリーズ・"
+      "同じ EasyEDA ライブラリの赤バリアントで、パッケージ名が `LED0603-RD` と完全一致する。"
+      "ピン生データも `P~show~1~**1**~...~**C**~end~...` / `P~show~1~**2**~...~**A**~start~...` で "
+      "pin1=カソード・pin2=アノード、現基板の pad1=GND(カソード) と一致するため、"
+      "**C 番号の差し替えだけで済み、基板の銅箔も配線も触らなくてよい**。"
+      "Vf 1.95V に対し (3.3−1.95)/330 = 約 4.1mA で、依頼の 3〜4mA 帯に収まる。\n")
+    w("JLC 区分は Extended だが、差し替え前の `C72043` も同シリーズで、"
+      "同ページに Basic バッジが出ていないため区分は実質変わらないと見込まれる"
+      "（`C72043` の区分は 3 URL とも表示されず取得不能のままなので、断定はしない）。\n")
+    w("**`C72038`（黄）を第 2 候補とする。** ピン番号→名は `1=C / 2=A` で現基板と一致し、"
+      "BOM の value `LED_Y`（黄）とも色が揃う。輝度も 90–180mcd@20mA と `C72044` の "
+      "11.5–28.5mcd@5mA より高く、ステータス表示としては見やすい。"
+      "唯一の引っかかりはパッケージ名が `LED0603-RD-YELLOW` と別名である点で、"
+      "0603 ランド自体は同等と見られるが名称一致の条件を厳密には満たさないため第 2 候補とした。"
+      "採用する場合はカート投入時に JLC のプレビューで外形と向きを確認すること。\n")
+    w("**`C2286`（前回の推奨）は撤回する。** EasyEDA シンボルのピン生データを読むと "
+      "`0~1~-5~0~**A**~end~~~#800^^0~9~-9~0~**1**~start` と "
+      "`0~**K**~start~~~#800^^0~-9~-9~0~**2**~end` で、**A=pin1 / K=pin2**。"
+      "現基板は pad1 がカソードなので、そのまま置換すると LED が逆実装になる。"
+      "Basic かつ在庫潤沢という利点はあるが、極性が合わないので採用しない。\n")
+
+    w("## 2. C1017（GZ2012D601TF）のフットプリント整合\n")
+    w(f"- 基板側: `{fb['board_footprint']}`")
+    w(f"- パッド実測: {fb['board_pad_geometry']}")
+    w(f"- 部品側: {fb['part_package']}")
+    w(f"- **判定: {fb['verdict']}**")
+    w(f"- 理由: {fb['reason']}")
+    w("")
+    w("`grep -o 'footprint \"[^\"]*\"'` の結果でも `ProPrj_The-easyedapro:L0805` はちょうど "
+      "5 個で、FB1–FB5 の 5 点と一致する。他の 0805 系（`C0805` 8 個・`R0805` 6 個）とは"
+      "別フットプリントとして分かれており、取り違えは起きていない。\n")
+
+    w("## 追加調査で参照した URL\n")
+    for k in ("C72044", "C72038", "C2286", "C183844", "C1017"):
+        urls = " , ".join(url(u, k) for u in FACTS[k]["src"])
+        w(f"- `{k}`: {urls}")
+    w("")
+    return "\n".join(L)
 
 
 if __name__ == "__main__":
