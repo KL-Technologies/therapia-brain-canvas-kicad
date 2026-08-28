@@ -1,4 +1,4 @@
-Found 1021 violations
+Found 1056 violations
 Found 0 unconnected items
 Saved DRC Report to /Users/dev/projects/therapia-device/brain_canvas_kicad/logs/drc_import.json
 Saved board
