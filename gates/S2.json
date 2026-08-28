@@ -129,7 +129,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T13:30:26",
+  "timestamp": "2026-08-28T13:35:34",
   "notes": "KiCad relocated the board origin by [120.0, 80.0] mm. Geometry is intact, but every EasyEDA-derived coordinate in the ECO notes must be shifted by this before use in KiCad. | FB5 pin1=VDD_ESP pin2=DVDD | ECO-1 NOT APPLIED on the PCB: TPS72325 pin3(EN)='GND', AVDD pads=21",
   "hole_detail": [
     {

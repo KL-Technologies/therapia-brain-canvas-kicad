@@ -231,10 +231,10 @@
     "caveat": "Pin functions (RESV1, GPIO1-4, VCAP2/3) cannot be read off the PCB -- only pad numbers exist there. The unconnected ADS1299 pads are listed above; map them to pin names via the schematic symbol before acting."
   },
   "drc_at_import": {
-    "violations": 1025,
+    "violations": 1021,
     "unconnected": 0,
     "by_type": {
-      "clearance": 336,
+      "clearance": 333,
       "silk_overlap": 199,
       "lib_footprint_issues": 131,
       "silk_over_copper": 115,
@@ -245,8 +245,8 @@
       "hole_clearance": 6,
       "solder_mask_bridge": 5,
       "annular_width": 4,
-      "shorting_items": 4,
       "padstack": 4,
+      "shorting_items": 3,
       "via_dangling": 2,
       "silk_edge_clearance": 2,
       "pth_inside_courtyard": 1,
@@ -254,7 +254,7 @@
       "starved_thermal": 1
     },
     "by_severity": {
-      "error": 548,
+      "error": 544,
       "warning": 477
     },
     "note": "Informational only. Run against KiCad DEFAULT design rules -- the EasyEDA constraints were not transferred (see contract/easyeda_rules.json). Counts are not comparable to the EasyEDA DRC until S3 sets the rules up."

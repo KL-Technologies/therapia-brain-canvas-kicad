@@ -1,7 +1,7 @@
 {
-  "source": "./import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
-  "patched": "./import/patched.epro",
-  "board": "./board/Therapia_EEG-HRV.kicad_pcb",
+  "source": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+  "patched": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/patched.epro",
+  "board": "/Users/dev/projects/therapia-device/brain_canvas_kicad/board/Therapia_EEG-HRV.kicad_pcb",
   "chosen_stage": "raw",
   "score": 8,
   "detail": [
@@ -35,7 +35,11 @@
     }
   ],
   "drc": {
-    "skipped": true
+    "skipped": false,
+    "returncode": 0,
+    "violations": 1021,
+    "unconnected": 0,
+    "schematic_parity": 0
   },
   "pad_net_repair": {
     "ok": true,

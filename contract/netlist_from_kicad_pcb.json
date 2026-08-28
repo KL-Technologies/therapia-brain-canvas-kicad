@@ -6,1527 +6,6 @@
   "note": "designator -> pad -> net as KiCad now holds it",
   "pads": [
     {
-      "ref": "",
-      "pad": "H3",
-      "net": "",
-      "x_mm": 123.048,
-      "y_mm": 121.961,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        2.3875,
-        2.3875
-      ]
-    },
-    {
-      "ref": "Q_EN",
-      "pad": "1",
-      "net": "Q_EN_B",
-      "x_mm": 162.3765,
-      "y_mm": 110.414,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "Q_EN",
-      "pad": "2",
-      "net": "CH_RTS_N",
-      "x_mm": 162.3765,
-      "y_mm": 108.514,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "Q_EN",
-      "pad": "3",
-      "net": "ESP_EN",
-      "x_mm": 160.1735,
-      "y_mm": 109.464,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "Q_IO0",
-      "pad": "1",
-      "net": "Q_IO0_B",
-      "x_mm": 167.2025,
-      "y_mm": 110.414,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "Q_IO0",
-      "pad": "2",
-      "net": "CH_DTR_N",
-      "x_mm": 167.2025,
-      "y_mm": 108.514,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "Q_IO0",
-      "pad": "3",
-      "net": "ESP_IO0",
-      "x_mm": 164.9995,
-      "y_mm": 109.464,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "1",
-      "net": "GND",
-      "x_mm": 175.791,
-      "y_mm": 114.188,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "2",
-      "net": "USB_VBUS_RAW",
-      "x_mm": 175.791,
-      "y_mm": 113.388,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "3",
-      "net": "",
-      "x_mm": 175.791,
-      "y_mm": 112.738,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "4",
-      "net": "USB_CC1",
-      "x_mm": 175.791,
-      "y_mm": 112.238,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "5",
-      "net": "USB_DM",
-      "x_mm": 175.791,
-      "y_mm": 111.738,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "6",
-      "net": "USB_DP",
-      "x_mm": 175.791,
-      "y_mm": 111.238,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "7",
-      "net": "USB_DM",
-      "x_mm": 175.791,
-      "y_mm": 110.738,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "8",
-      "net": "USB_DP",
-      "x_mm": 175.791,
-      "y_mm": 110.238,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "9",
-      "net": "",
-      "x_mm": 175.791,
-      "y_mm": 109.738,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "10",
-      "net": "USB_CC2",
-      "x_mm": 175.791,
-      "y_mm": 109.238,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "11",
-      "net": "USB_VBUS_RAW",
-      "x_mm": 175.791,
-      "y_mm": 108.588,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "12",
-      "net": "GND",
-      "x_mm": 175.791,
-      "y_mm": 107.788,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "13",
-      "net": "CHASSIS_GND",
-      "x_mm": 176.341,
-      "y_mm": 115.313,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        0.6,
-        1.5
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "13",
-      "net": "CHASSIS_GND",
-      "x_mm": 180.541,
-      "y_mm": 115.313,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        0.6,
-        1.2
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "14",
-      "net": "CHASSIS_GND",
-      "x_mm": 176.341,
-      "y_mm": 106.663,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        0.6,
-        1.5
-      ]
-    },
-    {
-      "ref": "J1",
-      "pad": "14",
-      "net": "CHASSIS_GND",
-      "x_mm": 180.541,
-      "y_mm": 106.663,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        0.6,
-        1.2
-      ]
-    },
-    {
-      "ref": "C_CM3P",
-      "pad": "1",
-      "net": "IN3P",
-      "x_mm": 133.727,
-      "y_mm": 107.635,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM3P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 107.635,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM4N",
-      "pad": "1",
-      "net": "IN4N",
-      "x_mm": 133.524,
-      "y_mm": 103.1395,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM4N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 103.1395,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM4P",
-      "pad": "1",
-      "net": "IN4P",
-      "x_mm": 133.727,
-      "y_mm": 104.638,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM4P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 104.638,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM5N",
-      "pad": "1",
-      "net": "IN5N",
-      "x_mm": 133.524,
-      "y_mm": 100.142,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM5N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 100.142,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM5P",
-      "pad": "1",
-      "net": "IN5P",
-      "x_mm": 133.727,
-      "y_mm": 101.641,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM5P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 101.641,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM6N",
-      "pad": "1",
-      "net": "IN6N",
-      "x_mm": 133.524,
-      "y_mm": 97.145,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM6N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 97.145,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM6P",
-      "pad": "1",
-      "net": "IN6P",
-      "x_mm": 133.727,
-      "y_mm": 98.6435,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM6P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 98.6435,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM7N",
-      "pad": "1",
-      "net": "IN7N",
-      "x_mm": 133.524,
-      "y_mm": 94.148,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM7N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 94.148,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM7P",
-      "pad": "1",
-      "net": "IN7P",
-      "x_mm": 133.727,
-      "y_mm": 95.6465,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM7P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 95.6465,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM8N",
-      "pad": "1",
-      "net": "IN8N",
-      "x_mm": 133.524,
-      "y_mm": 91.1505,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM8N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 91.1505,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM8P",
-      "pad": "1",
-      "net": "IN8P",
-      "x_mm": 133.727,
-      "y_mm": 92.649,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM8P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 92.649,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DVDD_10u",
-      "pad": "1",
-      "net": "DVDD",
-      "x_mm": 149.718,
-      "y_mm": 86.666,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DVDD_10u",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 149.718,
-      "y_mm": 88.066,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DVDD_B",
-      "pad": "1",
-      "net": "DVDD",
-      "x_mm": 151.75,
-      "y_mm": 86.666,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DVDD_B",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 151.75,
-      "y_mm": 88.066,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_LM_FLY",
-      "pad": "1",
-      "net": "LM_CAP_P",
-      "x_mm": 147.178,
-      "y_mm": 122.356,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_LM_FLY",
-      "pad": "2",
-      "net": "LM_CAP_N",
-      "x_mm": 147.178,
-      "y_mm": 120.956,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_LM_OUT",
-      "pad": "1",
-      "net": "VNEG5",
-      "x_mm": 148.956,
-      "y_mm": 122.356,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_LM_OUT",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 148.956,
-      "y_mm": 120.956,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_USB5V_B",
-      "pad": "1",
-      "net": "USB_5V",
-      "x_mm": 176.134,
-      "y_mm": 100.004,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_USB5V_B",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 176.134,
-      "y_mm": 98.604,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_VCAP1",
-      "pad": "1",
-      "net": "VCAP1",
-      "x_mm": 150.542,
-      "y_mm": 112.766,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_VCAP1",
-      "pad": "2",
-      "net": "AVSS",
-      "x_mm": 151.942,
-      "y_mm": 112.766,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_OUT",
-      "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 163.18,
-      "y_mm": 121.848,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_OUT",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 163.18,
-      "y_mm": 120.448,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_VREFP_10u",
-      "pad": "1",
-      "net": "VREFP",
-      "x_mm": 149.729,
-      "y_mm": 110.48,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_VREFP_10u",
-      "pad": "2",
-      "net": "AVSS",
-      "x_mm": 151.129,
-      "y_mm": 110.48,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_AVDD1_10u",
-      "pad": "1",
-      "net": "AVDD",
-      "x_mm": 143.43,
-      "y_mm": 92.7,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_AVDD1_10u",
-      "pad": "2",
-      "net": "AVSS",
-      "x_mm": 144.83,
-      "y_mm": 92.7,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_AVDD_B",
-      "pad": "1",
-      "net": "AVDD",
-      "x_mm": 144.13,
-      "y_mm": 116.26,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_AVDD_B",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 144.13,
-      "y_mm": 114.86,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_B",
-      "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 155.763,
-      "y_mm": 112.704,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_B",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 155.763,
-      "y_mm": 111.304,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_AVSS_B",
-      "pad": "1",
-      "net": "AVSS",
-      "x_mm": 149.21,
-      "y_mm": 115.368,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_AVSS_B",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 149.21,
-      "y_mm": 116.768,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_B2",
-      "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 162.164,
-      "y_mm": 121.848,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_B2",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 162.164,
-      "y_mm": 120.448,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_BULK",
-      "pad": "1",
-      "net": "USB_5V",
-      "x_mm": 151.75,
-      "y_mm": 123.372,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_BULK",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 151.75,
-      "y_mm": 121.972,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM1N",
-      "pad": "1",
-      "net": "IN1N",
-      "x_mm": 133.524,
-      "y_mm": 112.131,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM1N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 112.131,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM1P",
-      "pad": "1",
-      "net": "IN1P",
-      "x_mm": 133.727,
-      "y_mm": 113.6295,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM1P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 113.6295,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM2N",
-      "pad": "1",
-      "net": "IN2N",
-      "x_mm": 133.524,
-      "y_mm": 109.134,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM2N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 109.134,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM2P",
-      "pad": "1",
-      "net": "IN2P",
-      "x_mm": 133.727,
-      "y_mm": 110.6325,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM2P",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 135.127,
-      "y_mm": 110.6325,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM3N",
-      "pad": "1",
-      "net": "IN3N",
-      "x_mm": 133.524,
-      "y_mm": 106.1365,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_CM3N",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 134.924,
-      "y_mm": 106.1365,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "F1",
-      "pad": "1",
-      "net": "USB_VBUS_RAW",
-      "x_mm": 177.912,
-      "y_mm": 100.749,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "F1",
-      "pad": "2",
-      "net": "USB_5V",
-      "x_mm": 177.912,
-      "y_mm": 97.859,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB2",
-      "pad": "1",
-      "net": "USB_5V",
-      "x_mm": 139.1,
-      "y_mm": 118.608,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB2",
-      "pad": "2",
-      "net": "V_PLDO_IN",
-      "x_mm": 141.032,
-      "y_mm": 118.608,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB1",
-      "pad": "1",
-      "net": "USB_5V",
-      "x_mm": 139.1,
-      "y_mm": 120.64,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB1",
-      "pad": "2",
-      "net": "V5_LM_IN",
-      "x_mm": 141.032,
-      "y_mm": 120.64,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB3",
-      "pad": "1",
-      "net": "USB_5V",
-      "x_mm": 166.99,
-      "y_mm": 122.114,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB3",
-      "pad": "2",
-      "net": "V_3V3_IN",
-      "x_mm": 166.99,
-      "y_mm": 120.182,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB4",
-      "pad": "1",
-      "net": "VNEG5",
-      "x_mm": 139.1,
-      "y_mm": 122.672,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB4",
-      "pad": "2",
-      "net": "V_NLDO_IN",
-      "x_mm": 141.032,
-      "y_mm": 122.672,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB5",
-      "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 148.244,
-      "y_mm": 85.08,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "FB5",
-      "pad": "2",
-      "net": "DVDD",
-      "x_mm": 150.176,
-      "y_mm": 85.08,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_ESD",
-      "pad": "1",
-      "net": "USB_DP",
-      "x_mm": 176.454,
-      "y_mm": 104.771,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_ESD",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 177.404,
-      "y_mm": 104.771,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_ESD",
-      "pad": "3",
-      "net": "USB_DM",
-      "x_mm": 178.354,
-      "y_mm": 104.771,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_ESD",
-      "pad": "4",
-      "net": "USB_DM",
-      "x_mm": 178.354,
-      "y_mm": 102.473,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_ESD",
-      "pad": "5",
-      "net": "USB_VBUS_RAW",
-      "x_mm": 177.404,
-      "y_mm": 102.473,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_ESD",
-      "pad": "6",
-      "net": "USB_DP",
-      "x_mm": 176.454,
-      "y_mm": 102.473,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "1",
-      "net": "GND",
-      "x_mm": 157.719,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "2",
-      "net": "ESP_RXD",
-      "x_mm": 158.989,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "3",
-      "net": "ESP_TXD",
-      "x_mm": 160.259,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "4",
-      "net": "CH340_V3",
-      "x_mm": 161.529,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "5",
-      "net": "USB_DP",
-      "x_mm": 162.799,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "6",
-      "net": "USB_DM",
-      "x_mm": 164.069,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "7",
-      "net": "",
-      "x_mm": 165.339,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "8",
-      "net": "",
-      "x_mm": 166.609,
-      "y_mm": 117.9245,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "9",
-      "net": "",
-      "x_mm": 166.609,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "10",
-      "net": "",
-      "x_mm": 165.339,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "11",
-      "net": "",
-      "x_mm": 164.069,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "12",
-      "net": "",
-      "x_mm": 162.799,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "13",
-      "net": "CH_DTR_N",
-      "x_mm": 161.529,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "14",
-      "net": "CH_RTS_N",
-      "x_mm": 160.259,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "15",
-      "net": "GND",
-      "x_mm": 158.989,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "U_USB",
-      "pad": "16",
-      "net": "USB_5V",
-      "x_mm": 157.719,
-      "y_mm": 112.1795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
       "ref": "U_MCU",
       "pad": "1",
       "net": "GND",
@@ -2138,981 +617,6 @@
       ]
     },
     {
-      "ref": "LM2664",
-      "pad": "1",
-      "net": "GND",
-      "x_mm": 145.48,
-      "y_mm": 123.368,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "LM2664",
-      "pad": "2",
-      "net": "VNEG5",
-      "x_mm": 145.48,
-      "y_mm": 122.418,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "LM2664",
-      "pad": "3",
-      "net": "LM_CAP_N",
-      "x_mm": 145.48,
-      "y_mm": 121.468,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "LM2664",
-      "pad": "4",
-      "net": "V5_LM_IN",
-      "x_mm": 142.78,
-      "y_mm": 121.468,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "LM2664",
-      "pad": "5",
-      "net": "V5_LM_IN",
-      "x_mm": 142.78,
-      "y_mm": 122.418,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "LM2664",
-      "pad": "6",
-      "net": "LM_CAP_P",
-      "x_mm": 142.78,
-      "y_mm": 123.368,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "",
-      "pad": "H4",
-      "net": "",
-      "x_mm": 176.947,
-      "y_mm": 121.961,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        2.3875,
-        2.3875
-      ]
-    },
-    {
-      "ref": "",
-      "pad": "H1",
-      "net": "",
-      "x_mm": 123.048,
-      "y_mm": 83.048,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        2.3875,
-        2.3875
-      ]
-    },
-    {
-      "ref": "AMS1117",
-      "pad": "1",
-      "net": "GND",
-      "x_mm": 176.564,
-      "y_mm": 122.2795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "AMS1117",
-      "pad": "2",
-      "net": "VDD_ESP",
-      "x_mm": 176.564,
-      "y_mm": 119.9795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "AMS1117",
-      "pad": "3",
-      "net": "V_3V3_IN",
-      "x_mm": 176.564,
-      "y_mm": 117.6795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "AMS1117",
-      "pad": "4",
-      "net": "VDD_ESP",
-      "x_mm": 170.624,
-      "y_mm": 119.9795,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_LED",
-      "pad": "1",
-      "net": "GND",
-      "x_mm": 177.163,
-      "y_mm": 87.62,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "D_LED",
-      "pad": "2",
-      "net": "LED_A",
-      "x_mm": 178.661,
-      "y_mm": 87.62,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_CC1",
-      "pad": "1",
-      "net": "USB_CC1",
-      "x_mm": 178.166,
-      "y_mm": 110.2175,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_CC1",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 178.166,
-      "y_mm": 108.7105,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_CC2",
-      "pad": "1",
-      "net": "USB_CC2",
-      "x_mm": 172.5865,
-      "y_mm": 110.226,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_CC2",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 174.0935,
-      "y_mm": 110.226,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_CS_UP",
-      "pad": "1",
-      "net": "ADS_CS_N",
-      "x_mm": 146.162,
-      "y_mm": 83.8015,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_CS_UP",
-      "pad": "2",
-      "net": "DVDD",
-      "x_mm": 146.162,
-      "y_mm": 82.2945,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_DRDY_UP",
-      "pad": "1",
-      "net": "ADS_DRDY_N",
-      "x_mm": 149.21,
-      "y_mm": 83.8015,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_DRDY_UP",
-      "pad": "2",
-      "net": "DVDD",
-      "x_mm": 149.21,
-      "y_mm": 82.2945,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_EN_UP",
-      "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 157.846,
-      "y_mm": 110.2175,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_EN_UP",
-      "pad": "2",
-      "net": "ESP_EN",
-      "x_mm": 157.846,
-      "y_mm": 108.7105,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IO0_UP",
-      "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 174.61,
-      "y_mm": 84.8345,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IO0_UP",
-      "pad": "2",
-      "net": "ESP_IO0",
-      "x_mm": 174.61,
-      "y_mm": 86.3415,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IO2_DN",
-      "pad": "1",
-      "net": "ESP_IO2",
-      "x_mm": 174.6185,
-      "y_mm": 91.811,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IO2_DN",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 176.1255,
-      "y_mm": 91.811,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IO15_DN",
-      "pad": "1",
-      "net": "ESP_IO15",
-      "x_mm": 174.6185,
-      "y_mm": 93.081,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IO15_DN",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 176.1255,
-      "y_mm": 93.081,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_LED",
-      "pad": "1",
-      "net": "STATUS_LED_DRV",
-      "x_mm": 177.1585,
-      "y_mm": 89.652,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_LED",
-      "pad": "2",
-      "net": "LED_A",
-      "x_mm": 178.6655,
-      "y_mm": 89.652,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_PWDN_UP",
-      "pad": "1",
-      "net": "ADS_PWDN_N",
-      "x_mm": 152.258,
-      "y_mm": 83.8015,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_PWDN_UP",
-      "pad": "2",
-      "net": "DVDD",
-      "x_mm": 152.258,
-      "y_mm": 82.2945,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_Q_EN_B",
-      "pad": "1",
-      "net": "CH_DTR_N",
-      "x_mm": 163.942,
-      "y_mm": 110.2175,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_Q_EN_B",
-      "pad": "2",
-      "net": "Q_EN_B",
-      "x_mm": 163.942,
-      "y_mm": 108.7105,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_Q_IO0_B",
-      "pad": "1",
-      "net": "CH_RTS_N",
-      "x_mm": 168.768,
-      "y_mm": 110.2175,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_Q_IO0_B",
-      "pad": "2",
-      "net": "Q_IO0_B",
-      "x_mm": 168.768,
-      "y_mm": 108.7105,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_RST_UP",
-      "pad": "1",
-      "net": "ADS_RESET_N",
-      "x_mm": 150.353,
-      "y_mm": 83.8015,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_RST_UP",
-      "pad": "2",
-      "net": "DVDD",
-      "x_mm": 150.353,
-      "y_mm": 82.2945,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_START_DN",
-      "pad": "1",
-      "net": "ADS_START",
-      "x_mm": 171.308,
-      "y_mm": 108.7105,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_START_DN",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 171.308,
-      "y_mm": 110.2175,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN1N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 112.131,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN1N",
-      "pad": "2",
-      "net": "IN1N",
-      "x_mm": 129.069,
-      "y_mm": 112.131,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN1P",
-      "pad": "1",
-      "net": "FP1_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 113.6295,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN1P",
-      "pad": "2",
-      "net": "IN1P",
-      "x_mm": 129.069,
-      "y_mm": 113.6295,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN2N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 109.134,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN2N",
-      "pad": "2",
-      "net": "IN2N",
-      "x_mm": 129.069,
-      "y_mm": 109.134,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN2P",
-      "pad": "1",
-      "net": "FP2_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 110.6325,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN2P",
-      "pad": "2",
-      "net": "IN2P",
-      "x_mm": 129.069,
-      "y_mm": 110.6325,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN3N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 106.1365,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN3N",
-      "pad": "2",
-      "net": "IN3N",
-      "x_mm": 129.069,
-      "y_mm": 106.1365,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN3P",
-      "pad": "1",
-      "net": "CH3_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 107.635,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN3P",
-      "pad": "2",
-      "net": "IN3P",
-      "x_mm": 129.069,
-      "y_mm": 107.635,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN4N",
-      "pad": "1",
-      "net": "ECGN_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 103.1395,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN4N",
-      "pad": "2",
-      "net": "IN4N",
-      "x_mm": 129.069,
-      "y_mm": 103.1395,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN4P",
-      "pad": "1",
-      "net": "ECGP_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 104.638,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN4P",
-      "pad": "2",
-      "net": "IN4P",
-      "x_mm": 129.069,
-      "y_mm": 104.638,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN5N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 100.142,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN5N",
-      "pad": "2",
-      "net": "IN5N",
-      "x_mm": 129.069,
-      "y_mm": 100.142,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN5P",
-      "pad": "1",
-      "net": "CH5_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 101.641,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN5P",
-      "pad": "2",
-      "net": "IN5P",
-      "x_mm": 129.069,
-      "y_mm": 101.641,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN6N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 97.145,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN6N",
-      "pad": "2",
-      "net": "IN6N",
-      "x_mm": 129.069,
-      "y_mm": 97.145,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN6P",
-      "pad": "1",
-      "net": "CH6_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 98.6435,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN6P",
-      "pad": "2",
-      "net": "IN6P",
-      "x_mm": 129.069,
-      "y_mm": 98.6435,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN7N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 94.148,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN7N",
-      "pad": "2",
-      "net": "IN7N",
-      "x_mm": 129.069,
-      "y_mm": 94.148,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN7P",
-      "pad": "1",
-      "net": "CH7_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 95.6465,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN7P",
-      "pad": "2",
-      "net": "IN7P",
-      "x_mm": 129.069,
-      "y_mm": 95.6465,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN8N",
-      "pad": "1",
-      "net": "SRB1",
-      "x_mm": 128.203,
-      "y_mm": 91.1505,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN8N",
-      "pad": "2",
-      "net": "IN8N",
-      "x_mm": 129.069,
-      "y_mm": 91.1505,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN8P",
-      "pad": "1",
-      "net": "CH8_ELEC",
-      "x_mm": 128.203,
-      "y_mm": 92.649,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "R_IN8P",
-      "pad": "2",
-      "net": "IN8P",
-      "x_mm": 129.069,
-      "y_mm": 92.649,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "",
-      "pad": "H2",
-      "net": "",
-      "x_mm": 176.947,
-      "y_mm": 83.048,
-      "attr": 0,
-      "npth": false,
-      "drill_mm": [
-        2.3875,
-        2.3875
-      ]
-    },
-    {
       "ref": "R_BIAS_FB",
       "pad": "1",
       "net": "BIAS_INV",
@@ -3261,6 +765,565 @@
       "net": "A2_ELEC",
       "x_mm": 127.636,
       "y_mm": 89.144,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TLV70025",
+      "pad": "1",
+      "net": "V_PLDO_IN",
+      "x_mm": 145.43,
+      "y_mm": 119.812,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TLV70025",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 145.43,
+      "y_mm": 118.862,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TLV70025",
+      "pad": "3",
+      "net": "V_PLDO_IN",
+      "x_mm": 145.43,
+      "y_mm": 117.912,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TLV70025",
+      "pad": "4",
+      "net": "",
+      "x_mm": 142.83,
+      "y_mm": 117.912,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TLV70025",
+      "pad": "5",
+      "net": "AVDD",
+      "x_mm": 142.83,
+      "y_mm": 119.812,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TPS72325",
+      "pad": "1",
+      "net": "GND",
+      "x_mm": 153.05,
+      "y_mm": 119.812,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TPS72325",
+      "pad": "2",
+      "net": "V_NLDO_IN",
+      "x_mm": 153.05,
+      "y_mm": 118.862,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TPS72325",
+      "pad": "3",
+      "net": "GND",
+      "x_mm": 153.05,
+      "y_mm": 117.912,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TPS72325",
+      "pad": "4",
+      "net": "TPS_NR",
+      "x_mm": 150.45,
+      "y_mm": 117.912,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "TPS72325",
+      "pad": "5",
+      "net": "AVSS",
+      "x_mm": 150.45,
+      "y_mm": 119.812,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "F1",
+      "pad": "1",
+      "net": "USB_VBUS_RAW",
+      "x_mm": 177.912,
+      "y_mm": 100.749,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "F1",
+      "pad": "2",
+      "net": "USB_5V",
+      "x_mm": 177.912,
+      "y_mm": 97.859,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "1",
+      "net": "GND",
+      "x_mm": 157.719,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "2",
+      "net": "ESP_RXD",
+      "x_mm": 158.989,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "3",
+      "net": "ESP_TXD",
+      "x_mm": 160.259,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "4",
+      "net": "CH340_V3",
+      "x_mm": 161.529,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "5",
+      "net": "USB_DP",
+      "x_mm": 162.799,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "6",
+      "net": "USB_DM",
+      "x_mm": 164.069,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "7",
+      "net": "",
+      "x_mm": 165.339,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "8",
+      "net": "",
+      "x_mm": 166.609,
+      "y_mm": 117.9245,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "9",
+      "net": "",
+      "x_mm": 166.609,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "10",
+      "net": "",
+      "x_mm": 165.339,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "11",
+      "net": "",
+      "x_mm": 164.069,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "12",
+      "net": "",
+      "x_mm": 162.799,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "13",
+      "net": "CH_DTR_N",
+      "x_mm": 161.529,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "14",
+      "net": "CH_RTS_N",
+      "x_mm": 160.259,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "15",
+      "net": "GND",
+      "x_mm": 158.989,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "U_USB",
+      "pad": "16",
+      "net": "USB_5V",
+      "x_mm": 157.719,
+      "y_mm": 112.1795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "AMS1117",
+      "pad": "1",
+      "net": "GND",
+      "x_mm": 176.564,
+      "y_mm": 122.2795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "AMS1117",
+      "pad": "2",
+      "net": "VDD_ESP",
+      "x_mm": 176.564,
+      "y_mm": 119.9795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "AMS1117",
+      "pad": "3",
+      "net": "V_3V3_IN",
+      "x_mm": 176.564,
+      "y_mm": 117.6795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "AMS1117",
+      "pad": "4",
+      "net": "VDD_ESP",
+      "x_mm": 170.624,
+      "y_mm": 119.9795,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "",
+      "pad": "H1",
+      "net": "",
+      "x_mm": 123.048,
+      "y_mm": 83.048,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        2.3875,
+        2.3875
+      ]
+    },
+    {
+      "ref": "C_AVSS_P60",
+      "pad": "1",
+      "net": "AVSS",
+      "x_mm": 152.727,
+      "y_mm": 112.766,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_AVSS_P60",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 153.567,
+      "y_mm": 112.766,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_BIAS_INV",
+      "pad": "1",
+      "net": "BIAS_INV",
+      "x_mm": 143.28,
+      "y_mm": 90.414,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_BIAS_INV",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 142.44,
+      "y_mm": 90.414,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_H",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 155.6615,
+      "y_mm": 114.964,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_H",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 155.6615,
+      "y_mm": 114.124,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_H2",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 160.386,
+      "y_mm": 121.568,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_H2",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 160.386,
+      "y_mm": 120.728,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_IN",
+      "pad": "1",
+      "net": "V_3V3_IN",
+      "x_mm": 164.958,
+      "y_mm": 121.568,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_IN",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 164.958,
+      "y_mm": 120.728,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4127,11 +2190,739 @@
       ]
     },
     {
-      "ref": "C_AVSS_P60",
+      "ref": "C_DVDD_10u",
+      "pad": "1",
+      "net": "DVDD",
+      "x_mm": 149.718,
+      "y_mm": 86.666,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_DVDD_10u",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 149.718,
+      "y_mm": 88.066,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_DVDD_B",
+      "pad": "1",
+      "net": "DVDD",
+      "x_mm": 151.75,
+      "y_mm": 86.666,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_DVDD_B",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 151.75,
+      "y_mm": 88.066,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_BULK",
+      "pad": "1",
+      "net": "USB_5V",
+      "x_mm": 151.75,
+      "y_mm": 123.372,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_BULK",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 151.75,
+      "y_mm": 121.972,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM1N",
+      "pad": "1",
+      "net": "IN1N",
+      "x_mm": 133.524,
+      "y_mm": 112.131,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM1N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 112.131,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM1P",
+      "pad": "1",
+      "net": "IN1P",
+      "x_mm": 133.727,
+      "y_mm": 113.6295,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM1P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 113.6295,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM2N",
+      "pad": "1",
+      "net": "IN2N",
+      "x_mm": 133.524,
+      "y_mm": 109.134,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM2N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 109.134,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM2P",
+      "pad": "1",
+      "net": "IN2P",
+      "x_mm": 133.727,
+      "y_mm": 110.6325,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM2P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 110.6325,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM3N",
+      "pad": "1",
+      "net": "IN3N",
+      "x_mm": 133.524,
+      "y_mm": 106.1365,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM3N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 106.1365,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM3P",
+      "pad": "1",
+      "net": "IN3P",
+      "x_mm": 133.727,
+      "y_mm": 107.635,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM3P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 107.635,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM4N",
+      "pad": "1",
+      "net": "IN4N",
+      "x_mm": 133.524,
+      "y_mm": 103.1395,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM4N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 103.1395,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM4P",
+      "pad": "1",
+      "net": "IN4P",
+      "x_mm": 133.727,
+      "y_mm": 104.638,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM4P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 104.638,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM5N",
+      "pad": "1",
+      "net": "IN5N",
+      "x_mm": 133.524,
+      "y_mm": 100.142,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM5N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 100.142,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM5P",
+      "pad": "1",
+      "net": "IN5P",
+      "x_mm": 133.727,
+      "y_mm": 101.641,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM5P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 101.641,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM6N",
+      "pad": "1",
+      "net": "IN6N",
+      "x_mm": 133.524,
+      "y_mm": 97.145,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM6N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 97.145,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM6P",
+      "pad": "1",
+      "net": "IN6P",
+      "x_mm": 133.727,
+      "y_mm": 98.6435,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM6P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 98.6435,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM7N",
+      "pad": "1",
+      "net": "IN7N",
+      "x_mm": 133.524,
+      "y_mm": 94.148,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM7N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 94.148,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM7P",
+      "pad": "1",
+      "net": "IN7P",
+      "x_mm": 133.727,
+      "y_mm": 95.6465,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM7P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 95.6465,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM8N",
+      "pad": "1",
+      "net": "IN8N",
+      "x_mm": 133.524,
+      "y_mm": 91.1505,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM8N",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 134.924,
+      "y_mm": 91.1505,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM8P",
+      "pad": "1",
+      "net": "IN8P",
+      "x_mm": 133.727,
+      "y_mm": 92.649,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_CM8P",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 135.127,
+      "y_mm": 92.649,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_LM_FLY",
+      "pad": "1",
+      "net": "LM_CAP_P",
+      "x_mm": 147.178,
+      "y_mm": 122.356,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_LM_FLY",
+      "pad": "2",
+      "net": "LM_CAP_N",
+      "x_mm": 147.178,
+      "y_mm": 120.956,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_LM_OUT",
+      "pad": "1",
+      "net": "VNEG5",
+      "x_mm": 148.956,
+      "y_mm": 122.356,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_LM_OUT",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 148.956,
+      "y_mm": 120.956,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_USB5V_B",
+      "pad": "1",
+      "net": "USB_5V",
+      "x_mm": 176.134,
+      "y_mm": 100.004,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_USB5V_B",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 176.134,
+      "y_mm": 98.604,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_VCAP1",
+      "pad": "1",
+      "net": "VCAP1",
+      "x_mm": 150.542,
+      "y_mm": 112.766,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_VCAP1",
+      "pad": "2",
+      "net": "AVSS",
+      "x_mm": 151.942,
+      "y_mm": 112.766,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_OUT",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 163.18,
+      "y_mm": 121.848,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_OUT",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 163.18,
+      "y_mm": 120.448,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_VREFP_10u",
+      "pad": "1",
+      "net": "VREFP",
+      "x_mm": 149.729,
+      "y_mm": 110.48,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_VREFP_10u",
+      "pad": "2",
+      "net": "AVSS",
+      "x_mm": 151.129,
+      "y_mm": 110.48,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_AVDD1_10u",
+      "pad": "1",
+      "net": "AVDD",
+      "x_mm": 143.43,
+      "y_mm": 92.7,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_AVDD1_10u",
+      "pad": "2",
+      "net": "AVSS",
+      "x_mm": 144.83,
+      "y_mm": 92.7,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_AVDD_B",
+      "pad": "1",
+      "net": "AVDD",
+      "x_mm": 144.13,
+      "y_mm": 116.26,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_AVDD_B",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 144.13,
+      "y_mm": 114.86,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_B",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 155.763,
+      "y_mm": 112.704,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_3V3_B",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 155.763,
+      "y_mm": 111.304,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_AVSS_B",
       "pad": "1",
       "net": "AVSS",
-      "x_mm": 152.727,
-      "y_mm": 112.766,
+      "x_mm": 149.21,
+      "y_mm": 115.368,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4140,11 +2931,11 @@
       ]
     },
     {
-      "ref": "C_AVSS_P60",
+      "ref": "C_AVSS_B",
       "pad": "2",
       "net": "GND",
-      "x_mm": 153.567,
-      "y_mm": 112.766,
+      "x_mm": 149.21,
+      "y_mm": 116.768,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4153,37 +2944,11 @@
       ]
     },
     {
-      "ref": "C_BIAS_INV",
-      "pad": "1",
-      "net": "BIAS_INV",
-      "x_mm": 143.28,
-      "y_mm": 90.414,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_BIAS_INV",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 142.44,
-      "y_mm": 90.414,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_3V3_H",
+      "ref": "C_3V3_B2",
       "pad": "1",
       "net": "VDD_ESP",
-      "x_mm": 155.6615,
-      "y_mm": 114.964,
+      "x_mm": 162.164,
+      "y_mm": 121.848,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4192,11 +2957,11 @@
       ]
     },
     {
-      "ref": "C_3V3_H",
+      "ref": "C_3V3_B2",
       "pad": "2",
       "net": "GND",
-      "x_mm": 155.6615,
-      "y_mm": 114.124,
+      "x_mm": 162.164,
+      "y_mm": 120.448,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4205,11 +2970,37 @@
       ]
     },
     {
-      "ref": "C_3V3_H2",
+      "ref": "",
+      "pad": "H4",
+      "net": "",
+      "x_mm": 176.947,
+      "y_mm": 121.961,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        2.3875,
+        2.3875
+      ]
+    },
+    {
+      "ref": "",
+      "pad": "H2",
+      "net": "",
+      "x_mm": 176.947,
+      "y_mm": 83.048,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        2.3875,
+        2.3875
+      ]
+    },
+    {
+      "ref": "D_ESD",
       "pad": "1",
-      "net": "VDD_ESP",
-      "x_mm": 160.386,
-      "y_mm": 121.568,
+      "net": "USB_DP",
+      "x_mm": 176.454,
+      "y_mm": 104.771,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4218,11 +3009,11 @@
       ]
     },
     {
-      "ref": "C_3V3_H2",
+      "ref": "D_ESD",
       "pad": "2",
       "net": "GND",
-      "x_mm": 160.386,
-      "y_mm": 120.728,
+      "x_mm": 177.404,
+      "y_mm": 104.771,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4231,11 +3022,128 @@
       ]
     },
     {
-      "ref": "C_3V3_IN",
+      "ref": "D_ESD",
+      "pad": "3",
+      "net": "USB_DM",
+      "x_mm": 178.354,
+      "y_mm": 104.771,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "D_ESD",
+      "pad": "4",
+      "net": "USB_DM",
+      "x_mm": 178.354,
+      "y_mm": 102.473,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "D_ESD",
+      "pad": "5",
+      "net": "USB_VBUS_RAW",
+      "x_mm": 177.404,
+      "y_mm": 102.473,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "D_ESD",
+      "pad": "6",
+      "net": "USB_DP",
+      "x_mm": 176.454,
+      "y_mm": 102.473,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB1",
       "pad": "1",
+      "net": "USB_5V",
+      "x_mm": 139.1,
+      "y_mm": 120.64,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB1",
+      "pad": "2",
+      "net": "V5_LM_IN",
+      "x_mm": 141.032,
+      "y_mm": 120.64,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB2",
+      "pad": "1",
+      "net": "USB_5V",
+      "x_mm": 139.1,
+      "y_mm": 118.608,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB2",
+      "pad": "2",
+      "net": "V_PLDO_IN",
+      "x_mm": 141.032,
+      "y_mm": 118.608,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB3",
+      "pad": "1",
+      "net": "USB_5V",
+      "x_mm": 166.99,
+      "y_mm": 122.114,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB3",
+      "pad": "2",
       "net": "V_3V3_IN",
-      "x_mm": 164.958,
-      "y_mm": 121.568,
+      "x_mm": 166.99,
+      "y_mm": 120.182,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -4244,16 +3152,263 @@
       ]
     },
     {
-      "ref": "C_3V3_IN",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 164.958,
-      "y_mm": 120.728,
+      "ref": "FB4",
+      "pad": "1",
+      "net": "VNEG5",
+      "x_mm": 139.1,
+      "y_mm": 122.672,
       "attr": 1,
       "npth": false,
       "drill_mm": [
         0.0,
         0.0
+      ]
+    },
+    {
+      "ref": "FB4",
+      "pad": "2",
+      "net": "V_NLDO_IN",
+      "x_mm": 141.032,
+      "y_mm": 122.672,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB5",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 148.244,
+      "y_mm": 85.08,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "FB5",
+      "pad": "2",
+      "net": "DVDD",
+      "x_mm": 150.176,
+      "y_mm": 85.08,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "1",
+      "net": "GND",
+      "x_mm": 175.791,
+      "y_mm": 114.188,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "2",
+      "net": "USB_VBUS_RAW",
+      "x_mm": 175.791,
+      "y_mm": 113.388,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "3",
+      "net": "",
+      "x_mm": 175.791,
+      "y_mm": 112.738,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "4",
+      "net": "USB_CC1",
+      "x_mm": 175.791,
+      "y_mm": 112.238,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "5",
+      "net": "USB_DM",
+      "x_mm": 175.791,
+      "y_mm": 111.738,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "6",
+      "net": "USB_DP",
+      "x_mm": 175.791,
+      "y_mm": 111.238,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "7",
+      "net": "USB_DM",
+      "x_mm": 175.791,
+      "y_mm": 110.738,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "8",
+      "net": "USB_DP",
+      "x_mm": 175.791,
+      "y_mm": 110.238,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "9",
+      "net": "",
+      "x_mm": 175.791,
+      "y_mm": 109.738,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "10",
+      "net": "USB_CC2",
+      "x_mm": 175.791,
+      "y_mm": 109.238,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "11",
+      "net": "USB_VBUS_RAW",
+      "x_mm": 175.791,
+      "y_mm": 108.588,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "12",
+      "net": "GND",
+      "x_mm": 175.791,
+      "y_mm": 107.788,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "13",
+      "net": "CHASSIS_GND",
+      "x_mm": 176.341,
+      "y_mm": 115.313,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        0.6,
+        1.5
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "13",
+      "net": "CHASSIS_GND",
+      "x_mm": 180.541,
+      "y_mm": 115.313,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        0.6,
+        1.2
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "14",
+      "net": "CHASSIS_GND",
+      "x_mm": 176.341,
+      "y_mm": 106.663,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        0.6,
+        1.5
+      ]
+    },
+    {
+      "ref": "J1",
+      "pad": "14",
+      "net": "CHASSIS_GND",
+      "x_mm": 180.541,
+      "y_mm": 106.663,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        0.6,
+        1.2
       ]
     },
     {
@@ -5089,11 +4244,11 @@
       ]
     },
     {
-      "ref": "C_DIF1",
+      "ref": "C_DIF4",
       "pad": "1",
-      "net": "IN1P",
+      "net": "IN4P",
       "x_mm": 130.43,
-      "y_mm": 113.096,
+      "y_mm": 104.1045,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -5102,11 +4257,37 @@
       ]
     },
     {
-      "ref": "C_DIF1",
+      "ref": "C_DIF4",
       "pad": "2",
-      "net": "IN1N",
+      "net": "IN4N",
       "x_mm": 132.43,
-      "y_mm": 113.096,
+      "y_mm": 104.1045,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_DIF5",
+      "pad": "1",
+      "net": "IN5P",
+      "x_mm": 130.43,
+      "y_mm": 101.1075,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_DIF5",
+      "pad": "2",
+      "net": "IN5N",
+      "x_mm": 132.43,
+      "y_mm": 101.1075,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -5193,6 +4374,32 @@
       ]
     },
     {
+      "ref": "C_DIF1",
+      "pad": "1",
+      "net": "IN1P",
+      "x_mm": 130.43,
+      "y_mm": 113.096,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "C_DIF1",
+      "pad": "2",
+      "net": "IN1N",
+      "x_mm": 132.43,
+      "y_mm": 113.096,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
       "ref": "C_DIF2",
       "pad": "1",
       "net": "IN2P",
@@ -5237,188 +4444,6 @@
       "net": "IN3N",
       "x_mm": 132.43,
       "y_mm": 107.102,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DIF4",
-      "pad": "1",
-      "net": "IN4P",
-      "x_mm": 130.43,
-      "y_mm": 104.1045,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DIF4",
-      "pad": "2",
-      "net": "IN4N",
-      "x_mm": 132.43,
-      "y_mm": 104.1045,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DIF5",
-      "pad": "1",
-      "net": "IN5P",
-      "x_mm": 130.43,
-      "y_mm": 101.1075,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "C_DIF5",
-      "pad": "2",
-      "net": "IN5N",
-      "x_mm": 132.43,
-      "y_mm": 101.1075,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TLV70025",
-      "pad": "1",
-      "net": "V_PLDO_IN",
-      "x_mm": 145.43,
-      "y_mm": 119.812,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TLV70025",
-      "pad": "2",
-      "net": "GND",
-      "x_mm": 145.43,
-      "y_mm": 118.862,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TLV70025",
-      "pad": "3",
-      "net": "V_PLDO_IN",
-      "x_mm": 145.43,
-      "y_mm": 117.912,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TLV70025",
-      "pad": "4",
-      "net": "",
-      "x_mm": 142.83,
-      "y_mm": 117.912,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TLV70025",
-      "pad": "5",
-      "net": "AVDD",
-      "x_mm": 142.83,
-      "y_mm": 119.812,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TPS72325",
-      "pad": "1",
-      "net": "GND",
-      "x_mm": 153.05,
-      "y_mm": 119.812,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TPS72325",
-      "pad": "2",
-      "net": "V_NLDO_IN",
-      "x_mm": 153.05,
-      "y_mm": 118.862,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TPS72325",
-      "pad": "3",
-      "net": "GND",
-      "x_mm": 153.05,
-      "y_mm": 117.912,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TPS72325",
-      "pad": "4",
-      "net": "TPS_NR",
-      "x_mm": 150.45,
-      "y_mm": 117.912,
-      "attr": 1,
-      "npth": false,
-      "drill_mm": [
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "ref": "TPS72325",
-      "pad": "5",
-      "net": "AVSS",
-      "x_mm": 150.45,
-      "y_mm": 119.812,
       "attr": 1,
       "npth": false,
       "drill_mm": [
@@ -5580,6 +4605,981 @@
       "drill_mm": [
         1.05,
         1.05
+      ]
+    },
+    {
+      "ref": "Q_EN",
+      "pad": "1",
+      "net": "Q_EN_B",
+      "x_mm": 162.3765,
+      "y_mm": 110.414,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "Q_EN",
+      "pad": "2",
+      "net": "CH_RTS_N",
+      "x_mm": 162.3765,
+      "y_mm": 108.514,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "Q_EN",
+      "pad": "3",
+      "net": "ESP_EN",
+      "x_mm": 160.1735,
+      "y_mm": 109.464,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "Q_IO0",
+      "pad": "1",
+      "net": "Q_IO0_B",
+      "x_mm": 167.2025,
+      "y_mm": 110.414,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "Q_IO0",
+      "pad": "2",
+      "net": "CH_DTR_N",
+      "x_mm": 167.2025,
+      "y_mm": 108.514,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "Q_IO0",
+      "pad": "3",
+      "net": "ESP_IO0",
+      "x_mm": 164.9995,
+      "y_mm": 109.464,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "LM2664",
+      "pad": "1",
+      "net": "GND",
+      "x_mm": 145.48,
+      "y_mm": 123.368,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "LM2664",
+      "pad": "2",
+      "net": "VNEG5",
+      "x_mm": 145.48,
+      "y_mm": 122.418,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "LM2664",
+      "pad": "3",
+      "net": "LM_CAP_N",
+      "x_mm": 145.48,
+      "y_mm": 121.468,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "LM2664",
+      "pad": "4",
+      "net": "V5_LM_IN",
+      "x_mm": 142.78,
+      "y_mm": 121.468,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "LM2664",
+      "pad": "5",
+      "net": "V5_LM_IN",
+      "x_mm": 142.78,
+      "y_mm": 122.418,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "LM2664",
+      "pad": "6",
+      "net": "LM_CAP_P",
+      "x_mm": 142.78,
+      "y_mm": 123.368,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "D_LED",
+      "pad": "1",
+      "net": "GND",
+      "x_mm": 177.163,
+      "y_mm": 87.62,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "D_LED",
+      "pad": "2",
+      "net": "LED_A",
+      "x_mm": 178.661,
+      "y_mm": 87.62,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_CC1",
+      "pad": "1",
+      "net": "USB_CC1",
+      "x_mm": 178.166,
+      "y_mm": 110.2175,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_CC1",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 178.166,
+      "y_mm": 108.7105,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_CC2",
+      "pad": "1",
+      "net": "USB_CC2",
+      "x_mm": 172.5865,
+      "y_mm": 110.226,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_CC2",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 174.0935,
+      "y_mm": 110.226,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_CS_UP",
+      "pad": "1",
+      "net": "ADS_CS_N",
+      "x_mm": 146.162,
+      "y_mm": 83.8015,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_CS_UP",
+      "pad": "2",
+      "net": "DVDD",
+      "x_mm": 146.162,
+      "y_mm": 82.2945,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_DRDY_UP",
+      "pad": "1",
+      "net": "ADS_DRDY_N",
+      "x_mm": 149.21,
+      "y_mm": 83.8015,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_DRDY_UP",
+      "pad": "2",
+      "net": "DVDD",
+      "x_mm": 149.21,
+      "y_mm": 82.2945,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_EN_UP",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 157.846,
+      "y_mm": 110.2175,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_EN_UP",
+      "pad": "2",
+      "net": "ESP_EN",
+      "x_mm": 157.846,
+      "y_mm": 108.7105,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IO0_UP",
+      "pad": "1",
+      "net": "VDD_ESP",
+      "x_mm": 174.61,
+      "y_mm": 84.8345,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IO0_UP",
+      "pad": "2",
+      "net": "ESP_IO0",
+      "x_mm": 174.61,
+      "y_mm": 86.3415,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IO2_DN",
+      "pad": "1",
+      "net": "ESP_IO2",
+      "x_mm": 174.6185,
+      "y_mm": 91.811,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IO2_DN",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 176.1255,
+      "y_mm": 91.811,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IO15_DN",
+      "pad": "1",
+      "net": "ESP_IO15",
+      "x_mm": 174.6185,
+      "y_mm": 93.081,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IO15_DN",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 176.1255,
+      "y_mm": 93.081,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_LED",
+      "pad": "1",
+      "net": "STATUS_LED_DRV",
+      "x_mm": 177.1585,
+      "y_mm": 89.652,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_LED",
+      "pad": "2",
+      "net": "LED_A",
+      "x_mm": 178.6655,
+      "y_mm": 89.652,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_PWDN_UP",
+      "pad": "1",
+      "net": "ADS_PWDN_N",
+      "x_mm": 152.258,
+      "y_mm": 83.8015,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_PWDN_UP",
+      "pad": "2",
+      "net": "DVDD",
+      "x_mm": 152.258,
+      "y_mm": 82.2945,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_Q_EN_B",
+      "pad": "1",
+      "net": "CH_DTR_N",
+      "x_mm": 163.942,
+      "y_mm": 110.2175,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_Q_EN_B",
+      "pad": "2",
+      "net": "Q_EN_B",
+      "x_mm": 163.942,
+      "y_mm": 108.7105,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_Q_IO0_B",
+      "pad": "1",
+      "net": "CH_RTS_N",
+      "x_mm": 168.768,
+      "y_mm": 110.2175,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_Q_IO0_B",
+      "pad": "2",
+      "net": "Q_IO0_B",
+      "x_mm": 168.768,
+      "y_mm": 108.7105,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_RST_UP",
+      "pad": "1",
+      "net": "ADS_RESET_N",
+      "x_mm": 150.353,
+      "y_mm": 83.8015,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_RST_UP",
+      "pad": "2",
+      "net": "DVDD",
+      "x_mm": 150.353,
+      "y_mm": 82.2945,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_START_DN",
+      "pad": "1",
+      "net": "ADS_START",
+      "x_mm": 171.308,
+      "y_mm": 108.7105,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_START_DN",
+      "pad": "2",
+      "net": "GND",
+      "x_mm": 171.308,
+      "y_mm": 110.2175,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN6P",
+      "pad": "1",
+      "net": "CH6_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 98.6435,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN6P",
+      "pad": "2",
+      "net": "IN6P",
+      "x_mm": 129.069,
+      "y_mm": 98.6435,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN7N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 94.148,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN7N",
+      "pad": "2",
+      "net": "IN7N",
+      "x_mm": 129.069,
+      "y_mm": 94.148,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN7P",
+      "pad": "1",
+      "net": "CH7_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 95.6465,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN7P",
+      "pad": "2",
+      "net": "IN7P",
+      "x_mm": 129.069,
+      "y_mm": 95.6465,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN1N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 112.131,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN1N",
+      "pad": "2",
+      "net": "IN1N",
+      "x_mm": 129.069,
+      "y_mm": 112.131,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN1P",
+      "pad": "1",
+      "net": "FP1_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 113.6295,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN1P",
+      "pad": "2",
+      "net": "IN1P",
+      "x_mm": 129.069,
+      "y_mm": 113.6295,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN2N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 109.134,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN2N",
+      "pad": "2",
+      "net": "IN2N",
+      "x_mm": 129.069,
+      "y_mm": 109.134,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN2P",
+      "pad": "1",
+      "net": "FP2_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 110.6325,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN2P",
+      "pad": "2",
+      "net": "IN2P",
+      "x_mm": 129.069,
+      "y_mm": 110.6325,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN3N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 106.1365,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN3N",
+      "pad": "2",
+      "net": "IN3N",
+      "x_mm": 129.069,
+      "y_mm": 106.1365,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN3P",
+      "pad": "1",
+      "net": "CH3_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 107.635,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN3P",
+      "pad": "2",
+      "net": "IN3P",
+      "x_mm": 129.069,
+      "y_mm": 107.635,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN4N",
+      "pad": "1",
+      "net": "ECGN_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 103.1395,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN4N",
+      "pad": "2",
+      "net": "IN4N",
+      "x_mm": 129.069,
+      "y_mm": 103.1395,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN4P",
+      "pad": "1",
+      "net": "ECGP_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 104.638,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN4P",
+      "pad": "2",
+      "net": "IN4P",
+      "x_mm": 129.069,
+      "y_mm": 104.638,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN5N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 100.142,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN5N",
+      "pad": "2",
+      "net": "IN5N",
+      "x_mm": 129.069,
+      "y_mm": 100.142,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN5P",
+      "pad": "1",
+      "net": "CH5_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 101.641,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN5P",
+      "pad": "2",
+      "net": "IN5P",
+      "x_mm": 129.069,
+      "y_mm": 101.641,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN6N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 97.145,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN6N",
+      "pad": "2",
+      "net": "IN6N",
+      "x_mm": 129.069,
+      "y_mm": 97.145,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN8N",
+      "pad": "1",
+      "net": "SRB1",
+      "x_mm": 128.203,
+      "y_mm": 91.1505,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN8N",
+      "pad": "2",
+      "net": "IN8N",
+      "x_mm": 129.069,
+      "y_mm": 91.1505,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN8P",
+      "pad": "1",
+      "net": "CH8_ELEC",
+      "x_mm": 128.203,
+      "y_mm": 92.649,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "R_IN8P",
+      "pad": "2",
+      "net": "IN8P",
+      "x_mm": 129.069,
+      "y_mm": 92.649,
+      "attr": 1,
+      "npth": false,
+      "drill_mm": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ref": "",
+      "pad": "H3",
+      "net": "",
+      "x_mm": 123.048,
+      "y_mm": 121.961,
+      "attr": 0,
+      "npth": false,
+      "drill_mm": [
+        2.3875,
+        2.3875
       ]
     }
   ]

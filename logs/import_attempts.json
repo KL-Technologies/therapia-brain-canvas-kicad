@@ -1,11 +1,11 @@
 {
-  "source": "./import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+  "source": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
   "pcb_id": "799033de8bdd4fe18d1bc8e0d6f00ee6",
   "attempts": [
     {
       "stage": "raw",
       "index": 0,
-      "variant": "./import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+      "variant": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
       "patch_report": {
         "stages": {
           "raw": true
@@ -52,7 +52,7 @@
         "arcs": 0,
         "vias": 238,
         "zones": 10,
-        "saved": "./logs/patch_variants/v0.kicad_pcb",
+        "saved": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v0.kicad_pcb",
         "returncode": 0,
         "stderr": "./src/common/stdpbase.cpp(59): assert \"\"traits\"\" failed in Get(): create wxApp before calling this\n",
         "stdout": ""
@@ -278,7 +278,7 @@
     {
       "stage": "newlines",
       "index": 1,
-      "variant": "./logs/patch_variants/v1_newlines.epro",
+      "variant": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v1_newlines.epro",
       "patch_report": {
         "stages": {
           "newlines": true,
@@ -328,7 +328,7 @@
         "arcs": 0,
         "vias": 238,
         "zones": 10,
-        "saved": "./logs/patch_variants/v1.kicad_pcb",
+        "saved": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v1.kicad_pcb",
         "returncode": 0,
         "stderr": "./src/common/stdpbase.cpp(59): assert \"\"traits\"\" failed in Get(): create wxApp before calling this\n",
         "stdout": ""
@@ -554,7 +554,7 @@
     {
       "stage": "newlines+rules",
       "index": 2,
-      "variant": "./logs/patch_variants/v2_newlines_rules.epro",
+      "variant": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v2_newlines_rules.epro",
       "patch_report": {
         "stages": {
           "newlines": true,
@@ -609,7 +609,7 @@
         "arcs": 0,
         "vias": 238,
         "zones": 10,
-        "saved": "./logs/patch_variants/v2.kicad_pcb",
+        "saved": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v2.kicad_pcb",
         "returncode": 0,
         "stderr": "./src/common/stdpbase.cpp(59): assert \"\"traits\"\" failed in Get(): create wxApp before calling this\n",
         "stdout": ""
@@ -835,7 +835,7 @@
     {
       "stage": "newlines+rules+nets",
       "index": 3,
-      "variant": "./logs/patch_variants/v3_newlines_rules_nets.epro",
+      "variant": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v3_newlines_rules_nets.epro",
       "patch_report": {
         "stages": {
           "newlines": true,
@@ -895,7 +895,7 @@
         "arcs": 0,
         "vias": 238,
         "zones": 10,
-        "saved": "./logs/patch_variants/v3.kicad_pcb",
+        "saved": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/patch_variants/v3.kicad_pcb",
         "returncode": 0,
         "stderr": "./src/common/stdpbase.cpp(59): assert \"\"traits\"\" failed in Get(): create wxApp before calling this\n",
         "stdout": ""
