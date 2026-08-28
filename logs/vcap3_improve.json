@@ -1,0 +1,135 @@
+{
+  "before": {
+    "C_VCAP3": {
+      "straight_mm": 3.3598,
+      "path": {
+        "vias": 2,
+        "length_mm": 3.6664,
+        "hops": 5,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      }
+    },
+    "C_VCAP3_H": {
+      "straight_mm": 5.4393,
+      "path": {
+        "vias": 2,
+        "length_mm": 5.9524,
+        "hops": 7,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      }
+    }
+  },
+  "sites": {
+    "C_VCAP3_H": {
+      "ok": true,
+      "pos": [
+        146412000,
+        94448000
+      ],
+      "rot": 180,
+      "pin1_mm": 2.1015,
+      "was_mm": 5.4393,
+      "route": "L on F.Cu",
+      "avss": "already touching copper",
+      "sites_examined": 1
+    }
+  },
+  "removed_feed": [
+    {
+      "kind": "track",
+      "net": "VCAP3",
+      "layer": "Top Layer",
+      "start_mm": [
+        141.832,
+        94.604
+      ],
+      "end_mm": [
+        144.118,
+        94.604
+      ],
+      "width_mm": 0.2032,
+      "uuid": "f39392a9-6591-468f-9814-227b0bf05097"
+    }
+  ],
+  "route_pin55": "L on F.Cu",
+  "route_return": "already touching copper",
+  "moved": "C_VCAP3_H",
+  "added": [
+    {
+      "kind": "track",
+      "net": "VCAP3",
+      "layer": "Top Layer",
+      "start_mm": [
+        146.832,
+        94.448
+      ],
+      "end_mm": [
+        146.912,
+        94.448
+      ],
+      "width_mm": 0.2032,
+      "uuid": "6e63706a-dec0-45d0-88a1-2ab92a793a95"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP3",
+      "layer": "Top Layer",
+      "start_mm": [
+        146.912,
+        94.448
+      ],
+      "end_mm": [
+        146.912,
+        96.548
+      ],
+      "width_mm": 0.2032,
+      "uuid": "21ef176d-8f4c-408f-bd92-e2758f103a28"
+    }
+  ],
+  "after": {
+    "C_VCAP3": {
+      "straight_mm": 3.3598,
+      "path": {
+        "vias": 2,
+        "length_mm": 3.6664,
+        "hops": 5,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      }
+    },
+    "C_VCAP3_H": {
+      "straight_mm": 2.1015,
+      "path": {
+        "vias": 0,
+        "length_mm": 2.1,
+        "hops": 3,
+        "layers": [
+          "Top Layer"
+        ]
+      }
+    }
+  },
+  "contract_diffs": [],
+  "unconnected": 0,
+  "counts": {
+    "footprints": 141,
+    "tracks": 1252,
+    "vias": 239,
+    "npth_pads": 6,
+    "pth_pads": 16
+  }
+}

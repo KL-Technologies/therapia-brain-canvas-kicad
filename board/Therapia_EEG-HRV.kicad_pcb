@@ -41147,9 +41147,9 @@
 	(footprint "ProPrj_The-easyedapro:C0402"
 		(layer "F.Cu")
 		(uuid "dcaffa7c-b44b-42aa-8c28-07730c6f574e")
-		(at 141.832 95.024 -90)
+		(at 146.412 94.448 180)
 		(property "Reference" "C_VCAP3_H"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "0b61ff4f-09a7-4da4-b49a-46c3c4eddc0d")
@@ -41160,7 +41160,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "07d4d963-49f4-49af-ab34-959da6265477")
@@ -41171,7 +41171,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "c9be86dc-c143-4f3d-9759-91c78d7855e9")
@@ -41182,7 +41182,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9f65b9ac-5986-4cb0-9b52-4507480cdb6e")
@@ -41193,7 +41193,7 @@
 			)
 		)
 		(property "MPN" "CL05B104KO5NNNC"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "Cmts.User")
 			(hide yes)
 			(uuid "83014ed4-478f-4473-84ab-7411b6408e93")
@@ -41205,7 +41205,7 @@
 			)
 		)
 		(property "LCSC" "C1525"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "Cmts.User")
 			(hide yes)
 			(uuid "9b50ba4b-b053-4239-a27b-7dc39c76ed76")
@@ -41241,7 +41241,7 @@
 			(uuid "aca42a25-700a-4dea-83e1-037c359a7979")
 		)
 		(pad "1" smd rect
-			(at -0.42 0 270)
+			(at -0.42 0 180)
 			(size 0.5 0.54)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "VCAP3")
@@ -41249,7 +41249,7 @@
 			(uuid "5761f486-c446-4a89-aedd-f6b34ba92da8")
 		)
 		(pad "2" smd rect
-			(at 0.42 0 270)
+			(at 0.42 0 180)
 			(size 0.5 0.54)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "AVSS")
@@ -57632,6 +57632,14 @@
 		(uuid "f28752a4-a9f3-4771-8055-cf7c0fa874a7")
 	)
 	(segment
+		(start 146.912 94.448)
+		(end 146.912 96.548)
+		(width 0.2032)
+		(layer "F.Cu")
+		(net "VCAP3")
+		(uuid "21ef176d-8f4c-408f-bd92-e2758f103a28")
+	)
+	(segment
 		(start 146.912 97.564)
 		(end 146.912 96.548)
 		(width 0.2032)
@@ -57648,20 +57656,20 @@
 		(uuid "5d692870-6adf-4e06-b414-f4251b38c3d9")
 	)
 	(segment
+		(start 146.832 94.448)
+		(end 146.912 94.448)
+		(width 0.2032)
+		(layer "F.Cu")
+		(net "VCAP3")
+		(uuid "6e63706a-dec0-45d0-88a1-2ab92a793a95")
+	)
+	(segment
 		(start 144.118 94.604)
 		(end 144.118 94.682)
 		(width 0.2032)
 		(layer "F.Cu")
 		(net "VCAP3")
 		(uuid "e237e3bd-7982-45d5-bd54-7cc61869583d")
-	)
-	(segment
-		(start 141.832 94.604)
-		(end 144.118 94.604)
-		(width 0.2032)
-		(layer "F.Cu")
-		(net "VCAP3")
-		(uuid "f39392a9-6591-468f-9814-227b0bf05097")
 	)
 	(via
 		(at 146.912 97.564)

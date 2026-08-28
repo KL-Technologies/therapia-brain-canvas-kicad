@@ -34,16 +34,16 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T17:27:29",
+  "timestamp": "2026-08-28T17:40:36",
   "notes": "Imported board (22513e4) vs the board now, over 40 analog nets. Keyed by geometry because S5 renumbered every uuid.",
   "baseline": "22513e4",
   "items_before": 770,
-  "items_after": 806,
-  "differences": 119,
+  "items_after": 807,
+  "differences": 120,
   "by_declared_change": {
     "ECO-1#2 RESV1": 3,
     "ECO-3#11 VCAP1 to 1206": 21,
-    "ECO-1#4/5 VCAP2, VCAP3": 45,
+    "ECO-1#4/5 VCAP2, VCAP3": 46,
     "ECO-3#12 VREFP 10u to 1206": 9,
     "S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)": 7,
     "eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159)": 3,

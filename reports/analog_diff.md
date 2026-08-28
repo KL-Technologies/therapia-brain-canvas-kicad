@@ -6,8 +6,8 @@
 
 | | |
 |---|---|
-| アナログ系アイテム | 770 → 807 |
-| 差分 | 119 |
+| アナログ系アイテム | 770 → 808 |
+| 差分 | 120 |
 | 説明できない差分 | **0** |
 | 入力・電極ネットの差分 | **0** |
 
@@ -23,7 +23,7 @@
 |---|---|
 | ECO-1#1 TPS72325 EN | 2 |
 | ECO-1#2 RESV1 | 3 |
-| ECO-1#4/5 VCAP2, VCAP3 | 45 |
+| ECO-1#4/5 VCAP2, VCAP3 | 46 |
 | ECO-3#11 VCAP1 to 1206 | 21 |
 | ECO-3#12 VREFP 10u to 1206 | 9 |
 | ECO-5 BIAS feedback | 17 |
@@ -44,6 +44,7 @@
 | ECO-5 BIAS feedback | BIAS_OUT_INT, BIAS_INV, GND | C_BIAS_INV, R_BIAS_FB | C_BIAS_INV pad 2 moves from GND to BIAS_OUT_INT and drops to the B.Cu trunk |
 | S5 L5 nudge C_AVSS_B | AVSS, GND | C_AVSS_B | moved +0.15 mm in x to clear a pad-to-pad clearance |
 | S5 L5 nudge C_VREFP_10n | VREFP, AVSS | C_VREFP_10n | moved +0.05 mm in x to clear a pad-to-pad clearance |
+| S7c VCAP3 bypass | VCAP3, AVSS | C_VCAP3_H, C_VCAP3, U_ADS | C_VCAP3_H moves to 2.10 mm of ADS pin 55 and reaches it with an L on F.Cu, replacing a 5.95 mm path through two vias -- DS 12.1 forbids a via between a bypass capacitor and the device |
 
 ## 移動したパッド
 
@@ -102,7 +103,7 @@ eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159) trk  AVD
 eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159) via  AVDD           (149.1085, 109.1590) d0.6095/0.3050
 ```
 
-### 追加（74 件）
+### 追加（75 件）
 
 ```
 ECO-1#1 TPS72325 EN          pad  V_NLDO_IN      TPS72325.3 (153.0500, 117.9120) 1.100x0.600
@@ -113,7 +114,7 @@ ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP1.2 (152.2580, 113.5770) 
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP1_H.2 (147.9120, 109.8460) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP2.2 (149.5860, 109.1720) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3.2 (144.1180, 93.8420) 0.500x0.540
-ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3_H.2 (141.8320, 95.4440) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3_H.2 (145.9920, 94.4480) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10n.2 (146.8100, 110.4800) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10u.2 (150.9370, 108.7510) 1.150x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (143.9190, 109.1845) -> (144.0790, 109.9720) w0.2540
@@ -133,12 +134,13 @@ ECO-1#4/5 VCAP2, VCAP3       pad  VCAP2          C_VCAP2.1 (148.7460, 109.1720) 
 ECO-1#4/5 VCAP2, VCAP3       pad  VCAP2          U_ADS.30 (148.9120, 107.6480) 0.280x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP2          F.Cu          (148.7460, 109.1720) -> (148.9120, 107.6480) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3.1 (144.1180, 94.6820) 0.500x0.540
-ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3_H.1 (141.8320, 94.6040) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3_H.1 (146.8320, 94.4480) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          U_ADS.55 (146.9120, 96.5480) 0.280x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          B.Cu          (144.1180, 95.1900) -> (146.9120, 97.5640) w0.2032
-ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          F.Cu          (141.8320, 94.6040) -> (144.1180, 94.6040) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          F.Cu          (144.1180, 94.6040) -> (144.1180, 94.6820) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          F.Cu          (144.1180, 94.6820) -> (144.1180, 95.1900) w0.2032
+ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          F.Cu          (146.8320, 94.4480) -> (146.9120, 94.4480) w0.2032
+ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          F.Cu          (146.9120, 94.4480) -> (146.9120, 96.5480) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          F.Cu          (146.9120, 96.5480) -> (146.9120, 97.5640) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       via  VCAP3          (144.1180, 95.1900) d0.6096/0.3048
 ECO-1#4/5 VCAP2, VCAP3       via  VCAP3          (146.9120, 97.5640) d0.6096/0.3048

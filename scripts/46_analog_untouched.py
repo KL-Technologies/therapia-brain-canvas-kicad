@@ -89,6 +89,10 @@ DECLARED = [
      "moved +0.15 mm in x to clear a pad-to-pad clearance"),
     ("S5 L5 nudge C_VREFP_10n", ("VREFP", "AVSS"), ("C_VREFP_10n",),
      "moved +0.05 mm in x to clear a pad-to-pad clearance"),
+    ("S7c VCAP3 bypass", ("VCAP3", "AVSS"), ("C_VCAP3_H", "C_VCAP3", "U_ADS"),
+     "C_VCAP3_H moves to 2.10 mm of ADS pin 55 and reaches it with an L on "
+     "F.Cu, replacing a 5.95 mm path through two vias -- DS 12.1 forbids a via "
+     "between a bypass capacitor and the device"),
 ]
 
 

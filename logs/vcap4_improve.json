@@ -1,0 +1,28 @@
+{
+  "before": {
+    "C_VCAP4": {
+      "straight_mm": 5.2383,
+      "path": {
+        "vias": 2,
+        "length_mm": 8.9997,
+        "hops": 10,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      }
+    }
+  },
+  "net": "VCAP4",
+  "pin": "26",
+  "sites": {
+    "C_VCAP4": {
+      "ok": false,
+      "was_mm": 5.2383,
+      "sites_examined": 177,
+      "reason": "no position between 0.4 and 5.24 mm of pin 26 clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    }
+  }
+}

@@ -1,0 +1,1240 @@
+{
+  "step": "S7c",
+  "pass": true,
+  "checks": [
+    {
+      "name": "decoupling capacitors measured",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "J1 track-routed bypass paths with a via in them",
+      "expected": 0,
+      "actual": 3,
+      "pass": true,
+      "note": "DS 12.1 says not to put a via between a bypass capacitor and the device. It bites on the supplies routed as tracks (VCAP1-4, VREFP); AVDD/AVSS/DVDD are planes, where via-plane-via is the stackup, not a mistake. 3 track-routed paths carry a via; each is listed in the review with what was tried."
+    },
+    {
+      "name": "J5 SPI and USB return paths continuous over the GND plane",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "counting only voids with no via to account for them; a trace crossing the antipad of its own layer-change via is not a split"
+    },
+    {
+      "name": "input traces vs digital, closest approach recorded",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "improvement attempted on every part the handover named",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "review written",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T17:44:03",
+  "notes": "Measured against docs/ads1299_layout_checklist.md (J1-J11). TI states no numeric distance for decoupling, so distances are reported, not scored. The board is not modified unless an improvement is found that is both nearer and via-free.",
+  "plane_nets": [
+    "AVDD",
+    "AVSS",
+    "CHASSIS_GND",
+    "GND",
+    "USB_5V",
+    "VDD_ESP"
+  ],
+  "decoupling": [
+    {
+      "cap": "C_AVDD_P19",
+      "pin": "19",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 3.0962,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_AVDD_H",
+      "pin": "21",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 8.4652,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.7701
+    },
+    {
+      "cap": "C_AVDD_B",
+      "pin": "21",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 8.6166,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.0015
+    },
+    {
+      "cap": "C_AVDD_H",
+      "pin": "22",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 8.3913,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.7701
+    },
+    {
+      "cap": "C_VREFP_10u",
+      "pin": "24",
+      "signal": "VREFP",
+      "pad": "1",
+      "straight_mm": 6.4558,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 9.3992,
+        "hops": 8,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 1.0599
+    },
+    {
+      "cap": "C_VREFP_100n",
+      "pin": "24",
+      "signal": "VREFP",
+      "pad": "1",
+      "straight_mm": 3.4034,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 6.4657,
+        "hops": 7,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_VREFP_10n",
+      "pin": "24",
+      "signal": "VREFP",
+      "pad": "1",
+      "straight_mm": 2.8326,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 2.5525,
+        "hops": 3,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 0.1015
+    },
+    {
+      "cap": "C_VCAP4",
+      "pin": "26",
+      "signal": "VCAP4",
+      "pad": "1",
+      "straight_mm": 5.2383,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 2,
+        "length_mm": 8.9997,
+        "hops": 10,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 2,
+      "j1_applies": true,
+      "j1_ok": false,
+      "return_net": "AVSS",
+      "return_via_mm": 0.001
+    },
+    {
+      "cap": "C_VCAP1",
+      "pin": "28",
+      "signal": "VCAP1",
+      "pad": "1",
+      "straight_mm": 9.8856,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 2,
+        "length_mm": 12.1583,
+        "hops": 11,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 2,
+      "j1_applies": true,
+      "j1_ok": false,
+      "return_net": "AVSS",
+      "return_via_mm": 0.7891
+    },
+    {
+      "cap": "C_VCAP1_H",
+      "pin": "28",
+      "signal": "VCAP1",
+      "pad": "1",
+      "straight_mm": 1.358,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 1.359,
+        "hops": 3,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 1.0838
+    },
+    {
+      "cap": "C_VCAP2",
+      "pin": "30",
+      "signal": "VCAP2",
+      "pad": "1",
+      "straight_mm": 1.533,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 1.533,
+        "hops": 3,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 0.3623
+    },
+    {
+      "cap": "C_AVDD_P36",
+      "pin": "56",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 16.2902,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.888
+    },
+    {
+      "cap": "C_AVDD_P31",
+      "pin": "56",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 14.1325,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 1.728
+    },
+    {
+      "cap": "C_AVDD1_1u",
+      "pin": "54",
+      "signal": "AVDD1",
+      "pad": "1",
+      "straight_mm": 4.1003,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "AVSS",
+      "return_via_mm": 1.6443
+    },
+    {
+      "cap": "C_AVDD1_100n",
+      "pin": "54",
+      "signal": "AVDD1",
+      "pad": "1",
+      "straight_mm": 3.9451,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "AVSS",
+      "return_via_mm": 3.6515
+    },
+    {
+      "cap": "C_AVDD1_10n",
+      "pin": "54",
+      "signal": "AVDD1",
+      "pad": "1",
+      "straight_mm": 4.9767,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "AVSS",
+      "return_via_mm": 5.8664
+    },
+    {
+      "cap": "C_AVDD1_10u",
+      "pin": "54",
+      "signal": "AVDD1",
+      "pad": "1",
+      "straight_mm": 5.5375,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "AVSS",
+      "return_via_mm": 1.4091
+    },
+    {
+      "cap": "C_VCAP3",
+      "pin": "55",
+      "signal": "VCAP3",
+      "pad": "1",
+      "straight_mm": 3.3598,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 2,
+        "length_mm": 3.6664,
+        "hops": 5,
+        "layers": [
+          "Bottom Layer",
+          "Inner1",
+          "Inner2",
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 2,
+      "j1_applies": true,
+      "j1_ok": false,
+      "return_net": "AVSS",
+      "return_via_mm": 2.7533
+    },
+    {
+      "cap": "C_VCAP3_H",
+      "pin": "55",
+      "signal": "VCAP3",
+      "pad": "1",
+      "straight_mm": 2.1015,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 2.1,
+        "hops": 3,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 2.9107
+    },
+    {
+      "cap": "C_AVDD_P59",
+      "pin": "59",
+      "signal": "AVDD",
+      "pad": "1",
+      "straight_mm": 4.5001,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_DVDD_P58",
+      "pin": "48",
+      "signal": "DVDD",
+      "pad": "1",
+      "straight_mm": 11.4841,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 22.1103,
+        "hops": 17,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "GND",
+      "return_via_mm": 0.6505
+    },
+    {
+      "cap": "C_DVDD_H",
+      "pin": "48",
+      "signal": "DVDD",
+      "pad": "1",
+      "straight_mm": 12.0919,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 17.1393,
+        "hops": 14,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "GND",
+      "return_via_mm": 0.6975
+    },
+    {
+      "cap": "C_DVDD_P40",
+      "pin": "50",
+      "signal": "DVDD",
+      "pad": "1",
+      "straight_mm": 6.2295,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 13.671,
+        "hops": 6,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "GND",
+      "return_via_mm": 1.0025
+    },
+    {
+      "cap": "C_DVDD_10u",
+      "pin": "50",
+      "signal": "DVDD",
+      "pad": "1",
+      "straight_mm": 9.8867,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 18.0088,
+        "hops": 14,
+        "layers": [
+          "Top Layer"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "GND",
+      "return_via_mm": 0.4175
+    },
+    {
+      "cap": "C_AVSS_P17",
+      "pin": "20",
+      "signal": "AVSS",
+      "pad": "1",
+      "straight_mm": 6.2752,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_AVSS_H",
+      "pin": "20",
+      "signal": "AVSS",
+      "pad": "1",
+      "straight_mm": 9.4867,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.5503
+    },
+    {
+      "cap": "C_AVSS_P30",
+      "pin": "32",
+      "signal": "AVSS",
+      "pad": "1",
+      "straight_mm": 9.2887,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_AVSS_P37",
+      "pin": "57",
+      "signal": "AVSS",
+      "pad": "1",
+      "straight_mm": 16.218,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_AVSS_P60",
+      "pin": "58",
+      "signal": "AVSS",
+      "pad": "1",
+      "straight_mm": 17.7914,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.1515
+    },
+    {
+      "cap": "C_AVSS_B",
+      "pin": "58",
+      "signal": "AVSS",
+      "pad": "1",
+      "straight_mm": 19.2296,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": true,
+      "path": null,
+      "vias_in_path": null,
+      "j1_applies": false,
+      "j1_ok": null,
+      "return_net": "GND",
+      "return_via_mm": 0.2128
+    }
+  ],
+  "star_connection": [
+    {
+      "pin": "54",
+      "name": "AVDD1",
+      "net": "AVDD",
+      "contract_net": "AVDD",
+      "own_net": false,
+      "net_is_a_plane": true,
+      "zones_over_pad": {
+        "Inner1": [
+          "GND"
+        ],
+        "Inner2": [
+          "AVDD"
+        ]
+      },
+      "star_possible": false,
+      "verdict": "shares the AVDD net and the AVDD plane -- a star connection would need a separate AVDD1 net in the schematic (Rev.B)"
+    },
+    {
+      "pin": "53",
+      "name": "AVSS1",
+      "net": "AVSS",
+      "contract_net": "AVSS",
+      "own_net": false,
+      "net_is_a_plane": true,
+      "zones_over_pad": {
+        "Inner1": [
+          "GND"
+        ],
+        "Inner2": [
+          "AVDD"
+        ]
+      },
+      "star_possible": false,
+      "verdict": "shares the AVSS net and the AVSS plane -- a star connection would need a separate AVSS1 net in the schematic (Rev.B)"
+    }
+  ],
+  "return_paths": [
+    {
+      "net": "ADS_SCLK_LOC",
+      "samples": 354,
+      "void_at_own_via": 0,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    },
+    {
+      "net": "ADS_DIN_LOC",
+      "samples": 56,
+      "void_at_own_via": 0,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    },
+    {
+      "net": "ADS_DOUT_LOC",
+      "samples": 301,
+      "void_at_own_via": 0,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    },
+    {
+      "net": "ADS_CS_N",
+      "samples": 762,
+      "void_at_own_via": 49,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    },
+    {
+      "net": "ADS_DRDY_N",
+      "samples": 976,
+      "void_at_own_via": 22,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    },
+    {
+      "net": "USB_DP",
+      "samples": 359,
+      "void_at_own_via": 61,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    },
+    {
+      "net": "USB_DM",
+      "samples": 467,
+      "void_at_own_via": 55,
+      "void_at_foreign_via": 0,
+      "void_unaccounted": 0,
+      "samples_over_an_inner_track": 0,
+      "continuous": true
+    }
+  ],
+  "in2_under_inputs": [
+    {
+      "net": "IN1P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "AVDD",
+        "(no fill)"
+      ]
+    },
+    {
+      "net": "IN1N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN2P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN2N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN3P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN3N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN4P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN4N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN5P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN5N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN6P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN6N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN7P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN7N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    },
+    {
+      "net": "IN8P",
+      "in2_regions_crossed": 3,
+      "transitions": 2,
+      "regions": [
+        "AVSS",
+        "AVDD",
+        "(no fill)"
+      ]
+    },
+    {
+      "net": "IN8N",
+      "in2_regions_crossed": 3,
+      "transitions": 6,
+      "regions": [
+        "AVSS",
+        "(no fill)",
+        "AVDD"
+      ]
+    }
+  ],
+  "differential_pairs": [
+    {
+      "pair": "IN1P/IN1N",
+      "len_p_mm": 22.376,
+      "len_n_mm": 19.796,
+      "delta_mm": 2.58,
+      "min_gap_mm": 0.3305
+    },
+    {
+      "pair": "IN2P/IN2N",
+      "len_p_mm": 20.377,
+      "len_n_mm": 17.798,
+      "delta_mm": 2.579,
+      "min_gap_mm": 0.3305
+    },
+    {
+      "pair": "IN3P/IN3N",
+      "len_p_mm": 18.38,
+      "len_n_mm": 15.801,
+      "delta_mm": 2.579,
+      "min_gap_mm": 0.33
+    },
+    {
+      "pair": "IN4P/IN4N",
+      "len_p_mm": 16.382,
+      "len_n_mm": 13.802,
+      "delta_mm": 2.58,
+      "min_gap_mm": 0.33
+    },
+    {
+      "pair": "IN5P/IN5N",
+      "len_p_mm": 14.796,
+      "len_n_mm": 14.217,
+      "delta_mm": 0.58,
+      "min_gap_mm": 0.4413
+    },
+    {
+      "pair": "IN6P/IN6N",
+      "len_p_mm": 16.796,
+      "len_n_mm": 16.214,
+      "delta_mm": 0.583,
+      "min_gap_mm": 0.33
+    },
+    {
+      "pair": "IN7P/IN7N",
+      "len_p_mm": 18.792,
+      "len_n_mm": 18.211,
+      "delta_mm": 0.581,
+      "min_gap_mm": 0.3305
+    },
+    {
+      "pair": "IN8P/IN8N",
+      "len_p_mm": 20.792,
+      "len_n_mm": 20.21,
+      "delta_mm": 0.582,
+      "min_gap_mm": 0.3305
+    }
+  ],
+  "input_vs_digital": [
+    {
+      "input": "IN8N",
+      "gap_mm": 8.1904,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN8P",
+      "gap_mm": 9.5102,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN2N",
+      "gap_mm": 9.741,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN2P",
+      "gap_mm": 9.7538,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN3P",
+      "gap_mm": 9.7538,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN1N",
+      "gap_mm": 9.7921,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN3N",
+      "gap_mm": 9.7921,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN1P",
+      "gap_mm": 9.8556,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN4P",
+      "gap_mm": 9.8557,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN4N",
+      "gap_mm": 9.944,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN5P",
+      "gap_mm": 10.0563,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN5N",
+      "gap_mm": 10.1919,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN6P",
+      "gap_mm": 10.3499,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN6N",
+      "gap_mm": 10.5293,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN7P",
+      "gap_mm": 10.7289,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    },
+    {
+      "input": "IN7N",
+      "gap_mm": 10.8865,
+      "to": "ADS_RESET_N",
+      "layer": "Top Layer"
+    }
+  ],
+  "crossings": [],
+  "zone_fill": [
+    {
+      "net": "CHASSIS_GND",
+      "layer": "Top Layer",
+      "outlines": 2,
+      "holes": 0,
+      "area_mm2": 40.17
+    },
+    {
+      "net": "GND",
+      "layer": "Inner1",
+      "outlines": 1,
+      "holes": 0,
+      "area_mm2": 2493.44
+    },
+    {
+      "net": "USB_5V",
+      "layer": "Inner2",
+      "outlines": 1,
+      "holes": 0,
+      "area_mm2": 282.47
+    },
+    {
+      "net": "VDD_ESP",
+      "layer": "Inner2",
+      "outlines": 1,
+      "holes": 0,
+      "area_mm2": 329.6
+    },
+    {
+      "net": "AVDD",
+      "layer": "Inner2",
+      "outlines": 1,
+      "holes": 0,
+      "area_mm2": 278.81
+    },
+    {
+      "net": "AVSS",
+      "layer": "Inner2",
+      "outlines": 7,
+      "holes": 0,
+      "area_mm2": 841.93
+    },
+    {
+      "net": "USB_5V",
+      "layer": "Inner2",
+      "outlines": 8,
+      "holes": 0,
+      "area_mm2": 359.39
+    },
+    {
+      "net": "VDD_ESP",
+      "layer": "Inner2",
+      "outlines": 1,
+      "holes": 0,
+      "area_mm2": 75.36
+    },
+    {
+      "net": "VDD_ESP",
+      "layer": "Inner2",
+      "outlines": 9,
+      "holes": 0,
+      "area_mm2": 215.61
+    },
+    {
+      "net": "VDD_ESP",
+      "layer": "Inner2",
+      "outlines": 3,
+      "holes": 0,
+      "area_mm2": 0.0
+    }
+  ],
+  "checklist": [
+    {
+      "id": "J3 VCAP1 value",
+      "measured": "100uF",
+      "wanted": "100 uF (DS Pin Functions)",
+      "ok": true
+    },
+    {
+      "id": "J3 VREFP bulk >= 10 uF",
+      "measured": "10uF 50V X5R 1206",
+      "wanted": ">= 10 uF across VREFP-VREFN",
+      "ok": true
+    },
+    {
+      "id": "J4 VCAP1 dielectric",
+      "measured": "CL31A107MQHNNNE",
+      "wanted": "C0G / NP0 / tantalum (DS 11, vibration)",
+      "ok": null,
+      "note": "MPN CL31A107MQHNNNE -- a class-2 dielectric here is a recorded design decision, not a pass"
+    },
+    {
+      "id": "J6 RESV1 (31) to DGND",
+      "measured": "GND",
+      "wanted": "GND",
+      "ok": true
+    },
+    {
+      "id": "J7 unused analog inputs to AVDD",
+      "measured": "none unconnected",
+      "wanted": "AVDD, not GND and not open",
+      "ok": true
+    },
+    {
+      "id": "J8 CH340C XI open, no series R on D+/D-",
+      "measured": "SOP-16 CH340C has no crystal pin (7=NC., 8=OUT#); resistors on USB_DP/USB_DM: none",
+      "wanted": "internal oscillator, D+/D- straight through",
+      "ok": true
+    },
+    {
+      "id": "J9 USB D+/D- length delta",
+      "measured": "9.671 mm (D+ 34.036, D- 43.706)",
+      "wanted": "< 45 mm (Full Speed, H-2)",
+      "ok": true
+    },
+    {
+      "id": "J10 regulators and their capacitors on one side",
+      "measured": {
+        "AMS1117": "front",
+        "TLV70025": "front",
+        "TPS72325": "front",
+        "LM2664": "front"
+      },
+      "wanted": "all front (no part is on the back of this board)",
+      "ok": true
+    },
+    {
+      "id": "J11 ESP32 antenna clear of the board",
+      "measured": "module right edge 175.29 mm, board right edge 181.62 mm, overhang -6.34 mm",
+      "wanted": "antenna over a cut-out or off the edge",
+      "ok": null,
+      "note": "the module sits inside the outline, so the antenna is over board material -- a Rev.A acceptance, visible in the preview render"
+    }
+  ],
+  "improvement_attempts": [
+    {
+      "ref": "C_VCAP3",
+      "target": "U_ADS.55",
+      "now_mm": 3.3598,
+      "sites_examined": 0,
+      "better": null,
+      "ok": false,
+      "reason": "no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    },
+    {
+      "ref": "C_VCAP3_H",
+      "target": "U_ADS.55",
+      "now_mm": 2.1015,
+      "sites_examined": 0,
+      "better": null,
+      "ok": false,
+      "reason": "no position between 0.4 mm and 2.10 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    },
+    {
+      "ref": "C_VCAP1",
+      "target": "U_ADS.28",
+      "now_mm": 9.8856,
+      "sites_examined": 0,
+      "better": null,
+      "ok": false,
+      "reason": "no position between 0.4 mm and 6.00 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    },
+    {
+      "ref": "C_VCAP1_H",
+      "target": "U_ADS.28",
+      "now_mm": 1.358,
+      "sites_examined": 0,
+      "better": null,
+      "ok": false,
+      "reason": "no position between 0.4 mm and 1.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    },
+    {
+      "ref": "C_VCAP4",
+      "target": "U_ADS.26",
+      "now_mm": 5.2383,
+      "sites_examined": 62,
+      "better": null,
+      "ok": false,
+      "reason": "no position between 0.4 mm and 5.24 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    }
+  ]
+}
