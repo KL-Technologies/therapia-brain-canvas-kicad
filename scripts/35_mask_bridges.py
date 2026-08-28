@@ -46,6 +46,9 @@ import route as R                                  # noqa: E402
 import viol as V                                   # noqa: E402
 
 TOL = int(0.01 * P.IU)
+# Aim a couple of microns past the minimum web rather than exactly at it, so
+# the result does not depend on which way DRC rounds.
+SAFETY = int(0.002 * P.IU)
 
 
 def resolve(pcbnew, board, entry):
@@ -153,7 +156,7 @@ def main():
                           "copper gap is larger than the search ceiling")
             impossible.append(rec)
             continue
-        room = g - web
+        room = g - web - SAFETY
         if room < 0:
             rec["why"] = ("copper gap %.4f mm is below the %.4f mm minimum "
                           "web; no mask margin can separate these"
