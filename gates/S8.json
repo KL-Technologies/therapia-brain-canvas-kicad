@@ -140,15 +140,15 @@
     },
     {
       "name": "placements unchanged since 2026-08-16",
-      "expected": 122,
-      "actual": 122,
+      "expected": 120,
+      "actual": 120,
       "pass": true,
-      "note": "129 parts existed in August; the 7 that moved are the L1 repair, four S5 nudges and the two ECO-3 1206 swaps, each listed in vs_august_placement"
+      "note": "129 parts existed in August; the 9 that differ are the L1 repair (AMS1117), four S5 nudges (C_3V3_H, C_AVSS_B, C_RST_DLY, C_VREFP_10n), the two ECO-3 1206 swaps (C_VCAP1, C_VREFP_10u), the L7 move of R_CC1 out of the USB-C shell, and U_MCU -- which did not move at all: only its CPL rotation did, 0 -> 90, because the 32UE's JLC footprint is drawn along Y (data/cpl_overrides.json). Each is listed in vs_august_placement"
     },
     {
       "name": "parts moved since August are all accounted for",
-      "expected": 7,
-      "actual": 7,
+      "expected": 9,
+      "actual": 9,
       "pass": true
     },
     {
@@ -166,6 +166,13 @@
         "C_VCAP3_H"
       ],
       "pass": true
+    },
+    {
+      "name": "every CPL override was applied and named a real part",
+      "expected": [],
+      "actual": [],
+      "pass": true,
+      "note": "applied: [{\"designator\": \"U_MCU\", \"field\": \"Rotation\", \"from\": \"0.000000\", \"to\": \"90.000000\"}]"
     },
     {
       "name": "previews and assembly drawing written",
@@ -196,7 +203,7 @@
       "expected": true,
       "actual": true,
       "pass": true,
-      "note": "read through the sticky TO.N state machine cleared by TD -- KiCad emits the attribute only on a change, so taking the line above each flash would mis-net most of them (934 sets, 178 deletes on F.Cu)"
+      "note": "read through the sticky TO.N state machine cleared by TD -- KiCad emits the attribute only on a change, so taking the line above each flash would mis-net most of them (935 sets, 178 deletes on F.Cu)"
     },
     {
       "name": "ODB++ netlist names the same nets",
@@ -206,9 +213,10 @@
     },
     {
       "name": "ODB++ point count = pads + vias",
-      "expected": 678,
-      "actual": 678,
-      "pass": true
+      "expected": 680,
+      "actual": 680,
+      "pass": true,
+      "note": "678 until L7: USB_CC1 cannot enter J1 pad 4 from the west, so it crosses the pad column on B.Cu and the board gained two vias (gates/S5_L7.json). The same +2 shows in ACCEPTANCE D's IPC-D-356 count"
     },
     {
       "name": ".gbrjob agrees on layers, thickness, stackup and rules",
@@ -217,7 +225,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T18:45:47",
+  "timestamp": "2026-08-28T20:56:12",
   "notes": "The uploadable package, read back from the files. Geometry and drill are checked by lib/gerber_parse.py, not by KiCad.",
   "archive": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/Therapia_EEG-HRV_Rev.A.zip",
@@ -237,7 +245,7 @@
       "Therapia_EEG-HRV-PTH.drl",
       "Therapia_EEG-HRV-job.gbrjob"
     ],
-    "bytes": 281921
+    "bytes": 282541
   },
   "independent_parse": {
     "missing_layers": [],
@@ -251,10 +259,10 @@
     "npth_clear": true,
     "planes_filled": true,
     "copper_coverage": {
-      "F.Cu": 0.2416,
-      "In1.Cu": 0.9543,
-      "In2.Cu": 0.9356,
-      "B.Cu": 0.1057
+      "F.Cu": 0.2434,
+      "In1.Cu": 0.9542,
+      "In2.Cu": 0.9355,
+      "B.Cu": 0.1061
     },
     "outline": {
       "bbox": [
@@ -313,14 +321,14 @@
   },
   "ipc_d356": {
     "present": true,
-    "features": 678,
+    "features": 680,
     "unparsed_lines": 0,
     "header": [
       "P  CODE 00",
       "P  UNITS CUST 0",
       "P  arrayDim   N"
     ],
-    "vias": 239,
+    "vias": 241,
     "smd": 417,
     "through_pads": 16,
     "npth": 6,
@@ -434,10 +442,10 @@
       "net_differs": 0,
       "disagreements": [],
       "ok": true,
-      "gerber_attr_sets": 934,
+      "gerber_attr_sets": 935,
       "gerber_attr_deletes": 178,
-      "flashes_carrying_a_net": 672,
-      "flashes": 672
+      "flashes_carrying_a_net": 674,
+      "flashes": 674
     }
   },
   "gbrjob": {
@@ -478,7 +486,7 @@
   "odb": {
     "present": true,
     "nets": 79,
-    "netlist_points": 678,
+    "netlist_points": 680,
     "names": [
       "A1_ELEC",
       "A2_ELEC",
@@ -595,7 +603,7 @@
   },
   "vs_august_placement": {
     "file": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_CPL.xlsx",
-    "unchanged": 122,
+    "unchanged": 120,
     "moved": [
       {
         "ref": "AMS1117",
@@ -638,6 +646,18 @@
         "dx_mm": 0.508,
         "dy_mm": 0.254,
         "drot_deg": 90.0
+      },
+      {
+        "ref": "R_CC1",
+        "dx_mm": -4.766,
+        "dy_mm": -4.436,
+        "drot_deg": 90.0
+      },
+      {
+        "ref": "U_MCU",
+        "dx_mm": 0.0,
+        "dy_mm": 0.0,
+        "drot_deg": 90.0
       }
     ],
     "new_since_august": [
@@ -650,5 +670,21 @@
       "R_IO15_DN",
       "R_RST_UP"
     ]
+  },
+  "cpl_overrides": {
+    "file": "data/cpl_overrides.json",
+    "declared": [
+      "U_MCU"
+    ],
+    "applied": [
+      {
+        "designator": "U_MCU",
+        "field": "Rotation",
+        "from": "0.000000",
+        "to": "90.000000",
+        "why": "ESP32-WROOM-32UE-N4, LCSC C701344. JLC's / EasyEDA's footprint for this part is drawn with the module's long axis along Y, which is +90 degrees CCW from the footprint on this board (all 38 pads map onto ours after a +90 rotation, and both footprints take the centre of the pad bounding box as their origin, so Mid X and Mid Y are unchanged). The board's own orientation stays 0: nothing on the PCB moves, only the number JLC's placement machine is told. Recorded with the part swap in data/bom_fixes_2026-08-28.json (lead, 2026-08-28). What to check on JLC's Confirm Parts Placement screen: the module's pad-free end (the end the 32E carried its antenna on) points west, towards U_ADS."
+      }
+    ],
+    "named_but_not_in_the_cpl": []
   }
 }

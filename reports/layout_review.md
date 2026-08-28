@@ -90,7 +90,7 @@ DS §12.1 は「グラウンドプレーンが切れていたり他の配線が�
 
 In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
-> **表の「またぐ」は問題ではない。** 入力配線のリターン電流が流れるのは**直下ではなく最も近いリファレンス面**で、この基板ではそれが **In1（GND、1 枚もの・2493.4 mm²・基板面積の 90%）**。In1 に切れ目が無い以上リターン経路は連続しており（第 4 節で実測）、In2 の境界越えはリターンの断絶にはならない。下表は「入力の下に何があるか」の記録であって合否ではない。
+> **表の「またぐ」は問題ではない。** 入力配線のリターン電流が流れるのは**直下ではなく最も近いリファレンス面**で、この基板ではそれが **In1（GND、1 枚もの・2492.4 mm²・基板面積の 90%）**。In1 に切れ目が無い以上リターン経路は連続しており（第 4 節で実測）、In2 の境界越えはリターンの断絶にはならない。下表は「入力の下に何があるか」の記録であって合否ではない。
 
 | 入力 | またぐ領域数 | 遷移回数 | 領域 |
 |---|---|---|---|
@@ -155,18 +155,18 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
 | ネット | 層 | 外形 | 面積 [mm²] | 基板面積比 |
 |---|---|---|---|---|
-| CHASSIS_GND | F.Cu | 2 | 40.17 | 1.4% |
-| GND | In1.Cu | 1 | 2493.44 | 89.6% |
+| CHASSIS_GND | F.Cu | 2 | 43.81 | 1.6% |
+| GND | In1.Cu | 1 | 2492.41 | 89.6% |
 | AVSS | In2.Cu | 7 | 841.93 | 30.3% |
 | USB_5V | In2.Cu | 8 | 359.39 | 12.9% |
 | VDD_ESP | In2.Cu | 1 | 329.60 | 11.8% |
-| USB_5V | In2.Cu | 1 | 282.47 | 10.2% |
+| USB_5V | In2.Cu | 1 | 281.44 | 10.1% |
 | AVDD | In2.Cu | 1 | 278.81 | 10.0% |
 | VDD_ESP | In2.Cu | 9 | 215.61 | 7.7% |
 | VDD_ESP | In2.Cu | 1 | 75.36 | 2.7% |
 | VDD_ESP | In2.Cu | 3 | 0.00 | 0.0% |
 
-**In1 = GND が 1 枚もので 2493.4 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
+**In1 = GND が 1 枚もので 2492.4 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
 
 **空に近いベタが 1 枚ある**: VDD_ESP@In2.Cu (3 外形, 0.0000 mm²)。VDD_ESP は 3 枚のベタに分かれており（S5 の申し送り）、そのうち 1 枚は充填の結果ほぼ何も残っていない。電気的には他の 2 枚が VDD_ESP を配っているので実害は無いが、**この 1 枚は何もしていない**。DRC も `isolated_copper` / `copper_sliver` を報告していない。
 
@@ -182,7 +182,7 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 | J8 CH340C XI open, no series R on D+/D- | SOP-16 CH340C has no crystal pin (7=NC., 8=OUT#); resistors on USB_DP/USB_DM: none | internal oscillator, D+/D- straight through | OK |
 | J9 USB D+/D- length delta | 9.671 mm (D+ 34.036, D- 43.706) | < 45 mm (Full Speed, H-2) | OK |
 | J10 regulators and their capacitors on one side | {"AMS1117": "front", "TLV70025": "front", "TPS72325": "front", "LM2664": "front"} | all front (no part is on the back of this board) | OK |
-| J11 ESP32 antenna clear of the board | module right edge 175.29 mm, board right edge 181.62 mm, overhang -6.34 mm | antenna over a cut-out or off the edge | **要判断** |
+| J11 ESP32 antenna clear of the board | module right edge 175.01 mm, board right edge 181.62 mm, overhang -6.61 mm | antenna over a cut-out or off the edge | **要判断** |
 
 - **J4 VCAP1 dielectric**: MPN CL31A107MQHNNNE -- a class-2 dielectric here is a recorded design decision, not a pass
 
@@ -194,7 +194,7 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
 | 部品 | 現在 [mm] | 調べた位置 | 結果 |
 |---|---|---|---|
-| C_VCAP3 → U_ADS.55 | 3.36 | 0 | no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
+| C_VCAP3 → U_ADS.55 | 3.36 | 45 | no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
 | C_VCAP3_H → U_ADS.55 | 2.10 | 0 | no position between 0.4 mm and 2.10 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
 | C_VCAP1 → U_ADS.28 | 9.89 | 0 | no position between 0.4 mm and 6.00 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
 | C_VCAP1_H → U_ADS.28 | 1.36 | 0 | no position between 0.4 mm and 1.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |

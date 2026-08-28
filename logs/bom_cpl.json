@@ -23,12 +23,28 @@
     "excluded": [],
     "source_rows": 133
   },
+  "cpl_overrides": {
+    "file": "data/cpl_overrides.json",
+    "declared": [
+      "U_MCU"
+    ],
+    "applied": [
+      {
+        "designator": "U_MCU",
+        "field": "Rotation",
+        "from": "0.000000",
+        "to": "90.000000",
+        "why": "ESP32-WROOM-32UE-N4, LCSC C701344. JLC's / EasyEDA's footprint for this part is drawn with the module's long axis along Y, which is +90 degrees CCW from the footprint on this board (all 38 pads map onto ours after a +90 rotation, and both footprints take the centre of the pad bounding box as their origin, so Mid X and Mid Y are unchanged). The board's own orientation stays 0: nothing on the PCB moves, only the number JLC's placement machine is told. Recorded with the part swap in data/bom_fixes_2026-08-28.json (lead, 2026-08-28). What to check on JLC's Confirm Parts Placement screen: the module's pad-free end (the end the 32E carried its antenna on) points west, towards U_ADS."
+      }
+    ],
+    "named_but_not_in_the_cpl": []
+  },
   "bom_only": [],
   "cpl_only": [],
   "sets_match": true,
   "vs_2026_08_16": {
     "file": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_CPL.xlsx",
-    "unchanged": 122,
+    "unchanged": 120,
     "moved": [
       {
         "ref": "AMS1117",
@@ -70,6 +86,18 @@
         "ref": "C_VREFP_10u",
         "dx_mm": 0.508,
         "dy_mm": 0.254,
+        "drot_deg": 90.0
+      },
+      {
+        "ref": "R_CC1",
+        "dx_mm": -4.766,
+        "dy_mm": -4.436,
+        "drot_deg": 90.0
+      },
+      {
+        "ref": "U_MCU",
+        "dx_mm": 0.0,
+        "dy_mm": 0.0,
         "drot_deg": 90.0
       }
     ],

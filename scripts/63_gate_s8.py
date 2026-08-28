@@ -138,12 +138,17 @@ def main():
               sorted(bom_refs) == sorted(cpl_refs)),
         check("DNP and mechanical parts in neither file", [],
               sorted(excluded & (set(bom_refs) | set(cpl_refs)))),
-        check("placements unchanged since 2026-08-16", 122,
+        check("placements unchanged since 2026-08-16", 120,
               placement.get("unchanged"),
-              note="129 parts existed in August; the 7 that moved are the L1 "
-                   "repair, four S5 nudges and the two ECO-3 1206 swaps, each "
-                   "listed in vs_august_placement"),
-        check("parts moved since August are all accounted for", 7,
+              note="129 parts existed in August; the 9 that differ are the L1 "
+                   "repair (AMS1117), four S5 nudges (C_3V3_H, C_AVSS_B, "
+                   "C_RST_DLY, C_VREFP_10n), the two ECO-3 1206 swaps "
+                   "(C_VCAP1, C_VREFP_10u), the L7 move of R_CC1 out of the "
+                   "USB-C shell, and U_MCU -- which did not move at all: only "
+                   "its CPL rotation did, 0 -> 90, because the 32UE's JLC "
+                   "footprint is drawn along Y (data/cpl_overrides.json). "
+                   "Each is listed in vs_august_placement"),
+        check("parts moved since August are all accounted for", 9,
               len(placement.get("moved", []))),
         check("parts new since August", ["C_VCAP1_H", "C_VCAP2", "C_VCAP3",
                                          "C_VCAP3_H"],
@@ -177,8 +182,12 @@ def main():
                        .get("gerber_attr_deletes", 0))),
         check("ODB++ netlist names the same nets", 79,
               log["odb"].get("nets")),
-        check("ODB++ point count = pads + vias", 678,
-              log["odb"].get("netlist_points")),
+        check("ODB++ point count = pads + vias", 680,
+              log["odb"].get("netlist_points"),
+              note="678 until L7: USB_CC1 cannot enter J1 pad 4 from the "
+                   "west, so it crosses the pad column on B.Cu and the board "
+                   "gained two vias (gates/S5_L7.json). The same +2 shows in "
+                   "ACCEPTANCE D's IPC-D-356 count"),
         check(".gbrjob agrees on layers, thickness, stackup and rules", True,
               log["gbrjob"].get("ok")),
     ]

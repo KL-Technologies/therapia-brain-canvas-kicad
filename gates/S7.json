@@ -160,18 +160,19 @@
     {
       "name": "D IPC-D-356 feature counts",
       "expected": [
-        239,
+        241,
         417,
         16,
         6
       ],
       "actual": [
-        239,
+        241,
         417,
         16,
         6
       ],
-      "pass": true
+      "pass": true,
+      "note": "vias were 239 until L7 moved R_CC1 out of the USB-C shell; USB_CC1 has to cross J1's pad column on B.Cu, which costs two. ACCEPTANCE D allows a recorded increment and gates/S5_L7.json is the record"
     },
     {
       "name": "E gerber set complete",
@@ -276,17 +277,17 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T20:27:19",
+  "timestamp": "2026-08-28T20:56:34",
   "notes": "ACCEPTANCE.md A-G. The document is frozen; this is its implementation. D and E are settled by lib/gerber_parse.py reading the plotted files, not by KiCad reading its own output.",
   "drc": {
-    "violations": 469,
+    "violations": 454,
     "errors": 0,
-    "warnings": 469,
+    "warnings": 454,
     "unconnected": 0,
     "by_type": {
       "silk_overlap": 199,
-      "silk_over_copper": 157,
-      "courtyards_overlap": 76,
+      "silk_over_copper": 155,
+      "courtyards_overlap": 63,
       "track_dangling": 26,
       "clearance": 5,
       "via_dangling": 3,
@@ -453,7 +454,7 @@
     }
   },
   "fab": {
-    "dir": "./fab/gerber",
+    "dir": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/gerber",
     "layers_found": [
       "g1",
       "g2",
@@ -490,7 +491,7 @@
     },
     "layers": {
       "In1.Cu": {
-        "flashes": 255,
+        "flashes": 257,
         "draws": 0,
         "regions": 1,
         "clear_flashes": 0,
@@ -506,7 +507,7 @@
         "empty": false
       },
       "In2.Cu": {
-        "flashes": 255,
+        "flashes": 257,
         "draws": 0,
         "regions": 31,
         "clear_flashes": 0,
@@ -522,8 +523,8 @@
         "empty": false
       },
       "B.Cu": {
-        "flashes": 255,
-        "draws": 317,
+        "flashes": 257,
+        "draws": 318,
         "regions": 0,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -602,8 +603,8 @@
         "empty": false
       },
       "F.Cu": {
-        "flashes": 672,
-        "draws": 935,
+        "flashes": 674,
+        "draws": 930,
         "regions": 2,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -619,7 +620,7 @@
       },
       "F.SilkS": {
         "flashes": 0,
-        "draws": 8217,
+        "draws": 8214,
         "regions": 3,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -781,10 +782,10 @@
     "copper_in_npth_rings": [],
     "npth_clear": true,
     "copper_coverage": {
-      "F.Cu": 0.2416,
-      "In1.Cu": 0.9543,
-      "In2.Cu": 0.9356,
-      "B.Cu": 0.1057
+      "F.Cu": 0.2434,
+      "In1.Cu": 0.9542,
+      "In2.Cu": 0.9355,
+      "B.Cu": 0.1061
     },
     "planes_filled": true,
     "paste": {
@@ -794,14 +795,14 @@
     },
     "ipc_d356": {
       "present": true,
-      "features": 678,
+      "features": 680,
       "unparsed_lines": 0,
       "header": [
         "P  CODE 00",
         "P  UNITS CUST 0",
         "P  arrayDim   N"
       ],
-      "vias": 239,
+      "vias": 241,
       "smd": 417,
       "through_pads": 16,
       "npth": 6,
@@ -915,10 +916,10 @@
         "net_differs": 0,
         "disagreements": [],
         "ok": true,
-        "gerber_attr_sets": 934,
+        "gerber_attr_sets": 935,
         "gerber_attr_deletes": 178,
-        "flashes_carrying_a_net": 672,
-        "flashes": 672
+        "flashes_carrying_a_net": 674,
+        "flashes": 674
       }
     },
     "gbrjob": {
@@ -959,7 +960,7 @@
     "odb": {
       "present": true,
       "nets": 79,
-      "netlist_points": 678,
+      "netlist_points": 680,
       "names": [
         "A1_ELEC",
         "A2_ELEC",
@@ -1043,7 +1044,7 @@
       ]
     },
     "pth": {
-      "hits": 259,
+      "hits": 261,
       "tools": {
         "1": 0.305,
         "2": 0.305,
@@ -1051,6 +1052,45 @@
         "4": 1.05
       },
       "slots": 8
+    },
+    "vs_2026_08_16": {
+      "archive": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_Gerber.zip",
+      "files": 16,
+      "outline_mm": [
+        61.8236,
+        45.0088
+      ],
+      "npth_hits": 6,
+      "npth_tools": {
+        "1": 0.700024,
+        "2": 2.3876
+      },
+      "npth_xy": [
+        [
+          3.048,
+          -41.9608
+        ],
+        [
+          3.048,
+          -3.048
+        ],
+        [
+          56.8611,
+          -33.8779
+        ],
+        [
+          56.8611,
+          -28.0979
+        ],
+        [
+          56.9468,
+          -41.9608
+        ],
+        [
+          56.9468,
+          -3.048
+        ]
+      ]
     }
   },
   "bom": {
@@ -1073,11 +1113,11 @@
   "previews": {
     "preview_top.png": {
       "exists": true,
-      "bytes": 154346
+      "bytes": 154656
     },
     "preview_bottom.png": {
       "exists": true,
-      "bytes": 91065
+      "bytes": 91520
     }
   }
 }

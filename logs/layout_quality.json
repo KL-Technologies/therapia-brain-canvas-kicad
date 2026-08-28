@@ -1017,21 +1017,21 @@
       "layer": "F.Cu",
       "outlines": 2,
       "holes": 0,
-      "area_mm2": 40.17
+      "area_mm2": 43.81
     },
     {
       "net": "GND",
       "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 2493.44
+      "area_mm2": 2492.41
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 282.47
+      "area_mm2": 281.44
     },
     {
       "net": "VDD_ESP",
@@ -1140,7 +1140,7 @@
     },
     {
       "id": "J11 ESP32 antenna clear of the board",
-      "measured": "module right edge 175.29 mm, board right edge 181.62 mm, overhang -6.34 mm",
+      "measured": "module right edge 175.01 mm, board right edge 181.62 mm, overhang -6.61 mm",
       "wanted": "antenna over a cut-out or off the edge",
       "ok": null,
       "note": "the module sits inside the outline, so the antenna is over board material -- a Rev.A acceptance, visible in the preview render"
@@ -1151,7 +1151,7 @@
       "ref": "C_VCAP3",
       "target": "U_ADS.55",
       "now_mm": 3.3598,
-      "sites_examined": 0,
+      "sites_examined": 45,
       "better": null,
       "ok": false,
       "reason": "no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
