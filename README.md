@@ -44,6 +44,23 @@ python3 scripts/99_selftest.py   # 合成 .epro でパーサ／パッチャの�
 | S2 | `scripts/11_import_epro.py` | KPY | パッチ段階を変えながら `PCB_IO_MGR.Load(EASYEDAPRO)` → `Save(KICAD_SEXP)` → パッド網の補修 → DRC | `board/*.kicad_pcb` |
 | S2 | `scripts/12_verify_import.py` | KPY | `pcbnew.LoadBoard` で読み直して EasyEDA 側と突合 | `gates/S2.json` |
 | S2B | `scripts/20_netlist_contract.py` | python3 | 回路図ネットリスト TSV を契約化し、PCB との差分（＝ECO-1 の残作業）を列挙 | `gates/S2B.json` |
+| S4a | `scripts/13_fix_import.py` | KPY | NPTH 6 穴を合成（M2 ×4・USB-C ペグ ×2）し、開いていた基板外形を閉じる | `gates/S4a.json` |
+| S3 | `scripts/14_make_rules.py` | python3 | JLC 4 層ルールを `.kicad_pro` / `.kicad_dru` / `.kicad_pcb` の `(setup)` へ生成 | — |
+| S3 | `scripts/15_gate_s3.py` | python3 + KC | DRC ベースラインを取り、**ルールが L1〜L4 を実際に検出することを検定** | `gates/S3.json` |
+| S4 | `scripts/19_make_parts_table.py` | python3 | 旧 BOM ＋ ECO-2/3 の置換表から `data/parts_lcsc.csv`（135 行）を生成 | — |
+| S4 | `scripts/20_apply_eco.py` | KPY + KC | ECO-1/2/3 を PCB へ適用し、契約と全パッド突合、ゾーン再充填して DRC | `gates/S4.json` |
+
+**S4a が S3 より先なのは意図的**。取付穴が NPTH になるまで hole clearance ルールに
+引っかかる穴が存在せず、S3 のゲート（L1/L2/L4 の検出）が成立しないため。
+
+### 共通ライブラリ
+
+| ファイル | 中身 |
+|---|---|
+| `scripts/lib/epro.py` | `.epro` のパースとパッチ、ゲート JSON の読み書き |
+| `scripts/lib/route.py` | 銅箔の空間索引・衝突判定、スタブ除去、2 層ルータ（直線→L 字→via ホップ）、部品配置探索。**L1〜L5 の修理もこれを使う** |
+| `scripts/lib/drc.py` | DRC レポートの署名比較。`kicad-cli pcb drc` は同一入力で 525〜531 件と揺れるので、件数ではなく（種別, ネット集合）で比較する |
+| `scripts/lib/xlsx.py` | 旧 BOM/CPL の xlsx を標準ライブラリだけで読む |
 
 `import/` に**正規の旧 `.epro`** と `.epro2` が両方あるときは、必ず旧 `.epro` を使う（変換を挟まないぶん確実）。
 `.converted.epro` は最下位。
@@ -68,12 +85,38 @@ KiCad は `PAD_NET` を `FindPadByNumber()` で当てるので、**同一番号�
 （`13`/`14` ×2）が該当し、GND が 10 パッド落ちる。`11_import_epro.py` が取り込み後に
 EasyEDA 側の表を全パッドへ再適用して直す（`logs/pad_net_repair.json`）。
 
-### 3. `kicad-cli pcb drc` はコマンドサンドボックス内では動かない
+### 3. `kicad-cli pcb drc` はコマンドサンドボックス内では動かない（かつ非決定的）
 
 サンドボックス下では `Swift/SwiftNativeNSArray.swift:78: Fatal error: Array index out of range`
 で落ちる（Swift のエラーは表面的な症状で、原因は macOS のサービスが塞がれていること）。
 `export gerbers` などほかのサブコマンドは影響を受けない。**DRC はサンドボックス外で実行する。**
 通常のターミナルからは普通に動く。
+
+さらに **DRC の出力は同一の基板に対しても揺れる**。実測で 525 / 528 / 531 件。
+同じ物理的問題を代表する要素の選ばれ方が変わるためで、たとえば
+
+```
+run A   Track [V_NLDO_IN] on Bottom Layer, length 2.2860 mm  <-> Via [VNEG5]
+run B   Track [V_NLDO_IN] on Bottom Layer, length 0.2543 mm  <-> Via [VNEG5]
+```
+
+は同じ 1 箇所を指している。したがって**件数で合否を判定してはいけない**。
+`scripts/lib/drc.py` の署名（種別 ＋ ネット集合）で比較する。
+部品参照を署名に含めてはいけない ── track（部品名を含まない）と pad（含む）が
+入れ替わるだけで、無変更の基板が「新規 10 件・解決 10 件」に見える。
+
+### 4. pcbnew の SWIG プロキシは `id()` で比較できない
+
+基板から同じパッドを 2 回取り出すと別のプロキシが返り、`id()` が一致しない。
+無視リストや訪問済み集合は `scripts/lib/route.uid()`（KIID 文字列）で持つこと。
+関連して:
+
+- `board.Remove()` は board 直下の要素に使うと以後 `GetFootprints()` が生の
+  `SwigPyObject` を返すようになる。**`RemoveNative()` を使う**
+- `pcbnew.FOOTPRINT(src)` は KIID ごと複製する（複製先のパッドが元と同じ uuid を持つ）。
+  `m_Uuid` は書き込み不可で `FixUuids()` も効かないので、新規部品はゼロから組み立てる
+- 同一プロセスでの 2 回目の `LoadBoard`、および `SaveBoard` の後は基板を走査できない。
+  計測は保存前に済ませる
 
 ## KiCad 側インポータの既知バグと回避
 
