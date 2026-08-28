@@ -1,0 +1,458 @@
+{
+  "step": "S3",
+  "pass": true,
+  "checks": [
+    {
+      "name": "acceptance_md_exists",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "kicad_pro_generated",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "kicad_dru_generated",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "rules_match_generator",
+      "expected": {
+        "ok": true
+      },
+      "actual": {
+        "ok": true,
+        "diffs": []
+      },
+      "pass": true
+    },
+    {
+      "name": "drc_ran",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "Found 526 violations\nFound 0 unconnected items\nSaved DRC Report to /Users/dev/projects/therapia-device/brain_canvas_kicad/logs/drc_baseline_rules.json\n"
+    },
+    {
+      "name": "detects_L1",
+      "expected": "reported",
+      "actual": "1 violations",
+      "pass": true,
+      "note": "mounting hole H4 through the AMS1117 GND pad"
+    },
+    {
+      "name": "detects_L2",
+      "expected": "reported",
+      "actual": "1 violations",
+      "pass": true,
+      "note": "CHASSIS_GND bottom track through mounting hole H1"
+    },
+    {
+      "name": "detects_L3",
+      "expected": "reported",
+      "actual": "1 violations",
+      "pass": true,
+      "note": "ESP_TXD bottom track clipping mounting hole H4"
+    },
+    {
+      "name": "detects_L4a",
+      "expected": "reported",
+      "actual": "22 violations",
+      "pass": true,
+      "note": "USB_VBUS_RAW routing inside a USB-C peg hole"
+    },
+    {
+      "name": "detects_L4b",
+      "expected": "reported",
+      "actual": "4 violations",
+      "pass": true,
+      "note": "a via drill overlapping a USB-C peg drill"
+    }
+  ],
+  "timestamp": "2026-08-28T14:12:46",
+  "notes": "DRC baseline with JLC rules: 526 violations (68 error / 458 warning), unconnected 0",
+  "acceptance": "ACCEPTANCE.md",
+  "drc_baseline": "logs/drc_baseline_rules.json",
+  "drc_summary": {
+    "violations": 526,
+    "errors": 68,
+    "warnings": 458,
+    "unconnected": 0,
+    "by_type": {
+      "silk_overlap": 199,
+      "silk_over_copper": 156,
+      "courtyards_overlap": 69,
+      "hole_clearance": 35,
+      "clearance": 27,
+      "track_dangling": 24,
+      "solder_mask_bridge": 7,
+      "hole_to_hole": 4,
+      "via_dangling": 2,
+      "silk_edge_clearance": 2,
+      "starved_thermal": 1
+    },
+    "errors_by_type": {
+      "hole_clearance": 35,
+      "clearance": 22,
+      "solder_mask_bridge": 7,
+      "hole_to_hole": 4
+    },
+    "signatures": [
+      "clearance nets=ADS_DIN_LOC,GND",
+      "clearance nets=ADS_DRDY_N,ADS_PWDN_N",
+      "clearance nets=ADS_RESET_N,GND",
+      "clearance nets=ADS_RESET_N,GND refs=C_AVSS_P37",
+      "clearance nets=ADS_START,USB_5V refs=R_START_DN",
+      "clearance nets=ADS_START,USB_VBUS_RAW refs=R_START_DN",
+      "clearance nets=AVDD,AVSS",
+      "clearance nets=AVDD,GND",
+      "clearance nets=AVSS refs=C_AVSS_P37",
+      "clearance nets=AVSS,GND refs=C_AVSS_P37",
+      "clearance nets=AVSS,TPS_NR refs=C_AVSS_P37",
+      "clearance nets=BIAS_OUT_INT,DVDD",
+      "clearance nets=DVDD,GND refs=C_3V3_B2",
+      "clearance nets=ESP_TXD,USB_DM",
+      "clearance nets=GND,VDD_ESP refs=C_3V3_B2,C_AVSS_P37",
+      "clearance nets=USB_DM,USB_DP",
+      "clearance nets=VNEG5,V_NLDO_IN",
+      "hole_clearance nets=AVSS refs=C_AVSS_P37",
+      "hole_clearance nets=CHASSIS_GND refs=H1",
+      "hole_clearance nets=ESP_TXD refs=H4",
+      "hole_clearance nets=GND refs=AMS1117,H4",
+      "hole_clearance nets=GND refs=H4",
+      "hole_clearance nets=GND refs=J1,PEG1",
+      "hole_clearance nets=GND refs=J1,PEG2",
+      "hole_clearance nets=USB_VBUS_RAW refs=PEG1",
+      "hole_clearance nets=USB_VBUS_RAW refs=PEG2",
+      "hole_to_hole nets=USB_VBUS_RAW refs=PEG1",
+      "hole_to_hole nets=USB_VBUS_RAW refs=PEG2",
+      "solder_mask_bridge nets=ADS_START,ESP_IO0 refs=Q_IO0,R_START_DN",
+      "solder_mask_bridge nets=AVSS refs=C_AVSS_P37",
+      "solder_mask_bridge nets=AVSS,GND refs=C_3V3_B2,C_AVSS_P37",
+      "solder_mask_bridge nets=AVSS,TPS_NR refs=C_AVSS_P37",
+      "solder_mask_bridge nets=ESP_IO0,GND refs=Q_IO0,R_START_DN",
+      "solder_mask_bridge nets=GND refs=AMS1117,H4",
+      "solder_mask_bridge nets=GND,VDD_ESP refs=C_3V3_B2,C_AVSS_P37"
+    ],
+    "npth_hole_violations": {
+      "H1": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [CHASSIS_GND] on Bottom Layer, length 5.8420 mm"
+        }
+      ],
+      "H4": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [ESP_TXD] on Bottom Layer, length 11.6840 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [GND] on Top Layer, length 0.8922 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [GND] on Top Layer, length 0.2005 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Pad 1 [GND] of AMS1117 on Top Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0631,
+          "against": "Track [GND] on Top Layer, length 0.3092 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1413,
+          "against": "Via [GND] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1413,
+          "against": "Via [GND] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1413,
+          "against": "Via [GND] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1413,
+          "against": "Via [GND] on Top Layer - Bottom Layer"
+        }
+      ],
+      "PEG1": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0213,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0213,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0213,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0213,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1712,
+          "against": "Pad 1 [GND] of J1 on Top Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1736,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1736,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1736,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1736,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.1736,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.1736,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        }
+      ],
+      "PEG2": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Bottom Layer, length 4.7755 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.2035 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.3698 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.2276 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.5312 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Track [USB_VBUS_RAW] on Top Layer, length 0.5711 mm"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.0,
+          "against": "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer"
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.1712,
+          "against": "Pad 12 [GND] of J1 on Top Layer"
+        }
+      ]
+    }
+  },
+  "known_defects": {
+    "L1": {
+      "description": "mounting hole H4 through the AMS1117 GND pad",
+      "detected": true,
+      "count": 1,
+      "worst_actual_mm": 0.0,
+      "sample": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "items": [
+            "Pad 1 [GND] of AMS1117 on Top Layer",
+            "NPTH pad of H4"
+          ]
+        }
+      ]
+    },
+    "L2": {
+      "description": "CHASSIS_GND bottom track through mounting hole H1",
+      "detected": true,
+      "count": 1,
+      "worst_actual_mm": 0.0,
+      "sample": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "items": [
+            "Track [CHASSIS_GND] on Bottom Layer, length 5.8420 mm",
+            "NPTH pad of H1"
+          ]
+        }
+      ]
+    },
+    "L3": {
+      "description": "ESP_TXD bottom track clipping mounting hole H4",
+      "detected": true,
+      "count": 1,
+      "worst_actual_mm": 0.0,
+      "sample": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "items": [
+            "Track [ESP_TXD] on Bottom Layer, length 11.6840 mm",
+            "NPTH pad of H4"
+          ]
+        }
+      ]
+    },
+    "L4a": {
+      "description": "USB_VBUS_RAW routing inside a USB-C peg hole",
+      "detected": true,
+      "count": 22,
+      "worst_actual_mm": 0.0,
+      "sample": [
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "items": [
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "NPTH pad of PEG2"
+          ]
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "items": [
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "NPTH pad of PEG2"
+          ]
+        },
+        {
+          "type": "hole_clearance",
+          "actual_mm": 0.0,
+          "items": [
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "NPTH pad of PEG2"
+          ]
+        }
+      ]
+    },
+    "L4b": {
+      "description": "a via drill overlapping a USB-C peg drill",
+      "detected": true,
+      "count": 4,
+      "worst_actual_mm": 0.0,
+      "sample": [
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.1736,
+          "items": [
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "NPTH pad of PEG1"
+          ]
+        },
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.0,
+          "items": [
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "NPTH pad of PEG2"
+          ]
+        },
+        {
+          "type": "hole_to_hole",
+          "actual_mm": 0.0,
+          "items": [
+            "Via [USB_VBUS_RAW] on Top Layer - Bottom Layer",
+            "NPTH pad of PEG2"
+          ]
+        }
+      ]
+    }
+  },
+  "rules_generator": "scripts/14_make_rules.py"
+}
