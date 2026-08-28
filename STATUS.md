@@ -4,7 +4,7 @@
 
 ## 現在地
 
-**S0〜S8 の 21 ゲートすべて pass（172 チェック）。`ACCEPTANCE.md` の A〜G を
+**S0〜S8 の 21 ゲートすべて pass（205 チェック）。`ACCEPTANCE.md` の A〜G を
 32 項目すべて満たした。製造データは `fab/` に出力済みで、JLC にアップロードできる状態。**
 
 残りは **S9 = カートに入れて在庫と Confirm Parts Placement を人が見る**ことだけ。
