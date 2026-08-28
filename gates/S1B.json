@@ -39,7 +39,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T13:44:42",
+  "timestamp": "2026-08-28T13:45:22",
   "notes": "EasyEDA Pro 3.2.148 exported .epro2, which KiCad 10.0.5 cannot read (it returns an empty board silently). Converted to the classic .epro layout. RULE and POURED records are deliberately not carried over; see contract/easyeda_rules.json.",
   "report": "logs/epro2_convert.json",
   "output": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28.converted.epro"
