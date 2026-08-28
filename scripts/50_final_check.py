@@ -248,6 +248,9 @@ def main():
     fab, bom, cpl = fab_side(root, log)
 
     npth_ok = fab.get("npth", {}).get("ok")
+    ipc = fab.get("ipc_d356", {})
+    gj = fab.get("gbrjob", {})
+    odb = fab.get("odb", {})
     checks = [
         # A
         P.check("A DRC errors", 0, drc.get("errors"), ok=drc.get("errors") == 0
@@ -268,6 +271,18 @@ def main():
                 facts["mechanical"]),
         P.check("B DNP parts still checked against the contract",
                 ["R_IO15_DN", "R_RST_UP"], facts["dnp_pads_checked"]),
+        P.check("B net set agrees in IPC-D-356", True,
+                ipc.get("nets", {}).get("match"),
+                note="the d356 designator field is 6 characters and this "
+                     "board has 12-character designators, so the pad map is "
+                     "not recoverable from it -- the net set is, because the "
+                     "net field is 14 and the longest name here is 14"),
+        P.check("B net set agrees in ODB++", ipc.get("nets", {}).get(
+            "in_contract"), odb.get("nets")),
+        P.check("B Gerber X2 names the same net on every top pad", True,
+                ipc.get("gerber_x2_agreement", {}).get("ok"),
+                note="read through the sticky-attribute state machine: KiCad "
+                     "emits %TO.N% only on a change, so most flashes inherit"),
         # C
         P.check("C rules regenerate identically", True, idem["identical"]),
         P.check("C rule values match ACCEPTANCE C", True, values_ok),
@@ -285,6 +300,13 @@ def main():
                 fab.get("npth_clear")),
         P.check("D PTH pads unchanged", PTH_PADS,
                 facts["counts"]["pth_pads"]),
+        P.check("D IPC-D-356 agrees: 6 unplated holes in the right places",
+                True, ipc.get("npth_ok"),
+                note="at the d356 resolution of 2.54 um; the 2 um assertion "
+                     "stays with the Excellon file, which is metric"),
+        P.check("D IPC-D-356 feature counts", [239, 417, 16, 6],
+                [ipc.get("vias"), ipc.get("smd"), ipc.get("through_pads"),
+                 ipc.get("npth")]),
         # E
         P.check("E gerber set complete", [], fab.get("missing_layers", ["?"])),
         P.check("E four copper layers", 4,
@@ -296,6 +318,11 @@ def main():
                 fab.get("all_parsed")),
         P.check("E copper layers additive only", True,
                 fab.get("copper_all_dark")),
+        P.check("E .gbrjob agrees on layers, thickness, stackup and rules",
+                True, gj.get("ok")),
+        P.check("E .gbrjob layer count", 4, gj.get("layer_number")),
+        P.check("E .gbrjob board thickness mm", 1.6,
+                gj.get("board_thickness_mm")),
         # F
         P.check("F BOM exists", True, bom.get("exists")),
         P.check("F every BOM row has an LCSC number", [],

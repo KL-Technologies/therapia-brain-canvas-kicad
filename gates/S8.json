@@ -172,9 +172,52 @@
       "expected": true,
       "actual": true,
       "pass": true
+    },
+    {
+      "name": "IPC-D-356 exported and fully parsed",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "IPC-D-356 net set matches the contract",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "IPC-D-356 finds 6 unplated holes in the right places",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "Gerber X2 and IPC-D-356 agree on every top pad's net",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "read through the sticky TO.N state machine cleared by TD -- KiCad emits the attribute only on a change, so taking the line above each flash would mis-net most of them (934 sets, 178 deletes on F.Cu)"
+    },
+    {
+      "name": "ODB++ netlist names the same nets",
+      "expected": 79,
+      "actual": 79,
+      "pass": true
+    },
+    {
+      "name": "ODB++ point count = pads + vias",
+      "expected": 678,
+      "actual": 678,
+      "pass": true
+    },
+    {
+      "name": ".gbrjob agrees on layers, thickness, stackup and rules",
+      "expected": true,
+      "actual": true,
+      "pass": true
     }
   ],
-  "timestamp": "2026-08-28T18:07:35",
+  "timestamp": "2026-08-28T18:20:16",
   "notes": "The uploadable package, read back from the files. Geometry and drill are checked by lib/gerber_parse.py, not by KiCad.",
   "archive": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/Therapia_EEG-HRV_Rev.A.zip",
@@ -267,6 +310,256 @@
         ]
       ]
     }
+  },
+  "ipc_d356": {
+    "present": true,
+    "features": 678,
+    "unparsed_lines": 0,
+    "header": [
+      "P  CODE 00",
+      "P  UNITS CUST 0",
+      "P  arrayDim   N"
+    ],
+    "vias": 239,
+    "smd": 417,
+    "through_pads": 16,
+    "npth": 6,
+    "nets": {
+      "in_d356": 79,
+      "in_contract": 79,
+      "only_in_d356": [],
+      "only_in_contract": [],
+      "match": true,
+      "longest_name": 14,
+      "field_width": 14
+    },
+    "npth_holes": [
+      {
+        "hole": "PEG2",
+        "found": true,
+        "board_mm": [
+          176.8604,
+          108.0975
+        ],
+        "offset_mm": 0.000741,
+        "drill_mm": 0.701,
+        "unplated": true
+      },
+      {
+        "hole": "PEG1",
+        "found": true,
+        "board_mm": [
+          176.8604,
+          113.8785
+        ],
+        "offset_mm": 0.000898,
+        "drill_mm": 0.701,
+        "unplated": true
+      },
+      {
+        "hole": "H1",
+        "found": true,
+        "board_mm": [
+          123.048,
+          83.048
+        ],
+        "offset_mm": 0.0,
+        "drill_mm": 2.3876,
+        "unplated": true
+      },
+      {
+        "hole": "H2",
+        "found": true,
+        "board_mm": [
+          176.9468,
+          83.048
+        ],
+        "offset_mm": 0.0,
+        "drill_mm": 2.3876,
+        "unplated": true
+      },
+      {
+        "hole": "H3",
+        "found": true,
+        "board_mm": [
+          123.048,
+          121.9608
+        ],
+        "offset_mm": 0.0,
+        "drill_mm": 2.3876,
+        "unplated": true
+      },
+      {
+        "hole": "H4",
+        "found": true,
+        "board_mm": [
+          176.9468,
+          121.9608
+        ],
+        "offset_mm": 0.0,
+        "drill_mm": 2.3876,
+        "unplated": true
+      }
+    ],
+    "npth_ok": true,
+    "resolution_mm": 0.00254,
+    "origin_mm": [
+      120.0,
+      80.0
+    ],
+    "designator_field": {
+      "width": 6,
+      "longest_designator": 12,
+      "designators": 135,
+      "distinct_after_truncation": 97,
+      "colliding_prefixes": {
+        "C_3V3_": 7,
+        "C_AVDD": 12,
+        "C_AVSS": 6,
+        "C_DVDD": 5,
+        "C_NLDO": 2,
+        "C_PLDO": 2,
+        "C_USB5": 2,
+        "C_USB_": 2,
+        "C_VCAP": 6,
+        "C_VREF": 3,
+        "R_BIAS": 2
+      },
+      "usable_for_acceptance_b": false
+    },
+    "gerber_x2_agreement": {
+      "smd_pads": 417,
+      "agree": 417,
+      "no_flash": 0,
+      "net_differs": 0,
+      "disagreements": [],
+      "ok": true,
+      "gerber_attr_sets": 934,
+      "gerber_attr_deletes": 178,
+      "flashes_carrying_a_net": 672,
+      "flashes": 672
+    }
+  },
+  "gbrjob": {
+    "present": true,
+    "file": "Therapia_EEG-HRV-job.gbrjob",
+    "layer_number": 4,
+    "board_thickness_mm": 1.6,
+    "size_mm": {
+      "X": 61.9252,
+      "Y": 45.1104
+    },
+    "size_matches_outline_plus_pen": true,
+    "copper_layers_in_stackup": 4,
+    "stackup_entries": 13,
+    "files_attributes": 11,
+    "design_rules": [
+      {
+        "Layers": "Outer",
+        "PadToPad": 0.0889,
+        "PadToTrack": 0.0889,
+        "TrackToTrack": 0.0889,
+        "MinLineWidth": 0.1525,
+        "TrackToRegion": 0.1015,
+        "RegionToRegion": 0.1015
+      },
+      {
+        "Layers": "Inner",
+        "PadToPad": 0.0889,
+        "PadToTrack": 0.0889,
+        "TrackToTrack": 0.0889,
+        "TrackToRegion": 0.1015,
+        "RegionToRegion": 0.1015
+      }
+    ],
+    "clearance_mm": 0.0889,
+    "ok": true
+  },
+  "odb": {
+    "present": true,
+    "nets": 79,
+    "netlist_points": 678,
+    "names": [
+      "A1_ELEC",
+      "A2_ELEC",
+      "ADS_CS_N",
+      "ADS_DIN_LOC",
+      "ADS_DOUT_LOC",
+      "ADS_DRDY_N",
+      "ADS_PWDN_N",
+      "ADS_RESET_N",
+      "ADS_SCLK_LOC",
+      "ADS_START",
+      "AVDD",
+      "AVSS",
+      "BIAS_INV",
+      "BIAS_OUT_INT",
+      "CH340_V3",
+      "CH3_ELEC",
+      "CH5_ELEC",
+      "CH6_ELEC",
+      "CH7_ELEC",
+      "CH8_ELEC",
+      "CHASSIS_GND",
+      "CH_DTR_N",
+      "CH_RTS_N",
+      "DVDD",
+      "ECGN_ELEC",
+      "ECGP_ELEC",
+      "ESP_EN",
+      "ESP_IO0",
+      "ESP_IO15",
+      "ESP_IO2",
+      "ESP_RXD",
+      "ESP_TXD",
+      "FP1_ELEC",
+      "FP2_ELEC",
+      "GND",
+      "IN1N",
+      "IN1P",
+      "IN2N",
+      "IN2P",
+      "IN3N",
+      "IN3P",
+      "IN4N",
+      "IN4P",
+      "IN5N",
+      "IN5P",
+      "IN6N",
+      "IN6P",
+      "IN7N",
+      "IN7P",
+      "IN8N",
+      "IN8P",
+      "LED_A",
+      "LM_CAP_N",
+      "LM_CAP_P",
+      "Q_EN_B",
+      "Q_IO0_B",
+      "SPI_MISO",
+      "SPI_MOSI",
+      "SPI_SCK",
+      "SRB1",
+      "STATUS_LED_DRV",
+      "TPS_NR",
+      "USB_5V",
+      "USB_CC1",
+      "USB_CC2",
+      "USB_DM",
+      "USB_DP",
+      "USB_VBUS_RAW",
+      "V5_LM_IN",
+      "VCAP1",
+      "VCAP2",
+      "VCAP3",
+      "VCAP4",
+      "VDD_ESP",
+      "VNEG5",
+      "VREFP",
+      "V_3V3_IN",
+      "V_NLDO_IN",
+      "V_PLDO_IN"
+    ]
   },
   "bom": {
     "rows": 30,

@@ -21,6 +21,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "lib"))
 
 import gerber_parse as G                           # noqa: E402
+import ipcd356 as IPC                              # noqa: E402
+import epro as E                                   # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -175,9 +177,14 @@ def main():
     # --- F: paste apertures vs the pads that get paste --------------------
     gtp = layers.get("gtp")
     if gtp:
-        out["paste"] = {"flashes": len(gtp.flashes),
-                        "regions": len(gtp.regions),
-                        "openings": len(gtp.flashes) + len(gtp.regions)}
+        c = gtp.counts()
+        out["paste"] = {"flashes": c["flashes"], "regions": c["regions"],
+                        "openings": c["flashes"] + c["regions"]}
+
+    # --- a second and third opinion: IPC-D-356 and the .gbrjob ------------
+    out["ipc_d356"] = check_ipc(a.root, layers)
+    out["gbrjob"] = check_gbrjob(fabdir, out.get("outline", {}))
+    out["odb"] = check_odb(a.root)
 
     pth = drills.get("PTH")
     if pth:
@@ -196,8 +203,185 @@ def main():
         report(out)
     ok = (not out["missing_layers"] and out.get("all_parsed")
           and out.get("outline", {}).get("ok") and out["npth"]["ok"]
-          and out["npth_clear"] and out.get("planes_filled"))
+          and out["npth_clear"] and out.get("planes_filled")
+          and out["ipc_d356"].get("npth_ok")
+          and out["ipc_d356"].get("nets", {}).get("match")
+          and out["ipc_d356"].get("gerber_x2_agreement", {}).get("ok")
+          and out["gbrjob"].get("ok"))
     return 0 if ok else 1
+
+
+def check_ipc(root, layers):
+    """IPC-D-356: the net of every feature, stated as data rather than drawn.
+
+    KiCad writes this through a different code path than the Gerbers, so where
+    the two agree the agreement means something. What it can and cannot settle
+    is measured here rather than assumed -- in particular the reference
+    designator field is six characters and this board has twelve-character
+    designators, so the designator map is NOT recoverable and ACCEPTANCE B
+    stays with pcbnew. The net field is fourteen and the longest net name here
+    is exactly fourteen, so the net set is complete.
+    """
+    path = os.path.join(root, "fab", "board.d356")
+    if not os.path.exists(path):
+        return {"present": False}
+    doc = IPC.parse(path)
+    feats = doc["features"]
+    out = {"present": True, "features": len(feats),
+           "unparsed_lines": len(doc["unknown"]), "header": doc["header"],
+           "vias": len(IPC.vias(feats)),
+           "smd": sum(1 for f in feats if f.kind == "smd"),
+           "through_pads": sum(1 for f in feats
+                               if f.kind == "through" and not f.is_via),
+           "npth": len(IPC.npth(feats))}
+
+    # net set against the contract, with the ECO-5 override applied
+    contract = E.load_json(os.path.join(root, "contract",
+                                        "netlist_contract.json"))
+    over = {}
+    opath = os.path.join(root, "contract", "contract_overrides.json")
+    if os.path.exists(opath):
+        for o in E.load_json(opath).get("overrides", ()):
+            over[(o["designator"], str(o["pad"]))] = o["override_net"]
+    want = set()
+    for ref, pads in contract["by_designator"].items():
+        for num, info in pads.items():
+            net = over.get((ref, num), info.get("net", ""))
+            if net and net != "NC":
+                want.add(net)
+    got = IPC.nets(feats)
+    out["nets"] = {"in_d356": len(got), "in_contract": len(want),
+                   "only_in_d356": sorted(got - want),
+                   "only_in_contract": sorted(want - got),
+                   "match": got == want,
+                   "longest_name": max((len(n) for n in want), default=0),
+                   "field_width": 14}
+
+    # the six holes, at this file's own resolution
+    holes = []
+    for name, hx, hy, dia in NPTH:
+        f = next((f for f in IPC.npth(feats) if f.ref == name), None)
+        if f is None:
+            holes.append({"hole": name, "found": False})
+            continue
+        bx, by = f.to_board()
+        holes.append({"hole": name, "found": True,
+                      "board_mm": [round(bx, 4), round(by, 4)],
+                      "offset_mm": round(((bx - hx) ** 2
+                                          + (by + hy) ** 2) ** 0.5, 6),
+                      "drill_mm": round(f.drill_mm, 4),
+                      "unplated": f.plated is False})
+    out["npth_holes"] = holes
+    out["npth_ok"] = (len(holes) == 6
+                      and all(h.get("found") and h["unplated"]
+                              and h["offset_mm"] <= 0.003 for h in holes))
+    out["resolution_mm"] = IPC.MIL10
+    out["origin_mm"] = list(IPC.ORIGIN_MM)
+
+    # what the six-character designator field costs
+    import collections
+    coll = collections.Counter(r[:6] for r in contract["by_designator"])
+    out["designator_field"] = {
+        "width": 6,
+        "longest_designator": max(len(r) for r in contract["by_designator"]),
+        "designators": len(contract["by_designator"]),
+        "distinct_after_truncation": len(coll),
+        "colliding_prefixes": {k: v for k, v in sorted(coll.items())
+                               if v > 1},
+        "usable_for_acceptance_b": len(coll) == len(contract["by_designator"])}
+
+    # the three-way check: does the Gerber's own X2 net agree with this file?
+    fc = layers.get("gtl")
+    if fc is not None:
+        flashes = fc.flash_nets()
+        agree = miss = wrong = 0
+        bad = []
+        for f in feats:
+            if f.kind != "smd":
+                continue
+            bx, by = f.to_board()
+            gy = -by
+            best = None
+            for x, y, n in flashes:
+                d = abs(x - bx) + abs(y - gy)
+                if best is None or d < best[0]:
+                    best = (d, n)
+            if best is None or best[0] > 0.006:
+                miss += 1
+                bad.append({"ref": f.ref, "pin": f.pin, "net": f.net,
+                            "issue": "no F.Cu flash within 6 um"})
+            elif best[1] != f.net:
+                wrong += 1
+                bad.append({"ref": f.ref, "pin": f.pin, "d356": f.net,
+                            "gerber": best[1]})
+            else:
+                agree += 1
+        out["gerber_x2_agreement"] = {
+            "smd_pads": agree + miss + wrong, "agree": agree,
+            "no_flash": miss, "net_differs": wrong,
+            "disagreements": bad[:10],
+            "ok": miss == 0 and wrong == 0,
+            "gerber_attr_sets": fc.attr_sets,
+            "gerber_attr_deletes": fc.attr_deletes,
+            "flashes_carrying_a_net": len(flashes),
+            "flashes": len(fc.flashes)}
+    return out
+
+
+def check_gbrjob(fabdir, outline):
+    """The .gbrjob is JSON, and a second statement of the same facts."""
+    paths = glob.glob(os.path.join(fabdir, "*.gbrjob"))
+    if not paths:
+        return {"present": False}
+    doc = json.load(open(paths[0]))
+    gs = doc.get("GeneralSpecs", {})
+    stack = doc.get("MaterialStackup", [])
+    copper = [e for e in stack if e.get("Type") == "Copper"]
+    rules = doc.get("DesignRules", [])
+    size = gs.get("Size", {})
+    # Size is the plotted extent, so it is the profile plus one pen width; the
+    # Edge.Cuts stroke is 0.1016 mm, which is exactly the difference.
+    pen = 0.1016
+    exp = outline.get("expected") or [0, 0]
+    out = {"present": True, "file": os.path.basename(paths[0]),
+           "layer_number": gs.get("LayerNumber"),
+           "board_thickness_mm": gs.get("BoardThickness"),
+           "size_mm": size,
+           "size_matches_outline_plus_pen": (
+               abs(size.get("X", 0) - (exp[0] + pen)) < 0.002
+               and abs(size.get("Y", 0) - (exp[1] + pen)) < 0.002),
+           "copper_layers_in_stackup": len(copper),
+           "stackup_entries": len(stack),
+           "files_attributes": len(doc.get("FilesAttributes", [])),
+           "design_rules": rules,
+           "clearance_mm": min((r.get("TrackToTrack") for r in rules
+                                if r.get("TrackToTrack") is not None),
+                               default=None)}
+    out["ok"] = (out["layer_number"] == 4
+                 and abs((out["board_thickness_mm"] or 0) - 1.6) < 1e-9
+                 and out["copper_layers_in_stackup"] == 4
+                 and out["size_matches_outline_plus_pen"]
+                 and abs((out["clearance_mm"] or 0) - 0.0889) < 1e-9)
+    return out
+
+
+def check_odb(root):
+    """ODB++ carries its own netlist -- a third statement of the net set."""
+    path = os.path.join(root, "fab", "odb", "steps", "pcb", "netlists",
+                        "cadnet", "netlist")
+    if not os.path.exists(path):
+        return {"present": False}
+    names, points = set(), 0
+    for line in open(path, errors="replace"):
+        s = line.strip()
+        if s.startswith("$"):
+            parts = s.split(None, 1)
+            if len(parts) == 2 and parts[1] != "$NONE$":
+                names.add(parts[1])
+        elif s and s[0].isdigit():
+            points += 1
+    return {"present": True, "nets": len(names), "netlist_points": points,
+            "names": sorted(names)}
 
 
 def compare_old(root):
@@ -276,6 +460,37 @@ def report(o):
         print("  F.Paste openings %d (%d flashes + %d regions)"
               % (o["paste"]["openings"], o["paste"]["flashes"],
                  o["paste"]["regions"]))
+    ipc = o.get("ipc_d356", {})
+    if ipc.get("present"):
+        n = ipc["nets"]
+        x2 = ipc.get("gerber_x2_agreement", {})
+        d = ipc["designator_field"]
+        print("  IPC-D-356: %d features (%d via / %d smd / %d PTH pad / %d NPTH)"
+              % (ipc["features"], ipc["vias"], ipc["smd"],
+                 ipc["through_pads"], ipc["npth"]))
+        print("    nets %d vs contract %d -> match %s"
+              % (n["in_d356"], n["in_contract"], n["match"]))
+        print("    NPTH 6 unplated, within %.1f um: %s"
+              % (ipc["resolution_mm"] * 1000, ipc["npth_ok"]))
+        print("    Gerber X2 net agrees on %d/%d top pads (%d TO sets, %d TD)"
+              % (x2.get("agree", 0), x2.get("smd_pads", 0),
+                 x2.get("gerber_attr_sets", 0),
+                 x2.get("gerber_attr_deletes", 0)))
+        print("    designator field is %d chars, longest here %d -> %d of %d "
+              "survive; NOT usable for ACCEPTANCE B"
+              % (d["width"], d["longest_designator"],
+                 d["distinct_after_truncation"], d["designators"]))
+    gj = o.get("gbrjob", {})
+    if gj.get("present"):
+        print("  .gbrjob: %s layers, %s mm thick, %d copper in stackup, "
+              "clearance %s -> %s"
+              % (gj["layer_number"], gj["board_thickness_mm"],
+                 gj["copper_layers_in_stackup"], gj["clearance_mm"],
+                 gj["ok"]))
+    odb = o.get("odb", {})
+    if odb.get("present"):
+        print("  ODB++: %d nets, %d netlist points" % (odb["nets"],
+                                                       odb["netlist_points"]))
     if "vs_2026_08_16" in o:
         v = o["vs_2026_08_16"]
         print("  vs 2026-08-16: outline %s, NPTH %s hits %s"

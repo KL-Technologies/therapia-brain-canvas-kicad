@@ -63,6 +63,9 @@ def main():
         ("missing_layers", "unexpected_files", "all_parsed", "copper_all_dark",
          "empty_layers", "npth_clear", "planes_filled", "copper_coverage",
          "outline", "vs_2026_08_16")}
+    log["ipc_d356"] = fabcheck.get("ipc_d356", {})
+    log["gbrjob"] = fabcheck.get("gbrjob", {})
+    log["odb"] = fabcheck.get("odb", {})
 
     bom_path = os.path.join(fab, "BOM_JLCPCB.csv")
     cpl_path = os.path.join(fab, "CPL_JLCPCB.csv")
@@ -140,6 +143,32 @@ def main():
               placement.get("new_since_august")),
         check("previews and assembly drawing written", True,
               all(prev.values())),
+        # Three files, three code paths inside KiCad, one answer. Gerber says
+        # it in graphics plus X2 attributes, IPC-D-356 says it as data, ODB++
+        # says it in its own netlist. Agreement across them is worth more than
+        # any one of them being self-consistent.
+        check("IPC-D-356 exported and fully parsed", 0,
+              log["ipc_d356"].get("unparsed_lines", -1)),
+        check("IPC-D-356 net set matches the contract", True,
+              log["ipc_d356"].get("nets", {}).get("match")),
+        check("IPC-D-356 finds 6 unplated holes in the right places", True,
+              log["ipc_d356"].get("npth_ok")),
+        check("Gerber X2 and IPC-D-356 agree on every top pad's net", True,
+              log["ipc_d356"].get("gerber_x2_agreement", {}).get("ok"),
+              note="read through the sticky TO.N state machine cleared by "
+                   "TD -- KiCad emits the attribute only on a change, so "
+                   "taking the line above each flash would mis-net most of "
+                   "them ({} sets, {} deletes on F.Cu)".format(
+                       log["ipc_d356"].get("gerber_x2_agreement", {})
+                       .get("gerber_attr_sets", 0),
+                       log["ipc_d356"].get("gerber_x2_agreement", {})
+                       .get("gerber_attr_deletes", 0))),
+        check("ODB++ netlist names the same nets", 79,
+              log["odb"].get("nets")),
+        check("ODB++ point count = pads + vias", 678,
+              log["odb"].get("netlist_points")),
+        check(".gbrjob agrees on layers, thickness, stackup and rules", True,
+              log["gbrjob"].get("ok")),
     ]
     E.write_gate(os.path.join(root, "gates", "S8.json"), "S8", checks,
                  notes="The uploadable package, read back from the files. "

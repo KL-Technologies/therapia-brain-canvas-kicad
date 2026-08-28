@@ -148,12 +148,30 @@ class Layer(object):
         self.clear_ops = 0
         self.unknown = []
         self._grid = None
+        # X2 object attributes in force. KiCad emits %TO.N,<net>*% only when
+        # the net CHANGES, so an attribute applies to every object after it
+        # until %TD*% deletes it or another %TO.N% replaces it. Reading "the
+        # TO.N on the line above the D03" gives the wrong net for every flash
+        # that inherited one -- this board has 511 %TO.N% and 176 %TD*% on
+        # F.Cu alone, so most flashes inherit.
+        self.attrs = {}
+        self.attr_sets = 0
+        self.attr_deletes = 0
 
     # -- geometry queries ----------------------------------------------------
     def dark(self):
         return ([f for f in self.flashes if f[3]],
                 [d for d in self.draws if d[5]],
                 [r for r in self.regions if r[1]])
+
+    def flash_nets(self):
+        """(x, y, net) for every dark flash that carries a %TO.N% net.
+
+        The net comes from the attribute state machine, not from the nearest
+        preceding line, which is the whole point -- see Layer.attrs.
+        """
+        return [(x, y, at.get("N")) for x, y, _ap, dk, at in self.flashes
+                if dk and at.get("N")]
 
     def counts(self):
         f, d, r = self.dark()
@@ -164,19 +182,19 @@ class Layer(object):
 
     def bbox(self):
         xs, ys = [], []
-        for x, y, ap, dk in self.flashes:
+        for x, y, ap, dk, _at in self.flashes:
             if not dk:
                 continue
             hx, hy = ap.half()
             xs += [x - hx, x + hx]
             ys += [y - hy, y + hy]
-        for x1, y1, x2, y2, ap, dk in self.draws:
+        for x1, y1, x2, y2, ap, dk, _at in self.draws:
             if not dk:
                 continue
             hx, hy = ap.half()
             xs += [x1 - hx, x1 + hx, x2 - hx, x2 + hx]
             ys += [y1 - hy, y1 + hy, y2 - hy, y2 + hy]
-        for poly, dk in self.regions:
+        for poly, dk, _at in self.regions:
             if not dk:
                 continue
             xs += [p[0] for p in poly]
@@ -193,12 +211,12 @@ class Layer(object):
         45.0088 mm is the profile itself, which is the centreline.
         """
         xs, ys = [], []
-        for x1, y1, x2, y2, _ap, dk in self.draws:
+        for x1, y1, x2, y2, _ap, dk, _at in self.draws:
             if not dk:
                 continue
             xs += [x1, x2]
             ys += [y1, y2]
-        for poly, dk in self.regions:
+        for poly, dk, _at in self.regions:
             if not dk:
                 continue
             xs += [p[0] for p in poly]
@@ -224,7 +242,7 @@ class Layer(object):
             hx, hy = d[4].half()
             put("d", d, min(d[0], d[2]) - hx, min(d[1], d[3]) - hy,
                 max(d[0], d[2]) + hx, max(d[1], d[3]) + hy)
-        for poly, _dk in regions:
+        for poly, _dk, _at in regions:
             xs = [p[0] for p in poly]
             ys = [p[1] for p in poly]
             put("r", poly, min(xs), min(ys), max(xs), max(ys))
@@ -250,14 +268,14 @@ class Layer(object):
         hits = []
         for kind, item in self._near(cx, cy, r):
             if kind == "f":
-                x, y, ap, _dk = item
+                x, y, ap, _dk, _at = item
                 if ap.distance_to(cx - x, cy - y) < r:
                     hits.append({"kind": "flash", "at": [x, y],
                                  "aperture": ap.code,
                                  "gap_mm": round(ap.distance_to(cx - x,
                                                                 cy - y), 6)})
             elif kind == "d":
-                x1, y1, x2, y2, ap, _dk = item
+                x1, y1, x2, y2, ap, _dk, _at = item
                 w = ap.params[0] if ap.kind == "C" else max(ap.half()) * 2
                 d = _segment_distance(cx, cy, x1, y1, x2, y2) - w / 2.0
                 if d < r:
@@ -297,11 +315,11 @@ class Layer(object):
                 if _point_in_polygon(x, y, item):
                     return True
             elif kind == "f":
-                fx, fy, ap, _dk = item
+                fx, fy, ap, _dk, _at = item
                 if ap.distance_to(x - fx, y - fy) <= 0:
                     return True
             else:
-                x1, y1, x2, y2, ap, _dk = item
+                x1, y1, x2, y2, ap, _dk, _at = item
                 w = ap.params[0] if ap.kind == "C" else max(ap.half()) * 2
                 if _segment_distance(x, y, x1, y1, x2, y2) <= w / 2.0:
                     return True
@@ -364,6 +382,19 @@ def parse_gerber(path):
                 if part.startswith("TF.FileFunction"):
                     lay.file_function = part.split(",", 1)[1]
                     continue
+                if part.startswith("TO."):
+                    key, _sep, val = part[3:].partition(",")
+                    lay.attrs[key] = val
+                    lay.attr_sets += 1
+                    continue
+                if part.startswith("TD"):
+                    lay.attr_deletes += 1
+                    rest = part[2:].lstrip(".")
+                    if rest:
+                        lay.attrs.pop(rest, None)
+                    else:
+                        lay.attrs.clear()
+                    continue
                 if part.startswith("LP"):
                     lay.polarity = part[2:]
                     if lay.polarity == "C":
@@ -395,7 +426,8 @@ def parse_gerber(path):
                     region.append(contour)
                 for c in region or ():
                     if len(c) >= 3:
-                        lay.regions.append((c, lay.polarity != "C"))
+                        lay.regions.append((c, lay.polarity != "C",
+                                            dict(lay.attrs)))
                 region, contour = None, []
             elif g == 74:
                 quadrant = "single"
@@ -434,12 +466,14 @@ def parse_gerber(path):
                 for qx, qy in pts:
                     if cur is not None:
                         lay.draws.append((px, py, qx, qy, cur,
-                                          lay.polarity != "C"))
+                                          lay.polarity != "C",
+                                          dict(lay.attrs)))
                     px, py = qx, qy
             x, y = nx, ny
         elif d == 3:                                 # flash
             if cur is not None:
-                lay.flashes.append((nx, ny, cur, lay.polarity != "C"))
+                lay.flashes.append((nx, ny, cur, lay.polarity != "C",
+                                    dict(lay.attrs)))
             x, y = nx, ny
     return lay
 

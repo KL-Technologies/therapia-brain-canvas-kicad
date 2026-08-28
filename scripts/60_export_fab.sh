@@ -49,6 +49,17 @@ echo "== drill (PTH and NPTH separate, mm, decimal, absolute) =="
     --generate-map --map-format pdf \
     "$BOARD"
 
+echo "== IPC-D-356 netlist =="
+# The net of every pad, via and hole as data rather than graphics, written by a
+# different code path than the Gerbers. scripts/62_check_fab.py uses it to
+# cross-check the net set and the six NPTH holes, and to confirm the Gerber's
+# own X2 %TO.N% attributes name the same net on all 417 top pads.
+"$KC" pcb export ipcd356 -o "$ROOT/fab/board.d356" "$BOARD"
+
+echo "== ODB++ (third opinion on the net set) =="
+rm -rf "$ROOT/fab/odb"
+"$KC" pcb export odb -o "$ROOT/fab/odb" --compression none "$BOARD"
+
 echo "== placement preview =="
 "$KC" pcb render --side top    --width 1600 --height 1200 \
     --output "$ROOT/fab/preview_top.png" "$BOARD"

@@ -1192,12 +1192,29 @@ def kicad_cli():
 
 
 def run_drc(out_path, root=None, refill=True, board=None):
-    """kicad-cli pcb drc. Must run outside the command sandbox (see README)."""
+    """kicad-cli pcb drc. Must run outside the command sandbox (see README).
+
+    The board is passed where it lies, next to its .kicad_pro and .kicad_dru.
+    That is not incidental: given a board copied somewhere on its own, DRC
+    falls back to KiCad's default rules **without saying so** and reports a
+    number that has nothing to do with this design. The guard below refuses to
+    run rather than produce that number.
+    """
+    target = board or board_path(root)
+    stem = os.path.splitext(target)[0]
+    siblings = {ext: os.path.exists(stem + ext)
+                for ext in (".kicad_pro", ".kicad_dru")}
+    if not all(siblings.values()):
+        return False, None, (
+            "refusing to run DRC: %s is not beside its project files (%s). "
+            "kicad-cli would silently fall back to KiCad's default rules."
+            % (os.path.basename(target),
+               ", ".join("%s=%s" % kv for kv in sorted(siblings.items()))))
     cmd = [kicad_cli(), "pcb", "drc", "--format", "json", "--severity-all",
            "--units", "mm"]
     if refill:
         cmd += ["--refill-zones", "--save-board"]
-    cmd += ["-o", out_path, board or board_path(root)]
+    cmd += ["-o", out_path, target]
     proc = subprocess.run(cmd, capture_output=True, text=True)
     blob = (proc.stdout or "") + (proc.stderr or "")
     ok = os.path.exists(out_path) and "Fatal error" not in blob

@@ -5,3 +5,9 @@ logs/patch_variants/
 __pycache__/
 ~*.lck
 board/~*.lck
+
+# ODB++ is exported only as a third opinion on the net set (scripts/62_check_fab.py).
+# It is not uploaded, it is 80 files of regenerable intermediate, and it carries
+# creation timestamps that would churn on every export. board.d356 is kept: it is
+# one file and JLC accepts it for flying-probe testing.
+fab/odb/

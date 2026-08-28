@@ -64,6 +64,36 @@ SYS_PY="$(python3 -V 2>&1)"
 say "system python: $SYS_PY"
 add "system_python3" "Python 3.x" "$SYS_PY" "$([ "${SYS_PY#Python 3}" != "$SYS_PY" ] && echo true || echo false)"
 
+# 4b. every script this pipeline runs must be standard library only.
+# PIL, numpy and matplotlib all import successfully in the KiCad python on this
+# machine -- but only out of ~/Library/Python/3.9, which is this machine's user
+# site directory, not part of KiCad. A script that quietly depended on one of
+# them would work here and fail on the next machine. PYTHONNOUSERSITE=1 takes
+# that directory away, and the pipeline's own modules are imported under it to
+# prove they do not need it.
+STDLIB_PROBE="$(PYTHONNOUSERSITE=1 "$KPY" - "$ROOT" <<'PY' 2>>"$LOG"
+import importlib.util as u, json, os, sys
+root = sys.argv[1]
+sys.path.insert(0, os.path.join(root, "scripts", "lib"))
+r = {"third_party_visible": sorted(
+    m for m in ("PIL", "numpy", "matplotlib", "scipy", "shapely")
+    if u.find_spec(m))}
+failed = []
+for mod in ("epro", "epru", "xlsx", "drc", "viol", "route", "maze", "repair",
+            "gerber_parse", "ipcd356"):
+    try:
+        __import__(mod)
+    except Exception as exc:
+        failed.append("%s: %s" % (mod, exc))
+r["failed_imports"] = failed
+print(json.dumps(r))
+PY
+)" || STDLIB_PROBE='{"failed_imports": ["probe did not run"]}'
+say "stdlib probe: $STDLIB_PROBE"
+SL_FAILED="$(printf '%s' "$STDLIB_PROBE" | python3 -c "import json,sys; print(','.join(json.load(sys.stdin)['failed_imports']) or 'none')")"
+add "libs_import_without_user_site" "none" "$SL_FAILED" \
+    "$([ "$SL_FAILED" = "none" ] && echo true || echo false)"
+
 # 5. repo layout
 missing=""
 for d in import board scripts scripts/lib gates fab contract logs; do

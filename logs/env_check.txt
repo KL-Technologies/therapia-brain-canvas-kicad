@@ -25,3 +25,4 @@ Optional arguments:
   --refill-zones          Refill zones before running DRC 
   --save-board            Save the board after DRC, must be used with --refill-zones 
 system python: Python 3.9.6
+stdlib probe: {"third_party_visible": [], "failed_imports": []}

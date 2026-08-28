@@ -63,12 +63,18 @@
       "pass": true
     },
     {
+      "name": "libs_import_without_user_site",
+      "expected": "none",
+      "actual": "none",
+      "pass": true
+    },
+    {
       "name": "repo_layout",
       "expected": "all dirs present",
       "actual": "ok",
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T13:45:22",
+  "timestamp": "2026-08-28T18:18:22",
   "notes": "kicad-cli=10.0.5 (/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli); kicad python=Python 3.9.13 (/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3)"
 }
