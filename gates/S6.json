@@ -1,12 +1,12 @@
 {
   "step": "S6",
-  "pass": false,
+  "pass": true,
   "checks": [
     {
       "name": "drc_errors",
       "expected": 0,
-      "actual": 1,
-      "pass": false
+      "actual": 0,
+      "pass": true
     },
     {
       "name": "unconnected",
@@ -17,18 +17,18 @@
     {
       "name": "stopped_because",
       "expected": "clean",
-      "actual": "oscillating",
-      "pass": false
+      "actual": "clean",
+      "pass": true
     },
     {
       "name": "no_escalations",
       "expected": 0,
-      "actual": 1,
-      "pass": false
+      "actual": 0,
+      "pass": true
     }
   ],
-  "timestamp": "2026-08-28T16:46:42",
-  "notes": "2 iterations; stopped: oscillating. Final DRC: 1 errors, 0 unconnected.",
+  "timestamp": "2026-08-28T16:49:55",
+  "notes": "2 iterations; stopped: clean. Final DRC: 0 errors, 0 unconnected.",
   "history": [
     {
       "iteration": 1,
@@ -56,24 +56,17 @@
     },
     {
       "iteration": 2,
-      "errors": 1,
+      "errors": 0,
       "unconnected": 0,
-      "by_type": {
-        "clearance": 1
-      },
-      "signature_hash": "18c344f90a393213",
-      "report": "logs/drc_loop_02.json",
-      "oscillation_with_iteration": 1
+      "by_type": {},
+      "signature_hash": "e3b0c44298fc1c14",
+      "report": "logs/drc_loop_02.json"
     }
   ],
-  "stop": "oscillating",
-  "final_by_type": {
-    "clearance": 1
-  },
+  "stop": "clean",
+  "final_by_type": {},
   "final_report": "logs/drc_s6_final.json",
-  "escalations": [
-    "escalations/001.md"
-  ],
+  "escalations": [],
   "counts_at_end": null,
   "allowed_warning_kinds": [
     "courtyards_overlap",
