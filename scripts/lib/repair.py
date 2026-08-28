@@ -49,7 +49,7 @@ BOARD_BOX_MM = (120.0, 80.0, 181.8236, 125.0088)
 
 # What the repairs aim for, and what they will settle for, in that order.
 TARGET_HOLE_MARGIN = int(0.3 * IU)
-HOLE_MARGIN_STEPS = [int(v * IU) for v in (0.30, 0.28, 0.25, 0.22, 0.20)]
+HOLE_MARGIN_STEPS = [int(v * IU) for v in (0.30, 0.25, 0.22, 0.20)]
 CLEARANCE_STEPS = [int(v * IU) for v in (0.127, 0.11, 0.0889)]
 # The longest route a reconnection may lay. A repair is local; when the only
 # legal path is centimetres long the answer is to report the break, not to
@@ -658,7 +658,7 @@ def detour_track(pcbnew, board, idx, track, router=None, rules_obj=None,
     ig = list(ignore) + [track]
     plan = rt.route([(a[0], a[1], layer)], net, goals=[(b[0], b[1], layer)],
                     width=width, ignore=ig, margin_mm=4.0,
-                    max_length_mm=limit)
+                    max_length_mm=limit, max_nodes=120000)
     if not plan.get("ok"):
         return {"ok": False, "reason": plan.get("reason"),
                 "track": describe(board, track), "direct_mm": round(direct, 4),
@@ -742,6 +742,83 @@ def retreat_via(pcbnew, board, idx, via, holes, margin, rules_obj=None,
             "via": describe(board, via), "tracks_attached": len(attached)}
 
 
+def _spread(pcbnew, item):
+    """A radius that covers the item, for sizing a split window."""
+    cls = item.GetClass()
+    if cls == "PCB_VIA":
+        return item.GetWidth() / 2.0
+    if cls in ("PCB_TRACK", "PCB_ARC"):
+        return item.GetWidth() / 2.0
+    bb = item.GetBoundingBox()
+    return math.hypot(bb.GetWidth(), bb.GetHeight()) / 2.0
+
+
+def _centre(pcbnew, item, near=None):
+    cls = item.GetClass()
+    if cls in ("PCB_TRACK", "PCB_ARC") and near is not None:
+        s, e = item.GetStart(), item.GetEnd()
+        dx, dy = e.x - s.x, e.y - s.y
+        L2 = float(dx * dx + dy * dy)
+        u = 0.0 if L2 == 0 else max(0.0, min(1.0, ((near[0] - s.x) * dx
+                                                   + (near[1] - s.y) * dy)
+                                             / L2))
+        return (s.x + dx * u, s.y + dy * u)
+    p = item.GetPosition()
+    return (p.x, p.y)
+
+
+def fix_clearance_pair(pcbnew, board, idx, pair, holes, target=None,
+                       exclude=()):
+    """Push two pieces of copper of different nets apart.
+
+    A via is moved in preference to a track -- moving it costs one position
+    and drags its own track ends with it, while re-routing a track rewrites a
+    length of the layout. Two pads are reported, never moved: a pad only moves
+    with its footprint, and that is a placement decision.
+    """
+    target = int(target or CLEARANCE)
+    rl = rules(clearance=target)
+    a, b = pair["a"], pair["b"]
+    rec = {"gap_mm": mm(pair["gap"]) if pair["gap"] is not None else None,
+           "target_mm": mm(target),
+           "a": describe(board, a), "b": describe(board, b),
+           "layer": board.GetLayerName(pair["layer"])}
+
+    for first, second in ((a, b), (b, a)):
+        if first.GetClass() != "PCB_VIA":
+            continue
+        res = retreat_via(pcbnew, board, idx, first, holes, HOLE_CLEARANCE,
+                          rules_obj=rl, ignore=exclude)
+        if res.get("ok"):
+            rec.update(res)
+            rec["moved"] = "via"
+            return rec
+        rec.setdefault("via_attempts", []).append(res.get("reason"))
+
+    for first, second in ((a, b), (b, a)):
+        if first.GetClass() not in ("PCB_TRACK", "PCB_ARC"):
+            continue
+        c = _centre(pcbnew, second, near=_centre(pcbnew, first))
+        reach = (target + first.GetWidth() / 2.0 + _spread(pcbnew, second))
+        middle, kept = split_track_around(pcbnew, board, first, (c[0], c[1], 0),
+                                          reach)
+        if kept:
+            idx.rebuild()
+        res = detour_track(pcbnew, board, idx, middle, rules_obj=rl,
+                           ignore=exclude)
+        if res.get("ok"):
+            rec.update(res)
+            rec["moved"] = "track"
+            rec["split_kept_segments"] = len(kept)
+            return rec
+        rec.setdefault("track_attempts", []).append(res.get("reason"))
+
+    rec["ok"] = False
+    rec["reason"] = ("neither item can be moved: %s"
+                     % " and ".join(sorted({a.GetClass(), b.GetClass()})))
+    return rec
+
+
 def clear_hole(pcbnew, board, idx, name, hole, margin, nets=None,
                rules_obj=None, log=None, skip_pads=True, exclude=()):
     """Get every piece of copper out of one hole's clearance ring.
@@ -783,6 +860,15 @@ def clear_hole(pcbnew, board, idx, name, hole, margin, nets=None,
             ladder = [m for m in HOLE_MARGIN_STEPS if m <= margin] or [margin]
             res = None
             for attempt in ladder:
+                if g >= attempt:
+                    # Already clear at this rung, so the ones below it are met
+                    # too. Without this the sweep spends a router run per rung
+                    # moving copper that was never in the way.
+                    res = {"ok": True, "method": "already clear at %.2f mm"
+                                                 % mm(attempt),
+                           "item": describe(board, it)}
+                    res["margin_mm"] = mm(attempt)
+                    break
                 rl_m = rules(hole_clearance=attempt)
                 if cls == "PCB_VIA":
                     res = retreat_via(pcbnew, board, idx, it, {name: hole},
@@ -816,6 +902,84 @@ def clear_hole(pcbnew, board, idx, name, hole, margin, nets=None,
     if log is not None:
         log.setdefault("clear_hole", {})[name] = results
     return results
+
+
+# --- finding violations ourselves --------------------------------------------
+def _actual_gap(sh_a, sh_b, ceiling, steps=9):
+    """How far apart two shapes are, by bisection on Collide.
+
+    SHAPE::Collide's out-parameter for the actual distance is not exposed
+    through SWIG, and the value is wanted only for the report, so a handful of
+    boolean tests is enough: nine of them pin a 0.2 mm ceiling to 0.4 um.
+    """
+    lo, hi = 0, int(ceiling)
+    if not sh_a.Collide(sh_b, hi):
+        return None
+    for _ in range(steps):
+        mid = (lo + hi) // 2
+        if sh_a.Collide(sh_b, mid):
+            hi = mid
+        else:
+            lo = mid
+    return hi
+
+
+def clearance_pairs(pcbnew, board, idx, clearance):
+    """Every pair of different-net copper closer than `clearance`.
+
+    Found from the geometry rather than read out of the DRC report, for two
+    reasons. The report names items by KIID, and until 26_fix_uuids has run
+    those are not unique, so the names can be wrong. And the report gives an
+    item's own anchor, which for a long track is nowhere near the violation,
+    while a repair needs the place where the two actually come close.
+
+    Zones are excluded: they are refilled after every edit and pull back around
+    whatever is placed, exactly as in lib/route's index.
+    """
+    out, seen = [], set()
+    items = idx.tracks + idx.pads
+    for item in items:
+        net = item.GetNetCode()
+        for layer in R.item_layers(pcbnew, item):
+            try:
+                sh = item.GetEffectiveShape(layer)
+            except Exception:
+                continue
+            bb = sh.BBox(int(clearance))
+            for other, onet, osh in idx._query(layer, bb.GetLeft(), bb.GetTop(),
+                                               bb.GetRight(), bb.GetBottom()):
+                if onet == net and net != 0:
+                    continue
+                ka, kb = R.uid(item), R.uid(other)
+                if ka == kb:
+                    continue
+                key = (min(ka, kb), max(ka, kb))
+                if key in seen:
+                    continue
+                seen.add(key)
+                if not sh.Collide(osh, int(clearance)):
+                    continue
+                out.append({"gap": _actual_gap(sh, osh, clearance),
+                            "a": item, "b": other, "layer": layer})
+    out.sort(key=lambda r: (r["gap"] if r["gap"] is not None else 0))
+    return out
+
+
+def hole_pairs(pcbnew, board, idx, hole_to_hole):
+    """Every pair of drilled holes whose edges come within `hole_to_hole`."""
+    out, seen = [], set()
+    for i, (a, ax, ay, ar, _an) in enumerate(idx.drills):
+        for (b, bx, by, br, _bn) in idx.drills[i + 1:]:
+            ka, kb = R.uid(a), R.uid(b)
+            key = (min(ka, kb), max(ka, kb))
+            if key in seen:
+                continue
+            seen.add(key)
+            gap = math.hypot(ax - bx, ay - by) - ar - br
+            if gap < hole_to_hole:
+                out.append({"gap": gap, "a": a, "b": b})
+    out.sort(key=lambda r: r["gap"])
+    return out
 
 
 # --- contract parity ---------------------------------------------------------

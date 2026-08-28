@@ -50,6 +50,9 @@ SQRT2 = math.sqrt(2.0)
 STEPS = ((1, 0, 1.0), (-1, 0, 1.0), (0, 1, 1.0), (0, -1, 1.0),
          (1, 1, SQRT2), (1, -1, SQRT2), (-1, 1, SQRT2), (-1, -1, SQRT2))
 
+# How far ahead the string-puller looks for a shortcut, in grid nodes.
+SHORTCUT_SPAN = 48
+
 
 class Rules(object):
     """The design-rule numbers a route has to satisfy, in internal units."""
@@ -274,7 +277,10 @@ class Router(object):
         out = [pts[0]]
         i = 0
         while i < len(pts) - 1:
-            j = len(pts) - 1
+            # Bounded look-ahead. Scanning to the end of the path is O(n^2)
+            # calls to straight_ok, which itself samples every 0.1 mm, and on
+            # a hundred-node path that alone ran for minutes.
+            j = min(i + SHORTCUT_SPAN, len(pts) - 1)
             while j > i + 1:
                 if R.straight_ok(self.idx, self.pcbnew, self.board, pts[i],
                                  pts[j], layer, width, net,

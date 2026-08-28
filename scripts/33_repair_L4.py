@@ -59,11 +59,19 @@ NETS = {"USB_VBUS_RAW", "USB_DM", "ESP_RXD"}
 # what the rule needs; 0.05 leaves margin and stays a rounding error against a
 # 1.1 mm pad.
 PAD_TRIM = int(0.05 * P.IU)
+PAD_TARGET = int(0.21 * P.IU)
 TRIM_PADS = [("J1", "1"), ("J1", "12")]
 
 
 def trim_pads(ctx):
-    """Shorten the connector's own ground pads away from its own peg holes."""
+    """Shorten the connector's own ground pads away from its own peg holes.
+
+    Which of the pad's two local axes to take the metal off is not obvious --
+    J1 is rotated, so its 0.55 x 1.10 mm pad measures 1.10 x 0.55 on the board
+    and the local y axis is the one pointing at the peg. Rather than reason
+    about the rotation, each option is tried and measured, smallest change
+    first, and the first that reaches the rule with margin is kept.
+    """
     pcbnew, board, log = ctx["pcbnew"], ctx["board"], ctx["log"]
     holes = ctx["holes"]
     done = []
@@ -74,25 +82,83 @@ def trim_pads(ctx):
         for pad in fp.Pads():
             if pad.GetNumber() != number:
                 continue
-            worst = min((P.hole_gap(pcbnew, board, pad, h), n)
-                        for n, h in holes.items())
-            if worst[0] >= P.HOLE_CLEARANCE:
+
+            def worst():
+                return min((P.hole_gap(pcbnew, board, pad, h), n)
+                           for n, h in holes.items())
+
+            g0, hole0 = worst()
+            if g0 >= P.HOLE_CLEARANCE:
                 done.append({"ref": ref, "pad": number, "action": "none",
-                             "gap_mm": P.mm(worst[0]), "hole": worst[1]})
+                             "gap_mm": P.mm(g0), "hole": hole0})
                 continue
             size = pad.GetSize()
-            before = [P.mm(size.x), P.mm(size.y)]
-            pad.SetSize(pcbnew.VECTOR2I(int(size.x - 2 * PAD_TRIM),
-                                        int(size.y)))
-            after = min((P.hole_gap(pcbnew, board, pad, h), n)
-                        for n, h in holes.items())
+            orig = (size.x, size.y)
+            chosen = None
+            for dx, dy in ((0, 2 * PAD_TRIM), (2 * PAD_TRIM, 0),
+                           (2 * PAD_TRIM, 2 * PAD_TRIM)):
+                pad.SetSize(pcbnew.VECTOR2I(int(orig[0] - dx),
+                                            int(orig[1] - dy)))
+                g1, hole1 = worst()
+                if g1 >= PAD_TARGET:
+                    chosen = (dx, dy, g1, hole1)
+                    break
+                pad.SetSize(pcbnew.VECTOR2I(int(orig[0]), int(orig[1])))
+            if chosen is None:
+                done.append({"ref": ref, "pad": number, "action": "failed",
+                             "gap_mm": P.mm(g0), "hole": hole0,
+                             "why": "no trim up to %.3f mm a side reaches "
+                                    "%.3f mm" % (P.mm(PAD_TRIM),
+                                                 P.mm(PAD_TARGET))})
+                continue
             done.append({"ref": ref, "pad": number, "action": "trimmed",
-                         "size_before_mm": before,
+                         "trimmed_mm": [P.mm(chosen[0]), P.mm(chosen[1])],
+                         "size_before_mm": [P.mm(orig[0]), P.mm(orig[1])],
                          "size_after_mm": [P.mm(pad.GetSize().x),
                                            P.mm(pad.GetSize().y)],
-                         "gap_before_mm": P.mm(worst[0]),
-                         "gap_after_mm": P.mm(after[0]), "hole": after[1]})
+                         "gap_before_mm": P.mm(g0),
+                         "gap_after_mm": P.mm(chosen[2]), "hole": chosen[3]})
     log["pad_trims"] = done
+
+
+def drop_unfixable(ctx):
+    """Delete peg-corridor copper that cannot be moved, and let healing route
+    it back the other way.
+
+    PEG2 is not a clearance problem, it is a topology problem. VBUS reaches
+    J1 pin 11 only by squeezing east between the peg and the ESP32 UART pair,
+    and every piece of that squeeze is inside the peg's ring: the tracks have
+    both endpoints in there, so re-routing between their own endpoints cannot
+    help, and the via has no legal site within 2.5 mm. The corridor has to be
+    abandoned. The other VBUS pad, J1 pin 2, is already fed from the west, and
+    a VBUS via sits 2.4 mm west of pin 11, so once this copper is gone the
+    healing step reconnects pin 11 that way.
+    """
+    pcbnew, board, idx, log = (ctx["pcbnew"], ctx["board"], ctx["idx"],
+                               ctx["log"])
+    holes, nets = ctx["holes"], NETS
+    doomed, items, seen = [], [], set()
+    for name in PEGS:
+        for g, it in P.copper_near_hole(pcbnew, board, holes[name],
+                                        P.HOLE_CLEARANCE, include_pads=False):
+            if it.GetNetname() not in nets:
+                continue
+            key = R.uid(it)
+            if key in seen:
+                continue
+            seen.add(key)
+            doomed.append(dict(P.describe(board, it), gap_mm=P.mm(g),
+                               hole=name))
+            items.append(it)
+    if items:
+        R.remove_items(board, items)
+        idx.rebuild()
+    log["deleted_peg_corridor"] = doomed
+
+
+def after_clear(ctx):
+    drop_unfixable(ctx)
+    trim_pads(ctx)
 
 
 def peg_checks(log):
@@ -112,7 +178,7 @@ def main():
         "USB_VBUS_RAW moved clear of the USB-C peg holes; J1 ground pads "
         "trimmed %.3f mm a side." % P.mm(PAD_TRIM),
         root=a.root, skip_drc=a.skip_drc, baseline="drc_s5_l3",
-        after_clear=trim_pads, extra_checks=peg_checks)
+        after_clear=after_clear, extra_checks=peg_checks)
     print(json.dumps({k: v for k, v in log.items()
                       if k != "contract_diffs"}, indent=1)[:6000])
     return 0 if ok else 1

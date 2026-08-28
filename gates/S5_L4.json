@@ -1,0 +1,989 @@
+{
+  "step": "S5_L4",
+  "pass": true,
+  "checks": [
+    {
+      "name": "target_copper_cleared",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_floating_islands",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "contract_parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc_ran",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_new_drc_signatures",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "pegs_clear_of_all_copper",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T16:36:31",
+  "notes": "USB_VBUS_RAW moved clear of the USB-C peg holes; J1 ground pads trimmed 0.050 mm a side.",
+  "holes": [
+    "PEG1",
+    "PEG2"
+  ],
+  "nets": [
+    "ESP_RXD",
+    "USB_DM",
+    "USB_VBUS_RAW"
+  ],
+  "violating_before": {
+    "PEG1": [
+      {
+        "kind": "via",
+        "net": "USB_VBUS_RAW",
+        "pos_mm": [
+          176.693,
+          113.223
+        ],
+        "dia_mm": 0.6095,
+        "drill_mm": 0.305,
+        "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60",
+        "gap_mm": 0.021347
+      }
+    ],
+    "PEG2": [
+      {
+        "kind": "track",
+        "net": "USB_VBUS_RAW",
+        "layer": "Top Layer",
+        "start_mm": [
+          176.591,
+          108.245
+        ],
+        "end_mm": [
+          176.7945,
+          108.143
+        ],
+        "width_mm": 0.203,
+        "uuid": "966f05b2-cda0-4465-a53f-c50120685e01",
+        "gap_mm": -0.371077
+      },
+      {
+        "kind": "track",
+        "net": "USB_VBUS_RAW",
+        "layer": "Top Layer",
+        "start_mm": [
+          176.642,
+          108.245
+        ],
+        "end_mm": [
+          176.9975,
+          108.143
+        ],
+        "width_mm": 0.203,
+        "uuid": "c3805fe4-1609-44ea-904a-9449a029ad4a",
+        "gap_mm": -0.370499
+      },
+      {
+        "kind": "via",
+        "net": "USB_VBUS_RAW",
+        "pos_mm": [
+          177.201,
+          108.143
+        ],
+        "dia_mm": 0.6095,
+        "drill_mm": 0.305,
+        "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813",
+        "gap_mm": -0.311853
+      },
+      {
+        "kind": "track",
+        "net": "USB_VBUS_RAW",
+        "layer": "Top Layer",
+        "start_mm": [
+          176.9975,
+          108.143
+        ],
+        "end_mm": [
+          177.201,
+          108.143
+        ],
+        "width_mm": 0.203,
+        "uuid": "c173ef5e-a672-4c23-a556-5b4d89a50ec3",
+        "gap_mm": -0.307813
+      },
+      {
+        "kind": "track",
+        "net": "USB_VBUS_RAW",
+        "layer": "Top Layer",
+        "start_mm": [
+          176.185,
+          108.5875
+        ],
+        "end_mm": [
+          176.642,
+          108.245
+        ],
+        "width_mm": 0.203,
+        "uuid": "5d35a3fb-8b8f-416d-800d-1508af61ac14",
+        "gap_mm": -0.187611
+      },
+      {
+        "kind": "track",
+        "net": "USB_VBUS_RAW",
+        "layer": "Top Layer",
+        "start_mm": [
+          176.185,
+          108.5875
+        ],
+        "end_mm": [
+          176.591,
+          108.245
+        ],
+        "width_mm": 0.203,
+        "uuid": "9810730a-7027-4672-ae0b-1a4f0bc90cf9",
+        "gap_mm": -0.143956
+      },
+      {
+        "kind": "track",
+        "net": "USB_VBUS_RAW",
+        "layer": "Bottom Layer",
+        "start_mm": [
+          177.201,
+          108.143
+        ],
+        "end_mm": [
+          177.201,
+          112.9185
+        ],
+        "width_mm": 0.203,
+        "uuid": "65ac1c5a-000b-4416-b3e2-c6dd4ee0e30f",
+        "gap_mm": -0.108603
+      }
+    ]
+  },
+  "clear_hole": {
+    "PEG1": [
+      {
+        "ok": true,
+        "method": "via retreat",
+        "was": {
+          "kind": "via",
+          "net": "USB_VBUS_RAW",
+          "pos_mm": [
+            176.693,
+            113.223
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "35989147-d0ad-44fe-9e6e-a93283582f60"
+        },
+        "now_mm": [
+          176.82,
+          112.969
+        ],
+        "moved_mm": 0.283981,
+        "tracks_followed": 7,
+        "margin_mm": 0.22,
+        "gap_before_mm": 0.021347,
+        "uid": "35989147-d0ad-44fe-9e6e-a93283582f60",
+        "hole": "PEG1"
+      },
+      {
+        "ok": true,
+        "method": "already clear at 0.22 mm",
+        "item": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            176.82,
+            112.969
+          ],
+          "end_mm": [
+            176.82,
+            112.969
+          ],
+          "width_mm": 0.203,
+          "uuid": "a98e33e3-1521-4168-a8bf-11a4bac7552c"
+        },
+        "margin_mm": 0.22,
+        "gap_before_mm": 0.224579,
+        "uid": "a98e33e3-1521-4168-a8bf-11a4bac7552c",
+        "hole": "PEG1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.82,
+            112.969
+          ],
+          "end_mm": [
+            175.894,
+            113.3695
+          ],
+          "width_mm": 0.203,
+          "uuid": "3b97268b-cc71-4566-a7e3-29372eda5c64"
+        },
+        "direct_mm": 1.0089,
+        "length_mm": 1.0089,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "margin_mm": 0.3,
+        "gap_before_mm": 0.224597,
+        "uid": "3b97268b-cc71-4566-a7e3-29372eda5c64",
+        "hole": "PEG1"
+      },
+      {
+        "ok": true,
+        "method": "already clear at 0.22 mm",
+        "item": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.82,
+            112.969
+          ],
+          "end_mm": [
+            176.82,
+            112.969
+          ],
+          "width_mm": 0.203,
+          "uuid": "8379fd73-f4ba-4bcf-aef6-bdbe10454592"
+        },
+        "margin_mm": 0.22,
+        "gap_before_mm": 0.224597,
+        "uid": "8379fd73-f4ba-4bcf-aef6-bdbe10454592",
+        "hole": "PEG1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.201,
+            112.9185
+          ],
+          "end_mm": [
+            176.82,
+            112.969
+          ],
+          "width_mm": 0.203,
+          "uuid": "10e819ff-f09d-4f16-b579-d6264a55f6b4"
+        },
+        "direct_mm": 0.3843,
+        "length_mm": 0.3843,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "margin_mm": 0.3,
+        "gap_before_mm": 0.254737,
+        "uid": "10e819ff-f09d-4f16-b579-d6264a55f6b4",
+        "hole": "PEG1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            175.931,
+            113.3885
+          ],
+          "end_mm": [
+            176.82,
+            112.969
+          ],
+          "width_mm": 0.203,
+          "uuid": "f13d6476-aedd-4dbb-bb51-5a0c90c8a56b"
+        },
+        "direct_mm": 0.983,
+        "length_mm": 0.983,
+        "vias": [],
+        "segments": 1,
+        "split_kept_segments": 0,
+        "margin_mm": 0.3,
+        "gap_before_mm": 0.285254,
+        "uid": "f13d6476-aedd-4dbb-bb51-5a0c90c8a56b",
+        "hole": "PEG1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "ESP_RXD",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.607,
+            113.2864
+          ],
+          "end_mm": [
+            177.607,
+            114.4694
+          ],
+          "width_mm": 0.203,
+          "uuid": "7c4bdcbd-e67f-49f1-86c1-1acb5438cf15"
+        },
+        "direct_mm": 1.1829,
+        "length_mm": 1.2038,
+        "vias": [],
+        "segments": 2,
+        "split_kept_segments": 2,
+        "margin_mm": 0.3,
+        "gap_before_mm": 0.294413,
+        "uid": "7a7572c6-dc48-4d55-b679-28b85e3fb22e",
+        "hole": "PEG1"
+      }
+    ],
+    "PEG2": [
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.591,
+            108.245
+          ],
+          "end_mm": [
+            176.7945,
+            108.143
+          ],
+          "width_mm": 0.203,
+          "uuid": "966f05b2-cda0-4465-a53f-c50120685e01"
+        },
+        "direct_mm": 0.2276,
+        "limit_mm": 2.2276,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.371077,
+        "uid": "966f05b2-cda0-4465-a53f-c50120685e01",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.642,
+            108.245
+          ],
+          "end_mm": [
+            176.9975,
+            108.143
+          ],
+          "width_mm": 0.203,
+          "uuid": "c3805fe4-1609-44ea-904a-9449a029ad4a"
+        },
+        "direct_mm": 0.3698,
+        "limit_mm": 2.3698,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.370499,
+        "uid": "c3805fe4-1609-44ea-904a-9449a029ad4a",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no legal position within 2.50 mm",
+        "via": {
+          "kind": "via",
+          "net": "USB_VBUS_RAW",
+          "pos_mm": [
+            177.201,
+            108.143
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+        },
+        "tracks_attached": 4,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.311853,
+        "uid": "8fa15d54-a715-4b84-b8ce-e8157f278813",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.9975,
+            108.143
+          ],
+          "end_mm": [
+            177.201,
+            108.143
+          ],
+          "width_mm": 0.203,
+          "uuid": "c173ef5e-a672-4c23-a556-5b4d89a50ec3"
+        },
+        "direct_mm": 0.2035,
+        "limit_mm": 2.2035,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.307813,
+        "uid": "c173ef5e-a672-4c23-a556-5b4d89a50ec3",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.185,
+            108.5875
+          ],
+          "end_mm": [
+            176.642,
+            108.245
+          ],
+          "width_mm": 0.203,
+          "uuid": "5d35a3fb-8b8f-416d-800d-1508af61ac14"
+        },
+        "direct_mm": 0.5711,
+        "limit_mm": 2.5711,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.187611,
+        "uid": "5d35a3fb-8b8f-416d-800d-1508af61ac14",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.185,
+            108.5875
+          ],
+          "end_mm": [
+            176.591,
+            108.245
+          ],
+          "width_mm": 0.203,
+          "uuid": "9810730a-7027-4672-ae0b-1a4f0bc90cf9"
+        },
+        "direct_mm": 0.5312,
+        "limit_mm": 2.5312,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.143956,
+        "uid": "9810730a-7027-4672-ae0b-1a4f0bc90cf9",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.201,
+            108.143
+          ],
+          "end_mm": [
+            177.201,
+            109.2681
+          ],
+          "width_mm": 0.203,
+          "uuid": "53507a89-a5ac-4241-a130-a48b047c47fc"
+        },
+        "direct_mm": 1.1251,
+        "limit_mm": 3.3753,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.108603,
+        "uid": "65ac1c5a-000b-4416-b3e2-c6dd4ee0e30f",
+        "hole": "PEG2"
+      },
+      {
+        "ok": true,
+        "method": "already clear at 0.22 mm",
+        "item": {
+          "kind": "track",
+          "net": "USB_DM",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            176.185,
+            108.0925
+          ],
+          "end_mm": [
+            176.185,
+            108.5495
+          ],
+          "width_mm": 0.203,
+          "uuid": "d1366fd2-6c12-458e-8eb7-4bfba50ca47c"
+        },
+        "margin_mm": 0.22,
+        "gap_before_mm": 0.224563,
+        "uid": "d1366fd2-6c12-458e-8eb7-4bfba50ca47c",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.591,
+            108.245
+          ],
+          "end_mm": [
+            176.7945,
+            108.143
+          ],
+          "width_mm": 0.203,
+          "uuid": "966f05b2-cda0-4465-a53f-c50120685e01"
+        },
+        "direct_mm": 0.2276,
+        "limit_mm": 2.2276,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.371077,
+        "uid": "966f05b2-cda0-4465-a53f-c50120685e01",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.642,
+            108.245
+          ],
+          "end_mm": [
+            176.9975,
+            108.143
+          ],
+          "width_mm": 0.203,
+          "uuid": "c3805fe4-1609-44ea-904a-9449a029ad4a"
+        },
+        "direct_mm": 0.3698,
+        "limit_mm": 2.3698,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.370499,
+        "uid": "c3805fe4-1609-44ea-904a-9449a029ad4a",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no legal position within 2.50 mm",
+        "via": {
+          "kind": "via",
+          "net": "USB_VBUS_RAW",
+          "pos_mm": [
+            177.201,
+            108.143
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813"
+        },
+        "tracks_attached": 4,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.311853,
+        "uid": "8fa15d54-a715-4b84-b8ce-e8157f278813",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.9975,
+            108.143
+          ],
+          "end_mm": [
+            177.201,
+            108.143
+          ],
+          "width_mm": 0.203,
+          "uuid": "c173ef5e-a672-4c23-a556-5b4d89a50ec3"
+        },
+        "direct_mm": 0.2035,
+        "limit_mm": 2.2035,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.307813,
+        "uid": "c173ef5e-a672-4c23-a556-5b4d89a50ec3",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.185,
+            108.5875
+          ],
+          "end_mm": [
+            176.642,
+            108.245
+          ],
+          "width_mm": 0.203,
+          "uuid": "5d35a3fb-8b8f-416d-800d-1508af61ac14"
+        },
+        "direct_mm": 0.5711,
+        "limit_mm": 2.5711,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.187611,
+        "uid": "5d35a3fb-8b8f-416d-800d-1508af61ac14",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Top Layer",
+          "start_mm": [
+            176.185,
+            108.5875
+          ],
+          "end_mm": [
+            176.591,
+            108.245
+          ],
+          "width_mm": 0.203,
+          "uuid": "9810730a-7027-4672-ae0b-1a4f0bc90cf9"
+        },
+        "direct_mm": 0.5312,
+        "limit_mm": 2.5312,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.143956,
+        "uid": "9810730a-7027-4672-ae0b-1a4f0bc90cf9",
+        "hole": "PEG2"
+      },
+      {
+        "ok": false,
+        "reason": "no path on the grid",
+        "track": {
+          "kind": "track",
+          "net": "USB_VBUS_RAW",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            177.201,
+            108.143
+          ],
+          "end_mm": [
+            177.201,
+            109.2681
+          ],
+          "width_mm": 0.203,
+          "uuid": "53507a89-a5ac-4241-a130-a48b047c47fc"
+        },
+        "direct_mm": 1.1251,
+        "limit_mm": 3.3753,
+        "split_kept_segments": 0,
+        "margin_mm": 0.2,
+        "gap_before_mm": -0.108603,
+        "uid": "53507a89-a5ac-4241-a130-a48b047c47fc",
+        "hole": "PEG2"
+      }
+    ]
+  },
+  "deleted_peg_corridor": [
+    {
+      "kind": "track",
+      "net": "USB_VBUS_RAW",
+      "layer": "Top Layer",
+      "start_mm": [
+        176.591,
+        108.245
+      ],
+      "end_mm": [
+        176.7945,
+        108.143
+      ],
+      "width_mm": 0.203,
+      "uuid": "966f05b2-cda0-4465-a53f-c50120685e01",
+      "gap_mm": -0.371077,
+      "hole": "PEG2"
+    },
+    {
+      "kind": "track",
+      "net": "USB_VBUS_RAW",
+      "layer": "Top Layer",
+      "start_mm": [
+        176.642,
+        108.245
+      ],
+      "end_mm": [
+        176.9975,
+        108.143
+      ],
+      "width_mm": 0.203,
+      "uuid": "c3805fe4-1609-44ea-904a-9449a029ad4a",
+      "gap_mm": -0.370499,
+      "hole": "PEG2"
+    },
+    {
+      "kind": "via",
+      "net": "USB_VBUS_RAW",
+      "pos_mm": [
+        177.201,
+        108.143
+      ],
+      "dia_mm": 0.6095,
+      "drill_mm": 0.305,
+      "uuid": "8fa15d54-a715-4b84-b8ce-e8157f278813",
+      "gap_mm": -0.311853,
+      "hole": "PEG2"
+    },
+    {
+      "kind": "track",
+      "net": "USB_VBUS_RAW",
+      "layer": "Top Layer",
+      "start_mm": [
+        176.9975,
+        108.143
+      ],
+      "end_mm": [
+        177.201,
+        108.143
+      ],
+      "width_mm": 0.203,
+      "uuid": "c173ef5e-a672-4c23-a556-5b4d89a50ec3",
+      "gap_mm": -0.307813,
+      "hole": "PEG2"
+    },
+    {
+      "kind": "track",
+      "net": "USB_VBUS_RAW",
+      "layer": "Top Layer",
+      "start_mm": [
+        176.185,
+        108.5875
+      ],
+      "end_mm": [
+        176.642,
+        108.245
+      ],
+      "width_mm": 0.203,
+      "uuid": "5d35a3fb-8b8f-416d-800d-1508af61ac14",
+      "gap_mm": -0.187611,
+      "hole": "PEG2"
+    },
+    {
+      "kind": "track",
+      "net": "USB_VBUS_RAW",
+      "layer": "Top Layer",
+      "start_mm": [
+        176.185,
+        108.5875
+      ],
+      "end_mm": [
+        176.591,
+        108.245
+      ],
+      "width_mm": 0.203,
+      "uuid": "9810730a-7027-4672-ae0b-1a4f0bc90cf9",
+      "gap_mm": -0.143956,
+      "hole": "PEG2"
+    },
+    {
+      "kind": "track",
+      "net": "USB_VBUS_RAW",
+      "layer": "Bottom Layer",
+      "start_mm": [
+        177.201,
+        108.143
+      ],
+      "end_mm": [
+        177.201,
+        109.2681
+      ],
+      "width_mm": 0.203,
+      "uuid": "53507a89-a5ac-4241-a130-a48b047c47fc",
+      "gap_mm": -0.108603,
+      "hole": "PEG2"
+    }
+  ],
+  "pad_trims": [
+    {
+      "ref": "J1",
+      "pad": "1",
+      "action": "trimmed",
+      "trimmed_mm": [
+        0.0,
+        0.1
+      ],
+      "size_before_mm": [
+        0.55,
+        1.1
+      ],
+      "size_after_mm": [
+        0.55,
+        1.0
+      ],
+      "gap_before_mm": 0.171247,
+      "gap_after_mm": 0.221143,
+      "hole": "PEG1"
+    },
+    {
+      "ref": "J1",
+      "pad": "12",
+      "action": "trimmed",
+      "trimmed_mm": [
+        0.0,
+        0.1
+      ],
+      "size_before_mm": [
+        0.55,
+        1.1
+      ],
+      "size_after_mm": [
+        0.55,
+        1.0
+      ],
+      "gap_before_mm": 0.17123,
+      "gap_after_mm": 0.221127,
+      "hole": "PEG2"
+    }
+  ],
+  "heal_rounds": [
+    {
+      "round": 0,
+      "floating": 1,
+      "fixed": 1,
+      "left": 0
+    }
+  ],
+  "islands_reconnected": [
+    {
+      "ok": true,
+      "method": "maze route",
+      "length_mm": 2.0282,
+      "net": "USB_VBUS_RAW",
+      "island_size": 1,
+      "island": [
+        {
+          "kind": "pad",
+          "net": "USB_VBUS_RAW",
+          "ref": "J1",
+          "number": "11",
+          "pos_mm": [
+            175.791,
+            108.588
+          ],
+          "size_mm": [
+            0.55,
+            1.1
+          ],
+          "uuid": "P:efebbe2e-84dd-4dfd-aeba-75556bc28d70:J1:11:2400000:-2375000"
+        }
+      ]
+    }
+  ],
+  "islands_still_floating": [],
+  "violating_after": {
+    "PEG1": [],
+    "PEG2": []
+  },
+  "inside_ring_after_any_net": {
+    "PEG1": [],
+    "PEG2": []
+  },
+  "contract_diffs": [],
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1232,
+    "vias": 239,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "unconnected_before_save": 0,
+  "drc_after": {
+    "errors_by_type": {
+      "clearance": 22,
+      "solder_mask_bridge": 7,
+      "hole_clearance": 1
+    },
+    "unconnected": 0
+  },
+  "drc_delta": {
+    "resolved": [
+      "hole_clearance NPTH+Pad nets=GND at (175.791,107.788) (176.861,108.098)",
+      "hole_clearance NPTH+Pad nets=GND at (175.791,114.188) (176.861,113.878)",
+      "hole_clearance NPTH+Track nets=USB_VBUS_RAW at (176.185,108.588) (176.861,108.098)",
+      "hole_clearance NPTH+Track nets=USB_VBUS_RAW at (176.591,108.245) (176.861,108.098)",
+      "hole_clearance NPTH+Track nets=USB_VBUS_RAW at (176.642,108.245) (176.861,108.098)",
+      "hole_clearance NPTH+Track nets=USB_VBUS_RAW at (176.861,108.098) (176.998,108.143)",
+      "hole_clearance NPTH+Track nets=USB_VBUS_RAW at (176.861,108.098) (177.201,108.143)",
+      "hole_clearance NPTH+Via nets=USB_VBUS_RAW at (176.693,113.223) (176.861,113.878)",
+      "hole_clearance NPTH+Via nets=USB_VBUS_RAW at (176.861,108.098) (177.201,108.143)",
+      "hole_to_hole NPTH+Via nets=USB_VBUS_RAW at (176.693,113.223) (176.861,113.878)",
+      "hole_to_hole NPTH+Via nets=USB_VBUS_RAW at (176.861,108.098) (177.201,108.143)"
+    ],
+    "new": [
+      "clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)",
+      "clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317)"
+    ],
+    "before": 38,
+    "after": 29
+  }
+}
