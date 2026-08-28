@@ -1,0 +1,366 @@
+{
+  "step": "S5_L2",
+  "pass": true,
+  "checks": [
+    {
+      "name": "target_copper_cleared",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_floating_islands",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "contract_parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc_ran",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_new_drc_signatures",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T16:25:54",
+  "notes": "CHASSIS_GND re-routed clear of H1.",
+  "holes": [
+    "H1"
+  ],
+  "nets": [
+    "CHASSIS_GND"
+  ],
+  "violating_before": {
+    "H1": [
+      {
+        "kind": "track",
+        "net": "CHASSIS_GND",
+        "layer": "Bottom Layer",
+        "start_mm": [
+          123.556,
+          87.2645
+        ],
+        "end_mm": [
+          123.556,
+          81.4225
+        ],
+        "width_mm": 0.305,
+        "uuid": "a0628e5c-9659-451b-b234-3948ed50e472",
+        "gap_mm": -0.8383
+      }
+    ]
+  },
+  "clear_hole": {
+    "H1": [
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            123.556,
+            87.2645
+          ],
+          "end_mm": [
+            123.556,
+            81.4225
+          ],
+          "width_mm": 0.305,
+          "uuid": "a0628e5c-9659-451b-b234-3948ed50e472"
+        },
+        "direct_mm": 5.842,
+        "length_mm": 6.4252,
+        "vias": [],
+        "segments": 4,
+        "gap_before_mm": -0.8383,
+        "uid": "a0628e5c-9659-451b-b234-3948ed50e472",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            124.46,
+            82.296
+          ],
+          "end_mm": [
+            123.6345,
+            81.407
+          ],
+          "width_mm": 0.305,
+          "uuid": "9ffe1316-0c13-413e-b02b-041ac6c60937"
+        },
+        "direct_mm": 1.2132,
+        "length_mm": 1.2132,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.200104,
+        "uid": "9ffe1316-0c13-413e-b02b-041ac6c60937",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            124.6505,
+            83.058
+          ],
+          "end_mm": [
+            124.46,
+            82.296
+          ],
+          "width_mm": 0.305,
+          "uuid": "d7b67e92-84cf-411c-9605-6c244f096d76"
+        },
+        "direct_mm": 0.7855,
+        "length_mm": 0.7855,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.205928,
+        "uid": "d7b67e92-84cf-411c-9605-6c244f096d76",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            123.556,
+            87.2645
+          ],
+          "end_mm": [
+            124.6505,
+            83.058
+          ],
+          "width_mm": 0.305,
+          "uuid": "30308e3a-9818-42d3-973e-c836b3ee3a48"
+        },
+        "direct_mm": 4.3466,
+        "length_mm": 4.3466,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.207081,
+        "uid": "30308e3a-9818-42d3-973e-c836b3ee3a48",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            124.46,
+            82.296
+          ],
+          "end_mm": [
+            123.6345,
+            81.407
+          ],
+          "width_mm": 0.305,
+          "uuid": "6bb606e9-d21d-4524-a1d5-6e38cd932381"
+        },
+        "direct_mm": 1.2132,
+        "length_mm": 1.2132,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.200104,
+        "uid": "6bb606e9-d21d-4524-a1d5-6e38cd932381",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            124.6505,
+            83.058
+          ],
+          "end_mm": [
+            124.46,
+            82.296
+          ],
+          "width_mm": 0.305,
+          "uuid": "384b1e4f-38ad-48f3-af1f-4e2ec273c1af"
+        },
+        "direct_mm": 0.7855,
+        "length_mm": 0.7855,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.205928,
+        "uid": "384b1e4f-38ad-48f3-af1f-4e2ec273c1af",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            123.556,
+            87.2645
+          ],
+          "end_mm": [
+            124.6505,
+            83.058
+          ],
+          "width_mm": 0.305,
+          "uuid": "294eaddd-566a-47c0-b9c0-a328275681f1"
+        },
+        "direct_mm": 4.3466,
+        "length_mm": 4.3466,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.207081,
+        "uid": "294eaddd-566a-47c0-b9c0-a328275681f1",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            124.46,
+            82.296
+          ],
+          "end_mm": [
+            123.6345,
+            81.407
+          ],
+          "width_mm": 0.305,
+          "uuid": "cd3933a9-81f3-4c00-bcf4-d1c7226932c1"
+        },
+        "direct_mm": 1.2132,
+        "length_mm": 1.2132,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.200104,
+        "uid": "cd3933a9-81f3-4c00-bcf4-d1c7226932c1",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            124.6505,
+            83.058
+          ],
+          "end_mm": [
+            124.46,
+            82.296
+          ],
+          "width_mm": 0.305,
+          "uuid": "a0766abe-eef0-4273-b7d4-dd2a92b44616"
+        },
+        "direct_mm": 0.7855,
+        "length_mm": 0.7855,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.205928,
+        "uid": "a0766abe-eef0-4273-b7d4-dd2a92b44616",
+        "hole": "H1"
+      },
+      {
+        "ok": true,
+        "method": "detour",
+        "was": {
+          "kind": "track",
+          "net": "CHASSIS_GND",
+          "layer": "Bottom Layer",
+          "start_mm": [
+            123.556,
+            87.2645
+          ],
+          "end_mm": [
+            124.6505,
+            83.058
+          ],
+          "width_mm": 0.305,
+          "uuid": "8542719c-5a01-4d42-bce2-7855a30ac307"
+        },
+        "direct_mm": 4.3466,
+        "length_mm": 4.3466,
+        "vias": [],
+        "segments": 1,
+        "gap_before_mm": 0.207081,
+        "uid": "8542719c-5a01-4d42-bce2-7855a30ac307",
+        "hole": "H1"
+      }
+    ]
+  },
+  "islands_reconnected": [],
+  "islands_still_floating": [],
+  "violating_after": {
+    "H1": []
+  },
+  "contract_diffs": [],
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1229,
+    "vias": 240,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "unconnected_before_save": 0,
+  "drc_after": {
+    "errors_by_type": {
+      "hole_clearance": 26,
+      "clearance": 20,
+      "solder_mask_bridge": 7,
+      "hole_to_hole": 4
+    },
+    "unconnected": 0
+  },
+  "drc_delta": {
+    "resolved": [
+      "clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)",
+      "hole_clearance NPTH+Track nets=CHASSIS_GND at (123.048,83.048) (123.556,87.264)"
+    ],
+    "new": [],
+    "before": 41,
+    "after": 39
+  }
+}

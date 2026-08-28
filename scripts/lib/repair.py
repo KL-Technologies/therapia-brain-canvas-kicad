@@ -577,6 +577,169 @@ def commit(pcbnew, board, result, net, width=None, rules_obj=None):
                           rl.via_drill)
 
 
+# --- moving copper away from a hole ------------------------------------------
+def detour_track(pcbnew, board, idx, track, router=None, rules_obj=None,
+                 ignore=(), max_factor=3.0, min_extra_mm=2.0):
+    """Replace a track with a routed path between the same two endpoints.
+
+    This is how L2 and L3 are done, and it is why the router was written: the
+    hole is an obstacle to the router (`straight_ok` and the grid both test
+    NPTH clearance), so "route from A to B" *is* "go round the hole", and the
+    detour comes out of the same collision tests as everything else rather
+    than out of a hand-picked waypoint.
+
+    The track is not removed until a legal replacement exists.
+    """
+    rl = rules_obj or rules()
+    a = (track.GetStart().x, track.GetStart().y)
+    b = (track.GetEnd().x, track.GetEnd().y)
+    layer = track.GetLayer()
+    width = track.GetWidth()
+    net = track.GetNetCode()
+    direct = math.hypot(b[0] - a[0], b[1] - a[1]) / float(IU)
+    limit = max(direct + min_extra_mm, direct * max_factor)
+    rt = router or M.Router(pcbnew, board, idx, rl)
+    ig = list(ignore) + [track]
+    plan = rt.route([(a[0], a[1], layer)], net, goals=[(b[0], b[1], layer)],
+                    width=width, ignore=ig, margin_mm=4.0,
+                    max_length_mm=limit)
+    if not plan.get("ok"):
+        return {"ok": False, "reason": plan.get("reason"),
+                "track": describe(board, track), "direct_mm": round(direct, 4),
+                "limit_mm": round(limit, 4)}
+    R.remove_items(board, [track])
+    made = R.commit_route(pcbnew, board, plan, net, width, rl.via_dia,
+                          rl.via_drill)
+    idx.rebuild()
+    return {"ok": True, "method": "detour", "was": describe(board, track),
+            "direct_mm": round(direct, 4), "length_mm": plan.get("length_mm"),
+            "vias": [[mm(v[0]), mm(v[1])] for v in plan.get("vias", ())],
+            "segments": len(made)}
+
+
+def retreat_via(pcbnew, board, idx, via, holes, margin, rules_obj=None,
+                ignore=(), max_move_mm=2.5, step_mm=0.127):
+    """Slide a via clear of the holes, dragging the track ends that meet it.
+
+    A via that sits in a mounting hole cannot simply be deleted -- it is what
+    joins the two layers -- so it is moved, and every track that ended on it is
+    moved with it. The move is only taken if all of those tracks still clear
+    everything afterwards; a via that lands somewhere legal while stranding a
+    track it was holding would trade one fault for a worse one.
+    """
+    rl = rules_obj or rules()
+    pos = via.GetPosition()
+    net = via.GetNetCode()
+    attached = []
+    for t in board.GetTracks():
+        if t.GetClass() == "PCB_VIA" or t.GetNetCode() != net:
+            continue
+        for which, p in (("start", t.GetStart()), ("end", t.GetEnd())):
+            if math.hypot(p.x - pos.x, p.y - pos.y) <= via.GetWidth() / 2.0:
+                attached.append((t, which))
+    ig = list(ignore) + [via] + [t for t, _w in attached]
+
+    for q in R.ring_points(pos.x, pos.y, step_mm * IU, max_move_mm * IU,
+                           int(step_mm * IU)):
+        ok = True
+        for _name, h in holes.items():
+            d = math.hypot(q[0] - h[0], q[1] - h[1])
+            if d - h[2] - via.GetWidth() / 2.0 < margin:
+                ok = False
+                break
+            if d - h[2] - via.GetDrillValue() / 2.0 < rl.hole_to_hole:
+                ok = False
+                break
+        if not ok:
+            continue
+        if not R.via_site_ok(idx, pcbnew, q[0], q[1], net, via.GetWidth(),
+                             via.GetDrillValue(), rl.clearance,
+                             rl.hole_to_hole, rl.hole_clearance, rl.edge_box,
+                             ignore=ig):
+            continue
+        moved_ok = True
+        for t, which in attached:
+            s, e = t.GetStart(), t.GetEnd()
+            a2 = (q[0], q[1]) if which == "start" else (s.x, s.y)
+            b2 = (e.x, e.y) if which == "start" else (q[0], q[1])
+            if not R.straight_ok(idx, pcbnew, board, a2, b2, t.GetLayer(),
+                                 t.GetWidth(), net, rl.clearance,
+                                 rl.hole_clearance, ignore=ig):
+                moved_ok = False
+                break
+        if not moved_ok:
+            continue
+        was = describe(board, via)
+        via.SetPosition(pcbnew.VECTOR2I(int(q[0]), int(q[1])))
+        for t, which in attached:
+            if which == "start":
+                t.SetStart(pcbnew.VECTOR2I(int(q[0]), int(q[1])))
+            else:
+                t.SetEnd(pcbnew.VECTOR2I(int(q[0]), int(q[1])))
+        idx.rebuild()
+        return {"ok": True, "method": "via retreat", "was": was,
+                "now_mm": [mm(q[0]), mm(q[1])],
+                "moved_mm": mm(math.hypot(q[0] - pos.x, q[1] - pos.y)),
+                "tracks_followed": len(attached)}
+    return {"ok": False, "reason": "no legal position within %.2f mm"
+                                   % max_move_mm,
+            "via": describe(board, via), "tracks_attached": len(attached)}
+
+
+def clear_hole(pcbnew, board, idx, name, hole, margin, nets=None,
+               rules_obj=None, log=None, skip_pads=True, exclude=()):
+    """Get every piece of copper out of one hole's clearance ring.
+
+    Vias are retreated, tracks are re-routed between their own endpoints, and
+    pads are reported -- a pad only moves with its footprint, which is a
+    placement decision and belongs to a named repair (L1), not to a sweep.
+    """
+    rl = rules_obj or rules()
+    skip = {R.uid(i) for i in exclude}
+    results = []
+    for _round in range(4):
+        bad = [(g, it) for g, it in copper_near_hole(pcbnew, board, hole,
+                                                     margin,
+                                                     include_pads=not skip_pads)
+               if R.uid(it) not in skip]
+        if nets is not None:
+            bad = [(g, it) for g, it in bad if it.GetNetname() in nets]
+        bad = [(g, it) for g, it in bad
+               if not any(r.get("uid") == R.uid(it) and r.get("ok")
+                          for r in results)]
+        if not bad:
+            break
+        progress = False
+        for g, it in bad:
+            cls = it.GetClass()
+            if cls == "PAD":
+                results.append({"ok": False, "kind": "pad",
+                                "reason": "a pad only moves with its "
+                                          "footprint",
+                                "gap_mm": mm(g), "uid": R.uid(it),
+                                "item": describe(board, it)})
+                continue
+            router = M.Router(pcbnew, board, idx, rl)
+            if cls == "PCB_VIA":
+                res = retreat_via(pcbnew, board, idx, it,
+                                  {name: hole}, margin, rules_obj=rl,
+                                  ignore=exclude)
+            else:
+                res = detour_track(pcbnew, board, idx, it, router=router,
+                                   rules_obj=rl, ignore=exclude)
+            res["gap_before_mm"] = mm(g)
+            res["uid"] = R.uid(it)
+            res["hole"] = name
+            results.append(res)
+            if res.get("ok"):
+                progress = True
+        if not progress:
+            break
+    if log is not None:
+        log.setdefault("clear_hole", {})[name] = results
+    return results
+
+
 # --- contract parity ---------------------------------------------------------
 def pad_net_map(board, pcbnew):
     import collections
@@ -756,6 +919,98 @@ def by_type(doc, severity="error"):
 
 def unconnected(doc):
     return len(doc.get("unconnected_items", []))
+
+
+def run_hole_step(step, hole_names, nets, notes, root=None, skip_drc=False,
+                  baseline="drc_S5_before", margin=None, before_save=None,
+                  after_clear=None):
+    """The whole of an L2/L3/L4-shaped repair: clear holes, heal, gate.
+
+    L2 and L3 differ from each other only in which hole and which net, and L4
+    adds one footprint edit, so the body of the step lives here and the scripts
+    stay a docstring, a net list and a hook.
+
+    `after_clear(ctx)` runs with the board open after the copper has been
+    moved; `before_save(ctx)` just before it is written. Both get a dict with
+    pcbnew, board, idx, log and the rules.
+    """
+    import pcbnew
+    root = root or ROOT
+    rl = rules()
+    margin = TARGET_HOLE_MARGIN if margin is None else margin
+    bpath = board_path(root)
+    board = pcbnew.LoadBoard(bpath)
+    idx = R.CopperIndex(pcbnew, board)
+    holes = npth_holes(pcbnew, board)
+    log = {"step": step, "holes": hole_names, "nets": sorted(nets or [])}
+    ctx = {"pcbnew": pcbnew, "board": board, "idx": idx, "log": log,
+           "rules": rl, "holes": holes, "root": root}
+
+    before = {}
+    for name in hole_names:
+        before[name] = [dict(describe(board, it), gap_mm=mm(g))
+                        for g, it in copper_near_hole(pcbnew, board,
+                                                      holes[name],
+                                                      HOLE_CLEARANCE)
+                        if nets is None or it.GetNetname() in nets]
+    log["violating_before"] = before
+
+    for name in hole_names:
+        clear_hole(pcbnew, board, idx, name, holes[name], margin, nets=nets,
+                   rules_obj=rl, log=log)
+    if after_clear:
+        after_clear(ctx)
+
+    netcodes = sorted({board.FindNet(n).GetNetCode() for n in (nets or [])
+                       if board.FindNet(n) is not None})
+    healed, floating = heal_nets(pcbnew, board, idx, netcodes, log=log)
+    log["islands_reconnected"] = healed
+    log["islands_still_floating"] = floating
+
+    after = {}
+    for name in hole_names:
+        after[name] = [dict(describe(board, it), gap_mm=mm(g))
+                       for g, it in copper_near_hole(pcbnew, board,
+                                                     holes[name],
+                                                     HOLE_CLEARANCE)
+                       if nets is None or it.GetNetname() in nets]
+    log["violating_after"] = after
+
+    if before_save:
+        before_save(ctx)
+    board.BuildListOfNets()
+    diffs, _mech = contract_diff(board, pcbnew, root)
+    log["contract_diffs"] = diffs[:20]
+    log["counts_after"] = counts(board, pcbnew)
+    log["unconnected_before_save"] = unconnected_count(pcbnew, board)
+    pcbnew.SaveBoard(bpath, board)
+
+    drc_ok, cur, _p = (False, None, None)
+    delta, sig = {}, {}
+    if not skip_drc:
+        drc_ok, cur, _p = drc_with_healing(root, step.lower(), log=log)
+        if drc_ok:
+            base = load_drc(os.path.join(root, "logs", baseline + ".json"))
+            delta = drc_delta(base, cur)
+            sig = D.compare(base, cur)
+            log["drc_after"] = {"errors_by_type": by_type(cur),
+                                "unconnected": unconnected(cur)}
+            log["drc_delta"] = delta
+
+    left = sum(len(v) for v in after.values())
+    checks = [
+        check("target_copper_cleared", 0, left),
+        check("no_floating_islands", 0, len(floating)),
+        check("contract_parity", 0, len(diffs)),
+        check("drc_ran", True, drc_ok),
+        check("unconnected", 0, unconnected(cur) if cur else -1,
+              ok=(drc_ok and unconnected(cur) == 0)),
+        check("no_new_drc_signatures", [],
+              sig.get("new_signatures", ["drc did not run"]),
+              ok=(drc_ok and not sig.get("new_signatures"))),
+    ]
+    gate(root, step, checks, notes=notes, extra=log)
+    return all(c["pass"] for c in checks), log
 
 
 def gate(root, name, checks, notes="", extra=None):

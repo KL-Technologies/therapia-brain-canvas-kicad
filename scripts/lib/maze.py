@@ -238,39 +238,66 @@ class Router(object):
         return None
 
     # --- path -> plan ----------------------------------------------------
-    def _to_plan(self, path, tail_points):
-        """Merge collinear grid steps into segments and collect the vias."""
-        tracks, vias = [], []
-        run = [path[0]]
+    def _runs(self, path, head=None, foot=None):
+        """[(layer, [points])] split where the path changes layer, plus the
+        via position at each change. The exact start and finish points are
+        pushed onto the ends so the simplifier can absorb them."""
+        runs, vias = [], []
+        cur = path[0][2]
+        pts = [self._xy(path[0][0], path[0][1])]
+        if head is not None and head != pts[0]:
+            pts.insert(0, head)
         for n in path[1:]:
-            if n[2] != run[-1][2]:                       # layer change = via
-                tracks += self._emit(run)
-                vias.append(self._xy(n[0], n[1]))
-                run = [n]
-                continue
-            run.append(n)
-        tracks += self._emit(run)
-        for a, b, layer in tail_points:
-            tracks.append((a, b, layer))
-        return {"ok": True, "method": "maze", "tracks": tracks, "vias": vias}
+            p = self._xy(n[0], n[1])
+            if n[2] != cur:
+                runs.append((self.layers[cur], pts))
+                vias.append(p)
+                cur = n[2]
+                pts = [p]
+            else:
+                pts.append(p)
+        if foot is not None and foot != pts[-1]:
+            pts.append(foot)
+        runs.append((self.layers[cur], pts))
+        return runs, vias
 
-    def _emit(self, run):
-        if len(run) < 2:
-            return []
-        layer = self.layers[run[0][2]]
-        out = []
-        a = run[0]
-        d = (run[1][0] - run[0][0], run[1][1] - run[0][1])
-        for i in range(1, len(run)):
-            if i + 1 < len(run):
-                e = (run[i + 1][0] - run[i][0], run[i + 1][1] - run[i][1])
-                if e == d:
-                    continue
-                d = e
-            out.append((self._xy(a[0], a[1]), self._xy(run[i][0], run[i][1]),
-                        layer))
-            a = run[i]
+    def _simplify(self, pts, layer, net, width, ignore_ids):
+        """String-pull a grid path into as few straight segments as possible.
+
+        An 8-way grid has many equal-cost routes and A* returns whichever it
+        reached first, which around H1 came out as a 25-segment staircase
+        hugging the hole -- legal, but not something a person can review. This
+        walks the polyline and takes the longest straight shot the clearance
+        test allows, so the same route comes back as three or four segments.
+        """
+        import route as R
+        out = [pts[0]]
+        i = 0
+        while i < len(pts) - 1:
+            j = len(pts) - 1
+            while j > i + 1:
+                if R.straight_ok(self.idx, self.pcbnew, self.board, pts[i],
+                                 pts[j], layer, width, net,
+                                 self.rules.clearance,
+                                 self.rules.hole_clearance,
+                                 ignore=ignore_ids):
+                    break
+                j -= 1
+            out.append(pts[j])
+            i = j
         return out
+
+    def _to_plan(self, path, net, width, ignore_ids, head=None, foot=None):
+        runs, vias = self._runs(path, head=head, foot=foot)
+        tracks = []
+        for layer, pts in runs:
+            pts = [p for k, p in enumerate(pts) if k == 0 or p != pts[k - 1]]
+            if len(pts) < 2:
+                continue
+            pts = self._simplify(pts, layer, net, width, ignore_ids)
+            for k in range(len(pts) - 1):
+                tracks.append((pts[k], pts[k + 1], layer))
+        return {"ok": True, "method": "maze", "tracks": tracks, "vias": vias}
 
     # --- public ----------------------------------------------------------
     def route(self, starts, net, goals=(), goal_net_copper=False, width=None,
@@ -334,18 +361,12 @@ class Router(object):
                 return {"ok": False, "reason": "no path on the grid",
                         "verify_failures": tried,
                         "window_mm": [round(v / float(IU), 3) for v in window]}
-            tails = []
             head = start_tails.get(path[0])
-            if head:
-                p = self._xy(path[0][0], path[0][1])
-                if head[0] != p[0] or head[1] != p[1]:
-                    tails.append(((head[0], head[1]), p, head[2]))
             foot = goal_tails.get(path[-1])
-            if foot:
-                p = self._xy(path[-1][0], path[-1][1])
-                if foot[0] != p[0] or foot[1] != p[1]:
-                    tails.append((p, (foot[0], foot[1]), foot[2]))
-            plan = self._to_plan(path, tails)
+            plan = self._to_plan(
+                path, net, width, ignore_ids,
+                head=(head[0], head[1]) if head else None,
+                foot=(foot[0], foot[1]) if foot else None)
 
             bad = None
             for (a, b, layer) in plan["tracks"]:
