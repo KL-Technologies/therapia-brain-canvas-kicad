@@ -57,6 +57,14 @@ python3 scripts/99_selftest.py   # 合成 .epro でパーサ／パッチャの�
 | S5_L5 | `scripts/34_repair_L5.py` | KPY + KC | 残りの近接を幾何から洗い出して解消 | `gates/S5_L5.json` |
 | S5_mask | `scripts/35_mask_bridges.py` | KPY + KC | 合体したレジスト開口をパッド個別マージンで分ける | `gates/S5_mask.json` |
 | S6 | `scripts/40_drc_loop.py` | python3 + KPY + KC | DRC → 修正 → DRC を clean になるまで反復 | `gates/S6.json` |
+| S7a | `scripts/45_apply_eco5_and_bom.py` | KPY + KC | ECO-5（`C_BIAS_INV` pad2 を GND → BIAS_OUT_INT）と BOM 修正・DNP 2 点を反映 | `gates/S7a.json` |
+| S7b | `scripts/46_analog_untouched.py` | KPY | 取り込み直後の基板とアナログ 40 ネットを突合し、差分の由来を記録から特定 | `gates/S7b.json` |
+| S7c | `scripts/48_improve_vcap3.py` → `47_layout_quality.py` | KPY | バイパス C を「より近く・ビア無し」の位置へ移せるか試し、ADS1299 チェックリスト J1〜J11 を実測 | `gates/S7c.json` |
+| S8 | `scripts/43_fix_pth_mask.py` → `49_normalize_layer_names.py` → `60_export_fab.sh` → `61_make_bom_cpl.py` → `63_gate_s8.py` | KPY + KC + python3 | PTH のレジスト開口を復旧し、レイヤ名を正規化してから Gerber・ドリル・BOM・CPL・プレビューを出力し、**自前パーサ**で検査 | `gates/S8.json` |
+| S7 | `scripts/50_final_check.py` | KPY + KC | **ACCEPTANCE A〜G を 32 項目で判定** | `gates/S7.json` |
+
+**S8 が S7 より先なのも意図的**。ACCEPTANCE の D〜G は S8 が出力した製造データを
+読むので、先に出力しないと最終ゲートに検査対象が無い。
 
 **S4a が S3 より先なのは意図的**。取付穴が NPTH になるまで hole clearance ルールに
 引っかかる穴が存在せず、S3 のゲート（L1/L2/L4 の検出）が成立しないため。
@@ -76,6 +84,7 @@ python3 scripts/99_selftest.py   # 合成 .epro でパーサ／パッチャの�
 | `scripts/lib/viol.py` | DRC レポートを作業リストに変換する。ただし**位置は信用しない**（アイテム自身のアンカーが入っている） |
 | `scripts/lib/drc.py` | DRC レポートの署名比較。`kicad-cli pcb drc` は同一入力で 525〜531 件と揺れるので、件数ではなく（種別, ネット集合）で比較する |
 | `scripts/lib/xlsx.py` | 旧 BOM/CPL の xlsx を標準ライブラリだけで読む |
+| `scripts/lib/gerber_parse.py` | RS-274X と Excellon を**自前で**読む（標準ライブラリのみ）。C/R/O/P アパーチャ、KiCad の `RoundRect` マクロ、G36/G37 リージョン、G75 円弧、LPD/LPC 極性。未知のマクロは外接円に落とす（穴クリアランス検査で銅を過大評価する側なので、誤警報は出しても見逃しは出さない）。**KiCad に自分の出力を読み直させても、自分と矛盾していないことしか分からない** — S8 の PTH レジスト欠落はこれで見つかった |
 
 `import/` に**正規の旧 `.epro`** と `.epro2` が両方あるときは、必ず旧 `.epro` を使う（変換を挟まないぶん確実）。
 `.converted.epro` は最下位。
@@ -193,7 +202,7 @@ board/     KiCad 成果物 (.kicad_pcb / .kicad_pro)
 scripts/   パイプライン本体（lib/ は共通パーサ）
 gates/     各ステップの合否 JSON と員数表
 contract/  ネットリスト（S3 の契約）
-fab/       製造データ出力先（S4 以降）
+fab/       製造データ（S8）。zip・BOM・CPL・プレビュー・実装図・README_発注手順.md
 logs/      実行ログ・DRC 出力・パッチ試行履歴
 ```
 
