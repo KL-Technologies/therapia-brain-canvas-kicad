@@ -1,0 +1,321 @@
+{
+  "step": "L9",
+  "pass": true,
+  "checks": [
+    {
+      "name": "R_IO2_DN pad copper is outside the U_MCU body outline",
+      "expected": ">= 0 mm",
+      "actual": "0.0022 mm",
+      "pass": true,
+      "note": "measured to the F.Fab outline centre line at x 174.213"
+    },
+    {
+      "name": "R_IO2_DN pad 1 and the U_MCU pad it lands on are the same net",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "module pad 24 [ESP_IO2], 0.7953 mm of shared copper -- the two pins solder to one land, so there is no separate joint under the module edge"
+    },
+    {
+      "name": "R_IO2_DN body stays 0.2 mm clear of F1, D_LED, R_LED, U_MCU",
+      "expected": [],
+      "actual": [],
+      "pass": true,
+      "note": "{\"D_LED\": 3.4165, \"F1\": 5.4846, \"R_LED\": 1.54, \"U_MCU\": 0.2781}"
+    },
+    {
+      "name": "R_IO15_DN pad copper is outside the U_MCU body outline",
+      "expected": ">= 0 mm",
+      "actual": "0.0022 mm",
+      "pass": true,
+      "note": "measured to the F.Fab outline centre line at x 174.213"
+    },
+    {
+      "name": "R_IO15_DN pad 1 and the U_MCU pad it lands on are the same net",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "note": "module pad 23 [ESP_IO15], 0.7953 mm of shared copper -- the two pins solder to one land, so there is no separate joint under the module edge"
+    },
+    {
+      "name": "R_IO15_DN body stays 0.2 mm clear of F1, D_LED, R_LED, U_MCU",
+      "expected": [],
+      "actual": [],
+      "pass": true,
+      "note": "{\"D_LED\": 4.6566, \"F1\": 4.2364, \"R_LED\": 2.689, \"U_MCU\": 0.2781}"
+    },
+    {
+      "name": "contract parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "copper unchanged unless a nudge was applied",
+      "expected": {
+        "footprints": 141,
+        "tracks": 1248,
+        "vias": 241,
+        "npth_pads": 6,
+        "pth_pads": 16
+      },
+      "actual": {
+        "footprints": 141,
+        "tracks": 1248,
+        "vias": 241,
+        "npth_pads": 6,
+        "pth_pads": 16
+      },
+      "pass": true,
+      "note": "applied: none -- see the sweep in this gate for what blocked it"
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T20:49:50",
+  "notes": "the +0.30 mm nudge is not available: R_IO2_DN blocked by pad 1 [ESP_IO2] clashes with track [ESP_RXD]; R_IO15_DN blocked by pad 1 [ESP_IO15] clashes with track [ESP_RXD]. The board is unchanged. Pad-1 copper clears the U_MCU body outline by R_IO2_DN 0.0022, R_IO15_DN 0.0022 mm and shares its land with the module pin of the same net; the largest eastward shift that still meets the 0.0889 mm clearance rule is R_IO2_DN 0.03, R_IO15_DN 0.03 mm.",
+  "refs": [
+    "R_IO2_DN",
+    "R_IO15_DN"
+  ],
+  "module": "U_MCU",
+  "nudge_asked_mm": 0.3,
+  "target_clear_mm": 0.2,
+  "module_body": {
+    "outline_rect_mm": [
+      155.013,
+      88.526,
+      174.213,
+      106.526
+    ],
+    "fab_bbox_mm": [
+      154.957567,
+      88.5005,
+      174.2385,
+      106.581433
+    ],
+    "east_edge_mm": 174.213,
+    "pad_extent_east_mm": 175.0105,
+    "note": "the module's own castellated pads reach 0.7975 mm east of its body edge -- pads outside the body are how the part is built"
+  },
+  "parts": {
+    "R_IO2_DN": {
+      "pos_mm": [
+        175.372,
+        91.811
+      ],
+      "rot_deg": 0.0,
+      "body_mm": [
+        174.516567,
+        91.3855,
+        176.1975,
+        92.266433
+      ],
+      "pads": [
+        {
+          "pad": "1",
+          "net": "ESP_IO2",
+          "bbox_mm": [
+            174.21525,
+            91.379,
+            175.02175,
+            92.243
+          ],
+          "to_body_edge_mm": 0.0022,
+          "to_fab_box_mm": -0.0232
+        },
+        {
+          "pad": "2",
+          "net": "GND",
+          "bbox_mm": [
+            175.72225,
+            91.379,
+            176.52875,
+            92.243
+          ],
+          "to_body_edge_mm": 1.5092,
+          "to_fab_box_mm": 1.4837
+        }
+      ],
+      "worst_pad_gap": {
+        "gap_mm": 0.121875,
+        "pad": "1",
+        "against_net": "ESP_RXD",
+        "against_kind": "track"
+      },
+      "body_to_module_mm": 0.2781,
+      "body_to_watched_mm": {
+        "F1": 5.4846,
+        "D_LED": 3.4165,
+        "R_LED": 1.54,
+        "U_MCU": 0.2781
+      },
+      "pad1_shares_land_with": {
+        "module_pad": "24",
+        "module_net": "ESP_IO2",
+        "pad_net": "ESP_IO2",
+        "same_net": true,
+        "overlap_x_mm": 0.7953
+      },
+      "shift_needed_mm": 0.1978,
+      "blockers_at_current_position": [
+        "pad 1 [ESP_IO2] clashes with track [ESP_RXD]"
+      ],
+      "sweep": [
+        {
+          "dx_mm": 0.3,
+          "blockers": [
+            "pad 1 [ESP_IO2] clashes with track [ESP_RXD]"
+          ],
+          "blockers_at_drc_clearance": [
+            "pad 1 [ESP_IO2] clashes with track [ESP_RXD]"
+          ],
+          "worst_pad_gap": {
+            "gap_mm": 0.001562,
+            "pad": "1",
+            "against_net": "ESP_RXD",
+            "against_kind": "track"
+          }
+        },
+        {
+          "dx_mm": 0.03,
+          "blockers": [
+            "pad 1 [ESP_IO2] clashes with track [ESP_RXD]"
+          ],
+          "blockers_at_drc_clearance": [],
+          "worst_pad_gap": {
+            "gap_mm": 0.092187,
+            "pad": "1",
+            "against_net": "ESP_RXD",
+            "against_kind": "track"
+          }
+        }
+      ],
+      "largest_legal_shift_mm": null,
+      "largest_shift_at_drc_clearance_mm": 0.03,
+      "asked_shift_legal": false,
+      "enough": false,
+      "applied": null
+    },
+    "R_IO15_DN": {
+      "pos_mm": [
+        175.372,
+        93.081
+      ],
+      "rot_deg": 0.0,
+      "body_mm": [
+        174.516567,
+        92.6555,
+        176.1975,
+        93.536433
+      ],
+      "pads": [
+        {
+          "pad": "1",
+          "net": "ESP_IO15",
+          "bbox_mm": [
+            174.21525,
+            92.649,
+            175.02175,
+            93.513
+          ],
+          "to_body_edge_mm": 0.0022,
+          "to_fab_box_mm": -0.0232
+        },
+        {
+          "pad": "2",
+          "net": "GND",
+          "bbox_mm": [
+            175.72225,
+            92.649,
+            176.52875,
+            93.513
+          ],
+          "to_body_edge_mm": 1.5092,
+          "to_fab_box_mm": 1.4837
+        }
+      ],
+      "worst_pad_gap": {
+        "gap_mm": 0.121875,
+        "pad": "1",
+        "against_net": "ESP_RXD",
+        "against_kind": "track"
+      },
+      "body_to_module_mm": 0.2781,
+      "body_to_watched_mm": {
+        "F1": 4.2364,
+        "D_LED": 4.6566,
+        "R_LED": 2.689,
+        "U_MCU": 0.2781
+      },
+      "pad1_shares_land_with": {
+        "module_pad": "23",
+        "module_net": "ESP_IO15",
+        "pad_net": "ESP_IO15",
+        "same_net": true,
+        "overlap_x_mm": 0.7953
+      },
+      "shift_needed_mm": 0.1978,
+      "blockers_at_current_position": [
+        "pad 1 [ESP_IO15] clashes with track [ESP_RXD]"
+      ],
+      "sweep": [
+        {
+          "dx_mm": 0.3,
+          "blockers": [
+            "pad 1 [ESP_IO15] clashes with track [ESP_RXD]"
+          ],
+          "blockers_at_drc_clearance": [
+            "pad 1 [ESP_IO15] clashes with track [ESP_RXD]"
+          ],
+          "worst_pad_gap": {
+            "gap_mm": 0.001562,
+            "pad": "1",
+            "against_net": "ESP_RXD",
+            "against_kind": "track"
+          }
+        },
+        {
+          "dx_mm": 0.03,
+          "blockers": [
+            "pad 1 [ESP_IO15] clashes with track [ESP_RXD]"
+          ],
+          "blockers_at_drc_clearance": [],
+          "worst_pad_gap": {
+            "gap_mm": 0.092187,
+            "pad": "1",
+            "against_net": "ESP_RXD",
+            "against_kind": "track"
+          }
+        }
+      ],
+      "largest_legal_shift_mm": null,
+      "largest_shift_at_drc_clearance_mm": 0.03,
+      "asked_shift_legal": false,
+      "enough": false,
+      "applied": null
+    }
+  },
+  "applied": [],
+  "counts_before": {
+    "footprints": 141,
+    "tracks": 1248,
+    "vias": 241,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1248,
+    "vias": 241,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "contract_diffs": [],
+  "unconnected_before_save": 0,
+  "board_written": false
+}

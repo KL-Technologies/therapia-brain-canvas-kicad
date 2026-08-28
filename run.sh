@@ -169,6 +169,10 @@ run_step S5_L7 "move R_CC1 out from under the USB-C shell" \
 # change -- no copper moves. It is what makes ACCEPTANCE H pass.
 run_step S5_L8 "redraw U_MCU on the ESP32-WROOM-32UE body (25.5 -> 19.2 mm)" \
   "$KPY" "$ROOT/scripts/37_umcu_32ue.py" --root "$ROOT" || exit 1
+# L9 asks whether the two GPIO pull-downs east of the module have to move away
+# from its new body edge. They do not, and it measures why every run.
+run_step S5_L9 "measure R_IO2_DN / R_IO15_DN against the new module body" \
+  "$KPY" "$ROOT/scripts/38_nudge_io_pulldowns.py" --root "$ROOT" || exit 1
 
 s5_mask() {
   "$KC" pcb drc --format json --severity-all --units mm --refill-zones \
