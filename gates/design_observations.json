@@ -182,25 +182,25 @@
       "detail": [
         {
           "footprint": "(anon)",
-          "pad": "H1",
-          "dia_mm": 2.3875,
-          "npth": false
-        },
-        {
-          "footprint": "(anon)",
           "pad": "H4",
           "dia_mm": 2.3875,
           "npth": false
         },
         {
           "footprint": "(anon)",
-          "pad": "H2",
+          "pad": "H1",
           "dia_mm": 2.3875,
           "npth": false
         },
         {
           "footprint": "(anon)",
           "pad": "H3",
+          "dia_mm": 2.3875,
+          "npth": false
+        },
+        {
+          "footprint": "(anon)",
+          "pad": "H2",
           "dia_mm": 2.3875,
           "npth": false
         }
@@ -367,10 +367,10 @@
     "caveat": "Pin functions (RESV1, GPIO1-4, VCAP2/3) cannot be read off the PCB -- only pad numbers exist there. The unconnected ADS1299 pads are listed above; map them to pin names via the schematic symbol before acting."
   },
   "drc_at_import": {
-    "violations": 1056,
+    "violations": 1022,
     "unconnected": 0,
     "by_type": {
-      "clearance": 367,
+      "clearance": 333,
       "silk_overlap": 199,
       "lib_footprint_issues": 131,
       "silk_over_copper": 115,
@@ -390,7 +390,7 @@
       "starved_thermal": 1
     },
     "by_severity": {
-      "error": 579,
+      "error": 545,
       "warning": 477
     },
     "note": "Informational only. Run against KiCad DEFAULT design rules -- the EasyEDA constraints were not transferred (see contract/easyeda_rules.json). Counts are not comparable to the EasyEDA DRC until S3 sets the rules up."

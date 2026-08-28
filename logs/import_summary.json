@@ -37,7 +37,7 @@
   "drc": {
     "skipped": false,
     "returncode": 0,
-    "violations": 1056,
+    "violations": 1022,
     "unconnected": 0,
     "schematic_parity": 0
   },
