@@ -1,0 +1,665 @@
+"""Shared machinery for the S5 layout repairs (L1-L5) and the S6 DRC loop.
+
+Every repair script does the same five things: open the board, find the copper
+a specific violation names, change it, prove the change is legal against the
+same predicates DRC uses, and write a gate that says whether the violation went
+away without taking anything else with it. That common part lives here so the
+five scripts differ only in what they move.
+
+The rule values are the ones scripts/14_make_rules.py wrote into the board, and
+they are duplicated from scripts/20_apply_eco.py rather than imported so a
+repair cannot silently drift from the ECO's idea of the same number. TARGET_*
+are what the repairs actually aim for -- a margin above the rule, because a
+repair that lands exactly on 0.2000 mm is one rounding away from failing again.
+
+Nothing here relaxes a rule. A repair that cannot reach TARGET falls back
+through smaller margins down to the rule value itself and records which one it
+got; below the rule it reports failure instead.
+"""
+
+import json
+import math
+import os
+import subprocess
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import route as R                                  # noqa: E402
+import maze as M                                   # noqa: E402
+import drc as D                                    # noqa: E402
+import viol as V                                   # noqa: E402
+import epro as E                                   # noqa: E402
+
+IU = R.IU
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
+BOARD_NAME = "Therapia_EEG-HRV"
+
+# --- design rules (mirror scripts/14_make_rules.py and ACCEPTANCE C) --------
+CLEARANCE = int(0.0889 * IU)
+HOLE_TO_HOLE = int(0.2 * IU)
+HOLE_CLEARANCE = int(0.2 * IU)
+EDGE_CLEARANCE = int(0.2 * IU)
+VIA_DIA = int(0.6096 * IU)
+VIA_DRILL = int(0.3048 * IU)
+TRACK_W = int(0.2032 * IU)
+MIN_TRACK_W = int(0.0889 * IU)
+BOARD_BOX_MM = (120.0, 80.0, 181.8236, 125.0088)
+
+# What the repairs aim for, and what they will settle for, in that order.
+TARGET_HOLE_MARGIN = int(0.3 * IU)
+HOLE_MARGIN_STEPS = [int(v * IU) for v in (0.30, 0.28, 0.25, 0.22, 0.20)]
+CLEARANCE_STEPS = [int(v * IU) for v in (0.127, 0.11, 0.0889)]
+
+
+def mm(v):
+    return round(v / float(IU), 6)
+
+
+def nm(v):
+    return int(round(v * IU))
+
+
+def board_path(root=None):
+    return os.path.join(root or ROOT, "board", BOARD_NAME + ".kicad_pcb")
+
+
+def board_box():
+    lo_x, lo_y, hi_x, hi_y = BOARD_BOX_MM
+    return (lo_x * IU + EDGE_CLEARANCE, lo_y * IU + EDGE_CLEARANCE,
+            hi_x * IU - EDGE_CLEARANCE, hi_y * IU - EDGE_CLEARANCE)
+
+
+def rules(clearance=None, hole_clearance=None, track_width=None):
+    return M.Rules(CLEARANCE if clearance is None else clearance,
+                   HOLE_CLEARANCE if hole_clearance is None else hole_clearance,
+                   HOLE_TO_HOLE,
+                   TRACK_W if track_width is None else track_width,
+                   VIA_DIA, VIA_DRILL, board_box())
+
+
+# --- board queries -----------------------------------------------------------
+def npth_holes(pcbnew, board):
+    """ref -> (x, y, radius) for every non-plated hole, in internal units."""
+    out = {}
+    for fp in board.GetFootprints():
+        for p in fp.Pads():
+            if int(p.GetAttribute()) != int(pcbnew.PAD_ATTRIB_NPTH):
+                continue
+            pos = p.GetPosition()
+            d = p.GetDrillSize()
+            out[fp.GetReference() or R.uid(fp)] = (pos.x, pos.y,
+                                                   max(d.x, d.y) / 2.0)
+    return out
+
+
+def seg_point_distance(ax, ay, bx, by, px, py):
+    dx, dy = bx - ax, by - ay
+    L2 = dx * dx + dy * dy
+    u = 0.0 if L2 == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy)
+                                         / L2))
+    return math.hypot(ax + u * dx - px, ay + u * dy - py)
+
+
+def hole_gap(pcbnew, board, item, hole):
+    """Edge-to-edge distance from a piece of copper to a drilled hole.
+
+    Negative means the copper overlaps the hole. Pads are measured against
+    their real shape, not the bounding box, so a rounded pad is not reported
+    as closer than it is."""
+    hx, hy, hr = hole
+    cls = item.GetClass()
+    if cls == "PCB_VIA":
+        p = item.GetPosition()
+        return math.hypot(p.x - hx, p.y - hy) - hr - item.GetWidth() / 2.0
+    if cls in ("PCB_TRACK", "PCB_ARC"):
+        s, e = item.GetStart(), item.GetEnd()
+        return (seg_point_distance(s.x, s.y, e.x, e.y, hx, hy) - hr
+                - item.GetWidth() / 2.0)
+    if cls == "PAD":
+        best = None
+        for layer in item.GetLayerSet().CuStack():
+            try:
+                sh = item.GetEffectiveShape(layer)
+            except Exception:
+                continue
+            d = sh.Distance(pcbnew.VECTOR2I(int(hx), int(hy)))
+            best = d if best is None else min(best, d)
+        if best is None:
+            return None
+        return best - hr
+    return None
+
+
+def copper_near_hole(pcbnew, board, hole, limit, include_pads=True):
+    """Everything whose edge comes within `limit` of a hole, worst first."""
+    out = []
+    for t in board.GetTracks():
+        g = hole_gap(pcbnew, board, t, hole)
+        if g is not None and g < limit:
+            out.append((g, t))
+    if include_pads:
+        for f in board.GetFootprints():
+            for p in f.Pads():
+                if int(p.GetAttribute()) == int(pcbnew.PAD_ATTRIB_NPTH):
+                    continue
+                g = hole_gap(pcbnew, board, p, hole)
+                if g is not None and g < limit:
+                    out.append((g, p))
+    out.sort(key=lambda r: r[0])
+    return out
+
+
+def describe(board, item):
+    IUf = float(IU)
+    cls = item.GetClass()
+    if cls == "PCB_VIA":
+        p = item.GetPosition()
+        return {"kind": "via", "net": item.GetNetname(),
+                "pos_mm": [round(p.x / IUf, 4), round(p.y / IUf, 4)],
+                "dia_mm": round(item.GetWidth() / IUf, 4),
+                "drill_mm": round(item.GetDrillValue() / IUf, 4),
+                "uuid": R.uid(item)}
+    if cls in ("PCB_TRACK", "PCB_ARC"):
+        s, e = item.GetStart(), item.GetEnd()
+        return {"kind": "track", "net": item.GetNetname(),
+                "layer": board.GetLayerName(item.GetLayer()),
+                "start_mm": [round(s.x / IUf, 4), round(s.y / IUf, 4)],
+                "end_mm": [round(e.x / IUf, 4), round(e.y / IUf, 4)],
+                "width_mm": round(item.GetWidth() / IUf, 4),
+                "uuid": R.uid(item)}
+    if cls == "PAD":
+        fp = item.GetParentFootprint()
+        p = item.GetPosition()
+        return {"kind": "pad", "net": item.GetNetname(),
+                "ref": fp.GetReference() if fp else None,
+                "number": item.GetNumber(),
+                "pos_mm": [round(p.x / IUf, 4), round(p.y / IUf, 4)],
+                "size_mm": [round(item.GetSize().x / IUf, 4),
+                            round(item.GetSize().y / IUf, 4)],
+                "uuid": R.uid(item)}
+    return {"kind": cls, "uuid": R.uid(item)}
+
+
+def pad_endpoints(pcbnew, board, pad, tol=None):
+    """Tracks with an endpoint inside `pad`: [(track, "start"|"end")].
+
+    This is what has to follow the pad when its footprint moves. A track that
+    merely crosses the pad is not in the list -- moving one of its ends would
+    drag copper that belongs to a different part of the net.
+    """
+    out = []
+    net = pad.GetNetCode()
+    shapes = {}
+    for layer in pad.GetLayerSet().CuStack():
+        try:
+            shapes[layer] = pad.GetEffectiveShape(layer)
+        except Exception:
+            pass
+    for t in board.GetTracks():
+        if t.GetNetCode() != net or t.GetClass() == "PCB_VIA":
+            continue
+        sh = shapes.get(t.GetLayer())
+        if sh is None:
+            continue
+        for which, p in (("start", t.GetStart()), ("end", t.GetEnd())):
+            if sh.Collide(pcbnew.VECTOR2I(p.x, p.y), 0):
+                out.append((t, which))
+    return out
+
+
+def vias_at(board, x, y, tol=None):
+    tol = tol if tol is not None else int(0.01 * IU)
+    out = []
+    for t in board.GetTracks():
+        if t.GetClass() != "PCB_VIA":
+            continue
+        p = t.GetPosition()
+        if math.hypot(p.x - x, p.y - y) <= tol:
+            out.append(t)
+    return out
+
+
+def touching(pcbnew, board, item, exclude=()):
+    """Same-net tracks and vias that physically meet `item`."""
+    skip = {R.uid(i) for i in exclude}
+    skip.add(R.uid(item))
+    net = item.GetNetCode()
+    return [t for t in board.GetTracks()
+            if t.GetNetCode() == net and R.uid(t) not in skip
+            and R.touches(pcbnew, item, t)]
+
+
+# --- connectivity ------------------------------------------------------------
+def net_components(pcbnew, board, idx, netcode):
+    """The net's copper split into electrically separate islands.
+
+    Needed because a repair that deletes a track can orphan whatever was on
+    the far side of it, and the pad it was serving is not the only thing that
+    can end up floating. Checking this before the board is saved beats waiting
+    for DRC: pcbnew cannot LoadBoard twice in one process, so a fault found
+    after saving costs another whole run.
+
+    Items are joined when their shapes touch, and every item lying in a filled
+    zone of the same net is joined to that zone -- which is how the planes
+    actually carry GND, AVSS and the rest. Pairs are only tested when their
+    bounding boxes share a 2 mm cell, or GND's several hundred pieces would be
+    a quarter of a million shape collisions.
+
+    Returns a list of lists of items, largest first.
+    """
+    items = [t for t in board.GetTracks() if t.GetNetCode() == netcode]
+    items += [p for f in board.GetFootprints() for p in f.Pads()
+              if p.GetNetCode() == netcode]
+    parent = {}
+
+    def find(k):
+        while parent[k] != k:
+            parent[k] = parent[parent[k]]
+            k = parent[k]
+        return k
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    by_uid = {}
+    for it in items:
+        u = R.uid(it)
+        parent[u] = u
+        by_uid[u] = it
+
+    cells = {}
+    CELL = 2 * IU
+    for it in items:
+        bb = it.GetBoundingBox()
+        for cx in range(bb.GetLeft() // CELL, bb.GetRight() // CELL + 1):
+            for cy in range(bb.GetTop() // CELL, bb.GetBottom() // CELL + 1):
+                cells.setdefault((cx, cy), []).append(it)
+    tested = set()
+    for bucket in cells.values():
+        for i in range(len(bucket)):
+            for j in range(i + 1, len(bucket)):
+                a, b = bucket[i], bucket[j]
+                ua, ub = R.uid(a), R.uid(b)
+                key = (ua, ub) if ua < ub else (ub, ua)
+                if key in tested:
+                    continue
+                tested.add(key)
+                if find(ua) == find(ub):
+                    continue
+                if R.touches(pcbnew, a, b):
+                    union(ua, ub)
+
+    zones = [z for z in idx.zones if z.GetNetCode() == netcode]
+    if zones:
+        zkey = "zone:%d" % netcode
+        parent[zkey] = zkey
+        for it in items:
+            hit = False
+            for z in zones:
+                for layer in R.item_layers(pcbnew, it):
+                    if not z.GetLayerSet().Contains(layer):
+                        continue
+                    try:
+                        sh = it.GetEffectiveShape(layer)
+                    except Exception:
+                        continue
+                    fill = z.GetFilledPolysList(layer)
+                    if fill is not None and fill.Collide(sh, 0):
+                        hit = True
+                        break
+                if hit:
+                    break
+            if hit:
+                union(R.uid(it), zkey)
+
+    groups = {}
+    for u, it in by_uid.items():
+        groups.setdefault(find(u), []).append(it)
+    out = sorted(groups.values(), key=len, reverse=True)
+    return out
+
+
+def floating_items(pcbnew, board, idx, netcodes):
+    """Items that are no longer joined to the largest island of their net."""
+    out = []
+    for nc in netcodes:
+        comps = net_components(pcbnew, board, idx, nc)
+        if len(comps) <= 1:
+            continue
+        for comp in comps[1:]:
+            out.append({"net": board.FindNet(nc).GetNetname(),
+                        "items": comp,
+                        "size": len(comp)})
+    return out
+
+
+# --- reconnecting a pad ------------------------------------------------------
+def pad_on_own_zone(pcbnew, board, idx, pad):
+    """Is the pad already sitting in a filled zone of its own net?
+
+    Only zones on a layer the pad is actually on count. An SMD pad on F.Cu
+    over the In1 GND plane is NOT connected -- it needs a via -- and treating
+    it as connected is how a pad ends up floating with DRC none the wiser.
+    """
+    name = pad.GetNetname()
+    p = pad.GetPosition()
+    for layer in pad.GetLayerSet().CuStack():
+        if name in idx.zone_nets_at(p.x, p.y, layer):
+            return board.GetLayerName(layer)
+    return None
+
+
+def connect_pad(pcbnew, board, idx, pad, rules_obj=None, ignore=(),
+                width=None, max_via_reach_mm=3.0, router=None,
+                margin_mm=3.5, max_nodes=250000):
+    """Join `pad` back to its net, and say how.
+
+    Order: already touching copper -> already on its own plane -> a via down
+    into its own plane (short, and the usual answer for GND/AVSS/AVDD) -> the
+    maze router to whatever copper the net already has. Each step is checked
+    against the design rules before anything is placed; if none works the pad
+    is reported unconnected rather than left with copper that does not reach.
+    """
+    rl = rules_obj or rules()
+    width = int(width or rl.track_width)
+    net = pad.GetNetCode()
+    name = pad.GetNetname()
+    p = pad.GetPosition()
+    start = (p.x, p.y)
+
+    already = touching(pcbnew, board, pad, exclude=ignore)
+    already = [t for t in already if R.uid(t) not in {R.uid(i) for i in ignore}]
+    if already:
+        return {"ok": True, "method": "already touching copper",
+                "items": len(already)}
+    z = pad_on_own_zone(pcbnew, board, idx, pad)
+    if z:
+        return {"ok": True, "method": "already inside its own zone on %s" % z}
+
+    # a via into the net's own plane
+    if any(zz.GetNetname() == name for zz in idx.zones):
+        r_min = rl.via_dia / 2.0 + rl.clearance
+        for q in R.ring_points(start[0], start[1], r_min,
+                               max_via_reach_mm * IU, int(0.127 * IU)):
+            if not R.via_site_ok(idx, pcbnew, q[0], q[1], net, rl.via_dia,
+                                 rl.via_drill, rl.clearance, rl.hole_to_hole,
+                                 rl.hole_clearance, rl.edge_box, ignore=ignore):
+                continue
+            hit = [l for l in R.copper_layers(pcbnew, board)
+                   if name in idx.zone_nets_at(q[0], q[1], l)]
+            if not hit:
+                continue
+            if not R.straight_ok(idx, pcbnew, board, start, q, pcbnew.F_Cu,
+                                 width, net, rl.clearance, rl.hole_clearance,
+                                 ignore=ignore):
+                continue
+            return {"ok": True, "method": "via into the %s plane" % name,
+                    "plan": {"ok": True, "tracks": [(start, q, pcbnew.F_Cu)],
+                             "vias": [q]},
+                    "via_mm": [mm(q[0]), mm(q[1])],
+                    "length_mm": mm(math.hypot(q[0] - start[0],
+                                               q[1] - start[1])),
+                    "zone_layers": [board.GetLayerName(l) for l in hit]}
+
+    rt = router or M.Router(pcbnew, board, idx, rl)
+    layers = [l for l in pad.GetLayerSet().CuStack() if l in rt.layers]
+    plan = rt.route([(start[0], start[1], l) for l in layers], net,
+                    goal_net_copper=True, width=width, ignore=ignore,
+                    margin_mm=margin_mm, max_nodes=max_nodes)
+    if plan.get("ok"):
+        return {"ok": True, "method": "maze route", "plan": plan,
+                "length_mm": plan.get("length_mm"),
+                "vias": len(plan.get("vias", []))}
+    return {"ok": False, "reason": plan.get("reason"),
+            "detail": {k: plan[k] for k in ("window_mm", "verify_failures")
+                       if k in plan}}
+
+
+def reconnect_island(pcbnew, board, idx, island, netcode, router=None,
+                     rules_obj=None, width=None, margin_mm=4.0):
+    """Route an orphaned island of copper back to the rest of its net.
+
+    The island's own items go in `ignore` so the router does not decide it has
+    arrived the moment it starts -- every node of the island is copper of the
+    right net, and without this `goal_net_copper` succeeds at step zero.
+    """
+    rl = rules_obj or rules()
+    width = int(width or rl.track_width)
+    rt = router or M.Router(pcbnew, board, idx, rl)
+
+    starts = []
+    for it in island:
+        cls = it.GetClass()
+        if cls in ("PCB_TRACK", "PCB_ARC"):
+            for p in (it.GetStart(), it.GetEnd()):
+                starts.append((p.x, p.y, it.GetLayer()))
+        else:
+            p = it.GetPosition()
+            for l in R.item_layers(pcbnew, it):
+                if l in rt.layers:
+                    starts.append((p.x, p.y, l))
+    if not starts:
+        return {"ok": False, "reason": "island has no routable point"}
+
+    # A via straight down into the net's own plane, if it has one.
+    if any(z.GetNetname() == board.FindNet(netcode).GetNetname()
+           for z in idx.zones):
+        name = board.FindNet(netcode).GetNetname()
+        for (sx, sy, layer) in starts:
+            r_min = rl.via_dia / 2.0 + rl.clearance
+            for q in R.ring_points(sx, sy, r_min, 2.5 * IU, int(0.127 * IU)):
+                if not R.via_site_ok(idx, pcbnew, q[0], q[1], netcode,
+                                     rl.via_dia, rl.via_drill, rl.clearance,
+                                     rl.hole_to_hole, rl.hole_clearance,
+                                     rl.edge_box, ignore=island):
+                    continue
+                if not [l for l in R.copper_layers(pcbnew, board)
+                        if name in idx.zone_nets_at(q[0], q[1], l)]:
+                    continue
+                if not R.straight_ok(idx, pcbnew, board, (sx, sy), q, layer,
+                                     width, netcode, rl.clearance,
+                                     rl.hole_clearance, ignore=island):
+                    continue
+                return {"ok": True,
+                        "method": "via into the %s plane" % name,
+                        "plan": {"ok": True,
+                                 "tracks": [((sx, sy), q, layer)],
+                                 "vias": [q]},
+                        "from_mm": [mm(sx), mm(sy)], "via_mm": [mm(q[0]),
+                                                                mm(q[1])]}
+
+    plan = rt.route(starts, netcode, goal_net_copper=True, width=width,
+                    ignore=list(island), margin_mm=margin_mm)
+    if plan.get("ok"):
+        return {"ok": True, "method": "maze route", "plan": plan,
+                "length_mm": plan.get("length_mm")}
+    return {"ok": False, "reason": plan.get("reason"),
+            "island_size": len(island)}
+
+
+def heal_nets(pcbnew, board, idx, netcodes, rules_obj=None, log=None,
+              rounds=3):
+    """Reconnect every island that is not joined to its net's main body.
+
+    Returns (fixed, still_floating). Repeats because reconnecting one island
+    can merge two others, and because laying copper changes what the next
+    route may use."""
+    rl = rules_obj or rules()
+    fixed, left = [], []
+    for _round in range(rounds):
+        left = []
+        floats = floating_items(pcbnew, board, idx, netcodes)
+        if not floats:
+            break
+        progress = False
+        for f in floats:
+            nc = board.FindNet(f["net"]).GetNetCode()
+            router = M.Router(pcbnew, board, idx, rl)
+            res = reconnect_island(pcbnew, board, idx, f["items"], nc,
+                                   router=router, rules_obj=rl)
+            res["net"] = f["net"]
+            res["island_size"] = f["size"]
+            res["island"] = [describe(board, i) for i in f["items"][:4]]
+            if res.get("ok"):
+                commit(pcbnew, board, res, nc, rules_obj=rl)
+                idx.rebuild()
+                progress = True
+                res.pop("plan", None)
+                fixed.append(res)
+            else:
+                left.append(res)
+        if log is not None:
+            log.setdefault("heal_rounds", []).append(
+                {"round": _round, "floating": len(floats),
+                 "fixed": len(fixed), "left": len(left)})
+        if not progress:
+            break
+    return fixed, left
+
+
+def commit(pcbnew, board, result, net, width=None, rules_obj=None):
+    """Lay the copper a connect_pad result planned. Returns the new items."""
+    rl = rules_obj or rules()
+    plan = result.get("plan")
+    if not plan:
+        return []
+    return R.commit_route(pcbnew, board, plan, net,
+                          int(width or rl.track_width), rl.via_dia,
+                          rl.via_drill)
+
+
+# --- contract parity ---------------------------------------------------------
+def pad_net_map(board, pcbnew):
+    import collections
+    out = collections.defaultdict(lambda: collections.defaultdict(set))
+    mech = set()
+    for fp in board.GetFootprints():
+        ref = fp.GetReference()
+        if not ref:
+            continue
+        if int(fp.GetAttributes()) & int(pcbnew.FP_EXCLUDE_FROM_BOM):
+            mech.add(ref)
+            continue
+        for p in fp.Pads():
+            out[ref][p.GetNumber()].add(p.GetNetname())
+    return out, mech
+
+
+def contract_diff(board, pcbnew, root=None):
+    """Differences between the board's pad->net map and the contract."""
+    contract = E.load_json(os.path.join(root or ROOT, "contract",
+                                        "netlist_contract.json"))
+    have, mech = pad_net_map(board, pcbnew)
+    want = contract["by_designator"]
+    diffs = []
+    for ref in sorted(set(want) | set(have)):
+        if ref not in want:
+            diffs.append({"ref": ref, "issue": "on the board, not in the "
+                                               "contract"})
+            continue
+        if ref not in have:
+            diffs.append({"ref": ref, "issue": "in the contract, not on the "
+                                               "board"})
+            continue
+        for num in sorted(set(want[ref]) | set(have[ref])):
+            wnet = (want[ref].get(num) or {}).get("net", "")
+            if wnet == "NC":
+                wnet = ""
+            hnets = have[ref].get(num)
+            if hnets is None:
+                diffs.append({"ref": ref, "pad": num, "want": wnet,
+                              "have": None, "issue": "pad missing"})
+                continue
+            if hnets != {wnet}:
+                diffs.append({"ref": ref, "pad": num, "want": wnet,
+                              "have": sorted(hnets), "issue": "net mismatch"})
+    return diffs, sorted(mech)
+
+
+def counts(board, pcbnew):
+    npth = 0
+    pth = 0
+    for f in board.GetFootprints():
+        for p in f.Pads():
+            a = int(p.GetAttribute())
+            if a == int(pcbnew.PAD_ATTRIB_NPTH):
+                npth += 1
+            elif a == int(pcbnew.PAD_ATTRIB_PTH):
+                pth += 1
+    return {
+        "footprints": len(list(board.GetFootprints())),
+        "tracks": sum(1 for t in board.GetTracks()
+                      if t.GetClass() != "PCB_VIA"),
+        "vias": sum(1 for t in board.GetTracks() if t.GetClass() == "PCB_VIA"),
+        "npth_pads": npth,
+        "pth_pads": pth,
+    }
+
+
+# --- DRC ---------------------------------------------------------------------
+def kicad_cli():
+    return os.environ.get(
+        "KC", "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli")
+
+
+def run_drc(out_path, root=None, refill=True, board=None):
+    """kicad-cli pcb drc. Must run outside the command sandbox (see README)."""
+    cmd = [kicad_cli(), "pcb", "drc", "--format", "json", "--severity-all",
+           "--units", "mm"]
+    if refill:
+        cmd += ["--refill-zones", "--save-board"]
+    cmd += ["-o", out_path, board or board_path(root)]
+    proc = subprocess.run(cmd, capture_output=True, text=True)
+    blob = (proc.stdout or "") + (proc.stderr or "")
+    ok = os.path.exists(out_path) and "Fatal error" not in blob
+    return ok, proc, blob
+
+
+def load_drc(path):
+    with open(path) as f:
+        return json.load(f)
+
+
+def error_keys(doc):
+    return {V.key(v) for v in V.errors(doc)}
+
+
+def drc_delta(before_doc, after_doc):
+    """What the edit did to the error set, located rather than signature-level.
+
+    lib/drc.compare answers the gate question ("did anything regress") on
+    signatures, which are immune to DRC's jitter but cannot say which
+    violation. This says which -- and jitter can make a fixed violation
+    reappear at a neighbouring coordinate, so the caller checks both.
+    """
+    b, a = error_keys(before_doc), error_keys(after_doc)
+    return {
+        "resolved": sorted(V.key_text(k) for k in b - a),
+        "new": sorted(V.key_text(k) for k in a - b),
+        "before": len(b),
+        "after": len(a),
+    }
+
+
+def by_type(doc, severity="error"):
+    import collections
+    return dict(collections.Counter(
+        v.get("type") for v in doc.get("violations", [])
+        if not severity or v.get("severity") == severity).most_common())
+
+
+def unconnected(doc):
+    return len(doc.get("unconnected_items", []))
+
+
+def gate(root, name, checks, notes="", extra=None):
+    return E.write_gate(os.path.join(root or ROOT, "gates", name + ".json"),
+                        name, checks, notes=notes, extra=extra)
+
+
+def check(name, expected, actual, ok=None, note=None):
+    return E.gate_check(name, expected, actual, ok=ok, note=note)
