@@ -8,7 +8,18 @@ BOM   Comment,Designator,Footprint,LCSC Part #  plus MPN, Manufacturer, Qty.
       way the ganglion_clone BOM JLC accepted is laid out.
 CPL   Designator,Mid X,Mid Y,Layer,Rotation from `kicad-cli pcb export pos`,
       renamed. Ganglion went through with negative Y and untranslated rotation,
-      so neither is touched here.
+      so neither is touched here -- except where data/cpl_overrides.json says
+      otherwise for one designator, and says why.
+
+      An override exists because a CPL rotation is not a property of the
+      board: it is the angle between our footprint and the orientation the
+      assembler's library holds the part in. When those two disagree the board
+      must not be turned to match -- the copper is right -- so the number is
+      corrected on this one file. U_MCU is the case: JLC's footprint for
+      C701344 (ESP32-WROOM-32UE) is drawn with the module's long axis along Y,
+      +90 degrees from ours, same pad map, same origin. Mid X and Mid Y are
+      untouched by an override; every applied override is written into
+      logs/bom_cpl.json and from there into gates/S8.json.
 
 Excluded from both, and the exclusions have to agree or the pair is rejected:
 
@@ -80,6 +91,19 @@ def board_footprints(root):
             "value": fp.GetValue(),
         }
     return out
+
+
+def load_cpl_overrides(root):
+    """data/cpl_overrides.json -> {designator: {"rotation": deg, "why": ...}}.
+
+    Absent is not an error: the file only exists when someone has had to
+    correct a number, and an empty pipeline should not require one.
+    """
+    path = os.path.join(root, "data", "cpl_overrides.json")
+    if not os.path.exists(path):
+        return {}, path
+    doc = E.load_json(path)
+    return ({k: v for k, v in doc.items() if not k.startswith("_")}, path)
 
 
 def run_pos(root, out_path):
@@ -157,8 +181,10 @@ def main():
     with open(raw) as f:
         rows = list(csv.DictReader(f))
     cpl_path = os.path.join(fab, "CPL_JLCPCB.csv")
+    overrides, ov_path = load_cpl_overrides(root)
     skipped = []
     kept = []
+    applied_ov = []
     with open(cpl_path, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(CPL_COLUMNS)
@@ -168,12 +194,26 @@ def main():
                 skipped.append(ref)
                 continue
             kept.append(ref)
+            rot = r["Rot"]
+            ov = overrides.get(ref)
+            if ov is not None and "rotation" in ov:
+                # Written in the same fixed-point form kicad-cli uses, so the
+                # column stays uniform and a diff against the previous export
+                # shows one changed field rather than a reformatted file.
+                was, rot = rot, "%.6f" % float(ov["rotation"])
+                applied_ov.append({"designator": ref, "field": "Rotation",
+                                   "from": was, "to": rot,
+                                   "why": ov.get("why", "")})
             w.writerow([ref, r["PosX"], r["PosY"],
-                        "Top" if r["Side"] == "top" else "Bottom",
-                        r["Rot"]])
+                        "Top" if r["Side"] == "top" else "Bottom", rot])
+    unused_ov = sorted(set(overrides) - set(kept), key=natural)
     log["cpl"] = {"path": cpl_path, "rows": len(kept),
                   "excluded": sorted(set(skipped), key=natural),
                   "source_rows": len(rows)}
+    log["cpl_overrides"] = {"file": os.path.relpath(ov_path, root),
+                            "declared": sorted(overrides, key=natural),
+                            "applied": applied_ov,
+                            "named_but_not_in_the_cpl": unused_ov}
 
     # --- the two must name the same parts -----------------------------------
     bom_set = set(fitted)
@@ -189,13 +229,20 @@ def main():
              "" if not no_lcsc else "  MISSING LCSC: %s" % no_lcsc))
     print("CPL  %s  %d rows (excluded %s)"
           % (cpl_path, log["cpl"]["rows"], ", ".join(log["cpl"]["excluded"])))
+    for ov in applied_ov:
+        print("     override %s %s %s -> %s"
+              % (ov["designator"], ov["field"], ov["from"], ov["to"]))
+    if unused_ov:
+        print("     ! cpl_overrides names %s, which is not in the CPL"
+              % ", ".join(unused_ov))
     print("designator sets agree: %s%s"
           % (log["sets_match"],
              "" if log["sets_match"] else
              "  bom_only=%s cpl_only=%s" % (log["bom_only"], log["cpl_only"])))
     print("DNP: table %s / board %s -> agree %s"
           % (dnp, board_dnp, log["dnp_agree"]))
-    return 0 if (log["sets_match"] and not no_lcsc and log["dnp_agree"]) else 1
+    return 0 if (log["sets_match"] and not no_lcsc and log["dnp_agree"]
+                 and not unused_ov) else 1
 
 
 def _mm(text):

@@ -89,10 +89,17 @@ def main():
     log["human_facing"] = prev
 
     placement = {}
+    overrides = {}
     p = os.path.join(root, "logs", "bom_cpl.json")
     if os.path.exists(p):
-        placement = E.load_json(p).get("vs_2026_08_16") or {}
+        doc = E.load_json(p)
+        placement = doc.get("vs_2026_08_16") or {}
+        overrides = doc.get("cpl_overrides") or {}
     log["vs_august_placement"] = placement
+    # A hand-corrected number in the file that goes to the assembler has to be
+    # visible in the gate, not only in a log: it is the one field in the
+    # package that the board itself cannot vouch for.
+    log["cpl_overrides"] = overrides
 
     excluded = set(DNP) | set(MECHANICAL)
     checks = [
@@ -141,6 +148,11 @@ def main():
         check("parts new since August", ["C_VCAP1_H", "C_VCAP2", "C_VCAP3",
                                          "C_VCAP3_H"],
               placement.get("new_since_august")),
+        check("every CPL override was applied and named a real part", [],
+              overrides.get("named_but_not_in_the_cpl", ["log missing"]),
+              note="applied: %s" % json.dumps(
+                  [{k: o[k] for k in ("designator", "field", "from", "to")}
+                   for o in overrides.get("applied", [])])),
         check("previews and assembly drawing written", True,
               all(prev.values())),
         # Three files, three code paths inside KiCad, one answer. Gerber says
