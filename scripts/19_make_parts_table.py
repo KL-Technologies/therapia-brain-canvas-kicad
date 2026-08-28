@@ -135,6 +135,71 @@ UNVERIFIED = {
               "part API before ordering; if it cannot be, substitute C15008.",
 }
 
+# --- the lead's pre-order corrections ----------------------------------------
+BOM_FIXES = os.path.join("data", "bom_fixes_2026-08-28.json")
+
+
+def apply_bom_fixes(parts, root, problems):
+    """Overlay data/bom_fixes_2026-08-28.json onto the table just built.
+
+    That file is where the BOM verification landed: five part numbers that were
+    wrong or unbuildable, two parts that must not be fitted on Rev.A, and
+    ECO-5's capacitor. It is read here rather than patched into the CSV by hand
+    so that regenerating the table cannot quietly drop any of it.
+
+    Every fix declares footprint_change: false, so package, footprint and
+    designator carry through untouched and only value / MPN / LCSC move. A DNP
+    part keeps its row -- it is still on the board and still on the netlist --
+    and is marked for the BOM and CPL writers to skip.
+    """
+    path = os.path.join(root, BOM_FIXES)
+    if not os.path.exists(path):
+        problems.append({"file": BOM_FIXES, "reason": "BOM fixes file missing"})
+        return {}
+    doc = E.load_json(path)
+    applied = {}
+    for group, entries in (("fixes", doc.get("fixes", ())),
+                           ("bringup_review_fixes",
+                            doc.get("bringup_review_fixes", ()))):
+        for fix in entries:
+            if fix.get("footprint_change"):
+                problems.append({"fix": fix.get("id") or fix["designators"],
+                                 "reason": "footprint_change is not supported "
+                                           "here -- the board would have to "
+                                           "move too"})
+                continue
+            dnp = str(fix.get("action", "")).startswith("DNP")
+            for ref in fix["designators"]:
+                row = parts.get(ref)
+                if row is None:
+                    problems.append({"designator": ref,
+                                     "reason": "named by a BOM fix but not in "
+                                               "the parts table"})
+                    continue
+                before = dict(row)
+                if fix.get("new_lcsc"):
+                    row["lcsc"] = fix["new_lcsc"]
+                if fix.get("new_mpn"):
+                    row["mpn"] = fix["new_mpn"]
+                elif fix.get("new_lcsc") in LCSC_PART:
+                    # B2 changes C_EN_DLY's C-number without naming a part, and
+                    # leaving the old MPN in place would ship a row saying
+                    # 1 uF against the 100 nF part number it replaced.
+                    row["mpn"] = LCSC_PART[fix["new_lcsc"]][1]
+                if fix.get("new_value"):
+                    row["value"] = fix["new_value"]
+                if dnp:
+                    row["dnp"] = "1"
+                tag = fix.get("id") or "bom-verify"
+                row["fix"] = (row.get("fix") + ";" + tag).strip(";") \
+                    if row.get("fix") else tag
+                changed = {k: [before.get(k), row.get(k)]
+                           for k in ("value", "mpn", "lcsc", "dnp")
+                           if before.get(k) != row.get(k)}
+                if changed:
+                    applied.setdefault(ref, {}).update(changed)
+    return applied
+
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
@@ -195,8 +260,11 @@ def main():
                          "reason": "in the BOM sources but not in the "
                                    "contract netlist"})
 
+    fixes_applied = apply_bom_fixes(parts, root, problems)
+
     cols = ["designator", "value", "mpn", "lcsc", "package",
-            "easyeda_footprint", "kicad_footprint", "eco", "source"]
+            "easyeda_footprint", "kicad_footprint", "eco", "source",
+            "dnp", "fix"]
     d = os.path.dirname(out_csv)
     if not os.path.isdir(d):
         os.makedirs(d)
@@ -216,11 +284,15 @@ def main():
                  "eco_applied": sorted({p["eco"] for p in parts.values()
                                         if p["eco"]}),
                  "footprint_changes": FOOTPRINT_CHANGES,
-                 "unverified_lcsc": UNVERIFIED})
+                 "unverified_lcsc": UNVERIFIED,
+                 "bom_fixes_applied": fixes_applied,
+                 "dnp": sorted(d for d, p in parts.items() if p.get("dnp"))})
 
     ok = not problems
-    print("parts table: %d rows (contract wants %d)%s"
-          % (len(parts), len(want), "" if ok else "  PROBLEMS:"))
+    print("parts table: %d rows (contract wants %d)  fixes %d  dnp %s%s"
+          % (len(parts), len(want), len(fixes_applied),
+             sorted(d for d, p in parts.items() if p.get("dnp")),
+             "" if ok else "  PROBLEMS:"))
     for p in problems[:20]:
         print("  %s" % p)
     return 0 if ok else 1

@@ -170,7 +170,7 @@
 - **ECO-1 は PCB に反映済み（再確認して訂正）**: 本レポート初版では「TPS72325 の pin3(EN) が `GND` のままで B1 致命バグが残存」と書いたが、これは 13:45 のネットリストに基づく古い所見だった。現在の基板ファイルでは **pin3 = `V_NLDO_IN`**（pin1=GND / pin2=V_NLDO_IN / pin4=TPS_NR / pin5=AVSS）で、ECO-1#1 は適用済み。
 - **ECO-1/ECO-3 の新設・変更部品も配置済み（同上）**: `C_VCAP1_H`(VCAP1-AVSS)、`C_VCAP2`(VCAP2-AVSS)、`C_VCAP3`(VCAP3-AVSS)、`C_VCAP3_H`(VCAP3-AVSS) の 4 点が `C0402` で配置・結線済み。`C_VCAP1` と `C_VREFP_10u` も `C_1206_3216Metric` に差し替わっており ECO-3 の 1206 化も完了している。BOM 135 点と基板の点数は整合する。
 - **D_LED まわりは未変更**: `D_LED` pad1=`GND` / pad2=`LED_A`、`R_LED` pad1=`STATUS_LED_DRV` / pad2=`LED_A` で、上記 LED の判定はそのまま有効。
-- **DVDD は +3.3V 給電**: FB5 が `VDD_ESP → DVDD`。`08_simplified_power_design.md` の「AVDD と DVDD を共通 +2.5V」という記述と食い違う。実回路の 3.3V は ADS1299 の DVDD 範囲(1.65–3.6V)内で、ESP32 の 3.3V ロジックとも整合するため 回路としては妥当。ドキュメント側が古い。
+- **DVDD は +3.3V 給電**: FB5 が `VDD_ESP → DVDD`。`08_simplified_power_design.md` の「AVDD と DVDD を共通 +2.5V」という記述と食い違う。実回路の 3.3V は ADS1299 の DVDD 定格範囲内で、ESP32 の 3.3V ロジックとも整合するため 回路としては妥当。ドキュメント側が古い。
 - **フェライトビーズの DCR 前提が古い**: `08_simplified_power_design.md` は BLM18PG600SN1D（DCR 38mΩ / 2.5A）前提で電圧降下 5.7mV としているが、実体の GZ2012D601TF は **DCR 300mΩ / 定格 500mA**。FB3 は ESP32 系 80–240mA を通すため 降下は 24–72mV（想定の 4〜12 倍）。Rev.A は許容範囲だが、余裕を取るなら低 DCR 品を検討。
 - **ADS1299 PAG にサーマルパッドは無い**: KiCad フットプリントは 64 パッドのみで実体と整合。`08_simplified_power_design.md` の「ADS1299 の thermal pad 直下に 9 個の via」は成立しない。
 - **USB-C のフットプリント名**: KiCad 側 `USB-C-SMD_TYPE-C-6PIN-2MD-073` は EasyEDA 側 `…-16PIN-…` の名称欠落。パッド実体（12 SMD + 4 TH）は正しく、ピン割当も EasyEDA シンボルの pinName と netlist が一致しているため実害なし。
@@ -223,6 +223,51 @@ JLC 区分は Extended だが、差し替え前の `C72043` も同シリーズ�
 
 `grep -o 'footprint "[^"]*"'` の結果でも `ProPrj_The-easyedapro:L0805` はちょうど 5 個で、FB1–FB5 の 5 点と一致する。他の 0805 系（`C0805` 8 個・`R0805` 6 個）とは別フットプリントとして分かれており、取り違えは起きていない。
 
+---
+
+# 追記 2（2026-08-28、追加調査その 2）
+
+## 3. BIAS 帰還用 1.5nF 0402（ECO-5）
+
+### 現基板の該当箇所
+
+- `R_BIAS_FB`: 1MΩ 0805 (C17514) が BIAS_INV <-> BIAS_OUT_INT を橋渡し
+- `C_BIAS_INV`: 現在 100nF (C1525) が BIAS_INV -> GND、フットプリント C0402
+- `ADS1299_pinName`: pin61=BIASINV / pin63=BIASOUT（contract TSV の pinName で確認）
+- ECO-5 でこの `C_BIAS_INV` の pad2 を `GND` から `BIAS_OUT_INT` に移し 1.5nF にすると、TI 推奨の 1MΩ ∥ 1.5nF になる。極は 1/(2*pi*1M*1.5n) = 約 106Hz（TI 推奨値）。
+
+### 候補
+
+| | C番号 | MPN / メーカー | EasyEDA パッケージ | スペック | JLC 区分 | 在庫(LCSC / SZLCSC) |
+|---|---|---|---|---|---|---|
+| **第1候補** | `C23967` | CL05B152KB5NNNC / Samsung | `C0402` **一致** | 1.5nF **50V X7R ±10%** | Extended | 60,236 / 21,600 |
+| **第2候補** | `C284989` | 0402B152K500NT / FH(風華) | `C0402` **一致** | 1.5nF 50V ±10%(K) | Extended | 19,300 / 95,000 |
+| 不採用 | `C281752` | CC0402JRX7R9BB152 / YAGEO | `C0402` | 1.5nF X7R | Extended | **0 / 0** |
+| 参考(C0G) | `C52037853` | CGA0402C0G152J500GT / HRE | `0402` | 1.5nF 50V **C0G** ±5% | 取得不能 | 2,250 / — |
+
+### 判定理由
+
+**Basic は選べない。** JLC Basic に 1.5nF 0402 は存在しない。検索した 1.5nF 0402 は Samsung/FH/YAGEO/Walsin/KEMET/AVX/Vishay/Meritek いずれも Extended。1nF に落とす案（C14442）も Extended なので手数料回避にならない。 したがって値を妥協する理由がなく、TI 推奨の 1.5nF をそのまま使うのが合理的。
+
+**第 1 候補は `C23967`（Samsung CL05B152KB5NNNC）。** JLC partdetail が 「1.5nF 50V X7R ±10% 0402」と明示しており誘電体まで確定できる唯一の候補で、EasyEDA パッケージ名 `C0402` は現フットプリント `ProPrj_The-easyedapro:C0402` と完全一致する。在庫も 60,236 / 21,600 と十分。
+
+**第 2 候補は `C284989`（FH 0402B152K500NT）。** パッケージ名 `C0402` 一致、SZLCSC 在庫 95,000 と潤沢で、FH は既に `C1546` で BOM に入っているメーカー。ただし誘電体の明記が取得できなかった（型番の 'B' は FH の X7R 系だが未裏取り）ので第 2 候補とした。なお EasyEDA API が返す「Voltage Rated 500V」は型番 '...500NT' の誤パースで、同じ表記体系の `C1546`（0402CG101J500NT）が 50V と確認済みなので 50V と判断している。
+
+**材質について。** C0G が理想ではあるが、X7R でも実害は小さいと判断した。この C は 1MΩ と並列で BIASINV(加算節点) と BIASOUT の間に入り両端の DC 電位差がほぼ 0V なので、X7R の弱点である DC バイアス容量減衰が効かない。残る誘電吸収・圧電は 106Hz の極を作るだけの用途では二次的。 C0G をどうしても優先するなら `C52037853` だが、在庫 2,250・メーカー実績不明・個別ページ未取得（検索 API 一覧の値のみ）というリスクを取ることになる。
+
+## 4. `C52923`（ESP32 EN の RC 用、B2）の判定: OK
+
+- 現基板: C_EN_DLY = 100nF (C1525) が ESP_EN -> GND / R_EN_UP = 10kΩ (C25804) が VDD_ESP -> ESP_EN
+- 実体: C52923 = CL05A105KA5NQNC / Samsung / C0402 / 1uF 25V X5R +-10% / JLC Basic
+- 在庫: LCSC 3,790,400 / SZLCSC 3,663,900、jlcOnSale=1（LCSC 商品ページと EasyEDA API の 2 ソースが一致）
+- **判定: OK**
+
+定格 25V は要求の 6.3V 以上を約 4 倍上回る。EN ノードは 3.3V なので DC バイアスによる容量減衰も小さく、10kΩ との時定数は WROOM-32E 推奨の 10kΩ/1µF の意図どおりに出る。フットプリントは現行 C1525 と同じ C0402 で 品番差し替えのみ・銅箔変更なし。
+
+**さらに、部品種類が増えないという利点がある。** C52923 は既に BOM の 10 箇所（C_3V3_IN / C_3V3_M / C_AVDD1_1u / C_LM_IN / C_NLDO_IN / C_PLDO_IN / C_PLDO_OUT / C_VCAP2 / C_VCAP3 / C_VCAP4）で使用中。C_EN_DLY を C52923 にしても品番数が増えず、Basic のままリールも増えない。
+
+- 出典: https://www.lcsc.com/product-detail/C52923.html , https://easyeda.com/api/products/C52923/components
+
 ## 追加調査で参照した URL
 
 - `C72044`: https://www.lcsc.com/product-detail/C72044.html , https://jlcpcb.com/partdetail/EverlightElec-19_217_R6C_AL1M2VY3T/C72044 , https://easyeda.com/api/products/C72044/components
@@ -230,3 +275,9 @@ JLC 区分は Extended だが、差し替え前の `C72043` も同シリーズ�
 - `C2286`: https://jlcpcb.com/partdetail/Hubei_KentoElec-KT0603R/C2286 , https://easyeda.com/api/products/C2286/components
 - `C183844`: https://easyeda.com/api/products/C183844/components
 - `C1017`: https://jlcpcb.com/partdetail/Sunlord-GZ2012D601TF/C1017 , https://easyeda.com/api/products/C1017/components
+- `C23967`: https://jlcpcb.com/partdetail/C23967 , https://easyeda.com/api/products/C23967/components
+- `C284989`: https://easyeda.com/api/products/C284989/components
+- `C281752`: https://easyeda.com/api/products/C281752/components
+- `C52037853`: https://easyeda.com/api/eda/product/search?keyword=1.5nF%200402%20C0G&needAggs=false&currPage=1&pageSize=20  (検索一覧)
+- `C14442`: https://easyeda.com/api/products/C14442/components
+- `C52923`: https://www.lcsc.com/product-detail/C52923.html , https://easyeda.com/api/products/C52923/components

@@ -1200,6 +1200,31 @@
         }
       }
     },
+    "bias_cap": {
+      "eco": "ECO-5（data/bom_fixes_2026-08-28.json）",
+      "board_now": {
+        "R_BIAS_FB": "1MΩ 0805 (C17514) が BIAS_INV <-> BIAS_OUT_INT を橋渡し",
+        "C_BIAS_INV": "現在 100nF (C1525) が BIAS_INV -> GND、フットプリント C0402",
+        "ADS1299_pinName": "pin61=BIASINV / pin63=BIASOUT（contract TSV の pinName で確認）"
+      },
+      "pole_hz_with_1n5": "1/(2*pi*1M*1.5n) = 約 106Hz（TI 推奨値）",
+      "first_choice": "C23967",
+      "second_choice": "C284989",
+      "no_basic_option": "JLC Basic に 1.5nF 0402 は存在しない。検索した 1.5nF 0402 は Samsung/FH/YAGEO/Walsin/KEMET/AVX/Vishay/Meritek いずれも Extended。1nF に落とす案（C14442）も Extended なので手数料回避にならない。",
+      "dielectric_note": "この C は 1MΩ と並列で BIASINV(加算節点) と BIASOUT の間に入り両端の DC 電位差がほぼ 0V なので、X7R の弱点である DC バイアス容量減衰が効かない。残る誘電吸収・圧電は 106Hz の極を作るだけの用途では二次的。"
+    },
+    "en_rc_cap": {
+      "eco": "B2（data/bom_fixes_2026-08-28.json）",
+      "board_now": "C_EN_DLY = 100nF (C1525) が ESP_EN -> GND / R_EN_UP = 10kΩ (C25804) が VDD_ESP -> ESP_EN",
+      "part": "C52923 = CL05A105KA5NQNC / Samsung / C0402 / 1uF 25V X5R +-10% / JLC Basic",
+      "verdict": "OK",
+      "reason": "定格 25V は要求の 6.3V 以上を約 4 倍上回る。EN ノードは 3.3V なので DC バイアスによる容量減衰も小さく、10kΩ との時定数は WROOM-32E 推奨の 10kΩ/1µF の意図どおりに出る。フットプリントは現行 C1525 と同じ C0402 で 品番差し替えのみ・銅箔変更なし。",
+      "bonus": "C52923 は既に BOM の 10 箇所（C_3V3_IN / C_3V3_M / C_AVDD1_1u / C_LM_IN / C_NLDO_IN / C_PLDO_IN / C_PLDO_OUT / C_VCAP2 / C_VCAP3 / C_VCAP4）で使用中。C_EN_DLY を C52923 にしても品番数が増えず、Basic のままリールも増えない。",
+      "sources": [
+        "https://www.lcsc.com/product-detail/C52923.html",
+        "https://easyeda.com/api/products/C52923/components"
+      ]
+    },
     "fb_footprint": {
       "board_footprint": "ProPrj_The-easyedapro:L0805（FB1-FB5 の 5 点すべて）",
       "board_pad_geometry": "pad1/pad2 とも 1.1325 x 1.377mm、x=-0.966 / +0.966mm。内側ギャップ 0.8mm / 外形スパン 3.065mm / パッド幅 1.377mm",
@@ -1315,6 +1340,110 @@
       "source_urls": [
         "https://jlcpcb.com/partdetail/BHFUSE-BSMD1206_0506V/C883122",
         "https://easyeda.com/api/products/C883122/components"
+      ]
+    },
+    {
+      "lcsc": "C23967",
+      "role": "ECO-5 BIAS 帰還 1.5nF 第1候補",
+      "mpn": "CL05B152KB5NNNC",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "C0402",
+      "spec": "1.5nF / 50V / X7R / +-10% / 0402",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 60236,
+      "stock_szlcsc": 21600,
+      "jlc_on_sale": true,
+      "verdict": "採用推奨",
+      "note": "ECO-5（BIAS 帰還 1MΩ∥1.5nF）用の第 1 候補。誘電体 X7R は JLC partdetail が明示。EasyEDA パッケージ名 `C0402` は現フットプリントと完全一致。",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/C23967",
+        "https://easyeda.com/api/products/C23967/components"
+      ]
+    },
+    {
+      "lcsc": "C284989",
+      "role": "ECO-5 BIAS 帰還 1.5nF 第2候補",
+      "mpn": "0402B152K500NT",
+      "manufacturer": "FH (Fenghua)",
+      "package": "C0402",
+      "spec": "1.5nF / 50V / +-10%(K) / 0402",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 19300,
+      "stock_szlcsc": 95000,
+      "jlc_on_sale": true,
+      "verdict": "採用可",
+      "note": "ECO-5 用の第 2 候補。EasyEDA API の Voltage Rated 500V は型番 '...500NT' の誤パース（同じ FH 表記の C1546=0402CG101J500NT が 50V と確認済み）。誘電体の明記は取得できず（型番の 'B' は FH の X7R 系だが未裏取り）。",
+      "source_urls": [
+        "https://easyeda.com/api/products/C284989/components"
+      ]
+    },
+    {
+      "lcsc": "C281752",
+      "role": "ECO-5 検討→不採用",
+      "mpn": "CC0402JRX7R9BB152",
+      "manufacturer": "YAGEO",
+      "package": "C0402",
+      "spec": "1.5nF / X7R / 0402",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 0,
+      "stock_szlcsc": 0,
+      "jlc_on_sale": true,
+      "verdict": "NG（在庫 0）",
+      "note": "在庫 0/0 のため不採用。",
+      "source_urls": [
+        "https://easyeda.com/api/products/C281752/components"
+      ]
+    },
+    {
+      "lcsc": "C52037853",
+      "role": "ECO-5 C0G 参考",
+      "mpn": "CGA0402C0G152J500GT",
+      "manufacturer": "HRE",
+      "package": "0402",
+      "spec": "1.5nF / 50V / C0G / +-5% / 0402",
+      "jlc_part_class": "取得不能",
+      "stock_lcsc": 2250,
+      "stock_szlcsc": null,
+      "jlc_on_sale": null,
+      "verdict": "参考（在庫薄）",
+      "note": "唯一在庫のある C0G 1.5nF 0402。ただし在庫 2,250 と薄く、EasyEDA 検索 API の一覧からの値で個別ページは未取得。参考記録。",
+      "source_urls": [
+        "https://easyeda.com/api/eda/product/search?keyword=1.5nF%200402%20C0G&needAggs=false&currPage=1&pageSize=20  (検索一覧)"
+      ]
+    },
+    {
+      "lcsc": "C14442",
+      "role": "ECO-5 1nF 代案の検証",
+      "mpn": "CL05B102KB5NNNC",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "C0402",
+      "spec": "1nF / 50V / +-10% / 0402",
+      "jlc_part_class": "Extended",
+      "stock_lcsc": 200,
+      "stock_szlcsc": 205200,
+      "jlc_on_sale": true,
+      "verdict": "不採用（Extended で利点なし）",
+      "note": "1.5nF を避けて 1nF に落とす案の検証用に確認。これも Extended なので Extended 手数料の回避にはならない。",
+      "source_urls": [
+        "https://easyeda.com/api/products/C14442/components"
+      ]
+    },
+    {
+      "lcsc": "C52923",
+      "role": "B2 ESP32 EN の RC 用",
+      "mpn": "CL05A105KA5NQNC",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "C0402",
+      "spec": "1uF / 25V / X5R / +-10% / 0402",
+      "jlc_part_class": "Basic",
+      "stock_lcsc": 3790400,
+      "stock_szlcsc": 3663900,
+      "jlc_on_sale": true,
+      "verdict": "OK",
+      "note": "定格 25V は LCSC ページと EasyEDA API の 2 ソースで一致。",
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C52923.html",
+        "https://easyeda.com/api/products/C52923/components"
       ]
     }
   ]

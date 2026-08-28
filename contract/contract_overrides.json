@@ -1,0 +1,17 @@
+{
+  "_purpose": "契約ネットリスト（netlist_contract.json = EasyEDA 回路図 2026-08-28 の netlist）に対する、発注前に PCB 側で先行適用する意図的な差分。パリティ検査（PCB pad→net == 契約）はこのオーバーライドを適用した契約と比較する。各項目は後で EasyEDA 回路図にも反映する（ECO-5）。",
+  "_decided_by": "lead (Fable) 2026-08-28, based on reports/bringup_design_review.md N1 and TI SBAS499 BIAS drive circuit",
+  "overrides": [
+    {
+      "eco": "ECO-5",
+      "designator": "C_BIAS_INV",
+      "pad": "2",
+      "pin_name": "2",
+      "contract_net": "GND",
+      "override_net": "BIAS_OUT_INT",
+      "value_change": {"from": "100nF", "to": "1.5nF"},
+      "reason": "BIAS(DRL) 補償を TI 推奨トポロジ（BIASOUT→BIASINV に 1MΩ∥1.5nF の帰還）に変更。加算節点→GND の 100nF は位相余裕を削り 50Hz での DRL 利得も失うため",
+      "expected_pcb_change": "C_BIAS_INV pad2 を GND から外し（via/スタブ除去）、R_BIAS_FB pad2（BIAS_OUT_INT）へ短いトラックで接続。ネット員数: GND 86→85、BIAS_OUT_INT 3→4"
+    }
+  ]
+}

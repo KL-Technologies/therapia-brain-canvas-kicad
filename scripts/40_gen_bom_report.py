@@ -18,6 +18,9 @@ FETCHED = "2026-08-28"
 LCSC = "https://www.lcsc.com/product-detail/{}.html"
 EDA = "https://easyeda.com/api/products/{}/components"
 JLC = "https://jlcpcb.com/partdetail/{}"
+# 個別ページではなく検索 API の一覧から得た値の出典
+SEARCH_C0G = ("https://easyeda.com/api/eda/product/search"
+              "?keyword=1.5nF%200402%20C0G&needAggs=false&currPage=1&pageSize=20  (検索一覧)")
 
 # 短縮 URL ではなくフルスラッグで取得した品番（実際に叩いた URL を正確に残す）
 JLC_SLUG = {
@@ -33,6 +36,8 @@ def url(tpl, lcsc):
     """出典 URL を組み立てる。フルスラッグで取得したものはそちらを返す。"""
     if tpl is JLC and lcsc in JLC_SLUG:
         return JLC_SLUG[lcsc]
+    if "{}" not in tpl:
+        return tpl
     return tpl.format(lcsc)
 
 # lcsc -> 取得した実体（Web 一次情報のみ。推測は入れない）
@@ -268,6 +273,41 @@ FACTS = {
         note="パッケージ名は LED0603-RD で一致し 19-217 シリーズだが、"
              "在庫が LCSC 2,920 / SZ 540 と薄く非推奨。参考記録のみ。",
         src=[EDA]),
+    "C23967": dict(
+        mpn="CL05B152KB5NNNC", mfr="Samsung Electro-Mechanics", pkg="C0402",
+        spec="1.5nF / 50V / X7R / +-10% / 0402",
+        cls="Extended", stock_lcsc=60236, stock_sz=21600, jlc_onsale=True,
+        note="ECO-5（BIAS 帰還 1MΩ∥1.5nF）用の第 1 候補。誘電体 X7R は "
+             "JLC partdetail が明示。EasyEDA パッケージ名 `C0402` は現フットプリントと完全一致。",
+        src=[JLC, EDA]),
+    "C284989": dict(
+        mpn="0402B152K500NT", mfr="FH (Fenghua)", pkg="C0402",
+        spec="1.5nF / 50V / +-10%(K) / 0402",
+        cls="Extended", stock_lcsc=19300, stock_sz=95000, jlc_onsale=True,
+        note="ECO-5 用の第 2 候補。EasyEDA API の Voltage Rated 500V は型番 '...500NT' の"
+             "誤パース（同じ FH 表記の C1546=0402CG101J500NT が 50V と確認済み）。"
+             "誘電体の明記は取得できず（型番の 'B' は FH の X7R 系だが未裏取り）。",
+        src=[EDA]),
+    "C281752": dict(
+        mpn="CC0402JRX7R9BB152", mfr="YAGEO", pkg="C0402",
+        spec="1.5nF / X7R / 0402",
+        cls="Extended", stock_lcsc=0, stock_sz=0, jlc_onsale=True,
+        note="在庫 0/0 のため不採用。",
+        src=[EDA]),
+    "C52037853": dict(
+        mpn="CGA0402C0G152J500GT", mfr="HRE", pkg="0402",
+        spec="1.5nF / 50V / C0G / +-5% / 0402",
+        cls="取得不能", stock_lcsc=2250, stock_sz=None, jlc_onsale=None,
+        note="唯一在庫のある C0G 1.5nF 0402。ただし在庫 2,250 と薄く、"
+             "EasyEDA 検索 API の一覧からの値で個別ページは未取得。参考記録。",
+        src=[SEARCH_C0G]),
+    "C14442": dict(
+        mpn="CL05B102KB5NNNC", mfr="Samsung Electro-Mechanics", pkg="C0402",
+        spec="1nF / 50V / +-10% / 0402",
+        cls="Extended", stock_lcsc=200, stock_sz=205200, jlc_onsale=True,
+        note="1.5nF を避けて 1nF に落とす案の検証用に確認。これも Extended なので "
+             "Extended 手数料の回避にはならない。",
+        src=[EDA]),
     "C883122": dict(
         mpn="BSMD1206-050-6V", mfr="BHFUSE", pkg="F1206",
         spec="PPTC リセッタブルヒューズ hold 500mA / 6V / 1206",
@@ -397,6 +437,39 @@ ADDENDUM = dict(
             "FB5": {"1": "VDD_ESP", "2": "DVDD", "footprint": "L0805"},
         },
     ),
+    bias_cap=dict(
+        eco="ECO-5（data/bom_fixes_2026-08-28.json）",
+        board_now={
+            "R_BIAS_FB": "1MΩ 0805 (C17514) が BIAS_INV <-> BIAS_OUT_INT を橋渡し",
+            "C_BIAS_INV": "現在 100nF (C1525) が BIAS_INV -> GND、フットプリント C0402",
+            "ADS1299_pinName": "pin61=BIASINV / pin63=BIASOUT（contract TSV の pinName で確認）",
+        },
+        pole_hz_with_1n5="1/(2*pi*1M*1.5n) = 約 106Hz（TI 推奨値）",
+        first_choice="C23967",
+        second_choice="C284989",
+        no_basic_option=("JLC Basic に 1.5nF 0402 は存在しない。検索した 1.5nF 0402 は "
+                         "Samsung/FH/YAGEO/Walsin/KEMET/AVX/Vishay/Meritek いずれも Extended。"
+                         "1nF に落とす案（C14442）も Extended なので手数料回避にならない。"),
+        dielectric_note=("この C は 1MΩ と並列で "
+                         "BIASINV(加算節点) と BIASOUT の間に入り両端の DC 電位差がほぼ 0V なので、"
+                         "X7R の弱点である DC バイアス容量減衰が効かない。残る誘電吸収・圧電は "
+                         "106Hz の極を作るだけの用途では二次的。"),
+    ),
+    en_rc_cap=dict(
+        eco="B2（data/bom_fixes_2026-08-28.json）",
+        board_now="C_EN_DLY = 100nF (C1525) が ESP_EN -> GND / R_EN_UP = 10kΩ (C25804) が VDD_ESP -> ESP_EN",
+        part="C52923 = CL05A105KA5NQNC / Samsung / C0402 / 1uF 25V X5R +-10% / JLC Basic",
+        verdict="OK",
+        reason=("定格 25V は要求の 6.3V 以上を約 4 倍上回る。EN ノードは 3.3V なので "
+                "DC バイアスによる容量減衰も小さく、10kΩ との時定数は WROOM-32E 推奨の "
+                "10kΩ/1µF の意図どおりに出る。フットプリントは現行 C1525 と同じ C0402 で "
+                "品番差し替えのみ・銅箔変更なし。"),
+        bonus=("C52923 は既に BOM の 10 箇所（C_3V3_IN / C_3V3_M / C_AVDD1_1u / C_LM_IN / "
+               "C_NLDO_IN / C_PLDO_IN / C_PLDO_OUT / C_VCAP2 / C_VCAP3 / C_VCAP4）で使用中。"
+               "C_EN_DLY を C52923 にしても品番数が増えず、Basic のままリールも増えない。"),
+        sources=["https://www.lcsc.com/product-detail/C52923.html",
+                 "https://easyeda.com/api/products/C52923/components"],
+    ),
     fb_footprint=dict(
         board_footprint="ProPrj_The-easyedapro:L0805（FB1-FB5 の 5 点すべて）",
         board_pad_geometry=("pad1/pad2 とも 1.1325 x 1.377mm、x=-0.966 / +0.966mm。"
@@ -497,6 +570,12 @@ def main():
                 ("C183844", "D_LED 代替 検討→不採用", "非推奨（在庫薄）"),
                 ("C1017", "FB1-FB5 代替 確定", "採用推奨"),
                 ("C883122", "F1 代替 候補", "採用可"),
+                ("C23967", "ECO-5 BIAS 帰還 1.5nF 第1候補", "採用推奨"),
+                ("C284989", "ECO-5 BIAS 帰還 1.5nF 第2候補", "採用可"),
+                ("C281752", "ECO-5 検討→不採用", "NG（在庫 0）"),
+                ("C52037853", "ECO-5 C0G 参考", "参考（在庫薄）"),
+                ("C14442", "ECO-5 1nF 代案の検証", "不採用（Extended で利点なし）"),
+                ("C52923", "B2 ESP32 EN の RC 用", "OK"),
             ]],
     )
     jp = os.path.join(ROOT, "reports/bom_verification.json")
@@ -641,7 +720,7 @@ def render_md(doc):
       "`R_LED` pad1=`STATUS_LED_DRV` / pad2=`LED_A` で、上記 LED の判定はそのまま有効。")
     w("- **DVDD は +3.3V 給電**: FB5 が `VDD_ESP → DVDD`。"
       "`08_simplified_power_design.md` の「AVDD と DVDD を共通 +2.5V」という記述と食い違う。"
-      "実回路の 3.3V は ADS1299 の DVDD 範囲(1.65–3.6V)内で、ESP32 の 3.3V ロジックとも整合するため "
+      "実回路の 3.3V は ADS1299 の DVDD 定格範囲内で、ESP32 の 3.3V ロジックとも整合するため "
       "回路としては妥当。ドキュメント側が古い。")
     w("- **フェライトビーズの DCR 前提が古い**: `08_simplified_power_design.md` は "
       "BLM18PG600SN1D（DCR 38mΩ / 2.5A）前提で電圧降下 5.7mV としているが、実体の "
@@ -723,8 +802,60 @@ def render_md(doc):
       "5 個で、FB1–FB5 の 5 点と一致する。他の 0805 系（`C0805` 8 個・`R0805` 6 個）とは"
       "別フットプリントとして分かれており、取り違えは起きていない。\n")
 
+    bc, en = a["bias_cap"], a["en_rc_cap"]
+    w("---\n")
+    w("# 追記 2（2026-08-28、追加調査その 2）\n")
+
+    w("## 3. BIAS 帰還用 1.5nF 0402（ECO-5）\n")
+    w("### 現基板の該当箇所\n")
+    for k, v in bc["board_now"].items():
+        w(f"- `{k}`: {v}")
+    w(f"- ECO-5 でこの `C_BIAS_INV` の pad2 を `GND` から `BIAS_OUT_INT` に移し 1.5nF にすると、"
+      f"TI 推奨の 1MΩ ∥ 1.5nF になる。極は {bc['pole_hz_with_1n5']}。")
+    w("")
+    w("### 候補\n")
+    w("| | C番号 | MPN / メーカー | EasyEDA パッケージ | スペック | JLC 区分 | 在庫(LCSC / SZLCSC) |")
+    w("|---|---|---|---|---|---|---|")
+    w("| **第1候補** | `C23967` | CL05B152KB5NNNC / Samsung | `C0402` **一致** | "
+      "1.5nF **50V X7R ±10%** | Extended | 60,236 / 21,600 |")
+    w("| **第2候補** | `C284989` | 0402B152K500NT / FH(風華) | `C0402` **一致** | "
+      "1.5nF 50V ±10%(K) | Extended | 19,300 / 95,000 |")
+    w("| 不採用 | `C281752` | CC0402JRX7R9BB152 / YAGEO | `C0402` | 1.5nF X7R | Extended | **0 / 0** |")
+    w("| 参考(C0G) | `C52037853` | CGA0402C0G152J500GT / HRE | `0402` | "
+      "1.5nF 50V **C0G** ±5% | 取得不能 | 2,250 / — |")
+    w("")
+    w("### 判定理由\n")
+    w(f"**Basic は選べない。** {bc['no_basic_option']}"
+      " したがって値を妥協する理由がなく、TI 推奨の 1.5nF をそのまま使うのが合理的。\n")
+    w("**第 1 候補は `C23967`（Samsung CL05B152KB5NNNC）。** JLC partdetail が "
+      "「1.5nF 50V X7R ±10% 0402」と明示しており誘電体まで確定できる唯一の候補で、"
+      "EasyEDA パッケージ名 `C0402` は現フットプリント `ProPrj_The-easyedapro:C0402` と完全一致する。"
+      "在庫も 60,236 / 21,600 と十分。\n")
+    w("**第 2 候補は `C284989`（FH 0402B152K500NT）。** パッケージ名 `C0402` 一致、"
+      "SZLCSC 在庫 95,000 と潤沢で、FH は既に `C1546` で BOM に入っているメーカー。"
+      "ただし誘電体の明記が取得できなかった（型番の 'B' は FH の X7R 系だが未裏取り）ので第 2 候補とした。"
+      "なお EasyEDA API が返す「Voltage Rated 500V」は型番 '...500NT' の誤パースで、"
+      "同じ表記体系の `C1546`（0402CG101J500NT）が 50V と確認済みなので 50V と判断している。\n")
+    w("**材質について。** C0G が理想ではあるが、X7R でも実害は小さいと判断した。"
+      + bc["dielectric_note"] +
+      " C0G をどうしても優先するなら `C52037853` だが、在庫 2,250・メーカー実績不明・"
+      "個別ページ未取得（検索 API 一覧の値のみ）というリスクを取ることになる。\n")
+
+    w("## 4. `C52923`（ESP32 EN の RC 用、B2）の判定: OK\n")
+    w(f"- 現基板: {en['board_now']}")
+    w(f"- 実体: {en['part']}")
+    w("- 在庫: LCSC 3,790,400 / SZLCSC 3,663,900、jlcOnSale=1（LCSC 商品ページと "
+      "EasyEDA API の 2 ソースが一致）")
+    w(f"- **判定: {en['verdict']}**")
+    w("")
+    w(en["reason"] + "\n")
+    w("**さらに、部品種類が増えないという利点がある。** " + en["bonus"] + "\n")
+    w("- 出典: " + " , ".join(en["sources"]))
+    w("")
+
     w("## 追加調査で参照した URL\n")
-    for k in ("C72044", "C72038", "C2286", "C183844", "C1017"):
+    for k in ("C72044", "C72038", "C2286", "C183844", "C1017",
+              "C23967", "C284989", "C281752", "C52037853", "C14442", "C52923"):
         urls = " , ".join(url(u, k) for u in FACTS[k]["src"])
         w(f"- `{k}`: {urls}")
     w("")

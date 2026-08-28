@@ -22,5 +22,153 @@
   },
   "unverified_lcsc": {
     "C13585": "ECO-3#12 says this C-number must be confirmed against the JLC part API before ordering; if it cannot be, substitute C15008."
-  }
+  },
+  "bom_fixes_applied": {
+    "FB1": {
+      "value": [
+        "FB_600R",
+        "600R@100MHz 0805"
+      ],
+      "lcsc": [
+        "C94221",
+        "C1017"
+      ]
+    },
+    "FB2": {
+      "value": [
+        "FB_600R",
+        "600R@100MHz 0805"
+      ],
+      "lcsc": [
+        "C94221",
+        "C1017"
+      ]
+    },
+    "FB3": {
+      "value": [
+        "FB_600R",
+        "600R@100MHz 0805"
+      ],
+      "lcsc": [
+        "C94221",
+        "C1017"
+      ]
+    },
+    "FB4": {
+      "value": [
+        "FB_600R",
+        "600R@100MHz 0805"
+      ],
+      "lcsc": [
+        "C94221",
+        "C1017"
+      ]
+    },
+    "FB5": {
+      "value": [
+        "FB_600R",
+        "600R@100MHz 0805"
+      ],
+      "lcsc": [
+        "C94221",
+        "C1017"
+      ]
+    },
+    "C_AVDD1_10n": {
+      "value": [
+        "100pF",
+        "10nF 50V X7R 0402"
+      ],
+      "mpn": [
+        "0402CG101J500NT",
+        "CL05B103KB5NNNC"
+      ],
+      "lcsc": [
+        "C1546",
+        "C15195"
+      ]
+    },
+    "C_VREFP_10n": {
+      "value": [
+        "100pF",
+        "10nF 50V X7R 0402"
+      ],
+      "mpn": [
+        "0402CG101J500NT",
+        "CL05B103KB5NNNC"
+      ],
+      "lcsc": [
+        "C1546",
+        "C15195"
+      ]
+    },
+    "C_VREFP_10u": {
+      "value": [
+        "10uF_25V",
+        "10uF 50V X5R 1206"
+      ],
+      "mpn": [
+        "CL31A106KAHNNNE",
+        "CL31A106KBHNNNE"
+      ]
+    },
+    "D_LED": {
+      "value": [
+        "LED_Y",
+        "LED red 0603 Vf1.95V"
+      ],
+      "mpn": [
+        "19-217/GHC-YR1S2/3T",
+        "19-217/R6C-AL1M2VY/3T"
+      ],
+      "lcsc": [
+        "C72043",
+        "C72044"
+      ]
+    },
+    "R_RST_UP": {
+      "dnp": [
+        null,
+        "1"
+      ]
+    },
+    "C_EN_DLY": {
+      "value": [
+        "100nF",
+        "1uF 0402"
+      ],
+      "mpn": [
+        "CL05B104KO5NNNC",
+        "CL05A105KA5NQNC"
+      ],
+      "lcsc": [
+        "C1525",
+        "C52923"
+      ]
+    },
+    "R_IO15_DN": {
+      "dnp": [
+        null,
+        "1"
+      ]
+    },
+    "C_BIAS_INV": {
+      "value": [
+        "100nF",
+        "1.5nF 50V X7R 0402"
+      ],
+      "mpn": [
+        "CL05B104KO5NNNC",
+        "CL05B152KB5NNNC"
+      ],
+      "lcsc": [
+        "C1525",
+        "C23967"
+      ]
+    }
+  },
+  "dnp": [
+    "R_IO15_DN",
+    "R_RST_UP"
+  ]
 }

@@ -1069,6 +1069,14 @@ def hole_pairs(pcbnew, board, idx, hole_to_hole):
 
 # --- contract parity ---------------------------------------------------------
 def pad_net_map(board, pcbnew):
+    """designator -> pad number -> set of nets, plus the mechanical references.
+
+    Mechanical means H1-H4 and PEG1/PEG2: no net, no BOM line, nothing the
+    contract knows about. A DNP part is excluded from the BOM too but is still
+    a real component with real pads on real nets, so it stays in the map and
+    the contract still has to match it -- ECO B1/B4 leave the footprint, the
+    copper and the netlist alone and only stop the part being fitted.
+    """
     import collections
     out = collections.defaultdict(lambda: collections.defaultdict(set))
     mech = set()
@@ -1076,7 +1084,8 @@ def pad_net_map(board, pcbnew):
         ref = fp.GetReference()
         if not ref:
             continue
-        if int(fp.GetAttributes()) & int(pcbnew.FP_EXCLUDE_FROM_BOM):
+        if (int(fp.GetAttributes()) & int(pcbnew.FP_EXCLUDE_FROM_BOM)
+                and not fp.IsDNP()):
             mech.add(ref)
             continue
         for p in fp.Pads():
@@ -1084,12 +1093,53 @@ def pad_net_map(board, pcbnew):
     return out, mech
 
 
-def contract_diff(board, pcbnew, root=None):
+def load_overrides(root=None):
+    """contract/contract_overrides.json as {(designator, pad): net}.
+
+    The overrides are the differences the board is meant to carry ahead of the
+    schematic -- ECO-5 so far. Parity is checked against the contract with
+    these applied, so an override is a decision recorded once rather than an
+    exception each caller has to remember.
+    """
+    path = os.path.join(root or ROOT, "contract", "contract_overrides.json")
+    if not os.path.exists(path):
+        return {}
+    doc = E.load_json(path)
+    return {(o["designator"], str(o["pad"])): o["override_net"]
+            for o in doc.get("overrides", ())}
+
+
+def contract_net_counts(root=None, apply_overrides=True):
+    """net name -> how many contract pins sit on it, overrides applied.
+
+    Counts pins, not pads: the ESP32 thermal pad is nine physical pads sharing
+    one number, so the board's pad tally for GND runs eight ahead of this.
+    """
+    import collections
+    contract = E.load_json(os.path.join(root or ROOT, "contract",
+                                        "netlist_contract.json"))
+    over = load_overrides(root) if apply_overrides else {}
+    cnt = collections.Counter()
+    for ref, pads in contract["by_designator"].items():
+        for num, info in pads.items():
+            net = over.get((ref, num), info.get("net", ""))
+            if net and net != "NC":
+                cnt[net] += 1
+    return cnt
+
+
+def contract_diff(board, pcbnew, root=None, apply_overrides=True):
     """Differences between the board's pad->net map and the contract."""
     contract = E.load_json(os.path.join(root or ROOT, "contract",
                                         "netlist_contract.json"))
     have, mech = pad_net_map(board, pcbnew)
     want = contract["by_designator"]
+    if apply_overrides:
+        import copy
+        want = copy.deepcopy(want)
+        for (ref, num), net in load_overrides(root).items():
+            if ref in want and num in want[ref]:
+                want[ref][num] = dict(want[ref][num], net=net)
     diffs = []
     for ref in sorted(set(want) | set(have)):
         if ref not in want:

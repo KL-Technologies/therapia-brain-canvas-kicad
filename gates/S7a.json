@@ -1,0 +1,497 @@
+{
+  "step": "S7a",
+  "pass": true,
+  "checks": [
+    {
+      "name": "ECO-5 applied",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "C_BIAS_INV pad2 net",
+      "expected": "BIAS_OUT_INT",
+      "actual": "BIAS_OUT_INT",
+      "pass": true
+    },
+    {
+      "name": "GND pins on the board",
+      "expected": 85,
+      "actual": 85,
+      "pass": true,
+      "note": "pins, not pads: pad_net_map keys on the pad number, so the ESP32's nine thermal pads count once. GND was 86 before ECO-5 took C_BIAS_INV pad 2 off it"
+    },
+    {
+      "name": "BIAS_OUT_INT pins",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "name": "contract parity (overrides applied)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "mechanical footprints",
+      "expected": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "PEG1",
+        "PEG2"
+      ],
+      "actual": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "PEG1",
+        "PEG2"
+      ],
+      "pass": true
+    },
+    {
+      "name": "fitted parts carrying fields",
+      "expected": 135,
+      "actual": 135,
+      "pass": true
+    },
+    {
+      "name": "parts with no table entry",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "DNP parts",
+      "expected": [
+        "R_IO15_DN",
+        "R_RST_UP"
+      ],
+      "actual": [
+        "R_IO15_DN",
+        "R_RST_UP"
+      ],
+      "pass": true
+    },
+    {
+      "name": "NPTH holes",
+      "expected": 6,
+      "actual": 6,
+      "pass": true
+    },
+    {
+      "name": "PTH pads",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "name": "zones filled and saved",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "DRC errors",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "DRC unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no new error signatures vs S6",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T17:21:45",
+  "notes": "ECO-5 moves one pad from GND to BIAS_OUT_INT and reroutes it; the BOM corrections are field-only. Parity is measured against contract/netlist_contract.json with contract/contract_overrides.json applied.",
+  "before": {
+    "footprints": 141,
+    "tracks": 1250,
+    "vias": 239,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "eco5": {
+    "ref": "C_BIAS_INV",
+    "pad": "2",
+    "pad_pos_mm": [
+      142.44,
+      90.414
+    ],
+    "net_before": "GND",
+    "net_after": "BIAS_OUT_INT",
+    "removed": [
+      {
+        "kind": "track",
+        "net": "GND",
+        "layer": "Top Layer",
+        "start_mm": [
+          142.441,
+          90.414
+        ],
+        "end_mm": [
+          142.441,
+          90.2785
+        ],
+        "width_mm": 0.203,
+        "uuid": "34443888-994a-4297-bf15-88426e2a38fd"
+      },
+      {
+        "kind": "via",
+        "net": "GND",
+        "pos_mm": [
+          142.441,
+          90.414
+        ],
+        "dia_mm": 0.6095,
+        "drill_mm": 0.305,
+        "uuid": "edd24bbb-8514-4a4e-9ab6-da2545d17209"
+      }
+    ],
+    "landing": {
+      "track": {
+        "kind": "track",
+        "net": "BIAS_OUT_INT",
+        "layer": "Bottom Layer",
+        "start_mm": [
+          130.49,
+          87.7215
+        ],
+        "end_mm": [
+          148.702,
+          87.7215
+        ],
+        "width_mm": 0.254,
+        "uuid": "a4ff6213-cc6c-410b-acd8-0a29a601d958"
+      },
+      "y_mm": 87.7215
+    },
+    "via_sites_tried": [
+      {
+        "x_mm": 141.8852,
+        "why": "via land clear of the pad",
+        "via_site": true,
+        "front_stub": true,
+        "back_drop": true,
+        "lands_on_trunk": true
+      }
+    ],
+    "ok": true,
+    "action": "rerouted",
+    "via_mm": [
+      141.8852,
+      90.414
+    ],
+    "via_choice": "via land clear of the pad",
+    "front_stub_mm": 0.5548,
+    "back_drop_mm": 2.6925,
+    "added": [
+      {
+        "kind": "via",
+        "net": "BIAS_OUT_INT",
+        "pos_mm": [
+          141.8852,
+          90.414
+        ],
+        "dia_mm": 0.6096,
+        "drill_mm": 0.3048,
+        "uuid": "6f88e9e7-0b05-46f2-9d17-d20ad1641121"
+      },
+      {
+        "kind": "track",
+        "net": "BIAS_OUT_INT",
+        "layer": "Top Layer",
+        "start_mm": [
+          142.44,
+          90.414
+        ],
+        "end_mm": [
+          141.8852,
+          90.414
+        ],
+        "width_mm": 0.2032,
+        "uuid": "a9fcb4d9-aed5-42a1-a921-1e4b7017dc55"
+      },
+      {
+        "kind": "track",
+        "net": "BIAS_OUT_INT",
+        "layer": "Bottom Layer",
+        "start_mm": [
+          141.8852,
+          90.414
+        ],
+        "end_mm": [
+          141.8852,
+          87.7215
+        ],
+        "width_mm": 0.2032,
+        "uuid": "abde341c-140f-45e6-9ce6-648b7d1f3dc9"
+      }
+    ],
+    "vias_removed": 1,
+    "vias_added": 1
+  },
+  "fields": {
+    "parts_with_fields": 135,
+    "dnp": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ],
+    "no_table_entry": []
+  },
+  "after": {
+    "footprints": 141,
+    "tracks": 1251,
+    "vias": 239,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "contract_diffs": [],
+  "mechanical_footprints": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "PEG1",
+    "PEG2"
+  ],
+  "unconnected": 0,
+  "net_pin_counts": {
+    "GND": {
+      "board": 85,
+      "contract": 85
+    },
+    "BIAS_OUT_INT": {
+      "board": 4,
+      "contract": 4
+    },
+    "BIAS_INV": {
+      "board": 3,
+      "contract": 3
+    }
+  },
+  "drc": {
+    "violations": 465,
+    "errors": 0,
+    "warnings": 465,
+    "unconnected": 0,
+    "by_type": {
+      "silk_overlap": 199,
+      "silk_over_copper": 152,
+      "courtyards_overlap": 78,
+      "track_dangling": 25,
+      "clearance": 5,
+      "via_dangling": 3,
+      "silk_edge_clearance": 2,
+      "starved_thermal": 1
+    },
+    "errors_by_type": {},
+    "signatures": []
+  },
+  "drc_vs_s6": {
+    "new_signatures": [],
+    "new_but_harmless": [],
+    "resolved_signatures": [],
+    "baseline_errors": 0,
+    "current_errors": 0,
+    "error_delta": 0,
+    "count_jitter_allowed": 2,
+    "count_within_jitter": true,
+    "regressed": false
+  },
+  "drc_regressions": [],
+  "facts": {
+    "npth": [
+      {
+        "ref": "H1",
+        "x_mm": 123.048,
+        "y_mm": 83.048,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H3",
+        "x_mm": 123.048,
+        "y_mm": 121.9608,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "PEG2",
+        "x_mm": 176.861075,
+        "y_mm": 108.097861,
+        "dia_mm": 0.700024
+      },
+      {
+        "ref": "PEG1",
+        "x_mm": 176.861075,
+        "y_mm": 113.877885,
+        "dia_mm": 0.700024
+      },
+      {
+        "ref": "H2",
+        "x_mm": 176.9468,
+        "y_mm": 83.048,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H4",
+        "x_mm": 176.9468,
+        "y_mm": 121.9608,
+        "dia_mm": 2.3876
+      }
+    ],
+    "npth_count": 6,
+    "counts": {
+      "footprints": 141,
+      "tracks": 1251,
+      "vias": 239,
+      "npth_pads": 6,
+      "pth_pads": 16
+    },
+    "contract_diffs": 0,
+    "contract_diff_detail": [],
+    "mechanical_footprints": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "PEG1",
+      "PEG2"
+    ],
+    "unconnected": 0,
+    "zones": [
+      {
+        "net": "CHASSIS_GND",
+        "layers": [
+          "Top Layer"
+        ],
+        "filled_outlines": 2
+      },
+      {
+        "net": "GND",
+        "layers": [
+          "Inner1"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "USB_5V",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "AVDD",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "AVSS",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 7
+      },
+      {
+        "net": "USB_5V",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 8
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 9
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 3
+      }
+    ],
+    "zones_all_filled": true,
+    "solder_mask_default_mm": 0.0508,
+    "solder_mask_min_web_mm": 0.0508,
+    "pad_mask_overrides": [
+      {
+        "ref": "C_VCAP1_H",
+        "pad": "2",
+        "net": "AVSS",
+        "margin_mm": 0.030722
+      },
+      {
+        "ref": "R_Q_EN_B",
+        "pad": "1",
+        "net": "CH_DTR_N",
+        "margin_mm": 0.041791
+      },
+      {
+        "ref": "R_Q_EN_B",
+        "pad": "2",
+        "net": "Q_EN_B",
+        "margin_mm": 0.041791
+      },
+      {
+        "ref": "C_VREFP_100n",
+        "pad": "1",
+        "net": "VREFP",
+        "margin_mm": 0.030722
+      },
+      {
+        "ref": "Q_IO0",
+        "pad": "3",
+        "net": "ESP_IO0",
+        "margin_mm": 0.041791
+      }
+    ],
+    "clearance_pairs_below_rule": 0,
+    "hole_pairs_below_rule": 0,
+    "copper_inside_npth_rings": {
+      "H1": 0,
+      "H2": 0,
+      "H3": 0,
+      "H4": 0,
+      "PEG1": 0,
+      "PEG2": 0
+    }
+  }
+}

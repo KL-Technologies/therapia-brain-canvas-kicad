@@ -50,6 +50,80 @@
       "status": "check_at_cart"
     }
   ],
+  "bringup_review_fixes": [
+    {
+      "id": "B1",
+      "designators": ["R_RST_UP"],
+      "action": "DNP",
+      "reason": "GPIO12(MTDI) が 10kΩ で 3.3V にプルアップされ、ESP32-WROOM-32E の起動ストラップ（IO12 は電源投入時 Low 必須。eFuse 未焼成）に違反 → 個体により flash read err で起動不能。DNP で C_RST_DLY + 内部 45kΩ プルダウンにより MTDI=0 が確定。ADS1299 の RESET# はファームが push-pull 駆動するためプルアップ不要（reports/bringup_design_review.md）",
+      "bom_cpl": "BOM と CPL から除外（フットプリント・ネットは基板に残す）",
+      "footprint_change": false
+    },
+    {
+      "id": "B2",
+      "designators": ["C_EN_DLY"],
+      "old_lcsc": "C1525",
+      "new_lcsc": "C52923",
+      "new_value": "1uF 0402",
+      "reason": "WROOM-32E データシートの EN 推奨 RC = 10kΩ/1µF。100nF では τ が 1/10。B1 とセットで実施（B1 なしで B2 だけ行うと GPIO12 が確実に High でラッチされる）",
+      "footprint_change": false
+    },
+    {
+      "id": "B3",
+      "designators": ["R_LED"],
+      "action": "keep 330R",
+      "reason": "LED を C72044（Vf 1.95V）に差し替えるため 330Ω のまま約 4.1mA。レビューの 100Ω 案は緑 LED 前提のため不採用"
+    },
+    {
+      "id": "B4",
+      "designators": ["R_IO15_DN"],
+      "action": "DNP (Rev.A 初号機 2 枚)",
+      "reason": "GPIO15 Low は ROM ブートログを止める。Rev.A の火入れでは UART のブートログ（flash read err 等）を見たいので DNP。GPIO15 は内部プルアップで High=通常起動。量産 Rev.B で実装に戻す判断は火入れ後",
+      "bom_cpl": "BOM と CPL から除外",
+      "footprint_change": false
+    },
+    {
+      "id": "ECO-5",
+      "designators": ["C_BIAS_INV"],
+      "action": "topology change: pin2 GND -> BIAS_OUT_INT, value 100nF -> 1.5nF",
+      "new_lcsc": "C23967",
+      "new_mpn": "CL05B152KB5NNNC",
+      "new_value": "1.5nF 50V X7R 0402",
+      "part_note": "JLC Basic に 1.5nF 0402 は存在しないため Extended。帰還 C は両端 DC 差≈0 なので X7R の DC バイアス減衰は効かない（opusQ1 裏取り: https://jlcpcb.com/partdetail/C23967 ）。第2候補 C284989",
+      "reason": "現状は BIASINV（加算節点）→GND に 100nF。TI SBAS499 の BIAS 駆動回路は 1MΩ∥1.5nF を BIASOUT→BIASINV の帰還に置く。加算節点の大容量は位相余裕を削り（発振リスク）、かつ内部 220kΩ 級との極が数 Hz になり 50Hz での DRL 利得が失われる（CMRR 低下）。帰還 1.5nF に直すと TI 推奨どおり。PCB 変更: C_BIAS_INV pin2 のネットを GND→BIAS_OUT_INT（R_BIAS_FB pin2 と同ネット、隣接）に変更し短いトラックで接続、GND 側の via/スタブは除去。契約ネットリストは contract/contract_overrides.json で 1 パッドだけ上書き。EasyEDA 回路図への反映は ECO-5 として別途（発注には不要）",
+      "footprint_change": false,
+      "copper_change": true,
+      "assigned_to": "S7 (opusD) — DRC ループ収束後に適用し DRC 再実行",
+      "cross_check_s7": "S7 が独立に調べた結果も C23967 を同スペックで確認（C0402 / 1.5nF / 50V X7R ±10% / Extended / 在庫 JLC 12,373・LCSC 60,236）。JLC 部品検索 API に componentLibraryType=base を付けて 1.5nF/1500pF 0402 を走査してもヒット 0 で、Basic 不在も裏が取れた（同形式のクエリで 100nF 0402 + base は C1525 を返すのでフィルタは機能している）。C0G が要るなら C668348（Murata GRM1555C1H152JA01D、1.5nF 50V C0G ±5%、Extended、在庫 JLC 178,585）が同一 C0402 パッケージで置換可能。ただし帰還 C の両端 DC 差は≈0 で X7R の DC バイアス減衰は効かず、残る温度ドリフト ±15% も 1MΩ∥1.5nF の極 106Hz を ±15% 動かすだけなので DRL 動作に影響しない。opusQ1 の選定どおり C23967 を採用した",
+      "status": "decided (part C23967), applied to board by S7 2026-08-28"
+    }
+  ],
+  "mechanical_decisions": [
+    {
+      "id": "M1",
+      "item": "AMS1117 本体が取付穴 H4 (176.9468, 121.9608) の真上に位置する（L1 修理で +3.25/+1.25mm 移設。±8mm 探索で本体が穴に掛からない位置なし）",
+      "decision": "受容。H4 は上面（部品面）にネジ頭・ナットを置かない: 筐体側は H1〜H3 の 3 点止め、または H4 は下面からの位置決めピン/スタンドオフのみ。10_enclosure_design.md に反映すること",
+      "decided_by": "lead 2026-08-28"
+    },
+    {
+      "id": "M2",
+      "item": "J1(USB-C) pin1/pin12 の GND ランドをペグ穴側の軸で 0.05mm/片側 詰めた（1.10→1.00mm）。NPTH ペグとの穴縁間 0.1712→0.2211mm",
+      "decision": "受容。機械保持は PTH シェル脚 pad13/14 が担い、pin1/12 は信号 GND。JLC の穴-銅 0.2mm ルールを満たす方を優先",
+      "decided_by": "lead 2026-08-28"
+    }
+  ],
+  "cart_notes": [
+    "基板 61.8×45mm は JLC Standard PCBA の単板最小 70×70mm 未満 → Economic PCBA で発注（部品要件は全て Economic 範囲内: 最小 0402・TQFP 0.5mm）。Standard を使うならパネル化が必要",
+    "Extended 部品: ADS1299 / LM2664 / TPS72325 / TLV70025 / C72044(LED) 等は手数料対象",
+    "CHASSIS_GND は GND に対してフローティング（Rev.A 受容）。J2 pin12(SHLD) は Rev.A では電極ケーブルに接続しない運用"
+  ],
+  "firmware_and_bringup_musts": [
+    "MISC1 レジスタは 0x00（Cerelog 既定の 0x20 は不可: SRB1 が内部で全 ch の N 側に接続され ch4 の ECGN が SRB1 に短絡し ECG が壊れる）。本基板は ch4 以外の N 側を外部 10kΩ で SRB1 に接続済み。未使用 ch は CHnSET=0x81",
+    "ADS1299 のリセット手順: 電源投入 → tPOR 128ms 以上待つ → RESET# パルス（Cerelog firmware は PWDN#/RESET# 同時 High のみで非適合）。VCAP1=100µF 化で充電時間が延びるため火入れで VCAP1 を AVSS 基準で実測",
+    "ADS1299 の GPIO レジスタ(0x14) を出力に設定しない（GPIO1-4 は GND 直結）",
+    "R_RST_UP 実装済み基板の救済: espefuse.py set-flash-voltage 3.3V（予備手順）",
+    "火入れ順序と合格値は reports/bringup_checklist.md"
+  ],
   "stock_watch_at_cart": [
     {"lcsc": "C69932", "part": "TPS72325DBVR", "note": "LCSC 0 / JLC SZ 3,843。カートで実装在庫を確認"},
     {"lcsc": "C701341", "part": "ESP32-WROOM-32E-N4", "note": "在庫表示がソース間で乖離。カートで確認"},
