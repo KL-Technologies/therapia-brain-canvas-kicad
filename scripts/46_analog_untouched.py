@@ -499,6 +499,31 @@ def write_report(root, sha, dumps, rows, moved, counts, unexplained,
         L.append("\nつまり **1 件も無い**。S4a〜S7a の修理はどれも入力系の銅に"
                  "触れていない。")
     L.append("")
+    xor = os.path.join(root, "logs", "copper_xor.json")
+    if os.path.exists(xor):
+        doc = E.load_json(xor)
+        L.append("## 変化した銅箔の画像\n")
+        L.append("`scripts/64_copper_xor.py` が同じ枠・同じ倍率で両方の基板を"
+                 "ラスタ化し、画素ごとにどちらに銅があるかを塗り分けたもの。"
+                 "**灰＝両方（不変）／緑＝現在のみ（追加）／赤＝取り込み時のみ（削除）**。\n")
+        L.append("| 層 | 画像 | 不変 [px] | 追加 [px] | 削除 [px] | 変化率 |")
+        L.append("|---|---|---|---|---|---|")
+        for lay in ("F.Cu", "B.Cu"):
+            r = doc.get("layers", {}).get(lay) or {}
+            if not r.get("ok"):
+                continue
+            L.append("| %s | `reports/%s` | %d | %d | %d | %.2f%% |"
+                     % (lay, os.path.basename(r["png"]), r["pixels_both"],
+                        r["pixels_added"], r["pixels_removed"],
+                        100.0 * r["changed_fraction"]))
+        L.append("")
+        L.append("> F.Cu の画像で、**基板左半分（12 ピンヘッダ・入力抵抗 16 個・"
+                 "CM コンデンサ 16 個・そこから ADS1299 までの配線）が一様に灰色**"
+                 "であることが、上の「差分 0 件」の目視版。"
+                 "赤緑が固まっているのは ADS1299 北側（VCAP 系）、"
+                 "中央下（BIAS/ECO-5）、右下（AMS1117 の移設と USB-C 周り）の 3 箇所だけ。\n")
+        L.append("> B.Cu の左上にある赤緑の対は L2（CHASSIS_GND を H1 の外へ"
+                 "引き直した）そのもの。赤が穴を貫いていた旧経路、緑が新経路。\n")
     L.append("## 差分の内訳\n")
     L.append("| 由来 | 件数 |\n|---|---|")
     for k in sorted(counts):

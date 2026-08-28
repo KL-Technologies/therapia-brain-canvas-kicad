@@ -11,3 +11,9 @@ board/~*.lck
 # creation timestamps that would churn on every export. board.d356 is kept: it is
 # one file and JLC accepts it for flying-probe testing.
 fab/odb/
+
+# Working copies for the copper XOR and the analog diff: an extracted baseline
+# board and four SVG plots, all regenerable from git in seconds. The images they
+# produce (reports/copper_xor_*.png) are kept.
+logs/copper_xor/
+logs/analog_diff/*.kicad_pcb

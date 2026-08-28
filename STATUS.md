@@ -434,6 +434,25 @@ C 番号から引き直す — そうしないと `C_EN_DLY` が「1 µF」と�
 「部品の周囲◯ mm」では届かないし、AVDD の via が 0.89 mm 動いたのは
 **取り込み時 DRC が最初に出した AVDD/AVSS の clearance** が理由だった。
 
+#### 変化した銅箔の画像（`scripts/64_copper_xor.py`）
+
+差分表の目視版。両方の基板を**同じ A4 枠・同じ倍率**でラスタ化し、画素ごとに
+どちらに銅があるかを塗り分ける（灰＝両方／緑＝追加／赤＝削除）。
+`reports/copper_xor_f_cu.png` / `copper_xor_b_cu.png`。
+
+F.Cu で**基板左半分（12 ピンヘッダ・入力抵抗 16 個・CM コンデンサ 16 個・
+そこから ADS1299 までの配線）が一様に灰色**であることが、「入力系の差分 0 件」の
+目視版になっている。赤緑が固まっているのは ADS1299 北側・中央下（BIAS）・
+右下（AMS1117 と USB-C）の 3 箇所だけ。
+B.Cu 左上の赤緑の対は L2（CHASSIS_GND を H1 の外へ引き直した）そのもの。
+
+**`pcb render` は 3D なので比較に使えない**（光源と遠近がある）。`export svg` は平面だが、
+`--page-size-mode 2` は**内容に合わせて紙を切る**ので 2 枚の高さが 1421 と 1456 になり揃わない。
+`--page-size-mode 0`（A4 固定）で出してから基板矩形だけをレンダリングしている。
+なお nanosvg は "297mm" を 96 dpi で px に直すので、`scale` は mm ではなく
+**その自然サイズに対する倍率**（1 mm = 3.7795 px）。ここを取り違えると
+エラーではなく**真っ白な画像**が出る。
+
 ### S7c — レイアウト品質（`scripts/47_layout_quality.py` / `reports/layout_review.md`）
 
 `docs/ads1299_layout_checklist.md`（opusQ3、一次資料ベース）の J1〜J11 を実測。
@@ -752,6 +771,8 @@ scripts/62_check_fab.py            製造データの独立検査
 scripts/63_gate_s8.py              製造パッケージのゲート
 scripts/lib/gerber_parse.py        RS-274X / Excellon リーダ（標準ライブラリのみ）。X2 属性の状態機械つき
 scripts/lib/ipcd356.py             IPC-D-356 リーダ（80 桁固定長。座標は aux 原点 (120,80) mm・Y 反転）
+scripts/64_copper_xor.py           取り込み時と現在の F.Cu/B.Cu を画素単位で比較した画像（標準ライブラリで PNG を書く）
+reports/copper_xor_f_cu.png reports/copper_xor_b_cu.png  同上の出力
 fab/README_発注手順.md              JLC 発注の手順と、投入前に人が見る 4 点
 reports/analog_diff.md             アナログ配線の差分と、その全件の由来
 reports/layout_review.md           レイアウト品質の実測と改善の記録

@@ -175,8 +175,13 @@ run_step S6 "run the DRC repair loop to convergence" \
 run_step S7a "apply ECO-5 and the BOM corrections" \
   "$KPY" "$ROOT/scripts/45_apply_eco5_and_bom.py" --root "$ROOT" || exit 1
 
-run_step S7b "prove the analog signal path was never touched" \
-  "$KPY" "$ROOT/scripts/46_analog_untouched.py" --root "$ROOT" || exit 1
+s7b() {
+  # The picture first, so the report can point at it. It is a review aid, not
+  # a criterion -- a pixel count is not a threshold anyone should gate on.
+  "$KPY" "$ROOT/scripts/64_copper_xor.py" --root "$ROOT" || return 1
+  "$KPY" "$ROOT/scripts/46_analog_untouched.py" --root "$ROOT" || return 1
+}
+run_step S7b "prove the analog signal path was never touched" s7b || exit 1
 
 # 48 moves a capacitor only if it finds a position that is both nearer and
 # free of vias, and saves nothing otherwise, so it is safe to re-run: on a
