@@ -1,0 +1,26 @@
+{
+  "step": "S5_mask",
+  "pass": true,
+  "checks": [
+    {
+      "name": "bridges_addressed",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "none_need_an_amendment",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T16:51:39",
+  "notes": "0 bridged pairs; 0 pads had their mask margin reduced to restore a 0.0508 mm web. The board-wide value in ACCEPTANCE C is unchanged.",
+  "min_web_mm": 0.0508,
+  "board_margin_mm": 0.0508,
+  "bridges_in_report": 0,
+  "pairs": [],
+  "not_fixable_by_margin": [],
+  "pads_retuned": []
+}

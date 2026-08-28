@@ -47,6 +47,18 @@ NUDGE_MAX = int(0.6 * P.IU)
 BODY_GAP = int(0.15 * P.IU)
 
 
+def gap_between(pcbnew, a, b, target):
+    """Copper gap between two items on a layer they share, or None."""
+    import route as _R
+    for layer in set(_R.item_layers(pcbnew, a)) & set(_R.item_layers(pcbnew, b)):
+        try:
+            return P._actual_gap(a.GetEffectiveShape(layer),
+                                 b.GetEffectiveShape(layer), int(target * 2))
+        except Exception:
+            continue
+    return None
+
+
 def nudge_footprint(pcbnew, board, idx, pad, other, holes, target):
     """Move a pad's footprint just far enough to open the gap.
 
@@ -128,9 +140,24 @@ def nudge_footprint(pcbnew, board, idx, pad, other, holes, target):
         if not good:
             fp.Move(pcbnew.VECTOR2I(int(-mx), int(-my)))
             continue
+        undo = [(t, (t.GetStart().x, t.GetStart().y),
+                 (t.GetEnd().x, t.GetEnd().y)) for t, _a, _b in moves]
         for t, a2, b2 in moves:
             t.SetStart(pcbnew.VECTOR2I(int(a2[0]), int(a2[1])))
             t.SetEnd(pcbnew.VECTOR2I(int(b2[0]), int(b2[1])))
+        # The legality sweep above ignores the part's own pads and its own
+        # attached tracks, so it cannot see a pinch between the two -- which is
+        # what C_RST_DLY had, its ADS_RESET_N track 0.0685 mm from its own
+        # ground pad. Confirm the actual pair opened up, or put the part back;
+        # a nudge that reports success without moving the violation is how the
+        # DRC loop ended up shuffling one part back and forth.
+        g = None if other is None else gap_between(pcbnew, pad, other, target)
+        if g is not None and g < target:
+            for t, s0, e0 in undo:
+                t.SetStart(pcbnew.VECTOR2I(int(s0[0]), int(s0[1])))
+                t.SetEnd(pcbnew.VECTOR2I(int(e0[0]), int(e0[1])))
+            fp.Move(pcbnew.VECTOR2I(int(-mx), int(-my)))
+            continue
         idx.rebuild()
         return {"ok": True, "method": "footprint nudge", "ref": ref,
                 "offset_mm": [P.mm(mx), P.mm(my)],

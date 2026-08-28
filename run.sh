@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_mask S6)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -30,7 +30,9 @@ show_status() {
 import json, os, sys
 root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
-for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4"):
+for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
+             "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
+             "S5_mask", "S6"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -137,6 +139,37 @@ s4() {
   "$KPY" "$ROOT/scripts/20_apply_eco.py" --root "$ROOT" || return 1
 }
 run_step S4 "apply ECO-1/2/3 to the PCB" s4 || exit 1
+
+# --- S5: the layout repairs L1-L5 -------------------------------------------
+# The KIID fix comes first. DRC resolves the items in a violation by uuid, and
+# the importer gave 231 uuids to more than one item, so until this runs the
+# report names the wrong things and every repair that reads it is guessing.
+run_step S5_uuids "give every board item its own KIID" \
+  "$PY3" "$ROOT/scripts/26_fix_uuids.py" --root "$ROOT" || exit 1
+
+run_step S5_L1 "move AMS1117 out of mounting hole H4" \
+  "$KPY" "$ROOT/scripts/30_repair_L1.py" --root "$ROOT" || exit 1
+run_step S5_L2 "route CHASSIS_GND around mounting hole H1" \
+  "$KPY" "$ROOT/scripts/31_repair_L2.py" --root "$ROOT" || exit 1
+run_step S5_L3 "move the ESP_TXD track clear of H4" \
+  "$KPY" "$ROOT/scripts/32_repair_L3.py" --root "$ROOT" || exit 1
+run_step S5_L4 "clear the USB-C peg holes PEG1 and PEG2" \
+  "$KPY" "$ROOT/scripts/33_repair_L4.py" --root "$ROOT" || exit 1
+run_step S5_L5 "pull apart the remaining clearance pinches" \
+  "$KPY" "$ROOT/scripts/34_repair_L5.py" --root "$ROOT" || exit 1
+
+s5_mask() {
+  "$KC" pcb drc --format json --severity-all --units mm --refill-zones \
+    --save-board -o "$ROOT/logs/drc_before_mask.json" \
+    "$ROOT/board/Therapia_EEG-HRV.kicad_pcb" >/dev/null 2>&1
+  "$KPY" "$ROOT/scripts/35_mask_bridges.py" --root "$ROOT" \
+    --drc logs/drc_before_mask.json
+}
+run_step S5_mask "close the merged solder mask openings" s5_mask || exit 1
+
+# --- S6: iterate DRC and repair until it is clean ----------------------------
+run_step S6 "run the DRC repair loop to convergence" \
+  "$PY3" "$ROOT/scripts/40_drc_loop.py" --root "$ROOT" --no-commit || exit 1
 
 echo
 show_status

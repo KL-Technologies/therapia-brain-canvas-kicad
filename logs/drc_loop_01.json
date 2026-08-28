@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-08-28T16:49:51",
+    "date": "2026-08-28T16:51:40",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -46,29 +46,6 @@
     "source": "Therapia_EEG-HRV.kicad_pcb",
     "unconnected_items": [],
     "violations": [
-        {
-            "description": "Clearance violation (netclass 'Power' clearance 0.0889 mm; actual 0.0685 mm)",
-            "items": [
-                {
-                    "description": "Track [ADS_RESET_N] on Top Layer, length 0.4308 mm",
-                    "pos": {
-                        "x": 147.586,
-                        "y": 83.467
-                    },
-                    "uuid": "04473691-7a09-4c6a-9a51-61cb5876dc7e"
-                },
-                {
-                    "description": "Pad 2 [GND] of C_RST_DLY on Top Layer",
-                    "pos": {
-                        "x": 147.586,
-                        "y": 82.628
-                    },
-                    "uuid": "cba91f15-c3fb-4eef-a999-9b03b0ea9ad9"
-                }
-            ],
-            "severity": "error",
-            "type": "clearance"
-        },
         {
             "description": "Track has unconnected end",
             "items": [

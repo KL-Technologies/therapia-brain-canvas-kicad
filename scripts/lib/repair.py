@@ -795,6 +795,19 @@ def fix_clearance_pair(pcbnew, board, idx, pair, holes, target=None,
             return rec
         rec.setdefault("via_attempts", []).append(res.get("reason"))
 
+    # A corner is cheaper to move than a length of track, and it is the only
+    # thing that works when the pinch is at the endpoint itself.
+    for first, second in ((a, b), (b, a)):
+        if first.GetClass() not in ("PCB_TRACK", "PCB_ARC"):
+            continue
+        res = retreat_track_end(pcbnew, board, idx, first, second, target,
+                                holes, exclude=exclude)
+        if res.get("ok"):
+            rec.update(res)
+            rec["moved"] = "track end"
+            return rec
+        rec.setdefault("end_attempts", []).append(res.get("reason"))
+
     for first, second in ((a, b), (b, a)):
         if first.GetClass() not in ("PCB_TRACK", "PCB_ARC"):
             continue
@@ -817,6 +830,78 @@ def fix_clearance_pair(pcbnew, board, idx, pair, holes, target=None,
     rec["reason"] = ("neither item can be moved: %s"
                      % " and ".join(sorted({a.GetClass(), b.GetClass()})))
     return rec
+
+
+def shared_ends(pcbnew, board, point, netcode, tol=None):
+    """Tracks with an endpoint at `point`, as [(track, "start"|"end")]."""
+    tol = tol if tol is not None else int(0.001 * IU)
+    out = []
+    for t in board.GetTracks():
+        if t.GetClass() == "PCB_VIA" or t.GetNetCode() != netcode:
+            continue
+        for which, p in (("start", t.GetStart()), ("end", t.GetEnd())):
+            if math.hypot(p.x - point[0], p.y - point[1]) <= tol:
+                out.append((t, which))
+    return out
+
+
+def retreat_track_end(pcbnew, board, idx, track, other, target, holes,
+                      max_move_mm=0.8, step_mm=0.0254, exclude=()):
+    """Move the corner a track ends on, taking every track that meets it.
+
+    Needed for the case a detour cannot touch: when the closest point to the
+    offending item is the track's own *endpoint*, re-routing between the same
+    two endpoints cannot help, because one of them is the violation. The
+    ADS_RESET_N track leaving C_RST_DLY pin 1 is exactly that -- it turns west
+    0.0685 mm from the capacitor's own ground pad, and every path between its
+    fixed ends passes through that corner.
+
+    Both tracks that meet at the corner move with it, and the result is
+    verified against the whole board before it is kept.
+    """
+    rl = rules(clearance=target)
+    s, e = track.GetStart(), track.GetEnd()
+    oc = _centre(pcbnew, other)
+    ends = [((s.x, s.y), "start"), ((e.x, e.y), "end")]
+    ends.sort(key=lambda p: math.hypot(p[0][0] - oc[0], p[0][1] - oc[1]))
+    point = ends[0][0]
+    net = track.GetNetCode()
+    group = shared_ends(pcbnew, board, point, net)
+    if not group:
+        return {"ok": False, "reason": "no track endpoint at the pinch"}
+    ig = list(exclude) + [t for t, _w in group]
+
+    for q in R.ring_points(point[0], point[1], step_mm * IU,
+                           max_move_mm * IU, int(step_mm * IU)):
+        good = True
+        for t, which in group:
+            ts, te = t.GetStart(), t.GetEnd()
+            a2 = (q[0], q[1]) if which == "start" else (ts.x, ts.y)
+            b2 = (te.x, te.y) if which == "start" else (q[0], q[1])
+            if a2 == b2:
+                good = False
+                break
+            if not R.straight_ok(idx, pcbnew, board, a2, b2, t.GetLayer(),
+                                 t.GetWidth(), net, rl.clearance,
+                                 rl.hole_clearance, ignore=ig):
+                good = False
+                break
+        if not good:
+            continue
+        was = [describe(board, t) for t, _w in group]
+        for t, which in group:
+            if which == "start":
+                t.SetStart(pcbnew.VECTOR2I(int(q[0]), int(q[1])))
+            else:
+                t.SetEnd(pcbnew.VECTOR2I(int(q[0]), int(q[1])))
+        idx.rebuild()
+        return {"ok": True, "method": "track end retreat",
+                "from_mm": [mm(point[0]), mm(point[1])],
+                "to_mm": [mm(q[0]), mm(q[1])],
+                "moved_mm": mm(math.hypot(q[0] - point[0], q[1] - point[1])),
+                "tracks_moved": len(group), "was": was}
+    return {"ok": False,
+            "reason": "no position for the corner within %.2f mm" % max_move_mm}
 
 
 def clear_hole(pcbnew, board, idx, name, hole, margin, nets=None,
@@ -1074,6 +1159,22 @@ def load_drc(path):
         return json.load(f)
 
 
+def load_baseline(root, name):
+    """The DRC report a step compares itself against, or None.
+
+    Each repair names the report of the step before it, so a run in a different
+    order -- or a first run of one step on its own -- would otherwise die on a
+    missing file. Falling back to the pre-repair baseline keeps the regression
+    check meaningful; dropping it entirely only loses the comparison, and the
+    step's own before/after measurements still stand.
+    """
+    for candidate in (name, "drc_S5_before", "drc_after_eco"):
+        p = os.path.join(root or ROOT, "logs", candidate + ".json")
+        if os.path.exists(p):
+            return load_drc(p)
+    return None
+
+
 def unconnected_count(pcbnew, board):
     """KiCad's own answer, in-process. Matches DRC's unconnected_items count.
 
@@ -1236,12 +1337,13 @@ def run_hole_step(step, hole_names, nets, notes, root=None, skip_drc=False,
     if not skip_drc:
         drc_ok, cur, _p = drc_with_healing(root, step.lower(), log=log)
         if drc_ok:
-            base = load_drc(os.path.join(root, "logs", baseline + ".json"))
-            delta = drc_delta(base, cur)
-            sig = D.compare(base, cur)
+            base = load_baseline(root, baseline)
+            if base is not None:
+                delta = drc_delta(base, cur)
+                sig = D.compare(base, cur)
+                log["drc_delta"] = delta
             log["drc_after"] = {"errors_by_type": by_type(cur),
                                 "unconnected": unconnected(cur)}
-            log["drc_delta"] = delta
 
     left = sum(len(v) for v in after.values())
     checks = [

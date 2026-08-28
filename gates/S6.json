@@ -25,49 +25,321 @@
       "expected": 0,
       "actual": 0,
       "pass": true
+    },
+    {
+      "name": "contract_parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "npth_holes",
+      "expected": [
+        [
+          "H1",
+          123.048,
+          83.048,
+          2.3876
+        ],
+        [
+          "H2",
+          176.9468,
+          83.048,
+          2.3876
+        ],
+        [
+          "H3",
+          123.048,
+          121.9608,
+          2.3876
+        ],
+        [
+          "H4",
+          176.9468,
+          121.9608,
+          2.3876
+        ],
+        [
+          "PEG1",
+          176.8611,
+          113.8779,
+          0.7
+        ],
+        [
+          "PEG2",
+          176.8611,
+          108.0979,
+          0.7
+        ]
+      ],
+      "actual": [
+        [
+          "H1",
+          123.048,
+          83.048,
+          2.3876
+        ],
+        [
+          "H2",
+          176.9468,
+          83.048,
+          2.3876
+        ],
+        [
+          "H3",
+          123.048,
+          121.9608,
+          2.3876
+        ],
+        [
+          "H4",
+          176.9468,
+          121.9608,
+          2.3876
+        ],
+        [
+          "PEG1",
+          176.8611,
+          113.8779,
+          0.7
+        ],
+        [
+          "PEG2",
+          176.8611,
+          108.0979,
+          0.7
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "name": "pth_pads_unchanged",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "name": "zones_refilled",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "no_copper_in_npth_rings",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "clearance_pairs_below_rule",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "hole_pairs_below_rule",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
     }
   ],
-  "timestamp": "2026-08-28T16:49:55",
-  "notes": "2 iterations; stopped: clean. Final DRC: 0 errors, 0 unconnected.",
+  "timestamp": "2026-08-28T16:51:42",
+  "notes": "1 iterations; stopped: clean. Final DRC: 0 errors, 0 unconnected. Vias 239 (S2 measured 238, S4 left 240).",
   "history": [
     {
       "iteration": 1,
-      "errors": 1,
-      "unconnected": 0,
-      "by_type": {
-        "clearance": 1
-      },
-      "signature_hash": "18c344f90a393213",
-      "report": "logs/drc_loop_01.json",
-      "fix_pass": {
-        "fixed": 1,
-        "unresolved": 0,
-        "contract_diffs": 0,
-        "islands_reconnected": 0,
-        "counts": {
-          "footprints": 141,
-          "tracks": 1250,
-          "vias": 239,
-          "npth_pads": 6,
-          "pth_pads": 16
-        }
-      },
-      "unresolved_detail": []
-    },
-    {
-      "iteration": 2,
       "errors": 0,
       "unconnected": 0,
       "by_type": {},
       "signature_hash": "e3b0c44298fc1c14",
-      "report": "logs/drc_loop_02.json"
+      "report": "logs/drc_loop_01.json"
     }
   ],
   "stop": "clean",
   "final_by_type": {},
   "final_report": "logs/drc_s6_final.json",
   "escalations": [],
-  "counts_at_end": null,
+  "board_facts": {
+    "npth": [
+      {
+        "ref": "H1",
+        "x_mm": 123.048,
+        "y_mm": 83.048,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H3",
+        "x_mm": 123.048,
+        "y_mm": 121.9608,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "PEG2",
+        "x_mm": 176.861075,
+        "y_mm": 108.097861,
+        "dia_mm": 0.700024
+      },
+      {
+        "ref": "PEG1",
+        "x_mm": 176.861075,
+        "y_mm": 113.877885,
+        "dia_mm": 0.700024
+      },
+      {
+        "ref": "H2",
+        "x_mm": 176.9468,
+        "y_mm": 83.048,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H4",
+        "x_mm": 176.9468,
+        "y_mm": 121.9608,
+        "dia_mm": 2.3876
+      }
+    ],
+    "npth_count": 6,
+    "counts": {
+      "footprints": 141,
+      "tracks": 1250,
+      "vias": 239,
+      "npth_pads": 6,
+      "pth_pads": 16
+    },
+    "contract_diffs": 0,
+    "contract_diff_detail": [],
+    "mechanical_footprints": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "PEG1",
+      "PEG2"
+    ],
+    "unconnected": 0,
+    "zones": [
+      {
+        "net": "CHASSIS_GND",
+        "layers": [
+          "Top Layer"
+        ],
+        "filled_outlines": 2
+      },
+      {
+        "net": "GND",
+        "layers": [
+          "Inner1"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "USB_5V",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "AVDD",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "AVSS",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 7
+      },
+      {
+        "net": "USB_5V",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 8
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 1
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 9
+      },
+      {
+        "net": "VDD_ESP",
+        "layers": [
+          "Inner2"
+        ],
+        "filled_outlines": 3
+      }
+    ],
+    "zones_all_filled": true,
+    "solder_mask_default_mm": 0.0508,
+    "solder_mask_min_web_mm": 0.0508,
+    "pad_mask_overrides": [
+      {
+        "ref": "C_VCAP1_H",
+        "pad": "2",
+        "net": "AVSS",
+        "margin_mm": 0.030722
+      },
+      {
+        "ref": "R_Q_EN_B",
+        "pad": "1",
+        "net": "CH_DTR_N",
+        "margin_mm": 0.041791
+      },
+      {
+        "ref": "R_Q_EN_B",
+        "pad": "2",
+        "net": "Q_EN_B",
+        "margin_mm": 0.041791
+      },
+      {
+        "ref": "C_VREFP_100n",
+        "pad": "1",
+        "net": "VREFP",
+        "margin_mm": 0.030722
+      },
+      {
+        "ref": "Q_IO0",
+        "pad": "3",
+        "net": "ESP_IO0",
+        "margin_mm": 0.041791
+      }
+    ],
+    "clearance_pairs_below_rule": 0,
+    "hole_pairs_below_rule": 0,
+    "copper_inside_npth_rings": {
+      "H1": 0,
+      "H2": 0,
+      "H3": 0,
+      "H4": 0,
+      "PEG1": 0,
+      "PEG2": 0
+    }
+  },
+  "via_count": {
+    "s2_import": 238,
+    "after_s4_eco": 240,
+    "now": 239
+  },
   "allowed_warning_kinds": [
     "courtyards_overlap",
     "silk_overlap",

@@ -192,6 +192,15 @@ def main():
     if changed:
         pcbnew.SaveBoard(bpath, board)
         log["saved"] = True
+
+    P.gate(root, "S5_mask", [
+        P.check("bridges_addressed", len(bridges),
+                len(pairs) + len(impossible)),
+        P.check("none_need_an_amendment", 0, len(impossible)),
+    ], notes="%d bridged pairs; %d pads had their mask margin reduced to "
+             "restore a %.4f mm web. The board-wide value in ACCEPTANCE C is "
+             "unchanged." % (len(bridges), len(changed), P.mm(web)),
+       extra=log)
     print(json.dumps(log, indent=1))
     return 0 if not impossible else 1
 

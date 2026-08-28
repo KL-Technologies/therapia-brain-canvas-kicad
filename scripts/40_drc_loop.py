@@ -53,6 +53,18 @@ BOARD = "board/Therapia_EEG-HRV.kicad_pcb"
 # Violation kinds ACCEPTANCE A allows to remain as warnings. Anything of error
 # severity outside this list has to go; this list is not consulted to *demote*
 # anything, only to describe the gate.
+# ACCEPTANCE D's table, as (ref, x, y, diameter) in mm. These are mechanical
+# features; no repair may move one, and the gate says so rather than trusting
+# that none did.
+EXPECTED_NPTH = {
+    ("PEG2", 176.8611, 108.0979, 0.7),
+    ("PEG1", 176.8611, 113.8779, 0.7),
+    ("H1", 123.048, 83.048, 2.3876),
+    ("H2", 176.9468, 83.048, 2.3876),
+    ("H3", 123.048, 121.9608, 2.3876),
+    ("H4", 176.9468, 121.9608, 2.3876),
+}
+
 ALLOWED_WARNING_KINDS = (
     "courtyards_overlap", "silk_overlap", "silk_over_copper",
     "silk_edge_clearance", "starved_thermal", "track_dangling", "via_dangling",
@@ -183,9 +195,12 @@ def main():
             break
 
         if h in seen_hashes:
-            rec["oscillation_with_iteration"] = seen_hashes[h]
+            rec["same_violations_as_iteration"] = seen_hashes[h]
             history.append(rec)
-            stop = "oscillating"
+            # An identical set one iteration later means the pass achieved
+            # nothing; an identical set further back means the repairs are
+            # pushing the same problem around a cycle.
+            stop = ("stalled" if seen_hashes[h] == it - 1 else "oscillating")
             break
         seen_hashes[h] = it
 
@@ -255,24 +270,50 @@ def main():
                               note="left standing at the end of the loop")))
             n += 1
 
-    # counts that the gate reports rather than tests
-    counts = history[-1].get("fix_pass", {}).get("counts") if history else None
+    # Everything else the gate asserts is measured from the saved board, not
+    # carried forward from a pass's own log.
+    proc = subprocess.run([kicad_python(),
+                           os.path.join(root, "scripts", "42_board_facts.py"),
+                           "--root", root],
+                          capture_output=True, text=True)
+    try:
+        facts = json.loads(proc.stdout)
+    except ValueError:
+        facts = {"error": "board facts did not run",
+                 "stderr": proc.stderr[-400:]}
+
+    npth = {(h["ref"], round(h["x_mm"], 4), round(h["y_mm"], 4),
+             round(h["dia_mm"], 4)) for h in facts.get("npth", [])}
     checks = [
         E.gate_check("drc_errors", 0, len(errs)),
         E.gate_check("unconnected", 0, unconn),
         E.gate_check("stopped_because", "clean", stop),
         E.gate_check("no_escalations", 0, len(escalated)),
+        E.gate_check("contract_parity", 0, facts.get("contract_diffs", -1)),
+        E.gate_check("npth_holes", sorted(EXPECTED_NPTH), sorted(npth)),
+        E.gate_check("pth_pads_unchanged", 16,
+                     facts.get("counts", {}).get("pth_pads")),
+        E.gate_check("zones_refilled", True, facts.get("zones_all_filled")),
+        E.gate_check("no_copper_in_npth_rings", 0,
+                     sum(facts.get("copper_inside_npth_rings", {}).values())),
+        E.gate_check("clearance_pairs_below_rule", 0,
+                     facts.get("clearance_pairs_below_rule", -1)),
+        E.gate_check("hole_pairs_below_rule", 0,
+                     facts.get("hole_pairs_below_rule", -1)),
     ]
+    vias = facts.get("counts", {}).get("vias")
     E.write_gate(os.path.join(root, "gates", "S6.json"), "S6", checks,
                  notes="%d iterations; stopped: %s. Final DRC: %d errors, "
-                       "%d unconnected."
-                       % (len(history), stop, len(errs), unconn),
+                       "%d unconnected. Vias %s (S2 measured 238, S4 left "
+                       "240)." % (len(history), stop, len(errs), unconn, vias),
                  extra={"history": history, "stop": stop,
                         "final_by_type": dict(collections.Counter(
                             v.get("type") for v in errs).most_common()),
                         "final_report": os.path.relpath(final_path, root),
                         "escalations": escalated,
-                        "counts_at_end": counts,
+                        "board_facts": facts,
+                        "via_count": {"s2_import": 238, "after_s4_eco": 240,
+                                      "now": vias},
                         "allowed_warning_kinds": list(ALLOWED_WARNING_KINDS)})
     if not a.no_commit:
         git(root, "add", "board", "logs", "gates", "escalations")
