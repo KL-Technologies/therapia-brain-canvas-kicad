@@ -41,7 +41,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T18:24:41",
+  "timestamp": "2026-08-28T18:29:23",
   "notes": "Measured against docs/ads1299_layout_checklist.md (J1-J11). TI states no numeric distance for decoupling, so distances are reported, not scored. The board is not modified unless an improvement is found that is both nearer and via-free.",
   "plane_nets": [
     "AVDD",
