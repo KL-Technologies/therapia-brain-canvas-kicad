@@ -1,5 +1,5 @@
 {
-  "board": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/analog_diff/baseline.kicad_pcb",
+  "board": "./logs/analog_diff/baseline.kicad_pcb",
   "items": [
     {
       "kind": "track",

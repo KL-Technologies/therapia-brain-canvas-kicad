@@ -1,0 +1,11 @@
+{
+  "_comment": "Component-body overlaps that are accepted, for ACCEPTANCE H (scripts/64_body_overlap.py). A pair listed here is still reported; it just does not fail the gate. Add an entry only for a mechanical decision someone has actually taken, and write down who took it and why.",
+  "allow": [
+    {
+      "pair": ["AMS1117", "H4"],
+      "decision": "M1",
+      "why": "The regulator body overhangs the M2 mounting hole H4 after the L1 repair moved it clear of the hole's copper. H4 is a bare drilled hole, not a part: nothing is placed there, so nothing collides at assembly. What it constrains is the enclosure -- the screw head and washer have to clear the SOT-223 body -- which is a mechanical decision taken outside this pipeline.",
+      "recorded": "2026-08-28"
+    }
+  ]
+}

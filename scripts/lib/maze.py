@@ -89,10 +89,21 @@ class Router(object):
 
     # --- legality --------------------------------------------------------
     def _open(self, ix, iy, li, net, width, ignore_ids, cache, barred):
-        """Can a track of `width` be centred on this node?"""
-        k = (ix, iy, li)
-        if k in barred:
+        """Can a track of `width` be centred on this node?
+
+        The cache key carries the width. It did not, and that was a defect
+        with teeth: `_via_open` asks this same question with `via_dia` at a
+        node the track expansion has usually already asked about with
+        `track_width`, so a via inherited the answer given for a piece of
+        copper less than half its diameter. Measured on this board, the node
+        (175.8315, 112.395) sits 0.1930 mm from J1 pad 3 -- open for a
+        0.2032 mm track (needs 0.1905) and closed for a 0.6095 mm via (needs
+        0.3937), and the router placed a via there. `barred` still keys on
+        (ix, iy, li) because route() bars a node for every width at once.
+        """
+        if (ix, iy, li) in barred:
             return False
+        k = (ix, iy, li, int(width))
         v = cache.get(k)
         if v is not None:
             return v

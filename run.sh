@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_mask S6 S7a S7b S7c S7 S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_mask S6 S7a S7b S7c S7 S7_body S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,7 +32,8 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_mask", "S6", "S7a", "S7b", "S7c", "S7", "S8"):
+             "S5_L7", "S5_mask", "S6", "S7a", "S7b", "S7c", "S7",
+             "S7_body", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -157,6 +158,11 @@ run_step S5_L4 "clear the USB-C peg holes PEG1 and PEG2" \
   "$KPY" "$ROOT/scripts/33_repair_L4.py" --root "$ROOT" || exit 1
 run_step S5_L5 "pull apart the remaining clearance pinches" \
   "$KPY" "$ROOT/scripts/34_repair_L5.py" --root "$ROOT" || exit 1
+# L7 came after the cart was filled: R_CC1 sat wholly inside the USB-C shell,
+# so J1 could not seat. It runs here, with the other placement repairs, rather
+# than at the end where it was found.
+run_step S5_L7 "move R_CC1 out from under the USB-C shell" \
+  "$KPY" "$ROOT/scripts/36_repair_L7_rcc1.py" --root "$ROOT" || exit 1
 
 s5_mask() {
   "$KC" pcb drc --format json --severity-all --units mm --refill-zones \
@@ -208,6 +214,14 @@ run_step S8 "export the manufacturing package and check it independently" s8 \
 # S7 last: ACCEPTANCE D-G read the package S8 produces.
 run_step S7 "ACCEPTANCE A-G" \
   "$KPY" "$ROOT/scripts/50_final_check.py" --root "$ROOT" || exit 1
+
+# ACCEPTANCE H, added after L7. It reads the board, not the package, so it is a
+# separate step from S7: keeping it there means a stale gates/S7.json cannot
+# let a body overlap through on a re-run. It is expected to FAIL until the
+# ESP32-WROOM-32E -> 32UE swap is decided (U_ADS and three capacitors sit under
+# the module's 25.5 mm outline); that failure is the point.
+run_step S7_body "ACCEPTANCE H -- no component body overlaps" \
+  "$KPY" "$ROOT/scripts/64_body_overlap.py" --root "$ROOT" || exit 1
 
 echo
 show_status

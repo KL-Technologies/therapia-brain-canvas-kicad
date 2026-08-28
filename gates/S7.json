@@ -276,17 +276,17 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T18:46:16",
+  "timestamp": "2026-08-28T20:27:19",
   "notes": "ACCEPTANCE.md A-G. The document is frozen; this is its implementation. D and E are settled by lib/gerber_parse.py reading the plotted files, not by KiCad reading its own output.",
   "drc": {
-    "violations": 470,
+    "violations": 469,
     "errors": 0,
-    "warnings": 470,
+    "warnings": 469,
     "unconnected": 0,
     "by_type": {
       "silk_overlap": 199,
       "silk_over_copper": 157,
-      "courtyards_overlap": 77,
+      "courtyards_overlap": 76,
       "track_dangling": 26,
       "clearance": 5,
       "via_dangling": 3,
@@ -311,8 +311,8 @@
   "board": {
     "counts": {
       "footprints": 141,
-      "tracks": 1252,
-      "vias": 239,
+      "tracks": 1248,
+      "vias": 241,
       "npth_pads": 6,
       "pth_pads": 16
     },
@@ -453,7 +453,7 @@
     }
   },
   "fab": {
-    "dir": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/gerber",
+    "dir": "./fab/gerber",
     "layers_found": [
       "g1",
       "g2",
@@ -1051,45 +1051,6 @@
         "4": 1.05
       },
       "slots": 8
-    },
-    "vs_2026_08_16": {
-      "archive": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_Gerber.zip",
-      "files": 16,
-      "outline_mm": [
-        61.8236,
-        45.0088
-      ],
-      "npth_hits": 6,
-      "npth_tools": {
-        "1": 0.700024,
-        "2": 2.3876
-      },
-      "npth_xy": [
-        [
-          3.048,
-          -41.9608
-        ],
-        [
-          3.048,
-          -3.048
-        ],
-        [
-          56.8611,
-          -33.8779
-        ],
-        [
-          56.8611,
-          -28.0979
-        ],
-        [
-          56.9468,
-          -41.9608
-        ],
-        [
-          56.9468,
-          -3.048
-        ]
-      ]
     }
   },
   "bom": {

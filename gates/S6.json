@@ -143,8 +143,8 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T16:51:42",
-  "notes": "1 iterations; stopped: clean. Final DRC: 0 errors, 0 unconnected. Vias 239 (S2 measured 238, S4 left 240).",
+  "timestamp": "2026-08-28T20:26:50",
+  "notes": "1 iterations; stopped: clean. Final DRC: 0 errors, 0 unconnected. Vias 241 (S2 measured 238, S4 left 240).",
   "history": [
     {
       "iteration": 1,
@@ -201,8 +201,8 @@
     "npth_count": 6,
     "counts": {
       "footprints": 141,
-      "tracks": 1250,
-      "vias": 239,
+      "tracks": 1248,
+      "vias": 241,
       "npth_pads": 6,
       "pth_pads": 16
     },
@@ -221,70 +221,70 @@
       {
         "net": "CHASSIS_GND",
         "layers": [
-          "Top Layer"
+          "F.Cu"
         ],
         "filled_outlines": 2
       },
       {
         "net": "GND",
         "layers": [
-          "Inner1"
+          "In1.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "USB_5V",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "AVDD",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "AVSS",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 7
       },
       {
         "net": "USB_5V",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 8
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 1
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 9
       },
       {
         "net": "VDD_ESP",
         "layers": [
-          "Inner2"
+          "In2.Cu"
         ],
         "filled_outlines": 3
       }
@@ -338,7 +338,7 @@
   "via_count": {
     "s2_import": 238,
     "after_s4_eco": 240,
-    "now": 239
+    "now": 241
   },
   "allowed_warning_kinds": [
     "courtyards_overlap",

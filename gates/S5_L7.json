@@ -1,0 +1,653 @@
+{
+  "step": "L7",
+  "pass": true,
+  "checks": [
+    {
+      "name": "body_clear_of_J1",
+      "expected": ">= 0.20 mm",
+      "actual": "1.2061 mm",
+      "pass": true
+    },
+    {
+      "name": "both_pins_connected",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    },
+    {
+      "name": "no_floating_islands",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "contract_parity",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "via_count",
+      "expected": 241,
+      "actual": 241,
+      "pass": true,
+      "note": "239 before L7; the B.Cu hop under J1's pad column adds two. ACCEPTANCE D allows a recorded increment -- but 50_final_check's 'D IPC-D-356 feature counts' constant has to become 241 when fab/ is next re-exported"
+    },
+    {
+      "name": "pth_pads_unchanged",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "name": "drc_ran",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "unconnected",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "drc_errors",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "no_new_drc_signatures",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T20:26:32",
+  "notes": "R_CC1 moved 6.511 mm out from under J1's shell to (173.400, 113.900) rot 180, 1.206 mm clear of the shell body; 9 items removed, 7 laid, vias 239 -> 241. J1 pad 4 cannot be entered from the west (0.1738 mm to the USB_DM via, 0.2002 mm to its own neighbours, against a 0.2667 mm minimum corridor), so USB_CC1 crosses the pad column on B.Cu. The via-neutral position south of the connector was tried and rejected: it severs the CHASSIS_GND pour at J1 pad 13.",
+  "ref": "R_CC1",
+  "connector": "J1",
+  "net": "USB_CC1",
+  "shell_fab_mm": [
+    175.4616,
+    106.5125,
+    183.1925,
+    115.4934
+  ],
+  "before": {
+    "pos_mm": [
+      178.166,
+      109.464
+    ],
+    "rot_deg": 90.0,
+    "body_mm": [
+      177.7405,
+      108.6385,
+      178.6214,
+      110.3194
+    ],
+    "shell_gap_mm": -3.1599,
+    "pads": [
+      {
+        "number": "1",
+        "net": "USB_CC1",
+        "pos_mm": [
+          178.166,
+          110.2175
+        ]
+      },
+      {
+        "number": "2",
+        "net": "GND",
+        "pos_mm": [
+          178.166,
+          108.7105
+        ]
+      }
+    ]
+  },
+  "connector_pad_mm": [
+    175.791,
+    112.238
+  ],
+  "pad4_access": {
+    "min_legal_corridor_mm": 0.2667,
+    "note": "min_track_width + 2 x clearance; nothing narrower may pass",
+    "neighbours_within_0.5mm": [
+      {
+        "what": "via [USB_DM] at (174.7625, 112.1055)",
+        "gap_mm": 0.173828
+      },
+      {
+        "what": "J1 pad 3",
+        "gap_mm": 0.200194
+      },
+      {
+        "what": "J1 pad 5",
+        "gap_mm": 0.200194
+      },
+      {
+        "what": "via [USB_VBUS_RAW] at (176.8200, 112.9690)",
+        "gap_mm": 0.449218
+      }
+    ],
+    "west_entry_possible": false
+  },
+  "already_clear": false,
+  "net_pads": [
+    [
+      "J1",
+      "4"
+    ],
+    [
+      "R_CC1",
+      "1"
+    ]
+  ],
+  "gnd_stub": {
+    "items": [
+      {
+        "kind": "track",
+        "net": "GND",
+        "layer": "F.Cu",
+        "start_mm": [
+          178.166,
+          107.432
+        ],
+        "end_mm": [
+          178.166,
+          108.7145
+        ],
+        "width_mm": 0.203,
+        "uuid": "17097648-3f14-4a40-ab89-9d26be1a7905"
+      },
+      {
+        "kind": "via",
+        "net": "GND",
+        "pos_mm": [
+          178.166,
+          107.432
+        ],
+        "dia_mm": 0.6095,
+        "drill_mm": 0.305,
+        "uuid": "fa2b09d5-f65c-4c6a-ac47-5bbb8dab2b27"
+      }
+    ],
+    "shared_with_pads": []
+  },
+  "removed": [
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        176.388,
+        112.2325
+      ],
+      "end_mm": [
+        177.0485,
+        112.2325
+      ],
+      "width_mm": 0.203,
+      "uuid": "0c45d705-0742-4d4c-a086-a6560fa1621e"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        177.658,
+        111.6485
+      ],
+      "end_mm": [
+        178.166,
+        111.1405
+      ],
+      "width_mm": 0.203,
+      "uuid": "2474f7d8-3e75-4b30-99c7-a7ed394a9d45"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        178.166,
+        111.1405
+      ],
+      "end_mm": [
+        178.166,
+        110.2135
+      ],
+      "width_mm": 0.203,
+      "uuid": "47608141-c14e-4ed6-b0a4-e7a372dfd082"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        175.931,
+        112.2325
+      ],
+      "end_mm": [
+        176.388,
+        112.2325
+      ],
+      "width_mm": 0.203,
+      "uuid": "6ba20207-ebd8-42b4-8195-d01a74af14d5"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        177.658,
+        111.6485
+      ],
+      "end_mm": [
+        178.3185,
+        111.1405
+      ],
+      "width_mm": 0.203,
+      "uuid": "7e78fdc8-a000-4c3c-ad38-ce457311e904"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        176.388,
+        112.2325
+      ],
+      "end_mm": [
+        175.791,
+        112.2375
+      ],
+      "width_mm": 0.203,
+      "uuid": "a65cf044-b66a-40c9-b462-6ac53bfd8413"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        177.0485,
+        112.2325
+      ],
+      "end_mm": [
+        177.658,
+        111.6485
+      ],
+      "width_mm": 0.203,
+      "uuid": "f5a3338c-d530-4847-acbc-162c82e90649"
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        178.166,
+        107.432
+      ],
+      "end_mm": [
+        178.166,
+        108.7145
+      ],
+      "width_mm": 0.203,
+      "uuid": "17097648-3f14-4a40-ab89-9d26be1a7905"
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "pos_mm": [
+        178.166,
+        107.432
+      ],
+      "dia_mm": 0.6095,
+      "drill_mm": 0.305,
+      "uuid": "fa2b09d5-f65c-4c6a-ac47-5bbb8dab2b27"
+    }
+  ],
+  "removed_vias": 1,
+  "brief_target": {
+    "pos_mm": [
+      173.44,
+      112.0
+    ],
+    "rot_deg": 0.0,
+    "blockers": [
+      "pad 1 clashes with track GND, via GND",
+      "pad 2 clashes with track USB_DM, track USB_VBUS_RAW, via USB_DP, via USB_VBUS_RAW"
+    ]
+  },
+  "south_alternative": {
+    "pos_mm": [
+      176.55,
+      116.9
+    ],
+    "rot_deg": 180.0,
+    "blockers": [],
+    "rejected_because": "reaches J1 pad 4 in 5.85 mm of F.Cu with no extra via, but the route leaves a 0.103 mm web between J1 pad 13 [CHASSIS_GND] and the new track: measured on the board, the CHASSIS_GND pour broke from 2 filled islands into 4 and DRC reported unconnected_items between pad 13 and its own zone. The resistor's pads and ground via would sit inside that pour too.",
+    "f_cu_only": {
+      "ok": true,
+      "length_mm": 5.8476,
+      "segments": 5,
+      "vias": 0,
+      "tracks": [
+        [
+          177.3035,
+          116.9,
+          177.546,
+          115.316,
+          "F.Cu"
+        ],
+        [
+          177.546,
+          115.316,
+          177.546,
+          113.7285,
+          "F.Cu"
+        ],
+        [
+          177.546,
+          113.7285,
+          177.292,
+          112.7125,
+          "F.Cu"
+        ],
+        [
+          177.292,
+          112.7125,
+          177.1015,
+          112.522,
+          "F.Cu"
+        ],
+        [
+          177.1015,
+          112.522,
+          175.791,
+          112.238,
+          "F.Cu"
+        ]
+      ],
+      "via_mm": []
+    },
+    "with_vias": {
+      "ok": true,
+      "length_mm": 5.8476,
+      "segments": 5,
+      "vias": 0,
+      "tracks": [
+        [
+          177.3035,
+          116.9,
+          177.546,
+          115.316,
+          "F.Cu"
+        ],
+        [
+          177.546,
+          115.316,
+          177.546,
+          113.7285,
+          "F.Cu"
+        ],
+        [
+          177.546,
+          113.7285,
+          177.292,
+          112.7125,
+          "F.Cu"
+        ],
+        [
+          177.292,
+          112.7125,
+          177.1015,
+          112.522,
+          "F.Cu"
+        ],
+        [
+          177.1015,
+          112.522,
+          175.791,
+          112.238,
+          "F.Cu"
+        ]
+      ],
+      "via_mm": []
+    },
+    "worst_pad_gap": {
+      "gap_mm": 0.267187,
+      "pad": "1",
+      "against": "V_3V3_IN"
+    }
+  },
+  "chosen_verified": {
+    "pos_mm": [
+      173.4,
+      113.9
+    ],
+    "rot_deg": 180.0,
+    "blockers": []
+  },
+  "after": {
+    "pos_mm": [
+      173.4,
+      113.9
+    ],
+    "rot_deg": 180.0,
+    "body_mm": [
+      172.5745,
+      113.4446,
+      174.2554,
+      114.3255
+    ],
+    "shell_gap_mm": 1.2061,
+    "moved_mm": 6.511,
+    "pads": [
+      {
+        "number": "1",
+        "net": "USB_CC1",
+        "pos_mm": [
+          174.1535,
+          113.9
+        ]
+      },
+      {
+        "number": "2",
+        "net": "GND",
+        "pos_mm": [
+          172.6465,
+          113.9
+        ]
+      }
+    ],
+    "nearest_body": {
+      "ref": "C_USB_V3",
+      "gap_mm": 0.9611
+    },
+    "courtyard_overlap": null
+  },
+  "reconnect": {
+    "USB_CC1": {
+      "ok": true,
+      "length_mm": 4.1411,
+      "segments": 3,
+      "vias": 2,
+      "tracks": [
+        [
+          174.1535,
+          113.9,
+          174.879,
+          114.173,
+          "F.Cu"
+        ],
+        [
+          174.879,
+          114.173,
+          176.5935,
+          112.268,
+          "B.Cu"
+        ],
+        [
+          176.5935,
+          112.268,
+          175.791,
+          112.238,
+          "F.Cu"
+        ]
+      ],
+      "via_mm": [
+        [
+          174.879,
+          114.173
+        ],
+        [
+          176.5935,
+          112.268
+        ]
+      ]
+    },
+    "GND": {
+      "ok": true,
+      "method": "via into the GND plane",
+      "via_mm": [
+        172.6465,
+        114.408
+      ],
+      "length_mm": 0.508,
+      "zone_layers": [
+        "In1.Cu"
+      ]
+    }
+  },
+  "added": [
+    {
+      "kind": "via",
+      "net": "USB_CC1",
+      "pos_mm": [
+        174.879,
+        114.173
+      ],
+      "dia_mm": 0.6096,
+      "drill_mm": 0.3048,
+      "uuid": "51b8b3b3-8fd4-4fbe-a4a6-51899b786c61"
+    },
+    {
+      "kind": "via",
+      "net": "USB_CC1",
+      "pos_mm": [
+        176.5935,
+        112.268
+      ],
+      "dia_mm": 0.6096,
+      "drill_mm": 0.3048,
+      "uuid": "a7c7a8e7-6cff-4bea-99e3-827dc44bcb4a"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        174.1535,
+        113.9
+      ],
+      "end_mm": [
+        174.879,
+        114.173
+      ],
+      "width_mm": 0.2032,
+      "uuid": "34d5a02b-5638-445b-833c-c807c57b9e1a"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "B.Cu",
+      "start_mm": [
+        174.879,
+        114.173
+      ],
+      "end_mm": [
+        176.5935,
+        112.268
+      ],
+      "width_mm": 0.2032,
+      "uuid": "2903586f-232a-4e2e-b7d8-1940e2a1d82c"
+    },
+    {
+      "kind": "track",
+      "net": "USB_CC1",
+      "layer": "F.Cu",
+      "start_mm": [
+        176.5935,
+        112.268
+      ],
+      "end_mm": [
+        175.791,
+        112.238
+      ],
+      "width_mm": 0.2032,
+      "uuid": "2986b8f4-9749-4922-96e0-1053fa76b451"
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "pos_mm": [
+        172.6465,
+        114.408
+      ],
+      "dia_mm": 0.6096,
+      "drill_mm": 0.3048,
+      "uuid": "2a51cc79-a3a9-4a1b-80ba-40dabd9ac329"
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        172.6465,
+        113.9
+      ],
+      "end_mm": [
+        172.6465,
+        114.408
+      ],
+      "width_mm": 0.2032,
+      "uuid": "1aae6464-cc05-4d2f-990d-d0c3aa23d696"
+    }
+  ],
+  "added_vias": 3,
+  "islands_reconnected": [],
+  "islands_still_floating": [],
+  "worst_pad_gap_after": {
+    "gap_mm": 0.378515,
+    "pad": "1",
+    "against": "USB_VBUS_RAW"
+  },
+  "contract_diffs": [],
+  "counts_after": {
+    "footprints": 141,
+    "tracks": 1248,
+    "vias": 241,
+    "npth_pads": 6,
+    "pth_pads": 16
+  },
+  "via_delta": 2,
+  "unconnected_before_save": 0,
+  "drc_signature": {
+    "new_signatures": [],
+    "new_but_harmless": [],
+    "resolved_signatures": [],
+    "baseline_errors": 0,
+    "current_errors": 0,
+    "error_delta": 0,
+    "count_jitter_allowed": 2,
+    "count_within_jitter": true,
+    "regressed": false
+  },
+  "drc_after": {
+    "errors_by_type": {},
+    "unconnected": 0
+  }
+}
