@@ -1,0 +1,74 @@
+{
+  "step": "S0",
+  "pass": true,
+  "checks": [
+    {
+      "name": "kicad_cli_version",
+      "expected": ">=10",
+      "actual": "10.0.5",
+      "pass": true
+    },
+    {
+      "name": "kicad_python",
+      "expected": "Python 3.9.x",
+      "actual": "Python 3.9.13",
+      "pass": true
+    },
+    {
+      "name": "pcbnew_import_pcbnew",
+      "expected": "True",
+      "actual": "True",
+      "pass": true
+    },
+    {
+      "name": "pcbnew_EASYEDAPRO",
+      "expected": "True",
+      "actual": "True",
+      "pass": true
+    },
+    {
+      "name": "pcbnew_KICAD_SEXP",
+      "expected": "True",
+      "actual": "True",
+      "pass": true
+    },
+    {
+      "name": "pcbnew_ZONE_FILLER",
+      "expected": "True",
+      "actual": "True",
+      "pass": true
+    },
+    {
+      "name": "pcbnew_str_utf8_Map",
+      "expected": "True",
+      "actual": "True",
+      "pass": true
+    },
+    {
+      "name": "drc_refill_zones_flag",
+      "expected": "present",
+      "actual": "true",
+      "pass": true
+    },
+    {
+      "name": "drc_save_flag",
+      "expected": "present",
+      "actual": "true",
+      "pass": true
+    },
+    {
+      "name": "system_python3",
+      "expected": "Python 3.x",
+      "actual": "Python 3.9.6",
+      "pass": true
+    },
+    {
+      "name": "repo_layout",
+      "expected": "all dirs present",
+      "actual": "ok",
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T13:35:31",
+  "notes": "kicad-cli=10.0.5 (/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli); kicad python=Python 3.9.13 (/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3)"
+}

@@ -1,0 +1,139 @@
+{
+  "ok": true,
+  "pads_renetted": 10,
+  "detail": [
+    [
+      "J1",
+      "13",
+      "CHASSIS_GND"
+    ],
+    [
+      "J1",
+      "14",
+      "CHASSIS_GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ],
+    [
+      "U_MCU",
+      "39",
+      "GND"
+    ]
+  ],
+  "footprints_not_found": [],
+  "net_pad_counts": {
+    "Q_EN_B": 2,
+    "CH_RTS_N": 3,
+    "ESP_EN": 4,
+    "Q_IO0_B": 2,
+    "CH_DTR_N": 3,
+    "ESP_IO0": 3,
+    "GND": 90,
+    "USB_VBUS_RAW": 4,
+    "USB_CC1": 2,
+    "USB_DM": 5,
+    "USB_DP": 5,
+    "USB_CC2": 2,
+    "CHASSIS_GND": 5,
+    "USB_5V": 10,
+    "IN1N": 4,
+    "IN1P": 4,
+    "IN2N": 4,
+    "IN2P": 4,
+    "IN3N": 4,
+    "IN3P": 4,
+    "IN4N": 4,
+    "IN4P": 4,
+    "IN5N": 4,
+    "IN5P": 4,
+    "IN6N": 4,
+    "IN6P": 4,
+    "IN7N": 4,
+    "IN7P": 4,
+    "IN8N": 4,
+    "IN8P": 4,
+    "DVDD": 13,
+    "LM_CAP_P": 2,
+    "LM_CAP_N": 2,
+    "VNEG5": 3,
+    "VCAP1": 2,
+    "AVSS": 24,
+    "VDD_ESP": 12,
+    "VREFP": 4,
+    "AVDD": 21,
+    "V5_LM_IN": 4,
+    "V_PLDO_IN": 4,
+    "V_3V3_IN": 3,
+    "V_NLDO_IN": 3,
+    "ESP_RXD": 2,
+    "ESP_TXD": 2,
+    "CH340_V3": 2,
+    "ADS_DRDY_N": 3,
+    "ADS_START": 3,
+    "ADS_RESET_N": 4,
+    "ADS_PWDN_N": 3,
+    "ESP_IO15": 2,
+    "ESP_IO2": 2,
+    "STATUS_LED_DRV": 2,
+    "ADS_CS_N": 3,
+    "SPI_SCK": 2,
+    "SPI_MISO": 2,
+    "SPI_MOSI": 2,
+    "LED_A": 2,
+    "SRB1": 10,
+    "FP1_ELEC": 2,
+    "FP2_ELEC": 2,
+    "CH3_ELEC": 2,
+    "ECGN_ELEC": 2,
+    "ECGP_ELEC": 2,
+    "CH5_ELEC": 2,
+    "CH6_ELEC": 2,
+    "CH7_ELEC": 2,
+    "CH8_ELEC": 2,
+    "BIAS_INV": 3,
+    "BIAS_OUT_INT": 3,
+    "A1_ELEC": 2,
+    "ADS_DOUT_LOC": 2,
+    "ADS_DIN_LOC": 2,
+    "ADS_SCLK_LOC": 2,
+    "A2_ELEC": 2,
+    "TPS_NR": 2,
+    "VCAP4": 2
+  },
+  "returncode": 0,
+  "stderr": "./src/common/stdpbase.cpp(59): assert \"\"traits\"\" failed in Get(): create wxApp before calling this\n",
+  "stdout": ""
+}

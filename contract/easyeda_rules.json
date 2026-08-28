@@ -1,0 +1,343 @@
+{
+  "source": {
+    "file": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+    "sha256": "83c096a6c23aa482728aeafc5e63e653450ec29c72fc1362ddb79c49d015ba67",
+    "pcb_document": "PCB/799033de8bdd4fe18d1bc8e0d6f00ee6.epcb",
+    "pcb_id": "799033de8bdd4fe18d1bc8e0d6f00ee6",
+    "parse_errors": 0,
+    "editor": {
+      "editorVersion": "2.2.C",
+      "importFlag": 0
+    }
+  },
+  "note": "EasyEDA Pro design rules, verbatim from the .epcb RULE records. NOT transferred to board/*.kicad_pcb -- the KiCad DRC in logs/drc_import.json therefore runs on KiCad DEFAULTS and its counts are not comparable to the EasyEDA DRC. S3 must set net classes and custom rules in board/*.kicad_pro before any DRC number means anything.",
+  "rules": [
+    {
+      "rule_type": "1",
+      "name": "copperThickness1oz",
+      "is_default": 1,
+      "data": [
+        "mm",
+        [
+          [
+            4.0157
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            11.811,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          [
+            6,
+            6,
+            6,
+            6,
+            6,
+            11.811,
+            6
+          ],
+          [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          [
+            11.8,
+            11.8,
+            11.8,
+            11.8,
+            11.8,
+            11.8,
+            11.8,
+            11.8
+          ],
+          [
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929
+          ]
+        ]
+      ]
+    },
+    {
+      "rule_type": "1",
+      "name": "copperThickness2oz",
+      "is_default": 0,
+      "data": [
+        "mm",
+        [
+          [
+            7.9921
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            11.811,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            11.811,
+            11.811,
+            11.811,
+            11.811,
+            11.811,
+            11.811,
+            11.811,
+            11.811
+          ],
+          [
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929,
+            6.929
+          ]
+        ]
+      ]
+    },
+    {
+      "rule_type": "2",
+      "name": "otherClearance",
+      "is_default": 1,
+      "data": {
+        "unit": "mm",
+        "deviceClearance": 0,
+        "thru2SmdClearance": 0,
+        "holeClearance": 11.811
+      }
+    },
+    {
+      "rule_type": "3",
+      "name": "copperThickness1oz",
+      "is_default": 1,
+      "data": [
+        "mm",
+        5,
+        10,
+        100
+      ]
+    },
+    {
+      "rule_type": "3",
+      "name": "copperThickness2oz",
+      "is_default": 0,
+      "data": [
+        "mm",
+        7.9921,
+        10,
+        100
+      ]
+    },
+    {
+      "rule_type": "11",
+      "name": "netLength",
+      "is_default": 1,
+      "data": {
+        "unit": "mm",
+        "netLenMin": null,
+        "netLenMax": null
+      }
+    },
+    {
+      "rule_type": "10",
+      "name": "differentialPair",
+      "is_default": 1,
+      "data": [
+        "mm",
+        5,
+        10,
+        100,
+        6,
+        6,
+        null,
+        10
+      ]
+    },
+    {
+      "rule_type": "4",
+      "name": "blindVia",
+      "is_default": 1,
+      "data": {
+        "blinds": {
+          "content": []
+        }
+      }
+    },
+    {
+      "rule_type": "5",
+      "name": "viaSize",
+      "is_default": 1,
+      "data": {
+        "unit": "mm",
+        "minRadius": 9.8425,
+        "defRadius": 12.0079,
+        "maxRadius": 196.8504,
+        "minInner": 5.9055,
+        "defInner": 6.0039,
+        "maxInner": 124.0157
+      }
+    },
+    {
+      "rule_type": "6",
+      "name": "innerPlane",
+      "is_default": 1,
+      "data": [
+        "mm",
+        10,
+        10,
+        0,
+        0,
+        0,
+        90,
+        0,
+        10,
+        10,
+        90
+      ]
+    },
+    {
+      "rule_type": "7",
+      "name": "copperRegion",
+      "is_default": 1,
+      "data": [
+        "mm",
+        10,
+        10,
+        0,
+        10,
+        10,
+        90,
+        0,
+        0,
+        10,
+        10,
+        90
+      ]
+    },
+    {
+      "rule_type": "8",
+      "name": "pasteMaskExpansion",
+      "is_default": 1,
+      "data": {
+        "unit": "mm",
+        "padTopExpan": 0,
+        "padBotExpan": 0,
+        "testPointTopExpan": -1000,
+        "testPointBotExpan": -1000
+      }
+    },
+    {
+      "rule_type": "9",
+      "name": "solderMaskExpansion",
+      "is_default": 1,
+      "data": {
+        "unit": "mm",
+        "padTopExpan": 2,
+        "padBotExpan": 2,
+        "viaTopExpan": -1000,
+        "viaBotExpan": -1000,
+        "testPointTopExpan": 2,
+        "testPointBotExpan": 2
+      }
+    },
+    {
+      "rule_type": "12",
+      "name": "Common",
+      "is_default": 1,
+      "data": {
+        "routingCorner": 0,
+        "isKeep": 1,
+        "viaQuantity": 0,
+        "routingEffectPriority": 1,
+        "layers": [
+          1,
+          2
+        ],
+        "ignoreNets": []
+      }
+    }
+  ]
+}

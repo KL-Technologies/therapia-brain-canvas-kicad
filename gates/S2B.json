@@ -1,0 +1,40 @@
+{
+  "step": "S2B",
+  "pass": true,
+  "checks": [
+    {
+      "name": "netlist_tsv_present",
+      "expected": "present",
+      "actual": "netlist_easyeda_api_2026-08-28.tsv",
+      "pass": true
+    },
+    {
+      "name": "netlist_rows",
+      "expected": ">=400",
+      "actual": 423,
+      "pass": true
+    },
+    {
+      "name": "pin_names_present",
+      "expected": "every row has a pin name",
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "every_pcb_component_in_schematic",
+      "expected": "0 missing",
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "diff_written",
+      "expected": "gates/netlist_diff.json",
+      "actual": "gates/netlist_diff.json",
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T13:35:09",
+  "notes": "schematic 135 components / 423 pins vs PCB 131 components. ECO-1 delta: 4 components to add (C_VCAP1_H, C_VCAP2, C_VCAP3, C_VCAP3_H), 8 pins with a different net, 0 pins absent from the PCB. Nets only in the schematic: VCAP2, VCAP3",
+  "diff": "gates/netlist_diff.json",
+  "contract": "contract/netlist_contract.json"
+}

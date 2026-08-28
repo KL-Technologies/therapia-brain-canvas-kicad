@@ -1,0 +1,30 @@
+{
+  "board": {
+    "design_settings": {}
+  },
+  "boards": [],
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "Therapia_EEG-HRV.kicad_pro",
+    "version": 3
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "name": "Default",
+        "clearance": 0.2,
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      }
+    ]
+  },
+  "pcbnew": {
+    "page_layout_descr_file": ""
+  },
+  "sheets": [],
+  "text_variables": {}
+}

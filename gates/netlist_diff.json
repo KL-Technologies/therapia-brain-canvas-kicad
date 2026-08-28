@@ -1,0 +1,91 @@
+{
+  "schematic": {
+    "file": "/Users/dev/projects/therapia-device/brain_canvas_kicad/contract/netlist_easyeda_api_2026-08-28.tsv",
+    "sha256": "213647b0e98b5d7fdeaf89db768fdd57e0331d3dbbcf8b722266ac507e47c36f",
+    "rows": 423
+  },
+  "pcb": {
+    "file": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+    "sha256": "83c096a6c23aa482728aeafc5e63e653450ec29c72fc1362ddb79c49d015ba67",
+    "pcb_document": "PCB/799033de8bdd4fe18d1bc8e0d6f00ee6.epcb",
+    "pcb_id": "799033de8bdd4fe18d1bc8e0d6f00ee6",
+    "parse_errors": 0,
+    "editor": {
+      "editorVersion": "2.2.C",
+      "importFlag": 0
+    }
+  },
+  "components_only_in_schematic": [
+    "C_VCAP1_H",
+    "C_VCAP2",
+    "C_VCAP3",
+    "C_VCAP3_H"
+  ],
+  "components_only_in_pcb": [],
+  "pins_only_in_schematic": [],
+  "net_differences": [
+    {
+      "ref": "TPS72325",
+      "pin": "3",
+      "pin_name": "EN",
+      "schematic": "V_NLDO_IN",
+      "pcb": "GND"
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "30",
+      "pin_name": "VCAP2",
+      "schematic": "VCAP2",
+      "pcb": ""
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "31",
+      "pin_name": "RESV1",
+      "schematic": "GND",
+      "pcb": "AVDD"
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "42",
+      "pin_name": "GPIO1",
+      "schematic": "GND",
+      "pcb": ""
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "44",
+      "pin_name": "GPIO2",
+      "schematic": "GND",
+      "pcb": ""
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "45",
+      "pin_name": "GPIO3",
+      "schematic": "GND",
+      "pcb": ""
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "46",
+      "pin_name": "GPIO4",
+      "schematic": "GND",
+      "pcb": ""
+    },
+    {
+      "ref": "U_ADS",
+      "pin": "55",
+      "pin_name": "VCAP3",
+      "schematic": "VCAP3",
+      "pcb": ""
+    }
+  ],
+  "summary": {
+    "components_only_in_schematic": 4,
+    "components_only_in_pcb": 0,
+    "pins_missing_on_pcb": 0,
+    "pins_with_different_net": 8
+  },
+  "reading": "Every entry here is work ECO-1 still owes the PCB: the schematic was updated on 2026-08-16 and Import Changes was never run. S3 has to reproduce these in KiCad by hand, since there is no schematic on the KiCad side to pull from."
+}

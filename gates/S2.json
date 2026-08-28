@@ -1,0 +1,683 @@
+{
+  "step": "S2",
+  "pass": true,
+  "checks": [
+    {
+      "name": "component_count",
+      "expected": 131,
+      "actual": 131,
+      "pass": true
+    },
+    {
+      "name": "designator_set_identical",
+      "expected": "no difference",
+      "actual": {
+        "only_in_easyeda": [],
+        "only_in_kicad": []
+      },
+      "pass": true
+    },
+    {
+      "name": "standalone_pads_became_footprints",
+      "expected": 4,
+      "actual": 4,
+      "pass": true,
+      "note": "EasyEDA's board-level pads (the M2 mounting holes) have no designator, so KiCad wraps each in its own unnamed footprint. Total KiCad footprints = 131 components + 4 = 135."
+    },
+    {
+      "name": "pad_total",
+      "expected": 429,
+      "actual": 429,
+      "pass": true
+    },
+    {
+      "name": "net_count",
+      "expected": 77,
+      "actual": 77,
+      "pass": true
+    },
+    {
+      "name": "net_membership_identical",
+      "expected": "0 differing nets",
+      "actual": {
+        "differing": 0,
+        "detail": []
+      },
+      "pass": true
+    },
+    {
+      "name": "issue_19021_nets_not_merged",
+      "expected": "not merged",
+      "actual": "ok (77 nets, largest 'GND'=90 pads)",
+      "pass": true
+    },
+    {
+      "name": "tracks_arcs_per_layer",
+      "expected": "identical",
+      "actual": "identical",
+      "pass": true
+    },
+    {
+      "name": "vias",
+      "expected": 238,
+      "actual": 238,
+      "pass": true
+    },
+    {
+      "name": "zone_count",
+      "expected": 10,
+      "actual": 10,
+      "pass": true
+    },
+    {
+      "name": "copper_layers",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "name": "all_easyeda_holes_present",
+      "expected": "20/20 within 0.01mm",
+      "actual": "20/20 (board offset [120.0, 80.0] mm)",
+      "pass": true
+    },
+    {
+      "name": "outline_size_mm",
+      "expected": [
+        61.8236,
+        45.0088
+      ],
+      "actual": [
+        61.8235,
+        45.009
+      ],
+      "pass": true
+    },
+    {
+      "name": "rotations_subset_of_0_90_180_270",
+      "expected": "subset",
+      "actual": [
+        "0.0",
+        "180.0",
+        "270.0",
+        "90.0"
+      ],
+      "pass": true
+    },
+    {
+      "name": "rotation_per_component",
+      "expected": "identical",
+      "actual": {
+        "mismatched": 0,
+        "detail": []
+      },
+      "pass": true
+    },
+    {
+      "name": "all_components_on_top",
+      "expected": "0 on bottom",
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "FB5_present",
+      "expected": "present",
+      "actual": {
+        "1": "VDD_ESP",
+        "2": "DVDD"
+      },
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T13:30:26",
+  "notes": "KiCad relocated the board origin by [120.0, 80.0] mm. Geometry is intact, but every EasyEDA-derived coordinate in the ECO notes must be shifted by this before use in KiCad. | FB5 pin1=VDD_ESP pin2=DVDD | ECO-1 NOT APPLIED on the PCB: TPS72325 pin3(EN)='GND', AVDD pads=21",
+  "hole_detail": [
+    {
+      "ref": "J1",
+      "pad": "13",
+      "easyeda_mm": [
+        56.340883,
+        -35.312985
+      ],
+      "expected_kicad_mm": [
+        176.340883,
+        115.312985
+      ],
+      "dia_mm": 1.499997,
+      "found": {
+        "source": "PAD",
+        "ref": "J1",
+        "pad": "13",
+        "net": "CHASSIS_GND",
+        "x_mm": 176.341,
+        "y_mm": 115.313,
+        "dia_mm": 1.5,
+        "size_mm": [
+          0.6,
+          1.5
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J1",
+      "pad": "14",
+      "easyeda_mm": [
+        56.340883,
+        -26.663015
+      ],
+      "expected_kicad_mm": [
+        176.340883,
+        106.663015
+      ],
+      "dia_mm": 1.500022,
+      "found": {
+        "source": "PAD",
+        "ref": "J1",
+        "pad": "14",
+        "net": "CHASSIS_GND",
+        "x_mm": 176.341,
+        "y_mm": 106.663,
+        "dia_mm": 1.5,
+        "size_mm": [
+          0.6,
+          1.5
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J1",
+      "pad": "13",
+      "easyeda_mm": [
+        60.541027,
+        -35.312985
+      ],
+      "expected_kicad_mm": [
+        180.541027,
+        115.312985
+      ],
+      "dia_mm": 1.199998,
+      "found": {
+        "source": "PAD",
+        "ref": "J1",
+        "pad": "13",
+        "net": "CHASSIS_GND",
+        "x_mm": 180.541,
+        "y_mm": 115.313,
+        "dia_mm": 1.2,
+        "size_mm": [
+          0.6,
+          1.2
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J1",
+      "pad": "14",
+      "easyeda_mm": [
+        60.541027,
+        -26.663015
+      ],
+      "expected_kicad_mm": [
+        180.541027,
+        106.663015
+      ],
+      "dia_mm": 1.199998,
+      "found": {
+        "source": "PAD",
+        "ref": "J1",
+        "pad": "14",
+        "net": "CHASSIS_GND",
+        "x_mm": 180.541,
+        "y_mm": 106.663,
+        "dia_mm": 1.2,
+        "size_mm": [
+          0.6,
+          1.2
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "12",
+      "easyeda_mm": [
+        3.556,
+        -7.2644
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        87.2644
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "12",
+        "net": "CHASSIS_GND",
+        "x_mm": 123.556,
+        "y_mm": 87.2645,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "11",
+      "easyeda_mm": [
+        3.556,
+        -9.8044
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        89.8044
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "11",
+        "net": "A1_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 89.8045,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "10",
+      "easyeda_mm": [
+        3.556,
+        -12.3444
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        92.3444
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "10",
+        "net": "A2_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 92.3445,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "9",
+      "easyeda_mm": [
+        3.556,
+        -14.8844
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        94.8844
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "9",
+        "net": "CH8_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 94.8845,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "8",
+      "easyeda_mm": [
+        3.556,
+        -17.4244
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        97.4244
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "8",
+        "net": "CH7_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 97.4245,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "7",
+      "easyeda_mm": [
+        3.556,
+        -19.9644
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        99.9644
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "7",
+        "net": "CH6_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 99.9645,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "6",
+      "easyeda_mm": [
+        3.556,
+        -22.5044
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        102.5044
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "6",
+        "net": "CH5_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 102.5045,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "5",
+      "easyeda_mm": [
+        3.556,
+        -25.0444
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        105.0444
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "5",
+        "net": "ECGN_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 105.0445,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "4",
+      "easyeda_mm": [
+        3.556,
+        -27.5844
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        107.5844
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "4",
+        "net": "ECGP_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 107.5845,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "3",
+      "easyeda_mm": [
+        3.556,
+        -30.1244
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        110.1244
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "3",
+        "net": "CH3_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 110.1245,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "2",
+      "easyeda_mm": [
+        3.556,
+        -32.6644
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        112.6644
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "2",
+        "net": "FP2_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 112.6645,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "J2",
+      "pad": "1",
+      "easyeda_mm": [
+        3.556,
+        -35.2044
+      ],
+      "expected_kicad_mm": [
+        123.556,
+        115.2044
+      ],
+      "dia_mm": 1.049985,
+      "found": {
+        "source": "PAD",
+        "ref": "J2",
+        "pad": "1",
+        "net": "FP1_ELEC",
+        "x_mm": 123.556,
+        "y_mm": 115.2045,
+        "dia_mm": 1.05,
+        "size_mm": [
+          1.05,
+          1.05
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "",
+      "pad": "H1",
+      "easyeda_mm": [
+        3.048,
+        -3.048
+      ],
+      "expected_kicad_mm": [
+        123.048,
+        83.048
+      ],
+      "dia_mm": 2.3876,
+      "found": {
+        "source": "PAD",
+        "ref": "",
+        "pad": "H1",
+        "net": "",
+        "x_mm": 123.048,
+        "y_mm": 83.048,
+        "dia_mm": 2.3875,
+        "size_mm": [
+          2.3875,
+          2.3875
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "",
+      "pad": "H2",
+      "easyeda_mm": [
+        56.9468,
+        -3.048
+      ],
+      "expected_kicad_mm": [
+        176.9468,
+        83.048
+      ],
+      "dia_mm": 2.3876,
+      "found": {
+        "source": "PAD",
+        "ref": "",
+        "pad": "H2",
+        "net": "",
+        "x_mm": 176.947,
+        "y_mm": 83.048,
+        "dia_mm": 2.3875,
+        "size_mm": [
+          2.3875,
+          2.3875
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "",
+      "pad": "H3",
+      "easyeda_mm": [
+        3.048,
+        -41.9608
+      ],
+      "expected_kicad_mm": [
+        123.048,
+        121.9608
+      ],
+      "dia_mm": 2.3876,
+      "found": {
+        "source": "PAD",
+        "ref": "",
+        "pad": "H3",
+        "net": "",
+        "x_mm": 123.048,
+        "y_mm": 121.961,
+        "dia_mm": 2.3875,
+        "size_mm": [
+          2.3875,
+          2.3875
+        ],
+        "npth": false
+      }
+    },
+    {
+      "ref": "",
+      "pad": "H4",
+      "easyeda_mm": [
+        56.9468,
+        -41.9608
+      ],
+      "expected_kicad_mm": [
+        176.9468,
+        121.9608
+      ],
+      "dia_mm": 2.3876,
+      "found": {
+        "source": "PAD",
+        "ref": "",
+        "pad": "H4",
+        "net": "",
+        "x_mm": 176.947,
+        "y_mm": 121.961,
+        "dia_mm": 2.3875,
+        "size_mm": [
+          2.3875,
+          2.3875
+        ],
+        "npth": false
+      }
+    }
+  ],
+  "net_differences": [],
+  "layer_differences": {},
+  "board_offset_mm": [
+    120.0,
+    80.0
+  ],
+  "design_observations": "gates/design_observations.json"
+}

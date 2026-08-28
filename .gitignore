@@ -1,0 +1,7 @@
+logs/*.tmp
+logs/patch_variants/
+.DS_Store
+*.pyc
+__pycache__/
+~*.lck
+board/~*.lck

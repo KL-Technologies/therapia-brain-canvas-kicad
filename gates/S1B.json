@@ -1,0 +1,46 @@
+{
+  "step": "S1B",
+  "pass": true,
+  "checks": [
+    {
+      "name": "pcb_document_found",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    },
+    {
+      "name": "components_converted",
+      "expected": 131,
+      "actual": 131,
+      "pass": true
+    },
+    {
+      "name": "footprint_documents",
+      "expected": ">0",
+      "actual": 21,
+      "pass": true
+    },
+    {
+      "name": "footprint_pads",
+      "expected": ">0",
+      "actual": 213,
+      "pass": true
+    },
+    {
+      "name": "nets_declared",
+      "expected": ">0",
+      "actual": 78,
+      "pass": true
+    },
+    {
+      "name": "output_is_zip",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T13:17:57",
+  "notes": "EasyEDA Pro 3.2.148 exported .epro2, which KiCad 10.0.5 cannot read (it returns an empty board silently). Converted to the classic .epro layout. RULE and POURED records are deliberately not carried over; see contract/easyeda_rules.json.",
+  "report": "logs/epro2_convert.json",
+  "output": "./import/ProPrj_Therapia_EEG-HRV_2026-08-28.converted.epro"
+}

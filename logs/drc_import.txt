@@ -1,0 +1,4 @@
+Found 1025 violations
+Found 0 unconnected items
+Saved DRC Report to logs/drc_import.json
+Saved board

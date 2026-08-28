@@ -1,0 +1,60 @@
+{
+  "source": "./import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+  "patched": "./import/patched.epro",
+  "board": "./board/Therapia_EEG-HRV.kicad_pcb",
+  "chosen_stage": "raw",
+  "score": 8,
+  "detail": [
+    {
+      "metric": "nets",
+      "expected": 77,
+      "actual": 77,
+      "exact": true,
+      "within_2pct": true
+    },
+    {
+      "metric": "footprints",
+      "expected": 131,
+      "actual": 135,
+      "exact": false,
+      "within_2pct": false
+    },
+    {
+      "metric": "pads",
+      "expected": 429,
+      "actual": 429,
+      "exact": true,
+      "within_2pct": true
+    },
+    {
+      "metric": "tracks+arcs",
+      "expected": 1191,
+      "actual": 1191,
+      "exact": true,
+      "within_2pct": true
+    }
+  ],
+  "drc": {
+    "skipped": true
+  },
+  "pad_net_repair": {
+    "ok": true,
+    "pads_renetted": 10,
+    "footprints_not_found": [],
+    "returncode": 0,
+    "stderr": "./src/common/stdpbase.cpp(59): assert \"\"traits\"\" failed in Get(): create wxApp before calling this\n",
+    "stdout": ""
+  },
+  "stages_tried": [
+    "raw",
+    "newlines",
+    "newlines+rules",
+    "newlines+rules+nets"
+  ],
+  "stages_ok": [
+    "raw",
+    "newlines",
+    "newlines+rules",
+    "newlines+rules+nets"
+  ]
+}

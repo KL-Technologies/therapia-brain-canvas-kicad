@@ -1,0 +1,42 @@
+[
+  {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro",
+    "valid": true,
+    "kind": "epro",
+    "why": "classic .epro: project.json=True .epcb=1 .esch=5",
+    "mtime": 1787894154.4695094,
+    "size": 227363
+  },
+  {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28.epro2",
+    "valid": true,
+    "kind": "epro2",
+    "why": "EasyEDA Pro 3.2 .epro2: project2.json + Therapia_EEG-HRV.epru (needs S1B conversion)",
+    "mtime": 1787894170.829135,
+    "size": 870703
+  },
+  {
+    "path": "/Users/dev/Desktop/ProPrj_Therapia_EEG-HRV_2026-08-28.epro2",
+    "valid": true,
+    "kind": "epro2",
+    "why": "EasyEDA Pro 3.2 .epro2: project2.json + Therapia_EEG-HRV.epru (needs S1B conversion)",
+    "mtime": 1787892720.677983,
+    "size": 870703
+  },
+  {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28.converted.epro",
+    "valid": true,
+    "kind": "epro",
+    "why": "classic .epro: project.json=True .epcb=1 .esch=0",
+    "mtime": 1787894277.9763172,
+    "size": 93561
+  },
+  {
+    "path": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_Gerber.zip",
+    "valid": false,
+    "kind": null,
+    "why": "no EasyEDA Pro documents (project.json=False .epcb=False; no project2.json/.epru (project2=False epru=0))",
+    "mtime": 1786856618.1503322,
+    "size": 209109
+  }
+]

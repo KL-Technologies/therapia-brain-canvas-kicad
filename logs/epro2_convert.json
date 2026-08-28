@@ -1,0 +1,270 @@
+{
+  "source": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28.epro2",
+  "source_sha256": "c25a12c026eb7d8bf5d4c6ffb509c768a1f483179cbdb250f04f1577ccf68896",
+  "editor_version": "3.2.148",
+  "output": "/Users/dev/projects/therapia-device/brain_canvas_kicad/import/ProPrj_Therapia_EEG-HRV_2026-08-28.converted.epro",
+  "documents": {
+    "PCB": 1,
+    "BOARD": 1,
+    "SCH": 1,
+    "SCH_PAGE": 5,
+    "FOOTPRINT": 21,
+    "SYMBOL": 33,
+    "DEVICE": 33,
+    "CONFIG": 1,
+    "BLOB": 1
+  },
+  "pcb": {
+    "uuid": "799033de8bdd4fe18d1bc8e0d6f00ee6",
+    "records_in": 3134,
+    "records_out": 2534,
+    "skipped": {
+      "META": 1,
+      "PRIMITIVE": 37,
+      "CANVAS": 1,
+      "LAYER_PHYS": 13,
+      "ACTIVE_LAYER": 1,
+      "RULE_TEMPLATE": 1,
+      "RULE": 16,
+      "SILK_OPTS": 2,
+      "PREFERENCE": 1,
+      "PANELIZE": 1,
+      "ELE_PLACEHOLDER": 433,
+      "POURED": 14,
+      "RULE_SELECTOR": 77
+    }
+  },
+  "footprints": {
+    "4f18773b6e4c2192": {
+      "title": "HDR-TH_12P-P2.54-V-M",
+      "records_out": 52,
+      "pads": 12,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 4,
+        "META": 1
+      }
+    },
+    "8737a458760240e7b3ae1942630cf43a": {
+      "title": "C0402",
+      "records_out": 37,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 4,
+        "META": 1
+      }
+    },
+    "eb8504a2097c456093a4ca6ac2697ecf": {
+      "title": "C0603",
+      "records_out": 37,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "31771ed4d35341668a5c5e57a67d3faa": {
+      "title": "C0805",
+      "records_out": 39,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "098bcbd032a448b7a59ad305208d0276": {
+      "title": "CONN-SMD_8P-P1.25_53261-0871",
+      "records_out": 78,
+      "pads": 10,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "f04eb23ba5fa48b8b2d942e277808277": {
+      "title": "F1206",
+      "records_out": 35,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 6,
+        "META": 1
+      }
+    },
+    "0306ddf219e04fb8bef6d12ea5d8209a": {
+      "title": "L0805",
+      "records_out": 43,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 7,
+        "META": 1
+      }
+    },
+    "a81c94222dd34dc887838d9a69c301e9": {
+      "title": "LED0603-RD",
+      "records_out": 46,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "df3ea146f3a94b9c9ad679d82b28987e": {
+      "title": "R0402",
+      "records_out": 35,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 7,
+        "META": 1
+      }
+    },
+    "cd9053890aa1478491c694cc6e0ad3c8": {
+      "title": "R0603",
+      "records_out": 35,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 6,
+        "META": 1
+      }
+    },
+    "9b5e834df0d3493f86f6d1ff8b933c54": {
+      "title": "R0805",
+      "records_out": 35,
+      "pads": 2,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 7,
+        "META": 1
+      }
+    },
+    "d484882e36d24e56a4f7b8817fa5fee6": {
+      "title": "SC-70-6_L2.2-W1.3-P0.65-LS2.1-BL",
+      "records_out": 45,
+      "pads": 6,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 7,
+        "META": 1
+      }
+    },
+    "5906e8d1a7284cda9545593c816f5321": {
+      "title": "SOP-16_L10.0-W3.9-P1.27-LS6.0-BL",
+      "records_out": 78,
+      "pads": 16,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 7,
+        "META": 1
+      }
+    },
+    "65159c48a4bf4253b200a986a0f7f5d9": {
+      "title": "SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR",
+      "records_out": 40,
+      "pads": 4,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "c5cfa1daf24244aa876cf5ee729d2a8a": {
+      "title": "SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR",
+      "records_out": 38,
+      "pads": 3,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "b03994c0b96d4402b02875bb7afe3ce1": {
+      "title": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "records_out": 49,
+      "pads": 5,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 8,
+        "META": 1
+      }
+    },
+    "922ad7fb0f1845aebd077d8014c8c4a6": {
+      "title": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL",
+      "records_out": 45,
+      "pads": 6,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "8f1716979f544fa5a76879b2bfb2c52e": {
+      "title": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR",
+      "records_out": 45,
+      "pads": 6,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 5,
+        "META": 1
+      }
+    },
+    "08bdec131d4b4214a2f1cbd6836d5ca0": {
+      "title": "TQFP-64_L10.0-W10.0-P0.50-LS12.0-TL",
+      "records_out": 291,
+      "pads": 64,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 6,
+        "META": 1
+      }
+    },
+    "109d95f482034913a654d7f3c7275e47": {
+      "title": "USB-C-SMD_TYPE-C-6PIN-2MD-073",
+      "records_out": 80,
+      "pads": 16,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 10,
+        "META": 1
+      }
+    },
+    "99ef4c96e69044988385cbe818687729": {
+      "title": "WIFI-SMD_ESP32-WROOM-32E",
+      "records_out": 128,
+      "pads": 47,
+      "skipped": {
+        "ACTIVE_LAYER": 1,
+        "CANVAS": 1,
+        "ELE_PLACEHOLDER": 7,
+        "META": 1
+      }
+    }
+  }
+}
