@@ -1,0 +1,811 @@
+{
+  "step": "S7",
+  "pass": true,
+  "checks": [
+    {
+      "name": "A DRC errors",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "A unconnected items",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "A warning types all on the allowed list",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "A no must-be-error type demoted to warning",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "A zones refilled and saved",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "B contract parity (overrides applied)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "B components on the contract",
+      "expected": 135,
+      "actual": 135,
+      "pass": true
+    },
+    {
+      "name": "B mechanical footprints excluded",
+      "expected": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "PEG1",
+        "PEG2"
+      ],
+      "actual": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "PEG1",
+        "PEG2"
+      ],
+      "pass": true
+    },
+    {
+      "name": "B DNP parts still checked against the contract",
+      "expected": [
+        "R_IO15_DN",
+        "R_RST_UP"
+      ],
+      "actual": [
+        "R_IO15_DN",
+        "R_RST_UP"
+      ],
+      "pass": true
+    },
+    {
+      "name": "C rules regenerate identically",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "C rule values match ACCEPTANCE C",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "C pad to mask clearance",
+      "expected": 0.0508,
+      "actual": 0.0508,
+      "pass": true
+    },
+    {
+      "name": "C pad to paste clearance",
+      "expected": 0.0,
+      "actual": 0.0,
+      "pass": true
+    },
+    {
+      "name": "C solder mask minimum web",
+      "expected": 0.0508,
+      "actual": 0.0508,
+      "pass": true
+    },
+    {
+      "name": "D NPTH holes on the board",
+      "expected": 6,
+      "actual": 6,
+      "pass": true
+    },
+    {
+      "name": "D NPTH in the drill file, within 2 um of the table",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "D no copper inside hole + 0.2 mm (from the Gerbers)",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "D PTH pads unchanged",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "name": "E gerber set complete",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "E four copper layers",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "name": "E outline 61.8236 x 45.0088 mm +/- 0.01",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "E every file read by our own parser",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "E copper layers additive only",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "F BOM exists",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "F every BOM row has an LCSC number",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "F no designator on two BOM rows",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "F fitted parts in the BOM",
+      "expected": 133,
+      "actual": 133,
+      "pass": true
+    },
+    {
+      "name": "F CPL exists",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "F CPL rows",
+      "expected": 133,
+      "actual": 133,
+      "pass": true
+    },
+    {
+      "name": "F BOM and CPL name the same parts",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "G top preview rendered",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "G bottom preview rendered",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T17:58:44",
+  "notes": "ACCEPTANCE.md A-G. The document is frozen; this is its implementation. D and E are settled by lib/gerber_parse.py reading the plotted files, not by KiCad reading its own output.",
+  "drc": {
+    "violations": 470,
+    "errors": 0,
+    "warnings": 470,
+    "unconnected": 0,
+    "by_type": {
+      "silk_overlap": 199,
+      "silk_over_copper": 157,
+      "courtyards_overlap": 77,
+      "track_dangling": 26,
+      "clearance": 5,
+      "via_dangling": 3,
+      "silk_edge_clearance": 2,
+      "starved_thermal": 1
+    },
+    "errors_by_type": {},
+    "signatures": [],
+    "types_at_warning": [
+      "clearance",
+      "courtyards_overlap",
+      "silk_edge_clearance",
+      "silk_over_copper",
+      "silk_overlap",
+      "starved_thermal",
+      "track_dangling",
+      "via_dangling"
+    ],
+    "disallowed_warning_types": [],
+    "relaxed_error_types": []
+  },
+  "board": {
+    "counts": {
+      "footprints": 141,
+      "tracks": 1252,
+      "vias": 239,
+      "npth_pads": 6,
+      "pth_pads": 16
+    },
+    "contract_diffs": [],
+    "mechanical": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "PEG1",
+      "PEG2"
+    ],
+    "unconnected": 0,
+    "npth": [
+      {
+        "ref": "H1",
+        "x_mm": 123.048,
+        "y_mm": 83.048,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H2",
+        "x_mm": 176.9468,
+        "y_mm": 83.048,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H3",
+        "x_mm": 123.048,
+        "y_mm": 121.9608,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "H4",
+        "x_mm": 176.9468,
+        "y_mm": 121.9608,
+        "dia_mm": 2.3876
+      },
+      {
+        "ref": "PEG1",
+        "x_mm": 176.861075,
+        "y_mm": 113.877885,
+        "dia_mm": 0.700024
+      },
+      {
+        "ref": "PEG2",
+        "x_mm": 176.861075,
+        "y_mm": 108.097861,
+        "dia_mm": 0.700024
+      }
+    ],
+    "zones": [
+      {
+        "net": "CHASSIS_GND",
+        "filled_outlines": 2
+      },
+      {
+        "net": "GND",
+        "filled_outlines": 1
+      },
+      {
+        "net": "USB_5V",
+        "filled_outlines": 1
+      },
+      {
+        "net": "VDD_ESP",
+        "filled_outlines": 1
+      },
+      {
+        "net": "AVDD",
+        "filled_outlines": 1
+      },
+      {
+        "net": "AVSS",
+        "filled_outlines": 7
+      },
+      {
+        "net": "USB_5V",
+        "filled_outlines": 8
+      },
+      {
+        "net": "VDD_ESP",
+        "filled_outlines": 1
+      },
+      {
+        "net": "VDD_ESP",
+        "filled_outlines": 9
+      },
+      {
+        "net": "VDD_ESP",
+        "filled_outlines": 3
+      }
+    ],
+    "zones_all_filled": true,
+    "pad_to_mask_mm": 0.0508,
+    "solder_mask_min_width_mm": 0.0508,
+    "pad_to_paste_mm": 0.0,
+    "dnp": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ],
+    "dnp_pads_checked": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ]
+  },
+  "rules_regenerated": {
+    "ran": true,
+    "stderr": "",
+    "kicad_pro": {
+      "identical": true
+    },
+    "kicad_dru": {
+      "identical": true
+    },
+    "identical": true
+  },
+  "rule_values": {
+    "wanted": {
+      "min_clearance": 0.0889,
+      "min_track_width": 0.0889,
+      "min_hole_to_hole": 0.2,
+      "min_hole_clearance": 0.2,
+      "min_copper_edge_clearance": 0.2,
+      "min_through_hole_diameter": 0.3,
+      "min_via_annular_width": 0.076,
+      "min_via_diameter": 0.45
+    },
+    "got": {
+      "min_clearance": 0.0889,
+      "min_track_width": 0.0889,
+      "min_hole_to_hole": 0.2,
+      "min_hole_clearance": 0.2,
+      "min_copper_edge_clearance": 0.2,
+      "min_through_hole_diameter": 0.3,
+      "min_via_annular_width": 0.076,
+      "min_via_diameter": 0.45
+    }
+  },
+  "fab": {
+    "dir": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/gerber",
+    "layers_found": [
+      "g1",
+      "g2",
+      "gbl",
+      "gbo",
+      "gbp",
+      "gbs",
+      "gm1",
+      "gtl",
+      "gto",
+      "gtp",
+      "gts"
+    ],
+    "unexpected_files": [],
+    "missing_layers": [],
+    "drill_files": [
+      "NPTH",
+      "PTH"
+    ],
+    "outline": {
+      "bbox": [
+        120.0,
+        -125.0088,
+        181.8236,
+        -80.0
+      ],
+      "width_mm": 61.8236,
+      "height_mm": 45.0088,
+      "expected": [
+        61.8236,
+        45.0088
+      ],
+      "ok": true
+    },
+    "layers": {
+      "In1.Cu": {
+        "flashes": 255,
+        "draws": 0,
+        "regions": 1,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-In1_Cu.g1",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Copper,L2,Inr",
+        "apertures": 6,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "In2.Cu": {
+        "flashes": 255,
+        "draws": 0,
+        "regions": 31,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-In2_Cu.g2",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Copper,L3,Inr",
+        "apertures": 6,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "B.Cu": {
+        "flashes": 255,
+        "draws": 317,
+        "regions": 0,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-B_Cu.gbl",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Copper,L4,Bot",
+        "apertures": 11,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "B.SilkS": {
+        "flashes": 0,
+        "draws": 0,
+        "regions": 0,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 22,
+        "file": "Therapia_EEG-HRV-B_Silkscreen.gbo",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Legend,Bot",
+        "apertures": 0,
+        "clear_polarity_ops": 1,
+        "unparsed_apertures": [],
+        "empty": true
+      },
+      "B.Paste": {
+        "flashes": 0,
+        "draws": 0,
+        "regions": 0,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-B_Paste.gbp",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Paste,Bot",
+        "apertures": 0,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": true
+      },
+      "B.Mask": {
+        "flashes": 0,
+        "draws": 0,
+        "regions": 22,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-B_Mask.gbs",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Soldermask,Bot",
+        "apertures": 0,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "Edge.Cuts": {
+        "flashes": 0,
+        "draws": 4,
+        "regions": 0,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-Edge_Cuts.gm1",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Profile,NP",
+        "apertures": 1,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "F.Cu": {
+        "flashes": 672,
+        "draws": 935,
+        "regions": 2,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-F_Cu.gtl",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Copper,L1,Top",
+        "apertures": 38,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "F.SilkS": {
+        "flashes": 0,
+        "draws": 8217,
+        "regions": 3,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 425,
+        "file": "Therapia_EEG-HRV-F_Silkscreen.gto",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Legend,Top",
+        "apertures": 9,
+        "clear_polarity_ops": 1,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "F.Paste": {
+        "flashes": 417,
+        "draws": 0,
+        "regions": 178,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-F_Paste.gtp",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Paste,Top",
+        "apertures": 27,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      },
+      "F.Mask": {
+        "flashes": 0,
+        "draws": 0,
+        "regions": 425,
+        "clear_flashes": 0,
+        "clear_draws": 0,
+        "clear_regions": 0,
+        "file": "Therapia_EEG-HRV-F_Mask.gts",
+        "format": "4.6",
+        "unit": "MM",
+        "file_function": "Soldermask,Top",
+        "apertures": 0,
+        "clear_polarity_ops": 0,
+        "unparsed_apertures": [],
+        "empty": false
+      }
+    },
+    "all_parsed": true,
+    "empty_layers": [
+      "B.Paste",
+      "B.SilkS"
+    ],
+    "copper_all_dark": true,
+    "npth": {
+      "count": 6,
+      "tools": {
+        "1": 0.7,
+        "2": 2.388
+      },
+      "holes": [
+        {
+          "hole": "PEG2",
+          "expected": [
+            176.861075,
+            -108.097861,
+            0.7
+          ],
+          "found": [
+            176.861,
+            -108.098,
+            0.7
+          ],
+          "offset_mm": 0.000158,
+          "within_2um": true,
+          "dia_ok": true
+        },
+        {
+          "hole": "PEG1",
+          "expected": [
+            176.861075,
+            -113.877885,
+            0.7
+          ],
+          "found": [
+            176.861,
+            -113.878,
+            0.7
+          ],
+          "offset_mm": 0.000137,
+          "within_2um": true,
+          "dia_ok": true
+        },
+        {
+          "hole": "H1",
+          "expected": [
+            123.048,
+            -83.048,
+            2.3876
+          ],
+          "found": [
+            123.048,
+            -83.048,
+            2.388
+          ],
+          "offset_mm": 0.0,
+          "within_2um": true,
+          "dia_ok": true
+        },
+        {
+          "hole": "H2",
+          "expected": [
+            176.9468,
+            -83.048,
+            2.3876
+          ],
+          "found": [
+            176.947,
+            -83.048,
+            2.388
+          ],
+          "offset_mm": 0.0002,
+          "within_2um": true,
+          "dia_ok": true
+        },
+        {
+          "hole": "H3",
+          "expected": [
+            123.048,
+            -121.9608,
+            2.3876
+          ],
+          "found": [
+            123.048,
+            -121.961,
+            2.388
+          ],
+          "offset_mm": 0.0002,
+          "within_2um": true,
+          "dia_ok": true
+        },
+        {
+          "hole": "H4",
+          "expected": [
+            176.9468,
+            -121.9608,
+            2.3876
+          ],
+          "found": [
+            176.947,
+            -121.961,
+            2.388
+          ],
+          "offset_mm": 0.000283,
+          "within_2um": true,
+          "dia_ok": true
+        }
+      ],
+      "ok": true
+    },
+    "copper_in_npth_rings": [],
+    "npth_clear": true,
+    "copper_coverage": {
+      "F.Cu": 0.2416,
+      "In1.Cu": 0.9543,
+      "In2.Cu": 0.9356,
+      "B.Cu": 0.1057
+    },
+    "planes_filled": true,
+    "paste": {
+      "flashes": 417,
+      "regions": 178,
+      "openings": 595
+    },
+    "pth": {
+      "hits": 259,
+      "tools": {
+        "1": 0.305,
+        "2": 0.305,
+        "3": 0.6,
+        "4": 1.05
+      },
+      "slots": 8
+    },
+    "vs_2026_08_16": {
+      "archive": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_Gerber.zip",
+      "files": 16,
+      "outline_mm": [
+        61.8236,
+        45.0088
+      ],
+      "npth_hits": 6,
+      "npth_tools": {
+        "1": 0.700024,
+        "2": 2.3876
+      },
+      "npth_xy": [
+        [
+          3.048,
+          -41.9608
+        ],
+        [
+          3.048,
+          -3.048
+        ],
+        [
+          56.8611,
+          -33.8779
+        ],
+        [
+          56.8611,
+          -28.0979
+        ],
+        [
+          56.9468,
+          -41.9608
+        ],
+        [
+          56.9468,
+          -3.048
+        ]
+      ]
+    }
+  },
+  "bom": {
+    "exists": true,
+    "rows": 30,
+    "parts": 133,
+    "duplicate_designators": [],
+    "without_lcsc": []
+  },
+  "cpl": {
+    "exists": true,
+    "rows": 133,
+    "sides": [
+      "Top"
+    ]
+  },
+  "bom_cpl_match": true,
+  "bom_only": [],
+  "cpl_only": [],
+  "previews": {
+    "preview_top.png": {
+      "exists": true,
+      "bytes": 154399
+    },
+    "preview_bottom.png": {
+      "exists": true,
+      "bytes": 91154
+    }
+  }
+}

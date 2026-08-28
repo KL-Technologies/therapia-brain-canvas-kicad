@@ -1,0 +1,87 @@
+{
+  "table_rows": 135,
+  "board_footprints": 141,
+  "dnp_in_table": [
+    "R_IO15_DN",
+    "R_RST_UP"
+  ],
+  "dnp_on_board": [
+    "R_IO15_DN",
+    "R_RST_UP"
+  ],
+  "dnp_agree": true,
+  "bom": {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/BOM_JLCPCB.csv",
+    "rows": 30,
+    "parts": 133,
+    "designators_missing_from_board": [],
+    "rows_without_lcsc": []
+  },
+  "cpl": {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/CPL_JLCPCB.csv",
+    "rows": 133,
+    "excluded": [],
+    "source_rows": 133
+  },
+  "bom_only": [],
+  "cpl_only": [],
+  "sets_match": true,
+  "vs_2026_08_16": {
+    "file": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_CPL.xlsx",
+    "unchanged": 122,
+    "moved": [
+      {
+        "ref": "AMS1117",
+        "dx_mm": 3.25,
+        "dy_mm": -1.2495,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_3V3_H",
+        "dx_mm": -0.0005,
+        "dy_mm": -0.05,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_AVSS_B",
+        "dx_mm": 0.15,
+        "dy_mm": 0.0,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_RST_DLY",
+        "dx_mm": -0.1,
+        "dy_mm": 0.0,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_VCAP1",
+        "dx_mm": 1.016,
+        "dy_mm": -2.286,
+        "drot_deg": 90.0
+      },
+      {
+        "ref": "C_VREFP_10n",
+        "dx_mm": 0.05,
+        "dy_mm": 0.0,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_VREFP_10u",
+        "dx_mm": 0.508,
+        "dy_mm": 0.254,
+        "drot_deg": 90.0
+      }
+    ],
+    "new_since_august": [
+      "C_VCAP1_H",
+      "C_VCAP2",
+      "C_VCAP3",
+      "C_VCAP3_H"
+    ],
+    "gone_since_august": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ]
+  }
+}

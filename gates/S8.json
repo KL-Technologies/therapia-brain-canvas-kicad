@@ -1,0 +1,361 @@
+{
+  "step": "S8",
+  "pass": true,
+  "checks": [
+    {
+      "name": "archive present",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "archive holds the 14 files ACCEPTANCE E counts",
+      "expected": 14,
+      "actual": 14,
+      "pass": true
+    },
+    {
+      "name": "archive holds no drill map or stray file",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "every expected gerber layer present",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "all files read by our own parser",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "copper layers additive only",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "outline within 0.01 mm",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "no copper inside any NPTH ring",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "inner planes actually filled",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "outline matches the 2026-08-16 package",
+      "expected": [
+        61.8236,
+        45.0088
+      ],
+      "actual": [
+        61.8236,
+        45.0088
+      ],
+      "pass": true
+    },
+    {
+      "name": "NPTH count matches the 2026-08-16 package",
+      "expected": 6,
+      "actual": 6,
+      "pass": true
+    },
+    {
+      "name": "BOM rows carry the JLC columns",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "BOM parts",
+      "expected": 133,
+      "actual": 133,
+      "pass": true
+    },
+    {
+      "name": "BOM has no repeated designator",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "CPL columns",
+      "expected": [
+        "Designator",
+        "Mid X",
+        "Mid Y",
+        "Layer",
+        "Rotation"
+      ],
+      "actual": [
+        "Designator",
+        "Mid X",
+        "Mid Y",
+        "Layer",
+        "Rotation"
+      ],
+      "pass": true
+    },
+    {
+      "name": "CPL rows",
+      "expected": 133,
+      "actual": 133,
+      "pass": true
+    },
+    {
+      "name": "CPL is top side only",
+      "expected": [
+        "Top"
+      ],
+      "actual": [
+        "Top"
+      ],
+      "pass": true
+    },
+    {
+      "name": "BOM and CPL name the same parts",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "DNP and mechanical parts in neither file",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "name": "placements unchanged since 2026-08-16",
+      "expected": 122,
+      "actual": 122,
+      "pass": true,
+      "note": "129 parts existed in August; the 7 that moved are the L1 repair, four S5 nudges and the two ECO-3 1206 swaps, each listed in vs_august_placement"
+    },
+    {
+      "name": "parts moved since August are all accounted for",
+      "expected": 7,
+      "actual": 7,
+      "pass": true
+    },
+    {
+      "name": "parts new since August",
+      "expected": [
+        "C_VCAP1_H",
+        "C_VCAP2",
+        "C_VCAP3",
+        "C_VCAP3_H"
+      ],
+      "actual": [
+        "C_VCAP1_H",
+        "C_VCAP2",
+        "C_VCAP3",
+        "C_VCAP3_H"
+      ],
+      "pass": true
+    },
+    {
+      "name": "previews and assembly drawing written",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-08-28T18:02:44",
+  "notes": "The uploadable package, read back from the files. Geometry and drill are checked by lib/gerber_parse.py, not by KiCad.",
+  "archive": {
+    "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/Therapia_EEG-HRV_Rev.A.zip",
+    "files": [
+      "Therapia_EEG-HRV-B_Cu.gbl",
+      "Therapia_EEG-HRV-B_Mask.gbs",
+      "Therapia_EEG-HRV-B_Paste.gbp",
+      "Therapia_EEG-HRV-B_Silkscreen.gbo",
+      "Therapia_EEG-HRV-Edge_Cuts.gm1",
+      "Therapia_EEG-HRV-F_Cu.gtl",
+      "Therapia_EEG-HRV-F_Mask.gts",
+      "Therapia_EEG-HRV-F_Paste.gtp",
+      "Therapia_EEG-HRV-F_Silkscreen.gto",
+      "Therapia_EEG-HRV-In1_Cu.g1",
+      "Therapia_EEG-HRV-In2_Cu.g2",
+      "Therapia_EEG-HRV-NPTH.drl",
+      "Therapia_EEG-HRV-PTH.drl",
+      "Therapia_EEG-HRV-job.gbrjob"
+    ],
+    "bytes": 281932
+  },
+  "independent_parse": {
+    "missing_layers": [],
+    "unexpected_files": [],
+    "all_parsed": true,
+    "copper_all_dark": true,
+    "empty_layers": [
+      "B.Paste",
+      "B.SilkS"
+    ],
+    "npth_clear": true,
+    "planes_filled": true,
+    "copper_coverage": {
+      "F.Cu": 0.2416,
+      "In1.Cu": 0.9543,
+      "In2.Cu": 0.9356,
+      "B.Cu": 0.1057
+    },
+    "outline": {
+      "bbox": [
+        120.0,
+        -125.0088,
+        181.8236,
+        -80.0
+      ],
+      "width_mm": 61.8236,
+      "height_mm": 45.0088,
+      "expected": [
+        61.8236,
+        45.0088
+      ],
+      "ok": true
+    },
+    "vs_2026_08_16": {
+      "archive": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_Gerber.zip",
+      "files": 16,
+      "outline_mm": [
+        61.8236,
+        45.0088
+      ],
+      "npth_hits": 6,
+      "npth_tools": {
+        "1": 0.700024,
+        "2": 2.3876
+      },
+      "npth_xy": [
+        [
+          3.048,
+          -41.9608
+        ],
+        [
+          3.048,
+          -3.048
+        ],
+        [
+          56.8611,
+          -33.8779
+        ],
+        [
+          56.8611,
+          -28.0979
+        ],
+        [
+          56.9468,
+          -41.9608
+        ],
+        [
+          56.9468,
+          -3.048
+        ]
+      ]
+    }
+  },
+  "bom": {
+    "rows": 30,
+    "parts": 133,
+    "columns": [
+      "Comment",
+      "Designator",
+      "Footprint",
+      "LCSC Part #",
+      "MPN",
+      "Manufacturer",
+      "Qty"
+    ]
+  },
+  "cpl": {
+    "rows": 133,
+    "columns": [
+      "Designator",
+      "Mid X",
+      "Mid Y",
+      "Layer",
+      "Rotation"
+    ],
+    "sides": [
+      "Top"
+    ]
+  },
+  "human_facing": {
+    "preview_top.png": true,
+    "preview_bottom.png": true,
+    "assembly_top.pdf": true,
+    "README_発注手順.md": true
+  },
+  "vs_august_placement": {
+    "file": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_CPL.xlsx",
+    "unchanged": 122,
+    "moved": [
+      {
+        "ref": "AMS1117",
+        "dx_mm": 3.25,
+        "dy_mm": -1.2495,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_3V3_H",
+        "dx_mm": -0.0005,
+        "dy_mm": -0.05,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_AVSS_B",
+        "dx_mm": 0.15,
+        "dy_mm": 0.0,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_RST_DLY",
+        "dx_mm": -0.1,
+        "dy_mm": 0.0,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_VCAP1",
+        "dx_mm": 1.016,
+        "dy_mm": -2.286,
+        "drot_deg": 90.0
+      },
+      {
+        "ref": "C_VREFP_10n",
+        "dx_mm": 0.05,
+        "dy_mm": 0.0,
+        "drot_deg": 0.0
+      },
+      {
+        "ref": "C_VREFP_10u",
+        "dx_mm": 0.508,
+        "dy_mm": 0.254,
+        "drot_deg": 90.0
+      }
+    ],
+    "new_since_august": [
+      "C_VCAP1_H",
+      "C_VCAP2",
+      "C_VCAP3",
+      "C_VCAP3_H"
+    ],
+    "gone_since_august": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ]
+  }
+}

@@ -55,6 +55,21 @@ echo "== placement preview =="
 "$KC" pcb render --side bottom --width 1600 --height 1200 \
     --output "$ROOT/fab/preview_bottom.png" "$BOARD"
 
+echo "== assembly drawing =="
+# The 3D render shows shapes; this shows names. It is what to hold next to
+# JLC's Confirm Parts Placement screen, and --crossout-DNP puts an X through
+# R_RST_UP and R_IO15_DN so the two parts that must NOT be fitted are visible
+# rather than merely absent from a list.
+# In --mode-single the output is a file, not a directory.
+"$KC" pcb export pdf \
+    --output "$ROOT/fab/assembly_top.pdf" \
+    --layers F.Fab,F.SilkS,Edge.Cuts \
+    --mode-single \
+    --include-border-title \
+    --crossout-DNP-footprints-on-fab-layers \
+    --black-and-white \
+    "$BOARD"
+
 echo "== zip =="
 # The map PDF is a human aid, not part of what JLC reads; keeping it out of the
 # archive means the archive is exactly the 14 files ACCEPTANCE E counts.
