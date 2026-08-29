@@ -1,6 +1,6 @@
 # Brain Canvas Rev.A 火入れ手順書（合格値つき）
 
-- 対象: Brain Canvas Rev.A（ADS1299 + ESP32-WROOM-32E + CH340C、USB-C 5V 給電、61.8×45 mm 4層）
+- 対象: Brain Canvas Rev.A（ADS1299 + ESP32-WROOM-32UE-N4（L8 で 32E から差替、基板上アンテナ無し）+ CH340C、USB-C 5V 給電、61.8×45 mm 4層）
 - 前提: `reports/bringup_design_review.md` の **B1／B2／B3 を BOM に反映済み**であること
 - 原則: **各ステップの合格値を満たすまで次へ進まない。** 不合格なら末尾「切り分けフロー」へ
 - 記録: 各ステップの実測値をこの表に書き込んで残す（Rev.B の判断材料になる）

@@ -2,17 +2,21 @@
   "gate": "S9",
   "title": "JLC cart insertion (no payment)",
   "status": "pass",
-  "timestamp": "2026-08-28T21:12+08:00",
-  "supersedes": "the 18:46 cart items Y5-10641515A / SMT026082861630-10641515A, deleted from the cart at 21:12 because that package had two mechanical collisions (ESP32-WROOM-32E body over the ADS1299, R_CC1 under the USB-C shell) — see gates/S5_L7.json, S5_L8.json, S7_body.json and ACCEPTANCE H",
+  "timestamp": "2026-08-29T12:12+08:00",
+  "history": [
+    "18:46 2026-08-28: Y5 / SMT026082861630 — deleted 21:12 (ESP32-WROOM-32E body over the ADS1299, R_CC1 under the USB-C shell; gates/S5_L7.json, S5_L8.json, ACCEPTANCE H)",
+    "21:12 2026-08-28: Y6 / SMT026082862202 — replaced 12:12 2026-08-29 via 'Edit Order' (same PCB upload, BOM re-uploaded) after the cold-eyes functional review's free BOM upgrades (reports/functional_review_2026-08-29.md, bom_fixes R29-1..R29-5)",
+    "12:12 2026-08-29: Y7 / SMT026082960247 — current"
+  ],
   "operator": "Claude (claude-in-chrome, user's logged-in JLCPCB session)",
   "cart_url": "https://cart.jlcpcb.com/shopcart/cart",
-  "order_page": "https://cart.jlcpcb.com/smt-order/?pcbFileNo=27a69285af144813b592054849abe45e",
-  "package": "fab/Therapia_EEG-HRV_Rev.A.zip from commit 1c8a769 (BOM/CPL of the same commit)",
+  "order_page": "https://cart.jlcpcb.com/smt-order/?cartAccessId=2077c627f1f14d18a42be55d9a6655c1&pcbFileNo=27a69285af144813b592054849abe45e",
+  "package": "Gerber: fab/Therapia_EEG-HRV_Rev.A.zip (copper identical since commit 1c8a769); BOM/CPL: commit eba012d",
   "items": [
     {
       "kind": "PCB",
-      "name": "Therapia_EEG-HRV_Rev.A_Y6",
-      "order_no": "Y6-10641515A",
+      "name": "Therapia_EEG-HRV_Rev.A_Y7",
+      "order_no": "Y7-10641515A",
       "spec": "4 layers, 1.6 mm, Green, ENIG, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm",
       "qty_panels": 5,
       "build_time": "3 days",
@@ -20,41 +24,35 @@
     },
     {
       "kind": "Standard PCBA",
-      "name": "Therapia_EEG-HRV_Rev.A_Y6",
-      "order_no": "SMT026082862202-10641515A",
+      "name": "Therapia_EEG-HRV_Rev.A_Y7",
+      "order_no": "SMT026082960247-10641515A",
       "spec": "Top side, 30 BOM rows / 133 parts per board, Confirm Parts Placement = Yes (do not confirm automatically), edge rails/fiducials by JLCPCB, Product Description = Research/Education/DIY -> Development Board (HS 847330)",
       "qty_panels": 2,
       "build_time": "5-6 days",
-      "price_usd": 226.91
+      "price_usd": 227.07
     }
   ],
-  "total_usd_excl_shipping": 272.91,
-  "estimated_ship_date": "2026-09-05",
+  "total_usd_excl_shipping": 273.07,
   "payment": "NOT made (user decision pending)",
   "untouched_cart_items": ["Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A", "Ganglion_01_JLCPCB_gerbers_Y4 PCBA SMT026081261592-10641515A"],
   "bom_checks": {
     "rows_detected": 30,
     "rows_confirmed": 30,
     "rows_shortfall": 0,
-    "cart_vs_repo_bom": "all 30 LCSC numbers identical to fab/BOM_JLCPCB.csv (checked from the page text)",
+    "cart_vs_repo_bom": "all 30 LCSC numbers identical to fab/BOM_JLCPCB.csv @ eba012d (checked from the page text)",
     "manual_actions": [
-      "10 multi-designator rows flagged 'multiple types of parts' ticked by hand (JLC leaves them unselected with qty 0)",
-      "U_USB: JLC auto-matched C7464026 (same WCH CH340C, other listing) -> restored C84681 (stock 62,573)"
+      "11 multi-designator rows flagged 'multiple types of parts' ticked by hand",
+      "U_USB: JLC auto-matched C7464026 again -> restored C84681"
     ],
-    "parts_changed_vs_first_cart": [
-      {"designator": "U_MCU", "from": "C701341 ESP32-WROOM-32E-N4", "to": "C701344 ESP32-WROOM-32UE-N4", "reason": "32E body (25.5 mm, antenna zone) overlapped the ADS1299 by 2.81 mm and covered three 0402 caps; 32UE has the identical land pattern and a 19.2 mm body (3.77 mm clear of the ADS1299 body). CPL rotation 90 via data/cpl_overrides.json"}
-    ],
-    "why_standard_pcba": "ESP32-WROOM-32UE-N4 (C701344) is 'Standard Only' at JLC (as was the 32E); board < 70x70 mm so JLC panelisation was used"
+    "bom_upgrades_2026-08-29": [
+      {"designators": "C_CM1P..C_CM8N (16)", "from": "C1588 1nF X7R 0603", "to": "C163508 CL10C102JB8NNNC 1nF C0G 50V 0603 (Extended)", "why": "ADS1299 input node: C0G per SBAS499 §12.1, no piezo noise, better CMRR matching"},
+      {"designators": "C_NLDO_OUT, C_LM_IN", "from": "C12530 2.2uF 6.3V / C52923 1uF 25V", "to": "C23733 CL05A475MP5NRNC 4.7uF 10V 0402 (Basic)", "why": "effective capacitance after DC bias (Samsung fetched curves): 1.19uF -> 3.02uF at 2.5 V; 0.42uF -> 1.6uF at 5 V"},
+      {"designators": "C_AVDD_P59", "from": "C1525 100nF", "to": "C52923 1uF 0402", "why": "ADS1299 pin 59 charge-pump supply wants 1uF (SBAS499 §6); return net stays GND (Rev.B)"}
+    ]
   },
   "placement_checks": {
-    "method": "JLC Component Placements viewer (row click zooms, purple dot = JLC library pin 1) vs pcbnew pad dx/dy/net dump from the board",
-    "verified_ok": [
-      "U_MCU (32UE model sits on the pad rows with the U.FL connector at the -X / former-antenna end; nothing under the body; ADS1299 clear)",
-      "R_CC1 at (173.400, 113.900) rot 180 — outside the USB-C shell outline, 1.2 mm clear",
-      "J1 USB-C shell contains no part any more",
-      "unchanged rows re-verified in the first cart: AMS1117, D_ESD, D_LED (- left / + right), LM2664, Q_EN/Q_IO0, TLV70025, TPS72325, U_ADS (pin1 top-left), U_USB (pin1 bottom-left)"
-    ],
+    "method": "JLC Component Placements viewer re-checked after the BOM re-upload (same CPL): U_MCU 32UE model on the pad rows with the U.FL end at -X, R_CC1 clear of the USB-C shell, other parts unchanged from the verified Y6 set",
     "cpl_rotation_changes": "U_MCU 0 -> 90 (data/cpl_overrides.json); everything else unchanged"
   },
-  "next": ["user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y6 rows)", "answer JLC DFM / Confirm Parts Placement within 72 h", "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR)"]
+  "next": ["user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y7 rows)", "answer JLC DFM / Confirm Parts Placement within 72 h", "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR, measure U0RXD idle voltage)"]
 }
