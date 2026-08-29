@@ -8947,7 +8947,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "470k"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "20fa2e7e-41f6-4243-8aab-e4a9f0bf53e4")
@@ -9006,7 +9006,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF1002T5E"
+		(property "MPN" "0603WAF4703T5E"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -9018,7 +9018,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" "C23178"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -12755,7 +12755,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "470k"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "908312ce-28f9-4115-a880-f0ca6fe6815e")
@@ -12814,7 +12814,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF1002T5E"
+		(property "MPN" "0603WAF4703T5E"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -12826,7 +12826,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25804"
+		(property "LCSC" "C23178"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)

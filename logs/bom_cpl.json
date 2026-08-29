@@ -12,7 +12,7 @@
   "dnp_agree": true,
   "bom": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/BOM_JLCPCB.csv",
-    "rows": 30,
+    "rows": 31,
     "parts": 133,
     "designators_missing_from_board": [],
     "rows_without_lcsc": []

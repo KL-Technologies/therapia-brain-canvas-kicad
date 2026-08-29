@@ -72,6 +72,8 @@ MAKER = {
     "C701344": "Espressif",
     # 2026-08-29 functional review, BOM only (data/bom_fixes R29-1..R29-3)
     "C163508": "Samsung", "C23733": "Samsung",
+    # 2026-08-29 simulation finding, BOM only (data/bom_fixes R29-6)
+    "C23178": "UNI-ROYAL",
 }
 
 

@@ -1,7 +1,7 @@
 {
   "case": "esp32_autoreset",
-  "pass": false,
-  "timestamp": "2026-08-29T12:43:06",
+  "pass": true,
+  "timestamp": "2026-08-29T13:01:28",
   "checks": [
     {
       "name": "EN/IO0 truth table matches the esptool reset sequence",
@@ -10,25 +10,47 @@
     },
     {
       "name": "EN and IO0 stay within the ESP32 absolute maximum",
-      "pass": false,
-      "detail": "worst EN 4.238 V, worst IO0 4.203 V, limit 3.60 V"
+      "pass": true,
+      "detail": "worst EN 3.414 V, worst IO0 3.398 V, limit 3.60 V"
     },
     {
-      "name": "EN rises >= 10 ms after the 3.3 V rail",
-      "pass": false,
-      "detail": "8.55 ms with the DERATED 0.62 uF (13.85 ms with the marked 1.00 uF)"
+      "name": "EN releases only after the 3.3 V rail has settled",
+      "pass": true,
+      "detail": "3.3 V rail reaches 99 % at 0.30 ms; EN reaches VIH at 8.84 ms (8.54 ms later, 29x the rail settling time) with the DERATED 0.62 uF. With the marked 1.00 uF EN releases at 14.12 ms. Espressif specifies no minimum delay -- only that EN stay low until the supply is stable."
     }
   ],
   "numbers": {
     "ch340_vcc_net": "USB_5V",
     "ch340_io_swing_V": 5.0,
+    "resistors": {
+      "R_Q_EN_B": {
+        "ohm": 470000.0,
+        "lcsc": "C23178",
+        "value": "470k"
+      },
+      "R_Q_IO0_B": {
+        "ohm": 470000.0,
+        "lcsc": "C23178",
+        "value": "470k"
+      },
+      "R_EN_UP": {
+        "ohm": 10000.0,
+        "lcsc": "C25804",
+        "value": "10k"
+      },
+      "R_IO0_UP": {
+        "ohm": 10000.0,
+        "lcsc": "C25804",
+        "value": "10k"
+      }
+    },
     "truth_table": [
       {
         "state": "idle / run          (host DTR=0 RTS=0)",
         "DTR#": "H",
         "RTS#": "H",
-        "EN_V": 4.23848997481423,
-        "IO0_V": 4.202639805143913,
+        "EN_V": 3.4139808726358005,
+        "IO0_V": 3.397557372466507,
         "EN": "H",
         "IO0": "H",
         "expected": [
@@ -36,14 +58,14 @@
           "H"
         ],
         "match": true,
-        "over_absmax": true
+        "over_absmax": false
       },
       {
         "state": "assert reset        (host DTR=0 RTS=1)",
         "DTR#": "H",
         "RTS#": "L",
-        "EN_V": 0.010304401048376741,
-        "IO0_V": 3.2999459460110665,
+        "EN_V": 0.06633628994453841,
+        "IO0_V": 3.2999459460110985,
         "EN": "L",
         "IO0": "H",
         "expected": [
@@ -57,8 +79,8 @@
         "state": "release into loader (host DTR=1 RTS=0)",
         "DTR#": "L",
         "RTS#": "H",
-        "EN_V": 3.296637362897754,
-        "IO0_V": 0.011153572686247563,
+        "EN_V": 3.2966373628977936,
+        "IO0_V": 0.07231519724580647,
         "EN": "H",
         "IO0": "L",
         "expected": [
@@ -72,8 +94,8 @@
         "state": "both asserted       (host DTR=1 RTS=1)",
         "DTR#": "L",
         "RTS#": "L",
-        "EN_V": 3.2966373627179366,
-        "IO0_V": 3.2999459458637954,
+        "EN_V": 3.296637362717941,
+        "IO0_V": 3.2999459458637994,
         "EN": "H",
         "IO0": "H",
         "expected": [
@@ -87,26 +109,26 @@
     "truth_table_if_ch340_were_3v3": [
       {
         "state": "idle / run          (host DTR=0 RTS=0)",
-        "EN_V": 3.2966373970106266,
-        "IO0_V": 3.299945973864389
+        "EN_V": 3.2966373969095826,
+        "IO0_V": 3.299945973786124
       },
       {
         "state": "assert reset        (host DTR=0 RTS=1)",
-        "EN_V": 0.012436727228122038,
-        "IO0_V": 3.2999459460110665
+        "EN_V": 0.08220549381516566,
+        "IO0_V": 3.2999459460110923
       },
       {
         "state": "release into loader (host DTR=1 RTS=0)",
-        "EN_V": 3.296637362897754,
-        "IO0_V": 0.013680193711618386
+        "EN_V": 3.2966373628977856,
+        "IO0_V": 0.08972022584218405
       },
       {
         "state": "both asserted       (host DTR=1 RTS=1)",
-        "EN_V": 3.2966373627179366,
-        "IO0_V": 3.2999459458637954
+        "EN_V": 3.296637362717941,
+        "IO0_V": 3.2999459458637994
       }
     ],
-    "worst_pin_V_at_3v3_io": 3.299945973864389,
+    "worst_pin_V_at_3v3_io": 3.299945973786124,
     "esp32_thresholds": {
       "VIH_V": 2.4749999999999996,
       "VIL_V": 0.825,
@@ -120,21 +142,26 @@
       "nominal": {
         "C_F": 1e-06,
         "t_rail_95pct_s": 0.00030000000000000003,
-        "t_EN_VIH_s": 0.01414999999999997,
-        "delay_s": 0.01384999999999997
+        "t_rail_99pct_s": 0.00030000000000000003,
+        "t_EN_VIH_s": 0.014118705096552792,
+        "delay_s": 0.013818705096552792,
+        "margin_over_rail_99pct_s": 0.013818705096552792
       },
       "derated": {
         "C_F": 6.189999999999999e-07,
         "t_rail_95pct_s": 0.00030000000000000003,
-        "t_EN_VIH_s": 0.008850000000000002,
-        "delay_s": 0.008550000000000002
+        "t_rail_99pct_s": 0.00030000000000000003,
+        "t_EN_VIH_s": 0.008835020667474451,
+        "delay_s": 0.008535020667474452,
+        "margin_over_rail_99pct_s": 0.008535020667474452
       }
-    }
+    },
+    "en_release_vs_rail_settle_ratio": 29.450068891581502
   },
   "models": {
     "S8050": "behavioural (generic Gummel-Poon fit)",
     "ESP32 pins": "resistive/threshold model",
     "CH340C": "ideal 5 V push-pull driver"
   },
-  "notes": "CH340C VCC is on net USB_5V, so its DTR#/RTS# outputs swing to 5.0 V.\nABSOLUTE-MAXIMUM FINDING: with the CH340C on USB_5V its DTR#/RTS# outputs idle at 5.0 V. Both transistors are then off with a base above their 3.3 V collector, which forward-biases the base-collector junction and lifts ESP_EN and ESP_IO0 to about 4.24 V -- past the ESP32's 3.60 V maximum. The same deck with 3.3 V handshake levels peaks at 3.30 V, so this is a consequence of the CH340C's supply mode, not of the reset topology. BY INSPECTION the same concern reaches further: U_USB pin 2 TXD drives ESP_RXD (U_MCU pin 34) directly with no level shift. Confirm the CH340C's output level in 5 V supply mode against its datasheet before acting on this.\nTransistors use a generic Gummel-Poon S8050 fit (BF=275, the middle of the J3Y 200..350 bin). The absolute-maximum check depends on the base-collector junction parameters, which are the least well pinned down part of that fit -- treat a marginal result as a reason to measure, not as proof."
+  "notes": "CH340C VCC is on net USB_5V, so its DTR#/RTS# outputs swing to 5.0 V.\nEN-delay criterion: this check previously demanded 'EN rises >= 10 ms after the 3.3 V rail'. No datasheet states that threshold. Espressif's ESP32-WROOM-32E/32UE datasheet recommends the 10 k / 1 uF RC on EN so that EN stays low until the supply is stable, without naming a minimum. Against the invented 10 ms the DERATED capacitor 'failed' at 8.54 ms while the marked value 'passed' at 13.82 ms -- an artifact of the threshold, not a defect. The criterion is now rail-settled-before-EN, which is what the part actually requires; the delay is still reported so the number stays visible.\nThe CH340C on USB_5V still idles its DTR#/RTS# outputs at 5.0 V and still forward-biases the off-side base-collector junctions; R29-6's 470 k base resistors do not remove that injection, they bound it. ESP_EN idles at 3.414 V and ESP_IO0 at 3.398 V against the 3.60 V absolute maximum -- inside the limit, but above the 3.3 V rail. Measure both pins at bring-up rather than treating the margin as proven.\nINFORMATIONAL, NOT FIXED (Rev.B): U_USB pin 2 TXD drives ESP_RXD (U_MCU pin 34) directly with no level shift, so with the CH340C in its 5.0 V supply mode that pin sees the same overvoltage the reset transistors were injecting -- and here it is a driven push-pull output, not a leakage path, so no resistor value bounds it. R29-6 does nothing for this. The root fix is to run the CH340C from 3.3 V (VCC = 3.3 V with V3 tied to VCC), which is a copper change and is therefore deferred to Rev.B; it would close the EN/IO0 injection and the TXD path at once. Confirm the CH340C's output level in 5 V supply mode against its datasheet before acting on this.\nTransistors use a generic Gummel-Poon S8050 fit (BF=275, the middle of the J3Y 200..350 bin). The absolute-maximum check depends on the base-collector junction parameters, which are the least well pinned down part of that fit -- treat a marginal result as a reason to measure, not as proof."
 }

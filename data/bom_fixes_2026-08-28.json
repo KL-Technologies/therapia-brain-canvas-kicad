@@ -2,6 +2,7 @@
   "_purpose": "BOM 実体照合（reports/bom_verification.md）で確定した発注前の修正。S7/S8 担当が board の footprint フィールド（LCSC/MPN/Value）と data/parts_lcsc.csv・発注 BOM に反映する。フットプリントは全て不変。",
   "_decided_by": "lead (Fable) 2026-08-28",
   "_amended": "lead decision 2026-08-29 — 独立機能レビュー（reports/functional_review_2026-08-29.md）の BOM のみ改善 4 件を追加。フットプリント不変・銅箔不変・CPL 不変",
+  "_amended_2": "lead decision 2026-08-29 — ngspice ハーネス（gates/S3_sim.json, case esp32_autoreset）が検出した ESP32 EN/IO0 の絶対最大超過に対する BOM のみ対策 R29-6 を追加。当初案の 100kΩ はシミュレーションで不合格（逆活性領域の電流増幅を見落としていた）、470kΩ を採用。フットプリント不変・銅箔不変・CPL 不変",
   "fixes": [
     {
       "designators": ["FB1", "FB2", "FB3", "FB4", "FB5"],
@@ -152,6 +153,29 @@
       "copper_change": false,
       "status": "considered, kept — lead decision 2026-08-29",
       "sources": ["https://www.ti.com/lit/ds/symlink/ads1299.pdf"]
+    },
+    {
+      "id": "R29-6",
+      "designators": ["R_Q_EN_B", "R_Q_IO0_B"],
+      "old_lcsc": "C25804",
+      "new_lcsc": "C23178",
+      "new_mpn": "0603WAF4703T5E",
+      "new_value": "470k",
+      "reason": "ESP32 の EN / IO0 が絶対最大定格を超える件の BOM のみ対策。CH340C は VCC=USB_5V（U_USB pin16）で動くため DTR#/RTS# は 5V スイングする。両ハンドシェイクが H（アイドル/実行状態）のとき OFF 側トランジスタはベース 5V・コレクタ 3.3V となり B-C 接合が順バイアスされ、コレクタが ESP_EN / ESP_IO0 へ電流を注入する。ngspice 実測（sim/cases/esp32_autoreset.py）: 現行 10kΩ で ESP_EN 4.238V / ESP_IO0 4.203V（注入 93.85µA）— ESP32 の絶対最大 VDD+0.3=3.60V を大きく超える。ベース抵抗を 470kΩ にすると ESP_EN 3.414V / ESP_IO0 3.398V（注入 11.40µA）で定格内に収まる。真理値表は 4 状態とも維持（ON 側 EN 0.066V / IO0 0.072V ≤0.4V、OFF 側 3.297V / 3.300V ≥2.6V）。EN 立ち上がり遅延はこの抵抗の経路外なので不変（derated 0.619µF で 8.535ms）。0603 同一フットプリント・銅箔・CPL 不変",
+      "why_not_100k": "当初案は 100kΩ だったが不合格。『抵抗 10 倍 → 注入 1/10』という見積りはトランジスタをダイオードとみなしたもので誤り。OFF 側は逆活性領域（B-C 順バイアス・B-E 逆バイアス）にあり、コレクタ注入電流はベース電流の (1+BR)≈5 倍に増幅される（実測 Ib 7.63µA → 注入 38.71µA、比 5.07）。さらに R を上げると節点電圧が下がって R 両端の電圧が増えるため自己制限がかかり、10k→100k で電流は 2.4 倍しか下がらない（93.85→38.71µA）。結果 100kΩ では ESP_EN 3.687V / ESP_IO0 3.640V で依然 3.60V 超。実測スイープ: 10k 4.238V / 22k 4.086V / 47k 3.890V / 100k 3.687V / 150k 3.593V / 220k 3.518V / 330k 3.456V / 470k 3.414V / 1M 3.356V",
+      "model_sensitivity": "判定は S8050 の逆方向電流増幅率 BR に依存し、BR は S8050 データシートに記載がなく汎用 Gummel-Poon フィット値（BR=4）である。BR を 1〜10 で振った感度解析では 100kΩ は BR≤2 でしか合格せず、150kΩ / 220kΩ は BR≥7 で不合格。470kΩ は BR=1 で 3.347V、BR=10 で 3.523V と全域で定格内（最悪余裕 77mV）。330kΩ も全域合格だが BR=10 で 3.592V（余裕 8mV）と薄い。1MΩ（C22935）は最悪 3.417V（余裕 183mV）とさらに安全だが、ベース駆動余裕を優先して 470kΩ を採った",
+      "drive_margin": "5V ハンドシェイクで ON 側のベース電流は実測 9.33µA。S8050 J3Y の hFE 下限 200 で Ic 能力 1.87mA（フィット値 BF=275 なら 2.57mA）。これに対し必要なシンク電流はプルアップ 10kΩ の 0.33mA のみで 5 倍以上の余裕がある。C_EN_DLY（derated 0.62µF）を 3.3V から 0.4V 以下へ放電するのに要する時間は Ic=1.87mA で約 1.0ms、Ic 能力を 1.8mA としても ≈1.6ms で、esptool の ClassicReset が RESET を保持する 100ms に対して十分短い",
+      "part_note": "C23178 = UNI-ROYAL(Uniroyal Elec) 0603WAF4703T5E、470kΩ ±1% 0603 100mW 75V ±100ppm/℃、**JLC Basic**（componentLibraryType=base）、JLC 実装在庫 1,256,032。現行 C25804（0603WAF1002T5E 10kΩ）と同一メーカ・同一 0603WAF シリーズ・同一 R0603 パッケージなので端子形状もランドも変わらない。Basic なので Extended 行は増えない。C25804 は R_EN_UP / R_IO0_UP など他の designator でも使われているため BOM から消えず、員数が 2 個減るだけ",
+      "not_fixed_here": "CH340C の TXD（U_USB pin2）が ESP_RXD（U_MCU pin34）を 5V で直接駆動する件はこの変更では直らない。根本策は CH340C を 3.3V 給電にすること（VCC/V3 の銅箔変更）で Rev.A では不可のため Rev.B 送り。本件でも ESP_EN は 3.3V レールを 0.11V 上回ったままで、注入自体が消えるわけではない（絶対最大内に収めるだけ）",
+      "footprint_change": false,
+      "copper_change": false,
+      "deferred_to_rev_b": "CH340C を 3.3V 給電へ（VCC=3.3V かつ V3 を VCC に接続）。これで EN/IO0 の注入と TXD→RXD の 5V 直結が同時に解消する",
+      "status": "lead decision 2026-08-29 (100k proposed, simulation rejected it, 470k adopted)",
+      "sources": [
+        "https://jlcpcb.com/partdetail/C23178",
+        "https://www.lcsc.com/product-detail/C23178.html",
+        "https://documentation.espressif.com/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.html"
+      ]
     }
   ],
   "bringup_review_fixes": [
