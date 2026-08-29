@@ -2,21 +2,22 @@
   "gate": "S9",
   "title": "JLC cart insertion (no payment)",
   "status": "pass",
-  "timestamp": "2026-08-29T12:12+08:00",
+  "timestamp": "2026-08-29T13:09+08:00",
   "history": [
     "18:46 2026-08-28: Y5 / SMT026082861630 — deleted 21:12 (ESP32-WROOM-32E body over the ADS1299, R_CC1 under the USB-C shell; gates/S5_L7.json, S5_L8.json, ACCEPTANCE H)",
     "21:12 2026-08-28: Y6 / SMT026082862202 — replaced 12:12 2026-08-29 via 'Edit Order' (same PCB upload, BOM re-uploaded) after the cold-eyes functional review's free BOM upgrades (reports/functional_review_2026-08-29.md, bom_fixes R29-1..R29-5)",
-    "12:12 2026-08-29: Y7 / SMT026082960247 — current"
+    "12:12 2026-08-29: Y7 / SMT026082960247 — current",
+    "13:09 2026-08-29: Y8 / SMT026082960311 — current (BOM re-uploaded again via 'Edit Order' after R29-6: R_Q_EN_B/R_Q_IO0_B 10k -> 470k on ngspice evidence, gates/S3_sim.json 29/29)"
   ],
   "operator": "Claude (claude-in-chrome, user's logged-in JLCPCB session)",
   "cart_url": "https://cart.jlcpcb.com/shopcart/cart",
   "order_page": "https://cart.jlcpcb.com/smt-order/ (cartAccessId / pcbFileNo は JLC アカウント内のアクセス ID のため記録しない — カートの「Edit Order」から開く)",
-  "package": "Gerber: fab/Therapia_EEG-HRV_Rev.A.zip (copper identical since commit 1c8a769); BOM/CPL: commit eba012d",
+  "package": "Gerber: fab/Therapia_EEG-HRV_Rev.A.zip (copper identical since commit 1c8a769); BOM/CPL: commit 0faeed7 (31 rows / 133 parts)",
   "items": [
     {
       "kind": "PCB",
-      "name": "Therapia_EEG-HRV_Rev.A_Y7",
-      "order_no": "Y7-10641515A",
+      "name": "Therapia_EEG-HRV_Rev.A_Y8",
+      "order_no": "Y8-10641515A",
       "spec": "4 layers, 1.6 mm, Green, ENIG, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm",
       "qty_panels": 5,
       "build_time": "3 days",
@@ -24,27 +25,27 @@
     },
     {
       "kind": "Standard PCBA",
-      "name": "Therapia_EEG-HRV_Rev.A_Y7",
-      "order_no": "SMT026082960247-10641515A",
-      "spec": "Top side, 30 BOM rows / 133 parts per board, Confirm Parts Placement = Yes (do not confirm automatically), edge rails/fiducials by JLCPCB, Product Description = Research/Education/DIY -> Development Board (HS 847330)",
+      "name": "Therapia_EEG-HRV_Rev.A_Y8",
+      "order_no": "SMT026082960311-10641515A",
+      "spec": "Top side, 31 BOM rows / 133 parts per board, Confirm Parts Placement = Yes (do not confirm automatically), edge rails/fiducials by JLCPCB, Product Description = Research/Education/DIY -> Development Board (HS 847330)",
       "qty_panels": 2,
       "build_time": "5-6 days",
-      "price_usd": 227.07
+      "price_usd": 228.74
     }
   ],
-  "total_usd_excl_shipping": 273.07,
+  "total_usd_excl_shipping": 274.74,
   "payment": "NOT made (user decision pending)",
   "untouched_cart_items": [
     "Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A",
     "Ganglion_01_JLCPCB_gerbers_Y4 PCBA SMT026081261592-10641515A"
   ],
   "bom_checks": {
-    "rows_detected": 30,
-    "rows_confirmed": 30,
+    "rows_detected": 31,
+    "rows_confirmed": 31,
     "rows_shortfall": 0,
-    "cart_vs_repo_bom": "all 30 LCSC numbers identical to fab/BOM_JLCPCB.csv @ eba012d (checked from the page text)",
+    "cart_vs_repo_bom": "all 31 LCSC numbers identical to fab/BOM_JLCPCB.csv @ 0faeed7 (checked from the page text)",
     "manual_actions": [
-      "11 multi-designator rows flagged 'multiple types of parts' ticked by hand",
+      "12 multi-designator rows flagged 'multiple types of parts' ticked by hand",
       "U_USB: JLC auto-matched C7464026 again -> restored C84681"
     ],
     "bom_upgrades_2026-08-29": [
@@ -65,6 +66,12 @@
         "from": "C1525 100nF",
         "to": "C52923 1uF 0402",
         "why": "ADS1299 pin 59 charge-pump supply wants 1uF (SBAS499 §6); return net stays GND (Rev.B)"
+      },
+      {
+        "designators": "R_Q_EN_B, R_Q_IO0_B",
+        "from": "C25804 10k",
+        "to": "C23178 0603WAF4703T5E 470k 0603 (Basic)",
+        "why": "CH340C at 5 V forward-biases the OFF transistor's B-C junction; ngspice: ESP_EN idle 4.24 V (10k) -> 3.41 V (470k), truth table intact, EN 1uF discharge 1.6 ms. 100k was rejected (3.69 V, reverse-active gain)"
       }
     ]
   },
@@ -73,7 +80,7 @@
     "cpl_rotation_changes": "U_MCU 0 -> 90 (data/cpl_overrides.json); everything else unchanged"
   },
   "next": [
-    "user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y7 rows)",
+    "user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y8 rows)",
     "answer JLC DFM / Confirm Parts Placement within 72 h",
     "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR, measure U0RXD idle voltage)"
   ]
