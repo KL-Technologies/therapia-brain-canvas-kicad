@@ -1,0 +1,231 @@
+{
+  "case": "power_tree_startup",
+  "pass": true,
+  "timestamp": "2026-08-29T12:43:04",
+  "checks": [
+    {
+      "name": "TPS72325 EN asserted",
+      "pass": true,
+      "detail": "EN driven by V_NLDO_IN (= IN net V_NLDO_IN), -5.00 V wrt GND, |V_EN| vs 1.5 V bipolar threshold -> enabled"
+    },
+    {
+      "name": "LM2664 output resistance within datasheet (TI model)",
+      "pass": true,
+      "detail": "11.5 ohm on the board's derated 2.85 uF flying cap (SLVS/SNVS005E: 12 typ, 25 max at 40 mA)"
+    },
+    {
+      "name": "TPS72325 EN confirmed by TI's own model",
+      "pass": true,
+      "detail": "as wired -> -2.500 V (enabled=True); EN forced to 0 V -> -0.002 V (enabled=False), which is the dead band doing its job"
+    },
+    {
+      "name": "regulated rails within +-5 % at 4.75 V USB",
+      "pass": true,
+      "detail": "VDD_ESP -0.08%, DVDD -0.08%, AVDD -0.20%, AVSS +0.20%"
+    },
+    {
+      "name": "no sustained ringing >20 mV pp after 5 ms at 4.75 V",
+      "pass": true,
+      "detail": "regulated rails quiet (worst 0.048 mV pp)"
+    },
+    {
+      "name": "TPS72325 headroom at 4.75 V USB",
+      "pass": true,
+      "detail": "VNEG5 worst -4.092 V, AVSS -2.495 V -> 1.597 V headroom (need dropout 280 mV + 100 mV margin)"
+    },
+    {
+      "name": "regulated rails within +-5 % at 5.25 V USB",
+      "pass": true,
+      "detail": "VDD_ESP -0.08%, DVDD -0.08%, AVDD -0.20%, AVSS +0.20%"
+    },
+    {
+      "name": "no sustained ringing >20 mV pp after 5 ms at 5.25 V",
+      "pass": true,
+      "detail": "regulated rails quiet (worst 0.050 mV pp)"
+    },
+    {
+      "name": "TPS72325 headroom at 5.25 V USB",
+      "pass": true,
+      "detail": "VNEG5 worst -4.577 V, AVSS -2.495 V -> 2.082 V headroom (need dropout 280 mV + 100 mV margin)"
+    },
+    {
+      "name": "AVSS ripple < 5 mV pp",
+      "pass": true,
+      "detail": "model 0.041 mV pp; datasheet-PSRR bound 0.853 mV pp (VNEG5 85.3 mV pp behavioural / 68.8 mV pp TI model, worse one used / 40 dB) -> judged on 0.853 mV pp"
+    },
+    {
+      "name": "300 mA ESP32 step: VDD_ESP holds +-5 % and settles",
+      "pass": true,
+      "detail": "dip to 3.295 V, settles at 3.295 V, residual 0.0 mV pp"
+    }
+  ],
+  "numbers": {
+    "tps72325_en": {
+      "en_net": "V_NLDO_IN",
+      "in_net": "V_NLDO_IN",
+      "gnd_net": "GND",
+      "en_dc_volts_vs_gnd": -5.0,
+      "tied_to_in": true,
+      "asserted": true,
+      "in_dead_band": false,
+      "rule": "SLVS346E 6.3.2: EN is GND-referenced and BIPOLAR -- on for |V_EN| >= 1.5 V, off only in the +-0.4 V dead band. EN tied to IN is the datasheet's always-enabled wiring; -5 V is inside the -10..+5 V recommended EN range.",
+      "source": "TI SLVS346E (TPS723xx), confirmed against TI's own unencrypted PSpice model, whose enable term is IF(ABS(V(enb,vgnd)+hyst) > venb, 1, 0) with venb = 1.5"
+    },
+    "vendor_crosscheck": {
+      "C_LM_FLY_eff_F": 2.85e-06,
+      "C_LM_OUT_eff_F": 2.85e-06,
+      "corner": "typical 25 C",
+      "LM2664_vendor": {
+        "V_at_1mA": -4.628328404924566,
+        "ripple_pp_at_1mA_V": 0.002352518036038198,
+        "V_at_30mA": -4.294158369342643,
+        "ripple_pp_at_30mA_V": 0.06877109059556563,
+        "Rout_ohm": 11.52310467523871
+      },
+      "TPS72325_vendor": {
+        "EN tied to IN (as wired)": {
+          "Vout_V": -2.5001087602645957,
+          "enabled": true
+        },
+        "EN at 0 V": {
+          "Vout_V": -0.0015541214363637508,
+          "enabled": false
+        },
+        "EN at +3.3 V": {
+          "Vout_V": -2.5001087602645957,
+          "enabled": true
+        }
+      }
+    },
+    "startup": {
+      "usb_4.75": {
+        "USB_5V": {
+          "final_V": 4.644418298376174,
+          "err_pct": -2.2227726657647504,
+          "rise_10_90_s": 0.0008071733916387005,
+          "overshoot_pct": 0.3279288996082909,
+          "ring_after_5ms_pp_V": 0.03165902375061869,
+          "sustained_ring": true,
+          "F1_plus_load_drop_V": 0.10558170162382563
+        },
+        "VDD_ESP": {
+          "final_V": 3.2974550923519477,
+          "err_pct": -0.07711841357733795,
+          "rise_10_90_s": 0.0006031779999999982,
+          "overshoot_pct": 0.004848880911386523,
+          "ring_after_5ms_pp_V": 4.6629367034256575e-14,
+          "sustained_ring": false
+        },
+        "DVDD": {
+          "final_V": 3.297255254084324,
+          "err_pct": -0.08317411865684092,
+          "rise_10_90_s": 0.0006055971042802667,
+          "overshoot_pct": 0.15016584507366554,
+          "ring_after_5ms_pp_V": 4.836131495267182e-13,
+          "sustained_ring": false
+        },
+        "AVDD": {
+          "final_V": 2.495006155030076,
+          "err_pct": -0.1997537987969622,
+          "rise_10_90_s": 0.00034430510529499537,
+          "overshoot_pct": 0.0009295193596449037,
+          "ring_after_5ms_pp_V": 1.7477507070928766e-05,
+          "sustained_ring": false
+        },
+        "AVSS": {
+          "final_V": -2.494878953563764,
+          "err_pct": 0.20484185744944483,
+          "rise_10_90_s": 0.0003887973984617873,
+          "overshoot_pct": -0.009867156468697793,
+          "ring_after_5ms_pp_V": 4.849322941646861e-05,
+          "sustained_ring": false
+        },
+        "VNEG5": {
+          "final_V": -4.137688416219111,
+          "err_pct": 17.24623167561777,
+          "rise_10_90_s": 0.0005490536811848496,
+          "overshoot_pct": -1.1190937400099026,
+          "ring_after_5ms_pp_V": 0.09225529026397083,
+          "sustained_ring": true,
+          "worst_case_V": -4.091734730714287,
+          "headroom_to_AVSS_V": 1.5968557771505232
+        }
+      },
+      "usb_5.25": {
+        "USB_5V": {
+          "final_V": 5.143122982045499,
+          "err_pct": -2.035752722942874,
+          "rise_10_90_s": 0.0008045000287302831,
+          "overshoot_pct": 0.30550468802312525,
+          "ring_after_5ms_pp_V": 0.03268122691588449,
+          "sustained_ring": true,
+          "F1_plus_load_drop_V": 0.10687701795450089
+        },
+        "VDD_ESP": {
+          "final_V": 3.2974550923519477,
+          "err_pct": -0.07711841357733795,
+          "rise_10_90_s": 0.000547353210138764,
+          "overshoot_pct": 0.0066624801031076025,
+          "ring_after_5ms_pp_V": 4.973799150320701e-14,
+          "sustained_ring": false
+        },
+        "DVDD": {
+          "final_V": 3.2972552540843236,
+          "err_pct": -0.08317411865685438,
+          "rise_10_90_s": 0.0005478599999999998,
+          "overshoot_pct": 0.2027549108158977,
+          "ring_after_5ms_pp_V": 5.502265310042276e-13,
+          "sustained_ring": false
+        },
+        "AVDD": {
+          "final_V": 2.4950062854099357,
+          "err_pct": -0.19974858360257028,
+          "rise_10_90_s": 0.0003135804710744192,
+          "overshoot_pct": 0.0010022354420307436,
+          "ring_after_5ms_pp_V": 1.823196034278496e-05,
+          "sustained_ring": false
+        },
+        "AVSS": {
+          "final_V": -2.494878907775002,
+          "err_pct": 0.20484368899991168,
+          "rise_10_90_s": 0.0003648238379994588,
+          "overshoot_pct": -0.0031383937385247333,
+          "ring_after_5ms_pp_V": 5.000471948513052e-05,
+          "sustained_ring": false
+        },
+        "VNEG5": {
+          "final_V": -4.624861207642628,
+          "err_pct": 7.502775847147447,
+          "rise_10_90_s": 0.0005506454331911238,
+          "overshoot_pct": -1.041609112171395,
+          "ring_after_5ms_pp_V": 0.0956710718624576,
+          "sustained_ring": true,
+          "worst_case_V": -4.5773600364416085,
+          "headroom_to_AVSS_V": 2.0824811286666063
+        }
+      }
+    },
+    "AVSS_ripple_pp_V": 4.129087970605738e-05,
+    "AVDD_ripple_pp_V": 1.660489560073586e-05,
+    "VDD_ESP_ripple_pp_V": 4.796163466380676e-14,
+    "DVDD_ripple_pp_V": 5.573319583618286e-13,
+    "VNEG5_ripple_pp_V": 0.08531701114103463,
+    "VNEG5_ripple_vendor_model_V": 0.06877109059556563,
+    "VNEG5_ripple_used_V": 0.08531701114103463,
+    "AVSS_ripple_datasheet_PSRR_bound_V": 0.0008531701114103463,
+    "TPS72325_PSRR_80kHz_dB_assumed": 40.0,
+    "VDD_ESP_before_step_V": NaN,
+    "VDD_ESP_after_step_V": 3.2950959933593027,
+    "VDD_ESP_step_dip_V": 3.295073599839233,
+    "VDD_ESP_settle_pp_V": 2.886579864025407e-14,
+    "AVSS_after_ESP_step_V": -2.4948807517581706,
+    "AVDD_after_ESP_step_V": 2.495005426919741
+  },
+  "models": {
+    "AMS1117": "behavioural (no TI model exists)",
+    "TLV70025": "behavioural (TI model is encrypted)",
+    "TPS72325": "VENDOR - TI SLVMBZ8 unencrypted PSpice, run unmodified in ngspice PSpice mode",
+    "LM2664": "VENDOR - TI SNVMBY1 unencrypted PSpice, run unmodified in ngspice PSpice mode"
+  },
+  "notes": "LM2664 and TPS72325 use TI's own unencrypted PSpice models, run unmodified. TLV70025's TI model is encrypted and the AMS1117 has none, so those two are behavioural -- see sim/models/PROVENANCE.md. The AMS1117's load-step response is therefore optimistic and its loop stability is NOT assessed by this case.\nTPS72325 ships as two silicon revisions under one part number (SLVS346E): legacy CSO DLN with 280 mV dropout, 130 uA Iq, 1 ms startup, +-3.0 %% Vout, and the newer DM6 with 140 mV, 30 uA, 8 ms, +-1.6 %%. This case runs the LEGACY parameters, which are the worse ones for dropout and accuracy.\nThe VCAP1..VCAP4 / VREFP capacitors (including C_VCAP1, 100 uF) hang on AVSS through ADS1299 internal nodes and are NOT in this model. Excluding them is the conservative choice for a ripple limit: more capacitance can only reduce it.\nnot modelled: C_VCAP1 (far side VCAP1 is not a power-tree net), C_VCAP1_H (far side VCAP1 is not a power-tree net), C_VCAP2 (far side VCAP2 is not a power-tree net), C_VCAP3 (far side VCAP3 is not a power-tree net), C_VCAP3_H (far side VCAP3 is not a power-tree net), C_VCAP4 (far side VCAP4 is not a power-tree net), C_VREFP_100n (far side VREFP is not a power-tree net), C_VREFP_10n (far side VREFP is not a power-tree net), C_VREFP_10u (far side VREFP is not a power-tree net)"
+}

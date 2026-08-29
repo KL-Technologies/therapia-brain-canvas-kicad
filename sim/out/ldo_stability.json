@@ -1,0 +1,418 @@
+{
+  "case": "ldo_stability",
+  "pass": true,
+  "timestamp": "2026-08-29T12:43:04",
+  "checks": [
+    {
+      "name": "TLV70025 Cout above datasheet minimum in the WORST corner",
+      "pass": true,
+      "detail": "8.64 uF (old C12530 BOM) / 8.64 uF (new C23733 BOM), worst-case bias+tolerance+temperature, vs 0.10 uF required effective"
+    },
+    {
+      "name": "TPS72325 Cout above datasheet minimum in the WORST corner",
+      "pass": true,
+      "detail": "8.22 uF (old C12530 BOM) / 9.46 uF (new C23733 BOM), worst-case bias+tolerance+temperature, vs 1.00 uF required effective"
+    },
+    {
+      "name": "TLV70025 Cout above datasheet minimum (typical derating)",
+      "pass": true,
+      "detail": "11.29 uF derated from 23.71 uF marked (-52 %), datasheet min 0.10 uF effective"
+    },
+    {
+      "name": "TLV70025 Cout ESR inside the datasheet's stable band",
+      "pass": true,
+      "detail": "0.003 ohm effective (parallel combination) vs 0.20 ohm max"
+    },
+    {
+      "name": "TLV70025 phase margin >= 45 deg",
+      "pass": true,
+      "detail": "PM 93.1 deg at fc 2.82e+05 Hz (DC loop gain 60.0 dB)"
+    },
+    {
+      "name": "TLV70025 100 mA load step settles",
+      "pass": true,
+      "detail": "excursion 3.7 mV, residual 0.0000 mV pp after 1.5 ms, final 2.4913 V"
+    },
+    {
+      "name": "TPS72325 Cout above datasheet minimum (typical derating)",
+      "pass": true,
+      "detail": "12.70 uF derated from 26.31 uF marked (-52 %), datasheet min 1.00 uF effective"
+    },
+    {
+      "name": "TPS72325 Cout ESR inside the datasheet's stable band",
+      "pass": true,
+      "detail": "0.003 ohm effective (parallel combination) vs 0.50 ohm max"
+    },
+    {
+      "name": "TPS72325 phase margin >= 45 deg",
+      "pass": true,
+      "detail": "PM 92.4 deg at fc 1.94e+05 Hz (DC loop gain 62.2 dB)"
+    },
+    {
+      "name": "TPS72325 60 mA load step settles",
+      "pass": true,
+      "detail": "excursion 2.8 mV, residual 0.0000 mV pp after 1.5 ms, final -2.4927 V"
+    }
+  ],
+  "numbers": {
+    "capacitance_survey": {
+      "AVDD/typical/new_C23733_4u7_10v": {
+        "derated_F": 1.1290599999999998e-05,
+        "nominal_F": 2.3709999999999995e-05,
+        "esr_ohm": 0.003024066653367624
+      },
+      "AVSS/typical/new_C23733_4u7_10v": {
+        "derated_F": 1.2704799999999997e-05,
+        "nominal_F": 2.6309999999999994e-05,
+        "esr_ohm": 0.002912984487789679
+      },
+      "AVDD/typical/old_C12530_2u2_6v3": {
+        "derated_F": 1.1290599999999998e-05,
+        "nominal_F": 2.3709999999999995e-05,
+        "esr_ohm": 0.003024066653367624
+      },
+      "AVSS/typical/old_C12530_2u2_6v3": {
+        "derated_F": 1.0872599999999998e-05,
+        "nominal_F": 2.3809999999999994e-05,
+        "esr_ohm": 0.003177417422119832
+      },
+      "AVDD/worst_case/new_C23733_4u7_10v": {
+        "derated_F": 8.63826e-06,
+        "nominal_F": 2.3709999999999995e-05,
+        "esr_ohm": 0.003024066653367624
+      },
+      "AVSS/worst_case/new_C23733_4u7_10v": {
+        "derated_F": 9.462360000000002e-06,
+        "nominal_F": 2.6309999999999994e-05,
+        "esr_ohm": 0.002912984487789679
+      },
+      "AVDD/worst_case/old_C12530_2u2_6v3": {
+        "derated_F": 8.63826e-06,
+        "nominal_F": 2.3709999999999995e-05,
+        "esr_ohm": 0.003024066653367624
+      },
+      "AVSS/worst_case/old_C12530_2u2_6v3": {
+        "derated_F": 8.215560000000002e-06,
+        "nominal_F": 2.3809999999999994e-05,
+        "esr_ohm": 0.003177417422119832
+      }
+    },
+    "AVDD_Cout_nominal_F": 2.3709999999999995e-05,
+    "AVDD_Cout_derated_F": 1.1290599999999998e-05,
+    "AVDD_Cout_shrink_pct": 52.3804301982286,
+    "AVDD_caps": [
+      {
+        "ref": "C_AVDD1_100n",
+        "to": "AVSS",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 9.459999999999999e-08,
+        "factor": 0.946,
+        "bias_V": 5.0,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD1_10n",
+        "to": "AVSS",
+        "nominal_F": 1e-08,
+        "eff_F": 1.04e-08,
+        "factor": 1.04,
+        "bias_V": 5.0,
+        "esr_ohm": 2.89,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD1_10u",
+        "to": "AVSS",
+        "nominal_F": 9.999999999999999e-06,
+        "eff_F": 2.85e-06,
+        "factor": 0.285,
+        "bias_V": 5.0,
+        "esr_ohm": 0.0081,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD1_1u",
+        "to": "AVSS",
+        "nominal_F": 1e-06,
+        "eff_F": 4.1999999999999995e-07,
+        "factor": 0.42,
+        "bias_V": 5.0,
+        "esr_ohm": 0.0477,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_B",
+        "to": "GND",
+        "nominal_F": 9.999999999999999e-06,
+        "eff_F": 5.7900000000000005e-06,
+        "factor": 0.579,
+        "bias_V": 2.5,
+        "esr_ohm": 0.0081,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_H",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_P19",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_P3",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_P31",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_P36",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_P59",
+        "to": "GND",
+        "nominal_F": 1e-06,
+        "eff_F": 7.55e-07,
+        "factor": 0.755,
+        "bias_V": 2.5,
+        "esr_ohm": 0.0477,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD_P64",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_PLDO_OUT",
+        "to": "GND",
+        "nominal_F": 1e-06,
+        "eff_F": 7.55e-07,
+        "factor": 0.755,
+        "bias_V": 2.5,
+        "esr_ohm": 0.0477,
+        "trusted": true
+      }
+    ],
+    "AVDD_caps_not_counted": [],
+    "AVDD_bulk_esr_ohm": 0.003024066653367624,
+    "TLV70025_loop_dc_gain_dB": 59.99104132079199,
+    "TLV70025_crossover_Hz": 282075.1595178369,
+    "TLV70025_phase_margin_deg": 93.0539500680607,
+    "TLV70025_step_residual_pp_V": 7.737677165664536e-10,
+    "TLV70025_step_excursion_V": 0.003660347177892209,
+    "TLV70025_step_final_V": 2.491339327524762,
+    "AVSS_Cout_nominal_F": 2.6309999999999994e-05,
+    "AVSS_Cout_derated_F": 1.2704799999999997e-05,
+    "AVSS_Cout_shrink_pct": 51.711136450019005,
+    "AVSS_caps": [
+      {
+        "ref": "C_AVDD1_100n",
+        "to": "AVDD",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 9.459999999999999e-08,
+        "factor": 0.946,
+        "bias_V": 5.0,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD1_10n",
+        "to": "AVDD",
+        "nominal_F": 1e-08,
+        "eff_F": 1.04e-08,
+        "factor": 1.04,
+        "bias_V": 5.0,
+        "esr_ohm": 2.89,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD1_10u",
+        "to": "AVDD",
+        "nominal_F": 9.999999999999999e-06,
+        "eff_F": 2.85e-06,
+        "factor": 0.285,
+        "bias_V": 5.0,
+        "esr_ohm": 0.0081,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVDD1_1u",
+        "to": "AVDD",
+        "nominal_F": 1e-06,
+        "eff_F": 4.1999999999999995e-07,
+        "factor": 0.42,
+        "bias_V": 5.0,
+        "esr_ohm": 0.0477,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVSS_B",
+        "to": "GND",
+        "nominal_F": 9.999999999999999e-06,
+        "eff_F": 5.7900000000000005e-06,
+        "factor": 0.579,
+        "bias_V": 2.5,
+        "esr_ohm": 0.0081,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVSS_H",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVSS_P17",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVSS_P30",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVSS_P37",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_AVSS_P60",
+        "to": "GND",
+        "nominal_F": 1.0000000000000001e-07,
+        "eff_F": 1.0259999999999999e-07,
+        "factor": 1.026,
+        "bias_V": 2.5,
+        "esr_ohm": 0.341,
+        "trusted": true
+      },
+      {
+        "ref": "C_NLDO_OUT",
+        "to": "GND",
+        "nominal_F": 4.7e-06,
+        "eff_F": 3.0268e-06,
+        "factor": 0.644,
+        "bias_V": 2.5,
+        "esr_ohm": 0.0174,
+        "trusted": true
+      }
+    ],
+    "AVSS_caps_not_counted": [
+      {
+        "ref": "C_VCAP1",
+        "to": "VCAP1",
+        "nominal_F": 9.999999999999999e-05
+      },
+      {
+        "ref": "C_VCAP1_H",
+        "to": "VCAP1",
+        "nominal_F": 1.0000000000000001e-07
+      },
+      {
+        "ref": "C_VCAP2",
+        "to": "VCAP2",
+        "nominal_F": 1e-06
+      },
+      {
+        "ref": "C_VCAP3",
+        "to": "VCAP3",
+        "nominal_F": 1e-06
+      },
+      {
+        "ref": "C_VCAP3_H",
+        "to": "VCAP3",
+        "nominal_F": 1.0000000000000001e-07
+      },
+      {
+        "ref": "C_VCAP4",
+        "to": "VCAP4",
+        "nominal_F": 1e-06
+      },
+      {
+        "ref": "C_VREFP_100n",
+        "to": "VREFP",
+        "nominal_F": 1.0000000000000001e-07
+      },
+      {
+        "ref": "C_VREFP_10n",
+        "to": "VREFP",
+        "nominal_F": 1e-08
+      },
+      {
+        "ref": "C_VREFP_10u",
+        "to": "VREFP",
+        "nominal_F": 9.999999999999999e-06
+      }
+    ],
+    "AVSS_bulk_esr_ohm": 0.002912984487789679,
+    "TPS72325_loop_dc_gain_dB": 62.21120236205343,
+    "TPS72325_crossover_Hz": 194044.6573253235,
+    "TPS72325_phase_margin_deg": 92.37328151496418,
+    "TPS72325_step_residual_pp_V": 3.884212951277277e-10,
+    "TPS72325_step_excursion_V": 0.002835265219487404,
+    "TPS72325_step_final_V": -2.4926665909960635
+  },
+  "models": {
+    "TLV70025": "behavioural (TI's model is encrypted)",
+    "TPS72325": "behavioural HERE ONLY -- the loop-gain measurement needs a feedback terminal to break, which TI's model does not expose. power_tree_startup.py uses TI's own model for this part."
+  },
+  "notes": "Loop-gain figures come from behavioural LDO models whose internal pole is a calibration choice, so treat the phase margin as indicative and the load-step settling as the primary evidence. Both are computed on the DERATED capacitance taken from the netlist, which is the part of this result that is not model-dependent.\nThe DC-bias curves are Samsung's own (weblib, 25 C typical). The worst-case corner multiplies them by the tolerance low limit and by 0.85 for the X5R/X7R temperature coefficient, which is the corner a shipped board has to survive.\nCapacitors reaching ADS1299 internal nodes (VCAP1..4, VREFP) are listed under *_caps_not_counted and excluded: their far side is an internal buffer whose impedance is not modelled. Including them would only add capacitance."
+}

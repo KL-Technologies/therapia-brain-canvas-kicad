@@ -1,0 +1,209 @@
+{
+  "pass": false,
+  "timestamp": "2026-08-29T12:43:06",
+  "step": "S3_sim",
+  "summary": "headless ngspice simulation of the Rev.A power tree, LDO stability, DRL loop and ESP32 auto-reset",
+  "engine": {
+    "library": "/Applications/KiCad/KiCad.app/Contents/Frameworks/libngspice.0.dylib",
+    "version": "ngspice-45.2 shared library (bundled with KiCad 10.0.5)",
+    "driver": "sim/lib/ngspice_ctypes.py (ctypes, one subprocess per netlist)",
+    "python": "3.9.6"
+  },
+  "checks": [
+    {
+      "name": "power_tree_startup / TPS72325 EN asserted",
+      "pass": true,
+      "detail": "EN driven by V_NLDO_IN (= IN net V_NLDO_IN), -5.00 V wrt GND, |V_EN| vs 1.5 V bipolar threshold -> enabled"
+    },
+    {
+      "name": "power_tree_startup / LM2664 output resistance within datasheet (TI model)",
+      "pass": true,
+      "detail": "11.5 ohm on the board's derated 2.85 uF flying cap (SLVS/SNVS005E: 12 typ, 25 max at 40 mA)"
+    },
+    {
+      "name": "power_tree_startup / TPS72325 EN confirmed by TI's own model",
+      "pass": true,
+      "detail": "as wired -> -2.500 V (enabled=True); EN forced to 0 V -> -0.002 V (enabled=False), which is the dead band doing its job"
+    },
+    {
+      "name": "power_tree_startup / regulated rails within +-5 % at 4.75 V USB",
+      "pass": true,
+      "detail": "VDD_ESP -0.08%, DVDD -0.08%, AVDD -0.20%, AVSS +0.20%"
+    },
+    {
+      "name": "power_tree_startup / no sustained ringing >20 mV pp after 5 ms at 4.75 V",
+      "pass": true,
+      "detail": "regulated rails quiet (worst 0.048 mV pp)"
+    },
+    {
+      "name": "power_tree_startup / TPS72325 headroom at 4.75 V USB",
+      "pass": true,
+      "detail": "VNEG5 worst -4.092 V, AVSS -2.495 V -> 1.597 V headroom (need dropout 280 mV + 100 mV margin)"
+    },
+    {
+      "name": "power_tree_startup / regulated rails within +-5 % at 5.25 V USB",
+      "pass": true,
+      "detail": "VDD_ESP -0.08%, DVDD -0.08%, AVDD -0.20%, AVSS +0.20%"
+    },
+    {
+      "name": "power_tree_startup / no sustained ringing >20 mV pp after 5 ms at 5.25 V",
+      "pass": true,
+      "detail": "regulated rails quiet (worst 0.050 mV pp)"
+    },
+    {
+      "name": "power_tree_startup / TPS72325 headroom at 5.25 V USB",
+      "pass": true,
+      "detail": "VNEG5 worst -4.577 V, AVSS -2.495 V -> 2.082 V headroom (need dropout 280 mV + 100 mV margin)"
+    },
+    {
+      "name": "power_tree_startup / AVSS ripple < 5 mV pp",
+      "pass": true,
+      "detail": "model 0.041 mV pp; datasheet-PSRR bound 0.853 mV pp (VNEG5 85.3 mV pp behavioural / 68.8 mV pp TI model, worse one used / 40 dB) -> judged on 0.853 mV pp"
+    },
+    {
+      "name": "power_tree_startup / 300 mA ESP32 step: VDD_ESP holds +-5 % and settles",
+      "pass": true,
+      "detail": "dip to 3.295 V, settles at 3.295 V, residual 0.0 mV pp"
+    },
+    {
+      "name": "ldo_stability / TLV70025 Cout above datasheet minimum in the WORST corner",
+      "pass": true,
+      "detail": "8.64 uF (old C12530 BOM) / 8.64 uF (new C23733 BOM), worst-case bias+tolerance+temperature, vs 0.10 uF required effective"
+    },
+    {
+      "name": "ldo_stability / TPS72325 Cout above datasheet minimum in the WORST corner",
+      "pass": true,
+      "detail": "8.22 uF (old C12530 BOM) / 9.46 uF (new C23733 BOM), worst-case bias+tolerance+temperature, vs 1.00 uF required effective"
+    },
+    {
+      "name": "ldo_stability / TLV70025 Cout above datasheet minimum (typical derating)",
+      "pass": true,
+      "detail": "11.29 uF derated from 23.71 uF marked (-52 %), datasheet min 0.10 uF effective"
+    },
+    {
+      "name": "ldo_stability / TLV70025 Cout ESR inside the datasheet's stable band",
+      "pass": true,
+      "detail": "0.003 ohm effective (parallel combination) vs 0.20 ohm max"
+    },
+    {
+      "name": "ldo_stability / TLV70025 phase margin >= 45 deg",
+      "pass": true,
+      "detail": "PM 93.1 deg at fc 2.82e+05 Hz (DC loop gain 60.0 dB)"
+    },
+    {
+      "name": "ldo_stability / TLV70025 100 mA load step settles",
+      "pass": true,
+      "detail": "excursion 3.7 mV, residual 0.0000 mV pp after 1.5 ms, final 2.4913 V"
+    },
+    {
+      "name": "ldo_stability / TPS72325 Cout above datasheet minimum (typical derating)",
+      "pass": true,
+      "detail": "12.70 uF derated from 26.31 uF marked (-52 %), datasheet min 1.00 uF effective"
+    },
+    {
+      "name": "ldo_stability / TPS72325 Cout ESR inside the datasheet's stable band",
+      "pass": true,
+      "detail": "0.003 ohm effective (parallel combination) vs 0.50 ohm max"
+    },
+    {
+      "name": "ldo_stability / TPS72325 phase margin >= 45 deg",
+      "pass": true,
+      "detail": "PM 92.4 deg at fc 1.94e+05 Hz (DC loop gain 62.2 dB)"
+    },
+    {
+      "name": "ldo_stability / TPS72325 60 mA load step settles",
+      "pass": true,
+      "detail": "excursion 2.8 mV, residual 0.0000 mV pp after 1.5 ms, final -2.4927 V"
+    },
+    {
+      "name": "drl_loop / as-built DRL phase margin >= 45 deg (all skin x GBW)",
+      "pass": true,
+      "detail": "worst 83.5 deg at skin5k_gbw10k"
+    },
+    {
+      "name": "drl_loop / DRL PM >= 45 deg at 5 kohm skin",
+      "pass": true,
+      "detail": "PM 88.9 deg, crossover 1.54e+04 Hz, loop gain at 50 Hz 61.0 dB"
+    },
+    {
+      "name": "drl_loop / DRL PM >= 45 deg at 20 kohm skin",
+      "pass": true,
+      "detail": "PM 88.9 deg, crossover 1.54e+04 Hz, loop gain at 50 Hz 61.0 dB"
+    },
+    {
+      "name": "drl_loop / DRL PM >= 45 deg at 100 kohm skin",
+      "pass": true,
+      "detail": "PM 88.9 deg, crossover 1.54e+04 Hz, loop gain at 50 Hz 60.7 dB"
+    },
+    {
+      "name": "drl_loop / ECO-5 improves the DRL loop (or at least does not harm it)",
+      "pass": true,
+      "detail": "phase margin change +88.2 deg, 50 Hz loop gain change +19.7 dB"
+    },
+    {
+      "name": "esp32_autoreset / EN/IO0 truth table matches the esptool reset sequence",
+      "pass": true,
+      "detail": "HH->EN=H,IO0=H; HL->EN=L,IO0=H; LH->EN=H,IO0=L; LL->EN=H,IO0=H"
+    },
+    {
+      "name": "esp32_autoreset / EN and IO0 stay within the ESP32 absolute maximum",
+      "pass": false,
+      "detail": "worst EN 4.238 V, worst IO0 4.203 V, limit 3.60 V"
+    },
+    {
+      "name": "esp32_autoreset / EN rises >= 10 ms after the 3.3 V rail",
+      "pass": false,
+      "detail": "8.55 ms with the DERATED 0.62 uF (13.85 ms with the marked 1.00 uF)"
+    }
+  ],
+  "key_numbers": {
+    "TPS72325_EN_asserted": true,
+    "AVSS_ripple_pp_V": 4.129087970605738e-05,
+    "AVSS_ripple_datasheet_PSRR_bound_V": 0.0008531701114103463,
+    "VDD_ESP_after_300mA_step_V": 3.2950959933593027,
+    "AVDD_Cout_derated_F": 1.1290599999999998e-05,
+    "AVSS_Cout_derated_F": 1.2704799999999997e-05,
+    "TLV70025_phase_margin_deg": 93.0539500680607,
+    "TPS72325_phase_margin_deg": 92.37328151496418,
+    "DRL_worst_phase_margin_deg": 83.52312551223582,
+    "DRL_pm_pre_ECO5_deg": 0.7496981577907889,
+    "DRL_pm_post_ECO5_deg": 88.93773038443784,
+    "DRL_50Hz_suppression_dB": 5.3251020081361276,
+    "EN_delay_derated_s": 0.008550000000000002,
+    "EN_delay_nominal_s": 0.01384999999999997,
+    "worst_ESP32_pin_V": 4.23848997481423
+  },
+  "models": {
+    "power_tree_startup / AMS1117": "behavioural (no TI model exists)",
+    "power_tree_startup / TLV70025": "behavioural (TI model is encrypted)",
+    "power_tree_startup / TPS72325": "VENDOR - TI SLVMBZ8 unencrypted PSpice, run unmodified in ngspice PSpice mode",
+    "power_tree_startup / LM2664": "VENDOR - TI SNVMBY1 unencrypted PSpice, run unmodified in ngspice PSpice mode",
+    "ldo_stability / TLV70025": "behavioural (TI's model is encrypted)",
+    "ldo_stability / TPS72325": "behavioural HERE ONLY -- the loop-gain measurement needs a feedback terminal to break, which TI's model does not expose. power_tree_startup.py uses TI's own model for this part.",
+    "drl_loop / ADS1299 BIAS amp": "behavioural macro; GBW swept 10 kHz..1 MHz around the datasheet 100 kHz",
+    "drl_loop / electrode/body": "behavioural lumped model",
+    "esp32_autoreset / S8050": "behavioural (generic Gummel-Poon fit)",
+    "esp32_autoreset / ESP32 pins": "resistive/threshold model",
+    "esp32_autoreset / CH340C": "ideal 5 V push-pull driver"
+  },
+  "model_provenance": "sim/models/PROVENANCE.md",
+  "cases": {
+    "power_tree_startup": {
+      "pass": true,
+      "result": "sim/out/power_tree_startup.json"
+    },
+    "ldo_stability": {
+      "pass": true,
+      "result": "sim/out/ldo_stability.json"
+    },
+    "drl_loop": {
+      "pass": true,
+      "result": "sim/out/drl_loop.json"
+    },
+    "esp32_autoreset": {
+      "pass": false,
+      "result": "sim/out/esp32_autoreset.json"
+    }
+  },
+  "notes": "[power_tree_startup] LM2664 and TPS72325 use TI's own unencrypted PSpice models, run unmodified. TLV70025's TI model is encrypted and the AMS1117 has none, so those two are behavioural -- see sim/models/PROVENANCE.md. The AMS1117's load-step response is therefore optimistic and its loop stability is NOT assessed by this case.\nTPS72325 ships as two silicon revisions under one part number (SLVS346E): legacy CSO DLN with 280 mV dropout, 130 uA Iq, 1 ms startup, +-3.0 %% Vout, and the newer DM6 with 140 mV, 30 uA, 8 ms, +-1.6 %%. This case runs the LEGACY parameters, which are the worse ones for dropout and accuracy.\nThe VCAP1..VCAP4 / VREFP capacitors (including C_VCAP1, 100 uF) hang on AVSS through ADS1299 internal nodes and are NOT in this model. Excluding them is the conservative choice for a ripple limit: more capacitance can only reduce it.\nnot modelled: C_VCAP1 (far side VCAP1 is not a power-tree net), C_VCAP1_H (far side VCAP1 is not a power-tree net), C_VCAP2 (far side VCAP2 is not a power-tree net), C_VCAP3 (far side VCAP3 is not a power-tree net), C_VCAP3_H (far side VCAP3 is not a power-tree net), C_VCAP4 (far side VCAP4 is not a power-tree net), C_VREFP_100n (far side VREFP is not a power-tree net), C_VREFP_10n (far side VREFP is not a power-tree net), C_VREFP_10u (far side VREFP is not a power-tree net)\n[ldo_stability] Loop-gain figures come from behavioural LDO models whose internal pole is a calibration choice, so treat the phase margin as indicative and the load-step settling as the primary evidence. Both are computed on the DERATED capacitance taken from the netlist, which is the part of this result that is not model-dependent.\nThe DC-bias curves are Samsung's own (weblib, 25 C typical). The worst-case corner multiplies them by the tolerance low limit and by 0.85 for the X5R/X7R temperature coefficient, which is the corner a shipped board has to survive.\nCapacitors reaching ADS1299 internal nodes (VCAP1..4, VREFP) are listed under *_caps_not_counted and excluded: their far side is an internal buffer whose impedance is not modelled. Including them would only add capacitance.\n[drl_loop] ECO-5 check at 20 kohm skin, 100 kHz GBW: phase margin 0.7 -> 88.9 deg, DRL loop gain at 50 Hz 41.3 -> 61.0 dB, 50 Hz body common-mode suppression by the drive 6.0 -> 5.3 dB.\nThe BIAS amplifier is a BEHAVIOURAL two-pole macro. SBAS499 gives GBW = 100 kHz, slew rate 0.07 V/us and a 1.1 mA short-circuit limit, but not the open-loop gain or output swing, so GBW is swept a decade either side of the datasheet value and the criterion must hold across the whole sweep.\nDRL EFFECTIVENESS, not a pass/fail criterion here but the more interesting number: with R_BIAS_SER at 1 Mohm the drive suppresses the 50 Hz body common mode by only about 5 dB. A right-leg drive is normally worth 20-40 dB. The loop is very stable precisely because it has so little authority, and the phase margin being flat across 5 k..100 kohm of skin is the same fact seen from another angle.\nR_BIAS_SER is 1e+06 ohm. With 5..100 kohm of skin in series that is a divider of -46..-21 dB in the forward path, so the DRL's authority over the body common mode is modest by construction -- which is also why the loop is hard to destabilise.\nBody model: skin = Rskin || 10 nF at every electrode, body to circuit ground = 100 pF stray, mains coupled through 5 pF. The ADS1299 internal BIAS_SENSP switch is taken as 100 ohm; the summing resistors are the board's own 10 kohm R_IN??.\n[esp32_autoreset] CH340C VCC is on net USB_5V, so its DTR#/RTS# outputs swing to 5.0 V.\nABSOLUTE-MAXIMUM FINDING: with the CH340C on USB_5V its DTR#/RTS# outputs idle at 5.0 V. Both transistors are then off with a base above their 3.3 V collector, which forward-biases the base-collector junction and lifts ESP_EN and ESP_IO0 to about 4.24 V -- past the ESP32's 3.60 V maximum. The same deck with 3.3 V handshake levels peaks at 3.30 V, so this is a consequence of the CH340C's supply mode, not of the reset topology. BY INSPECTION the same concern reaches further: U_USB pin 2 TXD drives ESP_RXD (U_MCU pin 34) directly with no level shift. Confirm the CH340C's output level in 5 V supply mode against its datasheet before acting on this.\nTransistors use a generic Gummel-Poon S8050 fit (BF=275, the middle of the J3Y 200..350 bin). The absolute-maximum check depends on the base-collector junction parameters, which are the least well pinned down part of that fit -- treat a marginal result as a reason to measure, not as proof."
+}

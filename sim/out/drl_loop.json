@@ -1,0 +1,135 @@
+{
+  "case": "drl_loop",
+  "pass": true,
+  "timestamp": "2026-08-29T12:43:05",
+  "checks": [
+    {
+      "name": "as-built DRL phase margin >= 45 deg (all skin x GBW)",
+      "pass": true,
+      "detail": "worst 83.5 deg at skin5k_gbw10k"
+    },
+    {
+      "name": "DRL PM >= 45 deg at 5 kohm skin",
+      "pass": true,
+      "detail": "PM 88.9 deg, crossover 1.54e+04 Hz, loop gain at 50 Hz 61.0 dB"
+    },
+    {
+      "name": "DRL PM >= 45 deg at 20 kohm skin",
+      "pass": true,
+      "detail": "PM 88.9 deg, crossover 1.54e+04 Hz, loop gain at 50 Hz 61.0 dB"
+    },
+    {
+      "name": "DRL PM >= 45 deg at 100 kohm skin",
+      "pass": true,
+      "detail": "PM 88.9 deg, crossover 1.54e+04 Hz, loop gain at 50 Hz 60.7 dB"
+    },
+    {
+      "name": "ECO-5 improves the DRL loop (or at least does not harm it)",
+      "pass": true,
+      "detail": "phase margin change +88.2 deg, 50 Hz loop gain change +19.7 dB"
+    }
+  ],
+  "numbers": {
+    "overrides_applied": [
+      "ECO-5: C_BIAS_INV.2 GND -> BIAS_OUT_INT"
+    ],
+    "R_BIAS_FB_ohm": 1000000.0,
+    "R_BIAS_SER_ohm": 1000000.0,
+    "C_BIAS_INV": "1.5nF 50V X7R 0402",
+    "bias_sense_channels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "post_eco_grid": {
+      "skin5k_gbw10k": {
+        "fc_Hz": 1573.6973100637729,
+        "pm_deg": 83.52312551223582,
+        "dc_gain_dB": 93.88190859535372,
+        "loop_gain_50Hz_dB": 41.02312675446869
+      },
+      "skin5k_gbw100k": {
+        "fc_Hz": 15428.935536833376,
+        "pm_deg": 88.93788530185728,
+        "dc_gain_dB": 93.89264386812785,
+        "loop_gain_50Hz_dB": 61.01619752913783
+      },
+      "skin5k_gbw1000k": {
+        "fc_Hz": 139762.2022949449,
+        "pm_deg": 86.01207951070732,
+        "dc_gain_dB": 93.8927513572153,
+        "loop_gain_50Hz_dB": 80.38053240803251
+      },
+      "skin20k_gbw10k": {
+        "fc_Hz": 1574.276905022928,
+        "pm_deg": 83.53116703423683,
+        "dc_gain_dB": 93.88128012945052,
+        "loop_gain_50Hz_dB": 40.97607870840662
+      },
+      "skin20k_gbw100k": {
+        "fc_Hz": 15428.959209952975,
+        "pm_deg": 88.93773038443784,
+        "dc_gain_dB": 93.89201540234987,
+        "loop_gain_50Hz_dB": 60.96914948328629
+      },
+      "skin20k_gbw1000k": {
+        "fc_Hz": 139762.19581484835,
+        "pm_deg": 86.01206589288266,
+        "dc_gain_dB": 93.89212289139823,
+        "loop_gain_50Hz_dB": 80.33348436218972
+      },
+      "skin100k_gbw10k": {
+        "fc_Hz": 1574.5414510599296,
+        "pm_deg": 83.5231881153609,
+        "dc_gain_dB": 93.8780986247427,
+        "loop_gain_50Hz_dB": 40.74428178864469
+      },
+      "skin100k_gbw100k": {
+        "fc_Hz": 15428.96340263478,
+        "pm_deg": 88.93768423855346,
+        "dc_gain_dB": 93.8888338976423,
+        "loop_gain_50Hz_dB": 60.737352564790356
+      },
+      "skin100k_gbw1000k": {
+        "fc_Hz": 139762.19392805756,
+        "pm_deg": 86.01206228505339,
+        "dc_gain_dB": 93.88894138661912,
+        "loop_gain_50Hz_dB": 80.10168744381616
+      }
+    },
+    "post_eco_worst_pm_deg": 83.52312551223582,
+    "post_eco_worst_pm_at": "skin5k_gbw10k",
+    "eco5_comparison": {
+      "pre_eco": {
+        "fc_Hz": 540.2695570178919,
+        "pm_deg": 0.7496981577907889,
+        "dc_gain_dB": 93.8919655301275,
+        "loop_gain_50Hz_dB": 41.25678915040189,
+        "topology": "C_BIAS_INV 100nF from summing node to GND",
+        "body_CM_50Hz_dB_drl_on": -110.52986704804249,
+        "body_CM_50Hz_dB_drl_off": -104.50477546969691,
+        "drl_suppression_dB": 6.025091578345581
+      },
+      "post_eco": {
+        "fc_Hz": 15428.959209952975,
+        "pm_deg": 88.93773038443784,
+        "dc_gain_dB": 93.89201540234987,
+        "loop_gain_50Hz_dB": 60.96914948328629,
+        "topology": "C_BIAS_INV 1.5nF 50V X7R 0402 across R_BIAS_FB",
+        "body_CM_50Hz_dB_drl_on": -109.42686337764287,
+        "body_CM_50Hz_dB_drl_off": -104.10176136950675,
+        "drl_suppression_dB": 5.3251020081361276
+      }
+    }
+  },
+  "models": {
+    "ADS1299 BIAS amp": "behavioural macro; GBW swept 10 kHz..1 MHz around the datasheet 100 kHz",
+    "electrode/body": "behavioural lumped model"
+  },
+  "notes": "ECO-5 check at 20 kohm skin, 100 kHz GBW: phase margin 0.7 -> 88.9 deg, DRL loop gain at 50 Hz 41.3 -> 61.0 dB, 50 Hz body common-mode suppression by the drive 6.0 -> 5.3 dB.\nThe BIAS amplifier is a BEHAVIOURAL two-pole macro. SBAS499 gives GBW = 100 kHz, slew rate 0.07 V/us and a 1.1 mA short-circuit limit, but not the open-loop gain or output swing, so GBW is swept a decade either side of the datasheet value and the criterion must hold across the whole sweep.\nDRL EFFECTIVENESS, not a pass/fail criterion here but the more interesting number: with R_BIAS_SER at 1 Mohm the drive suppresses the 50 Hz body common mode by only about 5 dB. A right-leg drive is normally worth 20-40 dB. The loop is very stable precisely because it has so little authority, and the phase margin being flat across 5 k..100 kohm of skin is the same fact seen from another angle.\nR_BIAS_SER is 1e+06 ohm. With 5..100 kohm of skin in series that is a divider of -46..-21 dB in the forward path, so the DRL's authority over the body common mode is modest by construction -- which is also why the loop is hard to destabilise.\nBody model: skin = Rskin || 10 nF at every electrode, body to circuit ground = 100 pF stray, mains coupled through 5 pF. The ADS1299 internal BIAS_SENSP switch is taken as 100 ohm; the summing resistors are the board's own 10 kohm R_IN??."
+}

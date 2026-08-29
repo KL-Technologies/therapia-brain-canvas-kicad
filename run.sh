@@ -233,5 +233,12 @@ run_step S7 "ACCEPTANCE A-G" \
 run_step S7_body "ACCEPTANCE H -- no component body overlaps" \
   "$KPY" "$ROOT/scripts/64_body_overlap.py" --root "$ROOT" || exit 1
 
+# --- S3_sim: headless circuit simulation (optional) --------------------------
+# Deliberately not in STEPS and deliberately non-fatal: it gates nothing the
+# fab package depends on, so a failing simulation never blocks a build. It
+# writes gates/S3_sim.json either way. See sim/README.md.
+run_step S3_sim "simulate the power tree, LDO loops, DRL and ESP32 auto-reset" \
+  "$PY3" "$ROOT/sim/run_all.py" --root "$ROOT" || true
+
 echo
 show_status

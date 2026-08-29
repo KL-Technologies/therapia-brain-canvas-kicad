@@ -1,0 +1,42 @@
+* ==========================================================================
+* LM2664 -- TI's UNENCRYPTED PSpice transient model, wrapped for this board
+* ==========================================================================
+* Source: TI SNVMBY1, "LM2664 PSpice Transient Model", (C) 2020 Texas
+*         Instruments, datasheet SNVS005E.  Verbatim copy in
+*         sim/models/vendor/lm2664_ti_pspice.lib -- not one character of the
+*         TI text was edited.
+*
+* What TI's model contains that a behavioural one cannot: the real
+* oscillator (frequency as a function of V+, via the freq_Current block),
+* the real 1.25 ohm switch resistances, the startup behaviour, the SD
+* comparator with its 0.4*VIN / 0.2*VIN thresholds, and quiescent current as
+* a function of V+ (66.2 uA/V + 35 uA).
+*
+* TI's own usage notes, worth repeating because they bound what this can say:
+*   - temperature effects are NOT modelled
+*   - the GND pin is tied to 0 V internally (R_R3 GND 0 1m), so the model
+*     cannot be used with a floating ground.  That is fine here: the board's
+*     LM2664 ground pin IS circuit ground.
+*
+* ngspice: PSpice syntax throughout (E/G ... VALUE {}, IF(), PARAMS:,
+* VSWITCH .MODEL, digital gate macros).  It parses unmodified once the
+* driver issues `set ngbehavior=psa` before sourcing -- see
+* sim/lib/ngspice_ctypes.py.  No hand conversion was needed.
+*
+* SD polarity, confirmed against SNVS005E: SD tied to V+ = RUNNING
+* (V_SD >= 2 V run, <= 0.8 V shutdown).  The board ties SD to V5_LM_IN,
+* so the pump runs.  TI's model implements the same thing with thresholds
+* at 0.4*VIN and 0.2*VIN.
+* ==========================================================================
+
+.include lm2664_ti_pspice.lib
+
+* Board pin order (schematic pins 1..6): GND OUT C1- SD V+ C1+
+* TI's order:                            CAP+ CAP- GND OUT SD_N VIN
+* The board ties SD to the same net as V+, which would map two of TI's
+* formals onto one node.  A 1 mohm isolation resistor keeps them distinct
+* without changing anything electrically.
+.SUBCKT LM2664_TI GNDP OUT C1N SD VP C1P
+Rsdiso SD sd_i 1e-3
+X1 C1P C1N GNDP OUT sd_i VP LM2664_TRANS
+.ENDS LM2664_TI

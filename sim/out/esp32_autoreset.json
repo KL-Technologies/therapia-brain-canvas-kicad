@@ -1,0 +1,140 @@
+{
+  "case": "esp32_autoreset",
+  "pass": false,
+  "timestamp": "2026-08-29T12:43:06",
+  "checks": [
+    {
+      "name": "EN/IO0 truth table matches the esptool reset sequence",
+      "pass": true,
+      "detail": "HH->EN=H,IO0=H; HL->EN=L,IO0=H; LH->EN=H,IO0=L; LL->EN=H,IO0=H"
+    },
+    {
+      "name": "EN and IO0 stay within the ESP32 absolute maximum",
+      "pass": false,
+      "detail": "worst EN 4.238 V, worst IO0 4.203 V, limit 3.60 V"
+    },
+    {
+      "name": "EN rises >= 10 ms after the 3.3 V rail",
+      "pass": false,
+      "detail": "8.55 ms with the DERATED 0.62 uF (13.85 ms with the marked 1.00 uF)"
+    }
+  ],
+  "numbers": {
+    "ch340_vcc_net": "USB_5V",
+    "ch340_io_swing_V": 5.0,
+    "truth_table": [
+      {
+        "state": "idle / run          (host DTR=0 RTS=0)",
+        "DTR#": "H",
+        "RTS#": "H",
+        "EN_V": 4.23848997481423,
+        "IO0_V": 4.202639805143913,
+        "EN": "H",
+        "IO0": "H",
+        "expected": [
+          "H",
+          "H"
+        ],
+        "match": true,
+        "over_absmax": true
+      },
+      {
+        "state": "assert reset        (host DTR=0 RTS=1)",
+        "DTR#": "H",
+        "RTS#": "L",
+        "EN_V": 0.010304401048376741,
+        "IO0_V": 3.2999459460110665,
+        "EN": "L",
+        "IO0": "H",
+        "expected": [
+          "L",
+          "H"
+        ],
+        "match": true,
+        "over_absmax": false
+      },
+      {
+        "state": "release into loader (host DTR=1 RTS=0)",
+        "DTR#": "L",
+        "RTS#": "H",
+        "EN_V": 3.296637362897754,
+        "IO0_V": 0.011153572686247563,
+        "EN": "H",
+        "IO0": "L",
+        "expected": [
+          "H",
+          "L"
+        ],
+        "match": true,
+        "over_absmax": false
+      },
+      {
+        "state": "both asserted       (host DTR=1 RTS=1)",
+        "DTR#": "L",
+        "RTS#": "L",
+        "EN_V": 3.2966373627179366,
+        "IO0_V": 3.2999459458637954,
+        "EN": "H",
+        "IO0": "H",
+        "expected": [
+          "H",
+          "H"
+        ],
+        "match": true,
+        "over_absmax": false
+      }
+    ],
+    "truth_table_if_ch340_were_3v3": [
+      {
+        "state": "idle / run          (host DTR=0 RTS=0)",
+        "EN_V": 3.2966373970106266,
+        "IO0_V": 3.299945973864389
+      },
+      {
+        "state": "assert reset        (host DTR=0 RTS=1)",
+        "EN_V": 0.012436727228122038,
+        "IO0_V": 3.2999459460110665
+      },
+      {
+        "state": "release into loader (host DTR=1 RTS=0)",
+        "EN_V": 3.296637362897754,
+        "IO0_V": 0.013680193711618386
+      },
+      {
+        "state": "both asserted       (host DTR=1 RTS=1)",
+        "EN_V": 3.2966373627179366,
+        "IO0_V": 3.2999459458637954
+      }
+    ],
+    "worst_pin_V_at_3v3_io": 3.299945973864389,
+    "esp32_thresholds": {
+      "VIH_V": 2.4749999999999996,
+      "VIL_V": 0.825,
+      "abs_max_V": 3.5999999999999996
+    },
+    "C_EN_DLY_nominal_F": 1e-06,
+    "C_EN_DLY_derated_F": 6.189999999999999e-07,
+    "C_EN_DLY_derating_trusted": true,
+    "C_EN_DLY_source": "samsung weblib fetched 2026-08-29",
+    "en_delay": {
+      "nominal": {
+        "C_F": 1e-06,
+        "t_rail_95pct_s": 0.00030000000000000003,
+        "t_EN_VIH_s": 0.01414999999999997,
+        "delay_s": 0.01384999999999997
+      },
+      "derated": {
+        "C_F": 6.189999999999999e-07,
+        "t_rail_95pct_s": 0.00030000000000000003,
+        "t_EN_VIH_s": 0.008850000000000002,
+        "delay_s": 0.008550000000000002
+      }
+    }
+  },
+  "models": {
+    "S8050": "behavioural (generic Gummel-Poon fit)",
+    "ESP32 pins": "resistive/threshold model",
+    "CH340C": "ideal 5 V push-pull driver"
+  },
+  "notes": "CH340C VCC is on net USB_5V, so its DTR#/RTS# outputs swing to 5.0 V.\nABSOLUTE-MAXIMUM FINDING: with the CH340C on USB_5V its DTR#/RTS# outputs idle at 5.0 V. Both transistors are then off with a base above their 3.3 V collector, which forward-biases the base-collector junction and lifts ESP_EN and ESP_IO0 to about 4.24 V -- past the ESP32's 3.60 V maximum. The same deck with 3.3 V handshake levels peaks at 3.30 V, so this is a consequence of the CH340C's supply mode, not of the reset topology. BY INSPECTION the same concern reaches further: U_USB pin 2 TXD drives ESP_RXD (U_MCU pin 34) directly with no level shift. Confirm the CH340C's output level in 5 V supply mode against its datasheet before acting on this.\nTransistors use a generic Gummel-Poon S8050 fit (BF=275, the middle of the J3Y 200..350 bin). The absolute-maximum check depends on the base-collector junction parameters, which are the least well pinned down part of that fit -- treat a marginal result as a reason to measure, not as proof."
+}

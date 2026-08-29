@@ -1,0 +1,246 @@
+* ==========================================================================
+* Brain Canvas Rev.A -- BEHAVIOURAL device models for ngspice
+* ==========================================================================
+* EVERY sub-circuit in this file is BEHAVIOURAL, not a vendor model.  None of
+* these is silicon-accurate; each is built to reproduce the datasheet-
+* observable behaviour that the test cases actually interrogate (rail value,
+* dropout, current limit, load-step settling, charge-pump ripple) and nothing
+* more.  Where a number is a calibration choice rather than a datasheet
+* figure, the comment says so in capitals.
+*
+* Syntax notes (ngspice 45.2, the build KiCad bundles):
+*   - No {} parameter expressions anywhere.  ngspice's brace handling is the
+*     usual first thing to break when porting a PSpice deck, so every value
+*     here is a literal.
+*   - B-source expressions use ngspice's own function set (min/max/limit and
+*     the ?: ternary), not PSpice TABLE/VALUE= constructs.
+*   - "GND" is NOT used as a sub-circuit terminal name anywhere: ngspice
+*     aliases gnd/GND to global node 0, so a formal called GND silently
+*     shorts the pin to ground.  The ground terminals are called GNDP.
+*     (At the top level that alias is welcome -- the board's own GND net
+*     becomes node 0 for free.)
+*   - Quiescent-current draws and pass devices are gated on the rail being
+*     present.  A fixed DC sink on a rail that is still at 0 V drives the
+*     t=0 operating point to hundreds of volts through the model's own
+*     leakage resistor, and the transient then never starts.
+* ==========================================================================
+
+
+* --------------------------------------------------------------------------
+* TLV70025DDCR -- 2.5 V / 200 mA positive LDO, SOT-23-5
+* Node order = schematic pin order 1..5 :  IN  GNDP  EN  NC  OUT
+* --------------------------------------------------------------------------
+* Topology: reference -> transconductance error amp (single internal pole)
+*   -> square-law PMOS pass device -> OUT.  Modelling the pass element as a
+*   square-law device rather than a fixed gm is what makes the loop behave
+*   like a real LDO across load: gm_pass = 2*sqrt(K*Iout), so loop gain falls
+*   and loop bandwidth rises as the load current rises, exactly the trend
+*   that decides whether a given output capacitor is enough.
+*
+*   K = 1.25 A/V^2  gives gm_pass = 0.5 S at 50 mA, 1.0 S at 200 mA.
+*   A_ea = gm_ea * Rea = 1e-3 * 40e3 = 40  (32 dB)
+*   -> DC loop gain at 50 mA into a 50 ohm load = 40 * 0.5 * 50 = 1000 (60 dB)
+*
+*   Cea = 0.199 pF puts the internal pole at 20 MHz.  CALIBRATION CHOICE:
+*   set so the model still shows >= 60 deg phase margin at the datasheet's
+*   minimum ceramic output capacitance at full load, i.e. the model is
+*   marginal where TI says the part is marginal.  It is not an extracted
+*   silicon pole.  Loop-gain numbers from this model are therefore
+*   indicative; the load-step settling test is the primary evidence.
+*
+*   Rpass_on 1.75 ohm sets the ohmic ceiling -> 350 mV dropout at 200 mA.
+*   Current limit 0.42 A.
+.subckt TLV70025 IN GNDP EN NCPIN OUT
+* Wrapper: the closed-loop part.  All the behaviour lives in _CORE, which
+* brings the feedback sense point out as a separate terminal so
+* sim/cases/ldo_stability.py can break the loop and inject there.  One model,
+* two uses -- the loop-gain measurement cannot drift from the transient one.
+Xcore IN GNDP EN NCPIN OUT OUT TLV70025_CORE
+.ends TLV70025
+
+.subckt TLV70025_CORE IN GNDP EN NCPIN OUT FB
+Rnc   NCPIN GNDP 1e12
+* Continuous threshold, not a ?: step: an instantaneous 0->1 jump on a
+* node that multiplies the pass current is a discontinuity ngspice cannot
+* step across ("timestep too small").  0.85..0.95 V is still a sharp
+* comparator, but the solver can walk through it.
+Ben   nen 0 V = min(max(( V(EN,GNDP) - 0.85 ) / 0.10,0),1)
+Berr  nerr 0 V = 2.5 - V(FB,GNDP)
+Gea   GNDP nea nerr 0 1e-3
+Rea   nea GNDP 40e3
+Cea   nea GNDP 0.199e-12
+Dclamp GNDP nea DCLAMP
+* anti-windup: while EN is low the pass device delivers nothing, so without
+* this clamp the integrator runs away and the first microsecond after enable
+* demands kiloamps.  1.6 V is well above the ~0.4 V the loop actually needs.
+Vclmp nclmp GNDP DC 1.6
+Dhi   nea nclmp DCLAMP
+Bpass IN OUT I = V(nen) * max( 0, min( 1.25*V(nea,GNDP)*V(nea,GNDP), min( 0.42, (V(IN,GNDP)-V(OUT,GNDP))/1.75 ) ) )
+* Supply-to-output feedthrough.  Without it the pass device is an ideal
+* current source and the model reports infinite PSRR, which would quietly
+* turn a rail-ripple question into a tautology.  10 nF is the lumped
+* equivalent that reproduces roughly -40 dB PSRR at 100 kHz measured into
+* the datasheet's 1 uF test capacitor.  CALIBRATION, not a datasheet value.
+Cff   IN OUT 10n
+Biq   IN GNDP I = 31e-6 * V(nen) * min(max(V(IN,GNDP)/2.0,0),1)
+Rleak OUT GNDP 1e6
+.model DCLAMP D(IS=1e-14 N=0.1 CJO=1e-15)
+.ends TLV70025_CORE
+
+
+* --------------------------------------------------------------------------
+* TPS72325DBVR -- -2.5 V / 200 mA NEGATIVE LDO, SOT-23-5
+* Node order = schematic pin order 1..5 :  GNDP  IN  EN  NR  OUT
+* --------------------------------------------------------------------------
+* Mirror image of the model above.  The pass device sinks current from OUT
+* into IN (IN is the negative rail), so the control law is written on
+* (V(OUT) + Vref): if OUT is less negative than -2.5 V the error is positive
+* and the pass device is turned harder on.
+*
+* EN POLARITY -- the fact the whole power-tree case turns on.  On the
+* TPS723xx the EN pin is referenced to GND and is ACTIVE LOW: pulling EN
+* below the low threshold enables the regulator, and the datasheet's own
+* "always enabled" wiring is EN tied to IN.  The board ties EN to
+* V_NLDO_IN (VNEG5 through FB4, about -5 V), so the part is enabled.
+* The model implements the active-low rule with a 0.4 V threshold.
+* See sim/models/PROVENANCE.md for how firmly that threshold is pinned down.
+*
+* NR pin: internal reference node brought out so an external capacitor can
+* roll off reference noise.  Modelled as 250 kohm to the reference, so
+* C_NR (10 nF) gives both the noise-reduction pole and a 2.5 ms soft-start
+* ramp.  The 250 kohm is a CALIBRATION CHOICE, not a datasheet number.
+.subckt TPS72325 GNDP IN EN NR OUT
+Xcore GNDP IN EN NR OUT OUT TPS72325_CORE
+.ends TPS72325
+
+.subckt TPS72325_CORE GNDP IN EN NR OUT FB
+Ben   nen 0 V = min(max(( 0.45 - V(EN,GNDP) ) / 0.10,0),1)
+Vrefsrc nrefs GNDP DC 2.5
+Rnr   nrefs NR 250e3
+Cnrint NR GNDP 1e-12
+Berr  nerr 0 V = V(FB,GNDP) + V(NR,GNDP)
+Gea   GNDP nea nerr 0 1e-3
+Rea   nea GNDP 40e3
+Cea   nea GNDP 0.199e-12
+Dclamp GNDP nea DCLAMPN
+Vclmp nclmp GNDP DC 1.6
+Dhi   nea nclmp DCLAMPN
+Bpass OUT IN I = V(nen) * max( 0, min( 1.25*V(nea,GNDP)*V(nea,GNDP), min( 0.20, (V(OUT,GNDP)-V(IN,GNDP))/2.6 ) ) )
+* see the note on Cff in TLV70025 above
+Cff   IN OUT 10n
+Biq   GNDP IN I = 60e-6 * V(nen) * min(max(V(IN,GNDP)/-2.0,0),1)
+Rleak OUT GNDP 1e6
+.model DCLAMPN D(IS=1e-14 N=0.1 CJO=1e-15)
+.ends TPS72325_CORE
+
+
+* --------------------------------------------------------------------------
+* LM2664 -- switched-capacitor voltage inverter, SOT-23-6
+* Node order = schematic pin order 1..6 :  GNDP  OUT  C1N  SD  VP  C1P
+* --------------------------------------------------------------------------
+* Not a black box: a real two-phase switched-capacitor model with four
+* switches, because the question the power-tree case asks is "how much
+* ripple lands on AVSS", and ripple is exactly what a lumped "ideal inverter
+* behind 12 ohm" model throws away.
+*
+*   phase A (clk high): C1+ -> V+,  C1- -> GND   (charge the flying cap)
+*   phase B (clk low) : C1+ -> GND, C1- -> OUT   (dump it inverted)
+*
+* Switching frequency 80 kHz = datasheet typical.
+* Switch on-resistance 1.5 ohm each.  CALIBRATION CHOICE: the datasheet
+* specifies a lumped output resistance of about 12 ohm, which for a charge
+* pump is Rout ~ 4*Rsw + 1/(f*Cfly) + ESR.  With the board's flying cap
+* derated to about 3.8 uF, 1/(f*Cfly) = 3.3 ohm, leaving ~8.7 ohm of switch resistance; 1.5 ohm per switch
+* measures 12.4 ohm of lumped Rout in this model, against the datasheet's 12.
+* power_tree_startup.py MEASURES the model's actual Rout and reports it, so
+* the calibration is checked rather than asserted.
+*
+* SD pin: the board ties SD to V+.  This model reads "SD high = running".
+* PROVENANCE.md flags that polarity as needing datasheet confirmation.
+.subckt LM2664 GNDP OUT C1N SD VP C1P
+Vclk  nclk GNDP PULSE(0 1 0 100n 100n 6.15u 12.5u)
+* SD comparator plus the datasheet's minimum operating supply: the pump
+* does not switch until V+ is up around 1.8 V.
+Bsd   nsd 0 V = min(max((V(SD,GNDP)-0.5*V(VP,GNDP))/0.2 + 0.5,0),1) * min(max((V(VP,GNDP)-1.5)/0.3,0),1)
+Bpha  npha 0 V = V(nclk,GNDP) * V(nsd)
+Bphb  nphb 0 V = ( 1 - V(nclk,GNDP) ) * V(nsd)
+* phase A: charge the flying capacitor to V+
+BswA1 VP   C1P I = V(npha) * ( V(VP,GNDP)  - V(C1P,GNDP) ) / 1.5
+BswA2 GNDP C1N I = V(npha) * ( 0           - V(C1N,GNDP) ) / 1.5
+* phase B: dump it into the output, inverted
+BswB1 GNDP C1P I = V(nphb) * ( 0           - V(C1P,GNDP) ) / 1.5
+BswB2 OUT  C1N I = V(nphb) * ( V(OUT,GNDP) - V(C1N,GNDP) ) / 1.5
+Biq   VP GNDP I = 100e-6 * min(max(V(VP,GNDP)/2.0,0),1)
+Rlk1  C1P GNDP 10e6
+Rlk2  C1N GNDP 10e6
+Rlk3  OUT GNDP 10e6
+.ends LM2664
+
+
+* --------------------------------------------------------------------------
+* AMS1117-3.3 -- 3.3 V / 800 mA NPN-pass regulator, SOT-223
+* Node order = schematic pin order 1..4 :  GNDP  OUT1  IN  OUT2
+* (pins 2 and 4 are the same OUT net on the board; the sub-circuit keeps them
+*  as distinct formals and shorts them internally, which is legal SPICE and
+*  lets the caller pass the same node twice.)
+* --------------------------------------------------------------------------
+* The AMS1117 is a high-dropout part and the board runs it from USB 5 V
+* through a PTC and a ferrite, so the interesting question is whether it
+* still regulates at 4.75 V USB with a 300 mA ESP32 transmit burst.
+* Dropout model:  Vdo(I) = 0.45 + 1.0*I volts.  A two-point FIT, not a
+* datasheet curve: 1.25 V at 800 mA against the datasheet's 1.3 V maximum,
+* with a 0.45 V low-current floor.
+* Ground-pin current 5 mA (datasheet typical quiescent).
+.subckt AMS1117_33 GNDP OUT1 IN OUT2
+Rshort OUT1 OUT2 1e-3
+Berr  nerr 0 V = 3.3 - V(OUT1,GNDP)
+Gea   GNDP nea nerr 0 1e-3
+Rea   nea GNDP 100e3
+Cea   nea GNDP 0.796e-12
+Dclamp GNDP nea DCLAMPA
+Vclmp nclmp GNDP DC 1.6
+Dhi   nea nclmp DCLAMPA
+Bpass IN OUT1 I = max( 0, min( 1.25*V(nea,GNDP)*V(nea,GNDP), min( 1.1, (V(IN,GNDP)-V(OUT1,GNDP)-0.45)/1.0 ) ) )
+Biq   IN GNDP I = 5e-3 * min(max(V(IN,GNDP)/2.0,0),1)
+Rleak OUT1 GNDP 1e6
+.model DCLAMPA D(IS=1e-14 N=0.1 CJO=1e-15)
+.ends AMS1117_33
+
+
+* --------------------------------------------------------------------------
+* ADS1299 BIAS (right-leg-drive) amplifier macro
+* Nodes:  VINP VINN VOUT AVDDP AVSSP
+* --------------------------------------------------------------------------
+* Two-pole op-amp macro on +-2.5 V rails.  A0 = 100 dB, dominant pole placed
+* for a 100 kHz gain-bandwidth product, second pole at 1 MHz, output
+* resistance 100 ohm, output swing clamped 200 mV inside the rails.
+*
+* GBW IS THE WEAK NUMBER HERE.  SBAS499 does not publish a gain-bandwidth
+* product for the BIAS amplifier.  sim/cases/drl_loop.py therefore does not
+* trust a single value: it sweeps GBW over 10 kHz .. 1 MHz by rewriting the
+* two gain stages, and reports phase margin across that whole range, so the
+* conclusion does not rest on a number that is not in the datasheet.
+.subckt ADS1299_BIASAMP VINP VINN VOUT AVDDP AVSSP
+Rin   VINP VINN 1e12
+Cin   VINP VINN 3e-12
+Gm1   0 n1 VINP VINN 1e-4
+R1    n1 0 1e9
+C1    n1 0 1.592e-12
+Gm2   0 n2 n1 0 1e-3
+R2    n2 0 1e3
+C2    n2 0 1.592e-10
+Bout  n3 0 V = min( max( V(n2,0), V(AVSSP,0)+0.2 ), V(AVDDP,0)-0.2 )
+Rout  n3 VOUT 100
+.ends ADS1299_BIASAMP
+
+
+* --------------------------------------------------------------------------
+* S8050 (J3Y) -- 40 V / 700 mA NPN, SOT-23-3, hFE bin 200..350
+* --------------------------------------------------------------------------
+* Generic Gummel-Poon fit: BF = 275 (middle of the J3Y bin), TF = 1.2 ns
+* giving fT ~ 133 MHz against the datasheet's 100..150 MHz.  RC = 0.5 ohm
+* reproduces roughly 0.3 V Vce(sat) at 100 mA.
+.model S8050 NPN (IS=1.8e-14 BF=275 NF=1.0 VAF=100 IKF=0.5 ISE=1e-13 NE=1.5
++ BR=4 NR=1.0 VAR=20 IKR=0.1 ISC=1e-13 NC=2 RB=10 RE=0.15 RC=0.5
++ CJE=6e-11 VJE=0.7 MJE=0.33 CJC=1.2e-11 VJC=0.5 MJC=0.33
++ TF=1.2e-9 TR=1e-7 XTB=1.5)
