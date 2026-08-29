@@ -70,6 +70,8 @@ MAKER = {
     "C84268": "NationStar", "C43379": "RUILON",
     # the 32E -> 32UE body swap, same day, same file
     "C701344": "Espressif",
+    # 2026-08-29 functional review, BOM only (data/bom_fixes R29-1..R29-3)
+    "C163508": "Samsung", "C23733": "Samsung",
 }
 
 

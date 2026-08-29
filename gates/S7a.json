@@ -120,7 +120,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T20:44:56",
+  "timestamp": "2026-08-29T11:51:07",
   "notes": "ECO-5 moves one pad from GND to BIAS_OUT_INT and reroutes it; the BOM corrections are field-only. Parity is measured against contract/netlist_contract.json with contract/contract_overrides.json applied.",
   "before": {
     "footprints": 141,

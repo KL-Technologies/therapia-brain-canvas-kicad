@@ -154,6 +154,272 @@
         "C701344"
       ]
     },
+    "C_CM1P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM1N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM2P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM2N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM3P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM3N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM4P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM4N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM5P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM5N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM6P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM6N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM7P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM7N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM8P": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_CM8N": {
+      "value": [
+        "1nF",
+        "1nF 50V C0G 0603"
+      ],
+      "mpn": [
+        "CL10B102KB8NNNC",
+        "CL10C102JB8NNNC"
+      ],
+      "lcsc": [
+        "C1588",
+        "C163508"
+      ]
+    },
+    "C_NLDO_OUT": {
+      "value": [
+        "2.2uF",
+        "4.7uF 10V X5R 0402"
+      ],
+      "mpn": [
+        "CL05A225MQ5NSNC",
+        "CL05A475MP5NRNC"
+      ],
+      "lcsc": [
+        "C12530",
+        "C23733"
+      ]
+    },
+    "C_LM_IN": {
+      "value": [
+        "1uF",
+        "4.7uF 10V X5R 0402"
+      ],
+      "mpn": [
+        "CL05A105KA5NQNC",
+        "CL05A475MP5NRNC"
+      ],
+      "lcsc": [
+        "C52923",
+        "C23733"
+      ]
+    },
+    "C_AVDD_P59": {
+      "value": [
+        "100nF",
+        "1uF"
+      ],
+      "mpn": [
+        "CL05B104KO5NNNC",
+        "CL05A105KA5NQNC"
+      ],
+      "lcsc": [
+        "C1525",
+        "C52923"
+      ]
+    },
     "R_RST_UP": {
       "dnp": [
         null,

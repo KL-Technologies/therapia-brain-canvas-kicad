@@ -5120,7 +5120,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "293f39ed-5e86-43b7-b107-8d3a5e28f559")
@@ -5179,7 +5179,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -5191,7 +5191,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -6210,7 +6210,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "11edf743-5e63-4208-aa6c-81316e3bf344")
@@ -6269,7 +6269,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -6281,7 +6281,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -10663,7 +10663,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "af8381e2-2983-48e7-8c37-778cc7287481")
@@ -10722,7 +10722,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -10734,7 +10734,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -12093,7 +12093,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "c1c2a75b-4fcc-4fc0-9ef0-a36625fcc44b")
@@ -12152,7 +12152,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -12164,7 +12164,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -17652,7 +17652,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "1uF"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "3dca0e6a-bdba-43c1-abd4-d258f47ab051")
@@ -17711,7 +17711,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL05B104KO5NNNC"
+		(property "MPN" "CL05A105KA5NQNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -17723,7 +17723,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1525"
+		(property "LCSC" "C52923"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -18976,7 +18976,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "2ce737f9-4150-44da-a201-5af51e4c724b")
@@ -19035,7 +19035,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -19047,7 +19047,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -19993,7 +19993,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "03048ca4-7663-4070-9553-dd5e419bf473")
@@ -20052,7 +20052,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -20064,7 +20064,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -20655,7 +20655,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "940afccd-6d36-4c8a-8f7b-f6a207572861")
@@ -20714,7 +20714,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -20726,7 +20726,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -22293,7 +22293,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "e9b4ada0-3e40-4086-9b16-20d5d7264c0f")
@@ -22352,7 +22352,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -22364,7 +22364,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -24047,7 +24047,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "f66feee0-562e-4b92-81df-26cafd89b71e")
@@ -24106,7 +24106,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -24118,7 +24118,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -25156,7 +25156,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "c41a14f5-d4b9-413f-a98d-f8528b46802b")
@@ -25215,7 +25215,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -25227,7 +25227,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -31151,7 +31151,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "2.2uF"
+		(property "Value" "4.7uF 10V X5R 0402"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "dde21ba5-0000-471d-a6ae-555696c00a13")
@@ -31210,7 +31210,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL05A225MQ5NSNC"
+		(property "MPN" "CL05A475MP5NRNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -31222,7 +31222,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C12530"
+		(property "LCSC" "C23733"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -36961,7 +36961,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "d883a20b-5934-4ae2-b929-d432e87e832a")
@@ -37020,7 +37020,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -37032,7 +37032,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -38421,7 +38421,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "4.7uF 10V X5R 0402"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "07f44a3a-247a-4ed4-8c30-faaa6192cda9")
@@ -38480,7 +38480,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL05A105KA5NQNC"
+		(property "MPN" "CL05A475MP5NRNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -38492,7 +38492,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C52923"
+		(property "LCSC" "C23733"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -40469,7 +40469,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "7e38e349-025d-4cb3-867c-c637bf88de84")
@@ -40528,7 +40528,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -40540,7 +40540,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -40800,7 +40800,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "0e619a9f-f32d-4744-ba19-9e9e617bf417")
@@ -40859,7 +40859,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -40871,7 +40871,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -43272,7 +43272,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "fdb91c69-48ab-4ee9-8b75-4d98f15719ca")
@@ -43331,7 +43331,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -43343,7 +43343,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -47243,7 +47243,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "02b50441-b630-4fdd-bf8e-bf214edd636c")
@@ -47302,7 +47302,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -47314,7 +47314,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -47918,7 +47918,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "1nF"
+		(property "Value" "1nF 50V C0G 0603"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "5197f7bd-df38-4310-9433-4f6a91d3e662")
@@ -47977,7 +47977,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL10B102KB8NNNC"
+		(property "MPN" "CL10C102JB8NNNC"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)
@@ -47989,7 +47989,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1588"
+		(property "LCSC" "C163508"
 			(at 0 0 0)
 			(layer "Cmts.User")
 			(hide yes)

@@ -1,6 +1,7 @@
 {
   "_purpose": "BOM 実体照合（reports/bom_verification.md）で確定した発注前の修正。S7/S8 担当が board の footprint フィールド（LCSC/MPN/Value）と data/parts_lcsc.csv・発注 BOM に反映する。フットプリントは全て不変。",
   "_decided_by": "lead (Fable) 2026-08-28",
+  "_amended": "lead decision 2026-08-29 — 独立機能レビュー（reports/functional_review_2026-08-29.md）の BOM のみ改善 4 件を追加。フットプリント不変・銅箔不変・CPL 不変",
   "fixes": [
     {
       "designators": ["FB1", "FB2", "FB3", "FB4", "FB5"],
@@ -68,6 +69,89 @@
         "https://jlcpcb.com/partdetail/C701344",
         "https://documentation.espressif.com/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.html"
       ]
+    },
+    {
+      "id": "R29-1",
+      "designators": ["C_CM1P", "C_CM1N", "C_CM2P", "C_CM2N", "C_CM3P", "C_CM3N",
+                      "C_CM4P", "C_CM4N", "C_CM5P", "C_CM5N", "C_CM6P", "C_CM6N",
+                      "C_CM7P", "C_CM7N", "C_CM8P", "C_CM8N"],
+      "old_lcsc": "C1588",
+      "new_lcsc": "C163508",
+      "new_mpn": "CL10C102JB8NNNC",
+      "new_value": "1nF 50V C0G 0603",
+      "reason": "入力節点（IN1P〜IN8N ↔ GND、電極直近の CM フィルタ 16 個）のコンデンサを X7R から C0G/NP0 へ。TI SBAS499 §12.1（レイアウト指針）は入力節点のコンデンサに C0G を指定する。X7R(Class II) は圧電性を持ち、装着型では機械振動がそのまま入力に電荷として乗る（マイクロフォニックノイズ）。加えて X7R の ±10% 容量ばらつきは差動対の P/N 間で不整合となり、50Hz での CMRR を律速する（C0G は ±5% かつ温度・DC バイアスでほぼ不変）。両端 DC 差はほぼ 0 なので DC バイアス減衰は元から効いていないが、圧電性とばらつきは効く。0603 同一フットプリント・容量値も同一なので銅箔・CPL は不変",
+      "part_note": "JLC Basic に C0G/NP0 の 0603 は 1 点も存在しない（部品検索 API に componentLibraryType=base を付けて『1nF 0603』『1000pF 0603』『C0G 0603』を走査 → C0G/NP0 のヒット 0。同形式で base を付けた『1nF 0603』は C1588 を返すのでフィルタは機能している）。したがって Extended。C163508 は現行 C1588 と同じ Samsung CL10 シリーズ（CL10B→CL10C の誘電体違い）で端子形状が同一。JLC 実装在庫 440,964（presale 409,057）・isBuyComponent=1・最小実装数 20。第2候補 C106246（YAGEO CC0603JRNPO9BN102、1nF 50V NP0 ±5% 0603、Extended、在庫 660,254）— 在庫はこちらが多いが、置換元と同一メーカ・同一シリーズであることを優先して Samsung を採った。BOM の Extended 行は 13 → 14 に増える（フィーダー費 +$3.07 程度）",
+      "footprint_change": false,
+      "copper_change": false,
+      "status": "lead decision 2026-08-29",
+      "sources": [
+        "https://www.lcsc.com/product-detail/C163508.html",
+        "https://jlcpcb.com/partdetail/174890-CL10C102JB8NNNC/C163508",
+        "https://www.ti.com/lit/ds/symlink/ads1299.pdf"
+      ]
+    },
+    {
+      "id": "R29-2",
+      "designators": ["C_NLDO_OUT"],
+      "old_lcsc": "C12530",
+      "new_lcsc": "C23733",
+      "new_mpn": "CL05A475MP5NRNC",
+      "new_value": "4.7uF 10V X5R 0402",
+      "reason": "TPS72325（−2.5V LDO、AVSS 出力）の出力コンデンサ。SLVS346 §8.2.1.1 は出力に最低 2.2µF のセラミックを要求する。現行 C12530 は 2.2µF/6.3V の 0402 で、|VOUT|=2.5V のバイアス下では **Samsung 実測カーブ（25℃）で保持率 0.543 → 実効 1.19µF**（推定ではなく曲線値）となり、データシートの最低値 2.2µF を明確に割る。4.7µF/10V 0402 へ上げる。0402 同一フットプリント・銅箔不変",
+      "part_note": "C23733 = Samsung CL05A475MP5NRNC、4.7µF 10V X5R ±20% 0402、**JLC Basic**（componentLibraryType=base）、JLC 実装在庫 3,234,528（presale 2,589,600）、最小実装数 20。Basic なので Extended 手数料は増えない。C12530 は本 BOM で C_NLDO_OUT の 1 点だけに使われていたため、この差し替えで BOM から消える（行数は R29-3 と合わせて 30 行のまま）。**新部品 CL05A475MP5NRNC の DC バイアス曲線は未取得 — 2.5V / 5V での実効値は要確認（Samsung weblib）。** 耐圧が 6.3V→10V に上がり公称容量が 2.1 倍になるので改善方向であることは確実だが、実効値そのものは火入れ時に AVSS のリップルを実測して確かめること",
+      "footprint_change": false,
+      "copper_change": false,
+      "status": "lead decision 2026-08-29",
+      "sources": [
+        "https://www.lcsc.com/product-detail/C23733.html",
+        "https://jlcpcb.com/partdetail/24469-CL05A475MP5NRNC/C23733",
+        "https://www.ti.com/lit/ds/symlink/tps72325.pdf"
+      ]
+    },
+    {
+      "id": "R29-3",
+      "designators": ["C_LM_IN"],
+      "old_lcsc": "C52923",
+      "new_lcsc": "C23733",
+      "new_mpn": "CL05A475MP5NRNC",
+      "new_value": "4.7uF 10V X5R 0402",
+      "reason": "LM2664（スイッチトキャパシタ反転器）の V+ 入力コンデンサ（ネット V5_LM_IN ↔ GND、約 5V）。SNVS005 のテスト回路は入力に 3.3µF を置く。現行 C52923 は 1µF/25V の 0402 で、**Samsung 実測カーブ（25℃）で 5V バイアス時の保持率 0.420 → 実効 0.42µF**（推定ではなく曲線値）、テスト回路の 1/8 に満たない。入力容量が足りないとフライングキャップの充電ごとに V5_LM_IN が沈み、そのリップルが AVSS→ADS1299 のアナログ電源に回り込む。R29-2 と同じ C23733（4.7µF/10V 0402）に統一する",
+      "part_note": "R29-2 と同一品番なので BOM 行は 1 行にまとまる（C_NLDO_OUT + C_LM_IN の 2 個）。C52923（1µF 0402）は R29-4 で C_AVDD_P59 が加わるため BOM から消えず、員数は 11 個のまま。**新部品 CL05A475MP5NRNC の DC バイアス曲線は未取得 — 2.5V / 5V での実効値は要確認（Samsung weblib）**（R29-2 と同じ）",
+      "footprint_change": false,
+      "copper_change": false,
+      "status": "lead decision 2026-08-29",
+      "sources": [
+        "https://www.lcsc.com/product-detail/C23733.html",
+        "https://www.ti.com/lit/ds/symlink/lm2664.pdf"
+      ]
+    },
+    {
+      "id": "R29-4",
+      "designators": ["C_AVDD_P59"],
+      "old_lcsc": "C1525",
+      "new_lcsc": "C52923",
+      "new_mpn": "CL05A105KA5NQNC",
+      "new_value": "1uF",
+      "reason": "ADS1299 pin59（チャージポンプ用 AVDD）のデカップリング。SBAS499 §6（Pin Configuration and Functions）は pin59 に 1µF を指定しており、現行の 100nF では足りない。0402 同一フットプリント、品番は既に BOM にある C52923 なので Extended 行も員数も増えない（designator が 100nF 行から 1µF 行へ移るだけ）",
+      "part_note": "**リターン側のネットは GND のままにする。** SBAS499 の推奨は pin59 のコンデンサを pin60(AVSS) 側に返すことだが、それは銅箔の変更になり、発注直前の Rev.A では行わない（Rev.B 送り）。C52923 = Samsung CL05A105KA5NQNC 1µF 25V X5R ±10% 0402、JLC Basic、実装在庫 11,843,732。なおこの変更は容量値そのものの不足を直すもので、DC バイアス減衰の話ではない（Samsung 実測カーブでは旧 C1525(100nF 16V) は AVDD の 2.5V バイアスで保持率 1.026 = 減衰なし）。C52923 は 25V 定格なので 2.5V ではほぼ減衰しない",
+      "footprint_change": false,
+      "copper_change": false,
+      "deferred_to_rev_b": "C_AVDD_P59 のリターンを GND → AVSS へ（銅箔変更）。Rev.A では GND のまま",
+      "status": "lead decision 2026-08-29",
+      "sources": [
+        "https://www.ti.com/lit/ds/symlink/ads1299.pdf",
+        "https://jlcpcb.com/partdetail/24469-CL05A105KA5NQNC/C52923"
+      ]
+    },
+    {
+      "id": "R29-5",
+      "designators": ["C_VCAP1"],
+      "action": "keep C15008 (100uF 6.3V X5R 1206)",
+      "reason": "検討したが変更しない。VCAP1 は AVSS 基準で +1.1〜1.5V にしか上がらない（SBAS499 §11.1 の RESET 条件が『VCAP1 > 1.1V』であることから、動作点はその近傍）。**Samsung 実測カーブ（25℃）では C15008 は 0V で既に保持率 0.91、1.8V で 0.648** なので、VCAP1 の動作点では **実効 60〜65µF 程度**になる。**TI の 100µF 指定に対しては不足気味だが、効くのは VCAP1 の充電時間（＝起動待ち時間）が短くなる方向だけで機能影響は無い。** X5R の圧電性は残るが、VCAP1 は内部基準の平滑であって入力節点ではないので、R29-1 の CM コンデンサほど直接には効かない。1206 で 100µF の C0G は存在せず、タンタルへの変更はフットプリントと信頼性の再評価を伴う。**Rev.A は現行のまま。火入れ（reports/bringup_checklist.md 7-3）で VCAP1 の立ち上がりを AVSS 基準で実測すること**",
+      "footprint_change": false,
+      "copper_change": false,
+      "status": "considered, kept — lead decision 2026-08-29",
+      "sources": ["https://www.ti.com/lit/ds/symlink/ads1299.pdf"]
     }
   ],
   "bringup_review_fixes": [

@@ -277,7 +277,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T20:56:34",
+  "timestamp": "2026-08-29T11:55:15",
   "notes": "ACCEPTANCE.md A-G. The document is frozen; this is its implementation. D and E are settled by lib/gerber_parse.py reading the plotted files, not by KiCad reading its own output.",
   "drc": {
     "violations": 454,
@@ -1113,11 +1113,11 @@
   "previews": {
     "preview_top.png": {
       "exists": true,
-      "bytes": 154656
+      "bytes": 154525
     },
     "preview_bottom.png": {
       "exists": true,
-      "bytes": 91520
+      "bytes": 91548
     }
   }
 }
