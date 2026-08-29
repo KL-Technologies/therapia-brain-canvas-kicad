@@ -10,7 +10,7 @@
   ],
   "operator": "Claude (claude-in-chrome, user's logged-in JLCPCB session)",
   "cart_url": "https://cart.jlcpcb.com/shopcart/cart",
-  "order_page": "https://cart.jlcpcb.com/smt-order/?cartAccessId=2077c627f1f14d18a42be55d9a6655c1&pcbFileNo=27a69285af144813b592054849abe45e",
+  "order_page": "https://cart.jlcpcb.com/smt-order/ (cartAccessId / pcbFileNo は JLC アカウント内のアクセス ID のため記録しない — カートの「Edit Order」から開く)",
   "package": "Gerber: fab/Therapia_EEG-HRV_Rev.A.zip (copper identical since commit 1c8a769); BOM/CPL: commit eba012d",
   "items": [
     {
@@ -20,7 +20,7 @@
       "spec": "4 layers, 1.6 mm, Green, ENIG, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm",
       "qty_panels": 5,
       "build_time": "3 days",
-      "price_usd": 46.00
+      "price_usd": 46.0
     },
     {
       "kind": "Standard PCBA",
@@ -34,7 +34,10 @@
   ],
   "total_usd_excl_shipping": 273.07,
   "payment": "NOT made (user decision pending)",
-  "untouched_cart_items": ["Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A", "Ganglion_01_JLCPCB_gerbers_Y4 PCBA SMT026081261592-10641515A"],
+  "untouched_cart_items": [
+    "Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A",
+    "Ganglion_01_JLCPCB_gerbers_Y4 PCBA SMT026081261592-10641515A"
+  ],
   "bom_checks": {
     "rows_detected": 30,
     "rows_confirmed": 30,
@@ -45,14 +48,33 @@
       "U_USB: JLC auto-matched C7464026 again -> restored C84681"
     ],
     "bom_upgrades_2026-08-29": [
-      {"designators": "C_CM1P..C_CM8N (16)", "from": "C1588 1nF X7R 0603", "to": "C163508 CL10C102JB8NNNC 1nF C0G 50V 0603 (Extended)", "why": "ADS1299 input node: C0G per SBAS499 §12.1, no piezo noise, better CMRR matching"},
-      {"designators": "C_NLDO_OUT, C_LM_IN", "from": "C12530 2.2uF 6.3V / C52923 1uF 25V", "to": "C23733 CL05A475MP5NRNC 4.7uF 10V 0402 (Basic)", "why": "effective capacitance after DC bias (Samsung fetched curves): 1.19uF -> 3.02uF at 2.5 V; 0.42uF -> 1.6uF at 5 V"},
-      {"designators": "C_AVDD_P59", "from": "C1525 100nF", "to": "C52923 1uF 0402", "why": "ADS1299 pin 59 charge-pump supply wants 1uF (SBAS499 §6); return net stays GND (Rev.B)"}
+      {
+        "designators": "C_CM1P..C_CM8N (16)",
+        "from": "C1588 1nF X7R 0603",
+        "to": "C163508 CL10C102JB8NNNC 1nF C0G 50V 0603 (Extended)",
+        "why": "ADS1299 input node: C0G per SBAS499 §12.1, no piezo noise, better CMRR matching"
+      },
+      {
+        "designators": "C_NLDO_OUT, C_LM_IN",
+        "from": "C12530 2.2uF 6.3V / C52923 1uF 25V",
+        "to": "C23733 CL05A475MP5NRNC 4.7uF 10V 0402 (Basic)",
+        "why": "effective capacitance after DC bias (Samsung fetched curves): 1.19uF -> 3.02uF at 2.5 V; 0.42uF -> 1.6uF at 5 V"
+      },
+      {
+        "designators": "C_AVDD_P59",
+        "from": "C1525 100nF",
+        "to": "C52923 1uF 0402",
+        "why": "ADS1299 pin 59 charge-pump supply wants 1uF (SBAS499 §6); return net stays GND (Rev.B)"
+      }
     ]
   },
   "placement_checks": {
     "method": "JLC Component Placements viewer re-checked after the BOM re-upload (same CPL): U_MCU 32UE model on the pad rows with the U.FL end at -X, R_CC1 clear of the USB-C shell, other parts unchanged from the verified Y6 set",
     "cpl_rotation_changes": "U_MCU 0 -> 90 (data/cpl_overrides.json); everything else unchanged"
   },
-  "next": ["user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y7 rows)", "answer JLC DFM / Confirm Parts Placement within 72 h", "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR, measure U0RXD idle voltage)"]
+  "next": [
+    "user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y7 rows)",
+    "answer JLC DFM / Confirm Parts Placement within 72 h",
+    "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR, measure U0RXD idle voltage)"
+  ]
 }
