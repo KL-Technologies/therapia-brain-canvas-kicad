@@ -26,6 +26,10 @@ board:
     origin: kicad_absolute
     y_axis: down
     note: Unlike m5stack this board has no contract coordinate system; it was imported from EasyEDA and the absolute KiCad grid is what every measurement refers to.
+    # The drill/place origin the IPC-D-356 export was written from, in board mm.
+    # This board exported from (120, 80), not KiCad's default; S8 measures every
+    # d356 coordinate from it (escalation 007).
+    drill_origin_mm: [120.0, 80.0]
   holes:
     copper_keepout_margin_mm: 0.2
     copper_margin_mm: 0.2
@@ -202,6 +206,11 @@ gates:
   S7_body:
     gap_mm: 0.15
 provenance:
+  board.coordinate_system.drill_origin_mm:
+    file: scripts/lib/ipcd356.py
+    where: scripts/lib/ipcd356.py:ORIGIN_MM
+    name: ORIGIN_MM
+    why: "the drill/place origin every IPC-D-356 coordinate is relative to"
   board.holes.copper_margin_mm:
     file: scripts/62_check_fab.py
     where: scripts/62_check_fab.py:HOLE_MARGIN
