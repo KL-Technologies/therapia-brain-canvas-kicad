@@ -46,6 +46,14 @@ board:
     w_mm: 61.8236
 fab:
   vendor: jlcpcb
+  # Does this design have custom design rules of its own?
+  # `required`: board/Therapia_EEG-HRV.kicad_dru holds them, and a DRC run
+  # without that file measures the board against KiCad's defaults, so it is
+  # refused. `none`: the design declares none and DRC runs anyway. It is a
+  # declaration because it cannot be looked up -- a design with no custom
+  # rules and one that lost its rules file are the same directory
+  # (Q120, escalation 026, ruling (b)).
+  custom_rules: required
   layers: 4
   copper_layers:
     - F.Cu
@@ -337,6 +345,10 @@ provenance:
     name: OUTLINE_MM
     index: 0
     why: "ACCEPTANCE E, measured back out of the Gerber"
+  fab.custom_rules:
+    source: none
+    where: board/Therapia_EEG-HRV.kicad_dru -- 3 custom rules (npth_hole_to_copper, track_to_track_5mil_preferred, via_annular_ring)
+    why: "measured - the file is beside the board and every DRC run in this repo is measured against it. The declaration is what lets core.repair.run_drc tell `this design has no custom rules` from `this design lost its custom rules`, which are the same directory from outside (Q120, escalation 026)."
   fab.clearance.preferred_mm:
     file: scripts/14_make_rules.py
     where: scripts/14_make_rules.py:TRACK_TRACK_PREFERRED_MM
