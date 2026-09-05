@@ -131,6 +131,108 @@ packs:
       - layer_name_mangling
   jlcpcb:
     cart: https://cart.jlcpcb.com/shopcart/cart
+    # --- added 2026-09-05, escalation 025 (a) -------------------------
+    # The six keys packs/jlcpcb's schema requires and this manifest did not
+    # state. S0_manifest now validates every enabled pack against
+    # packs/<name>/params.schema.json (open question Q12) and named the gap.
+    # TRANSCRIBED, not decided. bom_csv / cpl_csv are the file names
+    # scripts/61_make_bom_cpl.py writes (lines 162 and 187) and which are in
+    # fab/. bom_columns / cpl_columns are that script's BOM_COLUMNS and
+    # CPL_COLUMNS (lines 51 and 53). rules and rule_severities are
+    # scripts/14_make_rules.py's own constants (CLEARANCE_MM, TRACK_MIN_MM,
+    # ... and SEVERITY_ERROR / SEVERITY_WARNING / SEVERITY_IGNORE), which
+    # that script writes into board/Therapia_EEG-HRV.kicad_pro. Not one
+    # number here is new: ACCEPTANCE.md sections A and C remain the
+    # authority and this is the machine-readable copy the packs read.
+    bom_csv: BOM_JLCPCB.csv
+    cpl_csv: CPL_JLCPCB.csv
+    bom_columns:
+      - Comment
+      - Designator
+      - Footprint
+      - "LCSC Part #"
+      - MPN
+      - Manufacturer
+      - Qty
+    cpl_columns:
+      - Designator
+      - Mid X
+      - Mid Y
+      - Layer
+      - Rotation
+    rules:
+      min_clearance_mm: 0.0889
+      min_track_width_mm: 0.0889
+      min_hole_to_hole_mm: 0.2
+      min_hole_clearance_mm: 0.2
+      min_copper_edge_clearance_mm: 0.2
+      min_through_hole_diameter_mm: 0.3
+      min_via_annular_width_mm: 0.076
+      min_via_diameter_mm: 0.45
+      track_track_preferred_mm: 0.127
+      via_diameter_mm: 0.6096
+      via_drill_mm: 0.3048
+      track_signal_mm: 0.2032
+      track_power_mm: 0.254
+      pad_to_mask_mm: 0.0508
+      pad_to_paste_mm: 0.0
+      solder_mask_min_width_mm: 0.0508
+    rule_severities:
+      error:
+        - annular_width
+        - clearance
+        - connection_width
+        - copper_edge_clearance
+        - creepage
+        - diff_pair_gap_out_of_range
+        - diff_pair_uncoupled_length_too_long
+        - drill_out_of_range
+        - footprint
+        - footprint_symbol_mismatch
+        - hole_clearance
+        - hole_near_hole
+        - hole_to_hole
+        - invalid_outline
+        - item_on_disabled_layer
+        - items_not_allowed
+        - length_out_of_range
+        - malformed_courtyard
+        - microvia_drill_out_of_range
+        - padstack
+        - shorting_items
+        - skew_out_of_range
+        - solder_mask_bridge
+        - text_height
+        - text_thickness
+        - through_hole_pad_without_hole
+        - too_many_vias
+        - track_angle
+        - track_segment_length
+        - track_width
+        - tracks_crossing
+        - unconnected_items
+        - unresolved_variable
+        - zone_has_empty_net
+        - zones_intersect
+      warning:
+        - courtyards_overlap
+        - silk_overlap
+        - silk_over_copper
+        - silk_edge_clearance
+        - starved_thermal
+        - track_dangling
+        - via_dangling
+        - isolated_copper
+        - copper_sliver
+        - holes_co_located
+        - footprint_type_mismatch
+      ignore:
+        - lib_footprint_issues
+        - lib_footprint_mismatch
+        - missing_courtyard
+        - pth_inside_courtyard
+        - npth_inside_courtyard
+        - footprint_filters_mismatch
 paths:
   contract: contract/netlist_contract.json
   contract_overrides: contract/contract_overrides.json
