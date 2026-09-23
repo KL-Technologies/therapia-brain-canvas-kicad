@@ -22,7 +22,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.1515
+      "return_via_mm": 0.8313
     },
     {
       "cap": "C_AVDD_H",
@@ -54,7 +54,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.0015
+      "return_via_mm": 0.7753
     },
     {
       "cap": "C_AVDD_H",
@@ -93,7 +93,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 1.0599
+      "return_via_mm": 1.0266
     },
     {
       "cap": "C_VREFP_100n",
@@ -116,7 +116,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 0.1515
+      "return_via_mm": 1.9623
     },
     {
       "cap": "C_VREFP_10n",
@@ -139,7 +139,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 0.1015
+      "return_via_mm": 1.9201
     },
     {
       "cap": "C_VCAP4",
@@ -165,7 +165,7 @@
       "j1_applies": true,
       "j1_ok": false,
       "return_net": "AVSS",
-      "return_via_mm": 0.001
+      "return_via_mm": 0.5999
     },
     {
       "cap": "C_VCAP1",
@@ -178,8 +178,8 @@
       "distributed_as_plane": false,
       "path": {
         "vias": 2,
-        "length_mm": 12.1583,
-        "hops": 11,
+        "length_mm": 17.3993,
+        "hops": 13,
         "layers": [
           "B.Cu",
           "F.Cu",
@@ -191,7 +191,7 @@
       "j1_applies": true,
       "j1_ok": false,
       "return_net": "AVSS",
-      "return_via_mm": 0.7891
+      "return_via_mm": 0.8709
     },
     {
       "cap": "C_VCAP1_H",
@@ -214,7 +214,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 1.0838
+      "return_via_mm": 2.506
     },
     {
       "cap": "C_VCAP2",
@@ -237,7 +237,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 0.3623
+      "return_via_mm": 0.9423
     },
     {
       "cap": "C_AVDD_P36",
@@ -253,7 +253,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.888
+      "return_via_mm": 0.513
     },
     {
       "cap": "C_AVDD_P31",
@@ -269,7 +269,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 1.728
+      "return_via_mm": 2.0964
     },
     {
       "cap": "C_AVDD1_1u",
@@ -346,8 +346,8 @@
       "distributed_as_plane": false,
       "path": {
         "vias": 2,
-        "length_mm": 3.6664,
-        "hops": 5,
+        "length_mm": 3.9664,
+        "hops": 6,
         "layers": [
           "B.Cu",
           "F.Cu",
@@ -398,7 +398,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.1515
+      "return_via_mm": 0.571
     },
     {
       "cap": "C_DVDD_P58",
@@ -467,7 +467,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "GND",
-      "return_via_mm": 1.0025
+      "return_via_mm": 0.7025
     },
     {
       "cap": "C_DVDD_10u",
@@ -490,7 +490,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "GND",
-      "return_via_mm": 0.4175
+      "return_via_mm": 0.7175
     },
     {
       "cap": "C_AVSS_P17",
@@ -506,7 +506,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.1515
+      "return_via_mm": 0.6033
     },
     {
       "cap": "C_AVSS_H",
@@ -538,7 +538,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.1515
+      "return_via_mm": 0.5265
     },
     {
       "cap": "C_AVSS_P37",
@@ -554,7 +554,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.1515
+      "return_via_mm": 0.6857
     },
     {
       "cap": "C_AVSS_P60",
@@ -570,7 +570,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.1515
+      "return_via_mm": 0.5765
     },
     {
       "cap": "C_AVSS_B",
@@ -586,7 +586,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.2128
+      "return_via_mm": 0.7284
     }
   ],
   "star_connection": [
@@ -657,8 +657,8 @@
     },
     {
       "net": "ADS_CS_N",
-      "samples": 762,
-      "void_at_own_via": 49,
+      "samples": 776,
+      "void_at_own_via": 43,
       "void_at_foreign_via": 0,
       "void_unaccounted": 0,
       "samples_over_an_inner_track": 0,
@@ -684,8 +684,8 @@
     },
     {
       "net": "USB_DM",
-      "samples": 467,
-      "void_at_own_via": 55,
+      "samples": 484,
+      "void_at_own_via": 52,
       "void_at_foreign_via": 0,
       "void_unaccounted": 0,
       "samples_over_an_inner_track": 0,
@@ -706,7 +706,7 @@
     {
       "net": "IN1N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -726,7 +726,7 @@
     {
       "net": "IN2N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -746,7 +746,7 @@
     {
       "net": "IN3N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -766,7 +766,7 @@
     {
       "net": "IN4N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -786,7 +786,7 @@
     {
       "net": "IN5N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -806,7 +806,7 @@
     {
       "net": "IN6N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -826,7 +826,7 @@
     {
       "net": "IN7N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -846,7 +846,7 @@
     {
       "net": "IN8N",
       "in2_regions_crossed": 3,
-      "transitions": 6,
+      "transitions": 7,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -858,57 +858,57 @@
     {
       "pair": "IN1P/IN1N",
       "len_p_mm": 22.376,
-      "len_n_mm": 19.796,
-      "delta_mm": 2.58,
+      "len_n_mm": 20.471,
+      "delta_mm": 1.905,
       "min_gap_mm": 0.3305
     },
     {
       "pair": "IN2P/IN2N",
       "len_p_mm": 20.377,
-      "len_n_mm": 17.798,
-      "delta_mm": 2.579,
+      "len_n_mm": 18.473,
+      "delta_mm": 1.904,
       "min_gap_mm": 0.3305
     },
     {
       "pair": "IN3P/IN3N",
       "len_p_mm": 18.38,
-      "len_n_mm": 15.801,
-      "delta_mm": 2.579,
+      "len_n_mm": 16.476,
+      "delta_mm": 1.904,
       "min_gap_mm": 0.33
     },
     {
       "pair": "IN4P/IN4N",
       "len_p_mm": 16.382,
-      "len_n_mm": 13.802,
-      "delta_mm": 2.58,
+      "len_n_mm": 14.477,
+      "delta_mm": 1.905,
       "min_gap_mm": 0.33
     },
     {
       "pair": "IN5P/IN5N",
       "len_p_mm": 14.796,
-      "len_n_mm": 14.217,
-      "delta_mm": 0.58,
+      "len_n_mm": 14.892,
+      "delta_mm": 0.095,
       "min_gap_mm": 0.4413
     },
     {
       "pair": "IN6P/IN6N",
       "len_p_mm": 16.796,
-      "len_n_mm": 16.214,
-      "delta_mm": 0.583,
+      "len_n_mm": 16.889,
+      "delta_mm": 0.092,
       "min_gap_mm": 0.33
     },
     {
       "pair": "IN7P/IN7N",
       "len_p_mm": 18.792,
-      "len_n_mm": 18.211,
-      "delta_mm": 0.581,
+      "len_n_mm": 18.886,
+      "delta_mm": 0.094,
       "min_gap_mm": 0.3305
     },
     {
       "pair": "IN8P/IN8N",
       "len_p_mm": 20.792,
-      "len_n_mm": 20.21,
-      "delta_mm": 0.582,
+      "len_n_mm": 20.885,
+      "delta_mm": 0.093,
       "min_gap_mm": 0.3305
     }
   ],
@@ -1017,49 +1017,49 @@
       "layer": "F.Cu",
       "outlines": 2,
       "holes": 0,
-      "area_mm2": 43.81
+      "area_mm2": 43.21
     },
     {
       "net": "GND",
       "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 2492.41
+      "area_mm2": 2493.49
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 281.44
+      "area_mm2": 281.52
     },
     {
       "net": "VDD_ESP",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 329.6
+      "area_mm2": 329.44
     },
     {
       "net": "AVDD",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 278.81
+      "area_mm2": 280.35
     },
     {
       "net": "AVSS",
       "layer": "In2.Cu",
-      "outlines": 7,
+      "outlines": 5,
       "holes": 0,
-      "area_mm2": 841.93
+      "area_mm2": 841.69
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
-      "outlines": 8,
+      "outlines": 5,
       "holes": 0,
-      "area_mm2": 359.39
+      "area_mm2": 359.33
     },
     {
       "net": "VDD_ESP",
@@ -1123,7 +1123,7 @@
     },
     {
       "id": "J9 USB D+/D- length delta",
-      "measured": "9.671 mm (D+ 34.036, D- 43.706)",
+      "measured": "11.682 mm (D+ 34.036, D- 45.717)",
       "wanted": "< 45 mm (Full Speed, H-2)",
       "ok": true
     },
@@ -1187,7 +1187,7 @@
       "ref": "C_VCAP4",
       "target": "U_ADS.26",
       "now_mm": 5.2383,
-      "sites_examined": 62,
+      "sites_examined": 57,
       "better": null,
       "ok": false,
       "reason": "no position between 0.4 mm and 5.24 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"

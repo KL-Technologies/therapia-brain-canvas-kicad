@@ -15,8 +15,8 @@
       "straight_mm": 3.3598,
       "path": {
         "vias": 2,
-        "length_mm": 3.6664,
-        "hops": 5,
+        "length_mm": 3.9664,
+        "hops": 6,
         "layers": [
           "B.Cu",
           "F.Cu",
@@ -38,7 +38,7 @@
     "C_VCAP3": {
       "ok": false,
       "was_mm": 3.3598,
-      "sites_examined": 0,
+      "sites_examined": 123,
       "reason": "no position between 0.4 and 3.36 mm of pin 55 clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
     }
   }

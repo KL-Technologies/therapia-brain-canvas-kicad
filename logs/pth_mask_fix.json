@@ -3,14 +3,14 @@
   "count": 0,
   "counts_before": {
     "footprints": 141,
-    "tracks": 1252,
+    "tracks": 1402,
     "vias": 239,
     "npth_pads": 6,
     "pth_pads": 16
   },
   "counts_after": {
     "footprints": 141,
-    "tracks": 1252,
+    "tracks": 1402,
     "vias": 239,
     "npth_pads": 6,
     "pth_pads": 16

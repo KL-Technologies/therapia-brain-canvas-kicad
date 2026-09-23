@@ -6,7 +6,7 @@
 #
 # Values NOT listed in `provenance:` are decisions recorded here and nowhere else.
 #
-# Product: Therapia EEG-HRV (Cerelog-derived), Rev.A_Y8, manufactured.
+# Product: Therapia EEG-HRV (Cerelog-derived), Rev.A_Y9, not manufactured (see status).
 # No order_spec.json or mech_contract.json exists for this revision, so every
 # value below with provenance comes from a script constant.
 
@@ -14,10 +14,10 @@ schema: therapia-pcb-harness/product/1
 product:
   name: brain_canvas
   title: Therapia EEG-HRV (Cerelog-derived)
-  revision: Rev.A_Y8
+  revision: Rev.A_Y9
   repo: KL-Technologies/therapia-eeg-hrv-kicad
   board_file: board/Therapia_EEG-HRV.kicad_pcb
-  status: "manufactured; no further revision planned. Kept as the second product in the Core equivalence proof and as a fixture (open_questions Q7, ruling E-1)."
+  status: "not manufactured: Y8 (the 2026-08-29 cart) was never paid and is withdrawn -- 106 vias in SMD openings (ACCEPTANCE I, 2026-09-23). Y9 is the corrected package. Kept as the second product in the Core equivalence proof and as a fixture (open_questions Q7, ruling E-1)."
 host:
   kind: standalone
   note: No host module and therefore no M-Bus contract.
@@ -68,6 +68,11 @@ fab:
   via:
     in_pad_policy: forbidden
     covering: none
+    # Decision, 2026-09-23 (ACCEPTANCE I): a PTH hit with a drill at most this
+    # is a via, larger is a component hole. Vias here are 0.305 mm, the
+    # smallest component hole is 0.6 mm. The harness's S7_viapad needs it to
+    # read the drill file; scripts/67_viapad_gate.py uses the same 0.5.
+    drill_max_mm: 0.5
     minimum:
       annular_mm: 0.076
       diameter_mm: 0.45

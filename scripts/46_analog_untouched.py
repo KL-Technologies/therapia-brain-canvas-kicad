@@ -199,7 +199,7 @@ def eco_sites(root):
     the RESV1 stub via 7 mm north of U_ADS.
     """
     sites = []
-    for name in ("eco_apply", "eco5_bom_apply"):
+    for name in ("eco_apply", "eco5_bom_apply", "viapad_fix"):
         path = os.path.join(root, "logs", name + ".json")
         if not os.path.exists(path):
             continue
@@ -226,6 +226,52 @@ def eco_sites(root):
             elif isinstance(cur, list):
                 stack += cur
     return sites
+
+
+def key_mm(it):
+    """An analog-dump item as (kind, net, coordinates in 0.1 um) for exact
+    matching against the S7v log, which records millimetres to 4 places."""
+    r = lambda v: int(round(v / 100.0))           # nm -> 0.1 um
+    if it["kind"] == "via":
+        return ("via", it["net"], r(it["at"][0]), r(it["at"][1]))
+    if it["kind"] == "track":
+        a, b = sorted([(r(it["a"][0]), r(it["a"][1])),
+                       (r(it["b"][0]), r(it["b"][1]))])
+        return ("track", it["net"], it["layer"], a, b)
+    return ("pad", it["net"], it["ref"], it["pad"])
+
+
+def viapad_items(root):
+    """Every via and track logs/viapad_fix.json says S7v removed or laid."""
+    path = os.path.join(root, "logs", "viapad_fix.json")
+    if not os.path.exists(path):
+        return set()
+    r = lambda v: int(round(v * 10000))           # mm -> 0.1 um
+    out = set()
+    stack = [E.load_json(path)]
+    while stack:
+        cur = stack.pop()
+        if isinstance(cur, dict):
+            if cur.get("kind") == "via" and "pos_mm" in cur:
+                out.add(("via", cur["net"], r(cur["pos_mm"][0]),
+                         r(cur["pos_mm"][1])))
+            elif cur.get("kind") == "track" and "start_mm" in cur:
+                a, b = sorted([(r(cur["start_mm"][0]), r(cur["start_mm"][1])),
+                               (r(cur["end_mm"][0]), r(cur["end_mm"][1]))])
+                out.add(("track", cur["net"], cur["layer"], a, b))
+            stack += list(cur.values())
+        elif isinstance(cur, list):
+            stack += cur
+    return out
+
+
+def s7v_path_ok(root):
+    path = os.path.join(root, "gates", "S7v.json")
+    if not os.path.exists(path):
+        return True                     # no via-in-pad repair, nothing moved
+    doc = E.load_json(path)
+    return all(c["pass"] for c in doc.get("checks", ())
+               if "path" in c["name"] or "skew" in c["name"])
 
 
 def _resolved_texts(doc):
@@ -416,7 +462,15 @@ def main():
                                         ** 0.5 / IU, 4),
                       "declared": explain(y, rb, ra, sites)})
 
-    untouchable_rows = [r for r in rows if r["item"]["net"] in UNTOUCHABLE]
+    vip = viapad_items(root)
+    for r in rows:
+        r["viapad"] = key_mm(r["item"]) in vip
+    untouchable_all = [r for r in rows if r["item"]["net"] in UNTOUCHABLE]
+    # S7v (via-in-pad) is the one repair allowed onto the signal path, and
+    # only item for item: every difference there must be a via or track its
+    # log names at these exact coordinates. What it may do to the path is
+    # judged by its own gate (ADC-to-electrode length, P/N skew).
+    untouchable_rows = [r for r in untouchable_all if not r["viapad"]]
     untouchable_moved = [m for m in moved if m["net"][1] in UNTOUCHABLE
                          or m["net"][0] in UNTOUCHABLE]
     unexplained = ([r for r in rows if not r["declared"]]
@@ -441,8 +495,13 @@ def main():
                 ok=True,
                 note="nets that carry no copper on either board still count "
                      "as measured"),
-        P.check("differences on IN1P-IN8N, SRB1 and the electrode nets", 0,
-                len(untouchable_rows) + len(untouchable_moved)),
+        P.check("differences on IN1P-IN8N, SRB1 and the electrode nets "
+                "not made item-for-item by the via-in-pad repair (S7v)", 0,
+                len(untouchable_rows) + len(untouchable_moved),
+                note="%d differences on those nets, all in logs/"
+                     "viapad_fix.json" % len(untouchable_all)),
+        P.check("S7v's own path check passed (ADC-to-electrode length, "
+                "P/N skew)", True, s7v_path_ok(root)),
         P.check("unexplained differences", 0, len(unexplained)),
         P.check("every difference attributed", True,
                 all(r["declared"] for r in rows)
@@ -498,6 +557,18 @@ def write_report(root, sha, dumps, rows, moved, counts, unexplained,
     else:
         L.append("\nつまり **1 件も無い**。S4a〜S7a の修理はどれも入力系の銅に"
                  "触れていない。")
+    vip = [r for r in rows if r["item"]["net"] in UNTOUCHABLE
+           and r.get("viapad")]
+    if vip:
+        L.append("\n**例外は S7v（via-in-pad の是正、2026-09-23）だけ**で、"
+                 "次の %d 件はすべて `logs/viapad_fix.json` に同じ座標で"
+                 "記録された via と配線。IN1P〜IN8N の ADC〜入力抵抗の経路長は"
+                 "変わっておらず、P/N の長さ差も広がっていない"
+                 "（`gates/S7v.json`）。\n" % len(vip))
+        L.append("```")
+        for r in sorted(vip, key=lambda r: (r["item"]["net"], r["change"])):
+            L.append("%-8s %s" % (r["change"], describe(r["item"])))
+        L.append("```")
     L.append("")
     xor = os.path.join(root, "logs", "copper_xor.json")
     if os.path.exists(xor):

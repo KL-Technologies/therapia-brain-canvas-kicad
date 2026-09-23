@@ -16,9 +16,16 @@
       "note": "nets that carry no copper on either board still count as measured"
     },
     {
-      "name": "differences on IN1P-IN8N, SRB1 and the electrode nets",
+      "name": "differences on IN1P-IN8N, SRB1 and the electrode nets not made item-for-item by the via-in-pad repair (S7v)",
       "expected": 0,
       "actual": 0,
+      "pass": true,
+      "note": "52 differences on those nets, all in logs/viapad_fix.json"
+    },
+    {
+      "name": "S7v's own path check passed (ADC-to-electrode length, P/N skew)",
+      "expected": true,
+      "actual": true,
       "pass": true
     },
     {
@@ -34,23 +41,40 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-28T20:53:03",
+  "timestamp": "2026-09-23T14:01:55",
   "notes": "Imported board (22513e4) vs the board now, over 40 analog nets. Keyed by geometry because S5 renumbered every uuid.",
   "baseline": "22513e4",
   "items_before": 770,
-  "items_after": 807,
-  "differences": 120,
+  "items_after": 860,
+  "differences": 259,
   "by_declared_change": {
     "ECO-1#2 RESV1": 3,
-    "ECO-3#11 VCAP1 to 1206": 21,
-    "ECO-1#4/5 VCAP2, VCAP3": 46,
+    "ECO-3#11 VCAP1 to 1206": 32,
+    "ECO-1#4/5 VCAP2, VCAP3": 71,
     "ECO-3#12 VREFP 10u to 1206": 9,
-    "S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)": 7,
+    "S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,107.648)": 6,
+    "S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)": 13,
     "eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159)": 3,
-    "drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700)": 6,
-    "ECO-5 BIAS feedback": 17,
-    "S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317)": 6,
-    "ECO-1#1 TPS72325 EN": 2
+    "viapad_fix repair: viapad_fix recorded touching AVDD at (148.283,92.700) (147.708,92.700)": 2,
+    "drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700)": 4,
+    "ECO-5 BIAS feedback": 19,
+    "viapad_fix repair: viapad_fix recorded touching IN1N at (132.851,112.131)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN2N at (132.851,109.134)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN3N at (132.851,106.136)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN4N at (132.851,103.139)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN5N at (132.851,100.142)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN6N at (132.851,97.145)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN7N at (132.851,94.148)": 6,
+    "viapad_fix repair: viapad_fix recorded touching IN8N at (132.851,91.150)": 6,
+    "S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317)": 14,
+    "viapad_fix repair: viapad_fix recorded touching AVDD at (140.219,109.883)": 3,
+    "viapad_fix repair: viapad_fix recorded touching AVDD at (140.463,93.691)": 3,
+    "viapad_fix repair: viapad_fix recorded touching AVDD at (143.351,91.929)": 6,
+    "S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103)": 4,
+    "viapad_fix repair: viapad_fix recorded touching AVDD at (147.708,92.700)": 6,
+    "viapad_fix repair: viapad_fix recorded touching BIAS_OUT_INT at (130.790,87.722)": 3,
+    "viapad_fix repair: viapad_fix recorded touching SRB1 at (130.600,89.238)": 4,
+    "ECO-1#1 TPS72325 EN": 6
   },
   "unexplained": [],
   "moved_pads": [

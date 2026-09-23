@@ -1,0 +1,56 @@
+{
+  "step": "S7v",
+  "pass": true,
+  "checks": [
+    {
+      "name": "vias in an SMD mask opening (J_MARGIN 0.03 mm)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "offenders left unresolved",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "via count = before - functionless removed",
+      "expected": 239,
+      "actual": 239,
+      "pass": true
+    },
+    {
+      "name": "unconnected items (KiCad connectivity)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "largest ADC-to-electrode path change on IN1P-IN8N [mm]",
+      "expected": "<= 0.1",
+      "actual": 0.0,
+      "pass": true
+    },
+    {
+      "name": "SRB1 ADC-to-resistor path change [mm]",
+      "expected": "<= 1.0",
+      "actual": 0.9,
+      "pass": true
+    },
+    {
+      "name": "input pairs whose P/N length skew grew > 0.05 mm",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "board saved",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T14:01:52",
+  "notes": "116 vias found in SMD mask openings, 114 moved out (tiers {'1': 99, '2': 9, '3': 4, '4': 2}), 0 unresolved; vias 241 -> 239, unconnected 0 -> 0."
+}

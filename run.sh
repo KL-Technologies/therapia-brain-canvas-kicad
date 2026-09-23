@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7b S7c S7 S7_body S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7v S7b S7c S7 S7_body S7_viapad S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,8 +32,8 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7b",
-             "S7c", "S7", "S7_body", "S8"):
+             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7v", "S7b",
+             "S7c", "S7", "S7_body", "S7_viapad", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -191,6 +191,27 @@ run_step S6 "run the DRC repair loop to convergence" \
 run_step S7a "apply ECO-5 and the BOM corrections" \
   "$KPY" "$ROOT/scripts/45_apply_eco5_and_bom.py" --root "$ROOT" || exit 1
 
+# S7v came after the cart: 106 vias sat in SMD pad openings on a board ordered
+# Tented, so every one would have drained its joint's paste down the barrel in
+# reflow. It moves each via out of the pad onto a short dogbone and runs here,
+# after the last copper edit and before S7b, which has to account for it.
+# DRC with a zone refill follows it, as after every other copper step.
+s7v() {
+  "$KPY" "$ROOT/scripts/66_fix_via_in_pad.py" --root "$ROOT" || return 1
+  "$KC" pcb drc --format json --severity-all --units mm --refill-zones \
+    --save-board -o "$ROOT/logs/drc_s7v.json" \
+    "$ROOT/board/Therapia_EEG-HRV.kicad_pcb" >/dev/null 2>&1
+  "$PY3" - "$ROOT/logs/drc_s7v.json" <<'PY' || return 1
+import json, sys
+d = json.load(open(sys.argv[1]))
+err = [v for v in d["violations"] if v.get("severity") == "error"]
+unc = d.get("unconnected_items", [])
+print("  DRC after S7v: %d errors, %d unconnected" % (len(err), len(unc)))
+sys.exit(1 if err or unc else 0)
+PY
+}
+run_step S7v "move every via out of the SMD pad it sat in" s7v || exit 1
+
 s7b() {
   # The picture first, so the report can point at it. It is a review aid, not
   # a criterion -- a pixel count is not a threshold anyone should gate on.
@@ -232,6 +253,11 @@ run_step S7 "ACCEPTANCE A-G" \
 # the module's 25.5 mm outline); that failure is the point.
 run_step S7_body "ACCEPTANCE H -- no component body overlaps" \
   "$KPY" "$ROOT/scripts/64_body_overlap.py" --root "$ROOT" || exit 1
+
+# ACCEPTANCE I, added with S7v. It reads the uploaded package (fab/gerber) and
+# asks the harness's S7_viapad for a second reading, so it runs after S8.
+run_step S7_viapad "ACCEPTANCE I -- no via drill in a solder-mask opening" \
+  "$PY3" "$ROOT/scripts/67_viapad_gate.py" --root "$ROOT" || exit 1
 
 # --- S3_sim: headless circuit simulation (optional) --------------------------
 # Deliberately not in STEPS and deliberately non-fatal: it gates nothing the

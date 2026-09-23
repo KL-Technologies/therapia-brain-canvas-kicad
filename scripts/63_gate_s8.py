@@ -182,12 +182,14 @@ def main():
                        .get("gerber_attr_deletes", 0))),
         check("ODB++ netlist names the same nets", 79,
               log["odb"].get("nets")),
-        check("ODB++ point count = pads + vias", 680,
+        check("ODB++ point count = pads + vias", 678,
               log["odb"].get("netlist_points"),
               note="678 until L7: USB_CC1 cannot enter J1 pad 4 from the "
                    "west, so it crosses the pad column on B.Cu and the board "
-                   "gained two vias (gates/S5_L7.json). The same +2 shows in "
-                   "ACCEPTANCE D's IPC-D-356 count"),
+                   "gained two vias (gates/S5_L7.json), 680; S7v removed two "
+                   "AVSS vias that reached nothing but F.Cu (logs/"
+                   "viapad_fix.json), 678 again. The same counts show in "
+                   "ACCEPTANCE D's IPC-D-356 check"),
         check(".gbrjob agrees on layers, thickness, stackup and rules", True,
               log["gbrjob"].get("ok")),
     ]

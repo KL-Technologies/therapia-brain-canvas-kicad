@@ -203,7 +203,7 @@
       "expected": true,
       "actual": true,
       "pass": true,
-      "note": "read through the sticky TO.N state machine cleared by TD -- KiCad emits the attribute only on a change, so taking the line above each flash would mis-net most of them (935 sets, 178 deletes on F.Cu)"
+      "note": "read through the sticky TO.N state machine cleared by TD -- KiCad emits the attribute only on a change, so taking the line above each flash would mis-net most of them (935 sets, 180 deletes on F.Cu)"
     },
     {
       "name": "ODB++ netlist names the same nets",
@@ -213,10 +213,10 @@
     },
     {
       "name": "ODB++ point count = pads + vias",
-      "expected": 680,
-      "actual": 680,
+      "expected": 678,
+      "actual": 678,
       "pass": true,
-      "note": "678 until L7: USB_CC1 cannot enter J1 pad 4 from the west, so it crosses the pad column on B.Cu and the board gained two vias (gates/S5_L7.json). The same +2 shows in ACCEPTANCE D's IPC-D-356 count"
+      "note": "678 until L7: USB_CC1 cannot enter J1 pad 4 from the west, so it crosses the pad column on B.Cu and the board gained two vias (gates/S5_L7.json), 680; S7v removed two AVSS vias that reached nothing but F.Cu (logs/viapad_fix.json), 678 again. The same counts show in ACCEPTANCE D's IPC-D-356 check"
     },
     {
       "name": ".gbrjob agrees on layers, thickness, stackup and rules",
@@ -225,7 +225,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-08-29T12:56:57",
+  "timestamp": "2026-09-23T14:02:29",
   "notes": "The uploadable package, read back from the files. Geometry and drill are checked by lib/gerber_parse.py, not by KiCad.",
   "archive": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/Therapia_EEG-HRV_Rev.A.zip",
@@ -245,7 +245,7 @@
       "Therapia_EEG-HRV-PTH.drl",
       "Therapia_EEG-HRV-job.gbrjob"
     ],
-    "bytes": 282541
+    "bytes": 286928
   },
   "independent_parse": {
     "missing_layers": [],
@@ -259,10 +259,10 @@
     "npth_clear": true,
     "planes_filled": true,
     "copper_coverage": {
-      "F.Cu": 0.2434,
-      "In1.Cu": 0.9542,
-      "In2.Cu": 0.9355,
-      "B.Cu": 0.1061
+      "F.Cu": 0.2535,
+      "In1.Cu": 0.9536,
+      "In2.Cu": 0.9368,
+      "B.Cu": 0.1069
     },
     "outline": {
       "bbox": [
@@ -321,14 +321,14 @@
   },
   "ipc_d356": {
     "present": true,
-    "features": 680,
+    "features": 678,
     "unparsed_lines": 0,
     "header": [
       "P  CODE 00",
       "P  UNITS CUST 0",
       "P  arrayDim   N"
     ],
-    "vias": 241,
+    "vias": 239,
     "smd": 417,
     "through_pads": 16,
     "npth": 6,
@@ -443,9 +443,9 @@
       "disagreements": [],
       "ok": true,
       "gerber_attr_sets": 935,
-      "gerber_attr_deletes": 178,
-      "flashes_carrying_a_net": 674,
-      "flashes": 674
+      "gerber_attr_deletes": 180,
+      "flashes_carrying_a_net": 672,
+      "flashes": 672
     }
   },
   "gbrjob": {
@@ -467,7 +467,7 @@
         "PadToPad": 0.0889,
         "PadToTrack": 0.0889,
         "TrackToTrack": 0.0889,
-        "MinLineWidth": 0.1525,
+        "MinLineWidth": 0.1524,
         "TrackToRegion": 0.1015,
         "RegionToRegion": 0.1015
       },
@@ -486,7 +486,7 @@
   "odb": {
     "present": true,
     "nets": 79,
-    "netlist_points": 680,
+    "netlist_points": 678,
     "names": [
       "A1_ELEC",
       "A2_ELEC",
