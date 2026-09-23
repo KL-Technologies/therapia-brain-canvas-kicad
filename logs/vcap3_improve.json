@@ -15,8 +15,8 @@
       "straight_mm": 3.3598,
       "path": {
         "vias": 2,
-        "length_mm": 3.9664,
-        "hops": 6,
+        "length_mm": 4.3881,
+        "hops": 7,
         "layers": [
           "B.Cu",
           "F.Cu",

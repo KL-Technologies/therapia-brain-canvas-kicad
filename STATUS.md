@@ -77,8 +77,30 @@
 >   S7 はこの 3 つを `gates.S7.subgates` の宣言で読む。**盤面を保存し直すと鮮度切れで赤になる**ので、そのときは 3 本とも再実行すること。
 > - afe-adc pack の必須キー **20 個**（S0_manifest の表示は先頭 8 個で切れていた）を、契約・製品スクリプト・DS の引用から宣言した。
 >   `vcap1_min_uf` 100（DS のピン表）、`vrefp_bulk_min_uf` 10、`bad_dielectric` は DS §11 の [X5R, X7R, X8R] に Y5V / Z5U を加えたもの。
->   **このため、pack の S5_layout J4 を走らせると赤になる見込み**: 実物の C_VCAP1 は CL31A107MQHNNNE（X5R 100 µF）で、
->   DS §11 が勧めない誘電体。これは盤面ではなく部品選定の所見で、今回の 5 本のゲートの外。
+>   実物の C_VCAP1 は CL31A107MQHNNNE（X5R 100 µF）。DS §11（p.70）は「多くの場合 VCAP1 も MLCC」としていて、
+>   X5R などの強誘電体を避けるのは**振動がある系に限った推奨**（圧電ノイズのため）。**lead 裁定（2026-09-23）: 部品は替えない。**
+>   ADS1299EVM と OpenBCI Cyton も X5R 100 µF を使っている。1.2 V での実効容量は約 90 µF（最悪 72 µF）、帯域は約 0.2 Hz で、DS の要求（10 Hz 未満）を満たす。
+>   この裁定は product.yaml に `packs.afe-adc.vcap1_dielectric_ruling`（ハーネス Q490 の書式: vibration / reason / approved_by / date）として記録した。
+>   振動の影響は火入れで実測する（`reports/bringup_checklist.md` の 7-3）。
+
+> ### 2026-09-23: 独立 QA（SHIP、BLOCKER 0・MAJOR 0）の MINOR を盤面で直し、fab を出し直した
+>
+> | MINOR | 何を直したか | 結果 |
+> |---|---|---|
+> | 1 | S7v の配置余裕を 0.03 → **0.10 mm** に上げ（4 段階とも）、基準 I に「ドリル端〜SMD 開口 0.10 mm 以上」を追加した。行き場のない 4 か所は `ROOM_EDITS` で個別に直した: **U_MCU.16**（ADS_PWDN_N を B.Cu で ADS_DRDY_N / ADS_RESET_N の間の通路に通し、U_MCU.14 の via はパッドの内側端へ移動）、**C_LM_FLY.1**（B.Cu に 2 via で渡っていた区間を F.Cu の直線にした）、**FB4.2**（VNEG5 の B.Cu を 0.358 mm 南へ振って via の場所を作った）、**R_CC2.2**（部品の下、パッドの間に 0.46/0.30 mm の via） | Gerber で測ったドリル端〜開口の最小距離 **0.1007 mm**（前回 0.0327）。0.10 未満は 0 本 |
+> | 2 | S7m（`scripts/71_mask_webs.py`）: 異ネットのパッド 22 組について、関係する 35 パッドのマスク拡張だけを下げた。値は (銅の間隔 − 0.10) / 2 で、全体の 0.0508 はそのまま。**基準 L**（`scripts/72_mask_web_gate.py`、Gerber、陰性対照つき） | 異ネットで堤が 0.10 未満の組は **0**。物理的に無理な組も 0。同ネットの 16 組は触っていない（`logs/mask_webs.json`） |
+> | 5 | D_ESD.3 のパッド内にあった F.Cu 0.45 mm の切れ端を削除した | — |
+> | 4 | S3_sim の期待チェック数を 29 に固定し、足りなければ赤にした。TI モデルの失敗やタイムアウトも行を省かず赤として書く | 今回は **30/30**（29 ＋ 件数の確認行）。途中の 1 回は LM2664 の TI モデルが ngspice の既知の起動時の不具合（`.func pwr`）で 8 回再試行しても失敗し、**正しく赤になった** |
+>
+> - **全ゲート**: S7a・S7p・S7v 8/8・S7d・S7m・S7b・S7c・S8 31/31・S7 40/40・S7_body・S7_viapad 8/8・S7_paste・**S7_maskweb**・S3_sim 30/30。
+>   ハーネス（main `0c78e9b`）でも S0_manifest 50/50・S6 **16/16**・S7 **58/58**・S8 52/52・S7_body 4/4・S7_viapad 16/16・S7_clearance 8/8 がすべて緑（Q477 はハーネス側で解消済み）。
+>   ハーネスの出力は `gates/harness_S7_*.json` として置き直した。
+> - **DRC**: error 0 / 未接続 0 / dangling 0。warning は clearance 5（5 mil の推奨値。前と同じ）、courtyard 63、silk 系 356、starved_thermal 1。
+>   **ネットの同一性**: 契約パリティ 0、全パッドのネットは不変。
+>   **アナログ経路**: IN1P〜IN8N の ADC〜入力抵抗の経路長の変化は最大 0.0013 mm（via の位置で配線がわずかに曲がった分）。P/N の長さ差の増加も最大 0.0013 mm。SRB1 は +0.7 mm。
+> - **via 数** 241 → **232**。内訳は、S7v で機能のない via −2、C_LM_FLY の B.Cu 経由 −2、S7d で片側だけの via −5。
+> - **新しい fab**: zip `f926c3b8…`、`board.d356` `7bddec12…`。BOM（`740b7ef7…`）と CPL（`1ea6f984…`）は変わっていない。
+> - afe-adc pack の S5_layout を当てると、J3/J4/J6/J7/J10 は pass（J4 は VCAP1 の裁定の記録で pass）。**J1（バイパスコンデンサと ADS のピンの間の via）3 件は赤**。これは既存の設計で、製品側の S7c が「報告のみ」で数えているものと同じ（今回の依頼の範囲外）。
 
 ## 現在地
 

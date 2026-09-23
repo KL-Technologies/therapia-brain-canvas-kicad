@@ -1,6 +1,6 @@
 {
   "step": "S7v",
-  "offenders_before": 117,
+  "offenders_before": 123,
   "moved": [
     {
       "net": "GND",
@@ -50,7 +50,7 @@
             101.0384
           ],
           "width_mm": 0.3048,
-          "uuid": "2337cb28-703d-4e65-919f-e4d1ec90bc40"
+          "uuid": "c7e23828-de58-4058-874d-163d0e2dd21c"
         },
         {
           "kind": "via",
@@ -61,7 +61,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "6700a446-057b-4371-b10b-08ea74edd865"
+          "uuid": "b8c9cb26-dbf3-49ef-bf41-35a1388378d0"
         }
       ]
     },
@@ -113,7 +113,7 @@
             109.7926
           ],
           "width_mm": 0.3048,
-          "uuid": "32105196-965c-4ee4-82d5-c49a647cf9ba"
+          "uuid": "46845787-84d9-4477-80bb-179d81ebd768"
         },
         {
           "kind": "via",
@@ -124,7 +124,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "ffd27db8-04d7-4c32-8c9e-206c3b472da4"
+          "uuid": "7e533efe-9c46-4e46-a5a9-68fa7f574c22"
         }
       ]
     },
@@ -137,14 +137,14 @@
         97.018
       ],
       "to_mm": [
-        164.2493,
-        96.7951
+        164.3664,
+        96.9251
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.125,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.125,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -172,22 +172,22 @@
             97.018
           ],
           "end_mm": [
-            164.2493,
-            96.7951
+            164.3664,
+            96.9251
           ],
           "width_mm": 0.3048,
-          "uuid": "f5ffcc62-945f-47ec-bca4-fd5aa45facd0"
+          "uuid": "e565b557-71de-42d5-9a78-a2ad7d08ba9d"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            164.2493,
-            96.7951
+            164.3664,
+            96.9251
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "a2b18add-b0f3-4607-b6c8-ea42d8c61ad3"
+          "uuid": "aae1cf9f-46ef-4dc5-bd55-52fc24797ab8"
         }
       ]
     },
@@ -239,7 +239,7 @@
             100.221
           ],
           "width_mm": 0.254,
-          "uuid": "7b1886e4-bb11-49d9-b20c-ecded24c5369"
+          "uuid": "dfb1bfb3-1723-4505-9668-fa389dd4e43e"
         },
         {
           "kind": "via",
@@ -250,7 +250,7 @@
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "025ed91b-f344-4191-91a7-6741aacf70c2"
+          "uuid": "9b7d7780-370f-4d00-876a-620b1468c4ef"
         }
       ]
     },
@@ -302,7 +302,7 @@
             98.1046
           ],
           "width_mm": 0.254,
-          "uuid": "2172e98a-81ee-45b0-9bfc-d7a583951b1d"
+          "uuid": "c1000213-7f88-434d-8ec9-3e59592afb74"
         },
         {
           "kind": "via",
@@ -313,27 +313,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "d3eb9332-ab14-4922-9a05-8b4eeb6a856b"
+          "uuid": "97a0556e-a424-4dcf-abc3-b8c56f4a24a6"
         }
       ]
     },
     {
       "net": "GND",
-      "pad": "U_ADS.paste",
-      "gap_before_mm": -0.023,
+      "pad": "U_ADS.41",
+      "gap_before_mm": 0.0017,
       "from_mm": [
         152.817,
         101.844
       ],
       "to_mm": [
-        153.0177,
-        101.6211
+        152.9312,
+        101.7932
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.125,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.125,
       "stub_width_mm": 0.254,
       "planes": [
         "In1.Cu"
@@ -361,22 +361,22 @@
             101.844
           ],
           "end_mm": [
-            153.0177,
-            101.6211
+            152.9312,
+            101.7932
           ],
           "width_mm": 0.254,
-          "uuid": "fb2a46ce-7fc3-4551-ba03-4ae5a79c7e75"
+          "uuid": "cd71eb6d-4b2a-4495-bfca-0e9fcdb184a3"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            153.0177,
-            101.6211
+            152.9312,
+            101.7932
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "6d7df875-1012-4525-9546-ff095dbac151"
+          "uuid": "4a005f19-e22e-4fef-9a0b-47001f3e5c87"
         }
       ]
     },
@@ -428,7 +428,7 @@
             107.0961
           ],
           "width_mm": 0.254,
-          "uuid": "06a72bbf-c79f-4e3a-8e5d-65aed681d85a"
+          "uuid": "7993d582-163e-4dd0-955a-04efb1de8b10"
         },
         {
           "kind": "via",
@@ -439,7 +439,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "11567a83-2ff5-449d-8c1f-90bbfd4ae80d"
+          "uuid": "203d9124-6604-4961-a5e2-2d023525155e"
         }
       ]
     },
@@ -452,14 +452,14 @@
         114.408
       ],
       "to_mm": [
-        172.7392,
-        114.6933
+        172.6726,
+        114.6566
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.25,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.25,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -487,22 +487,22 @@
             114.408
           ],
           "end_mm": [
-            172.7392,
-            114.6933
+            172.6726,
+            114.6566
           ],
           "width_mm": 0.3048,
-          "uuid": "c90833a0-d94e-445c-b0af-251f5fd56911"
+          "uuid": "b9cec068-d739-4dae-a465-1888098e16a1"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            172.7392,
-            114.6933
+            172.6726,
+            114.6566
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "b60daae4-00d4-4f3e-8200-d2bdbc5675a7"
+          "uuid": "d482c753-14a7-4d38-bf89-22f55f09ec1b"
         }
       ]
     },
@@ -554,7 +554,7 @@
             113.0274
           ],
           "width_mm": 0.3048,
-          "uuid": "2fc8a5eb-1d68-4c55-a422-92bcb788b915"
+          "uuid": "d2310151-9090-4f88-a1c4-35dd9f34558f"
         },
         {
           "kind": "via",
@@ -565,7 +565,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "2167bedc-92c7-4427-a051-ac51fc434290"
+          "uuid": "20b72ccc-f9bf-428e-b348-1de3be1cc953"
         }
       ]
     },
@@ -617,7 +617,7 @@
             91.7091
           ],
           "width_mm": 0.3048,
-          "uuid": "04dbebe5-d512-4c0a-adaf-3353dc42f595"
+          "uuid": "533558c7-0d64-431f-a389-600c648ec41e"
         },
         {
           "kind": "via",
@@ -628,7 +628,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "07a994d7-ab46-4c0b-a1a3-f31ce31fd04c"
+          "uuid": "3782a688-6538-422c-8d9f-2861a7a5f166"
         }
       ]
     },
@@ -680,7 +680,7 @@
             96.4434
           ],
           "width_mm": 0.2032,
-          "uuid": "b88abe45-d4f0-4934-85e4-d5607be7d8ee"
+          "uuid": "3fc23844-c119-43a0-aafa-77e1ec0347b6"
         },
         {
           "kind": "via",
@@ -691,27 +691,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "ea3a220f-4faf-4c1b-a5b9-f8d99fdbc2ee"
+          "uuid": "1bbbfd63-bc5b-4cf9-af72-f75a1ea73989"
         }
       ]
     },
     {
       "net": "GND",
-      "pad": "R_IO15_DN.paste",
-      "gap_before_mm": -0.496,
+      "pad": "R_IO15_DN.2",
+      "gap_before_mm": -0.4586,
       "from_mm": [
         176.2735,
         93.081
       ],
       "to_mm": [
-        176.8735,
+        176.8485,
         93.081
       ],
-      "moved_mm": 0.6,
+      "moved_mm": 0.575,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.6,
+      "new_copper_mm": 0.575,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -739,22 +739,22 @@
             93.081
           ],
           "end_mm": [
-            176.8735,
+            176.8485,
             93.081
           ],
           "width_mm": 0.3048,
-          "uuid": "365f59fb-f4ec-4c80-a5b6-5f46171054c0"
+          "uuid": "e11578c8-e436-4e73-862c-a3905cc4ede8"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            176.8735,
+            176.8485,
             93.081
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7cccd86d-209e-42bf-beea-208c470f8e70"
+          "uuid": "2ea9751b-8dd0-4a5c-8f54-9cc15a853acf"
         }
       ]
     },
@@ -806,7 +806,7 @@
             92.1101
           ],
           "width_mm": 0.254,
-          "uuid": "2e628484-ac5d-4be4-b567-9bc01237da62"
+          "uuid": "e84d7f7c-fd47-4419-bd2e-67a9aa5c7a20"
         },
         {
           "kind": "via",
@@ -817,70 +817,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "3d52c26d-c662-4dd1-be72-73fb5c389ac4"
-        }
-      ]
-    },
-    {
-      "net": "GND",
-      "pad": "R_CC2.2",
-      "gap_before_mm": -0.4828,
-      "from_mm": [
-        174.2035,
-        110.3785
-      ],
-      "to_mm": [
-        173.421,
-        110.2122
-      ],
-      "moved_mm": 0.8,
-      "stage": "straight",
-      "tier": "3",
-      "clearance_mm": 0.1,
-      "new_copper_mm": 0.8,
-      "stub_width_mm": 0.3048,
-      "planes": [
-        "In1.Cu"
-      ],
-      "removed": [
-        {
-          "kind": "via",
-          "net": "GND",
-          "pos_mm": [
-            174.2035,
-            110.3785
-          ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "4ba28bd0-8046-46d5-bfdd-c0ddca7de77d"
-        }
-      ],
-      "laid": [
-        {
-          "kind": "track",
-          "net": "GND",
-          "layer": "F.Cu",
-          "start_mm": [
-            174.2035,
-            110.3785
-          ],
-          "end_mm": [
-            173.421,
-            110.2122
-          ],
-          "width_mm": 0.3048,
-          "uuid": "2b03ea9e-d994-4f13-af70-8c7c2ab5c2d2"
-        },
-        {
-          "kind": "via",
-          "net": "GND",
-          "pos_mm": [
-            173.421,
-            110.2122
-          ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "e861297d-4f98-41ef-88d9-ab7abdccc718"
+          "uuid": "90bfbe83-9ccb-4900-b69d-730ffd38d3c4"
         }
       ]
     },
@@ -932,7 +869,7 @@
             105.1662
           ],
           "width_mm": 0.3048,
-          "uuid": "ac159d84-3415-435d-abec-89bef315379d"
+          "uuid": "8162c4d6-663d-4752-ba4e-4106b374b96b"
         },
         {
           "kind": "via",
@@ -943,7 +880,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "8124ff73-326d-4fa5-8ad7-2bdc4007e7e5"
+          "uuid": "d35d9c88-142a-4717-8fb4-6a2b4f26185a"
         }
       ]
     },
@@ -1025,7 +962,7 @@
             89.487
           ],
           "width_mm": 0.203,
-          "uuid": "ee468453-2171-4a96-89b5-1a01d15e7bc4"
+          "uuid": "c6b9e963-7366-49a8-8495-b7e59288a6a3"
         },
         {
           "kind": "via",
@@ -1036,7 +973,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "c237aa0b-b62a-4735-a034-1a03811333cf"
+          "uuid": "de3eaf02-5d73-481b-9338-d469d1f90f1e"
         }
       ]
     },
@@ -1088,7 +1025,7 @@
             110.0304
           ],
           "width_mm": 0.3048,
-          "uuid": "a25232a9-89c7-4a37-9d9c-c0b5047f5bd2"
+          "uuid": "72f342cc-1c00-481a-ad53-a046fcb75ff7"
         },
         {
           "kind": "via",
@@ -1099,7 +1036,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "3de8e7c9-04c4-4f6b-af14-cedc8d55314e"
+          "uuid": "873d56c8-2323-4ace-b4c4-ef87998df9c6"
         }
       ]
     },
@@ -1151,7 +1088,7 @@
             117.4908
           ],
           "width_mm": 0.3048,
-          "uuid": "b837dde1-d314-48d7-ba5f-5dad0c01afe3"
+          "uuid": "411a8075-c8d1-4d9f-ba52-776674f31841"
         },
         {
           "kind": "via",
@@ -1162,7 +1099,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7ef70822-29e2-483d-8707-f196279e0f25"
+          "uuid": "6983815b-fba1-481c-b742-aeab3fedd01e"
         }
       ]
     },
@@ -1214,7 +1151,7 @@
             121.2525
           ],
           "width_mm": 0.3048,
-          "uuid": "2b582c10-b43a-4646-803f-61af645e5257"
+          "uuid": "6d894a85-fe9c-4da5-83e6-c67946a88813"
         },
         {
           "kind": "via",
@@ -1225,7 +1162,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "526750e5-6ff3-45e5-bd15-bb1e98b1e96f"
+          "uuid": "0f549a6a-ec2b-4a3d-80fb-6f69ae0bcd3a"
         }
       ]
     },
@@ -1277,7 +1214,7 @@
             104.0991
           ],
           "width_mm": 0.254,
-          "uuid": "881bfc12-8ec9-4a62-b36b-358992080810"
+          "uuid": "0835502b-eca9-4623-b2e0-b247bfb14ba3"
         },
         {
           "kind": "via",
@@ -1288,7 +1225,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "b860b40d-831c-4271-a1ab-561a8119ea0f"
+          "uuid": "8dcb3fc7-c466-4a04-9444-b349d7d0911e"
         }
       ]
     },
@@ -1340,7 +1277,7 @@
             112.3387
           ],
           "width_mm": 0.3048,
-          "uuid": "f164d35b-151b-4d8f-9b1d-76ff7ebe4c5a"
+          "uuid": "8ee984be-2503-43c2-8750-ce24bb252112"
         },
         {
           "kind": "via",
@@ -1351,7 +1288,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "889afd00-5430-47a1-a692-f217750db5be"
+          "uuid": "b57ab396-6c0b-4d27-af56-54fe0c33d5c9"
         }
       ]
     },
@@ -1403,7 +1340,7 @@
             95.1076
           ],
           "width_mm": 0.254,
-          "uuid": "ff1643fd-94b6-4fd9-a8f8-80da58e9b2cc"
+          "uuid": "2ef1c50e-0409-4f18-94bd-6e890aea05b1"
         },
         {
           "kind": "via",
@@ -1414,7 +1351,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "f4b6b0ae-010f-44bf-90cc-2ddec5f7c0e3"
+          "uuid": "680e9a20-2536-4d40-ae88-2b6dcb6f7985"
         }
       ]
     },
@@ -1466,7 +1403,7 @@
             112.8669
           ],
           "width_mm": 0.254,
-          "uuid": "e432a77d-98c2-42f5-8fb2-542852931a77"
+          "uuid": "6f32a28a-dfb9-4f7f-ab02-d6cac40ca691"
         },
         {
           "kind": "via",
@@ -1477,7 +1414,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "fbe6a3e6-6ba3-427f-aec8-58b585dcf00c"
+          "uuid": "46e1e70f-31d0-4bef-b113-e5472a2cf775"
         }
       ]
     },
@@ -1529,7 +1466,7 @@
             93.4464
           ],
           "width_mm": 0.2032,
-          "uuid": "0cdda9f7-6b50-408f-8246-d240fd25dba6"
+          "uuid": "21cffa3b-1647-405e-8406-756d6c6f0467"
         },
         {
           "kind": "via",
@@ -1540,7 +1477,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "52de5a7b-fc59-4600-a4f4-98b40da9c44c"
+          "uuid": "a6696df4-ae45-4072-992d-bfc270374293"
         }
       ]
     },
@@ -1592,7 +1529,7 @@
             100.8784
           ],
           "width_mm": 0.254,
-          "uuid": "87307821-b659-47ca-8b39-d27b42427da8"
+          "uuid": "5b925520-e725-42ff-95ce-fcf404719f85"
         },
         {
           "kind": "via",
@@ -1603,7 +1540,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7ffda2a4-d5f8-4fd1-95ef-76b7a4d74636"
+          "uuid": "0748dfc4-2897-4ab4-abe4-d3a0b3e38e8f"
         }
       ]
     },
@@ -1655,7 +1592,7 @@
             109.8833
           ],
           "width_mm": 0.3048,
-          "uuid": "b2365a98-06a4-4ec1-bc5b-b7dcd0a6e0b6"
+          "uuid": "b8f15be2-e055-4580-b892-30311a2da69a"
         },
         {
           "kind": "via",
@@ -1666,7 +1603,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "8ad35704-3807-4b3a-84d6-cc7c80d587e5"
+          "uuid": "849825d3-8b58-4cc7-842e-04e31939ae8a"
         }
       ]
     },
@@ -1718,7 +1655,7 @@
             97.8845
           ],
           "width_mm": 0.3048,
-          "uuid": "35fad37c-ef9d-45a2-adeb-5955555b86e6"
+          "uuid": "b7ca8b6b-1b5b-4ea1-8a30-205dafd61ad0"
         },
         {
           "kind": "via",
@@ -1729,7 +1666,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "67975953-76e6-4a37-88f4-4bf2a70c9b42"
+          "uuid": "095ead9e-ea21-4a28-b8b8-3fe77017c24c"
         }
       ]
     },
@@ -1781,7 +1718,7 @@
             113.6159
           ],
           "width_mm": 0.3048,
-          "uuid": "6d397427-c242-4e68-9f74-ed8dfc7645d0"
+          "uuid": "9e1ab24c-8527-4676-8146-2fd34df0287c"
         },
         {
           "kind": "via",
@@ -1792,7 +1729,130 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "9ced85e5-5ba3-44ce-876e-238983fc2c50"
+          "uuid": "779275e7-29ba-446b-b758-9ce3d2e69369"
+        }
+      ]
+    },
+    {
+      "net": "GND",
+      "pad": "U_USB.15",
+      "gap_before_mm": 0.0757,
+      "from_mm": [
+        158.43,
+        113.0455
+      ],
+      "to_mm": [
+        158.405,
+        113.0455
+      ],
+      "moved_mm": 0.025,
+      "stage": "straight",
+      "tier": "1",
+      "clearance_mm": 0.127,
+      "new_copper_mm": 0.3924,
+      "stub_width_mm": null,
+      "planes": [
+        "In1.Cu"
+      ],
+      "removed": [
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            158.3285,
+            112.9185
+          ],
+          "end_mm": [
+            158.43,
+            113.0455
+          ],
+          "width_mm": 0.1525,
+          "uuid": "1f4e975e-9a30-47d5-be29-0da3d339639c"
+        },
+        {
+          "kind": "via",
+          "net": "GND",
+          "pos_mm": [
+            158.43,
+            113.0455
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "9532e4d2-d3cc-4e7f-afb7-c6ec7d2ab9b4"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            158.3285,
+            112.9185
+          ],
+          "end_mm": [
+            158.43,
+            113.0455
+          ],
+          "width_mm": 0.1525,
+          "uuid": "4de98c2a-7d8c-4a3b-97b9-09511536a179"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            158.405,
+            112.817
+          ],
+          "end_mm": [
+            158.43,
+            113.0455
+          ],
+          "width_mm": 0.203,
+          "uuid": "87a68517-946d-4649-b538-82a7334836b9"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            158.3285,
+            112.9185
+          ],
+          "end_mm": [
+            158.405,
+            113.0455
+          ],
+          "width_mm": 0.1525,
+          "uuid": "1f4e975e-9a30-47d5-be29-0da3d339639c"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            158.405,
+            113.0455
+          ],
+          "end_mm": [
+            158.43,
+            113.0455
+          ],
+          "width_mm": 0.1525,
+          "uuid": "63725793-204d-45a7-b294-ac604606ff90"
+        },
+        {
+          "kind": "via",
+          "net": "GND",
+          "pos_mm": [
+            158.405,
+            113.0455
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "89700d38-51c4-4c5e-80a2-7171ac6753ce"
         }
       ]
     },
@@ -1844,7 +1904,7 @@
             110.5811
           ],
           "width_mm": 0.3048,
-          "uuid": "ebd853e1-46d1-41af-b4eb-c8b7c9642fb0"
+          "uuid": "ceb853f3-940c-49c6-a6fe-ee822aa23e25"
         },
         {
           "kind": "via",
@@ -1855,7 +1915,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "2137d42d-b748-428b-aace-a3a206b33158"
+          "uuid": "7d69e609-b402-462f-8822-792b320c347c"
         }
       ]
     },
@@ -1868,14 +1928,14 @@
         98.237
       ],
       "to_mm": [
-        165.8192,
-        98.4599
+        165.7021,
+        98.3299
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.125,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.125,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -1903,22 +1963,22 @@
             98.237
           ],
           "end_mm": [
-            165.8192,
-            98.4599
+            165.7021,
+            98.3299
           ],
           "width_mm": 0.3048,
-          "uuid": "f68b3af2-b2ba-40b1-8722-52b671c1fb74"
+          "uuid": "763f4c2b-1146-4f8c-bdbb-3ac8f4699b7f"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            165.8192,
-            98.4599
+            165.7021,
+            98.3299
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "906974b0-b2b5-4c98-98d2-6e17b9f1c9f7"
+          "uuid": "48707e12-6165-474f-8e01-eb0480378d3c"
         }
       ]
     },
@@ -1970,7 +2030,7 @@
             90.3797
           ],
           "width_mm": 0.3048,
-          "uuid": "1e64e4d7-8f3c-4055-876d-de826dcc871e"
+          "uuid": "bfcbfdc4-5013-4008-80b2-e2f802a3c0d6"
         },
         {
           "kind": "via",
@@ -1981,7 +2041,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "d55b5dfc-7430-4e70-891a-367c6e350ee4"
+          "uuid": "312bf297-661c-44d2-ae13-fa4d642be9ec"
         }
       ]
     },
@@ -1994,14 +2054,14 @@
         97.018
       ],
       "to_mm": [
-        165.8192,
-        97.2409
+        165.7021,
+        96.9251
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.125,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.125,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -2029,22 +2089,22 @@
             97.018
           ],
           "end_mm": [
-            165.8192,
-            97.2409
+            165.7021,
+            96.9251
           ],
           "width_mm": 0.3048,
-          "uuid": "d1155e9a-566e-4239-88e9-bdf4f5f248cc"
+          "uuid": "e6226396-e909-42a3-bf0f-e01af4ed4a79"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            165.8192,
-            97.2409
+            165.7021,
+            96.9251
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "734368e4-0e17-4d62-9a70-c7f7e70905b1"
+          "uuid": "eac1112d-bb3d-4131-94b4-2e831eb3ac51"
         }
       ]
     },
@@ -2096,7 +2156,7 @@
             119.624
           ],
           "width_mm": 0.3048,
-          "uuid": "c7e58dd6-39c0-412d-b0c7-853e14acbc2b"
+          "uuid": "df2085a4-392f-478c-8918-06267e82e921"
         },
         {
           "kind": "via",
@@ -2107,7 +2167,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "2f68b661-f50c-43e3-af65-d79b77461943"
+          "uuid": "0f4ad34b-c591-43c9-8bf8-b7d79668eaf3"
         }
       ]
     },
@@ -2159,7 +2219,7 @@
             120.7964
           ],
           "width_mm": 0.3048,
-          "uuid": "42f88e8c-90d4-4bf7-a006-31200d13b532"
+          "uuid": "2fa1642d-7ba7-4191-b40d-caa56a114f26"
         },
         {
           "kind": "via",
@@ -2170,7 +2230,145 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "99a2ba63-0f60-45ab-91ad-f7eda36b790f"
+          "uuid": "1addfc25-e50e-45db-8bf8-4450921adc1b"
+        }
+      ]
+    },
+    {
+      "net": "GND",
+      "pad": "C_AVSS_H.2",
+      "gap_before_mm": 0.0917,
+      "from_mm": [
+        148.372,
+        114.595
+      ],
+      "to_mm": [
+        148.4209,
+        114.5846
+      ],
+      "moved_mm": 0.05,
+      "stage": "straight",
+      "tier": "1",
+      "clearance_mm": 0.127,
+      "new_copper_mm": 0.7535,
+      "stub_width_mm": null,
+      "planes": [
+        "In1.Cu"
+      ],
+      "removed": [
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            148.245,
+            114.6965
+          ],
+          "end_mm": [
+            148.372,
+            114.595
+          ],
+          "width_mm": 0.1525,
+          "uuid": "0ffd891d-bfd4-4d7a-97f4-85b722cfd0fb"
+        },
+        {
+          "kind": "via",
+          "net": "GND",
+          "pos_mm": [
+            148.372,
+            114.595
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "c203e85c-2f57-4975-9937-8a68b908046a"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            148.245,
+            114.6965
+          ],
+          "end_mm": [
+            148.372,
+            114.595
+          ],
+          "width_mm": 0.1525,
+          "uuid": "c8400112-26e0-41ae-a128-37db29b7c632"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            148.448,
+            114.874
+          ],
+          "end_mm": [
+            148.372,
+            114.595
+          ],
+          "width_mm": 0.203,
+          "uuid": "ea8c7aea-c389-437c-8573-7d54859ab5a8"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            148.448,
+            114.887
+          ],
+          "end_mm": [
+            148.372,
+            114.595
+          ],
+          "width_mm": 0.203,
+          "uuid": "0a063b9f-3d9c-4f99-a637-8b7d27c69ac1"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            148.245,
+            114.6965
+          ],
+          "end_mm": [
+            148.4209,
+            114.5846
+          ],
+          "width_mm": 0.1525,
+          "uuid": "0ffd891d-bfd4-4d7a-97f4-85b722cfd0fb"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            148.4209,
+            114.5846
+          ],
+          "end_mm": [
+            148.372,
+            114.595
+          ],
+          "width_mm": 0.1525,
+          "uuid": "5e285de9-df8b-4ddd-baae-ed63440c9fed"
+        },
+        {
+          "kind": "via",
+          "net": "GND",
+          "pos_mm": [
+            148.4209,
+            114.5846
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "fb5a6136-b53c-4ae2-8ce0-5ae4e04bc38f"
         }
       ]
     },
@@ -2222,7 +2420,7 @@
             110.4397
           ],
           "width_mm": 0.3048,
-          "uuid": "5b36bebf-0dd1-4b73-9407-d0689dbe716e"
+          "uuid": "eeaec896-91e3-40a4-abef-905fbcf3ee61"
         },
         {
           "kind": "via",
@@ -2233,7 +2431,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "4e6261c0-5adf-4b6d-bd0f-93ecdb4ddcd4"
+          "uuid": "17ab25b9-3dd5-4cf5-ba85-6927088044b3"
         }
       ]
     },
@@ -2285,7 +2483,7 @@
             112.1693
           ],
           "width_mm": 0.3048,
-          "uuid": "825aa769-c683-4499-a175-84915b95c10f"
+          "uuid": "193a390f-3355-4951-ab66-0ec8c230c8ef"
         },
         {
           "kind": "via",
@@ -2296,7 +2494,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7712336b-3ab5-4719-8db0-e6a8d279bbb7"
+          "uuid": "b3888151-ed8b-4870-a089-2502606de24c"
         }
       ]
     },
@@ -2348,7 +2546,7 @@
             91.7243
           ],
           "width_mm": 0.3048,
-          "uuid": "79723b9d-467d-4d63-b85e-0a3cdf30c021"
+          "uuid": "414405f1-5233-4c36-86d1-22a68b012876"
         },
         {
           "kind": "via",
@@ -2359,7 +2557,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "0137717a-885c-4daf-be58-5ec0d9b1f8e0"
+          "uuid": "ed1978dc-85d6-4d6e-a3ed-157a45405285"
         }
       ]
     },
@@ -2372,13 +2570,13 @@
         98.237
       ],
       "to_mm": [
-        164.1675,
-        98.3379
+        164.3604,
+        98.3241
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.125,
       "stage": "straight",
-      "tier": "4",
-      "clearance_mm": 0.0889,
+      "tier": "1",
+      "clearance_mm": 0.127,
       "new_copper_mm": 0.0,
       "stub_width_mm": null,
       "planes": [
@@ -2390,15 +2588,15 @@
           "net": "GND",
           "layer": "F.Cu",
           "start_mm": [
-            162.2375,
-            99.027
+            163.637,
+            99.0245
           ],
           "end_mm": [
             164.45,
             98.237
           ],
           "width_mm": 0.254,
-          "uuid": "9d795f8e-5329-4bef-b0d3-7f0f3054978f"
+          "uuid": "086e9107-f2b9-42db-a511-19b53f39ef2b"
         },
         {
           "kind": "via",
@@ -2418,41 +2616,41 @@
           "net": "GND",
           "layer": "F.Cu",
           "start_mm": [
-            162.2375,
-            99.027
+            163.637,
+            99.0245
           ],
           "end_mm": [
-            164.1675,
-            98.3379
+            164.3604,
+            98.3241
           ],
           "width_mm": 0.254,
-          "uuid": "9d795f8e-5329-4bef-b0d3-7f0f3054978f"
+          "uuid": "086e9107-f2b9-42db-a511-19b53f39ef2b"
         },
         {
           "kind": "track",
           "net": "GND",
           "layer": "F.Cu",
           "start_mm": [
-            164.1675,
-            98.3379
+            164.3604,
+            98.3241
           ],
           "end_mm": [
             164.45,
             98.237
           ],
           "width_mm": 0.254,
-          "uuid": "b46abbea-5e2f-40e0-a5be-bb80e570c362"
+          "uuid": "e3434143-1867-4ee6-b9dc-158243d82f76"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            164.1675,
-            98.3379
+            164.3604,
+            98.3241
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "148510e8-5733-4601-ad1d-a8bc32d0edb7"
+          "uuid": "9391efac-17d5-438d-bdb1-2062d52fd34c"
         }
       ]
     },
@@ -2465,34 +2663,19 @@
         112.766
       ],
       "to_mm": [
-        143.527,
-        112.766
+        143.2147,
+        113.3627
       ],
-      "moved_mm": 0.375,
+      "moved_mm": 0.6,
       "stage": "straight",
-      "tier": "3",
-      "clearance_mm": 0.1,
-      "new_copper_mm": 0.0,
-      "stub_width_mm": null,
+      "tier": "1",
+      "clearance_mm": 0.127,
+      "new_copper_mm": 0.6,
+      "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
       ],
       "removed": [
-        {
-          "kind": "track",
-          "net": "GND",
-          "layer": "F.Cu",
-          "start_mm": [
-            144.054,
-            112.766
-          ],
-          "end_mm": [
-            143.165,
-            112.766
-          ],
-          "width_mm": 0.203,
-          "uuid": "0692518a-f54c-4003-b780-c1a691993ffe"
-        },
         {
           "kind": "via",
           "net": "GND",
@@ -2511,41 +2694,26 @@
           "net": "GND",
           "layer": "F.Cu",
           "start_mm": [
-            144.054,
+            143.152,
             112.766
           ],
           "end_mm": [
-            143.527,
-            112.766
+            143.2147,
+            113.3627
           ],
-          "width_mm": 0.203,
-          "uuid": "0692518a-f54c-4003-b780-c1a691993ffe"
-        },
-        {
-          "kind": "track",
-          "net": "GND",
-          "layer": "F.Cu",
-          "start_mm": [
-            143.527,
-            112.766
-          ],
-          "end_mm": [
-            143.165,
-            112.766
-          ],
-          "width_mm": 0.203,
-          "uuid": "1cb776fc-f900-4c33-bdbd-f12152a0df45"
+          "width_mm": 0.3048,
+          "uuid": "adf36bde-9b74-4428-a053-9269c468cef1"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            143.527,
-            112.766
+            143.2147,
+            113.3627
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "222d0fee-4a29-40f6-a69a-9da265c8f17d"
+          "uuid": "81983a45-5c61-4793-a5ae-97b424285e31"
         }
       ]
     },
@@ -2597,7 +2765,7 @@
             115.0226
           ],
           "width_mm": 0.3048,
-          "uuid": "55e3c222-8a88-466c-a1b7-d408fb845710"
+          "uuid": "84b716d7-0c94-4f47-bbcc-81ea347f17aa"
         },
         {
           "kind": "via",
@@ -2608,27 +2776,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "ae213279-bfbe-4b7d-85f1-57432712c662"
+          "uuid": "ad85ae94-56c4-4731-8f96-a82296cb202b"
         }
       ]
     },
     {
       "net": "GND",
-      "pad": "U_ADS.paste",
-      "gap_before_mm": -0.023,
+      "pad": "U_ADS.33",
+      "gap_before_mm": 0.0017,
       "from_mm": [
         152.817,
         105.959
       ],
       "to_mm": [
-        152.8484,
-        106.2574
+        152.8865,
+        106.173
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.225,
       "stage": "straight",
-      "tier": "3",
-      "clearance_mm": 0.1,
-      "new_copper_mm": 0.3,
+      "tier": "1",
+      "clearance_mm": 0.127,
+      "new_copper_mm": 0.225,
       "stub_width_mm": 0.254,
       "planes": [
         "In1.Cu"
@@ -2656,22 +2824,22 @@
             105.959
           ],
           "end_mm": [
-            152.8484,
-            106.2574
+            152.8865,
+            106.173
           ],
           "width_mm": 0.254,
-          "uuid": "d92661b9-5f78-4c3f-a52b-b1e6acadae08"
+          "uuid": "fd8e2708-30e5-411b-8462-5a52b07878bd"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            152.8484,
-            106.2574
+            152.8865,
+            106.173
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "5160ebc7-4398-42eb-b2cc-ce6264e60cdc"
+          "uuid": "75061a00-7b44-49f0-ad00-f6f03338e983"
         }
       ]
     },
@@ -2723,7 +2891,7 @@
             109.8699
           ],
           "width_mm": 0.254,
-          "uuid": "58bed9bf-9e89-41f7-9791-1a23517aa3a3"
+          "uuid": "31644ae0-df0a-4f60-9df3-8a63a118aec8"
         },
         {
           "kind": "via",
@@ -2734,7 +2902,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "563938f1-2f00-4a72-9535-d183fe3854d9"
+          "uuid": "bbbb5e7f-ff96-4d86-8341-b668d046fc41"
         }
       ]
     },
@@ -2786,7 +2954,7 @@
             102.4379
           ],
           "width_mm": 0.2032,
-          "uuid": "db02bc9d-03e7-46f0-8e80-6af4940a1829"
+          "uuid": "3304f1b5-dab8-4d8a-8f79-b22b1c1e302b"
         },
         {
           "kind": "via",
@@ -2797,7 +2965,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "5a8f1d7b-2a29-446a-83ca-f6e77c524b3a"
+          "uuid": "ecc2b1ad-c10f-4b4d-afe4-1c1b0f98c1eb"
         }
       ]
     },
@@ -2810,14 +2978,14 @@
         82.6415
       ],
       "to_mm": [
-        148.2422,
-        82.8644
+        148.1638,
+        82.6675
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.125,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.125,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -2845,22 +3013,22 @@
             82.6415
           ],
           "end_mm": [
-            148.2422,
-            82.8644
+            148.1638,
+            82.6675
           ],
           "width_mm": 0.3048,
-          "uuid": "923ff4f7-39f2-4e00-ba79-eb7b5dad1476"
+          "uuid": "5717b2a9-30ce-4fff-be4e-2812499f0b56"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            148.2422,
-            82.8644
+            148.1638,
+            82.6675
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "e71f5b48-ada8-4365-9be9-76c29b7b8cb2"
+          "uuid": "c370c61d-fad5-447a-875b-df16fff1935b"
         }
       ]
     },
@@ -2912,7 +3080,7 @@
             105.4349
           ],
           "width_mm": 0.2032,
-          "uuid": "7a0103f0-ead7-4932-80c8-6e84991519e8"
+          "uuid": "a40ac186-4e8f-471c-91f6-459e190b75b3"
         },
         {
           "kind": "via",
@@ -2923,7 +3091,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "3c166f7c-8d7c-4ca1-b773-cca4eecb3312"
+          "uuid": "e43ffaec-931e-4451-9315-d21c7b7f2b09"
         }
       ]
     },
@@ -2975,7 +3143,7 @@
             87.62
           ],
           "width_mm": 0.3048,
-          "uuid": "8de8de82-7a70-4690-b507-fe5f6ab84e4a"
+          "uuid": "39b71773-984b-43fe-b60d-f446e147544a"
         },
         {
           "kind": "via",
@@ -2986,27 +3154,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "284e3e95-c457-4bb1-a683-1b2e9ded171d"
+          "uuid": "8d44eb4c-a34d-4704-b2fb-e8d899633658"
         }
       ]
     },
     {
       "net": "GND",
-      "pad": "R_IO2_DN.paste",
-      "gap_before_mm": -0.496,
+      "pad": "R_IO2_DN.2",
+      "gap_before_mm": -0.4586,
       "from_mm": [
         176.2735,
         91.811
       ],
       "to_mm": [
-        176.8735,
+        176.8485,
         91.811
       ],
-      "moved_mm": 0.6,
+      "moved_mm": 0.575,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.6,
+      "new_copper_mm": 0.575,
       "stub_width_mm": 0.3048,
       "planes": [
         "In1.Cu"
@@ -3034,22 +3202,22 @@
             91.811
           ],
           "end_mm": [
-            176.8735,
+            176.8485,
             91.811
           ],
           "width_mm": 0.3048,
-          "uuid": "4c951d87-26ad-43b0-97f2-d4eeb2c12748"
+          "uuid": "d4b9d118-6110-43b0-a851-8b77755070b8"
         },
         {
           "kind": "via",
           "net": "GND",
           "pos_mm": [
-            176.8735,
+            176.8485,
             91.811
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "3fe49381-3d2d-420f-952b-98adcad645c3"
+          "uuid": "f0ba668e-fa85-4325-b832-4c65324a47e3"
         }
       ]
     },
@@ -3101,7 +3269,7 @@
             112.766
           ],
           "width_mm": 0.3048,
-          "uuid": "a564f252-d6c2-41cf-a3fd-5d4fba334e33"
+          "uuid": "d1cec1b7-f549-4ac8-9be7-4d534655152f"
         },
         {
           "kind": "via",
@@ -3112,7 +3280,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "806a8c98-ac85-4cdc-8fd4-4e7999f07e0f"
+          "uuid": "8f8413ec-abc4-42d9-8caf-166ca3f0cba9"
         }
       ]
     },
@@ -3164,7 +3332,7 @@
             122.6566
           ],
           "width_mm": 0.3048,
-          "uuid": "93388c94-295f-4e48-a22a-f82fdbc1599b"
+          "uuid": "0d4611f5-c0bb-4428-9d91-e4d6189a4230"
         },
         {
           "kind": "via",
@@ -3175,7 +3343,7 @@
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "2f24dc9b-050f-4a94-86a9-e825762e04da"
+          "uuid": "bbc5c3ec-595b-4609-a658-de9bb017bf67"
         }
       ]
     },
@@ -3227,7 +3395,7 @@
             110.061
           ],
           "width_mm": 0.3048,
-          "uuid": "b86a6d9d-d727-41f8-a04b-cbabad04aa32"
+          "uuid": "7147ff73-bcb5-4bfd-a92a-d7198555c671"
         },
         {
           "kind": "via",
@@ -3238,7 +3406,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "8073e835-ccf6-4297-a32a-cef53e784a5b"
+          "uuid": "51aacc2f-9c0e-480a-ad07-5578b9c66251"
         }
       ]
     },
@@ -3288,7 +3456,7 @@
             122.5099
           ],
           "width_mm": 0.3048,
-          "uuid": "b9f2639c-afb7-49f5-a297-59c27daacfd3"
+          "uuid": "17034302-e0ac-45f3-91b2-5b84b1f1bc95"
         },
         {
           "kind": "track",
@@ -3303,7 +3471,7 @@
             122.5099
           ],
           "width_mm": 0.203,
-          "uuid": "be26fdc8-1807-4c09-8fd0-695552d640a0"
+          "uuid": "3de3ba0d-f258-406a-810b-2ae9dfd09f36"
         },
         {
           "kind": "via",
@@ -3314,7 +3482,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "e5e46772-428a-46b7-b5f4-e5120a891220"
+          "uuid": "c1977ee6-8140-43c4-a1df-338008effde4"
         }
       ]
     },
@@ -3364,7 +3532,7 @@
             123.6719
           ],
           "width_mm": 0.3048,
-          "uuid": "4269fc7f-d6b4-4107-a354-e5c9b6cd8ea8"
+          "uuid": "f063718c-a990-4c86-8e84-b6983f5b1945"
         },
         {
           "kind": "track",
@@ -3379,7 +3547,7 @@
             123.6719
           ],
           "width_mm": 0.203,
-          "uuid": "0dcc025b-c5b7-447a-bda6-246c3241db32"
+          "uuid": "b30f0b5c-e752-4c1a-ae10-b228807b798c"
         },
         {
           "kind": "via",
@@ -3390,7 +3558,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "e449dd38-431b-49ef-aa64-5304cda66197"
+          "uuid": "844a1879-adb8-46f6-a0a0-16fc1f63361e"
         }
       ]
     },
@@ -3442,7 +3610,7 @@
             110.1135
           ],
           "width_mm": 0.3048,
-          "uuid": "04400746-300b-43bf-a9ad-ab74c91f2ccd"
+          "uuid": "6ff272ee-5cd8-4860-bbec-30b0d7b479de"
         },
         {
           "kind": "via",
@@ -3453,7 +3621,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "37ff75fa-48d1-4fc9-8d4d-539804023d6a"
+          "uuid": "9476150a-e2bb-4848-a2f1-8997e735b3c3"
         }
       ]
     },
@@ -3505,7 +3673,7 @@
             107.9017
           ],
           "width_mm": 0.3048,
-          "uuid": "4390b80f-32fd-4081-b033-9a079e930247"
+          "uuid": "4d34b34d-0772-480c-93bc-9cacecf4ed69"
         },
         {
           "kind": "via",
@@ -3516,7 +3684,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "faf9ff23-b472-4d1c-b194-201e2e1572eb"
+          "uuid": "99d9f6ef-8afa-444c-92e1-61b099867379"
         }
       ]
     },
@@ -3568,7 +3736,7 @@
             112.5194
           ],
           "width_mm": 0.3048,
-          "uuid": "ab9f861b-c29a-4fa3-9e24-75142c7880f1"
+          "uuid": "4b69e179-b043-4069-ac65-de8a07da528d"
         },
         {
           "kind": "via",
@@ -3579,27 +3747,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "b194dbf8-b2aa-4fe5-b76b-0fb6994be30d"
+          "uuid": "ac02a10c-7c7f-46f1-984b-f6c5f6f9d7bf"
         }
       ]
     },
     {
       "net": "VDD_ESP",
-      "pad": "R_EN_UP.paste",
-      "gap_before_mm": -0.496,
+      "pad": "R_EN_UP.1",
+      "gap_before_mm": -0.4586,
       "from_mm": [
         157.846,
         110.3655
       ],
       "to_mm": [
-        158.196,
-        110.9717
+        158.0314,
+        110.9361
       ],
-      "moved_mm": 0.7,
+      "moved_mm": 0.6,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.7,
+      "new_copper_mm": 0.6,
       "stub_width_mm": 0.3048,
       "planes": [
         "In2.Cu"
@@ -3627,38 +3795,38 @@
             110.3655
           ],
           "end_mm": [
-            158.196,
-            110.9717
+            158.0314,
+            110.9361
           ],
           "width_mm": 0.3048,
-          "uuid": "32feadb9-70f9-427c-af69-57ba8c720305"
+          "uuid": "5aaf3528-faa6-419e-8963-c227033766b7"
         },
         {
           "kind": "via",
           "net": "VDD_ESP",
           "pos_mm": [
-            158.196,
-            110.9717
+            158.0314,
+            110.9361
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "72714aa0-3139-4681-8d20-1c19aabdffe0"
+          "uuid": "1b73d93f-c3f9-4f15-a6f2-994d582f3f03"
         }
       ]
     },
     {
       "net": "VDD_ESP",
-      "pad": "R_IO0_UP.paste",
-      "gap_before_mm": -0.496,
+      "pad": "R_IO0_UP.1",
+      "gap_before_mm": -0.4586,
       "from_mm": [
         174.61,
         84.6865
       ],
       "to_mm": [
         174.61,
-        84.0865
+        84.1115
       ],
-      "moved_mm": 0.6,
+      "moved_mm": 0.575,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
@@ -3706,7 +3874,7 @@
           ],
           "end_mm": [
             174.61,
-            84.0865
+            84.1115
           ],
           "width_mm": 0.203,
           "uuid": "1e2f9712-773b-42a0-9ed0-dd17789c1f10"
@@ -3717,25 +3885,25 @@
           "layer": "F.Cu",
           "start_mm": [
             174.61,
-            84.0865
+            84.1115
           ],
           "end_mm": [
             174.61,
             83.048
           ],
           "width_mm": 0.203,
-          "uuid": "db347a5b-7a74-4ac9-bcbb-138bd249eebc"
+          "uuid": "e1dfa156-2616-4585-ba03-1d9e3cecff65"
         },
         {
           "kind": "via",
           "net": "VDD_ESP",
           "pos_mm": [
             174.61,
-            84.0865
+            84.1115
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7c1dc528-00a2-46d1-9989-9b9d2c91fd9a"
+          "uuid": "1007eb90-94d4-454a-9360-dc99d53da53c"
         }
       ]
     },
@@ -3787,7 +3955,7 @@
             85.08
           ],
           "width_mm": 0.3048,
-          "uuid": "04c83be8-41ed-4095-9861-d078459b3dc8"
+          "uuid": "aa915f02-2ee4-4f94-88af-53fd0d5b64da"
         },
         {
           "kind": "via",
@@ -3798,27 +3966,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "675ff5e4-3ee4-4a2f-b556-6830f6f4ebd9"
+          "uuid": "16487238-9335-4542-ba03-bc943a6a44ee"
         }
       ]
     },
     {
       "net": "SRB1",
-      "pad": "R_SRB_SER.paste",
-      "gap_before_mm": -0.3285,
+      "pad": "R_SRB_SER.1",
+      "gap_before_mm": -0.2455,
       "from_mm": [
         130.16,
         89.144
       ],
       "to_mm": [
-        130.6002,
-        89.2376
+        130.51,
+        89.144
       ],
-      "moved_mm": 0.45,
+      "moved_mm": 0.35,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.9,
+      "new_copper_mm": 0.7,
       "stub_width_mm": 0.2032,
       "planes": [],
       "removed": [
@@ -3844,11 +4012,11 @@
             89.144
           ],
           "end_mm": [
-            130.6002,
-            89.2376
+            130.51,
+            89.144
           ],
           "width_mm": 0.2032,
-          "uuid": "3da28740-a770-4118-b188-6b321d70050d"
+          "uuid": "7ab8dd28-d9ef-43ad-87ce-79f0f0854b15"
         },
         {
           "kind": "track",
@@ -3859,22 +4027,22 @@
             89.144
           ],
           "end_mm": [
-            130.6002,
-            89.2376
+            130.51,
+            89.144
           ],
           "width_mm": 0.254,
-          "uuid": "db5530c7-940a-4745-8a5b-111099f9267a"
+          "uuid": "13bfe6e9-a9b4-4c9d-a454-6f130a36a565"
         },
         {
           "kind": "via",
           "net": "SRB1",
           "pos_mm": [
-            130.6002,
-            89.2376
+            130.51,
+            89.144
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "e335f130-3a4a-4714-bc95-073306f69af8"
+          "uuid": "75e669c6-a3cf-47a3-8157-a5e6d3a41414"
         }
       ]
     },
@@ -3887,14 +4055,14 @@
         94.148
       ],
       "to_mm": [
-        132.8505,
-        94.148
+        132.8005,
+        94.123
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -3935,8 +4103,8 @@
             94.148
           ],
           "end_mm": [
-            132.8505,
-            94.148
+            132.8005,
+            94.123
           ],
           "width_mm": 0.254,
           "uuid": "531e7f18-43e4-44df-b86d-d2b063cd51b0"
@@ -3946,15 +4114,15 @@
           "net": "IN7N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            94.148
+            132.8005,
+            94.123
           ],
           "end_mm": [
             133.5255,
             94.148
           ],
           "width_mm": 0.254,
-          "uuid": "bc77f66d-aae7-4e91-974a-600f7775adb4"
+          "uuid": "46d9cd09-cc63-4bf9-93e6-afd5c0a67a21"
         },
         {
           "kind": "track",
@@ -3965,22 +4133,22 @@
             94.148
           ],
           "end_mm": [
-            132.8505,
-            94.148
+            132.8005,
+            94.123
           ],
           "width_mm": 0.254,
-          "uuid": "59b587d4-23ac-4133-86b8-663be8359ea7"
+          "uuid": "ebaad9a0-1ece-4a09-9667-ca823f7e169d"
         },
         {
           "kind": "via",
           "net": "IN7N",
           "pos_mm": [
-            132.8505,
-            94.148
+            132.8005,
+            94.123
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "1dd58251-e7c0-493e-a90a-aa58fde9bfde"
+          "uuid": "40bbe362-cfc5-4408-ac1f-1fda761f8ce9"
         }
       ]
     },
@@ -3993,14 +4161,14 @@
         91.1505
       ],
       "to_mm": [
-        132.8505,
-        91.1505
+        132.8005,
+        91.1255
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4041,8 +4209,8 @@
             91.1505
           ],
           "end_mm": [
-            132.8505,
-            91.1505
+            132.8005,
+            91.1255
           ],
           "width_mm": 0.254,
           "uuid": "d1b42fa4-6a82-4082-96f7-094a5e8363a7"
@@ -4052,15 +4220,15 @@
           "net": "IN8N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            91.1505
+            132.8005,
+            91.1255
           ],
           "end_mm": [
             133.5255,
             91.1505
           ],
           "width_mm": 0.254,
-          "uuid": "225dcb02-68ca-4b92-b296-d00cea9be8aa"
+          "uuid": "a3dad026-6352-4360-8718-a49aaf1f9553"
         },
         {
           "kind": "track",
@@ -4071,22 +4239,22 @@
             91.1505
           ],
           "end_mm": [
-            132.8505,
-            91.1505
+            132.8005,
+            91.1255
           ],
           "width_mm": 0.254,
-          "uuid": "e4eb3f4f-6e4a-44f1-8bb0-102cc7d77d7b"
+          "uuid": "91b1a242-effd-4a3e-a128-42e8b32ade02"
         },
         {
           "kind": "via",
           "net": "IN8N",
           "pos_mm": [
-            132.8505,
-            91.1505
+            132.8005,
+            91.1255
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "617498d0-eb13-4cc5-976c-bacbd79bc829"
+          "uuid": "4447b99b-96f7-497f-9e1d-251043804587"
         }
       ]
     },
@@ -4099,14 +4267,14 @@
         97.145
       ],
       "to_mm": [
-        132.8505,
-        97.145
+        132.8005,
+        97.12
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4147,8 +4315,8 @@
             97.145
           ],
           "end_mm": [
-            132.8505,
-            97.145
+            132.8005,
+            97.12
           ],
           "width_mm": 0.254,
           "uuid": "2b153a78-646b-4266-98d0-7bb4bd0fe783"
@@ -4158,15 +4326,15 @@
           "net": "IN6N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            97.145
+            132.8005,
+            97.12
           ],
           "end_mm": [
             133.5255,
             97.145
           ],
           "width_mm": 0.254,
-          "uuid": "d6cd3e6b-82cd-4e1f-856b-277b89e147a0"
+          "uuid": "ad289c50-ec4e-44dd-abc1-f31f770fcbb6"
         },
         {
           "kind": "track",
@@ -4177,22 +4345,22 @@
             97.145
           ],
           "end_mm": [
-            132.8505,
-            97.145
+            132.8005,
+            97.12
           ],
           "width_mm": 0.254,
-          "uuid": "48206621-3056-49ae-96ca-1196543ffa88"
+          "uuid": "66d9ead2-74e6-43c9-bc5b-316837dfc3bd"
         },
         {
           "kind": "via",
           "net": "IN6N",
           "pos_mm": [
-            132.8505,
-            97.145
+            132.8005,
+            97.12
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "aa43f2ff-7d61-4b34-85ee-f5f763d80f87"
+          "uuid": "f3649c97-f275-4e6e-a0f7-82f2cbf62d63"
         }
       ]
     },
@@ -4205,14 +4373,14 @@
         100.142
       ],
       "to_mm": [
-        132.8505,
-        100.142
+        132.8005,
+        100.117
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4253,8 +4421,8 @@
             100.142
           ],
           "end_mm": [
-            132.8505,
-            100.142
+            132.8005,
+            100.117
           ],
           "width_mm": 0.254,
           "uuid": "c2ff2f45-4115-4ded-ad2b-63f569058d26"
@@ -4264,15 +4432,15 @@
           "net": "IN5N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            100.142
+            132.8005,
+            100.117
           ],
           "end_mm": [
             133.5255,
             100.142
           ],
           "width_mm": 0.254,
-          "uuid": "317e2cf7-51de-490e-979f-353f84312cd8"
+          "uuid": "4108a48b-f887-4dd7-9f2a-26563dd91d9d"
         },
         {
           "kind": "track",
@@ -4283,22 +4451,22 @@
             100.142
           ],
           "end_mm": [
-            132.8505,
-            100.142
+            132.8005,
+            100.117
           ],
           "width_mm": 0.254,
-          "uuid": "42551cda-19ce-4e94-bd1b-acda7080373f"
+          "uuid": "368fd4cd-9656-49cc-bdb6-1bcb8c3252e0"
         },
         {
           "kind": "via",
           "net": "IN5N",
           "pos_mm": [
-            132.8505,
-            100.142
+            132.8005,
+            100.117
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "bf7b4614-9f8d-49e3-a167-a54534ba95e2"
+          "uuid": "3a8f92d4-4c57-46f5-a776-d96cfa0481f6"
         }
       ]
     },
@@ -4311,14 +4479,14 @@
         103.1395
       ],
       "to_mm": [
-        132.8505,
-        103.1395
+        132.8005,
+        103.1145
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4359,8 +4527,8 @@
             103.1395
           ],
           "end_mm": [
-            132.8505,
-            103.1395
+            132.8005,
+            103.1145
           ],
           "width_mm": 0.254,
           "uuid": "95dab8c1-6234-47bc-9909-176f6f5fa365"
@@ -4370,15 +4538,15 @@
           "net": "IN4N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            103.1395
+            132.8005,
+            103.1145
           ],
           "end_mm": [
             133.5255,
             103.1395
           ],
           "width_mm": 0.254,
-          "uuid": "0437d34d-be7e-42a2-8908-a0fe7161b3e6"
+          "uuid": "294e338e-dc04-4b68-accb-cdb850b2c44e"
         },
         {
           "kind": "track",
@@ -4389,22 +4557,22 @@
             103.1395
           ],
           "end_mm": [
-            132.8505,
-            103.1395
+            132.8005,
+            103.1145
           ],
           "width_mm": 0.254,
-          "uuid": "1f1ea613-36ac-4577-ae9d-0c32111623c3"
+          "uuid": "51faeceb-00b1-4349-88ac-5de21f9a9610"
         },
         {
           "kind": "via",
           "net": "IN4N",
           "pos_mm": [
-            132.8505,
-            103.1395
+            132.8005,
+            103.1145
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "73184c7f-5d75-4108-919b-84d2a2649c68"
+          "uuid": "41c5d96a-42d3-4fcd-9cbf-129802530309"
         }
       ]
     },
@@ -4417,14 +4585,14 @@
         106.1365
       ],
       "to_mm": [
-        132.8505,
-        106.1365
+        132.8005,
+        106.1115
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4465,8 +4633,8 @@
             106.1365
           ],
           "end_mm": [
-            132.8505,
-            106.1365
+            132.8005,
+            106.1115
           ],
           "width_mm": 0.254,
           "uuid": "28663ec6-8112-4369-b98d-5083945ac5e6"
@@ -4476,15 +4644,15 @@
           "net": "IN3N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            106.1365
+            132.8005,
+            106.1115
           ],
           "end_mm": [
             133.5255,
             106.1365
           ],
           "width_mm": 0.254,
-          "uuid": "884efec6-4d22-4c2f-aa8f-a95c3cac298c"
+          "uuid": "94f8889f-370e-4fb0-aa47-39402ac7b256"
         },
         {
           "kind": "track",
@@ -4495,22 +4663,22 @@
             106.1365
           ],
           "end_mm": [
-            132.8505,
-            106.1365
+            132.8005,
+            106.1115
           ],
           "width_mm": 0.254,
-          "uuid": "fb23d2dc-39a7-4f6e-95c1-a7e8bed9c4bc"
+          "uuid": "7c8f29b1-ae9e-4724-a723-e0319dbdb1e5"
         },
         {
           "kind": "via",
           "net": "IN3N",
           "pos_mm": [
-            132.8505,
-            106.1365
+            132.8005,
+            106.1115
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "75af0861-1a44-4412-a3c5-18c1542ccfc3"
+          "uuid": "66d945e4-43eb-462f-b22b-807573172e06"
         }
       ]
     },
@@ -4523,14 +4691,14 @@
         109.134
       ],
       "to_mm": [
-        132.8505,
-        109.134
+        132.8005,
+        109.109
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4571,8 +4739,8 @@
             109.134
           ],
           "end_mm": [
-            132.8505,
-            109.134
+            132.8005,
+            109.109
           ],
           "width_mm": 0.254,
           "uuid": "14523c7b-7e1a-4b64-947b-a635aa911eee"
@@ -4582,15 +4750,15 @@
           "net": "IN2N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            109.134
+            132.8005,
+            109.109
           ],
           "end_mm": [
             133.5255,
             109.134
           ],
           "width_mm": 0.254,
-          "uuid": "5402c8e9-152d-46ec-a96b-70b39f15e518"
+          "uuid": "94835400-d233-436c-ad66-b01234d2a84a"
         },
         {
           "kind": "track",
@@ -4601,22 +4769,22 @@
             109.134
           ],
           "end_mm": [
-            132.8505,
-            109.134
+            132.8005,
+            109.109
           ],
           "width_mm": 0.254,
-          "uuid": "c3ced4e3-7c00-4066-97cc-c472a7972daf"
+          "uuid": "462fa0de-8e68-4c37-857d-806bc7e49767"
         },
         {
           "kind": "via",
           "net": "IN2N",
           "pos_mm": [
-            132.8505,
-            109.134
+            132.8005,
+            109.109
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "c84718a0-5352-470d-8707-9f600a89e734"
+          "uuid": "20eddf4f-dfc1-42c4-9a25-b200986ef25a"
         }
       ]
     },
@@ -4629,14 +4797,14 @@
         112.131
       ],
       "to_mm": [
-        132.8505,
-        112.131
+        132.8005,
+        112.106
       ],
-      "moved_mm": 0.675,
+      "moved_mm": 0.7254,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.675,
+      "new_copper_mm": 0.7254,
       "stub_width_mm": null,
       "planes": [],
       "removed": [
@@ -4677,8 +4845,8 @@
             112.131
           ],
           "end_mm": [
-            132.8505,
-            112.131
+            132.8005,
+            112.106
           ],
           "width_mm": 0.254,
           "uuid": "1af4a4be-1daf-40b3-80fc-fd199e0900c3"
@@ -4688,15 +4856,15 @@
           "net": "IN1N",
           "layer": "F.Cu",
           "start_mm": [
-            132.8505,
-            112.131
+            132.8005,
+            112.106
           ],
           "end_mm": [
             133.5255,
             112.131
           ],
           "width_mm": 0.254,
-          "uuid": "c3fc5214-0427-4651-b24b-0f3e00d82f4d"
+          "uuid": "69bb7f7c-116e-4c16-aa94-33387ea72e41"
         },
         {
           "kind": "track",
@@ -4707,22 +4875,22 @@
             112.131
           ],
           "end_mm": [
-            132.8505,
-            112.131
+            132.8005,
+            112.106
           ],
           "width_mm": 0.254,
-          "uuid": "4adda906-1e3f-4806-87bd-ce6322816879"
+          "uuid": "2c151622-c8a2-46bb-b320-ebb751056e86"
         },
         {
           "kind": "via",
           "net": "IN1N",
           "pos_mm": [
-            132.8505,
-            112.131
+            132.8005,
+            112.106
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "47054c09-783a-4a5b-86a7-dd0348cbeb85"
+          "uuid": "e29fa312-f77a-4823-bbd3-1cc66b482de0"
         }
       ]
     },
@@ -4774,7 +4942,7 @@
             93.2967
           ],
           "width_mm": 0.3048,
-          "uuid": "6aac539f-eb8f-4374-ba64-7cc36db8cb9b"
+          "uuid": "36359786-7e54-435d-b0f6-808bef4fc082"
         },
         {
           "kind": "via",
@@ -4785,7 +4953,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "57fa35b1-7ec5-44b1-bcc4-c82f101db6f0"
+          "uuid": "e33fecfe-d18f-4e93-9009-feb246fc010b"
         }
       ]
     },
@@ -4798,14 +4966,14 @@
         116.881
       ],
       "to_mm": [
-        144.3307,
-        117.1039
+        144.1405,
+        116.9805
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.1,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.6,
+      "new_copper_mm": 0.2,
       "stub_width_mm": 0.3048,
       "planes": [],
       "removed": [
@@ -4831,11 +4999,11 @@
             116.881
           ],
           "end_mm": [
-            144.3307,
-            117.1039
+            144.1405,
+            116.9805
           ],
           "width_mm": 0.3048,
-          "uuid": "710b5bba-eca9-49d4-892d-1a4fd3bc8fca"
+          "uuid": "a2f14685-78b1-41c7-836f-4abe0b577a1a"
         },
         {
           "kind": "track",
@@ -4846,22 +5014,22 @@
             116.881
           ],
           "end_mm": [
-            144.3307,
-            117.1039
+            144.1405,
+            116.9805
           ],
           "width_mm": 0.203,
-          "uuid": "b0ad5499-7f40-4399-9479-d082fb5e6ece"
+          "uuid": "8898fb83-be66-40d5-960d-f12df7f37235"
         },
         {
           "kind": "via",
           "net": "AVDD",
           "pos_mm": [
-            144.3307,
-            117.1039
+            144.1405,
+            116.9805
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "12c52c5a-142f-4885-a7d1-54910212d2e2"
+          "uuid": "e9c115fe-8367-4927-8b98-e4c2c152b71b"
         }
       ]
     },
@@ -4881,10 +5049,25 @@
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 1.3161,
+      "new_copper_mm": 0.7411,
       "stub_width_mm": 0.3048,
       "planes": [],
       "removed": [
+        {
+          "kind": "track",
+          "net": "AVDD",
+          "layer": "B.Cu",
+          "start_mm": [
+            145.095,
+            114.087
+          ],
+          "end_mm": [
+            145.0445,
+            112.9185
+          ],
+          "width_mm": 0.203,
+          "uuid": "1c2cf9b7-b1ca-4131-876f-2fe3bc6c9f2f"
+        },
         {
           "kind": "via",
           "net": "AVDD",
@@ -4911,7 +5094,7 @@
             113.3403
           ],
           "width_mm": 0.3048,
-          "uuid": "eef71a59-625c-41c2-b98a-8113e5ee6e1e"
+          "uuid": "06e90ffe-085e-4028-a7be-b1c2de4f0ad3"
         },
         {
           "kind": "track",
@@ -4926,7 +5109,7 @@
             112.766
           ],
           "width_mm": 0.203,
-          "uuid": "e4f74c4f-b202-4486-a2c2-707b4cdd463a"
+          "uuid": "258ff89f-d2f5-4e4a-846c-966fc57a696b"
         },
         {
           "kind": "track",
@@ -4941,22 +5124,37 @@
             112.766
           ],
           "width_mm": 0.203,
-          "uuid": "9ee21baa-5e07-401e-8287-0d0be2797dc5"
+          "uuid": "95cac17a-38f8-4a8a-b0b0-28e6f3d1ca3d"
         },
         {
           "kind": "track",
           "net": "AVDD",
           "layer": "B.Cu",
           "start_mm": [
-            145.0315,
-            112.766
+            145.095,
+            114.087
           ],
           "end_mm": [
             145.0591,
             113.3403
           ],
           "width_mm": 0.203,
-          "uuid": "97f1893d-891b-4229-b481-068f09bc1595"
+          "uuid": "1c2cf9b7-b1ca-4131-876f-2fe3bc6c9f2f"
+        },
+        {
+          "kind": "track",
+          "net": "AVDD",
+          "layer": "B.Cu",
+          "start_mm": [
+            145.0591,
+            113.3403
+          ],
+          "end_mm": [
+            145.0445,
+            112.9185
+          ],
+          "width_mm": 0.203,
+          "uuid": "379bef12-384c-4ff5-bfe3-96da8ef86dc8"
         },
         {
           "kind": "via",
@@ -4967,7 +5165,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "fe2ff7cf-6429-4ebe-906a-e03558ee9a59"
+          "uuid": "883cc40a-6cf9-4a14-adc2-1b104b397526"
         }
       ]
     },
@@ -4980,34 +5178,19 @@
         110.48
       ],
       "to_mm": [
-        142.1615,
-        111.005
+        142.2242,
+        111.0767
       ],
-      "moved_mm": 0.525,
+      "moved_mm": 0.6,
       "stage": "straight",
-      "tier": "2",
+      "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.2795,
-      "stub_width_mm": null,
+      "new_copper_mm": 0.8795,
+      "stub_width_mm": 0.3048,
       "planes": [
         "In2.Cu"
       ],
       "removed": [
-        {
-          "kind": "track",
-          "net": "AVDD",
-          "layer": "F.Cu",
-          "start_mm": [
-            142.1615,
-            111.0895
-          ],
-          "end_mm": [
-            142.1615,
-            110.7595
-          ],
-          "width_mm": 0.254,
-          "uuid": "7074566f-f401-459b-84c4-8597f8437c2d"
-        },
         {
           "kind": "via",
           "net": "AVDD",
@@ -5034,7 +5217,7 @@
             110.48
           ],
           "width_mm": 0.254,
-          "uuid": "22d6af90-2c8f-4757-8141-1cf46ff505a2"
+          "uuid": "73d9d941-21cf-4712-9232-012a3f712119"
         },
         {
           "kind": "track",
@@ -5042,40 +5225,25 @@
           "layer": "F.Cu",
           "start_mm": [
             142.1615,
-            111.0895
+            110.48
           ],
           "end_mm": [
-            142.1615,
-            111.005
+            142.2242,
+            111.0767
           ],
-          "width_mm": 0.254,
-          "uuid": "7074566f-f401-459b-84c4-8597f8437c2d"
-        },
-        {
-          "kind": "track",
-          "net": "AVDD",
-          "layer": "F.Cu",
-          "start_mm": [
-            142.1615,
-            111.005
-          ],
-          "end_mm": [
-            142.1615,
-            110.7595
-          ],
-          "width_mm": 0.254,
-          "uuid": "4d16afdb-cf58-4315-858d-2151a8611770"
+          "width_mm": 0.3048,
+          "uuid": "4eebe2c7-b313-4656-bb16-29cd2054fdaa"
         },
         {
           "kind": "via",
           "net": "AVDD",
           "pos_mm": [
-            142.1615,
-            111.005
+            142.2242,
+            111.0767
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "18996095-7dcf-4754-8e1d-4e3a5d8545ae"
+          "uuid": "7ebddd78-2b40-4284-b6ee-c48b5780b96f"
         }
       ]
     },
@@ -5127,7 +5295,7 @@
             109.8833
           ],
           "width_mm": 0.3048,
-          "uuid": "c47ab7a0-b0c3-4e99-aa8d-918d10875701"
+          "uuid": "cf2c303d-87d6-46a6-bc8b-3a36243fef59"
         },
         {
           "kind": "via",
@@ -5138,7 +5306,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "9a7fbb6d-a8bd-4120-975d-0bc26562c4f4"
+          "uuid": "4f6287d7-630a-4837-a853-3b6585a0a8a1"
         }
       ]
     },
@@ -5190,7 +5358,7 @@
             92.9795
           ],
           "width_mm": 0.3048,
-          "uuid": "942d758b-cc66-42e7-8e95-c9f4e173e240"
+          "uuid": "4528bdc4-c9e0-41aa-af3c-fde1378dc9ed"
         },
         {
           "kind": "via",
@@ -5201,7 +5369,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "ab84126d-6a66-4cef-b47e-c98e9f7bc001"
+          "uuid": "531c26d0-0351-47ef-a6b0-0d61f0252ff4"
         }
       ]
     },
@@ -5253,7 +5421,7 @@
             93.6908
           ],
           "width_mm": 0.3048,
-          "uuid": "11ac0194-9aab-4cb4-8cf3-a936b2d47354"
+          "uuid": "a552867d-8057-4763-96fc-a7b73b83bc0c"
         },
         {
           "kind": "via",
@@ -5264,7 +5432,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "ccef03ff-e245-478e-80ab-d58d643f07db"
+          "uuid": "6b284fd6-bfd4-4275-ac97-3c5fca69c547"
         }
       ]
     },
@@ -5316,7 +5484,7 @@
             91.9292
           ],
           "width_mm": 0.3048,
-          "uuid": "8b791fb8-f4c3-4f8b-b9ea-d9502f404216"
+          "uuid": "9b0c4297-b1d5-4d6a-a6f5-f47934944945"
         },
         {
           "kind": "via",
@@ -5327,7 +5495,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "4a5e6da5-892b-4e0d-9551-6a4234109a17"
+          "uuid": "ba5f8624-445c-4c51-a484-4494b66c0a91"
         }
       ]
     },
@@ -5379,7 +5547,7 @@
             92.7
           ],
           "width_mm": 0.3048,
-          "uuid": "2ccdf48c-2c6d-44f4-88bc-0b0ee2a04952"
+          "uuid": "5dcf57fd-e45d-437d-bbbc-8e9e43f87968"
         },
         {
           "kind": "via",
@@ -5390,7 +5558,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "b26bd32e-2af9-4c51-9de3-a0cb56b01041"
+          "uuid": "f84bb81b-c54c-495c-8c99-056028f64b47"
         }
       ]
     },
@@ -5442,7 +5610,7 @@
             113.3627
           ],
           "width_mm": 0.3048,
-          "uuid": "3997e902-6ebe-4499-a89a-2dd08fbd279e"
+          "uuid": "df423a48-8230-478b-a881-fd5f06ce4a37"
         },
         {
           "kind": "via",
@@ -5453,7 +5621,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7c897921-e22b-41d1-b72a-17c711856331"
+          "uuid": "0c15ca27-8de0-4e31-acd0-e1afecdd1c32"
         }
       ]
     },
@@ -5518,7 +5686,7 @@
             109.007
           ],
           "width_mm": 0.203,
-          "uuid": "cffa6dcd-63ab-4750-9ace-ba466ab28fe7"
+          "uuid": "21f99184-ed5f-4363-af44-b365d096cda8"
         },
         {
           "kind": "track",
@@ -5533,7 +5701,7 @@
             109.007
           ],
           "width_mm": 0.254,
-          "uuid": "26e9d0ed-9b25-4a69-a686-ba32c9d6170f"
+          "uuid": "487bfd51-d846-42db-be05-3a52db371516"
         },
         {
           "kind": "track",
@@ -5548,7 +5716,7 @@
             109.6313
           ],
           "width_mm": 0.3048,
-          "uuid": "2f65f253-afb9-475f-a434-11d11356653d"
+          "uuid": "204c7a1a-9d80-4219-a537-dc5cd18f45f1"
         },
         {
           "kind": "track",
@@ -5574,7 +5742,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "ed8e7a76-9798-4648-af61-302a3c75f3c2"
+          "uuid": "cba7d2c0-f8bb-4cc7-b6be-026db1141f93"
         }
       ]
     },
@@ -5626,7 +5794,7 @@
             112.1693
           ],
           "width_mm": 0.3048,
-          "uuid": "01f54a64-8370-4873-8bcc-1a556daba066"
+          "uuid": "1ba28063-3a16-4ff3-a425-24bddf52d8cd"
         },
         {
           "kind": "via",
@@ -5637,7 +5805,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "c5d072ac-5605-4c70-86ca-eb61481bb5da"
+          "uuid": "f8ee1fc8-e7d9-4809-bdbd-f6083cd032a1"
         }
       ]
     },
@@ -5689,7 +5857,7 @@
             114.4782
           ],
           "width_mm": 0.3048,
-          "uuid": "e0001a43-7018-4c98-982b-c84499cceef9"
+          "uuid": "659f75fc-12e7-45a0-9845-2cbf9168cd64"
         },
         {
           "kind": "track",
@@ -5704,7 +5872,7 @@
             114.4782
           ],
           "width_mm": 0.254,
-          "uuid": "7482792e-0e58-468f-b904-c8763ecb5259"
+          "uuid": "6664d1d3-3a72-484e-9ae8-8bf9bc95c496"
         },
         {
           "kind": "via",
@@ -5715,7 +5883,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "c0a159a8-dfc0-4bf2-838c-10072f574c88"
+          "uuid": "6481c44f-530c-4074-b628-0eff478d8bac"
         }
       ]
     },
@@ -5767,7 +5935,7 @@
             112.1693
           ],
           "width_mm": 0.3048,
-          "uuid": "efc415cb-e3ce-4e6f-a0a7-9084ec77817a"
+          "uuid": "ff812ecf-70b9-422c-9ce9-3f4738213915"
         },
         {
           "kind": "via",
@@ -5778,7 +5946,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "acdeb746-ddf2-40be-a8d4-33feebb51eba"
+          "uuid": "aa9c3f1d-4a00-459e-8be5-576cc71b83e1"
         }
       ]
     },
@@ -5830,7 +5998,7 @@
             113.3604
           ],
           "width_mm": 0.3048,
-          "uuid": "2ca60aa0-2251-4a31-bdf2-cd24dbc4a908"
+          "uuid": "d352aea2-7455-4320-b9d2-fe9eec4a2518"
         },
         {
           "kind": "via",
@@ -5841,7 +6009,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "84534d0d-b9f3-4332-8bda-a134f3b11787"
+          "uuid": "3f2d4d73-2952-4261-9d20-47dae63c5108"
         }
       ]
     },
@@ -5893,7 +6061,7 @@
             116.539
           ],
           "width_mm": 0.3048,
-          "uuid": "e0e62930-b0f3-46a8-a371-8cc4dd03f602"
+          "uuid": "30e0fd18-59cb-4aaa-9cc8-0b2a5e93995c"
         },
         {
           "kind": "via",
@@ -5904,7 +6072,100 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "6955aa83-1cf4-427c-9704-617f9755fdcb"
+          "uuid": "2ecd3933-7432-4b8d-8d57-4cc8c5ed6a75"
+        }
+      ]
+    },
+    {
+      "net": "AVSS",
+      "pad": "C_VCAP1.2",
+      "gap_before_mm": 0.0327,
+      "from_mm": [
+        151.9405,
+        112.766
+      ],
+      "to_mm": [
+        151.9173,
+        112.6947
+      ],
+      "moved_mm": 0.075,
+      "stage": "straight",
+      "tier": "1",
+      "clearance_mm": 0.127,
+      "new_copper_mm": 0.23,
+      "stub_width_mm": 0.3048,
+      "planes": [
+        "In2.Cu"
+      ],
+      "removed": [
+        {
+          "kind": "via",
+          "net": "AVSS",
+          "pos_mm": [
+            151.9405,
+            112.766
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "dfc68a89-5e66-4eab-ac85-62984bffd641"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "track",
+          "net": "AVSS",
+          "layer": "F.Cu",
+          "start_mm": [
+            151.943,
+            112.766
+          ],
+          "end_mm": [
+            151.9405,
+            112.766
+          ],
+          "width_mm": 0.203,
+          "uuid": "8093d3da-bc0e-4ac0-b364-c52d3ddebfe5"
+        },
+        {
+          "kind": "track",
+          "net": "AVSS",
+          "layer": "F.Cu",
+          "start_mm": [
+            152.093,
+            112.766
+          ],
+          "end_mm": [
+            151.9405,
+            112.766
+          ],
+          "width_mm": 0.203,
+          "uuid": "970c68e9-807e-4938-b3cd-22ecbfeb0682"
+        },
+        {
+          "kind": "track",
+          "net": "AVSS",
+          "layer": "F.Cu",
+          "start_mm": [
+            151.9405,
+            112.766
+          ],
+          "end_mm": [
+            151.9173,
+            112.6947
+          ],
+          "width_mm": 0.3048,
+          "uuid": "67dd3ded-a027-48be-a144-389cd71ee679"
+        },
+        {
+          "kind": "via",
+          "net": "AVSS",
+          "pos_mm": [
+            151.9173,
+            112.6947
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "cf89ec74-d595-4050-b9cd-4e5a1d29924a"
         }
       ]
     },
@@ -5917,19 +6178,34 @@
         115.217
       ],
       "to_mm": [
-        149.1499,
-        114.6452
+        149.21,
+        114.642
       ],
       "moved_mm": 0.575,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.575,
-      "stub_width_mm": 0.3048,
+      "new_copper_mm": 0.0,
+      "stub_width_mm": null,
       "planes": [
         "In2.Cu"
       ],
       "removed": [
+        {
+          "kind": "track",
+          "net": "AVSS",
+          "layer": "F.Cu",
+          "start_mm": [
+            149.21,
+            114.544
+          ],
+          "end_mm": [
+            149.36,
+            115.09
+          ],
+          "width_mm": 0.254,
+          "uuid": "72aa0182-3960-483b-945f-9ce19797cbc5"
+        },
         {
           "kind": "via",
           "net": "AVSS",
@@ -5949,25 +6225,40 @@
           "layer": "F.Cu",
           "start_mm": [
             149.21,
-            115.217
+            114.544
           ],
           "end_mm": [
-            149.1499,
-            114.6452
+            149.21,
+            114.642
           ],
-          "width_mm": 0.3048,
-          "uuid": "f7cd21b2-a337-4254-9a63-8fe5811c3c71"
+          "width_mm": 0.254,
+          "uuid": "72aa0182-3960-483b-945f-9ce19797cbc5"
+        },
+        {
+          "kind": "track",
+          "net": "AVSS",
+          "layer": "F.Cu",
+          "start_mm": [
+            149.21,
+            114.642
+          ],
+          "end_mm": [
+            149.36,
+            115.09
+          ],
+          "width_mm": 0.254,
+          "uuid": "1e9f51d8-ae85-44cd-9cbb-8b359bdb43d1"
         },
         {
           "kind": "via",
           "net": "AVSS",
           "pos_mm": [
-            149.1499,
-            114.6452
+            149.21,
+            114.642
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "c181400e-07f2-41e6-9dfb-5e78d6f1062a"
+          "uuid": "7418b949-c702-45d1-adae-bf0cc1704ef5"
         }
       ]
     },
@@ -6017,7 +6308,7 @@
             116.527
           ],
           "width_mm": 0.3048,
-          "uuid": "7554d401-60aa-488c-8e17-2f70f916fbd4"
+          "uuid": "ce060616-02ee-4b6e-8084-abcbe95b1c05"
         },
         {
           "kind": "track",
@@ -6032,7 +6323,7 @@
             116.527
           ],
           "width_mm": 0.2032,
-          "uuid": "ef5961ad-a107-4a9a-a04f-5b4bedb565d6"
+          "uuid": "23c87f53-3550-4e50-b318-ab16a4176306"
         },
         {
           "kind": "via",
@@ -6043,98 +6334,7 @@
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "3173aec7-a945-4a18-8559-a6de66822cf9"
-        }
-      ]
-    },
-    {
-      "net": "ADS_RESET_N",
-      "pad": "U_MCU.14",
-      "gap_before_mm": -0.6763,
-      "from_mm": [
-        172.4635,
-        106.797
-      ],
-      "to_mm": [
-        173.2135,
-        106.797
-      ],
-      "moved_mm": 0.75,
-      "stage": "straight",
-      "tier": "3",
-      "clearance_mm": 0.1,
-      "new_copper_mm": 1.513,
-      "stub_width_mm": 0.2032,
-      "planes": [],
-      "removed": [
-        {
-          "kind": "via",
-          "net": "ADS_RESET_N",
-          "pos_mm": [
-            172.4635,
-            106.797
-          ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "8c6fbd6b-8b94-491c-ab3f-a12b03a7f9e6"
-        }
-      ],
-      "laid": [
-        {
-          "kind": "track",
-          "net": "ADS_RESET_N",
-          "layer": "F.Cu",
-          "start_mm": [
-            172.4635,
-            106.797
-          ],
-          "end_mm": [
-            173.2135,
-            106.797
-          ],
-          "width_mm": 0.2032,
-          "uuid": "5252bfb3-b5ce-47d1-8997-9b8bc28d3b6b"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_RESET_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.4765,
-            106.797
-          ],
-          "end_mm": [
-            172.4635,
-            106.797
-          ],
-          "width_mm": 0.203,
-          "uuid": "dbc81a87-1cbd-4f79-82c8-f0ec7c2cb2b3"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_RESET_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.4635,
-            106.797
-          ],
-          "end_mm": [
-            173.2135,
-            106.797
-          ],
-          "width_mm": 0.203,
-          "uuid": "4c8f5e46-6934-4b35-85d0-1a885ab66209"
-        },
-        {
-          "kind": "via",
-          "net": "ADS_RESET_N",
-          "pos_mm": [
-            173.2135,
-            106.797
-          ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "f70d89e3-48c1-4704-a660-1907f21ae6bf"
+          "uuid": "9a6c31e5-e9c8-42a4-bc9f-bc7b3560065b"
         }
       ]
     },
@@ -6184,7 +6384,7 @@
             107.8937
           ],
           "width_mm": 0.2032,
-          "uuid": "78b09688-08ec-4ab5-bdf3-35a5d9554659"
+          "uuid": "8a16420e-06df-4681-a0df-34adedca5497"
         },
         {
           "kind": "track",
@@ -6199,7 +6399,7 @@
             107.8937
           ],
           "width_mm": 0.203,
-          "uuid": "b0c9196b-32be-4a93-8d9e-c3da34f7ad4c"
+          "uuid": "31d8147c-278f-43ed-a9d3-a96090ba6bce"
         },
         {
           "kind": "via",
@@ -6210,7 +6410,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "6007a8f2-cb38-4c7e-b2cb-cbfaa2215fbb"
+          "uuid": "2eaa1588-13b6-41aa-8fe3-b31ea203955d"
         }
       ]
     },
@@ -6260,7 +6460,7 @@
             89.8926
           ],
           "width_mm": 0.2032,
-          "uuid": "7fbfe334-6274-48bb-9146-b525f1aa805d"
+          "uuid": "a03439a0-766b-4591-b87d-7d9dddb6ce8f"
         },
         {
           "kind": "track",
@@ -6275,7 +6475,7 @@
             89.8926
           ],
           "width_mm": 0.203,
-          "uuid": "95892075-b2e8-46c5-8f3f-25ed4c48397a"
+          "uuid": "ea47f39d-77da-4aed-8077-6ac226966013"
         },
         {
           "kind": "via",
@@ -6286,27 +6486,27 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "f0e1ff0c-019b-4f5e-a778-66f0483a087c"
+          "uuid": "f1897191-147a-4796-935d-42f72fef308b"
         }
       ]
     },
     {
       "net": "VCAP3",
-      "pad": "U_ADS.paste",
-      "gap_before_mm": -0.1119,
+      "pad": "U_ADS.55",
+      "gap_before_mm": -0.0872,
       "from_mm": [
         146.912,
         97.564
       ],
       "to_mm": [
-        147.0047,
-        97.8493
+        146.9738,
+        97.7542
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.2,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.6,
+      "new_copper_mm": 0.4,
       "stub_width_mm": 0.254,
       "planes": [],
       "removed": [
@@ -6332,11 +6532,11 @@
             97.564
           ],
           "end_mm": [
-            147.0047,
-            97.8493
+            146.9738,
+            97.7542
           ],
           "width_mm": 0.254,
-          "uuid": "8761beec-d2b7-402a-80b1-d25805c281cc"
+          "uuid": "1e05a04f-ebc5-4618-a847-d94f0b4fc564"
         },
         {
           "kind": "track",
@@ -6347,45 +6547,181 @@
             97.564
           ],
           "end_mm": [
-            147.0047,
-            97.8493
+            146.9738,
+            97.7542
           ],
           "width_mm": 0.2032,
-          "uuid": "2943e2a0-6c8a-4930-96f6-b398cbb9a8d6"
+          "uuid": "76edb854-aaac-4c88-b68d-b6d396d4f62a"
         },
         {
           "kind": "via",
           "net": "VCAP3",
           "pos_mm": [
-            147.0047,
-            97.8493
+            146.9738,
+            97.7542
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "f711e128-cca6-42bf-917f-69ccfc2346ee"
+          "uuid": "4f281761-92c1-418f-bd83-014f8971fdce"
+        }
+      ]
+    },
+    {
+      "net": "VCAP3",
+      "pad": "C_VCAP3.1",
+      "gap_before_mm": 0.0548,
+      "from_mm": [
+        144.118,
+        95.19
+      ],
+      "to_mm": [
+        144.1232,
+        95.2397
+      ],
+      "moved_mm": 0.05,
+      "stage": "straight",
+      "tier": "1",
+      "clearance_mm": 0.127,
+      "new_copper_mm": 0.0,
+      "stub_width_mm": null,
+      "planes": [],
+      "removed": [
+        {
+          "kind": "track",
+          "net": "VCAP3",
+          "layer": "F.Cu",
+          "start_mm": [
+            144.118,
+            94.682
+          ],
+          "end_mm": [
+            144.118,
+            95.19
+          ],
+          "width_mm": 0.2032,
+          "uuid": "5d692870-6adf-4e06-b414-f4251b38c3d9"
+        },
+        {
+          "kind": "track",
+          "net": "VCAP3",
+          "layer": "B.Cu",
+          "start_mm": [
+            144.118,
+            95.19
+          ],
+          "end_mm": [
+            146.912,
+            97.564
+          ],
+          "width_mm": 0.2032,
+          "uuid": "a4dfc034-47b2-4c26-9b04-e1a32e997aef"
+        },
+        {
+          "kind": "via",
+          "net": "VCAP3",
+          "pos_mm": [
+            144.118,
+            95.19
+          ],
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "5c5fb47b-6bd0-4fba-a374-0b734820b6d0"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "track",
+          "net": "VCAP3",
+          "layer": "F.Cu",
+          "start_mm": [
+            144.118,
+            94.682
+          ],
+          "end_mm": [
+            144.1232,
+            95.2397
+          ],
+          "width_mm": 0.2032,
+          "uuid": "5d692870-6adf-4e06-b414-f4251b38c3d9"
+        },
+        {
+          "kind": "track",
+          "net": "VCAP3",
+          "layer": "F.Cu",
+          "start_mm": [
+            144.1232,
+            95.2397
+          ],
+          "end_mm": [
+            144.118,
+            95.19
+          ],
+          "width_mm": 0.2032,
+          "uuid": "bae612eb-0d2c-4870-8a54-0585e16724f6"
+        },
+        {
+          "kind": "track",
+          "net": "VCAP3",
+          "layer": "B.Cu",
+          "start_mm": [
+            144.1232,
+            95.2397
+          ],
+          "end_mm": [
+            146.912,
+            97.564
+          ],
+          "width_mm": 0.2032,
+          "uuid": "a4dfc034-47b2-4c26-9b04-e1a32e997aef"
+        },
+        {
+          "kind": "via",
+          "net": "VCAP3",
+          "pos_mm": [
+            144.1232,
+            95.2397
+          ],
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "26ec5455-fcf3-4231-98c3-3f7bd5568c5d"
         }
       ]
     },
     {
       "net": "BIAS_OUT_INT",
-      "pad": "R_BIAS_SER.paste",
-      "gap_before_mm": 0.0015,
+      "pad": "R_BIAS_SER.1",
+      "gap_before_mm": 0.0844,
       "from_mm": [
         130.49,
         87.7215
       ],
       "to_mm": [
-        130.79,
-        87.7215
+        130.5102,
+        87.7362
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.025,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
-      "stub_width_mm": 0.2032,
+      "new_copper_mm": 0.0,
+      "stub_width_mm": null,
       "planes": [],
       "removed": [
+        {
+          "kind": "track",
+          "net": "BIAS_OUT_INT",
+          "layer": "F.Cu",
+          "start_mm": [
+            130.49,
+            87.7215
+          ],
+          "end_mm": [
+            130.16,
+            87.5445
+          ],
+          "width_mm": 0.203,
+          "uuid": "df8e0062-93af-49e8-b769-bae877fd9b20"
+        },
         {
           "kind": "track",
           "net": "BIAS_OUT_INT",
@@ -6423,19 +6759,34 @@
             87.7215
           ],
           "end_mm": [
-            130.79,
-            87.7215
+            130.5102,
+            87.7362
           ],
-          "width_mm": 0.2032,
-          "uuid": "186822c9-8bb6-4382-8ec4-97a64e926c8a"
+          "width_mm": 0.203,
+          "uuid": "df8e0062-93af-49e8-b769-bae877fd9b20"
+        },
+        {
+          "kind": "track",
+          "net": "BIAS_OUT_INT",
+          "layer": "F.Cu",
+          "start_mm": [
+            130.5102,
+            87.7362
+          ],
+          "end_mm": [
+            130.16,
+            87.5445
+          ],
+          "width_mm": 0.203,
+          "uuid": "9d951524-1cbc-45f8-ae8f-107486db767c"
         },
         {
           "kind": "track",
           "net": "BIAS_OUT_INT",
           "layer": "B.Cu",
           "start_mm": [
-            130.79,
-            87.7215
+            130.5102,
+            87.7362
           ],
           "end_mm": [
             148.702,
@@ -6448,12 +6799,12 @@
           "kind": "via",
           "net": "BIAS_OUT_INT",
           "pos_mm": [
-            130.79,
-            87.7215
+            130.5102,
+            87.7362
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "2c3e61cc-c658-479c-8a62-83c1ac17d022"
+          "uuid": "5ed84f99-4513-4b77-9d63-1fdd2abd424b"
         }
       ]
     },
@@ -6466,14 +6817,14 @@
         85.7405
       ],
       "to_mm": [
-        171.4417,
-        85.8905
+        171.6615,
+        85.8213
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.0901,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.0901,
       "stub_width_mm": 0.2032,
       "planes": [],
       "removed": [
@@ -6514,19 +6865,19 @@
             85.7405
           ],
           "end_mm": [
-            171.4417,
-            85.8905
+            171.6615,
+            85.8213
           ],
           "width_mm": 0.2032,
-          "uuid": "b1667279-f562-4d9f-899c-ffa36687f5ab"
+          "uuid": "923c17db-5072-402b-8623-4d16b5f5d167"
         },
         {
           "kind": "track",
           "net": "SPI_SCK",
           "layer": "B.Cu",
           "start_mm": [
-            171.4417,
-            85.8905
+            171.6615,
+            85.8213
           ],
           "end_mm": [
             166.1135,
@@ -6539,12 +6890,12 @@
           "kind": "via",
           "net": "SPI_SCK",
           "pos_mm": [
-            171.4417,
-            85.8905
+            171.6615,
+            85.8213
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "eb3accd6-f50c-4f8c-ab7b-b059fe438e93"
+          "uuid": "d92e1966-400f-47f8-bacd-521464915ec7"
         }
       ]
     },
@@ -6594,7 +6945,7 @@
             89.8926
           ],
           "width_mm": 0.2032,
-          "uuid": "b885a637-0a1e-426c-a775-279b14c184f3"
+          "uuid": "f66b4d2d-af98-4f77-94a4-f4dca3fa4b22"
         },
         {
           "kind": "track",
@@ -6609,7 +6960,7 @@
             89.8926
           ],
           "width_mm": 0.203,
-          "uuid": "9ab5fb93-38ca-43bb-9c20-49cfb736f628"
+          "uuid": "7f77fdf5-df6c-4bc3-b26e-d9200c647b6e"
         },
         {
           "kind": "via",
@@ -6620,7 +6971,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "388252ba-36f0-404a-921e-b1d3ded09759"
+          "uuid": "e3185923-f6f3-4fe1-b99d-cb0b82f39b3d"
         }
       ]
     },
@@ -6670,7 +7021,7 @@
             101.7425
           ],
           "width_mm": 0.2032,
-          "uuid": "9b701086-97af-4bea-b884-bd64fbe8ad1a"
+          "uuid": "f8d0ea7d-161b-4d73-8ae5-b950b8740139"
         },
         {
           "kind": "track",
@@ -6685,7 +7036,7 @@
             101.7425
           ],
           "width_mm": 0.203,
-          "uuid": "42b9ca43-dab6-4747-8a6b-5c859cb646b6"
+          "uuid": "58aee730-de4e-4869-a765-0aa75971029d"
         },
         {
           "kind": "via",
@@ -6696,7 +7047,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "e2890c97-caef-468a-bf00-ff4c10f0e046"
+          "uuid": "e793d53b-204f-45ac-8144-675eba685562"
         }
       ]
     },
@@ -6709,17 +7060,32 @@
         111.0895
       ],
       "to_mm": [
-        160.2095,
-        110.9831
+        160.0281,
+        110.9984
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.1346,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.4134,
-      "stub_width_mm": 0.2032,
+      "new_copper_mm": 0.1134,
+      "stub_width_mm": null,
       "planes": [],
       "removed": [
+        {
+          "kind": "track",
+          "net": "CH_RTS_N",
+          "layer": "F.Cu",
+          "start_mm": [
+            160.259,
+            110.988
+          ],
+          "end_mm": [
+            159.9795,
+            110.988
+          ],
+          "width_mm": 0.203,
+          "uuid": "2aa92d83-ef13-4532-bec7-7f14851bee20"
+        },
         {
           "kind": "track",
           "net": "CH_RTS_N",
@@ -6761,22 +7127,37 @@
             111.0895
           ],
           "width_mm": 0.203,
-          "uuid": "c90ec95d-a53b-4b7f-9fc5-b501cad2ebd9"
+          "uuid": "14b98bfb-6dd6-41c8-9bc9-e134ac8c7e0c"
         },
         {
           "kind": "track",
           "net": "CH_RTS_N",
           "layer": "F.Cu",
           "start_mm": [
-            159.929,
-            111.0895
+            160.259,
+            110.988
           ],
           "end_mm": [
-            160.2095,
-            110.9831
+            160.0281,
+            110.9984
           ],
-          "width_mm": 0.2032,
-          "uuid": "9c229f2e-a78c-4ffd-887c-267ea9b6e2ca"
+          "width_mm": 0.203,
+          "uuid": "2aa92d83-ef13-4532-bec7-7f14851bee20"
+        },
+        {
+          "kind": "track",
+          "net": "CH_RTS_N",
+          "layer": "F.Cu",
+          "start_mm": [
+            160.0281,
+            110.9984
+          ],
+          "end_mm": [
+            159.9795,
+            110.988
+          ],
+          "width_mm": 0.203,
+          "uuid": "18b554d6-c0f9-4c0a-9489-3ea116974d68"
         },
         {
           "kind": "track",
@@ -6787,8 +7168,8 @@
             111.0895
           ],
           "end_mm": [
-            160.2095,
-            110.9831
+            160.0281,
+            110.9984
           ],
           "width_mm": 0.203,
           "uuid": "01ae0a24-9ff8-4e59-9ab5-6de024ccd085"
@@ -6798,26 +7179,26 @@
           "net": "CH_RTS_N",
           "layer": "B.Cu",
           "start_mm": [
-            160.2095,
-            110.9831
+            160.0281,
+            110.9984
           ],
           "end_mm": [
             162.875,
             109.972
           ],
           "width_mm": 0.203,
-          "uuid": "8d0d85c2-adde-4bf3-a47a-5c0eaf0a56af"
+          "uuid": "b67b3ff3-3a8c-4236-a629-af8a4bb37f92"
         },
         {
           "kind": "via",
           "net": "CH_RTS_N",
           "pos_mm": [
-            160.2095,
-            110.9831
+            160.0281,
+            110.9984
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7f137626-8604-47b8-adb5-9ee3b457a34b"
+          "uuid": "8c7f6015-895f-4713-95b8-7c4c59b61f8f"
         }
       ]
     },
@@ -6869,7 +7250,7 @@
             122.0625
           ],
           "width_mm": 0.3048,
-          "uuid": "295f7f70-6439-44e6-8046-7d9694ade338"
+          "uuid": "4059ac7e-59b0-48b4-b231-d031d28309ac"
         },
         {
           "kind": "via",
@@ -6880,7 +7261,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "79866d6d-16b7-4380-8247-d8406f23aede"
+          "uuid": "095c2af8-7463-40c8-b042-167c69673649"
         }
       ]
     },
@@ -6893,14 +7274,14 @@
         123.434
       ],
       "to_mm": [
-        155.7607,
-        123.6569
+        155.5835,
+        123.6578
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.225,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.3,
+      "new_copper_mm": 0.225,
       "stub_width_mm": 0.3048,
       "planes": [
         "In2.Cu"
@@ -6928,22 +7309,22 @@
             123.434
           ],
           "end_mm": [
-            155.7607,
-            123.6569
+            155.5835,
+            123.6578
           ],
           "width_mm": 0.3048,
-          "uuid": "28bc9075-6e55-4e96-9821-ff68c52d2d38"
+          "uuid": "6afaaaa1-2647-4891-9d17-84200c427407"
         },
         {
           "kind": "via",
           "net": "USB_5V",
           "pos_mm": [
-            155.7607,
-            123.6569
+            155.5835,
+            123.6578
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "a2fd9d29-0488-49b2-8393-fdcbd147a991"
+          "uuid": "b44e913e-996b-42b1-a0e1-f3f3d9330183"
         }
       ]
     },
@@ -6995,7 +7376,7 @@
             112.817
           ],
           "width_mm": 0.3048,
-          "uuid": "e09331c7-d86f-4f70-8f2e-1cfee8ff7169"
+          "uuid": "f6906fdf-5ba2-4c43-ab81-fa2bd4ebc7c9"
         },
         {
           "kind": "via",
@@ -7006,7 +7387,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "f44c3e38-4159-4477-acfa-d0df2ef1a8eb"
+          "uuid": "c169abfd-f58e-479c-8aa5-1d08cfd51aca"
         }
       ]
     },
@@ -7058,7 +7439,7 @@
             120.64
           ],
           "width_mm": 0.3048,
-          "uuid": "973789ff-6a54-46af-a63d-50e5552c573f"
+          "uuid": "aee0b2d2-ce08-4346-96ff-daa41971ab04"
         },
         {
           "kind": "via",
@@ -7069,7 +7450,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "dcfcdb96-9547-4961-b409-9df4cf811a3a"
+          "uuid": "29fdce1c-9b3f-43b1-a8e5-3b69d8b6e2fb"
         }
       ]
     },
@@ -7121,7 +7502,7 @@
             98.7786
           ],
           "width_mm": 0.3048,
-          "uuid": "5f0f2663-15a3-4f67-88d0-a8ebf7a5dd85"
+          "uuid": "095e5284-1361-4145-af82-346a98a3e3b3"
         },
         {
           "kind": "via",
@@ -7132,7 +7513,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "41cc6ac4-c7f1-4234-83c4-424642c9de45"
+          "uuid": "4123e858-e315-44c8-8939-bc72c5e1277a"
         }
       ]
     },
@@ -7184,7 +7565,7 @@
             124.0871
           ],
           "width_mm": 0.3048,
-          "uuid": "8a6b2989-0c88-4c6c-b070-21a3b05890c2"
+          "uuid": "f57bad88-5a57-41af-9e5b-0239170175ff"
         },
         {
           "kind": "via",
@@ -7195,7 +7576,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "15a54261-d631-424b-b388-829625ced083"
+          "uuid": "ef1001b5-2ad9-42f6-b13e-de43a85b2592"
         }
       ]
     },
@@ -7247,7 +7628,7 @@
             100.7391
           ],
           "width_mm": 0.3048,
-          "uuid": "9effeb0d-fd90-47d1-a787-2235dd537a6c"
+          "uuid": "6f88a924-d27b-450a-a3aa-ce6ceddf116f"
         },
         {
           "kind": "via",
@@ -7258,7 +7639,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "302ef670-2817-4b3f-a234-c8e2b599eb52"
+          "uuid": "bea2f1c1-ddd0-497a-80d0-a364242580ea"
         }
       ]
     },
@@ -7310,7 +7691,7 @@
             118.608
           ],
           "width_mm": 0.3048,
-          "uuid": "b982a6a9-e989-49cc-b7e3-eaec6a359eec"
+          "uuid": "a0d6da76-cdec-4307-b0f7-66aa85902bdd"
         },
         {
           "kind": "via",
@@ -7321,7 +7702,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "88435189-f231-4c71-b536-56a20e174213"
+          "uuid": "5dcedc64-2b4f-44d6-82ed-0717f1865a05"
         }
       ]
     },
@@ -7373,7 +7754,7 @@
             96.929
           ],
           "width_mm": 0.3048,
-          "uuid": "35801d1d-f6e4-45e7-91e7-b77403030cd0"
+          "uuid": "a82dba34-b89f-4a79-83bc-60bcbd0cac05"
         },
         {
           "kind": "via",
@@ -7384,7 +7765,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "731ba63d-d317-4e80-a9f7-17bfba64c03e"
+          "uuid": "4eeb959d-1c58-4eb9-8280-ed60acedb951"
         }
       ]
     },
@@ -7434,7 +7815,7 @@
             120.1729
           ],
           "width_mm": 0.3048,
-          "uuid": "f025cc7f-26ad-436a-9223-bef6f189e608"
+          "uuid": "0a756733-2e51-456f-ade1-7f4af6bb9e2c"
         },
         {
           "kind": "track",
@@ -7449,7 +7830,7 @@
             120.1729
           ],
           "width_mm": 0.203,
-          "uuid": "e4aa6e42-06a9-4ed2-aca9-e44d4101da7e"
+          "uuid": "e600ec08-944f-44b2-a0c4-8b4beff17741"
         },
         {
           "kind": "via",
@@ -7460,83 +7841,83 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "a7fddc22-e601-4289-811f-031ba93af5b0"
+          "uuid": "3a396b7a-76c3-4f21-be77-9e174a2085ba"
         }
       ]
     },
     {
-      "net": "V_NLDO_IN",
-      "pad": "FB4.2",
-      "gap_before_mm": -0.7685,
+      "net": "USB_CC1",
+      "pad": "J1.4",
+      "gap_before_mm": 0.0493,
       "from_mm": [
-        141.031,
-        122.672
+        176.5935,
+        112.268
       ],
       "to_mm": [
-        141.838,
-        122.8435
+        176.6669,
+        112.2524
       ],
-      "moved_mm": 0.825,
+      "moved_mm": 0.075,
       "stage": "straight",
-      "tier": "4",
-      "clearance_mm": 0.0889,
-      "new_copper_mm": 1.65,
-      "stub_width_mm": 0.3048,
+      "tier": "3",
+      "clearance_mm": 0.1,
+      "new_copper_mm": 0.15,
+      "stub_width_mm": 0.2032,
       "planes": [],
       "removed": [
         {
           "kind": "via",
-          "net": "V_NLDO_IN",
+          "net": "USB_CC1",
           "pos_mm": [
-            141.031,
-            122.672
+            176.5935,
+            112.268
           ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "4c82cc5b-da3b-4917-b11b-0646ada69540"
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "a7c7a8e7-6cff-4bea-99e3-827dc44bcb4a"
         }
       ],
       "laid": [
         {
           "kind": "track",
-          "net": "V_NLDO_IN",
+          "net": "USB_CC1",
           "layer": "F.Cu",
           "start_mm": [
-            141.031,
-            122.672
+            176.5935,
+            112.268
           ],
           "end_mm": [
-            141.838,
-            122.8435
+            176.6669,
+            112.2524
           ],
-          "width_mm": 0.3048,
-          "uuid": "f627af3c-9e9c-418b-88b3-e2efbf0b730f"
+          "width_mm": 0.2032,
+          "uuid": "f3ddb87b-dfe6-4dcc-befc-1fc115ad1733"
         },
         {
           "kind": "track",
-          "net": "V_NLDO_IN",
+          "net": "USB_CC1",
           "layer": "B.Cu",
           "start_mm": [
-            141.031,
-            122.672
+            176.5935,
+            112.268
           ],
           "end_mm": [
-            141.838,
-            122.8435
+            176.6669,
+            112.2524
           ],
-          "width_mm": 0.203,
-          "uuid": "48ed7047-09ca-4080-87f1-82c6d3af44af"
+          "width_mm": 0.2032,
+          "uuid": "f8424d72-d288-4f0a-a706-17da8802a719"
         },
         {
           "kind": "via",
-          "net": "V_NLDO_IN",
+          "net": "USB_CC1",
           "pos_mm": [
-            141.838,
-            122.8435
+            176.6669,
+            112.2524
           ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "34baf7bd-ea03-4d35-9080-16c9bb0536fb"
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "e7d6ba7c-d576-4486-91ca-e632b5fb39fd"
         }
       ]
     },
@@ -7586,7 +7967,7 @@
             110.0358
           ],
           "width_mm": 0.2032,
-          "uuid": "41beb523-ee82-4376-b5ef-8fda6f714fa4"
+          "uuid": "83d846fa-4a56-46b8-bdf6-d3a1fff9f6df"
         },
         {
           "kind": "track",
@@ -7601,7 +7982,7 @@
             110.0358
           ],
           "width_mm": 0.203,
-          "uuid": "6ec5a626-b420-4f47-903a-e615a4e976d6"
+          "uuid": "24ece6bc-ab6f-4b2a-9f89-f01c97385740"
         },
         {
           "kind": "via",
@@ -7612,7 +7993,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "9528c819-fa4b-4462-9ac8-f3b60e51fd7d"
+          "uuid": "451541d4-12bf-4c7f-9a55-5af80deb00ef"
         }
       ]
     },
@@ -7662,7 +8043,7 @@
             89.8926
           ],
           "width_mm": 0.2032,
-          "uuid": "8ff8615e-826d-41ee-85f1-55fb3d5b357a"
+          "uuid": "04491aed-ca27-4145-b52c-e708188bdf52"
         },
         {
           "kind": "track",
@@ -7677,7 +8058,7 @@
             89.8926
           ],
           "width_mm": 0.203,
-          "uuid": "5f6c10dd-b18b-4e98-837d-c4cde2225ccc"
+          "uuid": "4cb0a6c0-cb17-4c67-aecf-59db5802654e"
         },
         {
           "kind": "via",
@@ -7688,7 +8069,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "da917e92-9e4b-48f4-a781-3aeb3ea3cb69"
+          "uuid": "03a89966-cd26-4c48-9541-a6ecbdf3004a"
         }
       ]
     },
@@ -7701,17 +8082,32 @@
         85.7405
       ],
       "to_mm": [
-        168.1656,
-        85.8625
+        167.8763,
+        85.8294
       ],
-      "moved_mm": 0.3,
+      "moved_mm": 0.0901,
       "stage": "straight",
       "tier": "1",
       "clearance_mm": 0.127,
-      "new_copper_mm": 0.6,
+      "new_copper_mm": 0.0901,
       "stub_width_mm": 0.2032,
       "planes": [],
       "removed": [
+        {
+          "kind": "track",
+          "net": "SPI_MISO",
+          "layer": "B.Cu",
+          "start_mm": [
+            167.8915,
+            85.7405
+          ],
+          "end_mm": [
+            164.8435,
+            88.966
+          ],
+          "width_mm": 0.203,
+          "uuid": "b4d6ad80-8fe5-4e2b-ab43-08621cd6681b"
+        },
         {
           "kind": "via",
           "net": "SPI_MISO",
@@ -7734,37 +8130,37 @@
             85.7405
           ],
           "end_mm": [
-            168.1656,
-            85.8625
+            167.8763,
+            85.8294
           ],
           "width_mm": 0.2032,
-          "uuid": "9c91f067-8079-4105-b2cf-3d2d114375e3"
+          "uuid": "daebd036-8d99-4360-914e-b28a2727b8d9"
         },
         {
           "kind": "track",
           "net": "SPI_MISO",
           "layer": "B.Cu",
           "start_mm": [
-            167.8915,
-            85.7405
+            167.8763,
+            85.8294
           ],
           "end_mm": [
-            168.1656,
-            85.8625
+            164.8435,
+            88.966
           ],
           "width_mm": 0.203,
-          "uuid": "276c8976-430e-42ea-ab72-e01b4e645f47"
+          "uuid": "b4d6ad80-8fe5-4e2b-ab43-08621cd6681b"
         },
         {
           "kind": "via",
           "net": "SPI_MISO",
           "pos_mm": [
-            168.1656,
-            85.8625
+            167.8763,
+            85.8294
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "031caee2-7335-41c8-9a6c-35cfcfd8d55f"
+          "uuid": "84173729-df28-40bb-a76c-340e593a0208"
         }
       ]
     },
@@ -7829,7 +8225,7 @@
             116.744
           ],
           "width_mm": 0.2032,
-          "uuid": "31e15cb2-9901-41c9-8eef-7fdf6761372b"
+          "uuid": "4576f756-ef59-4a41-89a2-567675c89a69"
         },
         {
           "kind": "track",
@@ -7855,7 +8251,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "165d2fa5-98f1-4db8-9134-fec77a095c3c"
+          "uuid": "2db4e7fa-1576-4f78-91a7-fb3376a6d725"
         }
       ]
     },
@@ -7907,7 +8303,7 @@
             107.442
           ],
           "width_mm": 0.2032,
-          "uuid": "416085e8-1e72-48a1-81bf-f30ab343883a"
+          "uuid": "61cea664-031a-41e6-8668-db1cb653ec10"
         },
         {
           "kind": "track",
@@ -7922,7 +8318,7 @@
             107.442
           ],
           "width_mm": 0.2032,
-          "uuid": "16940970-4b66-4589-aa93-43ff62f34ecc"
+          "uuid": "ae28bf59-2e88-4d35-b0e8-3fc2010aba7b"
         },
         {
           "kind": "track",
@@ -7937,7 +8333,7 @@
             107.5875
           ],
           "width_mm": 0.2032,
-          "uuid": "6bd7d34a-16a1-4956-8b03-0a8d19cf5f61"
+          "uuid": "2c25e366-f3fc-4d9d-9d9b-de1e1b06dcae"
         },
         {
           "kind": "via",
@@ -7948,7 +8344,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "cd7570eb-6fcb-4dce-84eb-484eb65589b1"
+          "uuid": "f052ab3f-c0e4-4b62-8d12-d3f804f4b9dc"
         }
       ]
     },
@@ -8000,7 +8396,7 @@
             105.1265
           ],
           "width_mm": 0.254,
-          "uuid": "b6392b8b-5e7d-4fa3-bd73-72f8e25352e8"
+          "uuid": "17df21f2-010c-4d83-89d2-3811df9c013d"
         },
         {
           "kind": "via",
@@ -8011,7 +8407,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "655d8310-5591-4512-983e-92fa6fbd6550"
+          "uuid": "5542c563-5151-4fdf-90ee-a98f42a709f9"
         }
       ]
     },
@@ -8063,7 +8459,7 @@
             102.941
           ],
           "width_mm": 0.254,
-          "uuid": "88e2648e-201f-4509-bb2f-fbfcd1963627"
+          "uuid": "9a4ee738-00ca-4d45-80b9-7fcd5fc35124"
         },
         {
           "kind": "via",
@@ -8074,7 +8470,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "01bff437-b477-41a9-8402-4b0ccca62097"
+          "uuid": "4839e98e-fb39-4550-8eac-c8831f6550f7"
         }
       ]
     },
@@ -8124,7 +8520,7 @@
             106.407
           ],
           "width_mm": 0.254,
-          "uuid": "775c65b9-e6cf-4c45-947f-700ca5fc7cfd"
+          "uuid": "d8d994aa-ef24-4f10-b5d5-8d45259f94ba"
         },
         {
           "kind": "track",
@@ -8139,7 +8535,7 @@
             106.407
           ],
           "width_mm": 0.254,
-          "uuid": "cf98cca5-3a5b-48ae-93a2-a6070aac3f56"
+          "uuid": "480b48c7-07fd-4c39-bc02-73a104067ea9"
         },
         {
           "kind": "via",
@@ -8150,218 +8546,7 @@
           ],
           "dia_mm": 0.6095,
           "drill_mm": 0.305,
-          "uuid": "7191f567-2513-4f56-a66e-d22a55d8ca77"
-        }
-      ]
-    },
-    {
-      "net": "ADS_PWDN_N",
-      "pad": "U_MCU.16",
-      "gap_before_mm": -0.6783,
-      "from_mm": [
-        174.356,
-        101.971
-      ],
-      "to_mm": [
-        172.606,
-        101.971
-      ],
-      "moved_mm": 1.75,
-      "stage": "maze",
-      "tier": "1",
-      "clearance_mm": 0.127,
-      "new_copper_mm": 8.856,
-      "stub_width_mm": 0.2032,
-      "planes": [],
-      "removed": [
-        {
-          "kind": "via",
-          "net": "ADS_PWDN_N",
-          "pos_mm": [
-            174.356,
-            101.971
-          ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "349237dd-ce99-4dae-a9a5-2fa7d7e6a970"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            174.356,
-            101.971
-          ],
-          "end_mm": [
-            174.0005,
-            102.2505
-          ],
-          "width_mm": 0.1525,
-          "uuid": "121a9d8f-2038-4160-ba90-a35af230a31a"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            174.0005,
-            102.2505
-          ],
-          "end_mm": [
-            174.0005,
-            108.8545
-          ],
-          "width_mm": 0.1525,
-          "uuid": "ed0ec4d3-654a-421d-80ea-9c2c6dc10951"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            174.0005,
-            108.8545
-          ],
-          "end_mm": [
-            156.9315,
-            108.8545
-          ],
-          "width_mm": 0.203,
-          "uuid": "a2292469-c42e-4d1a-9ab1-a985a61929d9"
-        }
-      ],
-      "laid": [
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "F.Cu",
-          "start_mm": [
-            174.356,
-            101.971
-          ],
-          "end_mm": [
-            172.606,
-            101.971
-          ],
-          "width_mm": 0.2032,
-          "uuid": "24f6b394-5a53-4a78-a515-2c6b7429866b"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.606,
-            101.971
-          ],
-          "end_mm": [
-            172.0215,
-            102.743
-          ],
-          "width_mm": 0.2032,
-          "uuid": "ae9c7ac7-3b82-48ce-b7cc-1a54d4a318a3"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.0215,
-            102.743
-          ],
-          "end_mm": [
-            172.0215,
-            104.4575
-          ],
-          "width_mm": 0.2032,
-          "uuid": "01a2b7f0-2475-4934-b842-142fbd1dc189"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.0215,
-            104.4575
-          ],
-          "end_mm": [
-            172.2755,
-            104.7115
-          ],
-          "width_mm": 0.2032,
-          "uuid": "19cef674-a819-4277-a91d-676d723f549e"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.2755,
-            104.7115
-          ],
-          "end_mm": [
-            172.2755,
-            106.4895
-          ],
-          "width_mm": 0.2032,
-          "uuid": "d3a5a7d3-dad5-48e9-9b81-2409d65f5505"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.2755,
-            106.4895
-          ],
-          "end_mm": [
-            172.085,
-            106.7435
-          ],
-          "width_mm": 0.2032,
-          "uuid": "6b50bfd5-7e3a-4521-bf2f-275003cc0951"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.085,
-            106.7435
-          ],
-          "end_mm": [
-            172.085,
-            108.8545
-          ],
-          "width_mm": 0.2032,
-          "uuid": "851a3d4c-706b-4ae1-801c-be9359d61963"
-        },
-        {
-          "kind": "via",
-          "net": "ADS_PWDN_N",
-          "pos_mm": [
-            172.606,
-            101.971
-          ],
-          "dia_mm": 0.6095,
-          "drill_mm": 0.305,
-          "uuid": "eba1de9a-974c-41e4-b89f-bfba17a9838f"
-        },
-        {
-          "kind": "track",
-          "net": "ADS_PWDN_N",
-          "layer": "B.Cu",
-          "start_mm": [
-            172.085,
-            108.8545
-          ],
-          "end_mm": [
-            156.9315,
-            108.8545
-          ],
-          "width_mm": 0.203,
-          "uuid": "a2292469-c42e-4d1a-9ab1-a985a61929d9"
+          "uuid": "d2fe7793-ed7d-4187-b57a-f69392c8244e"
         }
       ]
     }
@@ -8462,9 +8647,143 @@
           ],
           "width_mm": 0.203,
           "uuid": "92047c36-912e-4fd0-a769-33a1cf8c6f04"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            174.356,
+            101.971
+          ],
+          "end_mm": [
+            174.0005,
+            102.2505
+          ],
+          "width_mm": 0.1525,
+          "uuid": "121a9d8f-2038-4160-ba90-a35af230a31a"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            174.0005,
+            102.2505
+          ],
+          "end_mm": [
+            174.0005,
+            108.8545
+          ],
+          "width_mm": 0.1525,
+          "uuid": "ed0ec4d3-654a-421d-80ea-9c2c6dc10951"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            174.0005,
+            108.8545
+          ],
+          "end_mm": [
+            156.9315,
+            108.8545
+          ],
+          "width_mm": 0.203,
+          "uuid": "a2292469-c42e-4d1a-9ab1-a985a61929d9"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_RESET_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            172.832,
+            106.67
+          ],
+          "end_mm": [
+            172.4765,
+            106.797
+          ],
+          "width_mm": 0.203,
+          "uuid": "d3731a68-937b-4e88-959b-98ab5579b62e"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_RESET_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            173.34,
+            106.5175
+          ],
+          "end_mm": [
+            172.832,
+            106.67
+          ],
+          "width_mm": 0.203,
+          "uuid": "1a44703b-8032-4f1a-9c87-275fc128efea"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_RESET_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            173.34,
+            82.032
+          ],
+          "end_mm": [
+            173.34,
+            106.5175
+          ],
+          "width_mm": 0.203,
+          "uuid": "2c178edf-f680-4253-83b7-23afcf032072"
+        },
+        {
+          "kind": "via",
+          "net": "ADS_PWDN_N",
+          "pos_mm": [
+            174.356,
+            101.971
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "349237dd-ce99-4dae-a9a5-2fa7d7e6a970"
+        },
+        {
+          "kind": "via",
+          "net": "ADS_RESET_N",
+          "pos_mm": [
+            172.4635,
+            106.797
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "8c6fbd6b-8b94-491c-ab3f-a12b03a7f9e6"
         }
       ],
       "laid": [
+        {
+          "kind": "via",
+          "net": "ADS_PWDN_N",
+          "pos_mm": [
+            172.55,
+            101.95
+          ],
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "c70f2ac5-358c-4d3f-b4c4-42285a133667"
+        },
+        {
+          "kind": "via",
+          "net": "ADS_RESET_N",
+          "pos_mm": [
+            173.0,
+            105.1
+          ],
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "76b605af-1ccd-4ed3-afb6-d9bcc8b31654"
+        },
         {
           "kind": "track",
           "net": "ESP_RXD",
@@ -8478,7 +8797,7 @@
             100.95
           ],
           "width_mm": 0.1525,
-          "uuid": "d4cecc0d-f49e-4608-abdf-e5120dc6e1a8"
+          "uuid": "4a442970-17dc-4bfc-8685-0ee676c0f83d"
         },
         {
           "kind": "track",
@@ -8493,7 +8812,7 @@
             101.579
           ],
           "width_mm": 0.1525,
-          "uuid": "ed52f7bd-5be8-4ab9-a9f4-d470a4076422"
+          "uuid": "c9fe3bc1-a2a4-4a3c-a41f-e2b859804f1b"
         },
         {
           "kind": "track",
@@ -8508,7 +8827,7 @@
             102.6
           ],
           "width_mm": 0.1525,
-          "uuid": "03c6d457-724c-4aa6-bebd-8ecf53523a19"
+          "uuid": "b1f39073-fca9-4953-a326-d486fe54cad6"
         },
         {
           "kind": "track",
@@ -8523,7 +8842,7 @@
             102.7585
           ],
           "width_mm": 0.1525,
-          "uuid": "6f17f2c8-0b7e-408c-b0d6-663519863413"
+          "uuid": "bc2d66d4-82dd-445f-8ce8-76cb3884a91f"
         },
         {
           "kind": "track",
@@ -8538,7 +8857,142 @@
             102.7585
           ],
           "width_mm": 0.2032,
-          "uuid": "34a52624-2965-4383-ac78-1e94f144691b"
+          "uuid": "abeee380-653b-4943-9250-9b4caa43510c"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "F.Cu",
+          "start_mm": [
+            174.356,
+            101.971
+          ],
+          "end_mm": [
+            172.55,
+            101.95
+          ],
+          "width_mm": 0.2032,
+          "uuid": "b047b803-0ea3-4fe9-ad3a-d94323e75d4f"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            172.55,
+            101.95
+          ],
+          "end_mm": [
+            171.577,
+            101.95
+          ],
+          "width_mm": 0.2032,
+          "uuid": "e9b0d661-9468-4694-be67-8a7193102381"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            171.577,
+            101.95
+          ],
+          "end_mm": [
+            171.577,
+            104.013
+          ],
+          "width_mm": 0.2032,
+          "uuid": "7a49125e-d0e8-4102-8d30-3522ecccea85"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            171.577,
+            104.013
+          ],
+          "end_mm": [
+            172.2755,
+            104.7115
+          ],
+          "width_mm": 0.2032,
+          "uuid": "31b60437-7b6d-41f9-b6b4-6cbb8b509274"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            172.2755,
+            104.7115
+          ],
+          "end_mm": [
+            172.2755,
+            108.8545
+          ],
+          "width_mm": 0.2032,
+          "uuid": "6d0d192f-b900-4152-bed0-d1adac860771"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_PWDN_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            172.2755,
+            108.8545
+          ],
+          "end_mm": [
+            156.9315,
+            108.8545
+          ],
+          "width_mm": 0.2032,
+          "uuid": "78bd5969-47e7-46d4-bc30-53bc0bada9bf"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_RESET_N",
+          "layer": "F.Cu",
+          "start_mm": [
+            172.4635,
+            106.797
+          ],
+          "end_mm": [
+            173.0,
+            105.1
+          ],
+          "width_mm": 0.2032,
+          "uuid": "3ce80ec9-70bc-4aa6-b78d-ef18747c4777"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_RESET_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            173.0,
+            105.1
+          ],
+          "end_mm": [
+            173.34,
+            105.1
+          ],
+          "width_mm": 0.2032,
+          "uuid": "12fc1624-2796-4e2c-a0c1-4b26ac3e9e83"
+        },
+        {
+          "kind": "track",
+          "net": "ADS_RESET_N",
+          "layer": "B.Cu",
+          "start_mm": [
+            173.34,
+            82.032
+          ],
+          "end_mm": [
+            173.34,
+            105.1
+          ],
+          "width_mm": 0.203,
+          "uuid": "57ebc704-144f-4604-ae1c-e23075683331"
         }
       ]
     },
@@ -8667,6 +9121,21 @@
           "uuid": "d48ef4a3-ed61-483f-8421-b343d0b14e33"
         },
         {
+          "kind": "track",
+          "net": "USB_DM",
+          "layer": "F.Cu",
+          "start_mm": [
+            178.166,
+            104.3585
+          ],
+          "end_mm": [
+            178.354,
+            104.77
+          ],
+          "width_mm": 0.203,
+          "uuid": "ab1c998e-14e1-4b01-a25b-f442b247a53f"
+        },
+        {
           "kind": "via",
           "net": "ESP_RXD",
           "pos_mm": [
@@ -8740,22 +9209,22 @@
           "net": "ESP_RXD",
           "pos_mm": [
             179.182,
-            103.19
+            103.1774
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "7594802c-cd70-4068-9a58-016ad6628a4a"
+          "uuid": "7939f14f-6680-4b5e-8ed2-21341de68ed2"
         },
         {
           "kind": "via",
           "net": "USB_DM",
           "pos_mm": [
             178.354,
-            103.96
+            103.93
           ],
           "dia_mm": 0.6096,
           "drill_mm": 0.3048,
-          "uuid": "574569b9-74c4-43f4-8211-ee067307a370"
+          "uuid": "e0656502-ce70-433f-a3e7-86eedf41bdb5"
         },
         {
           "kind": "track",
@@ -8766,26 +9235,26 @@
             103.165
           ],
           "end_mm": [
-            175.2445,
-            103.19
+            175.2319,
+            103.1774
           ],
           "width_mm": 0.1524,
-          "uuid": "ce0d6bcf-c6ea-4636-b49f-75f2e013b87a"
+          "uuid": "ec553a05-11c7-40b9-9a52-6d71b37c387d"
         },
         {
           "kind": "track",
           "net": "ESP_RXD",
           "layer": "F.Cu",
           "start_mm": [
-            175.2445,
-            103.19
+            175.2319,
+            103.1774
           ],
           "end_mm": [
             179.182,
-            103.19
+            103.1774
           ],
           "width_mm": 0.1524,
-          "uuid": "5257a7e6-e214-48cf-a39b-be009a3385ec"
+          "uuid": "2955166f-f96a-4b93-9caa-d0461de30c35"
         },
         {
           "kind": "track",
@@ -8793,14 +9262,14 @@
           "layer": "B.Cu",
           "start_mm": [
             179.182,
-            103.19
+            103.1774
           ],
           "end_mm": [
             179.182,
             104.689
           ],
           "width_mm": 0.2032,
-          "uuid": "174842b6-83f0-4a16-a10b-669c52eb3aa0"
+          "uuid": "0ed9d537-4e68-4447-aa75-e5e45f96956c"
         },
         {
           "kind": "track",
@@ -8812,10 +9281,10 @@
           ],
           "end_mm": [
             175.4735,
-            103.47
+            103.457
           ],
           "width_mm": 0.1524,
-          "uuid": "9ba4df66-327e-4c0a-a9ee-7851fbf3a8c1"
+          "uuid": "e07f2c8b-6b80-4d4e-be60-44e61044ce66"
         },
         {
           "kind": "track",
@@ -8823,14 +9292,14 @@
           "layer": "F.Cu",
           "start_mm": [
             175.4735,
-            103.47
+            103.457
           ],
           "end_mm": [
             178.66,
-            103.47
+            103.457
           ],
           "width_mm": 0.1524,
-          "uuid": "cad298c6-2d41-4422-a1ab-2142c03c100b"
+          "uuid": "557e9e3d-13ea-452d-b10e-fc1b3797a891"
         },
         {
           "kind": "track",
@@ -8838,14 +9307,14 @@
           "layer": "F.Cu",
           "start_mm": [
             178.66,
-            103.47
+            103.457
           ],
           "end_mm": [
             179.0805,
-            103.8905
+            103.8775
           ],
           "width_mm": 0.1524,
-          "uuid": "2ba970a9-d621-452a-86aa-6ba7ac6bb19e"
+          "uuid": "f458a0dd-4f0b-477c-8abb-abc3fbc97692"
         },
         {
           "kind": "track",
@@ -8853,14 +9322,14 @@
           "layer": "F.Cu",
           "start_mm": [
             179.0805,
-            103.8905
+            103.8775
           ],
           "end_mm": [
             179.0805,
             105.2985
           ],
           "width_mm": 0.2032,
-          "uuid": "e28c4648-0080-41ab-8f54-e2fb385270f2"
+          "uuid": "c04b658d-a4e7-40f0-8431-1faa4db9328f"
         },
         {
           "kind": "track",
@@ -8872,10 +9341,265 @@
           ],
           "end_mm": [
             178.354,
-            103.96
+            103.93
           ],
           "width_mm": 0.2032,
-          "uuid": "33428de1-1e66-40b6-b4c3-cdde35d5da14"
+          "uuid": "d13e08cf-8952-467a-b0e9-2b2dc40c4d1b"
+        }
+      ]
+    },
+    {
+      "id": "C_LM_FLY.1",
+      "applied": true,
+      "removed": [
+        {
+          "kind": "track",
+          "net": "LM_CAP_P",
+          "layer": "B.Cu",
+          "start_mm": [
+            146.467,
+            123.231
+          ],
+          "end_mm": [
+            146.467,
+            122.469
+          ],
+          "width_mm": 0.203,
+          "uuid": "b7865006-1a4f-4fad-bddf-7fa85399c0b8"
+        },
+        {
+          "kind": "via",
+          "net": "LM_CAP_P",
+          "pos_mm": [
+            146.467,
+            122.469
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "f772b0a7-f744-4d46-9c75-c30f5f9e5993"
+        },
+        {
+          "kind": "via",
+          "net": "LM_CAP_P",
+          "pos_mm": [
+            146.467,
+            123.231
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "1710e461-c90d-4ede-ba26-20240fec7bc0"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "track",
+          "net": "LM_CAP_P",
+          "layer": "F.Cu",
+          "start_mm": [
+            146.467,
+            122.469
+          ],
+          "end_mm": [
+            146.467,
+            123.231
+          ],
+          "width_mm": 0.2032,
+          "uuid": "52feeb67-be6a-4d54-a797-26da4919b394"
+        }
+      ]
+    },
+    {
+      "id": "FB4.2",
+      "applied": true,
+      "removed": [
+        {
+          "kind": "track",
+          "net": "VNEG5",
+          "layer": "B.Cu",
+          "start_mm": [
+            143.571,
+            123.942
+          ],
+          "end_mm": [
+            139.6595,
+            123.942
+          ],
+          "width_mm": 0.203,
+          "uuid": "14a2b221-a628-40da-8cc2-88a4bffd38c8"
+        },
+        {
+          "kind": "via",
+          "net": "V_NLDO_IN",
+          "pos_mm": [
+            141.031,
+            122.672
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "4c82cc5b-da3b-4917-b11b-0646ada69540"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "via",
+          "net": "V_NLDO_IN",
+          "pos_mm": [
+            141.03,
+            123.72
+          ],
+          "dia_mm": 0.6096,
+          "drill_mm": 0.3048,
+          "uuid": "e0043a3e-e49e-4aed-be5d-9dfe3546c996"
+        },
+        {
+          "kind": "track",
+          "net": "VNEG5",
+          "layer": "B.Cu",
+          "start_mm": [
+            139.6595,
+            123.942
+          ],
+          "end_mm": [
+            140.0175,
+            124.3
+          ],
+          "width_mm": 0.2032,
+          "uuid": "b697ab81-cd3a-4ee8-a4a5-ca5770c4026b"
+        },
+        {
+          "kind": "track",
+          "net": "VNEG5",
+          "layer": "B.Cu",
+          "start_mm": [
+            140.0175,
+            124.3
+          ],
+          "end_mm": [
+            142.4,
+            124.3
+          ],
+          "width_mm": 0.2032,
+          "uuid": "feab2e53-6e33-4e86-a928-d1a3226642eb"
+        },
+        {
+          "kind": "track",
+          "net": "VNEG5",
+          "layer": "B.Cu",
+          "start_mm": [
+            142.4,
+            124.3
+          ],
+          "end_mm": [
+            142.758,
+            123.942
+          ],
+          "width_mm": 0.2032,
+          "uuid": "68cae80c-c998-48fd-9ce7-9a5a1eb7d69d"
+        },
+        {
+          "kind": "track",
+          "net": "VNEG5",
+          "layer": "B.Cu",
+          "start_mm": [
+            142.758,
+            123.942
+          ],
+          "end_mm": [
+            143.571,
+            123.942
+          ],
+          "width_mm": 0.2032,
+          "uuid": "41fc4c06-cd44-45c1-ac30-4a964f52bc95"
+        },
+        {
+          "kind": "track",
+          "net": "V_NLDO_IN",
+          "layer": "F.Cu",
+          "start_mm": [
+            141.031,
+            122.672
+          ],
+          "end_mm": [
+            141.03,
+            123.72
+          ],
+          "width_mm": 0.254,
+          "uuid": "6b879c58-c2a1-4dd8-b189-06a2b93eda92"
+        },
+        {
+          "kind": "track",
+          "net": "V_NLDO_IN",
+          "layer": "B.Cu",
+          "start_mm": [
+            141.031,
+            122.672
+          ],
+          "end_mm": [
+            141.03,
+            123.72
+          ],
+          "width_mm": 0.2032,
+          "uuid": "7d887be9-6347-447f-8ec9-bf2bc68d026f"
+        }
+      ]
+    },
+    {
+      "id": "R_CC2.2",
+      "applied": true,
+      "removed": [
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            174.0945,
+            110.226
+          ],
+          "end_mm": [
+            174.2035,
+            110.3785
+          ],
+          "width_mm": 0.1525,
+          "uuid": "54103f8b-273b-48fd-ba7b-90882d5ede04"
+        },
+        {
+          "kind": "via",
+          "net": "GND",
+          "pos_mm": [
+            174.2035,
+            110.3785
+          ],
+          "dia_mm": 0.6095,
+          "drill_mm": 0.305,
+          "uuid": "4ba28bd0-8046-46d5-bfdd-c0ddca7de77d"
+        }
+      ],
+      "laid": [
+        {
+          "kind": "via",
+          "net": "GND",
+          "pos_mm": [
+            173.34,
+            110.226
+          ],
+          "dia_mm": 0.46,
+          "drill_mm": 0.3,
+          "uuid": "27cf56f5-65f4-487e-991f-af27eefc16de"
+        },
+        {
+          "kind": "track",
+          "net": "GND",
+          "layer": "F.Cu",
+          "start_mm": [
+            174.0935,
+            110.226
+          ],
+          "end_mm": [
+            173.34,
+            110.226
+          ],
+          "width_mm": 0.2032,
+          "uuid": "2417073f-cc7d-4214-80e1-7c9ff0aa3752"
         }
       ]
     }
@@ -8883,14 +9607,14 @@
   "offenders_after": 0,
   "offenders_after_list": [],
   "tiers": {
-    "1": 99,
-    "2": 9,
-    "3": 4,
-    "4": 2
+    "1": 114,
+    "2": 0,
+    "3": 1,
+    "4": 0
   },
   "vias": [
     241,
-    239
+    237
   ],
   "unconnected": [
     0,
@@ -8974,7 +9698,7 @@
       },
       "IN1N": {
         "to": "R_IN1N.2",
-        "mm": 18.8312
+        "mm": 18.8325
       },
       "IN2P": {
         "to": "R_IN2P.2",
@@ -8982,7 +9706,7 @@
       },
       "IN2N": {
         "to": "R_IN2N.2",
-        "mm": 16.833
+        "mm": 16.8343
       },
       "IN3P": {
         "to": "R_IN3P.2",
@@ -8990,7 +9714,7 @@
       },
       "IN3N": {
         "to": "R_IN3N.2",
-        "mm": 14.8352
+        "mm": 14.8365
       },
       "IN4P": {
         "to": "R_IN4P.2",
@@ -8998,7 +9722,7 @@
       },
       "IN4N": {
         "to": "R_IN4N.2",
-        "mm": 12.837
+        "mm": 12.8383
       },
       "IN5P": {
         "to": "R_IN5P.2",
@@ -9006,7 +9730,7 @@
       },
       "IN5N": {
         "to": "R_IN5N.2",
-        "mm": 13.2512
+        "mm": 13.2525
       },
       "IN6P": {
         "to": "R_IN6P.2",
@@ -9014,7 +9738,7 @@
       },
       "IN6N": {
         "to": "R_IN6N.2",
-        "mm": 15.2487
+        "mm": 15.25
       },
       "IN7P": {
         "to": "R_IN7P.2",
@@ -9022,7 +9746,7 @@
       },
       "IN7N": {
         "to": "R_IN7N.2",
-        "mm": 17.246
+        "mm": 17.2473
       },
       "IN8P": {
         "to": "R_IN8P.2",
@@ -9030,11 +9754,11 @@
       },
       "IN8N": {
         "to": "R_IN8N.2",
-        "mm": 19.2447
+        "mm": 19.246
       },
       "SRB1": {
         "to": "R_SRB_SER.1",
-        "mm": 41.7283
+        "mm": 41.5283
       }
     }
   },
@@ -9042,42 +9766,42 @@
     {
       "pair": "IN1P/IN1N",
       "skew_before_mm": 1.8776,
-      "skew_after_mm": 1.8776
+      "skew_after_mm": 1.8763
     },
     {
       "pair": "IN2P/IN2N",
       "skew_before_mm": 1.8769,
-      "skew_after_mm": 1.8769
+      "skew_after_mm": 1.8756
     },
     {
       "pair": "IN3P/IN3N",
       "skew_before_mm": 1.8777,
-      "skew_after_mm": 1.8777
+      "skew_after_mm": 1.8764
     },
     {
       "pair": "IN4P/IN4N",
       "skew_before_mm": 1.8778,
-      "skew_after_mm": 1.8778
+      "skew_after_mm": 1.8765
     },
     {
       "pair": "IN5P/IN5N",
       "skew_before_mm": 0.1218,
-      "skew_after_mm": 0.1218
+      "skew_after_mm": 0.1231
     },
     {
       "pair": "IN6P/IN6N",
       "skew_before_mm": 0.1199,
-      "skew_after_mm": 0.1199
+      "skew_after_mm": 0.1212
     },
     {
       "pair": "IN7P/IN7N",
       "skew_before_mm": 0.1206,
-      "skew_after_mm": 0.1206
+      "skew_after_mm": 0.1219
     },
     {
       "pair": "IN8P/IN8N",
       "skew_before_mm": 0.1198,
-      "skew_after_mm": 0.1198
+      "skew_after_mm": 0.1211
     }
   ],
   "saved": true

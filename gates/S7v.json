@@ -3,7 +3,7 @@
   "pass": true,
   "checks": [
     {
-      "name": "vias in an SMD mask opening (J_MARGIN 0.03 mm)",
+      "name": "vias within 0.10 mm of an SMD mask opening",
       "expected": 0,
       "actual": 0,
       "pass": true
@@ -15,9 +15,9 @@
       "pass": true
     },
     {
-      "name": "via count = before - functionless removed",
-      "expected": 239,
-      "actual": 239,
+      "name": "via count = before - functionless removed + room edits",
+      "expected": 237,
+      "actual": 237,
       "pass": true
     },
     {
@@ -29,13 +29,13 @@
     {
       "name": "largest ADC-to-electrode path change on IN1P-IN8N [mm]",
       "expected": "<= 0.1",
-      "actual": 0.0,
+      "actual": 0.0013,
       "pass": true
     },
     {
       "name": "SRB1 ADC-to-resistor path change [mm]",
       "expected": "<= 1.0",
-      "actual": 0.9,
+      "actual": 0.7,
       "pass": true
     },
     {
@@ -51,6 +51,6 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T14:17:23",
-  "notes": "116 vias found in SMD mask openings, 114 moved out (tiers {'1': 99, '2': 9, '3': 4, '4': 2}), 0 unresolved; vias 241 -> 239, unconnected 0 -> 0."
+  "timestamp": "2026-09-23T15:50:28",
+  "notes": "117 vias found in SMD mask openings, 115 moved out (tiers {'1': 114, '2': 0, '3': 1, '4': 0}), 0 unresolved; vias 241 -> 237, unconnected 0 -> 0."
 }

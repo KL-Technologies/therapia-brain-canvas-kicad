@@ -78,7 +78,7 @@
       "why": "a declaration that names a pad which is not there, or one that now carries a net, is stale: it silences a question about copper that no longer exists"
     }
   ],
-  "timestamp": "2026-09-23T14:40:39",
+  "timestamp": "2026-09-23T15:55:17",
   "notes": "ACCEPTANCE K. Zones are out of scope (they refill afterwards, so their clearance is a consequence rather than a decision). Distances are bisected with SHAPE::Collide down to 1 um.",
   "negative_control": {
     "input": "board/Therapia_EEG-HRV.kicad_pcb + one planted track",

@@ -20,16 +20,16 @@ DS §12.1: *"Do not place vias between bypass capacitors and the active device. 
 | C_VREFP_100n | 24 (VREFP) | 配線 | 3.40 | 6.47 | 0 | はい | OK | AVSS | 1.96 |
 | C_VREFP_10n | 24 (VREFP) | 配線 | 2.83 | 2.55 | 0 | はい | OK | AVSS | 1.92 |
 | C_VCAP4 | 26 (VCAP4) | 配線 | 5.24 | 9.00 | 2 | はい | **NG** | AVSS | 0.60 |
-| C_VCAP1 | 28 (VCAP1) | 配線 | 9.89 | 17.40 | 2 | はい | **NG** | AVSS | 0.87 |
+| C_VCAP1 | 28 (VCAP1) | 配線 | 9.89 | 17.40 | 2 | はい | **NG** | AVSS | 0.95 |
 | C_VCAP1_H | 28 (VCAP1) | 配線 | 1.36 | 1.36 | 0 | はい | OK | AVSS | 2.51 |
 | C_VCAP2 | 30 (VCAP2) | 配線 | 1.53 | 1.53 | 0 | はい | OK | AVSS | 0.94 |
-| C_AVDD_P36 | 56 (AVDD) | ベタ | 16.29 | 配線経路なし | — | はい | — | GND | 0.51 |
+| C_AVDD_P36 | 56 (AVDD) | ベタ | 16.29 | 配線経路なし | — | はい | — | GND | 1.02 |
 | C_AVDD_P31 | 56 (AVDD) | ベタ | 14.13 | 配線経路なし | — | はい | — | GND | 2.10 |
 | C_AVDD1_1u | 54 (AVDD1) | ベタ | 4.10 | 配線経路なし | — | はい | — | AVSS | 1.64 |
 | C_AVDD1_100n | 54 (AVDD1) | ベタ | 3.95 | 配線経路なし | — | はい | — | AVSS | 3.65 |
 | C_AVDD1_10n | 54 (AVDD1) | ベタ | 4.98 | 配線経路なし | — | はい | — | AVSS | 5.87 |
 | C_AVDD1_10u | 54 (AVDD1) | ベタ | 5.54 | 配線経路なし | — | はい | — | AVSS | 1.41 |
-| C_VCAP3 | 55 (VCAP3) | 配線 | 3.36 | 3.97 | 2 | はい | **NG** | AVSS | 2.75 |
+| C_VCAP3 | 55 (VCAP3) | 配線 | 3.36 | 4.39 | 2 | はい | **NG** | AVSS | 2.75 |
 | C_VCAP3_H | 55 (VCAP3) | 配線 | 2.10 | 2.10 | 0 | はい | OK | AVSS | 2.91 |
 | C_AVDD_P59 | 59 (AVDD) | ベタ | 4.50 | 配線経路なし | — | はい | — | GND | 0.57 |
 | C_DVDD_P58 | 48 (DVDD) | 配線 | 11.48 | 22.11 | 0 | はい | OK | GND | 0.65 |
@@ -37,8 +37,8 @@ DS §12.1: *"Do not place vias between bypass capacitors and the active device. 
 | C_DVDD_P40 | 50 (DVDD) | 配線 | 6.23 | 13.67 | 0 | はい | OK | GND | 0.70 |
 | C_DVDD_10u | 50 (DVDD) | 配線 | 9.89 | 18.01 | 0 | はい | OK | GND | 0.72 |
 | C_AVSS_P17 | 20 (AVSS) | ベタ | 6.28 | 配線経路なし | — | はい | — | GND | 0.60 |
-| C_AVSS_H | 20 (AVSS) | ベタ | 9.49 | 配線経路なし | — | はい | — | GND | 0.55 |
-| C_AVSS_P30 | 32 (AVSS) | ベタ | 9.29 | 配線経路なし | — | はい | — | GND | 0.53 |
+| C_AVSS_H | 20 (AVSS) | ベタ | 9.49 | 配線経路なし | — | はい | — | GND | 0.56 |
+| C_AVSS_P30 | 32 (AVSS) | ベタ | 9.29 | 配線経路なし | — | はい | — | GND | 0.63 |
 | C_AVSS_P37 | 57 (AVSS) | ベタ | 16.22 | 配線経路なし | — | はい | — | GND | 0.69 |
 | C_AVSS_P60 | 58 (AVSS) | ベタ | 17.79 | 配線経路なし | — | はい | — | GND | 0.58 |
 | C_AVSS_B | 58 (AVSS) | ベタ | 19.23 | 配線経路なし | — | はい | — | GND | 0.73 |
@@ -47,7 +47,7 @@ DS §12.1: *"Do not place vias between bypass capacitors and the active device. 
 
 - `C_VCAP4` → ADS ピン 26（VCAP4）: ビア 2 個・銅箔 9.00 mm
 - `C_VCAP1` → ADS ピン 28（VCAP1）: ビア 2 個・銅箔 17.40 mm
-- `C_VCAP3` → ADS ピン 55（VCAP3）: ビア 2 個・銅箔 3.97 mm
+- `C_VCAP3` → ADS ピン 55（VCAP3）: ビア 2 個・銅箔 4.39 mm
 
 ## 2. VREFP の 3 個は近い順に並んでいるか
 
@@ -84,45 +84,45 @@ DS §12.1 は「グラウンドプレーンが切れていたり他の配線が�
 | ADS_CS_N | 772 | 40 | 0 | **0** | 0 | 連続 |
 | ADS_DRDY_N | 976 | 22 | 0 | **0** | 0 | 連続 |
 | USB_DP | 351 | 61 | 0 | **0** | 0 | 連続 |
-| USB_DM | 479 | 52 | 0 | **0** | 0 | 連続 |
+| USB_DM | 474 | 51 | 0 | **0** | 0 | 連続 |
 
 ## 5. 入力ネットの直下（In2 電源ベタ）
 
 In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
-> **表の「またぐ」は問題ではない。** 入力配線のリターン電流が流れるのは**直下ではなく最も近いリファレンス面**で、この基板ではそれが **In1（GND、1 枚もの・2496.1 mm²・基板面積の 90%）**。In1 に切れ目が無い以上リターン経路は連続しており（第 4 節で実測）、In2 の境界越えはリターンの断絶にはならない。下表は「入力の下に何があるか」の記録であって合否ではない。
+> **表の「またぐ」は問題ではない。** 入力配線のリターン電流が流れるのは**直下ではなく最も近いリファレンス面**で、この基板ではそれが **In1（GND、1 枚もの・2497.1 mm²・基板面積の 90%）**。In1 に切れ目が無い以上リターン経路は連続しており（第 4 節で実測）、In2 の境界越えはリターンの断絶にはならない。下表は「入力の下に何があるか」の記録であって合否ではない。
 
 | 入力 | またぐ領域数 | 遷移回数 | 領域 |
 |---|---|---|---|
 | IN1P | 3 | 2 | AVSS, AVDD, (no fill) |
-| IN1N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN1N | 3 | 8 | AVSS, (no fill), AVDD |
 | IN2P | 3 | 2 | AVSS, (no fill), AVDD |
-| IN2N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN2N | 3 | 8 | (no fill), AVSS, AVDD |
 | IN3P | 3 | 2 | AVSS, (no fill), AVDD |
-| IN3N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN3N | 3 | 8 | AVSS, (no fill), AVDD |
 | IN4P | 3 | 2 | AVSS, (no fill), AVDD |
-| IN4N | 3 | 7 | (no fill), AVSS, AVDD |
+| IN4N | 3 | 8 | AVSS, (no fill), AVDD |
 | IN5P | 3 | 2 | AVSS, (no fill), AVDD |
-| IN5N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN5N | 3 | 8 | AVSS, (no fill), AVDD |
 | IN6P | 3 | 2 | AVSS, (no fill), AVDD |
-| IN6N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN6N | 3 | 8 | (no fill), AVSS, AVDD |
 | IN7P | 3 | 2 | AVSS, (no fill), AVDD |
-| IN7N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN7N | 3 | 8 | AVSS, (no fill), AVDD |
 | IN8P | 3 | 2 | AVSS, AVDD, (no fill) |
-| IN8N | 3 | 7 | AVSS, (no fill), AVDD |
+| IN8N | 3 | 8 | AVSS, (no fill), AVDD |
 
 ## 6. 差動ペアの長さ差と間隔
 
 | ペア | P 側 [mm] | N 側 [mm] | 差 [mm] | 最小間隔 [mm] |
 |---|---|---|---|---|
-| IN1P/IN1N | 22.38 | 20.47 | 1.91 | 0.331 |
-| IN2P/IN2N | 20.38 | 18.47 | 1.90 | 0.331 |
-| IN3P/IN3N | 18.38 | 16.48 | 1.90 | 0.330 |
-| IN4P/IN4N | 16.38 | 14.48 | 1.91 | 0.330 |
-| IN5P/IN5N | 14.80 | 14.89 | 0.10 | 0.441 |
-| IN6P/IN6N | 16.80 | 16.89 | 0.09 | 0.330 |
-| IN7P/IN7N | 18.79 | 18.89 | 0.09 | 0.331 |
-| IN8P/IN8N | 20.79 | 20.89 | 0.09 | 0.331 |
+| IN1P/IN1N | 22.38 | 20.52 | 1.85 | 0.331 |
+| IN2P/IN2N | 20.38 | 18.52 | 1.85 | 0.331 |
+| IN3P/IN3N | 18.38 | 16.53 | 1.85 | 0.330 |
+| IN4P/IN4N | 16.38 | 14.53 | 1.85 | 0.330 |
+| IN5P/IN5N | 14.80 | 14.94 | 0.15 | 0.441 |
+| IN6P/IN6N | 16.80 | 16.94 | 0.14 | 0.330 |
+| IN7P/IN7N | 18.79 | 18.94 | 0.14 | 0.331 |
+| IN8P/IN8N | 20.79 | 20.94 | 0.14 | 0.331 |
 
 ## 7. 入力配線とデジタル配線の最接近
 
@@ -155,20 +155,20 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
 | ネット | 層 | 外形 | 面積 [mm²] | 基板面積比 |
 |---|---|---|---|---|
-| CHASSIS_GND | F.Cu | 2 | 43.21 | 1.6% |
-| GND | In1.Cu | 1 | 2496.11 | 89.7% |
-| AVSS | In2.Cu | 5 | 841.69 | 30.2% |
-| USB_5V | In2.Cu | 5 | 359.75 | 12.9% |
+| CHASSIS_GND | F.Cu | 2 | 43.16 | 1.6% |
+| GND | In1.Cu | 1 | 2497.14 | 89.7% |
+| AVSS | In2.Cu | 5 | 841.58 | 30.2% |
+| USB_5V | In2.Cu | 5 | 360.89 | 13.0% |
 | VDD_ESP | In2.Cu | 1 | 329.44 | 11.8% |
-| USB_5V | In2.Cu | 1 | 282.56 | 10.2% |
-| AVDD | In2.Cu | 1 | 280.35 | 10.1% |
-| VDD_ESP | In2.Cu | 9 | 215.61 | 7.7% |
+| USB_5V | In2.Cu | 1 | 282.70 | 10.2% |
+| AVDD | In2.Cu | 1 | 280.33 | 10.1% |
+| VDD_ESP | In2.Cu | 8 | 215.61 | 7.7% |
 | VDD_ESP | In2.Cu | 1 | 75.36 | 2.7% |
-| VDD_ESP | In2.Cu | 3 | 0.00 | 0.0% |
+| VDD_ESP | In2.Cu | 4 | 0.00 | 0.0% |
 
-**In1 = GND が 1 枚もので 2496.1 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
+**In1 = GND が 1 枚もので 2497.1 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
 
-**空に近いベタが 1 枚ある**: VDD_ESP@In2.Cu (3 外形, 0.0000 mm²)。VDD_ESP は 3 枚のベタに分かれており（S5 の申し送り）、そのうち 1 枚は充填の結果ほぼ何も残っていない。電気的には他の 2 枚が VDD_ESP を配っているので実害は無いが、**この 1 枚は何もしていない**。DRC も `isolated_copper` / `copper_sliver` を報告していない。
+**空に近いベタが 1 枚ある**: VDD_ESP@In2.Cu (4 外形, 0.0000 mm²)。VDD_ESP は 3 枚のベタに分かれており（S5 の申し送り）、そのうち 1 枚は充填の結果ほぼ何も残っていない。電気的には他の 2 枚が VDD_ESP を配っているので実害は無いが、**この 1 枚は何もしていない**。DRC も `isolated_copper` / `copper_sliver` を報告していない。
 
 ## 10. チェックリスト J3〜J11
 
@@ -180,7 +180,7 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 | J6 RESV1 (31) to DGND | GND | GND | OK |
 | J7 unused analog inputs to AVDD | none unconnected | AVDD, not GND and not open | OK |
 | J8 CH340C XI open, no series R on D+/D- | SOP-16 CH340C has no crystal pin (7=NC., 8=OUT#); resistors on USB_DP/USB_DM: none | internal oscillator, D+/D- straight through | OK |
-| J9 USB D+/D- length delta | 11.956 mm (D+ 33.304, D- 45.260) | < 45 mm (Full Speed, H-2) | OK |
+| J9 USB D+/D- length delta | 11.534 mm (D+ 33.304, D- 44.838) | < 45 mm (Full Speed, H-2) | OK |
 | J10 regulators and their capacitors on one side | {"AMS1117": "front", "TLV70025": "front", "TPS72325": "front", "LM2664": "front"} | all front (no part is on the back of this board) | OK |
 | J11 ESP32 antenna clear of the board | module right edge 175.01 mm, board right edge 181.62 mm, overhang -6.61 mm | antenna over a cut-out or off the edge | **要判断** |
 

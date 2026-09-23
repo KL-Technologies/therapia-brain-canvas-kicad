@@ -5,7 +5,7 @@
     {
       "name": "I vias read from the PTH drill file",
       "expected": "> 0",
-      "actual": 234,
+      "actual": 232,
       "pass": true
     },
     {
@@ -19,6 +19,13 @@
       "expected": 0,
       "actual": 0,
       "pass": true
+    },
+    {
+      "name": "I vias whose drill is under 0.10 mm from an SMD opening (Gerber)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "[]"
     },
     {
       "name": "I negative control: a via planted in an SMD opening is counted",
@@ -47,10 +54,10 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T14:18:33",
-  "notes": "ACCEPTANCE I. Vias 234, openings F.Mask 425 / B.Mask 22 regions; 0 vias in an SMD opening, 0 in a THT opening; nearest drill-to-opening gap 0.0327 mm. Harness S7_viapad: pass.",
+  "timestamp": "2026-09-23T15:52:22",
+  "notes": "ACCEPTANCE I. Vias 232, openings F.Mask 425 / B.Mask 22 regions; 0 vias in an SMD opening, 0 in a THT opening; nearest drill-to-opening gap 0.1007 mm. Harness S7_viapad: pass.",
   "gerber": {
-    "vias": 234,
+    "vias": 232,
     "component_holes": 20,
     "openings": {
       "F.Mask": {
@@ -80,7 +87,8 @@
     },
     "in_smd_opening": [],
     "in_tht_opening": [],
-    "min_gap_mm": 0.0327,
+    "closer_than_min": [],
+    "min_gap_mm": 0.1007,
     "control": {
       "at_gerber_mm": [
         179.814,
@@ -92,7 +100,7 @@
   },
   "harness_dir": "/Users/dev/projects/therapia-device/pcb-harness",
   "harness_exit": 0,
-  "harness_tail": "_via_between              expected=0 actual=\"skipped (no nets.bypass_pairs\nnegative control: detected (a via on a pad of U_ADS, which J-2 (a) forbids at any via covering; and the same plant repeated on F (417 openings))\nS7_viapad: 16/16 -> ACCEPTANCE J-2, measured on the fab data. 234 vias in the drill file, 0 of them touching an SMD opening, 0 after exceptions; 0 on a THT pad opening (out of scope). Zero-via nets: none. J-2 (a) 0, (b) 0, (c) max 0 per pad. By side: F 0, B 0, both 0. By origin: stitch 0, router 0, unknown 0. Via covering ordered: none. That covering does not close the barrel, so the via-in-pad count is JUDGED here (0 required), not reported. Coordinates are given in the Gerber frame, the KiCad frame (Y mirrored) and the contract frame (origin at the board outline centre).\n",
+  "harness_tail": "_via_between              expected=0 actual=\"skipped (no nets.bypass_pairs\nnegative control: detected (a via on a pad of U_ADS, which J-2 (a) forbids at any via covering; and the same plant repeated on F (417 openings))\nS7_viapad: 16/16 -> ACCEPTANCE J-2, measured on the fab data. 232 vias in the drill file, 0 of them touching an SMD opening, 0 after exceptions; 0 on a THT pad opening (out of scope). Zero-via nets: none. J-2 (a) 0, (b) 0, (c) max 0 per pad. By side: F 0, B 0, both 0. By origin: stitch 0, router 0, unknown 0. Via covering ordered: none. That covering does not close the barrel, so the via-in-pad count is JUDGED here (0 required), not reported. Coordinates are given in the Gerber frame, the KiCad frame (Y mirrored) and the contract frame (origin at the board outline centre).\n",
   "harness_checks": [
     {
       "name": "fab_inputs_present",
@@ -124,7 +132,7 @@
       "name": "J_via_in_an_smd_opening_on_the_board",
       "expected": 0,
       "actual": {
-        "vias": 234,
+        "vias": 232,
         "smd_pads": 417,
         "in_opening": 0
       },
@@ -161,7 +169,7 @@
     {
       "name": "vias_found_in_drill",
       "expected": "> 0",
-      "actual": 234,
+      "actual": 232,
       "pass": true,
       "source": "fab/gerber/Therapia_EEG-HRV-PTH.drl",
       "why": "a verdict on zero vias is meaningless. A hit is a via when its tool is at most 0.50 mm"

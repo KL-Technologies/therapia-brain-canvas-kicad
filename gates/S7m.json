@@ -1,0 +1,26 @@
+{
+  "step": "S7m",
+  "pass": true,
+  "checks": [
+    {
+      "name": "different-net dams under 0.10 mm, other than the listed land-pattern limits",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "board-wide pad-to-mask expansion unchanged (ACCEPTANCE C)",
+      "expected": 0.0508,
+      "actual": 0.0508,
+      "pass": true
+    },
+    {
+      "name": "no pad expansion below 0",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T15:50:39",
+  "notes": "38 pad pairs with a dam under 0.10 mm: 22 different-net fixed by lowering 35 pads' own expansion, 0 not possible (copper gap under the dam), 16 same-net left."
+}

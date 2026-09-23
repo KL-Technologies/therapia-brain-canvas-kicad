@@ -191,7 +191,7 @@
       "j1_applies": true,
       "j1_ok": false,
       "return_net": "AVSS",
-      "return_via_mm": 0.8709
+      "return_via_mm": 0.9458
     },
     {
       "cap": "C_VCAP1_H",
@@ -253,7 +253,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.513
+      "return_via_mm": 1.0184
     },
     {
       "cap": "C_AVDD_P31",
@@ -346,8 +346,8 @@
       "distributed_as_plane": false,
       "path": {
         "vias": 2,
-        "length_mm": 3.9664,
-        "hops": 6,
+        "length_mm": 4.3881,
+        "hops": 7,
         "layers": [
           "B.Cu",
           "F.Cu",
@@ -522,7 +522,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.5503
+      "return_via_mm": 0.5561
     },
     {
       "cap": "C_AVSS_P30",
@@ -538,7 +538,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.5265
+      "return_via_mm": 0.634
     },
     {
       "cap": "C_AVSS_P37",
@@ -684,8 +684,8 @@
     },
     {
       "net": "USB_DM",
-      "samples": 479,
-      "void_at_own_via": 52,
+      "samples": 474,
+      "void_at_own_via": 51,
       "void_at_foreign_via": 0,
       "void_unaccounted": 0,
       "samples_over_an_inner_track": 0,
@@ -706,7 +706,7 @@
     {
       "net": "IN1N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -726,10 +726,10 @@
     {
       "net": "IN2N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
-        "AVSS",
         "(no fill)",
+        "AVSS",
         "AVDD"
       ]
     },
@@ -746,7 +746,7 @@
     {
       "net": "IN3N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -766,10 +766,10 @@
     {
       "net": "IN4N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
-        "(no fill)",
         "AVSS",
+        "(no fill)",
         "AVDD"
       ]
     },
@@ -786,7 +786,7 @@
     {
       "net": "IN5N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -806,10 +806,10 @@
     {
       "net": "IN6N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
-        "AVSS",
         "(no fill)",
+        "AVSS",
         "AVDD"
       ]
     },
@@ -826,7 +826,7 @@
     {
       "net": "IN7N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -846,7 +846,7 @@
     {
       "net": "IN8N",
       "in2_regions_crossed": 3,
-      "transitions": 7,
+      "transitions": 8,
       "regions": [
         "AVSS",
         "(no fill)",
@@ -858,57 +858,57 @@
     {
       "pair": "IN1P/IN1N",
       "len_p_mm": 22.376,
-      "len_n_mm": 20.471,
-      "delta_mm": 1.905,
+      "len_n_mm": 20.523,
+      "delta_mm": 1.853,
       "min_gap_mm": 0.3305
     },
     {
       "pair": "IN2P/IN2N",
       "len_p_mm": 20.377,
-      "len_n_mm": 18.473,
-      "delta_mm": 1.904,
+      "len_n_mm": 18.525,
+      "delta_mm": 1.852,
       "min_gap_mm": 0.3305
     },
     {
       "pair": "IN3P/IN3N",
       "len_p_mm": 18.38,
-      "len_n_mm": 16.476,
-      "delta_mm": 1.904,
+      "len_n_mm": 16.527,
+      "delta_mm": 1.853,
       "min_gap_mm": 0.33
     },
     {
       "pair": "IN4P/IN4N",
       "len_p_mm": 16.382,
-      "len_n_mm": 14.477,
-      "delta_mm": 1.905,
+      "len_n_mm": 14.529,
+      "delta_mm": 1.854,
       "min_gap_mm": 0.33
     },
     {
       "pair": "IN5P/IN5N",
       "len_p_mm": 14.796,
-      "len_n_mm": 14.892,
-      "delta_mm": 0.095,
+      "len_n_mm": 14.943,
+      "delta_mm": 0.147,
       "min_gap_mm": 0.4413
     },
     {
       "pair": "IN6P/IN6N",
       "len_p_mm": 16.796,
-      "len_n_mm": 16.889,
-      "delta_mm": 0.092,
+      "len_n_mm": 16.94,
+      "delta_mm": 0.144,
       "min_gap_mm": 0.33
     },
     {
       "pair": "IN7P/IN7N",
       "len_p_mm": 18.792,
-      "len_n_mm": 18.886,
-      "delta_mm": 0.094,
+      "len_n_mm": 18.938,
+      "delta_mm": 0.145,
       "min_gap_mm": 0.3305
     },
     {
       "pair": "IN8P/IN8N",
       "len_p_mm": 20.792,
-      "len_n_mm": 20.885,
-      "delta_mm": 0.093,
+      "len_n_mm": 20.937,
+      "delta_mm": 0.145,
       "min_gap_mm": 0.3305
     }
   ],
@@ -1017,21 +1017,21 @@
       "layer": "F.Cu",
       "outlines": 2,
       "holes": 0,
-      "area_mm2": 43.21
+      "area_mm2": 43.16
     },
     {
       "net": "GND",
       "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 2496.11
+      "area_mm2": 2497.14
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 282.56
+      "area_mm2": 282.7
     },
     {
       "net": "VDD_ESP",
@@ -1045,21 +1045,21 @@
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 280.35
+      "area_mm2": 280.33
     },
     {
       "net": "AVSS",
       "layer": "In2.Cu",
       "outlines": 5,
       "holes": 0,
-      "area_mm2": 841.69
+      "area_mm2": 841.58
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
       "outlines": 5,
       "holes": 0,
-      "area_mm2": 359.75
+      "area_mm2": 360.89
     },
     {
       "net": "VDD_ESP",
@@ -1071,14 +1071,14 @@
     {
       "net": "VDD_ESP",
       "layer": "In2.Cu",
-      "outlines": 9,
+      "outlines": 8,
       "holes": 0,
       "area_mm2": 215.61
     },
     {
       "net": "VDD_ESP",
       "layer": "In2.Cu",
-      "outlines": 3,
+      "outlines": 4,
       "holes": 0,
       "area_mm2": 0.0
     }
@@ -1123,7 +1123,7 @@
     },
     {
       "id": "J9 USB D+/D- length delta",
-      "measured": "11.956 mm (D+ 33.304, D- 45.260)",
+      "measured": "11.534 mm (D+ 33.304, D- 44.838)",
       "wanted": "< 45 mm (Full Speed, H-2)",
       "ok": true
     },

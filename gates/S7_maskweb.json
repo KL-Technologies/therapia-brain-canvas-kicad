@@ -1,0 +1,47 @@
+{
+  "step": "S7_maskweb",
+  "pass": true,
+  "checks": [
+    {
+      "name": "L solder-mask openings read and given their pads' nets",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "425 F / 22 B openings; the count is openings with neither a pad nor an NPTH under them: []"
+    },
+    {
+      "name": "L dams under 0.10 mm between openings of different nets",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "L negative control: two different-net openings pushed to a 0.05 mm dam are caught",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T15:52:23",
+  "notes": "ACCEPTANCE L. F: {'openings': 425, 'different_net_under': 0, 'same_net_under': 2, 'worst_mm': None}. B: {'openings': 22, 'different_net_under': 0, 'same_net_under': 0, 'worst_mm': None}.",
+  "sides": {
+    "F": {
+      "openings": 425,
+      "different_net_under": 0,
+      "same_net_under": 2,
+      "worst_mm": null
+    },
+    "B": {
+      "openings": 22,
+      "different_net_under": 0,
+      "same_net_under": 0,
+      "worst_mm": null
+    }
+  },
+  "offenders": [],
+  "control": {
+    "dam_before_mm": 0.1,
+    "dam_planted_mm": 0.0515,
+    "caught": true
+  }
+}

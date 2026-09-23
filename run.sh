@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7v S7p S7d S7b S7c S7 S7_body S7_viapad S7_paste S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7p S7v S7d S7m S7b S7c S7 S7_body S7_viapad S7_paste S7_maskweb S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,9 +32,9 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7v", "S7p",
-             "S7d", "S7b", "S7c", "S7", "S7_body", "S7_viapad", "S7_paste",
-             "S8"):
+             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7p", "S7v",
+             "S7d", "S7m", "S7b", "S7c", "S7", "S7_body", "S7_viapad",
+             "S7_paste", "S7_maskweb", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -192,6 +192,12 @@ run_step S6 "run the DRC repair loop to convergence" \
 run_step S7a "apply ECO-5 and the BOM corrections" \
   "$KPY" "$ROOT/scripts/45_apply_eco5_and_bom.py" --root "$ROOT" || exit 1
 
+# ACCEPTANCE J: the EasyEDA import drew its own F.Paste shapes beside the pads,
+# 168 of them past the copper (up to 0.134 mm). Clipped back to the pads here;
+# no copper moves.
+run_step S7p "clip the footprints' own paste shapes to their pads" \
+  "$KPY" "$ROOT/scripts/68_fix_paste_graphics.py" --root "$ROOT" || exit 1
+
 # S7v came after the cart: 106 vias sat in SMD pad openings on a board ordered
 # Tented, so every one would have drained its joint's paste down the barrel in
 # reflow. It moves each via out of the pad onto a short dogbone and runs here,
@@ -213,12 +219,6 @@ PY
 }
 run_step S7v "move every via out of the SMD pad it sat in" s7v || exit 1
 
-# ACCEPTANCE J: the EasyEDA import drew its own F.Paste shapes beside the pads,
-# 168 of them past the copper (up to 0.134 mm). Clipped back to the pads here;
-# no copper moves.
-run_step S7p "clip the footprints' own paste shapes to their pads" \
-  "$KPY" "$ROOT/scripts/68_fix_paste_graphics.py" --root "$ROOT" || exit 1
-
 # ACCEPTANCE K: tracks and vias that end in nothing. Removed until KiCad's own
 # dangling test finds none, then DRC (with a refill) must agree.
 s7d() {
@@ -239,6 +239,11 @@ sys.exit(1 if err or unc or dang else 0)
 PY
 }
 run_step S7d "remove the tracks and vias that end in nothing" s7d || exit 1
+
+# ACCEPTANCE L: a 0.1 mm mask dam between pads of different nets. JLC removes a
+# narrower one. Only per-pad mask expansion changes; no copper moves.
+run_step S7m "keep a 0.1 mm mask dam between different nets" \
+  "$KPY" "$ROOT/scripts/71_mask_webs.py" --root "$ROOT" || exit 1
 
 s7b() {
   # The picture first, so the report can point at it. It is a review aid, not
@@ -290,6 +295,10 @@ run_step S7_viapad "ACCEPTANCE I -- no via drill in a solder-mask opening" \
 # ACCEPTANCE J, from the package: every stencil opening lies on its pad.
 run_step S7_paste "ACCEPTANCE J -- no stencil opening past its pad" \
   "$PY3" "$ROOT/scripts/69_paste_gate.py" --root "$ROOT" || exit 1
+
+# ACCEPTANCE L, from the package: no dam under 0.1 mm between two nets.
+run_step S7_maskweb "ACCEPTANCE L -- 0.1 mm mask dam between different nets" \
+  "$PY3" "$ROOT/scripts/72_mask_web_gate.py" --root "$ROOT" || exit 1
 
 # --- S3_sim: headless circuit simulation (optional) --------------------------
 # Deliberately not in STEPS and deliberately non-fatal: it gates nothing the
