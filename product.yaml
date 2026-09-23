@@ -184,6 +184,17 @@ packs:
       VREFP: C_VREFP_10u
     # J1 exceptions the lead accepted; the harness's J1 reads them (Q492,
     # 1e232da) and passes C_VCAP1 as a declared exception.
+    # afe-adc J1 per pin (harness Q544): judged on the estimated path L.
+    # Lead ruling 2026-09-24: 20 nH, trace 1.0 nH/mm (j1-eval's isolated-trace
+    # upper bound, so the estimate errs high). "0 vias within 2 mm" stays the
+    # Rev.B target on the recommendation row.
+    j1_limit:
+      l_nh: 20
+      trace_nh_per_mm: 1.0
+      source: "j1-eval 2026-09-24 (per-pin copper paths; via L Johnson & Graham; trace 0.3-1.0 nH/mm bracket, upper end taken)"
+      reason: "At fMOD 1.024 MHz (SBAS499C p.24) 20 nH is 0.13 ohm, under a tenth of the 1.55 ohm of a 100 nF; the ADC's own transient current is synchronous to fCLK and folds to DC after decimation (inference -- measured at bring-up, reports/bringup_checklist.md). j1-eval found no pin on this board that stops the order."
+      approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+      date: "2026-09-24"
     j1_accepted_exceptions:
       - net: VCAP1
         cap: C_VCAP1
