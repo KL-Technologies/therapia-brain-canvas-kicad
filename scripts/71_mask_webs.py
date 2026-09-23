@@ -34,7 +34,10 @@ import route as R                                  # noqa: E402
 import epro as E                                   # noqa: E402
 
 IU = R.IU
-WEB_MM = 0.10
+# JLC's floor is 0.10 mm (ACCEPTANCE L). The design target is 0.105: set
+# exactly to 0.10 the dams came out at 0.09998 mm through KiCad's polygon
+# approximation, and JLC's CAM rounds too (QA 2026-09-23).
+WEB_MM = 0.105
 WEB = int(WEB_MM * IU)
 
 

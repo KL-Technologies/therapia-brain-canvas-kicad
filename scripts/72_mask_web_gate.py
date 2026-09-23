@@ -31,7 +31,8 @@ import epro as E                                   # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOARD = "Therapia_EEG-HRV"
-WEB_MM = 0.10
+WEB_MM = 0.10                   # ACCEPTANCE L: JLC's floor
+TARGET_MM = 0.105               # S7m's design target, 0.005 of margin
 TOL_MM = 0.0005                 # coordinate rounding in the Gerber, no more
 
 
@@ -74,16 +75,16 @@ def openings(mask, cu):
     return out
 
 
-def judge(ops):
+def judge(ops, web=WEB_MM):
     bad, same, worst = [], 0, None
-    reach = WEB_MM + 0.05
+    reach = web + 0.05
     for i, (pa, ba, na) in enumerate(ops):
         for pb, bb, nb in ops[i + 1:]:
             if (bb[0] > ba[2] + reach or ba[0] > bb[2] + reach
                     or bb[1] > ba[3] + reach or ba[1] > bb[3] + reach):
                 continue
             g = poly_gap(pa, pb)
-            if g >= WEB_MM - TOL_MM:
+            if g >= web - TOL_MM:
                 continue
             if na and nb and na == nb and len(na) == 1:
                 same += 1
@@ -106,12 +107,16 @@ def main():
     for side, m, c in (("F", "-F_Mask.gts", "-F_Cu.gtl"),
                        ("B", "-B_Mask.gbs", "-B_Cu.gbl")):
         sides[side] = openings(G.parse_gerber(g + m), G.parse_gerber(g + c))
-    result, off = {}, []
+    result, off, under_target = {}, [], []
     for side, ops in sides.items():
         bad, same, worst = judge(ops)
         result[side] = {"openings": len(ops), "different_net_under": len(bad),
                         "same_net_under": same, "worst_mm": worst}
         off += [dict(r, side=side) for r in bad]
+        tbad, _s, tworst = judge(ops, TARGET_MM)
+        result[side]["under_target"] = len(tbad)
+        result[side]["worst_under_target_mm"] = tworst
+        under_target += [dict(r, side=side) for r in tbad]
     # an opening with no pad under it must be a bare hole (an NPTH), nothing else
     npth = G.parse_excellon(g + "-NPTH.drl")["hits"]
     unnetted = [(round((b[0] + b[2]) / 2, 3), round((b[1] + b[3]) / 2, 3))
@@ -154,6 +159,9 @@ def main():
                                                       unnetted[:5])),
         check("L dams under %.2f mm between openings of different nets"
               % WEB_MM, 0, len(off)),
+        check("L dams under the %.3f mm design target between openings of "
+              "different nets" % TARGET_MM, 0, len(under_target),
+              note=str(under_target[:5])),
         check("L negative control: two different-net openings pushed to a "
               "0.05 mm dam are caught", True,
               bool(control and control["caught"])),
