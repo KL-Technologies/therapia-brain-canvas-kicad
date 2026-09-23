@@ -1,0 +1,38 @@
+{
+  "step": "S7d",
+  "pass": true,
+  "checks": [
+    {
+      "name": "dangling tracks left (KiCad's own predicate)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "vias touching fewer than two layers left",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "unconnected items",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "every pad on the net it had",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "name": "board saved (or nothing to do)",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T14:17:33",
+  "notes": "found 27 dangling tracks and 3 one-layer vias; removed 33 tracks and 5 vias in 7 rounds; kept 0 on purpose."
+}

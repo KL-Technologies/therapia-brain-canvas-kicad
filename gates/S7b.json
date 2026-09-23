@@ -41,19 +41,19 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T14:01:55",
+  "timestamp": "2026-09-23T14:17:37",
   "notes": "Imported board (22513e4) vs the board now, over 40 analog nets. Keyed by geometry because S5 renumbered every uuid.",
   "baseline": "22513e4",
   "items_before": 770,
-  "items_after": 860,
-  "differences": 259,
+  "items_after": 844,
+  "differences": 271,
   "by_declared_change": {
     "ECO-1#2 RESV1": 3,
-    "ECO-3#11 VCAP1 to 1206": 32,
-    "ECO-1#4/5 VCAP2, VCAP3": 71,
-    "ECO-3#12 VREFP 10u to 1206": 9,
+    "ECO-3#11 VCAP1 to 1206": 34,
+    "ECO-1#4/5 VCAP2, VCAP3": 77,
+    "ECO-3#12 VREFP 10u to 1206": 11,
     "S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,107.648)": 6,
-    "S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)": 13,
+    "S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760)": 14,
     "eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159)": 3,
     "viapad_fix repair: viapad_fix recorded touching AVDD at (148.283,92.700) (147.708,92.700)": 2,
     "drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700)": 4,
@@ -66,6 +66,7 @@
     "viapad_fix repair: viapad_fix recorded touching IN6N at (132.851,97.145)": 6,
     "viapad_fix repair: viapad_fix recorded touching IN7N at (132.851,94.148)": 6,
     "viapad_fix repair: viapad_fix recorded touching IN8N at (132.851,91.150)": 6,
+    "ECO-1#1 TPS72325 EN": 7,
     "S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317)": 14,
     "viapad_fix repair: viapad_fix recorded touching AVDD at (140.219,109.883)": 3,
     "viapad_fix repair: viapad_fix recorded touching AVDD at (140.463,93.691)": 3,
@@ -73,8 +74,7 @@
     "S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103)": 4,
     "viapad_fix repair: viapad_fix recorded touching AVDD at (147.708,92.700)": 6,
     "viapad_fix repair: viapad_fix recorded touching BIAS_OUT_INT at (130.790,87.722)": 3,
-    "viapad_fix repair: viapad_fix recorded touching SRB1 at (130.600,89.238)": 4,
-    "ECO-1#1 TPS72325 EN": 6
+    "viapad_fix repair: viapad_fix recorded touching SRB1 at (130.600,89.238)": 4
   },
   "unexplained": [],
   "moved_pads": [

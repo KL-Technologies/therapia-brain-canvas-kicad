@@ -41,7 +41,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T14:02:03",
+  "timestamp": "2026-09-23T14:17:45",
   "notes": "Measured against docs/ads1299_layout_checklist.md (J1-J11). TI states no numeric distance for decoupling, so distances are reported, not scored. The board is not modified unless an improvement is found that is both nearer and via-free.",
   "plane_nets": [
     "AVDD",
@@ -701,8 +701,8 @@
     },
     {
       "net": "ADS_CS_N",
-      "samples": 776,
-      "void_at_own_via": 43,
+      "samples": 772,
+      "void_at_own_via": 40,
       "void_at_foreign_via": 0,
       "void_unaccounted": 0,
       "samples_over_an_inner_track": 0,
@@ -719,7 +719,7 @@
     },
     {
       "net": "USB_DP",
-      "samples": 359,
+      "samples": 351,
       "void_at_own_via": 61,
       "void_at_foreign_via": 0,
       "void_unaccounted": 0,
@@ -728,7 +728,7 @@
     },
     {
       "net": "USB_DM",
-      "samples": 484,
+      "samples": 479,
       "void_at_own_via": 52,
       "void_at_foreign_via": 0,
       "void_unaccounted": 0,
@@ -812,8 +812,8 @@
       "in2_regions_crossed": 3,
       "transitions": 7,
       "regions": [
-        "AVSS",
         "(no fill)",
+        "AVSS",
         "AVDD"
       ]
     },
@@ -1068,14 +1068,14 @@
       "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 2493.49
+      "area_mm2": 2496.11
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 281.52
+      "area_mm2": 282.56
     },
     {
       "net": "VDD_ESP",
@@ -1103,7 +1103,7 @@
       "layer": "In2.Cu",
       "outlines": 5,
       "holes": 0,
-      "area_mm2": 359.33
+      "area_mm2": 359.75
     },
     {
       "net": "VDD_ESP",
@@ -1167,7 +1167,7 @@
     },
     {
       "id": "J9 USB D+/D- length delta",
-      "measured": "11.682 mm (D+ 34.036, D- 45.717)",
+      "measured": "11.956 mm (D+ 33.304, D- 45.260)",
       "wanted": "< 45 mm (Full Speed, H-2)",
       "ok": true
     },
@@ -1195,7 +1195,7 @@
       "ref": "C_VCAP3",
       "target": "U_ADS.55",
       "now_mm": 3.3598,
-      "sites_examined": 45,
+      "sites_examined": 108,
       "better": null,
       "ok": false,
       "reason": "no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
@@ -1231,7 +1231,7 @@
       "ref": "C_VCAP4",
       "target": "U_ADS.26",
       "now_mm": 5.2383,
-      "sites_examined": 57,
+      "sites_examined": 62,
       "better": null,
       "ok": false,
       "reason": "no position between 0.4 mm and 5.24 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"

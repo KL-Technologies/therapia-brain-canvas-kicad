@@ -1,0 +1,31 @@
+{
+  "step": "S7p",
+  "pass": true,
+  "checks": [
+    {
+      "name": "J footprint paste shapes measured",
+      "expected": "> 0",
+      "actual": 178,
+      "pass": true
+    },
+    {
+      "name": "J paste shapes reaching past their pads",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "J negative control: paste moved 0.1 mm off its pad is caught",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T14:17:25",
+  "notes": "178 footprint paste shapes, 168 reached past their pads (worst 0.1338 mm); 168 clipped, 0 deleted; 0 left.",
+  "control": {
+    "ref": "LM2664",
+    "reach_mm": 0.1,
+    "caught": true
+  }
+}

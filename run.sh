@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7v S7b S7c S7 S7_body S7_viapad S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7v S7p S7d S7b S7c S7 S7_body S7_viapad S7_paste S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,8 +32,9 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7v", "S7b",
-             "S7c", "S7", "S7_body", "S7_viapad", "S8"):
+             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7v", "S7p",
+             "S7d", "S7b", "S7c", "S7", "S7_body", "S7_viapad", "S7_paste",
+             "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
         print("%-5s %-6s %-19s %s" % (step, "-", "-", "not run"))
@@ -212,6 +213,33 @@ PY
 }
 run_step S7v "move every via out of the SMD pad it sat in" s7v || exit 1
 
+# ACCEPTANCE J: the EasyEDA import drew its own F.Paste shapes beside the pads,
+# 168 of them past the copper (up to 0.134 mm). Clipped back to the pads here;
+# no copper moves.
+run_step S7p "clip the footprints' own paste shapes to their pads" \
+  "$KPY" "$ROOT/scripts/68_fix_paste_graphics.py" --root "$ROOT" || exit 1
+
+# ACCEPTANCE K: tracks and vias that end in nothing. Removed until KiCad's own
+# dangling test finds none, then DRC (with a refill) must agree.
+s7d() {
+  "$KPY" "$ROOT/scripts/70_prune_dangling.py" --root "$ROOT" || return 1
+  "$KC" pcb drc --format json --severity-all --units mm --refill-zones \
+    --save-board -o "$ROOT/logs/drc_s7d.json" \
+    "$ROOT/board/Therapia_EEG-HRV.kicad_pcb" >/dev/null 2>&1
+  "$PY3" - "$ROOT/logs/drc_s7d.json" <<'PY' || return 1
+import json, sys
+d = json.load(open(sys.argv[1]))
+err = [v for v in d["violations"] if v.get("severity") == "error"]
+dang = [v for v in d["violations"]
+        if v.get("type") in ("track_dangling", "via_dangling")]
+unc = d.get("unconnected_items", [])
+print("  DRC after S7d: %d errors, %d unconnected, %d dangling"
+      % (len(err), len(unc), len(dang)))
+sys.exit(1 if err or unc or dang else 0)
+PY
+}
+run_step S7d "remove the tracks and vias that end in nothing" s7d || exit 1
+
 s7b() {
   # The picture first, so the report can point at it. It is a review aid, not
   # a criterion -- a pixel count is not a threshold anyone should gate on.
@@ -258,6 +286,10 @@ run_step S7_body "ACCEPTANCE H -- no component body overlaps" \
 # asks the harness's S7_viapad for a second reading, so it runs after S8.
 run_step S7_viapad "ACCEPTANCE I -- no via drill in a solder-mask opening" \
   "$PY3" "$ROOT/scripts/67_viapad_gate.py" --root "$ROOT" || exit 1
+
+# ACCEPTANCE J, from the package: every stencil opening lies on its pad.
+run_step S7_paste "ACCEPTANCE J -- no stencil opening past its pad" \
+  "$PY3" "$ROOT/scripts/69_paste_gate.py" --root "$ROOT" || exit 1
 
 # --- S3_sim: headless circuit simulation (optional) --------------------------
 # Deliberately not in STEPS and deliberately non-fatal: it gates nothing the

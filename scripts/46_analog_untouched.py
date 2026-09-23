@@ -199,7 +199,8 @@ def eco_sites(root):
     the RESV1 stub via 7 mm north of U_ADS.
     """
     sites = []
-    for name in ("eco_apply", "eco5_bom_apply", "viapad_fix"):
+    for name in ("eco_apply", "eco5_bom_apply", "viapad_fix",
+                 "dangling_prune"):
         path = os.path.join(root, "logs", name + ".json")
         if not os.path.exists(path):
             continue

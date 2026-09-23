@@ -213,10 +213,10 @@
     },
     {
       "name": "ODB++ point count = pads + vias",
-      "expected": 678,
-      "actual": 678,
+      "expected": 673,
+      "actual": 673,
       "pass": true,
-      "note": "678 until L7: USB_CC1 cannot enter J1 pad 4 from the west, so it crosses the pad column on B.Cu and the board gained two vias (gates/S5_L7.json), 680; S7v removed two AVSS vias that reached nothing but F.Cu (logs/viapad_fix.json), 678 again. The same counts show in ACCEPTANCE D's IPC-D-356 check"
+      "note": "678 until L7: USB_CC1 cannot enter J1 pad 4 from the west, so it crosses the pad column on B.Cu and the board gained two vias (gates/S5_L7.json), 680; S7v removed two AVSS vias that reached nothing but F.Cu (logs/viapad_fix.json), 678 again; S7d removed five one-layer vias at the ends of dangling stubs (logs/dangling_prune.json), 673. The same counts show in ACCEPTANCE D's IPC-D-356 check"
     },
     {
       "name": ".gbrjob agrees on layers, thickness, stackup and rules",
@@ -225,7 +225,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T14:02:29",
+  "timestamp": "2026-09-23T14:18:10",
   "notes": "The uploadable package, read back from the files. Geometry and drill are checked by lib/gerber_parse.py, not by KiCad.",
   "archive": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/Therapia_EEG-HRV_Rev.A.zip",
@@ -245,7 +245,7 @@
       "Therapia_EEG-HRV-PTH.drl",
       "Therapia_EEG-HRV-job.gbrjob"
     ],
-    "bytes": 286928
+    "bytes": 289257
   },
   "independent_parse": {
     "missing_layers": [],
@@ -259,10 +259,10 @@
     "npth_clear": true,
     "planes_filled": true,
     "copper_coverage": {
-      "F.Cu": 0.2535,
-      "In1.Cu": 0.9536,
-      "In2.Cu": 0.9368,
-      "B.Cu": 0.1069
+      "F.Cu": 0.2519,
+      "In1.Cu": 0.9542,
+      "In2.Cu": 0.9372,
+      "B.Cu": 0.106
     },
     "outline": {
       "bbox": [
@@ -321,14 +321,14 @@
   },
   "ipc_d356": {
     "present": true,
-    "features": 678,
+    "features": 673,
     "unparsed_lines": 0,
     "header": [
       "P  CODE 00",
       "P  UNITS CUST 0",
       "P  arrayDim   N"
     ],
-    "vias": 239,
+    "vias": 234,
     "smd": 417,
     "through_pads": 16,
     "npth": 6,
@@ -444,8 +444,8 @@
       "ok": true,
       "gerber_attr_sets": 935,
       "gerber_attr_deletes": 180,
-      "flashes_carrying_a_net": 672,
-      "flashes": 672
+      "flashes_carrying_a_net": 667,
+      "flashes": 667
     }
   },
   "gbrjob": {
@@ -486,7 +486,7 @@
   "odb": {
     "present": true,
     "nets": 79,
-    "netlist_points": 678,
+    "netlist_points": 673,
     "names": [
       "A1_ELEC",
       "A2_ELEC",

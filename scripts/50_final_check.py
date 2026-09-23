@@ -304,7 +304,7 @@ def main():
                 True, ipc.get("npth_ok"),
                 note="at the d356 resolution of 2.54 um; the 2 um assertion "
                      "stays with the Excellon file, which is metric"),
-        P.check("D IPC-D-356 feature counts", [239, 417, 16, 6],
+        P.check("D IPC-D-356 feature counts", [234, 417, 16, 6],
                 [ipc.get("vias"), ipc.get("smd"), ipc.get("through_pads"),
                  ipc.get("npth")],
                 note="vias were 239 until L7 moved R_CC1 out of the USB-C "
@@ -313,8 +313,11 @@ def main():
                      "two AVSS vias in the C_VREFP_10n / C_VREFP_100n pads "
                      "that reached no layer but F.Cu -- each sat in a 0.5 mm "
                      "AVSS fill island of its own inside the In2 AVDD pour -- "
-                     "241 -> 239 (logs/viapad_fix.json, 'removed'). ACCEPTANCE "
-                     "D allows a recorded change"),
+                     "241 -> 239 (logs/viapad_fix.json, 'removed'); S7d "
+                     "removed five vias that touched one layer only, the "
+                     "ends of dangling stubs, 239 -> 234 (logs/"
+                     "dangling_prune.json). ACCEPTANCE D allows a recorded "
+                     "change"),
         # E
         P.check("E gerber set complete", [], fab.get("missing_layers", ["?"])),
         P.check("E four copper layers", 4,

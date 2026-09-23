@@ -1,6 +1,6 @@
 # STATUS — brain_canvas_kicad
 
-最終更新: 2026-09-23 / 担当: S0–S2 → S3・S4 → S5・S6 → S7・S8 → S9 → L7〜L9・H・S8 再出力・S9 再投入 → 独立機能レビュー反映（BOM のみ 4 件・銅箔不変） → S3_sim（ngspice）＋ R29-6 反映（BOM のみ 1 件・銅箔不変） → **S7v（via-in-pad の是正）・基準 I 追加・S8 再出力（Y9）**
+最終更新: 2026-09-23 / 担当: S0–S2 → S3・S4 → S5・S6 → S7・S8 → S9 → L7〜L9・H・S8 再出力・S9 再投入 → 独立機能レビュー反映（BOM のみ 4 件・銅箔不変） → S3_sim（ngspice）＋ R29-6 反映（BOM のみ 1 件・銅箔不変） → **S7v（via-in-pad の是正）・基準 I 追加・S8 再出力（Y9）** → **S7p（ステンシル開口のはみ出し 168 個）・S7d（行き先のない配線 33 本・via 5 本）・基準 J / K・裁定 3 件の記録・S8 再出力**
 
 > ## ⛔ 2026-09-23: Y8 は via-in-pad 106 本のため決済不可。修正版 Y9 の fab を用意済み。カートの差し替えは lead が行う
 >
@@ -23,25 +23,27 @@
 > |---|---|---|
 > | SMD 開口にかかる via（Gerber、`gates/S7_viapad.json`） | 106（F.Paste を含めると 111） | **0**（最小間隔 0.0327 mm） |
 > | 同（ハーネス S7_viapad の盤面センサス） | 112 | **0**（ハーネスの fab 側の判定も pass） |
-> | via 数 | 241 | **239** |
-> | DRC error / 未接続 | 0 / 0 | **0 / 0**（warning の種類は変わらない。track_dangling が 26 → 27 に増えたのは、既存の USB_5V の切れ端） |
+> | via 数 | 241 | **234**（S7v で −2、S7d で −5） |
+> | DRC error / 未接続 | 0 / 0 | **0 / 0** |
+> | DRC の track_dangling / via_dangling | 26 / 3 | **0 / 0**（S7d、基準 K） |
+> | パッドの外に出るステンシル開口（Gerber、`gates/S7_paste.json`） | 168（最大 0.134 mm） | **0**（S7p、基準 J） |
 > | 契約パリティ（ネットリスト） | 0 差分 | **0 差分** |
 > | IN1P〜IN8N の ADC〜入力抵抗の経路長 | — | **変化 0.000 mm**、P/N の長さ差も 8 対すべて不変 |
-> | SRB1 の経路長 | — | +0.9 mm（全長 40.8 mm。パッドの中にあった via の分が外に出た） |
+> | SRB1 の経路長 | — | +0.9 mm（全長 40.8 mm）。**lead 裁定で受け入れ、上限 1.0 mm を ACCEPTANCE に固定** |
+> | VCAP1 | — | ピン 28 → C_VCAP1_H のパッドは 1.358 mm で**不変**。伸びたのはバルク側（C_VCAP1 100 µF）だけで 12.665 → 16.548 mm。AVSS に戻るループ面積は 4.282 → 4.277 mm² / 14.723 → 14.730 mm² で悪化なし。**lead 裁定で受け入れ** |
+> | CM コンデンサの GND via | — | パッドから 1.3〜1.9 mm。**lead 裁定で受け入れ** |
 > | BOM / CPL | — | **不変**（部品・位置・回転とも） |
 >
-> ゲートは S7v・S7b・S7c・S8 31/31・S7 40/40・S7_body・**S7_viapad（新設の基準 I）** がすべて pass（`./run.sh --from S7v`）。
-> ACCEPTANCE.md に「追記 3」として基準 I を加えた。
+> ゲートは S7v 8/8・S7p 3/3・S7d 5/5・S7b・S7c・S8 31/31・S7 40/40・S7_body・**S7_viapad（基準 I）7/7・S7_paste（基準 J）4/4**
+> がすべて pass（`./run.sh --from S7v`、S7v より前の盤面から通しで実行）。
+> ACCEPTANCE.md の「追記 3」に基準 I と裁定を、「追記 4」に基準 J / K を加えた。
 >
-> **新しい fab**: `fab/Therapia_EEG-HRV_Rev.A.zip`（sha256 `aca138cf…`）、
+> **新しい fab**: `fab/Therapia_EEG-HRV_Rev.A.zip`（sha256 `429ad5f3…`）、
 > `fab/board.d356`、`fab/CPL_JLCPCB.csv`、`fab/BOM_JLCPCB.csv`（BOM / CPL は Y8 と同じ内容）。
 > **次（lead）**: カートの Y8 の 2 品目を削除し、この zip を再アップロードして Y9 にする。
 > BOM / CPL は同じ設定（31 行、Standard、Confirm Parts Placement = Yes）で入れる。
 > 決済・DFM / Confirm Parts Placement への応答は施主。
->
-> **一緒に見つかったが、今回は直していないもの**: EasyEDA から取り込んだ 50 フットプリントが、
-> パッドとは別に F.Paste の図形を持っている（ステンシルの開口になる）。
-> R_BIAS_SER のものはパッドより 0.134 mm 外まで出ている。
+
 
 ## 現在地
 

@@ -2,15 +2,15 @@
   "renamed": [],
   "counts_before": {
     "footprints": 141,
-    "tracks": 1402,
-    "vias": 239,
+    "tracks": 1369,
+    "vias": 234,
     "npth_pads": 6,
     "pth_pads": 16
   },
   "counts_after": {
     "footprints": 141,
-    "tracks": 1402,
-    "vias": 239,
+    "tracks": 1369,
+    "vias": 234,
     "npth_pads": 6,
     "pth_pads": 16
   },

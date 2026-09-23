@@ -6,8 +6,8 @@
 
 | | |
 |---|---|
-| アナログ系アイテム | 770 → 862 |
-| 差分 | 259 |
+| アナログ系アイテム | 770 → 846 |
+| 差分 | 271 |
 | 説明できない差分 | **0** |
 | 入力・電極ネットの差分 | **0** |
 
@@ -80,8 +80,8 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 
 | 層 | 画像 | 不変 [px] | 追加 [px] | 削除 [px] | 変化率 |
 |---|---|---|---|---|---|
-| F.Cu | `reports/copper_xor_f_cu.png` | 265804 | 29647 | 10191 | 13.03% |
-| B.Cu | `reports/copper_xor_b_cu.png` | 109120 | 17686 | 14738 | 22.91% |
+| F.Cu | `reports/copper_xor_f_cu.png` | 264201 | 29443 | 11794 | 13.50% |
+| B.Cu | `reports/copper_xor_b_cu.png` | 107755 | 17686 | 16103 | 23.87% |
 
 > F.Cu の画像で、**基板左半分（12 ピンヘッダ・入力抵抗 16 個・CM コンデンサ 16 個・そこから ADS1299 までの配線）が一様に灰色**であることが、上の「差分 0 件」の目視版。赤緑が固まっているのは ADS1299 北側（VCAP 系）、中央下（BIAS/ECO-5）、右下（AMS1117 の移設と USB-C 周り）の 3 箇所だけ。
 
@@ -91,14 +91,14 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 
 | 由来 | 件数 |
 |---|---|
-| ECO-1#1 TPS72325 EN | 6 |
+| ECO-1#1 TPS72325 EN | 7 |
 | ECO-1#2 RESV1 | 3 |
-| ECO-1#4/5 VCAP2, VCAP3 | 71 |
-| ECO-3#11 VCAP1 to 1206 | 32 |
-| ECO-3#12 VREFP 10u to 1206 | 9 |
+| ECO-1#4/5 VCAP2, VCAP3 | 77 |
+| ECO-3#11 VCAP1 to 1206 | 34 |
+| ECO-3#12 VREFP 10u to 1206 | 11 |
 | ECO-5 BIAS feedback | 19 |
 | S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317) | 14 |
-| S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) | 13 |
+| S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) | 14 |
 | S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,107.648) | 6 |
 | S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103) | 4 |
 | drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700) | 4 |
@@ -147,9 +147,10 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 
 ## 追加・削除された銅
 
-### 削除（81 件）
+### 削除（95 件）
 
 ```
+ECO-1#1 TPS72325 EN          trk  TPS_NR         F.Cu          (155.0520, 114.3660) -> (155.0520, 114.5440) w0.2030
 ECO-1#1 TPS72325 EN          via  VNEG5          (148.8545, 122.2150) d0.6095/0.3050
 ECO-1#2 RESV1                pad  AVDD           U_ADS.31 (149.4120, 107.6480) 0.280x1.800
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP1.2 (151.9420, 112.7660) 0.800x0.900
@@ -157,10 +158,18 @@ ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10n.2 (146.7600, 110.48
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10u.2 (151.1290, 110.4800) 0.800x0.900
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (143.9165, 109.2100) -> (144.0790, 109.9720) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (149.9085, 109.0070) -> (151.4960, 110.9880) w0.2540
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (141.0820, 93.9190) -> (141.2090, 93.9190) w0.3050
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (143.9190, 107.6480) -> (143.9190, 109.0575) w0.2030
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (145.4125, 95.3670) -> (145.4125, 95.4940) w0.2540
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (145.9130, 95.3670) -> (145.9130, 95.4940) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.7590, 110.4800) -> (146.9115, 110.4800) w0.2030
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.9240, 109.7690) -> (146.9240, 110.4800) w0.2030
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (147.9910, 93.9190) -> (148.7020, 93.9190) w0.3050
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.1210, 92.7000) -> (149.1210, 93.9190) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.2100, 114.5440) -> (149.2100, 115.0900) w0.2540
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.2100, 114.5440) -> (149.5275, 114.0360) w0.2540
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.5275, 112.4865) -> (149.5275, 114.0360) w0.2540
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (151.4070, 92.7000) -> (151.4070, 93.9190) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (143.9190, 109.0575) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (145.9205, 112.7660) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (146.9115, 110.4800) d0.6095/0.3050
@@ -173,14 +182,18 @@ ECO-3#11 VCAP1 to 1206       pad  AVSS           C_AVSS_B.1 (149.2100, 115.3680)
 ECO-3#11 VCAP1 to 1206       trk  AVSS           F.Cu          (148.2955, 116.1190) -> (148.4480, 116.2330) w0.1525
 ECO-3#11 VCAP1 to 1206       trk  AVSS           F.Cu          (148.4480, 115.9790) -> (148.4480, 116.2330) w0.2030
 ECO-3#11 VCAP1 to 1206       trk  AVSS           F.Cu          (149.2100, 115.2170) -> (149.2100, 115.3670) w0.2030
+ECO-3#11 VCAP1 to 1206       trk  AVSS           F.Cu          (153.8835, 120.3350) -> (153.9850, 120.3350) w0.2030
 ECO-3#11 VCAP1 to 1206       via  AVSS           (142.1615, 112.7660) d0.6095/0.3050
 ECO-3#11 VCAP1 to 1206       via  AVSS           (148.2955, 116.1190) d0.6095/0.3050
 ECO-3#11 VCAP1 to 1206       via  AVSS           (149.2100, 115.2170) d0.6095/0.3050
 ECO-3#11 VCAP1 to 1206       pad  VCAP1          C_VCAP1.1 (150.5420, 112.7660) 0.800x0.900
+ECO-3#11 VCAP1 to 1206       trk  VCAP1          F.Cu          (150.8100, 113.1725) -> (150.8100, 114.3410) w0.2540
 ECO-3#11 VCAP1 to 1206       via  VCAP1          (147.9095, 109.0070) d0.6095/0.3050
 ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10n.1 (145.9200, 110.4800) 0.500x0.540
 ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10u.1 (149.7290, 110.4800) 0.800x0.900
+ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.7810, 111.4960) -> (145.9205, 111.4960) w0.3050
 ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.9205, 110.4800) -> (145.9205, 111.4960) w0.2540
+ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (149.7305, 110.4800) -> (149.7305, 111.4960) w0.2540
 ECO-5 BIAS feedback          trk  BIAS_OUT_INT   B.Cu          (130.4900, 87.7215) -> (148.7020, 87.7215) w0.2540
 ECO-5 BIAS feedback          trk  BIAS_OUT_INT   B.Cu          (148.7020, 87.7215) -> (148.8545, 87.8740) w0.2030
 ECO-5 BIAS feedback          trk  BIAS_OUT_INT   B.Cu          (148.7780, 88.1535) -> (148.9560, 88.1280) w0.1525
@@ -196,6 +209,7 @@ S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143
 S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317) via  V_NLDO_IN      (141.0310, 122.6720) d0.6095/0.3050
 S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) trk  AVDD           F.Cu          (144.0410, 110.4800) -> (144.6890, 111.3435) w0.2030
 S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) trk  AVDD           F.Cu          (144.4145, 107.6480) -> (144.4145, 108.9050) w0.2540
+S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) trk  AVDD           F.Cu          (144.4170, 109.4640) -> (144.4170, 109.7690) w0.2030
 S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) via  AVDD           (144.6890, 111.3435) d0.6095/0.3050
 S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) via  AVDD           (145.0315, 112.7660) d0.6095/0.3050
 S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,107.648) trk  AVDD           F.Cu          (142.1615, 110.7595) -> (142.1615, 111.0895) w0.2540
@@ -233,7 +247,7 @@ viapad_fix repair: viapad_fix recorded touching IN8N at (132.851,91.150) via  IN
 viapad_fix repair: viapad_fix recorded touching SRB1 at (130.600,89.238) via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 ```
 
-### 追加（171 件）
+### 追加（169 件）
 
 ```
 ECO-1#1 TPS72325 EN          trk  VNEG5          B.Cu          (148.1922, 122.5099) -> (148.8545, 122.2150) w0.2030
@@ -253,8 +267,6 @@ ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10u.2 (150.9370, 108.75
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (143.9190, 109.1845) -> (144.0790, 109.9720) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (150.4088, 109.6313) -> (151.4960, 110.9880) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (151.4960, 113.7820) -> (151.5692, 114.4782) w0.2540
-ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (141.2090, 93.9190) -> (141.2090, 95.4440) w0.2032
-ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (141.2090, 95.4440) -> (141.8320, 95.4440) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (143.9190, 107.6480) -> (143.9190, 109.1845) w0.2030
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (144.1180, 93.8420) -> (144.8285, 93.9190) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (145.9205, 112.7660) -> (146.1136, 113.3604) w0.3048

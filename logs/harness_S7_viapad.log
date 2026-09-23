@@ -1,46 +1,46 @@
 {
  "step": "viapad_selftest",
- "timestamp": "2026-09-23T14:02:52",
+ "timestamp": "2026-09-23T14:18:33",
  "inputs": {
   "F_Paste": {
    "path": "fab/gerber/Therapia_EEG-HRV-F_Paste.gtp",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "47bb0ecf27712d1a"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "8414a4a0ed6eedf2"
   },
   "F_Mask": {
    "path": "fab/gerber/Therapia_EEG-HRV-F_Mask.gts",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "904293d6cce890b7"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "59361a937ed4cea9"
   },
   "F_Cu": {
    "path": "fab/gerber/Therapia_EEG-HRV-F_Cu.gtl",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "3e0a3a5d4084cac0"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "0a791835bf3810e2"
   },
   "B_Paste": {
    "path": "fab/gerber/Therapia_EEG-HRV-B_Paste.gbp",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "74f1cc21efed9664"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "87993f554827c289"
   },
   "B_Mask": {
    "path": "fab/gerber/Therapia_EEG-HRV-B_Mask.gbs",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "4cc959a56baaae75"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "77d876a1a496bb28"
   },
   "B_Cu": {
    "path": "fab/gerber/Therapia_EEG-HRV-B_Cu.gbl",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "238ad302ce3f7390"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "538176394e4086b6"
   },
   "Edge_Cuts": {
    "path": "fab/gerber/Therapia_EEG-HRV-Edge_Cuts.gm1",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "2570d7750a47ae4b"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "850d5fc911a2ec51"
   },
   "PTH_drill": {
    "path": "fab/gerber/Therapia_EEG-HRV-PTH.drl",
-   "mtime": "2026-09-23T14:02:04",
-   "sha256": "9c6dc95aa5c90f28"
+   "mtime": "2026-09-23T14:17:46",
+   "sha256": "4002f93e7fc2acfb"
   }
  },
  "found": {
@@ -63,7 +63,7 @@
    "both": 0
   }
  },
- "vias_from_drill": 239,
+ "vias_from_drill": 234,
  "holes_excluded_as_component": {
   "T4 C1.050": 12,
   "slot": 8
@@ -102,7 +102,7 @@
       },
       {
        "kind": "region",
-       "vertices": 52,
+       "vertices": 37,
        "layer": "F.Paste",
        "relation": "crossing",
        "signed_gap_mm": -0.14,
