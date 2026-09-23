@@ -1,0 +1,133 @@
+{
+  "_what": "The JLC assembly service each BOM part is known to be buildable on, with the evidence. Read by scripts/61_make_bom_cpl.py into logs/bom_cpl.json#pcba_type, which the harness S7/S8 judge against packs.jlcpcb.pcba_type_required. A part with no recorded evidence is 'unknown', never guessed.",
+  "_evidence": {
+    "S9": "gates/S9.json: the Standard PCBA order SMT026082960311 (Y8, 2026-08-29) accepted every row (bom_checks.rows_detected 31, rows_confirmed 31, rows_shortfall 0) with this BOM, fab/BOM_JLCPCB.csv sha256 740b7ef770e0f92966bacccd05d4f4c22db05e700f65c14165a29d2a8be07c30 (unchanged in Y9)"
+  },
+  "_note": "'Standard' says only what the cart proved: the part was accepted on a Standard PCBA order. Whether it would also build on Economic is not recorded here and not claimed.",
+  "parts": {
+    "C1525": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C163508": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C25744": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C19702": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C52923": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C237168": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C25804": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C1017": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C17477": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C15195": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C17514": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C2146": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C23178": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C23186": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C23733": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C108573": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C13585": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C15008": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C19619": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C23138": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C23967": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C2765186": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C2840012": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C43379": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C476817": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C6186": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C69932": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C701344": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C7519": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C84268": {
+      "value": "Standard",
+      "evidence": "S9"
+    },
+    "C84681": {
+      "value": "Standard",
+      "evidence": "S9"
+    }
+  }
+}

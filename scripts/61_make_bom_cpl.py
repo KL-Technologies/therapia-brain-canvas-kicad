@@ -38,6 +38,7 @@ import collections
 import csv
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -118,6 +119,49 @@ def run_pos(root, out_path):
     return os.path.exists(out_path), (proc.stdout or "") + (proc.stderr or "")
 
 
+PANEL_WORDS = ("Economic", "Standard")      # harness core.pcba_panel
+
+
+def _panels(text):
+    return [w for w in PANEL_WORDS
+            if re.search(r"\b%s\b" % w, str(text or ""), re.I)]
+
+
+def pcba_type_section(root, groups):
+    """Which assembly service each fitted part is known to build on.
+
+    The harness S7/S8 judge every fitted BOM row against the panel the board
+    is quoted on (product.yaml packs.jlcpcb.pcba_type_required). The parts
+    table has no such column, so the evidence lives in data/pcba_type.json,
+    per LCSC number, each with where it came from. A part with no entry is
+    written as "unknown" and reported, never filled in.
+    """
+    required = None
+    for line in open(os.path.join(root, "product.yaml")):
+        m = re.match(r"\s*pcba_type_required:\s*(.+?)\s*$", line)
+        if m:
+            required = m.group(1).strip().strip('"')
+    path = os.path.join(root, "data", "pcba_type.json")
+    known = E.load_json(path).get("parts", {}) if os.path.exists(path) else {}
+    wanted = (_panels(required) or [None])[0]
+    rows, bad, unknown = [], [], []
+    for (lcsc, _fp), refs in groups.items():
+        v = (known.get(lcsc) or {}).get("value", "unknown")
+        evid = (known.get(lcsc) or {}).get("evidence")
+        named = _panels(v)
+        for d in sorted(refs, key=natural):
+            rows.append({"designator": d, "lcsc": lcsc, "value": v,
+                         "evidence": evid})
+            if not named:
+                unknown.append({"designator": d, "value": v})
+            elif wanted and wanted not in named:
+                bad.append({"designator": d, "value": v,
+                            "panels_named": sorted(named)})
+    return {"required": required, "panel": wanted, "source": os.path.relpath(
+                path, root), "rows": rows, "rows_not_matching": bad,
+            "rows_with_a_non_panel_value": unknown}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", default=P.ROOT)
@@ -138,6 +182,16 @@ def main():
     log["dnp_in_table"] = dnp
     log["dnp_on_board"] = board_dnp
     log["dnp_agree"] = dnp == board_dnp
+    # The same three-way comparison in the shape the harness S7/S8 read
+    # (packs/jlcpcb bom_cpl.py's `dnp` section): data/dnp.json is the declared
+    # list, and all three must name the same parts.
+    declared = sorted(E.load_json(os.path.join(root, "data", "dnp.json"))
+                      .get("designators") or (), key=natural) \
+        if os.path.exists(os.path.join(root, "data", "dnp.json")) else None
+    log["dnp"] = {"declared_in_data_dnp_json": declared,
+                  "parts_lcsc_csv": dnp, "on_the_board": board_dnp,
+                  "agree": (declared is not None
+                            and set(declared) == set(dnp) == set(board_dnp))}
 
     # --- BOM ---------------------------------------------------------------
     groups = collections.OrderedDict()
@@ -170,6 +224,7 @@ def main():
             mpn = parts[refs[0]]["mpn"]
             w.writerow([comment, ",".join(sorted(refs, key=natural)), fpname,
                         lcsc, mpn, MAKER.get(lcsc, ""), len(refs)])
+    log["pcba_type"] = pcba_type_section(root, groups)
     log["bom"] = {"path": bom_path, "rows": len(groups),
                   "parts": sum(len(v) for v in groups.values()),
                   "designators_missing_from_board": missing_fp,

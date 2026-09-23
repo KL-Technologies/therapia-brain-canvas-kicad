@@ -10,6 +10,828 @@
     "R_RST_UP"
   ],
   "dnp_agree": true,
+  "dnp": {
+    "declared_in_data_dnp_json": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ],
+    "parts_lcsc_csv": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ],
+    "on_the_board": [
+      "R_IO15_DN",
+      "R_RST_UP"
+    ],
+    "agree": true
+  },
+  "pcba_type": {
+    "required": "Standard PCBA",
+    "panel": "Standard",
+    "source": "data/pcba_type.json",
+    "rows": [
+      {
+        "designator": "AMS1117",
+        "lcsc": "C6186",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_B",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_B2",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_OUT",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD1_10u",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_B",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVSS_B",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_BULK",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DVDD_10u",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DVDD_B",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_LM_FLY",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_LM_OUT",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_USB5V_B",
+        "lcsc": "C19702",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_H2",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD1_100n",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_P3",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_P19",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_P31",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_P36",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_P64",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVSS_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVSS_P17",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVSS_P30",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVSS_P37",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVSS_P60",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DVDD_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DVDD_P40",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DVDD_P58",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_HF",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_RST_DLY",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_USB5V_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_USB_V3",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_USB_VCC",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VCAP1_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VCAP3_H",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VREFP_100n",
+        "lcsc": "C1525",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_IN",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_3V3_M",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD1_1u",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD_P59",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_EN_DLY",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_NLDO_IN",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_PLDO_IN",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_PLDO_OUT",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VCAP2",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VCAP3",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VCAP4",
+        "lcsc": "C52923",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_AVDD1_10n",
+        "lcsc": "C15195",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_NR",
+        "lcsc": "C15195",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VREFP_10n",
+        "lcsc": "C15195",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_BIAS_INV",
+        "lcsc": "C23967",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM1N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM1P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM2N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM2P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM3N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM3P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM4N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM4P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM5N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM5P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM6N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM6P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM7N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM7P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM8N",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_CM8P",
+        "lcsc": "C163508",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF1",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF2",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF3",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF4",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF5",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF6",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF7",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_DIF8",
+        "lcsc": "C237168",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_LM_IN",
+        "lcsc": "C23733",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_NLDO_OUT",
+        "lcsc": "C23733",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VCAP1",
+        "lcsc": "C15008",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "C_VREFP_10u",
+        "lcsc": "C13585",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "D_ESD",
+        "lcsc": "C7519",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "D_LED",
+        "lcsc": "C84268",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "F1",
+        "lcsc": "C43379",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "FB1",
+        "lcsc": "C1017",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "FB2",
+        "lcsc": "C1017",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "FB3",
+        "lcsc": "C1017",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "FB4",
+        "lcsc": "C1017",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "FB5",
+        "lcsc": "C1017",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "J1",
+        "lcsc": "C2765186",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "J2",
+        "lcsc": "C2840012",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "LM2664",
+        "lcsc": "C108573",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "Q_EN",
+        "lcsc": "C2146",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "Q_IO0",
+        "lcsc": "C2146",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_BIAS_FB",
+        "lcsc": "C17514",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_BIAS_SER",
+        "lcsc": "C17514",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_CC1",
+        "lcsc": "C23186",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_CC2",
+        "lcsc": "C23186",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_CS_UP",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_DRDY_UP",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_EN_UP",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IO0_UP",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IO2_DN",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_PWDN_UP",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_START_DN",
+        "lcsc": "C25804",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN1N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN1P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN2N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN2P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN3N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN3P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN4N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN4P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN5N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN5P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN6N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN6P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN7N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN7P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN8N",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_IN8P",
+        "lcsc": "C25744",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_LED",
+        "lcsc": "C23138",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_MISO",
+        "lcsc": "C17477",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_MOSI",
+        "lcsc": "C17477",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_SCLK",
+        "lcsc": "C17477",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_SRB_SER",
+        "lcsc": "C17477",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_Q_EN_B",
+        "lcsc": "C23178",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "R_Q_IO0_B",
+        "lcsc": "C23178",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "TLV70025",
+        "lcsc": "C19619",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "TPS72325",
+        "lcsc": "C69932",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "U_ADS",
+        "lcsc": "C476817",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "U_MCU",
+        "lcsc": "C701344",
+        "value": "Standard",
+        "evidence": "S9"
+      },
+      {
+        "designator": "U_USB",
+        "lcsc": "C84681",
+        "value": "Standard",
+        "evidence": "S9"
+      }
+    ],
+    "rows_not_matching": [],
+    "rows_with_a_non_panel_value": []
+  },
   "bom": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/BOM_JLCPCB.csv",
     "rows": 31,
