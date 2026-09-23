@@ -1,0 +1,12 @@
+{
+  "designators": [
+    "R_IO15_DN",
+    "R_RST_UP"
+  ],
+  "source": "data/parts_lcsc.csv column dnp; applied to the board by scripts/45_apply_eco5_and_bom.py (footprint DNP flag)",
+  "why": {
+    "R_RST_UP": "ESP32 IO12 boot-strap violation (STATUS.md, DNP 2 parts)",
+    "R_IO15_DN": "stops the ROM boot log (STATUS.md, DNP 2 parts)"
+  },
+  "added": "2026-09-23, for the harness S7/S8 safety gates"
+}

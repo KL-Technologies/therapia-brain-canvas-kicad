@@ -45,6 +45,25 @@
 > 決済・DFM / Confirm Parts Placement への応答は施主。
 
 
+> ### 2026-09-23: ハーネスの安全ゲート 5 本（harness main `093191b`）に Y9 を当てた。宣言だけを追加し、盤面・fab・gates/ は変えていない
+>
+> | ゲート | 追加前 | 追加後 | 残った赤 |
+> |---|---|---|---|
+> | S6（DRC、read-only） | 14/16 | 15/16 | `npth_holes`: ハーネス側の欠陥（Q477。穴表を契約座標として読む）。DRC は clean、短絡 0 |
+> | S7（最終集約） | 28/58 | 54/58 | ① D NPTH（board）: Q477 と同じ座標系の問題（ずれが 182 mm）。発注データ側の行は pass ② F の panel 行 ③ F の DNP 一致行: 製品の `logs/bom_cpl.json` にハーネスが読む `pcba_type` / `dnp.agree` 節がない（書式の差。製品ログの `dnp_agree` は True）④ K: `gates/S7_clearance.json` がない（ハーネスの S7_clearance は 8/8 だが、出力を gates/ に置かない方針） |
+> | S8（発注パッケージ） | 42/52 | 50/52 | S7 の ② ③ と同じ |
+> | S7_viapad | 16/16 | 16/16 | — |
+> | S7_clearance | 6/7 | 8/8 | — |
+>
+> **盤面の欠陥は 0 件。** 足した宣言は次のとおり。
+> - `product.yaml`: `board.pth_pads` 16、`board.thickness_mm` 1.6、`fab.order_spec`、`fab.human_facing`（iso プレビューはない）、
+>   `fab.pcba_side` Top、`packs.jlcpcb.pcba_type_required` Standard PCBA、`paths.dnp` / `paths.mech_contract`、
+>   `nets.netless_copper`（契約で NC の 34 ピン、Q478）、`gates.S7`（ACCEPTANCE C の数値、5 mil 推奨を warning に置く `clearance`、規則生成器）、
+>   `gates.S8`（部品数 135 / DNP 2 / 実装 133 / テストポイント 0）
+> - 新規ファイル: `data/dnp.json`、`data/order_spec.json`（カートの内容。Tented = IPC-4761 Type I と記載）、`contract/mech_contract.json`（切り欠きなし）
+> - `contract/netlist_contract.json`: `mechanical_parts`（H1〜H4、PEG1/2）を追加。**`scripts/20_netlist_contract.py` で再生成すると消える**
+> - ハーネスの出力は `$TMPDIR` に置いた。検証は製品のコピーで行った
+
 ## 現在地
 
 **S0〜S9 完了。** ただし下の記録は Y8（2026-08-29）時点のもので、**Y8 は上のとおり決済不可**。`gates/S9.json`。

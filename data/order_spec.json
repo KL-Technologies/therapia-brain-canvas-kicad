@@ -1,0 +1,23 @@
+{
+  "pcb": {
+    "layers": 4,
+    "thickness_mm": 1.6,
+    "color": "Green",
+    "surface_finish": "ENIG",
+    "via_covering": "Tented",
+    "ipc_4761": "Type I",
+    "ipc_4761_note": "JLC's 'Tented' is a via covered by solder mask on both sides, which is how IPC-4761 Type I (tented) is commonly described; the standard itself is not read here (harness KS-032). No fill or cap was bought: ACCEPTANCE I keeps every via out of the pads instead.",
+    "panel": "JLCPCB panel 1x1, 12.5 mm rails on four sides",
+    "qty_panels": 5,
+    "outer_copper_oz": 1,
+    "inner_copper_oz": 0.5
+  },
+  "pcba": {
+    "type": "Standard PCBA",
+    "side": "Top",
+    "qty_panels": 2,
+    "confirm_parts_placement": true
+  },
+  "source": "gates/S9.json (the cart as filled 2026-08-29) and fab/README_発注手順.md section 2; Y9 keeps the same order with the corrected package",
+  "added": "2026-09-23, for the harness S7/S8 safety gates"
+}

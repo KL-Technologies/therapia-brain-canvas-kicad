@@ -40,12 +40,31 @@ board:
       - [H2, 176.9468, -83.048, 2.3876]
       - [H3, 123.048, -121.9608, 2.3876]
       - [H4, 176.9468, -121.9608, 2.3876]
+  # --- added 2026-09-23 (harness S6/S7/S8 safety gates, Q474) ---------
+  # ACCEPTANCE D: "PTH 16" (J2's 12 pins + J1's 4 shell legs), measured by
+  # scripts/50_final_check.py as PTH_PADS and unchanged since S2.
+  pth_pads: 16
+  # The order: 1.6 mm (gates/S9.json items[0].spec, data/order_spec.json).
+  thickness_mm: 1.6
   outline:
     h_mm: 45.0088
     tolerance_mm: 0.01
     w_mm: 61.8236
 fab:
   vendor: jlcpcb
+  # --- added 2026-09-23 (harness S7/S8 safety gates, Q474) --------------
+  # The order as it stands in the cart (gates/S9.json), as a file S7 and S9
+  # read. Via Covering stays Tented: the Y9 fix moved the vias out of the pads
+  # rather than buying a fill (ACCEPTANCE I).
+  order_spec: data/order_spec.json
+  # What scripts/60_export_fab.sh writes for a human to look at. There is no
+  # iso preview: 60_export_fab.sh renders top and bottom only.
+  human_facing:
+    - preview_top.png
+    - preview_bottom.png
+    - assembly_top.pdf
+  # Every fitted part is on the top (ACCEPTANCE F; B.Paste is empty).
+  pcba_side: Top
   # Does this design have custom design rules of its own?
   # `required`: board/Therapia_EEG-HRV.kicad_dru holds them, and a DRC run
   # without that file measures the board against KiCad's defaults, so it is
@@ -144,6 +163,10 @@ packs:
       - layer_name_mangling
   jlcpcb:
     cart: https://cart.jlcpcb.com/shopcart/cart
+    # The panel the board is quoted on: Standard PCBA, because U_MCU was
+    # "Standard Only" at JLC (STATUS.md; gates/S9.json items[1].kind).
+    # Added 2026-09-23 for the harness S7/S8 safety gates.
+    pcba_type_required: Standard PCBA
     # --- added 2026-09-05, escalation 025 (a) -------------------------
     # The six keys packs/jlcpcb's schema requires and this manifest did not
     # state. S0_manifest now validates every enabled pack against
@@ -255,6 +278,10 @@ paths:
   gates: gates
   fab_out: fab
   logs: logs
+  # Added 2026-09-23 (harness S7/S8): the DNP list and the mechanical
+  # declaration (notch) as the files the harness reads.
+  dnp: data/dnp.json
+  mech_contract: contract/mech_contract.json
 acceptance:
   document: ACCEPTANCE.md
   clauses:
@@ -272,6 +299,18 @@ acceptance:
         - C
       easyeda-import: []
 nets:
+  # Pads the contract marks NC (netlist_contract.json by_designator, net "NC").
+  # KiCad carries them with no net; they are declared so S7_clearance's K-5 row
+  # knows the copper is owned (harness Q478). Measured 2026-09-23 on Y9: 34
+  # pads, 34 of them NC in the contract, contract_parity 0 and 0
+  # shorting_items on the board.
+  netless_copper: [J1.3, J1.9, TLV70025.4,
+                   U_ADS.27, U_ADS.29, U_ADS.37, U_ADS.60, U_ADS.62, U_ADS.64,
+                   U_MCU.4, U_MCU.5, U_MCU.6, U_MCU.7, U_MCU.8, U_MCU.9,
+                   U_MCU.10, U_MCU.11, U_MCU.17, U_MCU.18, U_MCU.19, U_MCU.20,
+                   U_MCU.21, U_MCU.22, U_MCU.26, U_MCU.27, U_MCU.32, U_MCU.33,
+                   U_MCU.36,
+                   U_USB.7, U_USB.8, U_USB.9, U_USB.10, U_USB.11, U_USB.12]
   plane_nets:
     - GND
     - AGND
@@ -311,6 +350,39 @@ tools:
   kicad_python_env:
     PYTHONNOUSERSITE: "1"
 gates:
+  # --- added 2026-09-23 (harness S7/S8 safety gates, Q474) --------------
+  # Transcribed from ACCEPTANCE.md and scripts/50_final_check.py, not decided.
+  S7:
+    # ACCEPTANCE C's table (the .kicad_pro values scripts/14_make_rules.py writes)
+    rules_mm:
+      min_clearance: 0.0889
+      min_track_width: 0.0889
+      min_hole_to_hole: 0.2
+      min_hole_clearance: 0.2
+      min_copper_edge_clearance: 0.2
+      min_through_hole_diameter: 0.3
+      min_via_annular_width: 0.076
+      min_via_diameter: 0.45
+    pad_to_mask_mm: 0.0508
+    pad_to_paste_mm: 0.0
+    # ACCEPTANCE C makes the 5 mil track-to-track recommendation a warning
+    # (the .kicad_dru rule track_to_track_5mil_preferred); the 0.0889 mm rule
+    # stays an error. 50_final_check.py ALLOWED_WARNINGS carries the same.
+    allowed_warning_extra:
+      - clearance
+    rules_generator: scripts/14_make_rules.py
+    rules_generator_inputs:
+      - board
+      - contract
+      - logs
+      - data
+  S8:
+    # ACCEPTANCE B/F: 135 parts on the contract, R_IO15_DN and R_RST_UP DNP,
+    # 133 fitted (the BOM's 133 parts / 31 rows), no test points.
+    contract_parts: 135
+    dnp_parts: 2
+    fitted_parts: 133
+    bom_excluded_test_points: 0
   S3_rules:
     known_defects:
       - [L1, mounting hole H4 through the AMS1117 GND pad, [hole_clearance], [NPTH pad of H4, of AMS1117]]

@@ -2051,5 +2051,31 @@
         "net": "NC"
       }
     }
-  }
+  },
+  "mechanical_parts": [
+    {
+      "designator": "H1",
+      "kind": "M2 mounting hole"
+    },
+    {
+      "designator": "H2",
+      "kind": "M2 mounting hole"
+    },
+    {
+      "designator": "H3",
+      "kind": "M2 mounting hole"
+    },
+    {
+      "designator": "H4",
+      "kind": "M2 mounting hole"
+    },
+    {
+      "designator": "PEG1",
+      "kind": "USB-C locating peg (J1)"
+    },
+    {
+      "designator": "PEG2",
+      "kind": "USB-C locating peg (J1)"
+    }
+  ]
 }
