@@ -277,16 +277,16 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T16:54:05",
+  "timestamp": "2026-09-23T17:27:49",
   "notes": "ACCEPTANCE.md A-G. The document is frozen; this is its implementation. D and E are settled by lib/gerber_parse.py reading the plotted files, not by KiCad reading its own output.",
   "drc": {
-    "violations": 437,
+    "violations": 436,
     "errors": 0,
-    "warnings": 437,
+    "warnings": 436,
     "unconnected": 0,
     "by_type": {
       "silk_overlap": 199,
-      "silk_over_copper": 163,
+      "silk_over_copper": 162,
       "courtyards_overlap": 67,
       "clearance": 5,
       "silk_edge_clearance": 2,
@@ -308,7 +308,7 @@
   "board": {
     "counts": {
       "footprints": 141,
-      "tracks": 1369,
+      "tracks": 1367,
       "vias": 230,
       "npth_pads": 6,
       "pth_pads": 16
@@ -520,7 +520,7 @@
       },
       "B.Cu": {
         "flashes": 246,
-        "draws": 337,
+        "draws": 336,
         "regions": 0,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -600,7 +600,7 @@
       },
       "F.Cu": {
         "flashes": 663,
-        "draws": 1032,
+        "draws": 1031,
         "regions": 2,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -620,7 +620,7 @@
         "regions": 3,
         "clear_flashes": 0,
         "clear_draws": 0,
-        "clear_regions": 424,
+        "clear_regions": 425,
         "file": "Therapia_EEG-HRV-F_Silkscreen.gto",
         "format": "4.6",
         "unit": "MM",
@@ -649,7 +649,7 @@
       "F.Mask": {
         "flashes": 0,
         "draws": 0,
-        "regions": 424,
+        "regions": 425,
         "clear_flashes": 0,
         "clear_draws": 0,
         "clear_regions": 0,
@@ -778,9 +778,9 @@
     "copper_in_npth_rings": [],
     "npth_clear": true,
     "copper_coverage": {
-      "F.Cu": 0.2516,
+      "F.Cu": 0.2512,
       "In1.Cu": 0.9544,
-      "In2.Cu": 0.9369,
+      "In2.Cu": 0.937,
       "B.Cu": 0.1049
     },
     "planes_filled": true,
@@ -937,7 +937,7 @@
           "PadToPad": 0.0889,
           "PadToTrack": 0.0889,
           "TrackToTrack": 0.0889,
-          "MinLineWidth": 0.1524,
+          "MinLineWidth": 0.1016,
           "TrackToRegion": 0.1015,
           "RegionToRegion": 0.1015
         },
@@ -1110,11 +1110,11 @@
   "previews": {
     "preview_top.png": {
       "exists": true,
-      "bytes": 168890
+      "bytes": 168725
     },
     "preview_bottom.png": {
       "exists": true,
-      "bytes": 90724
+      "bytes": 90847
     }
   }
 }

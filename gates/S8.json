@@ -225,7 +225,7 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T16:53:44",
+  "timestamp": "2026-09-23T17:27:29",
   "notes": "The uploadable package, read back from the files. Geometry and drill are checked by lib/gerber_parse.py, not by KiCad.",
   "archive": {
     "path": "/Users/dev/projects/therapia-device/brain_canvas_kicad/fab/Therapia_EEG-HRV_Rev.A.zip",
@@ -245,7 +245,7 @@
       "Therapia_EEG-HRV-PTH.drl",
       "Therapia_EEG-HRV-job.gbrjob"
     ],
-    "bytes": 288888
+    "bytes": 291165
   },
   "independent_parse": {
     "missing_layers": [],
@@ -259,9 +259,9 @@
     "npth_clear": true,
     "planes_filled": true,
     "copper_coverage": {
-      "F.Cu": 0.2516,
+      "F.Cu": 0.2512,
       "In1.Cu": 0.9544,
-      "In2.Cu": 0.9369,
+      "In2.Cu": 0.937,
       "B.Cu": 0.1049
     },
     "outline": {
@@ -467,7 +467,7 @@
         "PadToPad": 0.0889,
         "PadToTrack": 0.0889,
         "TrackToTrack": 0.0889,
-        "MinLineWidth": 0.1524,
+        "MinLineWidth": 0.1016,
         "TrackToRegion": 0.1015,
         "RegionToRegion": 0.1015
       },
@@ -644,7 +644,7 @@
       {
         "ref": "C_VREFP_10n",
         "dx_mm": 0.05,
-        "dy_mm": 0.0,
+        "dy_mm": -0.1,
         "drot_deg": 0.0
       },
       {

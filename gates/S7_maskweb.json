@@ -7,7 +7,7 @@
       "expected": 0,
       "actual": 0,
       "pass": true,
-      "note": "424 F / 22 B openings; the count is openings with neither a pad nor an NPTH under them: []"
+      "note": "425 F / 22 B openings; the count is openings with neither a pad nor an NPTH under them: []"
     },
     {
       "name": "L dams under 0.10 mm between openings of different nets",
@@ -16,32 +16,43 @@
       "pass": true
     },
     {
+      "name": "L dams under the 0.105 mm design target between openings of different nets",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "[]"
+    },
+    {
       "name": "L negative control: two different-net openings pushed to a 0.05 mm dam are caught",
       "expected": true,
       "actual": true,
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T16:54:06",
-  "notes": "ACCEPTANCE L. F: {'openings': 424, 'different_net_under': 0, 'same_net_under': 2, 'worst_mm': None}. B: {'openings': 22, 'different_net_under': 0, 'same_net_under': 0, 'worst_mm': None}.",
+  "timestamp": "2026-09-23T17:27:51",
+  "notes": "ACCEPTANCE L. F: {'openings': 425, 'different_net_under': 0, 'same_net_under': 2, 'worst_mm': None, 'under_target': 0, 'worst_under_target_mm': None}. B: {'openings': 22, 'different_net_under': 0, 'same_net_under': 0, 'worst_mm': None, 'under_target': 0, 'worst_under_target_mm': None}.",
   "sides": {
     "F": {
-      "openings": 424,
+      "openings": 425,
       "different_net_under": 0,
       "same_net_under": 2,
-      "worst_mm": null
+      "worst_mm": null,
+      "under_target": 0,
+      "worst_under_target_mm": null
     },
     "B": {
       "openings": 22,
       "different_net_under": 0,
       "same_net_under": 0,
-      "worst_mm": null
+      "worst_mm": null,
+      "under_target": 0,
+      "worst_under_target_mm": null
     }
   },
   "offenders": [],
   "control": {
-    "dam_before_mm": 0.1,
-    "dam_planted_mm": 0.0515,
+    "dam_before_mm": 0.105,
+    "dam_planted_mm": 0.0508,
     "caught": true
   }
 }

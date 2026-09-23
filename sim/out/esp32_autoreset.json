@@ -1,7 +1,7 @@
 {
   "case": "esp32_autoreset",
   "pass": true,
-  "timestamp": "2026-09-23T16:56:36",
+  "timestamp": "2026-09-23T17:30:20",
   "checks": [
     {
       "name": "EN/IO0 truth table matches the esptool reset sequence",

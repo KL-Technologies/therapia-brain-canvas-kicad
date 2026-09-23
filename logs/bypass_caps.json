@@ -56,6 +56,60 @@
       }
     },
     {
+      "ref": "C_VREFP_10n",
+      "before": {
+        "ref": "C_VREFP_10n",
+        "at_mm": [
+          146.39,
+          110.48
+        ],
+        "rot": 0.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VREFP",
+            "at_mm": [
+              145.97,
+              110.48
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              146.81,
+              110.48
+            ]
+          }
+        ]
+      },
+      "after": {
+        "at_mm": [
+          146.39,
+          110.58
+        ],
+        "rot": 0.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VREFP",
+            "at_mm": [
+              145.97,
+              110.58
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              146.81,
+              110.58
+            ]
+          }
+        ]
+      }
+    },
+    {
       "ref": "C_VCAP3",
       "before": {
         "ref": "C_VCAP3",
@@ -291,6 +345,81 @@
       "dia_mm": 0.6095,
       "drill_mm": 0.305,
       "uuid": "b92e6449-026c-4bfe-b3f9-99ab818c7ea9"
+    },
+    {
+      "kind": "track",
+      "net": "VREFP",
+      "layer": "F.Cu",
+      "start_mm": [
+        145.9705,
+        110.48
+      ],
+      "end_mm": [
+        145.9205,
+        111.496
+      ],
+      "width_mm": 0.254,
+      "uuid": "d445dad5-38f5-4131-8c5f-ecd15475fb5f"
+    },
+    {
+      "kind": "track",
+      "net": "AVSS",
+      "layer": "F.Cu",
+      "start_mm": [
+        146.924,
+        109.769
+      ],
+      "end_mm": [
+        146.974,
+        110.48
+      ],
+      "width_mm": 0.203,
+      "uuid": "cd6911e3-2cab-42f2-b6ec-3322433a8ff0"
+    },
+    {
+      "kind": "track",
+      "net": "AVSS",
+      "layer": "F.Cu",
+      "start_mm": [
+        146.9115,
+        110.48
+      ],
+      "end_mm": [
+        146.809,
+        110.48
+      ],
+      "width_mm": 0.203,
+      "uuid": "f9173ff5-1de0-45d2-8576-22676e2d5106"
+    },
+    {
+      "kind": "track",
+      "net": "AVSS",
+      "layer": "F.Cu",
+      "start_mm": [
+        146.9115,
+        110.58
+      ],
+      "end_mm": [
+        146.809,
+        110.48
+      ],
+      "width_mm": 0.203,
+      "uuid": "f9173ff5-1de0-45d2-8576-22676e2d5106"
+    },
+    {
+      "kind": "track",
+      "net": "VREFP",
+      "layer": "F.Cu",
+      "start_mm": [
+        145.913,
+        107.648
+      ],
+      "end_mm": [
+        145.913,
+        110.2005
+      ],
+      "width_mm": 0.254,
+      "uuid": "9f0770d1-9d64-430b-a9ed-b338b9fe15ba"
     }
   ],
   "not_done": {
@@ -307,8 +436,90 @@
       ]
     }
   },
+  "laid": [
+    {
+      "kind": "track",
+      "net": "VREFP",
+      "layer": "F.Cu",
+      "start_mm": [
+        145.9705,
+        110.58
+      ],
+      "end_mm": [
+        145.9205,
+        111.496
+      ],
+      "width_mm": 0.254,
+      "uuid": "d445dad5-38f5-4131-8c5f-ecd15475fb5f"
+    },
+    {
+      "kind": "track",
+      "net": "AVSS",
+      "layer": "F.Cu",
+      "start_mm": [
+        146.924,
+        109.769
+      ],
+      "end_mm": [
+        146.974,
+        110.58
+      ],
+      "width_mm": 0.203,
+      "uuid": "cd6911e3-2cab-42f2-b6ec-3322433a8ff0"
+    },
+    {
+      "kind": "track",
+      "net": "AVSS",
+      "layer": "F.Cu",
+      "start_mm": [
+        146.9115,
+        110.58
+      ],
+      "end_mm": [
+        146.809,
+        110.48
+      ],
+      "width_mm": 0.203,
+      "uuid": "f9173ff5-1de0-45d2-8576-22676e2d5106"
+    },
+    {
+      "kind": "track",
+      "net": "AVSS",
+      "layer": "F.Cu",
+      "start_mm": [
+        146.9115,
+        110.58
+      ],
+      "end_mm": [
+        146.809,
+        110.58
+      ],
+      "width_mm": 0.203,
+      "uuid": "f9173ff5-1de0-45d2-8576-22676e2d5106"
+    },
+    {
+      "kind": "track",
+      "net": "VREFP",
+      "layer": "F.Cu",
+      "start_mm": [
+        145.913,
+        107.648
+      ],
+      "end_mm": [
+        145.913,
+        110.3005
+      ],
+      "width_mm": 0.254,
+      "uuid": "9f0770d1-9d64-430b-a9ed-b338b9fe15ba"
+    }
+  ],
+  "C_VREFP_10n_min_gap_mm": [
+    0.108,
+    0.108
+  ],
   "vcap4_moved": true,
   "vcap3_swapped": true,
+  "vrefp_10n_moved": true,
   "pad_clashes": [],
   "unconnected": [
     0,

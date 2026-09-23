@@ -907,7 +907,7 @@
       {
         "ref": "C_VREFP_10n",
         "dx_mm": 0.05,
-        "dy_mm": 0.0,
+        "dy_mm": -0.1,
         "drot_deg": 0.0
       },
       {

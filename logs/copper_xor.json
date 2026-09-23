@@ -6,20 +6,20 @@
       "png": "/Users/dev/projects/therapia-device/brain_canvas_kicad/reports/copper_xor_f_cu.png",
       "width": 1228,
       "height": 892,
-      "pixels_both": 263927,
-      "pixels_added": 28966,
-      "pixels_removed": 12068,
-      "changed_fraction": 0.134555
+      "pixels_both": 263905,
+      "pixels_added": 28905,
+      "pixels_removed": 12090,
+      "changed_fraction": 0.134454
     },
     "B.Cu": {
       "ok": true,
       "png": "/Users/dev/projects/therapia-device/brain_canvas_kicad/reports/copper_xor_b_cu.png",
       "width": 1228,
       "height": 892,
-      "pixels_both": 106328,
-      "pixels_added": 17742,
-      "pixels_removed": 17530,
-      "changed_fraction": 0.249096
+      "pixels_both": 106327,
+      "pixels_added": 17689,
+      "pixels_removed": 17531,
+      "changed_fraction": 0.248822
     }
   }
 }

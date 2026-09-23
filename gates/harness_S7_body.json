@@ -37,7 +37,7 @@
       "why": "KLC F5.3 says F.Fab draws the component body, and this gate's ACCEPTANCE H row is built on that. An EasyEDA-derived library draws it at the LAND span on some parts and the LEAD span on others (Q85: 7 of 21 footprints in one such library), and there H is measured on a box LARGER than the part -- strict in a direction nobody chose. RECORDED, NOT JUDGED: what is true of a library is the library's to say, and gates/S1a is where it says it"
     }
   ],
-  "timestamp": "2026-09-23T16:56:56",
+  "timestamp": "2026-09-23T17:31:15",
   "notes": "141 footprints measured (fab=135, pads=6). 3 overlapping pairs, 3 of them allowed, 3 containments; 1 further pairs inside 0.15 mm; 0 inconclusive pairs. 0 of the failures are part-on-part, 0 are part-on-hole. ACCEPTANCE H: pass",
   "negative_control": {
     "input": "the measured parts + __PLANTED_BODY__ whose body box equals AMS1117's",
@@ -1302,9 +1302,9 @@
       "side": "F",
       "box_mm": [
         145.8346,
-        110.2045,
+        110.3045,
         146.9155,
-        110.7854
+        110.8854
       ]
     },
     {

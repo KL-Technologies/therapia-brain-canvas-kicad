@@ -1,6 +1,6 @@
 {
   "step": "S7m",
-  "web_mm": 0.1,
+  "web_mm": 0.105,
   "board_wide_margin_mm": 0.0508,
   "pairs_below_before": 39,
   "different_net_fixed": [
@@ -14,8 +14,8 @@
         "IN3N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -27,8 +27,8 @@
         "VREFP"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.114006,
-      "dam_before_mm": 0.052562
+      "copper_gap_mm": 0.114015,
+      "dam_before_mm": 0.052571
     },
     {
       "pads": [
@@ -40,8 +40,8 @@
         "IN6P"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -53,8 +53,8 @@
         "IN2N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -66,8 +66,8 @@
         "IN7N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -79,8 +79,8 @@
         "ESP_IO0"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.135995,
-      "dam_before_mm": 0.052413
+      "copper_gap_mm": 0.136004,
+      "dam_before_mm": 0.052422
     },
     {
       "pads": [
@@ -92,8 +92,8 @@
         "ESP_IO0"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.135995,
-      "dam_before_mm": 0.052413
+      "copper_gap_mm": 0.136004,
+      "dam_before_mm": 0.052422
     },
     {
       "pads": [
@@ -105,8 +105,8 @@
         "IN1P"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -118,8 +118,8 @@
         "IN5N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -131,8 +131,8 @@
         "IN8N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -144,8 +144,8 @@
         "USB_CC1"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -157,8 +157,8 @@
         "USB_DM"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -170,8 +170,8 @@
         "USB_DP"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -183,8 +183,8 @@
         "USB_DM"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -196,8 +196,8 @@
         "USB_DP"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -209,8 +209,8 @@
         ""
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -222,8 +222,8 @@
         "USB_CC2"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.200001,
-      "dam_before_mm": 0.098401
+      "copper_gap_mm": 0.200012,
+      "dam_before_mm": 0.098412
     },
     {
       "pads": [
@@ -235,8 +235,8 @@
         "DVDD"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.186764,
-      "dam_before_mm": 0.085164
+      "copper_gap_mm": 0.186762,
+      "dam_before_mm": 0.085162
     },
     {
       "pads": [
@@ -248,8 +248,8 @@
         "ADS_DRDY_N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.186764,
-      "dam_before_mm": 0.085164
+      "copper_gap_mm": 0.186762,
+      "dam_before_mm": 0.085162
     },
     {
       "pads": [
@@ -261,8 +261,8 @@
         "ADS_DRDY_N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.186764,
-      "dam_before_mm": 0.085164
+      "copper_gap_mm": 0.186762,
+      "dam_before_mm": 0.085162
     },
     {
       "pads": [
@@ -274,8 +274,8 @@
         "IN4N"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     },
     {
       "pads": [
@@ -287,8 +287,8 @@
         "GND"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041
     }
   ],
   "not_possible": [],
@@ -337,20 +337,6 @@
     },
     {
       "pads": [
-        "C_VCAP4.2",
-        "C_VREFP_10n.2"
-      ],
-      "nets": [
-        "AVSS",
-        "AVSS"
-      ],
-      "side": "F.Mask",
-      "copper_gap_mm": 0.114006,
-      "dam_before_mm": 0.012406,
-      "why": "same net: the two openings print as one, which joins nothing that is not already joined"
-    },
-    {
-      "pads": [
         "C_DIF6.2",
         "C_CM6N.1"
       ],
@@ -373,8 +359,8 @@
         "VDD_ESP"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.116001,
-      "dam_before_mm": 0.014401,
+      "copper_gap_mm": 0.116004,
+      "dam_before_mm": 0.014404,
       "why": "same net: the two openings print as one, which joins nothing that is not already joined"
     },
     {
@@ -387,8 +373,8 @@
         "GND"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.116001,
-      "dam_before_mm": 0.014401,
+      "copper_gap_mm": 0.116004,
+      "dam_before_mm": 0.014404,
       "why": "same net: the two openings print as one, which joins nothing that is not already joined"
     },
     {
@@ -463,6 +449,20 @@
     },
     {
       "pads": [
+        "U_MCU.1",
+        "C_3V3_M.2"
+      ],
+      "nets": [
+        "GND",
+        "GND"
+      ],
+      "side": "F.Mask",
+      "copper_gap_mm": 0.202002,
+      "dam_before_mm": 0.100402,
+      "why": "same net: the two openings print as one, which joins nothing that is not already joined"
+    },
+    {
+      "pads": [
         "U_MCU.24",
         "R_IO2_DN.1"
       ],
@@ -499,8 +499,8 @@
         "AVSS"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.201014,
-      "dam_before_mm": 0.099414,
+      "copper_gap_mm": 0.201015,
+      "dam_before_mm": 0.099415,
       "why": "same net: the two openings print as one, which joins nothing that is not already joined"
     },
     {
@@ -527,8 +527,8 @@
         "AVSS"
       ],
       "side": "F.Mask",
-      "copper_gap_mm": 0.192016,
-      "dam_before_mm": 0.090416,
+      "copper_gap_mm": 0.19201,
+      "dam_before_mm": 0.09041,
       "why": "same net: the two openings print as one, which joins nothing that is not already joined"
     }
   ],
@@ -537,211 +537,211 @@
       "pad": "C_AVSS_B.1",
       "net": "AVSS",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_AVSS_H.2",
       "net": "GND",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM1P.1",
       "net": "IN1P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM2P.1",
       "net": "IN2P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM3P.1",
       "net": "IN3P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM4P.1",
       "net": "IN4P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM5P.1",
       "net": "IN5P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM6P.1",
       "net": "IN6P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM7P.1",
       "net": "IN7P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_CM8P.1",
       "net": "IN8P",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF1.2",
       "net": "IN1N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF2.2",
       "net": "IN2N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF3.2",
       "net": "IN3N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF4.2",
       "net": "IN4N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF5.2",
       "net": "IN5N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF6.2",
       "net": "IN6N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF7.2",
       "net": "IN7N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_DIF8.2",
       "net": "IN8N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.046008
+      "margin_after_mm": 0.043505
     },
     {
       "pad": "C_VCAP1_H.2",
       "net": "AVSS",
       "margin_before_mm": 0.030722,
-      "margin_after_mm": 0.007003
+      "margin_after_mm": 0.004507
     },
     {
       "pad": "C_VREFP_100n.1",
       "net": "VREFP",
       "margin_before_mm": 0.030722,
-      "margin_after_mm": 0.007003
+      "margin_after_mm": 0.004507
     },
     {
       "pad": "FB5.1",
       "net": "VDD_ESP",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.043382
+      "margin_after_mm": 0.040881
     },
     {
       "pad": "FB5.2",
       "net": "DVDD",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.043382
+      "margin_after_mm": 0.040881
     },
     {
       "pad": "J1.10",
       "net": "USB_CC2",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.3",
       "net": "",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.4",
       "net": "USB_CC1",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.5",
       "net": "USB_DM",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.6",
       "net": "USB_DP",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.7",
       "net": "USB_DM",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.8",
       "net": "USB_DP",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "J1.9",
       "net": "",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.05
+      "margin_after_mm": 0.047506
     },
     {
       "pad": "Q_IO0.3",
       "net": "ESP_IO0",
       "margin_before_mm": 0.041791,
-      "margin_after_mm": 0.017997
+      "margin_after_mm": 0.015502
     },
     {
       "pad": "R_DRDY_UP.1",
       "net": "ADS_DRDY_N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.043382
+      "margin_after_mm": 0.040881
     },
     {
       "pad": "R_Q_EN_B.1",
       "net": "CH_DTR_N",
       "margin_before_mm": 0.041791,
-      "margin_after_mm": 0.017997
+      "margin_after_mm": 0.015502
     },
     {
       "pad": "R_Q_EN_B.2",
       "net": "Q_EN_B",
       "margin_before_mm": 0.041791,
-      "margin_after_mm": 0.017997
+      "margin_after_mm": 0.015502
     },
     {
       "pad": "R_RST_UP.1",
       "net": "ADS_RESET_N",
       "margin_before_mm": 0.0508,
-      "margin_after_mm": 0.043382
+      "margin_after_mm": 0.040881
     }
   ],
   "different_net_below_after": [],

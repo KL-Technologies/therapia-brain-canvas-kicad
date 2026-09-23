@@ -1,6 +1,6 @@
 {
   "pass": true,
-  "timestamp": "2026-09-23T16:56:36",
+  "timestamp": "2026-09-23T17:30:20",
   "step": "S3_sim",
   "summary": "headless ngspice simulation of the Rev.A power tree, LDO stability, DRL loop and ESP32 auto-reset",
   "engine": {

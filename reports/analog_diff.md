@@ -7,7 +7,7 @@
 | | |
 |---|---|
 | アナログ系アイテム | 770 → 843 |
-| 差分 | 296 |
+| 差分 | 298 |
 | 説明できない差分 | **0** |
 | 入力・電極ネットの差分 | **0** |
 
@@ -80,8 +80,8 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 
 | 層 | 画像 | 不変 [px] | 追加 [px] | 削除 [px] | 変化率 |
 |---|---|---|---|---|---|
-| F.Cu | `reports/copper_xor_f_cu.png` | 263927 | 28966 | 12068 | 13.46% |
-| B.Cu | `reports/copper_xor_b_cu.png` | 106328 | 17742 | 17530 | 24.91% |
+| F.Cu | `reports/copper_xor_f_cu.png` | 263905 | 28905 | 12090 | 13.45% |
+| B.Cu | `reports/copper_xor_b_cu.png` | 106327 | 17689 | 17531 | 24.88% |
 
 > F.Cu の画像で、**基板左半分（12 ピンヘッダ・入力抵抗 16 個・CM コンデンサ 16 個・そこから ADS1299 までの配線）が一様に灰色**であることが、上の「差分 0 件」の目視版。赤緑が固まっているのは ADS1299 北側（VCAP 系）、中央下（BIAS/ECO-5）、右下（AMS1117 の移設と USB-C 周り）の 3 箇所だけ。
 
@@ -95,7 +95,7 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 | ECO-1#2 RESV1 | 3 |
 | ECO-1#4/5 VCAP2, VCAP3 | 83 |
 | ECO-3#11 VCAP1 to 1206 | 34 |
-| ECO-3#12 VREFP 10u to 1206 | 11 |
+| ECO-3#12 VREFP 10u to 1206 | 13 |
 | ECO-5 BIAS feedback | 19 |
 | S5_L1 repair: clearance Track+Via nets=VNEG5,V_NLDO_IN at (141.285,121.961) (143.825,122.317) | 19 |
 | S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) | 18 |
@@ -146,12 +146,12 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 | C_VREFP_10u.1 | VREFP | (149.729, 110.480) → (150.937, 111.701) | 0.80×0.90 → 1.15×1.80 | 1.7176 | ECO-3#12 VREFP 10u to 1206 |
 | C_VCAP1.2 | AVSS | (151.942, 112.766) → (152.258, 113.577) | 0.80×0.90 → 1.15×1.80 | 0.8704 | ECO-1#4/5 VCAP2, VCAP3 |
 | C_AVSS_B.1 | AVSS | (149.210, 115.368) → (149.360, 115.368) | 0.80×0.90 → 0.80×0.90 | 0.1500 | ECO-3#11 VCAP1 to 1206 |
-| C_VREFP_10n.1 | VREFP | (145.920, 110.480) → (145.970, 110.480) | 0.50×0.54 → 0.50×0.54 | 0.0500 | ECO-3#12 VREFP 10u to 1206 |
-| C_VREFP_10n.2 | AVSS | (146.760, 110.480) → (146.810, 110.480) | 0.50×0.54 → 0.50×0.54 | 0.0500 | ECO-1#4/5 VCAP2, VCAP3 |
+| C_VREFP_10n.1 | VREFP | (145.920, 110.480) → (145.970, 110.580) | 0.50×0.54 → 0.50×0.54 | 0.1118 | ECO-3#12 VREFP 10u to 1206 |
+| C_VREFP_10n.2 | AVSS | (146.760, 110.480) → (146.810, 110.580) | 0.50×0.54 → 0.50×0.54 | 0.1118 | ECO-1#4/5 VCAP2, VCAP3 |
 
 ## 追加・削除された銅
 
-### 削除（108 件）
+### 削除（109 件）
 
 ```
 ECO-1#1 TPS72325 EN          trk  TPS_NR         F.Cu          (155.0520, 114.3660) -> (155.0520, 114.5440) w0.2030
@@ -197,6 +197,7 @@ ECO-3#11 VCAP1 to 1206       via  VCAP1          (147.9095, 109.0070) d0.6095/0.
 ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10n.1 (145.9200, 110.4800) 0.500x0.540
 ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10u.1 (149.7290, 110.4800) 0.800x0.900
 ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.7810, 111.4960) -> (145.9205, 111.4960) w0.3050
+ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.9130, 107.6480) -> (145.9130, 110.2005) w0.2540
 ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.9205, 110.4800) -> (145.9205, 111.4960) w0.2540
 ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (149.7305, 110.4800) -> (149.7305, 111.4960) w0.2540
 ECO-5 BIAS feedback          trk  BIAS_OUT_INT   B.Cu          (130.4900, 87.7215) -> (148.7020, 87.7215) w0.2540
@@ -264,7 +265,7 @@ viapad_fix repair: viapad_fix recorded touching IN8N at (132.800,91.126) via  IN
 viapad_fix repair: viapad_fix recorded touching SRB1 at (130.510,89.144) via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 ```
 
-### 追加（179 件）
+### 追加（180 件）
 
 ```
 ECO-1#1 TPS72325 EN          trk  VNEG5          B.Cu          (148.1922, 122.5099) -> (148.8545, 122.2150) w0.2030
@@ -280,7 +281,7 @@ ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP2.2 (149.5860, 109.1720) 
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3.2 (145.9920, 94.4480) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3_H.2 (144.1180, 93.8420) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP4.2 (146.9120, 109.8460) 0.500x0.540
-ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10n.2 (146.8100, 110.4800) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10n.2 (146.8100, 110.5800) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10u.2 (150.9370, 108.7510) 1.150x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (143.9190, 109.1845) -> (144.0790, 109.9720) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (150.4088, 109.6313) -> (151.4960, 110.9880) w0.2540
@@ -288,8 +289,8 @@ ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (151.4960, 113.78
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (143.9190, 107.6480) -> (143.9190, 109.1845) w0.2030
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (144.1180, 93.8420) -> (144.8285, 93.9190) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (145.9205, 112.7660) -> (146.1136, 113.3604) w0.3048
-ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.8090, 110.4800) -> (146.9115, 110.4800) w0.2030
-ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.9240, 109.7690) -> (146.9740, 110.4800) w0.2030
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.8090, 110.5800) -> (146.9115, 110.5800) w0.2030
+ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.9240, 109.7690) -> (146.9740, 110.5800) w0.2030
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (147.8638, 109.7690) -> (147.9120, 109.8460) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.2100, 114.5440) -> (149.2100, 114.6420) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.2100, 114.6420) -> (149.3600, 115.0900) w0.2540
@@ -348,9 +349,10 @@ ECO-3#11 VCAP1 to 1206       trk  VCAP1          F.Cu          (151.7500, 116.52
 ECO-3#11 VCAP1 to 1206       via  VCAP1          (147.9095, 106.4070) d0.6095/0.3050
 ECO-3#11 VCAP1 to 1206       via  VCAP1          (150.3020, 114.3410) d0.6096/0.3048
 ECO-3#11 VCAP1 to 1206       via  VCAP1          (151.0500, 116.5270) d0.6096/0.3048
-ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10n.1 (145.9700, 110.4800) 0.500x0.540
+ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10n.1 (145.9700, 110.5800) 0.500x0.540
 ECO-3#12 VREFP 10u to 1206   pad  VREFP          C_VREFP_10u.1 (150.9370, 111.7010) 1.150x1.800
-ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.9205, 111.4960) -> (145.9705, 110.4800) w0.2540
+ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.9130, 107.6480) -> (145.9130, 110.3005) w0.2540
+ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (145.9205, 111.4960) -> (145.9705, 110.5800) w0.2540
 ECO-3#12 VREFP 10u to 1206   trk  VREFP          F.Cu          (150.7403, 111.4960) -> (150.9370, 111.7010) w0.2032
 ECO-5 BIAS feedback          pad  BIAS_OUT_INT   C_BIAS_INV.2 (142.4400, 90.4140) 0.500x0.540
 ECO-5 BIAS feedback          trk  BIAS_OUT_INT   B.Cu          (130.5102, 87.7362) -> (148.7020, 87.7215) w0.2540

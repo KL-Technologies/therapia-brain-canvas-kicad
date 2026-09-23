@@ -178,9 +178,8 @@ packs:
       VCAP3: C_VCAP3
       VCAP4: C_VCAP4
       VREFP: C_VREFP_10u
-    # J1 exceptions the lead accepted. Provisional key and shape (after
-    # c2_accepted_exceptions): the harness's J1 has no exception list yet
-    # (0c78e9b), so today this is a record, not something the gate reads.
+    # J1 exceptions the lead accepted; the harness's J1 reads them (Q492,
+    # 1e232da) and passes C_VCAP1 as a declared exception.
     j1_accepted_exceptions:
       - net: VCAP1
         cap: C_VCAP1

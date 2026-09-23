@@ -11,7 +11,7 @@
     {
       "name": "I solder-mask openings read (F.Mask regions)",
       "expected": "> 0",
-      "actual": 424,
+      "actual": 425,
       "pass": true
     },
     {
@@ -54,8 +54,8 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T16:54:05",
-  "notes": "ACCEPTANCE I. Vias 230, openings F.Mask 424 / B.Mask 22 regions; 0 vias in an SMD opening, 0 in a THT opening; nearest drill-to-opening gap 0.1007 mm. Harness S7_viapad: pass.",
+  "timestamp": "2026-09-23T17:27:50",
+  "notes": "ACCEPTANCE I. Vias 230, openings F.Mask 425 / B.Mask 22 regions; 0 vias in an SMD opening, 0 in a THT opening; nearest drill-to-opening gap 0.1007 mm. Harness S7_viapad: pass.",
   "gerber": {
     "vias": 230,
     "component_holes": 20,
@@ -63,7 +63,7 @@
       "F.Mask": {
         "flashes": 0,
         "draws": 0,
-        "regions": 424,
+        "regions": 425,
         "clear_flashes": 0,
         "clear_draws": 0,
         "clear_regions": 0
@@ -153,7 +153,7 @@
     {
       "name": "mask_openings_read",
       "expected": "> 0 dark shapes",
-      "actual": 424,
+      "actual": 425,
       "pass": true,
       "source": "core.gerber_parse on F_Mask",
       "why": "as above"

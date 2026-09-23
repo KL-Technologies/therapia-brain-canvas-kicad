@@ -1,0 +1,67 @@
+{
+  "items_measured": 337,
+  "under_0.127": [
+    {
+      "item": {
+        "kind": "via",
+        "net": "GND",
+        "pos_mm": [
+          173.34,
+          110.226
+        ],
+        "dia_mm": 0.46,
+        "drill_mm": 0.3,
+        "uuid": "ca53bcd5-4f8c-489f-a3b9-e23c5af18dd3"
+      },
+      "gap_mm": 0.1203,
+      "to": {
+        "kind": "pad",
+        "net": "USB_CC2",
+        "ref": "R_CC2",
+        "number": "1",
+        "pos_mm": [
+          172.5865,
+          110.226
+        ],
+        "size_mm": [
+          0.8065,
+          0.864
+        ],
+        "uuid": "P:f75cdc4e-35e7-4d2b-9833-c2939f892070:R_CC2:1:-753500:0"
+      },
+      "layer": "F.Cu",
+      "allowed": "R_CC2.2's via between the resistor's own pads: 0.70 mm of copper between them holds a 0.46 via with 0.12 mm each side; 0.127 needs a 0.446 via, under the 0.452 a 0.30 drill needs for the 0.076 annulus"
+    },
+    {
+      "item": {
+        "kind": "track",
+        "net": "ADS_RESET_N",
+        "layer": "B.Cu",
+        "start_mm": [
+          173.34,
+          82.032
+        ],
+        "end_mm": [
+          173.34,
+          105.1
+        ],
+        "width_mm": 0.203,
+        "uuid": "2c178edf-f680-4253-83b7-23afcf032072"
+      },
+      "gap_mm": 0.1018,
+      "to": {
+        "kind": "via",
+        "net": "ADS_CS_N",
+        "pos_mm": [
+          172.832,
+          86.147
+        ],
+        "dia_mm": 0.6095,
+        "drill_mm": 0.305,
+        "uuid": "6ccc7084-5a9e-42cb-a823-298c8fb88fba"
+      },
+      "layer": "B.Cu",
+      "allowed": "Y8's own ADS_RESET_N trunk, only shortened to its new join; its 0.1018 mm to an ADS_CS_N via is the imported board's, not new copper"
+    }
+  ]
+}

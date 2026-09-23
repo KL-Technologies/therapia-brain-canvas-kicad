@@ -83,7 +83,7 @@
       "distributed_as_plane": false,
       "path": {
         "vias": 0,
-        "length_mm": 9.3992,
+        "length_mm": 9.3994,
         "hops": 8,
         "layers": [
           "F.Cu"
@@ -106,7 +106,7 @@
       "distributed_as_plane": false,
       "path": {
         "vias": 0,
-        "length_mm": 6.4657,
+        "length_mm": 6.4659,
         "hops": 7,
         "layers": [
           "F.Cu"
@@ -123,13 +123,13 @@
       "pin": "24",
       "signal": "VREFP",
       "pad": "1",
-      "straight_mm": 2.8326,
+      "straight_mm": 2.9326,
       "same_layer_as_ic": true,
       "on_target_net": true,
       "distributed_as_plane": false,
       "path": {
         "vias": 0,
-        "length_mm": 2.5525,
+        "length_mm": 2.6525,
         "hops": 3,
         "layers": [
           "F.Cu"
@@ -139,7 +139,7 @@
       "j1_applies": true,
       "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 1.9201
+      "return_via_mm": 1.9671
     },
     {
       "cap": "C_VCAP4",
@@ -705,8 +705,8 @@
       "in2_regions_crossed": 3,
       "transitions": 8,
       "regions": [
-        "AVSS",
         "(no fill)",
+        "AVSS",
         "AVDD"
       ]
     },
@@ -1014,21 +1014,21 @@
       "layer": "F.Cu",
       "outlines": 2,
       "holes": 0,
-      "area_mm2": 43.16
+      "area_mm2": 43.22
     },
     {
       "net": "GND",
       "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 2498.18
+      "area_mm2": 2498.3
     },
     {
       "net": "USB_5V",
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 282.7
+      "area_mm2": 282.82
     },
     {
       "net": "VDD_ESP",
@@ -1120,7 +1120,7 @@
     },
     {
       "id": "J9 USB D+/D- length delta",
-      "measured": "11.534 mm (D+ 33.304, D- 44.838)",
+      "measured": "11.554 mm (D+ 33.304, D- 44.858)",
       "wanted": "< 45 mm (Full Speed, H-2)",
       "ok": true
     },

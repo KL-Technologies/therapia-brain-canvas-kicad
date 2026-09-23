@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7j S7p S7v S7d S7m S7b S7c S7 S7_body S7_viapad S7_paste S7_maskweb S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7j S7p S7v S7d S7m S7n S7b S7c S7 S7_body S7_viapad S7_paste S7_maskweb S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -33,7 +33,7 @@ print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
              "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7j", "S7p", "S7v",
-             "S7d", "S7m", "S7b", "S7c", "S7", "S7_body", "S7_viapad",
+             "S7d", "S7m", "S7n", "S7b", "S7c", "S7", "S7_body", "S7_viapad",
              "S7_paste", "S7_maskweb", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
     if not os.path.exists(p):
@@ -250,6 +250,10 @@ run_step S7d "remove the tracks and vias that end in nothing" s7d || exit 1
 # narrower one. Only per-pad mask expansion changes; no copper moves.
 run_step S7m "keep a 0.1 mm mask dam between different nets" \
   "$KPY" "$ROOT/scripts/71_mask_webs.py" --root "$ROOT" || exit 1
+
+# The copper S7v and S7j laid keeps the recommended 0.127 mm to other nets.
+run_step S7n "new copper keeps 0.127 mm to other nets" \
+  "$KPY" "$ROOT/scripts/74_new_copper_clearance.py" --root "$ROOT" || exit 1
 
 s7b() {
   # The picture first, so the report can point at it. It is a review aid, not

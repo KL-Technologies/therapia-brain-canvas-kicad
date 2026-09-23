@@ -1,0 +1,36 @@
+{
+  "step": "S7n",
+  "pass": true,
+  "checks": [
+    {
+      "name": "new tracks, vias and pads measured",
+      "expected": "> 0",
+      "actual": 337,
+      "pass": true
+    },
+    {
+      "name": "new copper under 0.127 mm to another net (not allowed)",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "[]"
+    },
+    {
+      "name": "new copper under 0.127 mm, allowed with its limit",
+      "expected": "listed",
+      "actual": [
+        [
+          "GND",
+          0.1203
+        ],
+        [
+          "ADS_RESET_N",
+          0.1018
+        ]
+      ],
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T17:26:57",
+  "notes": "337 items laid by S7v/S7j measured; 2 under 0.127 mm, 2 of them allowed."
+}

@@ -53,7 +53,7 @@
     {
       "name": "mask_openings_read",
       "expected": "> 0 dark shapes",
-      "actual": 424,
+      "actual": 425,
       "pass": true,
       "source": "core.gerber_parse on F_Mask",
       "why": "as above"
@@ -177,7 +177,7 @@
       "why": "SBAS499C 12.1 (KS-001, CR-014) [T1]: \"Do not place vias between bypass capacitors and the active device.\" The sentence is about every active device, not about the ADS1299, but which capacitor serves which device is not readable from a netlist -- every capacitor on VDD is on the same net. So the product declares the couples, and a board that has not is skipped BY NAME rather than passed with an empty list (Q233's shape). gates/S4b_routability asks the same question before routing, of a board that carries packs.afe-adc's converter and of no other (Q231)"
     }
   ],
-  "timestamp": "2026-09-23T16:54:05",
+  "timestamp": "2026-09-23T17:27:50",
   "notes": "ACCEPTANCE J-2, measured on the fab data. 230 vias in the drill file, 0 of them touching an SMD opening, 0 after exceptions; 0 on a THT pad opening (out of scope). Zero-via nets: none. J-2 (a) 0, (b) 0, (c) max 0 per pad. By side: F 0, B 0, both 0. By origin: stitch 0, router 0, unknown 0. Via covering ordered: none. That covering does not close the barrel, so the via-in-pad count is JUDGED here (0 required), not reported. Coordinates are given in the Gerber frame, the KiCad frame (Y mirrored) and the contract frame (origin at the board outline centre).",
   "negative_control": {
     "input": "the fab data + one 0.305 mm via at the centre of U_ADS pad 1 (140.6120, -98.3480)",
@@ -260,43 +260,43 @@
     "inputs": {
       "F_Paste": {
         "path": "fab/gerber/Therapia_EEG-HRV-F_Paste.gtp",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "805a7e5ba094adcb"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "87b0c0f0417e5d25"
       },
       "F_Mask": {
         "path": "fab/gerber/Therapia_EEG-HRV-F_Mask.gts",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "d81493bc02a0812a"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "a5c7c9e14e92feac"
       },
       "F_Cu": {
         "path": "fab/gerber/Therapia_EEG-HRV-F_Cu.gtl",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "536a6b00a2b97ec8"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "a0f807228e418f40"
       },
       "B_Paste": {
         "path": "fab/gerber/Therapia_EEG-HRV-B_Paste.gbp",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "91cb32b9831c3021"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "362a45ed324f4dda"
       },
       "B_Mask": {
         "path": "fab/gerber/Therapia_EEG-HRV-B_Mask.gbs",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "760b1fa4dab66d26"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "6aabb48f96477241"
       },
       "B_Cu": {
         "path": "fab/gerber/Therapia_EEG-HRV-B_Cu.gbl",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "cb8aab717880b25a"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "e71446a8649bdd35"
       },
       "Edge_Cuts": {
         "path": "fab/gerber/Therapia_EEG-HRV-Edge_Cuts.gm1",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "0e7bc647b3d1698f"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "424e2bf930b4831e"
       },
       "PTH_drill": {
         "path": "fab/gerber/Therapia_EEG-HRV-PTH.drl",
-        "mtime": "2026-09-23T16:53:21",
-        "sha256": "f5953ea5db5c9a10"
+        "mtime": "2026-09-23T17:27:06",
+        "sha256": "34b48c50fe932891"
       }
     },
     "contract_origin_gerber_mm": [
@@ -314,7 +314,7 @@
     "mask_layer": {
       "flashes": 0,
       "draws": 0,
-      "regions": 424,
+      "regions": 425,
       "clear_flashes": 0,
       "clear_draws": 0,
       "clear_regions": 0
