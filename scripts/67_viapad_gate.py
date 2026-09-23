@@ -46,6 +46,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOARD = "Therapia_EEG-HRV"
 VIA_DRILL_MAX_MM = 0.5          # vias are 0.305; the smallest component hole 0.6
 RASTER_TOL_MM = 0.005           # harness core.viapad.J_RASTER_TOL_MM
+# JLC's guidance between a via drill and a pad's mask opening; S7v places to
+# it (QA MINOR-1, 2026-09-23). Judged on SMD openings, like the count above.
+DRILL_TO_OPENING_MIN_MM = 0.10
 
 
 def check(name, expected, actual, ok=None, note=None):
@@ -100,7 +103,7 @@ def gerber_count(fab):
     npth = G.parse_excellon(os.path.join(gdir, BOARD + "-NPTH.drl"))
     holes = [(h["x"], h["y"]) for h in comp + npth["hits"]]
 
-    rows, tht, gaps = [], [], []
+    rows, tht, gaps, near = [], [], [], []
     for v in vias:
         r = v["dia"] / 2.0
         worst = None
@@ -114,6 +117,9 @@ def gerber_count(fab):
             continue
         g, shape, item, kind, lname = worst
         gaps.append(g)
+        if g < DRILL_TO_OPENING_MIN_MM and not holds_hole(kind, item, holes):
+            near.append({"at_gerber_mm": [v["x"], v["y"]], "layer": lname,
+                         "opening": shape, "gap_mm": round(g, 4)})
         if g < RASTER_TOL_MM:
             rec = {"at_gerber_mm": [v["x"], v["y"]], "drill_mm": v["dia"],
                    "layer": lname, "opening": shape, "gap_mm": round(g, 4),
@@ -139,6 +145,7 @@ def gerber_count(fab):
     return {"vias": len(vias), "component_holes": len(comp),
             "openings": {k: l.counts() for k, l in layers.items()},
             "in_smd_opening": rows, "in_tht_opening": tht,
+            "closer_than_min": sorted(near, key=lambda r: r["gap_mm"]),
             "min_gap_mm": round(min(gaps), 4) if gaps else None,
             "control": control}
 
@@ -197,6 +204,10 @@ def main():
               ok=g["openings"]["F.Mask"]["regions"] > 0),
         check("I vias whose drill crosses an SMD opening (Gerber)", 0,
               len(g["in_smd_opening"])),
+        check("I vias whose drill is under %.2f mm from an SMD opening "
+              "(Gerber)" % DRILL_TO_OPENING_MIN_MM, 0,
+              len(g["closer_than_min"]),
+              note=json.dumps(g["closer_than_min"][:5])),
         check("I negative control: a via planted in an SMD opening is "
               "counted", True, bool(g["control"] and g["control"]["counted"])),
         check("I harness found", True, bool(hdir),

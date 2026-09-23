@@ -18,8 +18,8 @@ already moved one such via out by hand for exactly this reason
 
 What it does, per via
 ---------------------
-A via is an offender when its drill comes within J_MARGIN (0.03 mm, the
-harness's placement margin) of any SMD pad's solder-mask opening. The opening
+A via is an offender when its drill comes within J_MARGIN (0.10 mm, JLC's
+guidance; the harness places at 0.03) of any SMD pad's solder-mask opening. The opening
 is the pad's bounding box grown by its mask expansion -- the same conservative
 rectangle the harness census uses, so a via this script leaves alone is one
 the census leaves alone too.
@@ -41,9 +41,9 @@ the plane must land inside that same plane's fill again. Tiers are tried in
 order and the first tier with any legal site wins, cheapest site first:
 
     1  clearance 0.127, drill >= 0.10 from any opening, ring outside it
-    2  clearance 0.127, drill >= 0.05 from any opening
-    3  clearance 0.100, drill >= 0.05
-    4  clearance 0.0889 (the rule), drill >= 0.035 (J_MARGIN + raster)
+    2  clearance 0.127, drill >= 0.10 from any opening
+    3  clearance 0.100, drill >= 0.10
+    4  clearance 0.0889 (the rule), drill >= 0.10
 
 Nothing here is a DRC substitute. The board is saved, and run.sh's next
 steps refill the zones and DRC it; this script also asks KiCad's connectivity
@@ -67,18 +67,30 @@ import route as R                                  # noqa: E402
 import epro as E                                   # noqa: E402
 
 IU = R.IU
-J_MARGIN = 0.03 * IU            # harness core.viapad.J_MARGIN_MM
-ON_TRACK_TOL = 2000             # nm: a site this close to a segment is on it
+# The drill must stay this far from any SMD mask opening. The harness places
+# at 0.03 mm (core.viapad.J_MARGIN_MM); JLC's guidance is 0.1 mm between a
+# via's drill and a pad opening, and ACCEPTANCE I holds that (QA MINOR-1,
+# 2026-09-23: 20 vias between 0.0327 and 0.1 mm at 0.03).
+J_MARGIN = 0.10 * IU
+# A site this close to a track's centre line is taken as on it: the track is
+# split (or shortened) there and bends by at most this much, which is checked
+# like any new copper. 0.05 mm lets the via sit just off a track that runs
+# along the edge of a pad opening (the IN*N runs past C_DIF, 0.0125 mm short
+# of 0.1 mm from its opening) without adding copper to the signal path.
+ON_TRACK_TOL = int(0.05 * IU) + 1000
+EXACT_TOL = 2000
 
 TIERS = [
     # (name, clearance, drill margin to any opening,
     #  ring must clear other nets' openings, penalty added to the cost)
     ("1", int(0.127 * IU), int(0.10 * IU), True, 0),
-    ("2", int(0.127 * IU), int(0.05 * IU), False, int(0.25 * IU)),
-    ("3", int(0.100 * IU), int(0.05 * IU), False, int(0.50 * IU)),
-    ("4", int(0.0889 * IU), int(0.035 * IU), False, int(1.00 * IU)),
+    ("2", int(0.127 * IU), int(0.10 * IU), False, int(0.25 * IU)),
+    ("3", int(0.100 * IU), int(0.10 * IU), False, int(0.50 * IU)),
+    ("4", int(0.0889 * IU), int(0.10 * IU), False, int(1.00 * IU)),
 ]
-RADII = [int(r * IU) for r in [0.30 + 0.025 * i for i in range(0, 69)]]
+# From 0.025 mm: a via that sits just outside its pad's opening (C_VCAP3.1,
+# 0.0555 mm) only has to step 0.045 mm to clear 0.10.
+RADII = [int(r * IU) for r in [0.025 + 0.025 * i for i in range(0, 80)]]
 ANGLES = [math.radians(a) for a in range(0, 360, 12)]
 POWER_W = [int(0.3048 * IU), int(0.254 * IU), int(0.2032 * IU)]
 SIGNAL_W = [int(0.2032 * IU), int(0.1524 * IU)]
@@ -320,8 +332,9 @@ def candidates(pcbnew, via, att):
             for d in RADII:
                 if d >= L - int(0.05 * IU):
                     break
-                pts.append((int(round(p.x + ux * d)),
-                            int(round(p.y + uy * d))))
+                for off in (0, 25000, -25000, 50000, -50000):
+                    pts.append((int(round(p.x + ux * d - uy * off)),
+                                int(round(p.y + uy * d + ux * off))))
     for d in RADII:
         for a in ANGLES:
             pts.append((int(round(p.x + d * math.cos(a))),
@@ -405,6 +418,16 @@ def plan_site(pcbnew, board, idx, via, att, host, planes, openings, q, tier,
                 continue                # three tracks ending on one point
             ops.append(("add", (e.x, e.y), (p.x, p.y), layer, t.GetWidth()))
             added += math.hypot(p.x - e.x, p.y - e.y)
+        if on:
+            t0 = on[0][0]
+            if seg_dist(t0.GetStart().x, t0.GetStart().y, t0.GetEnd().x,
+                        t0.GetEnd().y, qx, qy) > EXACT_TOL:
+                # the track bends to reach the site: both halves are new
+                for end in (t0.GetStart(), t0.GetEnd()):
+                    if not check_track(pcbnew, board, idx, (end.x, end.y),
+                                       (qx, qy), layer, t0.GetWidth(), net,
+                                       clr, via):
+                        return None
         if on and len(ends) == 1 and layer != pcbnew.F_Cu:
             ops.append(("shorten", on[0][0], on[0][1]))
         elif on:
@@ -614,9 +637,10 @@ def maze_site(pcbnew, board, idx, via, openings, edge, pnets,
 # ESP_RXD drops through a via 1 mm east of the pad and runs west right under
 # it, so everything south of the pad is cut off from the USB_DM tracks the
 # via fed. The two UART tracks between the ESD part's pad rows are narrowed
-# to 0.1524 mm (both nets already use that width) and moved 0.178 / 0.305 mm
-# north, ESP_RXD's via 0.381 mm north with them, and USB_DM's via goes to the
-# freed spot north of pad 3 -- straight onto the end of its own B.Cu track.
+# to 0.1524 mm (both nets already use that width) and moved 0.191 / 0.318 mm
+# north, ESP_RXD's via 0.394 mm north with them, and USB_DM's via goes to the
+# freed spot north of pad 3 -- straight onto the end of its own B.Cu track,
+# its drill 0.1025 mm from pad 3's opening (ACCEPTANCE I's 0.10 mm).
 ROOM_EDITS = [
     {"id": "U_MCU.16", "remove": [
         ("ESP_RXD", "F.Cu", (172.6290, 102.6060), (172.6290, 91.1760)),
@@ -627,8 +651,37 @@ ROOM_EDITS = [
         ("ESP_RXD", "F.Cu", (172.6290, 100.9500), (172.0000, 101.5790), 0.1525),
         ("ESP_RXD", "F.Cu", (172.0000, 101.5790), (172.0000, 102.6000), 0.1525),
         ("ESP_RXD", "F.Cu", (172.0000, 102.6000), (171.8415, 102.7585), 0.1525),
-        ("ESP_RXD", "F.Cu", (161.0465, 102.7585), (171.8415, 102.7585), 0.2032)],
-     "vias_remove": [], "vias_add": []},
+        ("ESP_RXD", "F.Cu", (161.0465, 102.7585), (171.8415, 102.7585), 0.2032),
+        # the via at the pad's inner end, and ADS_PWDN_N's B.Cu run from it
+        # west of the two GND vias and round ADS_DRDY_N's via to the trunk at
+        # y 108.8545 (the corridor between ADS_DRDY_N at x 171.74 and
+        # ADS_RESET_N at x 173.34 is the only way south)
+        ("ADS_PWDN_N", "F.Cu", (174.3560, 101.9710), (172.5500, 101.9500), 0.2032),
+        ("ADS_PWDN_N", "B.Cu", (172.5500, 101.9500), (171.5770, 101.9500), 0.2032),
+        ("ADS_PWDN_N", "B.Cu", (171.5770, 101.9500), (171.5770, 104.0130), 0.2032),
+        ("ADS_PWDN_N", "B.Cu", (171.5770, 104.0130), (172.2755, 104.7115), 0.2032),
+        ("ADS_PWDN_N", "B.Cu", (172.2755, 104.7115), (172.2755, 108.8545), 0.2032),
+        ("ADS_PWDN_N", "B.Cu", (172.2755, 108.8545), (156.9315, 108.8545), 0.2032),
+        # U_MCU.14 (ADS_RESET_N) sits in that corridor with its own via in
+        # its pad. It moves to the pad's inner end, under the module, and
+        # joins its B.Cu trunk at x 173.34 there instead of at the pad.
+        ("ADS_RESET_N", "F.Cu", (172.4635, 106.7970), (173.0000, 105.1000), 0.2032),
+        ("ADS_RESET_N", "B.Cu", (173.0000, 105.1000), (173.3400, 105.1000), 0.2032),
+        # the trunk now ends at the join; its last 1.42 mm would dangle
+        ("ADS_RESET_N", "B.Cu", (173.3400, 82.0320), (173.3400, 105.1000), 0.2030)],
+     # the old run from the pad's centre via down x 174.0005 is what the new
+     # one replaces; left, it would be a 8.6 mm stub
+     "remove_more": [
+        ("ADS_PWDN_N", "B.Cu", (174.3560, 101.9710), (174.0005, 102.2505)),
+        ("ADS_PWDN_N", "B.Cu", (174.0005, 102.2505), (174.0005, 108.8545)),
+        ("ADS_PWDN_N", "B.Cu", (174.0005, 108.8545), (156.9315, 108.8545)),
+        ("ADS_RESET_N", "B.Cu", (172.8320, 106.6700), (172.4765, 106.7970)),
+        ("ADS_RESET_N", "B.Cu", (173.3400, 106.5175), (172.8320, 106.6700)),
+        ("ADS_RESET_N", "B.Cu", (173.3400, 82.0320), (173.3400, 106.5175))],
+     "vias_remove": [("ADS_PWDN_N", (174.3560, 101.9710)),
+                     ("ADS_RESET_N", (172.4635, 106.7970))],
+     "vias_add": [("ADS_PWDN_N", (172.5500, 101.9500)),
+                  ("ADS_RESET_N", (173.0000, 105.1000))]},
     {"id": "D_ESD.3", "remove": [
         ("ESP_RXD", "F.Cu", (175.4230, 103.3680), (175.2195, 103.1650)),
         ("ESP_RXD", "F.Cu", (175.4230, 103.3680), (178.6740, 103.3680)),
@@ -637,23 +690,62 @@ ROOM_EDITS = [
         ("ESP_TXD", "F.Cu", (175.4735, 104.3330), (175.4735, 103.7745)),
         ("ESP_TXD", "F.Cu", (175.4735, 103.7745), (178.6230, 103.7745)),
         ("ESP_TXD", "F.Cu", (178.6230, 103.7745), (179.0805, 104.2315)),
-        ("ESP_TXD", "F.Cu", (179.0805, 104.2315), (179.0805, 105.2985))],
+        ("ESP_TXD", "F.Cu", (179.0805, 104.2315), (179.0805, 105.2985)),
+        # the stub from the old via centre to pad 3's centre: with the via
+        # gone it is copper lying in the pad (QA MINOR-5)
+        ("USB_DM", "F.Cu", (178.1660, 104.3585), (178.3540, 104.7700))],
      "add": [
-        ("ESP_RXD", "F.Cu", (175.2195, 103.1650), (175.2445, 103.1900), 0.1524),
-        ("ESP_RXD", "F.Cu", (175.2445, 103.1900), (179.1820, 103.1900), 0.1524),
-        ("ESP_RXD", "B.Cu", (179.1820, 103.1900), (179.1820, 104.6890), 0.2032),
-        ("ESP_TXD", "F.Cu", (175.4735, 104.3330), (175.4735, 103.4700), 0.1524),
-        ("ESP_TXD", "F.Cu", (175.4735, 103.4700), (178.6600, 103.4700), 0.1524),
-        ("ESP_TXD", "F.Cu", (178.6600, 103.4700), (179.0805, 103.8905), 0.1524),
-        ("ESP_TXD", "F.Cu", (179.0805, 103.8905), (179.0805, 105.2985), 0.2032),
-        ("USB_DM", "F.Cu", (178.3540, 104.7710), (178.3540, 103.9600), 0.2032)],
+        ("ESP_RXD", "F.Cu", (175.2195, 103.1650), (175.2319, 103.1774), 0.1524),
+        ("ESP_RXD", "F.Cu", (175.2319, 103.1774), (179.1820, 103.1774), 0.1524),
+        ("ESP_RXD", "B.Cu", (179.1820, 103.1774), (179.1820, 104.6890), 0.2032),
+        ("ESP_TXD", "F.Cu", (175.4735, 104.3330), (175.4735, 103.4570), 0.1524),
+        ("ESP_TXD", "F.Cu", (175.4735, 103.4570), (178.6600, 103.4570), 0.1524),
+        ("ESP_TXD", "F.Cu", (178.6600, 103.4570), (179.0805, 103.8775), 0.1524),
+        ("ESP_TXD", "F.Cu", (179.0805, 103.8775), (179.0805, 105.2985), 0.2032),
+        ("USB_DM", "F.Cu", (178.3540, 104.7710), (178.3540, 103.9300), 0.2032)],
      # the old via hid six zero-length USB_DM tracks on its centre; with it
      # gone they would be dots of copper dangling in the pad
      "zero_length_at": [("USB_DM", (178.1660, 104.3585))],
      "vias_remove": [("ESP_RXD", (179.1820, 103.5710)),
                      ("USB_DM", (178.1660, 104.3585))],
-     "vias_add": [("ESP_RXD", (179.1820, 103.1900)),
-                  ("USB_DM", (178.3540, 103.9600))]},
+     "vias_add": [("ESP_RXD", (179.1820, 103.1774)),
+                  ("USB_DM", (178.3540, 103.9300))]},
+    # C_LM_FLY.1 (LM_CAP_P). The net hopped to B.Cu and back for 0.76 mm
+    # through two vias, one of them 0.06 mm from the pad's opening, where the
+    # same straight line on F.Cu is clear. The hop becomes that line.
+    {"id": "C_LM_FLY.1", "remove": [
+        ("LM_CAP_P", "B.Cu", (146.4670, 123.2310), (146.4670, 122.4690))],
+     "add": [
+        ("LM_CAP_P", "F.Cu", (146.4670, 122.4690), (146.4670, 123.2310), 0.2032)],
+     "vias_remove": [("LM_CAP_P", (146.4670, 122.4690)),
+                     ("LM_CAP_P", (146.4670, 123.2310))],
+     "vias_add": []},
+    # FB4.2 (V_NLDO_IN). The pad is ringed on F.Cu by V5_LM_IN (north, west
+    # and south) and the LM2664 pins (east); the one pocket south of it is
+    # floored on B.Cu by VNEG5's run at y 123.942. That run steps 0.358 mm
+    # south under the pocket and the via goes in it.
+    {"id": "FB4.2", "remove": [
+        ("VNEG5", "B.Cu", (143.5710, 123.9420), (139.6595, 123.9420))],
+     "add": [
+        ("VNEG5", "B.Cu", (139.6595, 123.9420), (140.0175, 124.3000), 0.2032),
+        ("VNEG5", "B.Cu", (140.0175, 124.3000), (142.4000, 124.3000), 0.2032),
+        ("VNEG5", "B.Cu", (142.4000, 124.3000), (142.7580, 123.9420), 0.2032),
+        ("VNEG5", "B.Cu", (142.7580, 123.9420), (143.5710, 123.9420), 0.2032),
+        ("V_NLDO_IN", "F.Cu", (141.0310, 122.6720), (141.0300, 123.7200), 0.2540),
+        ("V_NLDO_IN", "B.Cu", (141.0310, 122.6720), (141.0300, 123.7200), 0.2032)],
+     "vias_remove": [("V_NLDO_IN", (141.0310, 122.6720))],
+     "vias_add": [("V_NLDO_IN", (141.0300, 123.7200))]},
+    # R_CC2.2 (GND). The pad sits in a ring of USB_CC2, USB_DP and the
+    # USB_VBUS_RAW / USB_DP vias; no standard via fits anywhere it can reach.
+    # A 0.46 / 0.30 mm via (annular 0.08, ACCEPTANCE C allows 0.45 / 0.30)
+    # fits between the resistor's own pads, under its body, 0.15 mm from both
+    # openings and 0.12 mm from pad 1's copper, straight onto the In1 plane.
+    {"id": "R_CC2.2", "remove": [
+        ("GND", "F.Cu", (174.0945, 110.2260), (174.2035, 110.3785))],
+     "add": [
+        ("GND", "F.Cu", (174.0935, 110.2260), (173.3400, 110.2260), 0.2032)],
+     "vias_remove": [("GND", (174.2035, 110.3785))],
+     "vias_add": [("GND", (173.3400, 110.2260), 0.46, 0.30)]},
 ]
 
 
@@ -666,7 +758,7 @@ def room_edit(pcbnew, board, idx, spec, log):
     rec = {"id": spec["id"], "applied": False}
     log.setdefault("room_edits", []).append(rec)
     old = []
-    for net, lname, a, b in spec["remove"]:
+    for net, lname, a, b in spec["remove"] + spec.get("remove_more", []):
         layer = board.GetLayerID(lname)
         hit = [t for t in board.GetTracks()
                if t.GetClass() != "PCB_VIA" and t.GetNetname() == net
@@ -679,7 +771,7 @@ def room_edit(pcbnew, board, idx, spec, log):
                 net, lname, a, b, len(hit))
             return False
         old.append(hit[0])
-    for net, at in spec["vias_remove"]:
+    for net, at, *_size in spec["vias_remove"]:
         hit = [t for t in board.GetTracks()
                if t.GetClass() == "PCB_VIA" and t.GetNetname() == net
                and _mm2((P.mm(t.GetPosition().x), P.mm(t.GetPosition().y)))
@@ -696,18 +788,20 @@ def room_edit(pcbnew, board, idx, spec, log):
                 == _mm2(at)]
     removed = [P.describe(board, t) for t in old]
     for t in old:
-        board.Remove(t)
+        board.RemoveNative(t)
     idx.rebuild()
     laid, made, bad = [], [], None
-    for net, at in spec["vias_add"]:
+    for net, at, *size in spec["vias_add"]:
         code = board.FindNet(net).GetNetCode()
         q = (P.nm(at[0]), P.nm(at[1]))
-        if not R.via_site_ok(idx, pcbnew, q[0], q[1], code, P.VIA_DIA,
-                             P.VIA_DRILL, P.CLEARANCE, P.HOLE_TO_HOLE,
-                             P.HOLE_CLEARANCE, None):
+        dia, drill = ((P.nm(size[0]), P.nm(size[1])) if size
+                      else (P.VIA_DIA, P.VIA_DRILL))
+        if not R.via_site_ok(idx, pcbnew, q[0], q[1], code, dia, drill,
+                             P.CLEARANCE, P.HOLE_TO_HOLE, P.HOLE_CLEARANCE,
+                             None):
             bad = "via %s %s not clear" % (net, at)
             break
-        made.append(R.add_via(pcbnew, board, q, code, P.VIA_DIA, P.VIA_DRILL))
+        made.append(R.add_via(pcbnew, board, q, code, dia, drill))
         idx.rebuild()
     for net, lname, a, b, w in ([] if bad else spec["add"]):
         code = board.FindNet(net).GetNetCode()
@@ -720,13 +814,13 @@ def room_edit(pcbnew, board, idx, spec, log):
         made.append(R.add_track(pcbnew, board, pa, pb, layer, P.nm(w), code))
         idx.rebuild()
     if bad:
-        for t in made:
-            board.Remove(t)
-        for t in old:
-            board.Add(t)
-        idx.rebuild()
+        # Putting the board back item by item is not safe through SWIG (a
+        # removed item's proxy can already be gone); the edit was measured on
+        # this board, so its failing means the board is not that board. Stop
+        # without saving and say which edit and why.
         rec["why"] = bad
-        return False
+        raise SystemExit("S7v: room edit %s failed: %s -- nothing saved"
+                         % (spec["id"], bad))
     laid = [P.describe(board, t) for t in made]
     rec.update({"applied": True, "removed": removed, "laid": laid})
     return True
@@ -831,7 +925,8 @@ def prune_dead_chain(pcbnew, board, net, layer, p, j, removed, laid):
         far = (e.x, e.y) if which == "start" else (s.x, s.y)
         # the router stops as soon as its track touches the net, so the join
         # sits up to a track width off this one's centre line
-        if seg_dist(s.x, s.y, e.x, e.y, j[0], j[1]) <= t.GetWidth():
+        if seg_dist(s.x, s.y, e.x, e.y, j[0], j[1]) <= \
+                t.GetWidth() / 2 + int(0.16 * IU):
             trim = (t, which)
             break
         chain.append(t)
@@ -1058,6 +1153,10 @@ def main():
                                   "at_mm": [P.mm(p.x), P.mm(p.y)]})
 
     after = offenders(pcbnew, board, mask_openings(pcbnew, board))
+    room_via_delta = sum(
+        sum(1 for x in r.get("laid", ()) if x.get("kind") == "via")
+        - sum(1 for x in r.get("removed", ()) if x.get("kind") == "via")
+        for r in log.get("room_edits", ()) if r.get("applied"))
     unconnected_after = P.unconnected_count(pcbnew, board)
     vias_after = sum(1 for t in board.GetTracks() if t.GetClass() == "PCB_VIA")
     len_after = path_lengths(pcbnew, board, inputs)
@@ -1096,11 +1195,12 @@ def main():
     worse_skew = [p for p in pairs
                   if p["skew_after_mm"] > p["skew_before_mm"] + 0.05]
     checks = [
-        P.check("vias in an SMD mask opening (J_MARGIN 0.03 mm)", 0,
+        P.check("vias within 0.10 mm of an SMD mask opening", 0,
                 len(after)),
         P.check("offenders left unresolved", 0, len(log["unresolved"])),
-        P.check("via count = before - functionless removed",
-                vias_before - len(log["removed"]), vias_after),
+        P.check("via count = before - functionless removed + room edits",
+                vias_before - len(log["removed"]) + room_via_delta,
+                vias_after),
         P.check("unconnected items (KiCad connectivity)", unconnected_before,
                 unconnected_after, ok=unconnected_after <= unconnected_before),
         P.check("largest ADC-to-electrode path change on IN1P-IN8N [mm]",
