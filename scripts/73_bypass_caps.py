@@ -63,6 +63,12 @@ VCAP4_REMOVE_TRACKS = [
 ]
 VCAP4_REMOVE_VIAS = [(146.9115, 109.0070), (147.6860, 114.4425)]
 
+VREFP10N_FROM = (146.39, 110.48)
+VREFP10N_DY = 0.10
+# pin 24's VREFP track stops 0.01 mm short of the pad's old edge; it follows
+VREFP10N_EXTEND = [("VREFP", "F.Cu", (145.9130, 107.6480), (145.9130, 110.2005),
+                    (145.9130, 110.3005))]
+
 VCAP1_WALLS = {
     "pin_pitch_gap_mm": 0.22,
     "C_VCAP1_H_gap_below_pin_mm": 0.208,
@@ -106,6 +112,25 @@ def pads_clear(pcbnew, board, idx, fp, clr):
                                           ignore=list(fp.Pads())):
                 bad.append((p.GetNumber(), P.describe(board, it)))
     return bad
+
+
+def min_gap(pcbnew, board, fp, ceiling):
+    """Smallest copper gap from the footprint's pads to another net (mm)."""
+    best = None
+    for p in fp.Pads():
+        for layer in R.item_layers(pcbnew, p):
+            sa = p.GetEffectiveShape(layer)
+            for t in list(board.GetTracks()) + [q for f in board.GetFootprints()
+                                                for q in f.Pads()]:
+                if t.GetNetCode() == p.GetNetCode() or not t.IsOnLayer(layer):
+                    continue
+                if t.GetClass() == "PAD" and t.GetParentFootprint() == fp:
+                    continue
+                g = P._actual_gap(sa, t.GetEffectiveShape(layer), ceiling,
+                                  steps=14)
+                if g is not None and (best is None or g < best):
+                    best = g
+    return None if best is None else mm2(best)
 
 
 def main():
@@ -168,6 +193,48 @@ def main():
                              [mm2(p1.GetPosition().x), mm2(p1.GetPosition().y)])
         done_vcap4 = True
 
+    # C_VCAP4's pad 2 and C_VREFP_10n's pad 2 (both AVSS) would sit 0.114 mm
+    # apart: one mask opening over two 0402 pads, a tombstone waiting. C_VCAP4
+    # cannot go up (pin 26 is 0.208 mm above pad 1) and turning it puts a pad
+    # 0.06 mm from C_VCAP1_H, so C_VREFP_10n steps 0.10 mm south instead
+    # (0.49 mm is free above the VREFP bus): 0.214 mm between the pads, two
+    # openings with a 0.112 mm dam. Its tracks' ends move with it.
+    moved_10n = False
+    f10 = board.FindFootprintByReference("C_VREFP_10n")
+    gap_10n_before = min_gap(pcbnew, board, f10, int(0.2 * IU))
+    if (mm2(f10.GetPosition().x), mm2(f10.GetPosition().y)) == VREFP10N_FROM:
+        dy = P.nm(VREFP10N_DY)
+        ends = []
+        for p in f10.Pads():
+            ends += P.pad_endpoints(pcbnew, board, p)
+        for t, which in ends:
+            rec = P.describe(board, t)
+            e = t.GetStart() if which == "start" else t.GetEnd()
+            ne = pcbnew.VECTOR2I(e.x, e.y + dy)
+            if which == "start":
+                t.SetStart(ne)
+            else:
+                t.SetEnd(ne)
+            log["removed"].append(rec)
+            log.setdefault("laid", []).append(P.describe(board, t))
+        for net, lname, ea, eb, new_b in VREFP10N_EXTEND:
+            h = find_track(board, net, lname, ea, eb)
+            if len(h) != 1:
+                raise SystemExit("S7j: %s %s-%s found %d times" % (net, ea, eb,
+                                                                 len(h)))
+            t = h[0]
+            log["removed"].append(P.describe(board, t))
+            end_is_b = (mm2(t.GetEnd().x), mm2(t.GetEnd().y)) == eb
+            nv = pcbnew.VECTOR2I(P.nm(new_b[0]), P.nm(new_b[1]))
+            if end_is_b:
+                t.SetEnd(nv)
+            else:
+                t.SetStart(nv)
+            log.setdefault("laid", []).append(P.describe(board, t))
+        place("C_VREFP_10n", VREFP10N_FROM[0], VREFP10N_FROM[1] +
+              VREFP10N_DY, f10.GetOrientationDegrees())
+        moved_10n = True
+
     swapped = False
     f3 = board.FindFootprintByReference("C_VCAP3")
     f3h = board.FindFootprintByReference("C_VCAP3_H")
@@ -179,20 +246,30 @@ def main():
         place("C_VCAP3_H", p3[0] / float(IU), p3[1] / float(IU), p3[2])
         swapped = True
 
+    # C_VCAP4 is new copper here and keeps the recommended 0.127 mm. C_VCAP3
+    # and C_VCAP3_H land on each other's pads, so their copper is Y8's; and
+    # C_VREFP_10n may not come closer to anything than it already was.
     idx = R.CopperIndex(pcbnew, board)
-    clash = []
-    for ref in ("C_VCAP4", "C_VCAP3", "C_VCAP3_H"):
-        clash += [(ref,) + c for c in pads_clear(
-            pcbnew, board, idx, board.FindFootprintByReference(ref),
-            P.CLEARANCE)]
+    clash = [("C_VCAP4",) + c for c in pads_clear(
+        pcbnew, board, idx, board.FindFootprintByReference("C_VCAP4"),
+        int(0.127 * IU))]
+    gap_10n_after = min_gap(pcbnew, board,
+                            board.FindFootprintByReference("C_VREFP_10n"),
+                            int(0.2 * IU))
+    log["C_VREFP_10n_min_gap_mm"] = [gap_10n_before, gap_10n_after]
+    if gap_10n_after is not None and gap_10n_before is not None \
+            and gap_10n_after < gap_10n_before - 1e-4:
+        clash.append(("C_VREFP_10n", "closer than before",
+                      [gap_10n_before, gap_10n_after]))
     unc_after = P.unconnected_count(pcbnew, board)
     same_nets = P.pad_net_map(board, pcbnew) == nets_before
     log["not_done"]["C_VCAP1"] = VCAP1_WALLS
     log.update({"vcap4_moved": done_vcap4, "vcap3_swapped": swapped,
+                "vrefp_10n_moved": moved_10n,
                 "pad_clashes": clash, "unconnected": [unc_before, unc_after],
                 "pad_nets_unchanged": same_nets})
     ok = not clash and unc_after <= unc_before and same_nets
-    if ok and (done_vcap4 or swapped) and not a.dry_run:
+    if ok and (done_vcap4 or swapped or moved_10n) and not a.dry_run:
         board.Save(bpath)
     E.dump_json(os.path.join(root, "logs", "bypass_caps.json"), log)
     checks = [
