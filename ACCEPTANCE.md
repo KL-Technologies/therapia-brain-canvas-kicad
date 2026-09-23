@@ -364,3 +364,52 @@ J1 の判定対象は `ds_required_cap` で DS が求める容量（VCAP1 100 µ
   例外は理由とともに `ALLOWED` に書いたものだけ。
   - R_CC2.2 の via 0.120 mm: パッド間に入る最大値。
   - ADS_RESET_N の幹線 0.1018 mm: Y8 の銅を短くしただけのもの。
+
+---
+
+## 追記 8（2026-09-24）— ハーネス S5_netconstraints（afe-adc C1〜C5）の赤 4 件は実害なしとする。A〜L の基準は変えていない
+
+ハーネス 225f76c で S5_netconstraints が初めて判定され（Q535。それまでは宣言が欠けていて判定されていなかった）、結果は 1/5 だった。
+赤の 4 件（C2〜C5）について独立に評価し、**lead 裁定（2026-09-24、施主の 2026-09-03 の委任による）: 4 件とも実害なし。Y13 の決済は止めない。**
+4 件とも Y8（c444ac2^）の盤面にすでにあった形で、Y9 の修正で増えたものはない。S7v で via の位置が変わり、本数は減った。
+
+| 件 | 中身（HEAD の実測値） | 判断の根拠 | 閉じ方 |
+|---|---|---|---|
+| C2 | VCAP1 の via 3 本（C_VCAP1 100 µF のバルクへの枝）、VCAP3 の via 1 本（C_VCAP3_H 100 nF の枝。パッドの縁から 0.017 mm 重なる） | VCAP1 の 3 本は、追記 6 で J1 の例外とした枝と同じもの。DS が求める C_VCAP3（1 µF）は、F.Cu 上 2.1 mm・via なしでピン 55 に結ばれている（SBAS499C §12.1 p.72） | `packs.afe-adc.c2_accepted_exceptions` に 4 件を宣言した。1 件ごとに座標で via を指定し、許容差は 0.05 mm |
+| C3 | VCAP1 の同じ枝の B.Cu（6 区間） | C2 の VCAP1 の 3 本と同じ事実 | **製品側に宣言の仕組みがない**。ハーネス側の対応待ち（下記） |
+| C4 | IN1N〜IN8N に via 2 本ずつ（16 本）。N 側だけが C_CM*N の東を B.Cu（約 4 mm、下は In2 の AVSS）でくぐる | 下の物理評価 | **製品側に宣言の仕組みがない**。ハーネス側の対応待ち |
+| C5 | ch1〜ch4 の P/N の長さの差 1.877 mm（ch5〜ch8 は 0.12 mm） | 上限 1.0 mm は pack の既定値で、製品の宣言でもデータシートの値でもない。HackEEG は 2〜4 mm | **製品側に宣言の仕組みがない**（上限を読むのは `paths.floorplan` だけ）。ハーネス側の対応待ち |
+
+**物理評価の要旨**（推定値は推定と書く。前提は R_IN 10 kΩ 1%、C_CM 1 nF C0G ±5%、C_DIF 10 nF C0G、帯域 DC〜数百 Hz）
+
+- **via 1 本の値（推定、Howard Johnson の近似式）**
+  - インダクタンス 約 1.3 nH。リアクタンスは 1 kHz で 8 nΩ、fMOD 1.024 MHz でも 8 mΩ。
+  - 抵抗 約 1 mΩ。
+  - 対プレーンの容量 約 0.5 pF。
+- **CMRR**
+  - P と N の容量差は、C4 の via と B.Cu、C5 の迂回を合わせても ΔC ≤ 約 1.5 pF。50 Hz で同相から差動へ −107 dB。
+  - 比べる相手は C_CM の ±5% の差（−76 dB）と R_IN の 1% の差（−90 dB）。via の寄与はこれより 17〜31 dB 小さい。
+  - DS の CMRR は −110 dB（最小）（SBAS499C p.9）。C_CM は C_DIF の 1/10 で、DS §10.2 p.68 の「1/10〜1/20」を満たす。
+- **長さの差** 1.88 mm は伝搬遅延 約 12 ps。位相は 1 kHz で 7e-8 rad。1 kHz の波長は FR4 で約 160 km。
+- **漏れ**
+  - via は Plugged で、プレーンとの間は FR4 のバルク。流れる電流は pA 級と見積もった（推定）。入力バイアス電流 ±300 pA（DS p.9）に対して小さい。
+  - 10 kΩ にかかる DC オフセットは 0.1 µV 以下。
+- **熱起電力**: via も配線も銅で、異種金属の接合がない。F→B と B→F の 2 か所が直列で逆向きなので打ち消し合う。
+- **参照設計**
+  - HackEEG（`pcb-harness/fixtures/hackeeg_ref`）: 入力ネットは via 0 本、Top 層のみ。P/N の総長の差は 2.3〜4.0 mm。
+  - OpenBCI Cyton: 手元にあるのが DesignSpark のバイナリとネット属性のない Gerber だけで、比べられなかった。
+- **DS の規定**: 入力経路の via や長さ合わせについての規定はない（§10.2・§12.1 の本文を確認）。
+
+**ハーネス側に必要な仕組み（core-b へ）**
+
+1. **C3 と C4 の例外を宣言する仕組み。** `c2_accepted_exceptions` と同じ形（`net`・`at`・`tol_mm`・`reason`/`approved_by`/`date`）で、C3 は区間の座標、C4 は via の座標を指定する。
+   C3 は、C2 で例外にした via につながる off-layer の区間を同じ宣言で覆えるようにする。今は同じ枝を J1・C2・C3 の 3 か所に宣言する必要があるので、共有を検討してほしい。
+2. **C5 の上限を `packs.afe-adc` で宣言する仕組み。** 例: `pair_skew_max_mm` と帰属（reason / approved_by / date）。
+   今の読み手は `paths.floorplan` の `netclasses.<analog_netclass>.pair_length_skew_max_mm` だけ。floorplan を宣言すると S7_viapad、S7_clearance、S4b、S5_stitchgrid、S7 がそれを読み始めるので、この製品で C5 のためだけに floorplan を足すことはしない。
+   製品側に入れる予定の値は **2.0 mm**。根拠は上の CMRR と位相の計算と、HackEEG が 2〜4 mm あること。
+3. **`constants.skew_source` の誤記の修正。** `paths.floorplan` を宣言していないのに "paths.floorplan" と記録される。ルートのディレクトリに対して `os.path.exists` が真になるため（Q535 の取り残し）。実際に使われた上限は `DEFAULT_SKEW_MAX_MM` の 1.0 mm。
+4. **負の対照が走っていない。** `zero_via_nets: []` の製品では via を植える先がなく、S5_netconstraints が負の対照なしで書かれる。
+
+**Rev.B の改善候補**（今回は直さない）
+- C_CM*N と C_CM*P の配置を見直し、IN*N を F.Cu だけで通す（HackEEG と同じ形にする）。
+- C_VCAP3_H をピン 55 と同じ F.Cu で直結する。

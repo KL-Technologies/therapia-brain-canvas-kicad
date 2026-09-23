@@ -23,6 +23,34 @@
 > - **次（施主）**: Y13 の 2 行だけを決済する。
 >   決済後は、JLC の Confirm Production file に 48 h 以内、Confirm Parts Placement に 72 h 以内に応答する。
 
+> ## ✅ 2026-09-24: ハーネス S5_netconstraints の赤 4 件（C2〜C5）は実害なしと裁定した。Y13 の決済は止めない
+>
+> - 経緯: ハーネス 225f76c で S5_netconstraints（afe-adc C1〜C5）が初めて判定され（Q535）、1/5 だった。独立に評価した結果、**lead 裁定で 4 件とも実害なし**とした。詳細は ACCEPTANCE 追記 8。
+> - 4 件とも **Y8（c444ac2^）からあった形**で、Y9 の修正で増えたものはない。S7v で via の位置が変わり、C2 は 5 本から 4 本に減った。
+>
+> | 件 | 実測（HEAD） | 要旨 |
+> |---|---|---|
+> | C2 | VCAP1 の via 3 本、VCAP3 の via 1 本 | VCAP1 の 3 本は J1 の例外にした C_VCAP1 の枝と同じもの。VCAP3 の 1 本は追加の C_VCAP3_H の枝にあり、DS が求める C_VCAP3 は F.Cu・via なし |
+> | C3 | VCAP1 の同じ枝の B.Cu（6 区間） | C2 と同じ事実 |
+> | C4 | IN1N〜IN8N に via 2 本ずつ（16 本） | P と N の容量差は推定 1.5 pF 以下で、50 Hz で −107 dB。C_CM の ±5% の差（−76 dB）と R_IN の 1% の差（−90 dB）より 17〜31 dB 小さい |
+> | C5 | ch1〜ch4 の長さの差 1.877 mm | 上限 1.0 mm は pack の既定値。約 12 ps で、1 kHz の位相は 7e-8 rad。HackEEG は 2〜4 mm |
+>
+> - **宣言した**: C2 だけ。`product.yaml` の `packs.afe-adc.c2_accepted_exceptions` に 4 件を書いた（座標で指定、許容差 0.05 mm、帰属つき）。
+> - **再判定**（harness 225f76c）: 1/5 → **2/5**（C1・C2 が緑、C3・C4・C5 は赤のまま）。
+> - **C3・C4・C5 は製品側に宣言の仕組みがない**。ハーネス側に必要な仕組みを ACCEPTANCE 追記 8 に書き、core-b に回した。
+>   - C3/C4 の例外キー
+>   - C5 の上限を pack で宣言するキー（製品は 2.0 mm を入れる予定）
+>   - `skew_source` の誤記
+>   - 負の対照が走っていない
+>   仕組みができるまでは、裁定済みの既知の赤として扱う。
+> - **出典**
+>   - TI SBAS499C https://www.ti.com/lit/ds/symlink/ads1299.pdf の p.9（CMRR −110 dB（最小）、バイアス電流 ±300 pA）、p.68（§10.2 差動 C、C_CM は C_DIF の 1/10〜1/20）、p.70（§11 VCAP1）、p.72（§12.1 "Do not place vias between bypass capacitors and the active device"）
+>   - HackEEG の実測: `pcb-harness/fixtures/hackeeg_ref`
+>   - via の値は Howard Johnson の近似式による推定
+> - **Rev.B の候補**
+>   - C_CM*N/P の配置を見直し、IN*N を F.Cu だけで通す
+>   - C_VCAP3_H をピン 55 と F.Cu で直結する
+
 > ## ⛔ 2026-09-23: Y8 は via-in-pad 106 本のため決済不可。修正版 Y9 の fab を用意済み。カートの差し替えは lead が行う
 >
 > **Y8（PCB `Y8-10641515A` ＋ PCBA `SMT026082960311`）は決済しないこと。** Y8 の盤面では

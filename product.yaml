@@ -191,6 +191,38 @@ packs:
         approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
         date: "2026-09-23"
         reason: "VCAP1 is a 0.2 Hz node driven through the ADS1299's internal 9.8 kOhm, so the inductance of the path to the 100 uF bulk (C_VCAP1) does not matter; the high-frequency part is C_VCAP1_H (100 nF), 1.358 mm from pin 28 on F.Cu with no via. C_VCAP1 (1206) cannot reach pin 28 on one layer: pin 28's neighbours are 0.22 mm away, C_VCAP1_H 0.208 mm below it, C_VCAP1_H to C_VCAP2 0.314 mm, against the 0.378 mm a 0.2 mm track needs between other nets; south of them the F.Cu AVSS bus (y 109.769) and VREFP bus (y 111.496) cross the whole cluster (logs/bypass_caps.json)."
+    # S5_netconstraints C2 (added 2026-09-24). Each entry pins one via by
+    # coordinate (tol 0.05 mm), so a via that moves stops being covered.
+    # The three VCAP1 vias are the same C_VCAP1 branch j1_accepted_exceptions
+    # accepts; the VCAP3 via is on the C_VCAP3_H (100 nF, added) branch. All
+    # four were already on the Y8 board (c444ac2^); S7v only moved them.
+    # C3, C4 and C5 have no product-side declaration in harness 225f76c: see
+    # ACCEPTANCE.md 追記 8.
+    c2_accepted_exceptions:
+      - net: VCAP1
+        at: [151.05, 116.527]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "C_VCAP1 (100 uF bulk) branch, the one j1_accepted_exceptions accepts: C_VCAP1 cannot reach pin 28 on F.Cu. The high-frequency bypass is C_VCAP1_H (100 nF), 1.36 mm from pin 28 on F.Cu with no via. The branch's estimated 10-15 nH puts its series resonance with 100 uF near 130 kHz, so across the EEG band (DC to a few hundred Hz) it is purely capacitive."
+      - net: VCAP1
+        at: [150.302, 114.341]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same C_VCAP1 bulk branch as the via at (151.05, 116.527); see that entry."
+      - net: VCAP1
+        at: [150.81, 114.341]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same C_VCAP1 bulk branch as the via at (151.05, 116.527); see that entry."
+      - net: VCAP3
+        at: [144.1232, 95.2397]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Via on the C_VCAP3_H (100 nF, an addition to the datasheet's part) branch. The part the datasheet asks for, C_VCAP3 (1 uF), reaches pin 55 on F.Cu in 2.1 mm with no via, which is what SBAS499C s.12.1 p.72 asks. The via's copper overlaps the pad edge by 0.017 mm, but its drill is outside the mask opening (S7_viapad green) and the via is Plugged. It costs only part of C_VCAP3_H's high-frequency benefit. Rev.B candidate: tie C_VCAP3_H to pin 55 on F.Cu."
     # J4 (harness Q490). SBAS499C s.11 p.70 recommends a non-ferroelectric
     # VCAP1 "in systems subject to vibration" -- a conditional recommendation,
     # not a ban. C_VCAP1 is C15008 CL31A107MQHNNNE (Samsung, X5R, 100 uF 1206).
