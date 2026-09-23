@@ -169,6 +169,16 @@ packs:
     # capacitor to AVSS"), VREFP-VREFN >= 10 uF (DS 9.3.1.3.4);
     # docs/ads1299_layout_checklist.md lines 81 and 85.
     vcap1_ref: C_VCAP1
+    # J4 (harness Q490). SBAS499C s.11 p.70 recommends a non-ferroelectric
+    # VCAP1 "in systems subject to vibration" -- a conditional recommendation,
+    # not a ban. C_VCAP1 is C15008 CL31A107MQHNNNE (Samsung, X5R, 100 uF 1206).
+    # Kept by lead ruling 2026-09-23; bad_dielectric below still names X5R, so
+    # this record is what makes J4 pass.
+    vcap1_dielectric_ruling:
+      vibration: "worn on the head (EEG) or on the body (HRV) and handled while the wearer moves; not mounted on vibrating equipment. Piezoelectric noise from the X5R part is measured at bring-up (reports/bringup_checklist.md 7-3)"
+      reason: "TI SBAS499C s.11 p.70: in most cases the VCAP1 capacitor is also a multilayer ceramic; a non-ferroelectric part is advised only where the board is subject to vibration. TI's ADS1299EVM and the OpenBCI Cyton both use an X5R 100 uF VCAP1. At about 1.2 V the part keeps about 90 uF (72 uF worst case), a 0.2 Hz corner against the < 10 Hz requirement. Bring-up records the VCAP1 DC level (about 1.2 V; under 1.1 V fails the RESET condition) and the input-short noise at rest, worn and moving, and tapped; if piezoelectric noise shows, Rev.B moves C_VCAP1 to a tantalum A case."
+      approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+      date: "2026-09-23"
     vcap1_min_uf: 100.0
     vrefp_cap_prefix: C_VREFP
     vrefp_bulk_min_uf: 10.0
