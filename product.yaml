@@ -178,6 +178,16 @@ packs:
       VCAP3: C_VCAP3
       VCAP4: C_VCAP4
       VREFP: C_VREFP_10u
+    # J1 exceptions the lead accepted. Provisional key and shape (after
+    # c2_accepted_exceptions): the harness's J1 has no exception list yet
+    # (0c78e9b), so today this is a record, not something the gate reads.
+    j1_accepted_exceptions:
+      - net: VCAP1
+        cap: C_VCAP1
+        ads_pin: "28"
+        decided_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        decided_on: "2026-09-23"
+        why: "VCAP1 is a 0.2 Hz node driven through the ADS1299's internal 9.8 kOhm, so the inductance of the path to the 100 uF bulk (C_VCAP1) does not matter; the high-frequency part is C_VCAP1_H (100 nF), 1.358 mm from pin 28 on F.Cu with no via. C_VCAP1 (1206) cannot reach pin 28 on one layer: pin 28's neighbours are 0.22 mm away, C_VCAP1_H 0.208 mm below it, C_VCAP1_H to C_VCAP2 0.314 mm, against the 0.378 mm a 0.2 mm track needs between other nets; south of them the F.Cu AVSS bus (y 109.769) and VREFP bus (y 111.496) cross the whole cluster (logs/bypass_caps.json)."
     # J4 (harness Q490). SBAS499C s.11 p.70 recommends a non-ferroelectric
     # VCAP1 "in systems subject to vibration" -- a conditional recommendation,
     # not a ban. C_VCAP1 is C15008 CL31A107MQHNNNE (Samsung, X5R, 100 uF 1206).

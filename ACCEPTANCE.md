@@ -348,4 +348,8 @@ JLC は 0.1 mm 未満の緑のマスク堤を残さない。堤が削られる�
 VCAP3 / VCAP4 は、DS が求める容量のコンデンサ（C_VCAP3、C_VCAP4）を、ピンと同じ F.Cu 上で via なしに結んだ（S7j）。
 どのコンデンサを J1 の判定対象にするかは `product.yaml` の `packs.afe-adc.ds_required_cap` で宣言している。
 **C_VCAP1（100 µF、1206）は物理的に同じ層で結べない**（寸法は STATUS.md と `logs/bypass_caps.json` に記載）。
-J1 の例外として扱うかどうかは lead の確認後に決める。それまで J1 は 1 件赤のまま置く。
+**lead 裁定（2026-09-23）: C_VCAP1 は J1 の宣言された例外とする。** VCAP1 は内部の 9.8 kΩ を通して駆動される帯域 0.2 Hz のノードで、
+100 µF 側の経路のインダクタンスは効かない。高周波の分は、ピン 28 から F.Cu で 1.358 mm・via なしの C_VCAP1_H（100 nF）が担う。
+同じ層で結べない理由は寸法で確認済み: 通路 0.22 / 0.208 / 0.314 mm に対して、配線 1 本に 0.378 mm が要る。
+宣言は `packs.afe-adc.j1_accepted_exceptions`。ハーネスの J1 にはまだ例外を読む仕組みがないので（0c78e9b 時点）、今は記録として置き、ハーネス側で J1 は 1 件赤のまま。
+J1 の判定対象は `ds_required_cap` で DS が求める容量（VCAP1 100 µF、VCAP3・VCAP4 1 µF、VREFP 10 µF）に絞った。100 nF の補助（C_VCAP1_H・C_VCAP3_H・C_VREFP_100n/10n）は判定対象にしない。これらのピンへの近さは製品側の S7c（`scripts/47_layout_quality.py` の J1 と距離の記録）で見ている。
