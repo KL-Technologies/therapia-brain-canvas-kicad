@@ -27,6 +27,10 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 CASES = ["power_tree_startup", "ldo_stability", "drl_loop", "esp32_autoreset"]
+# The number of checks the four cases make when every one of them runs. A case
+# that loses a row (a model that failed and was left out) must not leave the
+# gate green on fewer: the count is a check of its own.
+EXPECTED_CHECKS = 29
 
 
 def run_case(name, python):
@@ -106,6 +110,11 @@ def main():
         if doc.get("notes"):
             notes.append("[%s] %s" % (name, doc["notes"]))
 
+    if not args.only:
+        checks.append({"name": "all %d expected checks were made"
+                               % EXPECTED_CHECKS,
+                       "pass": len(checks) == EXPECTED_CHECKS,
+                       "detail": "%d made" % len(checks)})
     passed = bool(checks) and all(c["pass"] for c in checks)
     gate = {
         "pass": passed,

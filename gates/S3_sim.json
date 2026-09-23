@@ -1,6 +1,6 @@
 {
   "pass": true,
-  "timestamp": "2026-08-29T13:01:28",
+  "timestamp": "2026-09-23T15:54:52",
   "step": "S3_sim",
   "summary": "headless ngspice simulation of the Rev.A power tree, LDO stability, DRL loop and ESP32 auto-reset",
   "engine": {
@@ -154,6 +154,11 @@
       "name": "esp32_autoreset / EN releases only after the 3.3 V rail has settled",
       "pass": true,
       "detail": "3.3 V rail reaches 99 % at 0.30 ms; EN reaches VIH at 8.84 ms (8.54 ms later, 29x the rail settling time) with the DERATED 0.62 uF. With the marked 1.00 uF EN releases at 14.12 ms. Espressif specifies no minimum delay -- only that EN stay low until the supply is stable."
+    },
+    {
+      "name": "all 29 expected checks were made",
+      "pass": true,
+      "detail": "29 made"
     }
   ],
   "key_numbers": {

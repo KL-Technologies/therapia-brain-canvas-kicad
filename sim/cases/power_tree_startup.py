@@ -315,6 +315,8 @@ def main():
     vend = vendor_crosscheck(d0)
     numbers["vendor_crosscheck"] = vend
     lm = vend.get("LM2664_vendor", {})
+    # A TI model run that fails or times out is a failed check, never a
+    # missing one: dropping the row let the gate pass with 28 of 29.
     if "Rout_ohm" in lm:
         checks.append({
             "name": "LM2664 output resistance within datasheet (TI model)",
@@ -322,6 +324,14 @@ def main():
             "detail": "%.1f ohm on the board's derated %.2f uF flying cap "
                       "(SLVS/SNVS005E: 12 typ, 25 max at 40 mA)"
                       % (lm["Rout_ohm"], vend["C_LM_FLY_eff_F"] * 1e6),
+        })
+    else:
+        checks.append({
+            "name": "LM2664 output resistance within datasheet (TI model)",
+            "pass": False,
+            "detail": "TI model did not produce both load points: %s"
+                      % json.dumps({k: v for k, v in lm.items()
+                                    if k.startswith("error")})[:400],
         })
     tpsv = vend.get("TPS72325_vendor", {})
     as_wired = tpsv.get("EN tied to IN (as wired)", {})
@@ -334,6 +344,14 @@ def main():
                       "%.3f V (enabled=%s), which is the dead band doing its job"
                       % (as_wired.get("Vout_V", float("nan")), as_wired["enabled"],
                          dead.get("Vout_V", float("nan")), dead["enabled"]),
+        })
+    else:
+        checks.append({
+            "name": "TPS72325 EN confirmed by TI's own model",
+            "pass": False,
+            "detail": "TI model run failed: as wired %s / EN at 0 V %s"
+                      % (as_wired.get("error", "")[:200],
+                         dead.get("error", "")[:200]),
         })
 
     # ---------------- startup, both USB corners --------------------------
