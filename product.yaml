@@ -169,6 +169,15 @@ packs:
     # capacitor to AVSS"), VREFP-VREFN >= 10 uF (DS 9.3.1.3.4);
     # docs/ads1299_layout_checklist.md lines 81 and 85.
     vcap1_ref: C_VCAP1
+    # On a net with several capacitors, the one the datasheet asks for (DS pin
+    # table: VCAP1 100 uF, VCAP3 1 uF, VCAP4 1 uF; VREFP-VREFN 10 uF). J1
+    # judges that one; C_VCAP1_H / C_VCAP3_H / C_VREFP_100n / _10n are
+    # additions on their own branches.
+    ds_required_cap:
+      VCAP1: C_VCAP1
+      VCAP3: C_VCAP3
+      VCAP4: C_VCAP4
+      VREFP: C_VREFP_10u
     # J4 (harness Q490). SBAS499C s.11 p.70 recommends a non-ferroelectric
     # VCAP1 "in systems subject to vibration" -- a conditional recommendation,
     # not a ban. C_VCAP1 is C15008 CL31A107MQHNNNE (Samsung, X5R, 100 uF 1206).

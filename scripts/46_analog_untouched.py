@@ -200,7 +200,7 @@ def eco_sites(root):
     """
     sites = []
     for name in ("eco_apply", "eco5_bom_apply", "viapad_fix",
-                 "dangling_prune"):
+                 "dangling_prune", "bypass_caps"):
         path = os.path.join(root, "logs", name + ".json")
         if not os.path.exists(path):
             continue
