@@ -232,6 +232,13 @@ packs:
         approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
         date: "2026-09-24"
         reason: "Same C_VCAP1 bulk branch as the via at (151.05, 116.527); see that entry."
+      - net: VCAP1
+        at: [147.9095, 106.407]
+        tol_mm: 0.05
+        applies_to: [C3]
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Pin-28 end of the same C_VCAP1 bulk branch as the via at (151.05, 116.527) (ACCEPTANCE.md 追記 8). Named since harness Q545 judges C2/C3 on the copper path from C_VCAP1 to pin 28, which runs through this via; the box it replaces stopped short of it."
       - net: VCAP3
         at: [144.1232, 95.2397]
         tol_mm: 0.05
