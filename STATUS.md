@@ -63,6 +63,22 @@
 > - 新規ファイル: `data/dnp.json`、`data/order_spec.json`（カートの内容。Tented = IPC-4761 Type I と記載）、`contract/mech_contract.json`（切り欠きなし）
 > - `contract/netlist_contract.json`: `mechanical_parts`（H1〜H4、PEG1/2）を追加。**`scripts/20_netlist_contract.py` で再生成すると消える**
 > - ハーネスの出力は `$TMPDIR` に置いた。検証は製品のコピーで行った
+>
+> **追記（同日、残りの赤を閉じた）** 結果は S0_manifest **50/50**、S7 **57/58**（残るのは ① D NPTH の盤面座標の行で、ハーネス側の Q477 として vip-root に回した）、
+> S8 **52/52**、S7_viapad 16/16、S7_clearance 8/8。
+> - ②③ `scripts/61_make_bom_cpl.py` が、`logs/bom_cpl.json` にハーネスの書式で `dnp` 節（data/dnp.json・部品表・盤面の三者一致）と `pcba_type` 節を書くようにした。
+>   実装区分の証拠は `data/pcba_type.json` に部品番号ごとに置いた。31 行すべて "Standard"。
+>   証拠は gates/S9.json で、Standard PCBA の注文 SMT026082960311 が全 31 行を受け付けている（rows_confirmed 31/31）。そのときの BOM は現在と同じ sha256 `740b7ef7…`。
+>   Economic でも実装できるかは記録がないので、主張していない。"unknown" の行は 0。
+>   再生成後も `fab/BOM_JLCPCB.csv`（`740b7ef7…`）と `fab/CPL_JLCPCB.csv`（`1ea6f984…`）はバイト単位で変わっていない。
+> - ④ ハーネスの S7_body / S7_viapad / S7_clearance（harness commit **093191b**）の出力を、名前がぶつからないように
+>   `gates/harness_S7_body.json`・`gates/harness_S7_viapad.json`・`gates/harness_S7_clearance.json` として置いた。
+>   既存の `gates/S7_body.json` と `gates/S7_viapad.json` は、この repo の基準 H・I のゲートなので上書きしていない。
+>   S7 はこの 3 つを `gates.S7.subgates` の宣言で読む。**盤面を保存し直すと鮮度切れで赤になる**ので、そのときは 3 本とも再実行すること。
+> - afe-adc pack の必須キー **20 個**（S0_manifest の表示は先頭 8 個で切れていた）を、契約・製品スクリプト・DS の引用から宣言した。
+>   `vcap1_min_uf` 100（DS のピン表）、`vrefp_bulk_min_uf` 10、`bad_dielectric` は DS §11 の [X5R, X7R, X8R] に Y5V / Z5U を加えたもの。
+>   **このため、pack の S5_layout J4 を走らせると赤になる見込み**: 実物の C_VCAP1 は CL31A107MQHNNNE（X5R 100 µF）で、
+>   DS §11 が勧めない誘電体。これは盤面ではなく部品選定の所見で、今回の 5 本のゲートの外。
 
 ## 現在地
 

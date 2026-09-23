@@ -1,0 +1,470 @@
+{
+  "step": "S7_viapad",
+  "pass": true,
+  "checks": [
+    {
+      "name": "fab_inputs_present",
+      "expected": [
+        "B_Cu",
+        "B_Mask",
+        "B_Paste",
+        "Edge_Cuts",
+        "F_Cu",
+        "F_Mask",
+        "F_Paste",
+        "PTH_drill"
+      ],
+      "actual": [
+        "B_Cu",
+        "B_Mask",
+        "B_Paste",
+        "Edge_Cuts",
+        "F_Cu",
+        "F_Mask",
+        "F_Paste",
+        "PTH_drill"
+      ],
+      "pass": true,
+      "source": "fab/gerber (Protel names) then fab (.gbr)",
+      "why": "ACCEPTANCE J is judged on the mask and paste openings and the drill file, read by an independent parser. One file missing means nothing was measured. **Both sides**: a via is one hole through the whole board and a bottom-side pad is reflowed like a top-side one, so a front-only reading judges half a two-sided assembly (Q84). KiCad plots the bottom layers for a single-sided board too, so a missing B_ file is an incomplete export, not a board without a bottom"
+    },
+    {
+      "name": "J_via_in_an_smd_opening_on_the_board",
+      "expected": 0,
+      "actual": {
+        "vias": 234,
+        "smd_pads": 417,
+        "in_opening": 0
+      },
+      "pass": true,
+      "unit": "count",
+      "source": "board/Therapia_EEG-HRV.kicad_pcb",
+      "offenders": [],
+      "why": "ACCEPTANCE J on the BOARD, read as text by core.viapad.census_from_text: the covering ordered (none) does not fill and cap the barrel, so a via whose drill opens inside an SMD pad's mask/paste opening wicks solder out of the joint. `smd_pads` and `vias` are reported beside the count because 0 from a reader that found no pads is not the answer it looks like (Q233)"
+    },
+    {
+      "name": "paste_openings_read",
+      "expected": "> 0 dark shapes",
+      "actual": 595,
+      "pass": true,
+      "source": "core.gerber_parse on F_Paste",
+      "why": "a verdict taken against a paste layer with no opening in it has measured nothing"
+    },
+    {
+      "name": "mask_openings_read",
+      "expected": "> 0 dark shapes",
+      "actual": 425,
+      "pass": true,
+      "source": "core.gerber_parse on F_Mask",
+      "why": "as above"
+    },
+    {
+      "name": "no_unknown_apertures",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "source": "Aperture.known",
+      "why": "an unknown macro degenerates to its circumscribed circle, which is the safe direction (the opening looks larger) but makes the counts irreproducible, so zero is required"
+    },
+    {
+      "name": "vias_found_in_drill",
+      "expected": "> 0",
+      "actual": 234,
+      "pass": true,
+      "source": "fab/gerber/Therapia_EEG-HRV-PTH.drl",
+      "why": "a verdict on zero vias is meaningless. A hit is a via when its tool is at most 0.50 mm"
+    },
+    {
+      "name": "vias_without_a_net",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "source": "F_Cu %TO.N on the via flash within 0.010 mm",
+      "why": "a via no F_Cu flash accounts for means the drill file and the copper disagree; a violation on it could not be named, so zero is required"
+    },
+    {
+      "name": "J2_no_via_on_tqfp64_pad",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "unit": "count",
+      "source": "F_Cu %TO.P ref x the drill circle",
+      "forbidden_pad_prefixes": [
+        "U_ADS"
+      ],
+      "offenders": [],
+      "why": "J-2 (a): a 0.46 mm annulus does not fit on the fine-pitch pads of U_ADS without eating the gap to the neighbouring pad. Filling and capping the barrel does not widen the pad"
+    },
+    {
+      "name": "J2_no_via_on_zero_via_nets",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "unit": "count",
+      "source": "every via in the PTH drill file x F_Cu %TO.N",
+      "nets": [],
+      "offenders": [],
+      "why": "ACCEPTANCE C1 / C4: the star point and the live differential input pairs carry no via anywhere on the board, not merely none inside a pad"
+    },
+    {
+      "name": "J2_zero_via_nets_exist_in_contract",
+      "expected": [],
+      "actual": [],
+      "pass": true,
+      "source": "contract/netlist_contract.json",
+      "why": "checking a net name the contract does not have is checking nothing"
+    },
+    {
+      "name": "J2_at_most_one_via_per_smd_pad",
+      "expected": 1,
+      "actual": 0,
+      "pass": true,
+      "note": "a via is attributed to the nearest pad, so a via between two pads counts against the closer one (the safe direction: crowding is never under-reported)",
+      "unit": "count",
+      "source": "vias attributed to pads through F_Cu %TO.P",
+      "offenders": [],
+      "why": "J-2 (c): two barrels in one pad is a solder-volume problem, and filling and capping them does not solve it"
+    },
+    {
+      "name": "J2_via_in_pad_count_reported",
+      "expected": 0,
+      "actual": {
+        "paste": 0,
+        "mask": 0,
+        "paste_inside": 0
+      },
+      "pass": true,
+      "unit": "count",
+      "source": "drill circle vs F_Paste / F_Mask openings (exact signed distance)",
+      "why": "ACCEPTANCE J: the covering ordered for this board (none) does not fill and cap the barrel, so a via opening inside a paste- or mask-printed pad wicks solder away from the joint during reflow. Zero is the only passing count"
+    },
+    {
+      "name": "exceptions_refused",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "source": "(no exception ledger)",
+      "offenders": [],
+      "why": "J-2: a pad of U_ADS and the zero-via nets are never excused, and neither is an exception without a reason, an approver and a date"
+    },
+    {
+      "name": "exceptions_all_used",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "source": "(no exception ledger)",
+      "offenders": [],
+      "why": "an exception that points at a via the board no longer has is a stale record, and leaving it there can excuse the next via that lands nearby"
+    },
+    {
+      "name": "thermal_pad_vias",
+      "expected": "recorded, not judged",
+      "actual": "skipped (no footprint declares thermal_vias)",
+      "pass": true,
+      "source": "board/Therapia_EEG-HRV.kicad_pcb",
+      "footprints_read": "every footprint in the board",
+      "why": "SLUA271 3.4.1 (KS-038, CR-038) says a QFN's exposed pad wants vias on a ~1.0 mm pitch and that they must be plugged. Which pads those are is the vendor's statement about the package, so Core does not infer it from the pad's size: a board whose footprints say nothing is skipped BY NAME, and J-2's count below has counted every via it found"
+    },
+    {
+      "name": "bypass_no_via_between",
+      "expected": 0,
+      "actual": "skipped (no nets.bypass_pairs and no nets.decoupling: this board has not said which capacitor serves which device)",
+      "pass": true,
+      "declaration": [
+        "bypass_pairs",
+        "decoupling"
+      ],
+      "why": "SBAS499C 12.1 (KS-001, CR-014) [T1]: \"Do not place vias between bypass capacitors and the active device.\" The sentence is about every active device, not about the ADS1299, but which capacitor serves which device is not readable from a netlist -- every capacitor on VDD is on the same net. So the product declares the couples, and a board that has not is skipped BY NAME rather than passed with an empty list (Q233's shape). gates/S4b_routability asks the same question before routing, of a board that carries packs.afe-adc's converter and of no other (Q231)"
+    }
+  ],
+  "timestamp": "2026-09-23T14:40:39",
+  "notes": "ACCEPTANCE J-2, measured on the fab data. 234 vias in the drill file, 0 of them touching an SMD opening, 0 after exceptions; 0 on a THT pad opening (out of scope). Zero-via nets: none. J-2 (a) 0, (b) 0, (c) max 0 per pad. By side: F 0, B 0, both 0. By origin: stitch 0, router 0, unknown 0. Via covering ordered: none. That covering does not close the barrel, so the via-in-pad count is JUDGED here (0 required), not reported. Coordinates are given in the Gerber frame, the KiCad frame (Y mirrored) and the contract frame (origin at the board outline centre).",
+  "negative_control": {
+    "input": "the fab data + one 0.305 mm via at the centre of U_ADS pad 1 (140.6120, -98.3480)",
+    "planted_defect": "a via on a pad of U_ADS, which J-2 (a) forbids at any via covering; and the same plant repeated on F (417 openings)",
+    "detected": true,
+    "detail": {
+      "planted_via": [
+        {
+          "via_gerber_mm": [
+            140.612,
+            -98.348
+          ],
+          "via_kicad_mm": [
+            140.612,
+            98.348
+          ],
+          "drill_mm": 0.3048,
+          "net": null,
+          "side": "F",
+          "paste": [
+            {
+              "kind": "flash",
+              "aperture": 15,
+              "at_gerber_mm": [
+                140.612,
+                -98.348
+              ],
+              "ref": "U_ADS",
+              "layer": "F.Paste",
+              "relation": "crossing",
+              "signed_gap_mm": -0.14,
+              "tht": false
+            },
+            {
+              "kind": "region",
+              "vertices": 37,
+              "layer": "F.Paste",
+              "relation": "crossing",
+              "signed_gap_mm": -0.14,
+              "tht": false
+            }
+          ],
+          "mask": [
+            {
+              "kind": "region",
+              "vertices": 23,
+              "layer": "F.Mask",
+              "relation": "inside",
+              "signed_gap_mm": -0.1908,
+              "tht": false
+            }
+          ],
+          "pad": {
+            "ref": "U_ADS",
+            "pad": "1",
+            "net": "IN8N",
+            "signed_gap_mm": -0.14,
+            "same_net": null
+          }
+        }
+      ],
+      "pad": {
+        "ref": "U_ADS",
+        "pad": "1"
+      }
+    },
+    "per_side": {
+      "F": {
+        "detected": true,
+        "openings_planted": 417,
+        "openings_reported": 417
+      },
+      "B": {
+        "detected": null,
+        "why": "B_Paste has no dark flash: nothing is assembled on this side, so there is no opening to plant in"
+      }
+    }
+  },
+  "measurements": {
+    "inputs": {
+      "F_Paste": {
+        "path": "fab/gerber/Therapia_EEG-HRV-F_Paste.gtp",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "8414a4a0ed6eedf2"
+      },
+      "F_Mask": {
+        "path": "fab/gerber/Therapia_EEG-HRV-F_Mask.gts",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "59361a937ed4cea9"
+      },
+      "F_Cu": {
+        "path": "fab/gerber/Therapia_EEG-HRV-F_Cu.gtl",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "0a791835bf3810e2"
+      },
+      "B_Paste": {
+        "path": "fab/gerber/Therapia_EEG-HRV-B_Paste.gbp",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "87993f554827c289"
+      },
+      "B_Mask": {
+        "path": "fab/gerber/Therapia_EEG-HRV-B_Mask.gbs",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "77d876a1a496bb28"
+      },
+      "B_Cu": {
+        "path": "fab/gerber/Therapia_EEG-HRV-B_Cu.gbl",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "538176394e4086b6"
+      },
+      "Edge_Cuts": {
+        "path": "fab/gerber/Therapia_EEG-HRV-Edge_Cuts.gm1",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "850d5fc911a2ec51"
+      },
+      "PTH_drill": {
+        "path": "fab/gerber/Therapia_EEG-HRV-PTH.drl",
+        "mtime": "2026-09-23T14:17:46",
+        "sha256": "4002f93e7fc2acfb"
+      }
+    },
+    "contract_origin_gerber_mm": [
+      150.9118,
+      -102.5044
+    ],
+    "paste_layer": {
+      "flashes": 417,
+      "draws": 0,
+      "regions": 178,
+      "clear_flashes": 0,
+      "clear_draws": 0,
+      "clear_regions": 0
+    },
+    "mask_layer": {
+      "flashes": 0,
+      "draws": 0,
+      "regions": 425,
+      "clear_flashes": 0,
+      "clear_draws": 0,
+      "clear_regions": 0
+    },
+    "paste_layer_back": {
+      "flashes": 0,
+      "draws": 0,
+      "regions": 0,
+      "clear_flashes": 0,
+      "clear_draws": 0,
+      "clear_regions": 0
+    },
+    "mask_layer_back": {
+      "flashes": 0,
+      "draws": 0,
+      "regions": 22,
+      "clear_flashes": 0,
+      "clear_draws": 0,
+      "clear_regions": 0
+    },
+    "unknown_apertures": {
+      "F_Paste": [],
+      "F_Mask": [],
+      "B_Paste": [],
+      "B_Mask": []
+    },
+    "drill_tools_mm": {
+      "T1": 0.305,
+      "T2": 0.305,
+      "T3": 0.6,
+      "T4": 1.05
+    },
+    "vias_from_drill": 234,
+    "holes_excluded_as_component": {
+      "T4 C1.050": 12,
+      "slot": 8
+    },
+    "sides_read": {
+      "F": {
+        "layers": [
+          "F_Paste",
+          "F_Mask",
+          "F_Cu"
+        ],
+        "vias_touching_an_opening": 0,
+        "of_those_on_an_smd_pad": 0
+      },
+      "B": {
+        "layers": [
+          "B_Paste",
+          "B_Mask",
+          "B_Cu"
+        ],
+        "vias_touching_an_opening": 0,
+        "of_those_on_an_smd_pad": 0
+      },
+      "vias_with_an_opening_on_both_sides": {
+        "any": 0,
+        "on_an_smd_pad": 0,
+        "why": "a plated hole has an opening on each side, so the `any` count is mostly THT pads; only the `on_an_smd_pad` ones are ACCEPTANCE J's"
+      },
+      "vias_without_a_net_on_B_Cu": 0,
+      "why": "ACCEPTANCE J is about what an unfilled barrel under a mask opening does to a reflowed joint, and both sides are reflowed. Read front-only until 2026-09-05 (Q84): on the board that found it, that hid 68 of 103 violations"
+    },
+    "floorplan": {
+      "path": null,
+      "state": "no floorplan: paths.floorplan is not stated, so the zero-via nets are only the ones the manifest names"
+    },
+    "zero_via_nets": {
+      "nets": [],
+      "missing_from_contract": [],
+      "vias_found": 0,
+      "vias": [],
+      "how_the_list_was_built": {
+        "stated_in_manifest": [],
+        "netclasses_without_vias": [],
+        "netclass_members": [],
+        "derived_live": [],
+        "not_fitted": {},
+        "floorplan": {
+          "path": null,
+          "state": "no floorplan: paths.floorplan is not stated, so the zero-via nets are only the ones the manifest names"
+        }
+      }
+    },
+    "thermal_pad_vias": {
+      "declared_pads": [],
+      "declared_by": "footprint property thermal_vias in board/Therapia_EEG-HRV.kicad_pcb",
+      "vias_in_them": 0,
+      "by_pad": {},
+      "vias": []
+    },
+    "vias_per_smd_pad": {
+      "pads_with_a_via": 0,
+      "max": 0,
+      "over_the_limit": {}
+    },
+    "found": {
+      "vias_touching_any_opening": 0,
+      "paste_crossing_or_inside": 0,
+      "paste_inside": 0,
+      "mask_crossing_or_inside": 0,
+      "mask_inside": 0,
+      "same_net_as_pad": 0,
+      "different_net_from_pad": 0,
+      "by_ref": {},
+      "by_origin": {
+        "stitch": 0,
+        "router": 0,
+        "unknown": 0
+      },
+      "by_side": {
+        "F": 0,
+        "B": 0,
+        "both": 0
+      }
+    },
+    "origins": {
+      "stitch_log": "/Users/dev/projects/therapia-device/brain_canvas_kicad/logs/stitch.json",
+      "tolerance_mm": 0.001,
+      "frame": "contract (outline centre), from via_contract_mm vs the log's Xc/Yc",
+      "vias_in_the_stitch_log": null,
+      "matched": 0,
+      "note": "no stitch log at /Users/dev/projects/therapia-device/brain_canvas_kicad/logs/stitch.json: which tool placed each via cannot be told from the fab output alone"
+    },
+    "via_in_tht_pad_opening": {
+      "count": 0,
+      "why_not_counted": "ACCEPTANCE J is about SMD pads; the opening of a through-hole component's own pad is out of scope",
+      "vias": []
+    },
+    "after_exceptions": {
+      "counting": 0,
+      "accepted": 0,
+      "refused": 0,
+      "unused_exceptions": 0
+    }
+  },
+  "violations": [],
+  "accepted_exceptions": [],
+  "refused_exceptions": [],
+  "constants": {
+    "VIA_DRILL_MAX_MM": 0.5,
+    "COORD_MATCH_MM": 0.01,
+    "RASTER_TOL_MM": 0.005,
+    "FORBIDDEN_PAD_PREFIXES": [
+      "U_ADS"
+    ],
+    "ZERO_VIA_NET_NAMES": [],
+    "MAX_VIAS_PER_SMD_PAD": 1,
+    "EXCEPTION_MATCH_MM": 0.05
+  },
+  "via_covering_recorded": "none"
+}

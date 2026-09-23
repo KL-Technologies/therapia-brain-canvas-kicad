@@ -1,0 +1,1277 @@
+{
+  "step": "S7_clearance",
+  "pass": true,
+  "checks": [
+    {
+      "name": "K_no_zero_gap_pairs",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "unit": "count",
+      "offenders": [],
+      "why": "overlapping copper of different nets is a short, not an exception; if this is not zero the counting below means nothing"
+    },
+    {
+      "name": "K_sites_below_standard",
+      "expected": "<= 0",
+      "actual": 0,
+      "pass": true,
+      "unit": "count",
+      "why": "the manufacturing policy allows the 0.0889 mm exception up to 0 sites against a 0.0889 mm standard; with six layers the corridors fit at the standard"
+    },
+    {
+      "name": "K_no_site_below_the_exception_floor",
+      "expected": ">= 0.0889 mm",
+      "actual": 0,
+      "pass": true,
+      "unit": "count",
+      "offenders": [],
+      "why": "ACCEPTANCE C's min_clearance. There is no exception below the exception"
+    },
+    {
+      "name": "K_every_site_is_in_the_ledger",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "source": null,
+      "why": "otherwise there is no trail of what was decided to be overlooked; an entry without a reason, an approver and a date does not count"
+    },
+    {
+      "name": "K_ledger_entries_complete",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "offenders": [],
+      "source": null,
+      "why": "an exception missing reason / approved_by / date is not accepted"
+    },
+    {
+      "name": "undeclared_keys_defaulted",
+      "expected": "every key K reads stated, or its strict default written here",
+      "actual": {
+        "fab.clearance.exception_mm": "unstated: = standard_mm 0.0889, no exception below the standard",
+        "fab.clearance.exception_cap": "unstated: 0",
+        "fab.clearance.exception_ledger": "unstated: no ledger, so no exception was ever granted"
+      },
+      "pass": true,
+      "why": "Q472: a missing declaration never silences a safety check. Each unstated key took the default that judges more, not less. Stating it in product.yaml removes the row"
+    },
+    {
+      "name": "undeclared_netless_copper",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "unit": "count",
+      "offenders": [],
+      "source": "nets.netless_copper",
+      "declared": 34,
+      "why": "copper with no net is not another net, so it is out of K entirely and none of it is counted as a short. What it needs instead is an owner: list it in nets.netless_copper as REF.PAD, REF.* or REF#<pad index>, or give it a net"
+    },
+    {
+      "name": "declared_netless_copper_found",
+      "expected": 34,
+      "actual": 34,
+      "pass": true,
+      "unit": "count",
+      "offenders": [],
+      "source": "nets.netless_copper",
+      "why": "a declaration that names a pad which is not there, or one that now carries a net, is stale: it silences a question about copper that no longer exists"
+    }
+  ],
+  "timestamp": "2026-09-23T14:40:39",
+  "notes": "ACCEPTANCE K. Zones are out of scope (they refill afterwards, so their clearance is a consequence rather than a decision). Distances are bisected with SHAPE::Collide down to 1 um.",
+  "negative_control": {
+    "input": "board/Therapia_EEG-HRV.kicad_pcb + one planted track",
+    "planted_defect": "a 0.203 mm track planted 0.050 mm from GND on F.Cu",
+    "detected": true,
+    "detail": {
+      "sites_before": 0,
+      "sites_after": 2,
+      "planted_pair": [
+        {
+          "layer": "F.Cu",
+          "a": "track",
+          "a_net": "VNEG5",
+          "b": "track",
+          "b_net": "GND",
+          "gap_mm": 0.05,
+          "at_contract_mm": [
+            11.76,
+            -17.691
+          ]
+        }
+      ]
+    }
+  },
+  "allow_list": null,
+  "defaults_applied": {
+    "fab.clearance.exception_mm": "unstated: = standard_mm 0.0889, no exception below the standard",
+    "fab.clearance.exception_cap": "unstated: 0",
+    "fab.clearance.exception_ledger": "unstated: no ledger, so no exception was ever granted"
+  },
+  "measurements": {
+    "board": "board/Therapia_EEG-HRV.kicad_pcb",
+    "threshold_mm": 0.0889,
+    "standard_mm": 0.0889,
+    "exception_floor_mm": 0.0889,
+    "exception_cap": 0,
+    "copper_layers": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "floorplan": {
+      "path": null,
+      "state": "no floorplan: paths.floorplan is not stated, so no layer role and no protected net comes from one",
+      "protected_nets": [],
+      "note": "this gate reads layers[].role and nothing else from the floorplan; without one the roles below come from core.layers' per-layer-count fallback table"
+    },
+    "layer_roles": {
+      "F.Cu": "signal",
+      "B.Cu": "signal",
+      "In1.Cu": "ground",
+      "In2.Cu": "power"
+    },
+    "sites": [],
+    "sites_by_layer": {},
+    "zero_gap_pairs": [],
+    "netless_copper": {
+      "declaration": [
+        "J1.3",
+        "J1.9",
+        "TLV70025.4",
+        "U_ADS.27",
+        "U_ADS.29",
+        "U_ADS.37",
+        "U_ADS.60",
+        "U_ADS.62",
+        "U_ADS.64",
+        "U_MCU.4",
+        "U_MCU.5",
+        "U_MCU.6",
+        "U_MCU.7",
+        "U_MCU.8",
+        "U_MCU.9",
+        "U_MCU.10",
+        "U_MCU.11",
+        "U_MCU.17",
+        "U_MCU.18",
+        "U_MCU.19",
+        "U_MCU.20",
+        "U_MCU.21",
+        "U_MCU.22",
+        "U_MCU.26",
+        "U_MCU.27",
+        "U_MCU.32",
+        "U_MCU.33",
+        "U_MCU.36",
+        "U_USB.7",
+        "U_USB.8",
+        "U_USB.9",
+        "U_USB.10",
+        "U_USB.11",
+        "U_USB.12"
+      ],
+      "pad_index_map": "no logs/gen_board.json: the pad order the names were written against is not recorded, so only the board itself is compared",
+      "declaration_entries": [
+        {
+          "as_written": "J1.3",
+          "ref": "J1",
+          "pad": "3",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "J1.9",
+          "ref": "J1",
+          "pad": "9",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "TLV70025.4",
+          "ref": "TLV70025",
+          "pad": "4",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_ADS.27",
+          "ref": "U_ADS",
+          "pad": "27",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_ADS.29",
+          "ref": "U_ADS",
+          "pad": "29",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_ADS.37",
+          "ref": "U_ADS",
+          "pad": "37",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_ADS.60",
+          "ref": "U_ADS",
+          "pad": "60",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_ADS.62",
+          "ref": "U_ADS",
+          "pad": "62",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_ADS.64",
+          "ref": "U_ADS",
+          "pad": "64",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.4",
+          "ref": "U_MCU",
+          "pad": "4",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.5",
+          "ref": "U_MCU",
+          "pad": "5",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.6",
+          "ref": "U_MCU",
+          "pad": "6",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.7",
+          "ref": "U_MCU",
+          "pad": "7",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.8",
+          "ref": "U_MCU",
+          "pad": "8",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.9",
+          "ref": "U_MCU",
+          "pad": "9",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.10",
+          "ref": "U_MCU",
+          "pad": "10",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.11",
+          "ref": "U_MCU",
+          "pad": "11",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.17",
+          "ref": "U_MCU",
+          "pad": "17",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.18",
+          "ref": "U_MCU",
+          "pad": "18",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.19",
+          "ref": "U_MCU",
+          "pad": "19",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.20",
+          "ref": "U_MCU",
+          "pad": "20",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.21",
+          "ref": "U_MCU",
+          "pad": "21",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.22",
+          "ref": "U_MCU",
+          "pad": "22",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.26",
+          "ref": "U_MCU",
+          "pad": "26",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.27",
+          "ref": "U_MCU",
+          "pad": "27",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.32",
+          "ref": "U_MCU",
+          "pad": "32",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.33",
+          "ref": "U_MCU",
+          "pad": "33",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_MCU.36",
+          "ref": "U_MCU",
+          "pad": "36",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_USB.7",
+          "ref": "U_USB",
+          "pad": "7",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_USB.8",
+          "ref": "U_USB",
+          "pad": "8",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_USB.9",
+          "ref": "U_USB",
+          "pad": "9",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_USB.10",
+          "ref": "U_USB",
+          "pad": "10",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_USB.11",
+          "ref": "U_USB",
+          "pad": "11",
+          "index": null,
+          "wildcard": false
+        },
+        {
+          "as_written": "U_USB.12",
+          "ref": "U_USB",
+          "pad": "12",
+          "index": null,
+          "wildcard": false
+        }
+      ],
+      "declaration_found": [
+        {
+          "as_written": "J1.3",
+          "pads_named": [
+            "J1#3"
+          ],
+          "netless": [
+            "J1#3"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "J1.9",
+          "pads_named": [
+            "J1#9"
+          ],
+          "netless": [
+            "J1#9"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "TLV70025.4",
+          "pads_named": [
+            "TLV70025#4"
+          ],
+          "netless": [
+            "TLV70025#4"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_ADS.27",
+          "pads_named": [
+            "U_ADS#27"
+          ],
+          "netless": [
+            "U_ADS#27"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_ADS.29",
+          "pads_named": [
+            "U_ADS#29"
+          ],
+          "netless": [
+            "U_ADS#29"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_ADS.37",
+          "pads_named": [
+            "U_ADS#37"
+          ],
+          "netless": [
+            "U_ADS#37"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_ADS.60",
+          "pads_named": [
+            "U_ADS#60"
+          ],
+          "netless": [
+            "U_ADS#60"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_ADS.62",
+          "pads_named": [
+            "U_ADS#62"
+          ],
+          "netless": [
+            "U_ADS#62"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_ADS.64",
+          "pads_named": [
+            "U_ADS#64"
+          ],
+          "netless": [
+            "U_ADS#64"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.4",
+          "pads_named": [
+            "U_MCU#4"
+          ],
+          "netless": [
+            "U_MCU#4"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.5",
+          "pads_named": [
+            "U_MCU#5"
+          ],
+          "netless": [
+            "U_MCU#5"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.6",
+          "pads_named": [
+            "U_MCU#6"
+          ],
+          "netless": [
+            "U_MCU#6"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.7",
+          "pads_named": [
+            "U_MCU#7"
+          ],
+          "netless": [
+            "U_MCU#7"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.8",
+          "pads_named": [
+            "U_MCU#8"
+          ],
+          "netless": [
+            "U_MCU#8"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.9",
+          "pads_named": [
+            "U_MCU#9"
+          ],
+          "netless": [
+            "U_MCU#9"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.10",
+          "pads_named": [
+            "U_MCU#10"
+          ],
+          "netless": [
+            "U_MCU#10"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.11",
+          "pads_named": [
+            "U_MCU#11"
+          ],
+          "netless": [
+            "U_MCU#11"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.17",
+          "pads_named": [
+            "U_MCU#17"
+          ],
+          "netless": [
+            "U_MCU#17"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.18",
+          "pads_named": [
+            "U_MCU#18"
+          ],
+          "netless": [
+            "U_MCU#18"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.19",
+          "pads_named": [
+            "U_MCU#19"
+          ],
+          "netless": [
+            "U_MCU#19"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.20",
+          "pads_named": [
+            "U_MCU#20"
+          ],
+          "netless": [
+            "U_MCU#20"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.21",
+          "pads_named": [
+            "U_MCU#21"
+          ],
+          "netless": [
+            "U_MCU#21"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.22",
+          "pads_named": [
+            "U_MCU#22"
+          ],
+          "netless": [
+            "U_MCU#22"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.26",
+          "pads_named": [
+            "U_MCU#26"
+          ],
+          "netless": [
+            "U_MCU#26"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.27",
+          "pads_named": [
+            "U_MCU#27"
+          ],
+          "netless": [
+            "U_MCU#27"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.32",
+          "pads_named": [
+            "U_MCU#32"
+          ],
+          "netless": [
+            "U_MCU#32"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.33",
+          "pads_named": [
+            "U_MCU#33"
+          ],
+          "netless": [
+            "U_MCU#33"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_MCU.36",
+          "pads_named": [
+            "U_MCU#36"
+          ],
+          "netless": [
+            "U_MCU#36"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_USB.7",
+          "pads_named": [
+            "U_USB#7"
+          ],
+          "netless": [
+            "U_USB#7"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_USB.8",
+          "pads_named": [
+            "U_USB#8"
+          ],
+          "netless": [
+            "U_USB#8"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_USB.9",
+          "pads_named": [
+            "U_USB#9"
+          ],
+          "netless": [
+            "U_USB#9"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_USB.10",
+          "pads_named": [
+            "U_USB#10"
+          ],
+          "netless": [
+            "U_USB#10"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_USB.11",
+          "pads_named": [
+            "U_USB#11"
+          ],
+          "netless": [
+            "U_USB#11"
+          ],
+          "ok": true
+        },
+        {
+          "as_written": "U_USB.12",
+          "pads_named": [
+            "U_USB#12"
+          ],
+          "netless": [
+            "U_USB#12"
+          ],
+          "ok": true
+        }
+      ],
+      "on_the_board": 34,
+      "declared": [
+        {
+          "item": "J1#3",
+          "kind": "pad",
+          "ref": "J1",
+          "pad": "3",
+          "index": 3,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            24.879,
+            -10.234
+          ],
+          "declared": true
+        },
+        {
+          "item": "J1#9",
+          "kind": "pad",
+          "ref": "J1",
+          "pad": "9",
+          "index": 9,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            24.879,
+            -7.234
+          ],
+          "declared": true
+        },
+        {
+          "item": "TLV70025#4",
+          "kind": "pad",
+          "ref": "TLV70025",
+          "pad": "4",
+          "index": 4,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            -8.082,
+            -15.408
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_ADS#27",
+          "kind": "pad",
+          "ref": "U_ADS",
+          "pad": "27",
+          "index": 27,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            -3.5,
+            -5.144
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_ADS#29",
+          "kind": "pad",
+          "ref": "U_ADS",
+          "pad": "29",
+          "index": 29,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            -2.5,
+            -5.144
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_ADS#37",
+          "kind": "pad",
+          "ref": "U_ADS",
+          "pad": "37",
+          "index": 37,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            0.8,
+            -1.344
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_ADS#60",
+          "kind": "pad",
+          "ref": "U_ADS",
+          "pad": "60",
+          "index": 60,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            -6.5,
+            5.956
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_ADS#62",
+          "kind": "pad",
+          "ref": "U_ADS",
+          "pad": "62",
+          "index": 62,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            -7.5,
+            5.956
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_ADS#64",
+          "kind": "pad",
+          "ref": "U_ADS",
+          "pad": "64",
+          "index": 64,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            -8.5,
+            5.956
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#10",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "10",
+          "index": 10,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            16.474,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#11",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "11",
+          "index": 11,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            17.744,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#17",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "17",
+          "index": 17,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            23.049,
+            1.803
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#18",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "18",
+          "index": 18,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            23.049,
+            3.073
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#19",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "19",
+          "index": 19,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            23.049,
+            4.343
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#20",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "20",
+          "index": 20,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            23.049,
+            5.613
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#21",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "21",
+          "index": 21,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            23.049,
+            6.883
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#22",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "22",
+          "index": 22,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            23.049,
+            8.153
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#26",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "26",
+          "index": 26,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            20.284,
+            13.978
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#27",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "27",
+          "index": 27,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            19.014,
+            13.978
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#32",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "32",
+          "index": 32,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            12.664,
+            13.978
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#33",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "33",
+          "index": 33,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            11.394,
+            13.978
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#36",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "36",
+          "index": 36,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            7.584,
+            13.978
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#4",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "4",
+          "index": 4,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            8.854,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#5",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "5",
+          "index": 5,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            10.124,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#6",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "6",
+          "index": 6,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            11.394,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#7",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "7",
+          "index": 7,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            12.664,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#8",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "8",
+          "index": 8,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            13.934,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_MCU#9",
+          "kind": "pad",
+          "ref": "U_MCU",
+          "pad": "9",
+          "index": 9,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            15.204,
+            -4.022
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_USB#10",
+          "kind": "pad",
+          "ref": "U_USB",
+          "pad": "10",
+          "index": 10,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            14.427,
+            -9.675
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_USB#11",
+          "kind": "pad",
+          "ref": "U_USB",
+          "pad": "11",
+          "index": 11,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            13.157,
+            -9.675
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_USB#12",
+          "kind": "pad",
+          "ref": "U_USB",
+          "pad": "12",
+          "index": 12,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            11.887,
+            -9.675
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_USB#7",
+          "kind": "pad",
+          "ref": "U_USB",
+          "pad": "7",
+          "index": 7,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            14.427,
+            -15.42
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_USB#8",
+          "kind": "pad",
+          "ref": "U_USB",
+          "pad": "8",
+          "index": 8,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            15.697,
+            -15.42
+          ],
+          "declared": true
+        },
+        {
+          "item": "U_USB#9",
+          "kind": "pad",
+          "ref": "U_USB",
+          "pad": "9",
+          "index": 9,
+          "layers": [
+            "F.Cu"
+          ],
+          "at_contract_mm": [
+            15.697,
+            -9.675
+          ],
+          "declared": true
+        }
+      ],
+      "undeclared": [],
+      "dead_declaration": [],
+      "note": "netless copper is excluded from every K pair; NPTH pads are not in this list because a mounting hole's pad is a hole, and S5_holes owns its clearance to copper"
+    }
+  }
+}

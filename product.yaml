@@ -139,6 +139,54 @@ packs:
     adc_part: ADS1299
     zero_via_nets: []
     note: Rev.A predates the per-net copper rules; C1-C4 were never written for this board.
+    # --- added 2026-09-23: the twenty keys params.schema.json requires -----
+    # Each transcribed from this board's contract (contract/netlist_contract.
+    # json), its own scripts, or the ADS1299 datasheet as quoted in
+    # docs/ads1299_layout_checklist.md and the pack checklist. Nothing guessed.
+    # SBAS499 12.1 (checklist J1): no via between a VCAP/VREF bypass cap and
+    # the device -- a class of nets, hence prefixes.
+    no_via_in_span_prefixes: [VCAP, VREF]
+    # All eight channels are wired to electrodes in the contract: R_IN<n>P
+    # pin 1 is FP1/FP2/CH3/ECGP/CH5-CH8_ELEC, R_IN<n>N pin 1 is SRB1 (IN4N:
+    # ECGN_ELEC). SRB1 is the common reference. No channel is dead.
+    live_analog_nets: [IN1P, IN1N, IN2P, IN2N, IN3P, IN3N, IN4P, IN4N,
+                       IN5P, IN5N, IN6P, IN6N, IN7P, IN7N, IN8P, IN8N, SRB1]
+    diff_cap_ref_prefix: C_DIF          # C_DIF1..C_DIF8 on the board
+    capacitor_ref_prefix: C_            # every capacitor designator is C_*
+    series_resistor_ref_prefix: R_      # R_ + IN1P = R_IN1P
+    # The prefixes of nets.power_nets below (the supply nets of this board).
+    supply_prefixes: [AVDD, AVSS, DVDD, VCAP, VREF, GND, CHASSIS_GND, VNEG,
+                      V_NLDO, V_PLDO, V5_LM, V_3V3, VDD_ESP, USB_5V, USB_VBUS,
+                      LM_CAP]
+    # scripts/47_layout_quality.py SPI (checklist J5: SCLK/DIN/DOUT/CS/DRDY)
+    spi_nets: [ADS_SCLK_LOC, ADS_DIN_LOC, ADS_DOUT_LOC, ADS_CS_N, ADS_DRDY_N]
+    # the one ground plane (In1.Cu GND); 47_layout_quality.py J5 probes GND
+    ground_nets: [GND]
+    # AVDD1 (pin 54) and AVSS1 (pin 53) sit on AVDD and AVSS in the contract:
+    # there is no separate star net and no link resistor to name.
+    star_links: []
+    # checklist J3/J4: VCAP1 = 100 uF (DS pin table, "Connect a 100-uF
+    # capacitor to AVSS"), VREFP-VREFN >= 10 uF (DS 9.3.1.3.4);
+    # docs/ads1299_layout_checklist.md lines 81 and 85.
+    vcap1_ref: C_VCAP1
+    vcap1_min_uf: 100.0
+    vrefp_cap_prefix: C_VREFP
+    vrefp_bulk_min_uf: 10.0
+    # checklist J4, DS 11: "EIA class 2 and class 3 dielectrics such as (X7R,
+    # X5R, X8R, and so forth) are ferroelectric". Class-3 Y5V/Z5U included.
+    bad_dielectric: [X5R, X7R, X8R, Y5V, Z5U]
+    # checklist J6: RESV1 is pin 31, tied to GND in the contract (this board's
+    # DGND is the net GND)
+    resv_pin: 31
+    resv_nets: [GND]
+    unused_input_channels: []
+    input_net_prefix: IN
+    # No unused channel, so no tie jumper exists; the empty suffix is never
+    # matched against anything (unused_input_channels is empty).
+    unused_input_tie_suffix: ""
+    out_of_scope:
+      J2: "no star net: AVDD1/AVSS1 (pins 54/53) are on AVDD/AVSS in the contract, with no link resistor for a star_links triple to name"
+      J7: "no unused analog input: all eight channels are wired to electrodes"
   esp32-straps:
     mcu_ref: U_MCU
     module: ESP32-WROOM-32UE
@@ -370,6 +418,13 @@ gates:
     # stays an error. 50_final_check.py ALLOWED_WARNINGS carries the same.
     allowed_warning_extra:
       - clearance
+    # The harness's own H/J/K gates, run on Y9 at harness commit 093191b and
+    # kept under their own names: gates/S7_body.json and gates/S7_viapad.json
+    # are this repo's ACCEPTANCE H and I gates and are not overwritten.
+    subgates:
+      - {gate: harness_S7_body, title: H part bodies keep their gap, row: plain}
+      - {gate: harness_S7_viapad, title: J no via opens inside an SMD pad, row: plain}
+      - {gate: harness_S7_clearance, title: K copper-to-copper clearance, row: plain}
     rules_generator: scripts/14_make_rules.py
     rules_generator_inputs:
       - board
