@@ -196,24 +196,28 @@ packs:
     # The three VCAP1 vias are the same C_VCAP1 branch j1_accepted_exceptions
     # accepts; the VCAP3 via is on the C_VCAP3_H (100 nF, added) branch. All
     # four were already on the Y8 board (c444ac2^); S7v only moved them.
-    # C3, C4 and C5 have no product-side declaration in harness 225f76c: see
-    # ACCEPTANCE.md 追記 8.
+    # The three VCAP1 entries also cover C3 (applies_to, harness Q539): the
+    # B.Cu segments joined to those vias are the same branch, declared once.
+    # C4 and C5 are declared below (ACCEPTANCE.md 追記 8).
     c2_accepted_exceptions:
       - net: VCAP1
         at: [151.05, 116.527]
         tol_mm: 0.05
+        applies_to: [C3]
         approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
         date: "2026-09-24"
         reason: "C_VCAP1 (100 uF bulk) branch, the one j1_accepted_exceptions accepts: C_VCAP1 cannot reach pin 28 on F.Cu. The high-frequency bypass is C_VCAP1_H (100 nF), 1.36 mm from pin 28 on F.Cu with no via. The branch's estimated 10-15 nH puts its series resonance with 100 uF near 130 kHz, so across the EEG band (DC to a few hundred Hz) it is purely capacitive."
       - net: VCAP1
         at: [150.302, 114.341]
         tol_mm: 0.05
+        applies_to: [C3]
         approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
         date: "2026-09-24"
         reason: "Same C_VCAP1 bulk branch as the via at (151.05, 116.527); see that entry."
       - net: VCAP1
         at: [150.81, 114.341]
         tol_mm: 0.05
+        applies_to: [C3]
         approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
         date: "2026-09-24"
         reason: "Same C_VCAP1 bulk branch as the via at (151.05, 116.527); see that entry."
@@ -223,6 +227,113 @@ packs:
         approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
         date: "2026-09-24"
         reason: "Via on the C_VCAP3_H (100 nF, an addition to the datasheet's part) branch. The part the datasheet asks for, C_VCAP3 (1 uF), reaches pin 55 on F.Cu in 2.1 mm with no via, which is what SBAS499C s.12.1 p.72 asks. The via's copper overlaps the pad edge by 0.017 mm, but its drill is outside the mask opening (S7_viapad green) and the via is Plugged. It costs only part of C_VCAP3_H's high-frequency benefit. Rev.B candidate: tie C_VCAP3_H to pin 55 on F.Cu."
+    # S5_netconstraints C4 (harness Q539): the 16 vias of the IN*N B.Cu
+    # underpass, one entry per via (tol 0.05 mm). ACCEPTANCE.md 追記 8.
+    c4_accepted_exceptions:
+      - net: IN1N
+        at: [132.8005, 112.106]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "IN*N rides under C_CM*N on B.Cu (about 4 mm, over the In2 AVSS plane) between the C_DIF pad and the ADS pad. ACCEPTANCE.md 追記 8: a via is about 1.3 nH / 1 mOhm / 0.5 pF (estimate); the P/N capacitance difference it adds (<= about 1.5 pF with C5's detour) converts common mode at -107 dB at 50 Hz, 17-31 dB below the C_CM +-5 % and R_IN 1 % mismatches already there; the via is Plugged. Rev.B candidate: route IN*N on F.Cu only."
+      - net: IN1N
+        at: [136.256, 112.131]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN2N
+        at: [132.8005, 109.109]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN2N
+        at: [136.256, 109.134]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN3N
+        at: [132.8005, 106.1115]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN3N
+        at: [136.256, 106.1365]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN4N
+        at: [132.8005, 103.1145]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN4N
+        at: [136.256, 103.1395]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN5N
+        at: [132.8005, 100.117]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN5N
+        at: [136.256, 100.142]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN6N
+        at: [132.8005, 97.12]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN6N
+        at: [136.256, 97.145]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN7N
+        at: [132.8005, 94.123]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN7N
+        at: [136.256, 94.148]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN8N
+        at: [132.8005, 91.1255]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+      - net: IN8N
+        at: [136.256, 91.1505]
+        tol_mm: 0.05
+        approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+        date: "2026-09-24"
+        reason: "Same IN*N B.Cu underpass as the first c4 entry; see it and ACCEPTANCE.md 追記 8."
+    # S5_netconstraints C5 (harness Q539): the P/N length skew limit, stated
+    # here because this product declares no paths.floorplan. ACCEPTANCE.md
+    # 追記 8.
+    pair_skew_max:
+      mm: 2.0
+      approved_by: "lead (Claude), under the owner's delegation of 2026-09-03"
+      date: "2026-09-24"
+      reason: "ACCEPTANCE.md 追記 8: the 1.88 mm ch1-ch4 skew is about 12 ps, 7e-8 rad at 1 kHz; the P/N capacitance it adds is inside the C_CM +-5 % budget (-107 dB CM-to-DM at 50 Hz). HackEEG's inputs differ by 2.3-4.0 mm. 1.0 mm was the pack's fallback, not a datasheet value (SBAS499C states no input length matching)."
     # J4 (harness Q490). SBAS499C s.11 p.70 recommends a non-ferroelectric
     # VCAP1 "in systems subject to vibration" -- a conditional recommendation,
     # not a ban. C_VCAP1 is C15008 CL31A107MQHNNNE (Samsung, X5R, 100 uF 1206).
