@@ -4,9 +4,10 @@
     "thickness_mm": 1.6,
     "color": "Green",
     "surface_finish": "ENIG",
-    "via_covering": "Tented",
-    "ipc_4761": "Type I",
-    "ipc_4761_note": "JLC's 'Tented' is a via covered by solder mask on both sides, which is how IPC-4761 Type I (tented) is commonly described; the standard itself is not read here (harness KS-032). No fill or cap was bought: ACCEPTANCE I keeps every via out of the pads instead.",
+    "via_covering": "Plugged",
+    "via_covering_note": "Plugged (JLC replaced Tented with Plugged free of charge, 2026-09-23; Tented is greyed out on the quote page with 'The Via Tented option is upgraded to Via Plugged for free.' -- fab/jlc_cart_2026-09-23_y9/02_via_tented_upgraded_to_plugged.jpg). JLC describes Plugged as solder-mask ink pushed into the hole through an aluminium sheet, then the whole board printed; plugging rate over 98 % excluding vias in pad (https://jlcpcb.com/help/article/pcb-via-covering, read 2026-09-23). No fill or cap: the barrel is not treated as closed, and ACCEPTANCE I keeps every via out of the pads.",
+    "ipc_4761": "unverified",
+    "ipc_4761_note": "JLC's help page and blog (jlcpcb.com/help/article/pcb-via-covering, jlcpcb.com/blog/five-via-finishes, read 2026-09-23) do not map Plugged to an IPC-4761 Type, and the standard itself is not read here (harness KS-032). Not guessed. Until 2026-09-23 this file said Tented / Type I (as commonly described).",
     "panel": "JLCPCB panel 1x1, 12.5 mm rails on four sides",
     "qty_panels": 5,
     "outer_copper_oz": 1,
@@ -18,6 +19,6 @@
     "qty_panels": 2,
     "confirm_parts_placement": true
   },
-  "source": "gates/S9.json (the cart as filled 2026-08-29) and fab/README_発注手順.md section 2; Y9 keeps the same order with the corrected package",
+  "source": "gates/S9.json (the cart as filled 2026-08-29) and fab/README_発注手順.md section 2; Y9 keeps the same order with the corrected package; via covering updated 2026-09-23 for the Y9 cart (Tented no longer offered)",
   "added": "2026-09-23, for the harness S7/S8 safety gates"
 }

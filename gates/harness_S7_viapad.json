@@ -40,7 +40,7 @@
       "unit": "count",
       "source": "board/Therapia_EEG-HRV.kicad_pcb",
       "offenders": [],
-      "why": "ACCEPTANCE J on the BOARD, read as text by core.viapad.census_from_text: the covering ordered (none) does not fill and cap the barrel, so a via whose drill opens inside an SMD pad's mask/paste opening wicks solder out of the joint. `smd_pads` and `vias` are reported beside the count because 0 from a reader that found no pads is not the answer it looks like (Q233)"
+      "why": "ACCEPTANCE J on the BOARD, read as text by core.viapad.census_from_text: the covering ordered (Plugged) does not fill and cap the barrel, so a via whose drill opens inside an SMD pad's mask/paste opening wicks solder out of the joint. `smd_pads` and `vias` are reported beside the count because 0 from a reader that found no pads is not the answer it looks like (Q233)"
     },
     {
       "name": "paste_openings_read",
@@ -136,7 +136,7 @@
       "pass": true,
       "unit": "count",
       "source": "drill circle vs F_Paste / F_Mask openings (exact signed distance)",
-      "why": "ACCEPTANCE J: the covering ordered for this board (none) does not fill and cap the barrel, so a via opening inside a paste- or mask-printed pad wicks solder away from the joint during reflow. Zero is the only passing count"
+      "why": "ACCEPTANCE J: the covering ordered for this board (Plugged) does not fill and cap the barrel, so a via opening inside a paste- or mask-printed pad wicks solder away from the joint during reflow. Zero is the only passing count"
     },
     {
       "name": "exceptions_refused",
@@ -177,8 +177,8 @@
       "why": "SBAS499C 12.1 (KS-001, CR-014) [T1]: \"Do not place vias between bypass capacitors and the active device.\" The sentence is about every active device, not about the ADS1299, but which capacitor serves which device is not readable from a netlist -- every capacitor on VDD is on the same net. So the product declares the couples, and a board that has not is skipped BY NAME rather than passed with an empty list (Q233's shape). gates/S4b_routability asks the same question before routing, of a board that carries packs.afe-adc's converter and of no other (Q231)"
     }
   ],
-  "timestamp": "2026-09-23T17:31:16",
-  "notes": "ACCEPTANCE J-2, measured on the fab data. 230 vias in the drill file, 0 of them touching an SMD opening, 0 after exceptions; 0 on a THT pad opening (out of scope). Zero-via nets: none. J-2 (a) 0, (b) 0, (c) max 0 per pad. By side: F 0, B 0, both 0. By origin: stitch 0, router 0, unknown 0. Via covering ordered: none. That covering does not close the barrel, so the via-in-pad count is JUDGED here (0 required), not reported. Coordinates are given in the Gerber frame, the KiCad frame (Y mirrored) and the contract frame (origin at the board outline centre).",
+  "timestamp": "2026-09-23T23:32:40",
+  "notes": "ACCEPTANCE J-2, measured on the fab data. 230 vias in the drill file, 0 of them touching an SMD opening, 0 after exceptions; 0 on a THT pad opening (out of scope). Zero-via nets: none. J-2 (a) 0, (b) 0, (c) max 0 per pad. By side: F 0, B 0, both 0. By origin: stitch 0, router 0, unknown 0. Via covering ordered: Plugged. That covering does not close the barrel, so the via-in-pad count is JUDGED here (0 required), not reported. Coordinates are given in the Gerber frame, the KiCad frame (Y mirrored) and the contract frame (origin at the board outline centre).",
   "negative_control": {
     "input": "the fab data + one 0.305 mm via at the centre of U_ADS pad 1 (140.6120, -98.3480)",
     "planted_defect": "a via on a pad of U_ADS, which J-2 (a) forbids at any via covering; and the same plant repeated on F (417 openings)",
@@ -467,5 +467,5 @@
     "MAX_VIAS_PER_SMD_PAD": 1,
     "EXCEPTION_MATCH_MM": 0.05
   },
-  "via_covering_recorded": "none"
+  "via_covering_recorded": "Plugged"
 }

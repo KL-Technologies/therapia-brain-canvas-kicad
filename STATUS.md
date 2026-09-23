@@ -1,6 +1,27 @@
 # STATUS — brain_canvas_kicad
 
-最終更新: 2026-09-23 / 担当: S0–S2 → S3・S4 → S5・S6 → S7・S8 → S9 → L7〜L9・H・S8 再出力・S9 再投入 → 独立機能レビュー反映（BOM のみ 4 件・銅箔不変） → S3_sim（ngspice）＋ R29-6 反映（BOM のみ 1 件・銅箔不変） → **S7v（via-in-pad の是正）・基準 I 追加・S8 再出力（Y9）** → **S7p（ステンシル開口のはみ出し 168 個）・S7d（行き先のない配線 33 本・via 5 本）・基準 J / K・裁定 3 件の記録・S8 再出力**
+最終更新: 2026-09-23 / 担当: S0–S2 → S3・S4 → S5・S6 → S7・S8 → S9 → L7〜L9・H・S8 再出力・S9 再投入 → 独立機能レビュー反映（BOM のみ 4 件・銅箔不変） → S3_sim（ngspice）＋ R29-6 反映（BOM のみ 1 件・銅箔不変） → **S7v（via-in-pad の是正）・基準 I 追加・S8 再出力（Y9）** → **S7p（ステンシル開口のはみ出し 168 個）・S7d（行き先のない配線 33 本・via 5 本）・基準 J / K・裁定 3 件の記録・S8 再出力** → **S9 再投入（Y9 → JLC 品目 Y13）**
+
+> ## ▶ 現在地（2026-09-23 23:44）: Y9 をカートに投入済み（JLC の品目番号は Y13）。決済なし。Y8 の 2 品目は施主の了承待ちでまだカートに残っている
+>
+> | 品目 | 番号 | 金額 | Y8 との差 |
+> |---|---|---|---|
+> | PCB（4 層・1.6 mm・Green・ENIG・JLC パネル化 1×1／四辺 12.5 mm・5 パネル） | `Y13-10641515A` | $47.15 | +$1.15（うち Confirm Production file の +$1.05） |
+> | Standard PCBA（Top・2 パネル・Confirm Parts Placement = Yes） | `SMT026092362927-10641515A` | $218.48 | −$10.26 |
+> | 合計（送料別） | | **$265.63** | −$9.11（Y8 は $274.74） |
+>
+> - **Via Covering は Plugged になった。** JLC が Tented を選べなくし、無料で Plugged に置き換えていた（"The Via Tented option is upgraded to Via Plugged for free."）。lead 裁定で受け入れた。
+>   Plugged はソルダーマスクのインクを穴に詰めるだけで、充填・キャップではない。そのため基準 I（SMD 開口の via 0 本）はそのまま効く。
+>   IPC-4761 のどの Type に当たるかは、JLC の公式ページに記述がないので **unverified** とした。
+>   `product.yaml` の `fab.via.covering`、`data/order_spec.json`、ACCEPTANCE の追記 3 を合わせて直した。
+>   ハーネスの S7_viapad は、この宣言でも **16/16** が緑（`gates/harness_S7_viapad.json`。covering は Plugged と記録され、0 本かどうかで判定されている）。
+> - **BOM**: 31 行を検出し 31 行とも確定、在庫不足 0、C 番号は repo と差 0。JLC が U_USB に自動で当てた C7464026 は C84681 に戻した。"multiple types" の 12 行は手でチェックした。
+> - **配置**: C_VCAP3・C_VCAP3_H・C_VCAP4・C_VREFP_10n の位置と向き、U_ADS・U_MCU・J1 の 1 番ピンを、盤面ファイルのパッド座標と CPL に突き合わせた。すべて一致した。
+>   J1 は、1 番ピンの点に加えて pad12（GND）側にも JLC の点が出るが、本体の向きは正しい。
+> - 記録: `gates/S9.json`（Y8 の記録は `y8_record` と history に残した）、スクショ 11 枚は `fab/jlc_cart_2026-09-23_y9/`。
+> - **次（施主）**: Y8 の 2 品目（`Y8-10641515A` / `SMT026082960311`）の削除を了承する（または自分で消す）。
+>   そのあと、Y13 の 2 行だけを決済する。
+>   決済後は、JLC の Confirm Production file に 48 h 以内、Confirm Parts Placement に 72 h 以内に応答する。
 
 > ## ⛔ 2026-09-23: Y8 は via-in-pad 106 本のため決済不可。修正版 Y9 の fab を用意済み。カートの差し替えは lead が行う
 >
@@ -32,14 +53,14 @@
 > | SRB1 の経路長 | — | +0.9 mm（全長 40.8 mm）。**lead 裁定で受け入れ、上限 1.0 mm を ACCEPTANCE に固定** |
 > | VCAP1 | — | ピン 28 → C_VCAP1_H のパッドは 1.358 mm で**不変**。伸びたのはバルク側（C_VCAP1 100 µF）だけで 12.665 → 16.548 mm。AVSS に戻るループ面積は 4.282 → 4.277 mm² / 14.723 → 14.730 mm² で悪化なし。**lead 裁定で受け入れ** |
 > | CM コンデンサの GND via | — | パッドから 1.3〜1.9 mm。**lead 裁定で受け入れ** |
-> | BOM / CPL | — | **不変**（部品・位置・回転とも） |
+> | BOM / CPL | — | BOM は**不変**（`740b7ef7…`）。CPL は **C_VREFP_10n の 1 行だけ**変わった（Y −110.480 → −110.580、S7j `23a6080`。sha256 `f46e2d6e…`）。部品・回転はすべて不変 |
 >
 > ゲートは S7v 8/8・S7p 3/3・S7d 5/5・S7b・S7c・S8 31/31・S7 40/40・S7_body・**S7_viapad（基準 I）7/7・S7_paste（基準 J）4/4**
 > がすべて pass（`./run.sh --from S7v`、S7v より前の盤面から通しで実行）。
 > ACCEPTANCE.md の「追記 3」に基準 I と裁定を、「追記 4」に基準 J / K を加えた。
 >
 > **新しい fab**: `fab/Therapia_EEG-HRV_Rev.A.zip`（sha256 `429ad5f3…`）、
-> `fab/board.d356`、`fab/CPL_JLCPCB.csv`、`fab/BOM_JLCPCB.csv`（BOM / CPL は Y8 と同じ内容）。
+> `fab/board.d356`、`fab/CPL_JLCPCB.csv`、`fab/BOM_JLCPCB.csv`（BOM は Y8 と同じ内容。CPL は C_VREFP_10n の 1 行だけ違う。最終の sha256 は zip `00dd48f4…`・BOM `740b7ef7…`・CPL `f46e2d6e…`、HEAD `8a89179`）。
 > **次（lead）**: カートの Y8 の 2 品目を削除し、この zip を再アップロードして Y9 にする。
 > BOM / CPL は同じ設定（31 行、Standard、Confirm Parts Placement = Yes）で入れる。
 > 決済・DFM / Confirm Parts Placement への応答は施主。

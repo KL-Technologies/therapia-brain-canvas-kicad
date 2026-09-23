@@ -54,8 +54,10 @@ fab:
   vendor: jlcpcb
   # --- added 2026-09-23 (harness S7/S8 safety gates, Q474) --------------
   # The order as it stands in the cart (gates/S9.json), as a file S7 and S9
-  # read. Via Covering stays Tented: the Y9 fix moved the vias out of the pads
-  # rather than buying a fill (ACCEPTANCE I).
+  # read. Via Covering is Plugged: JLC no longer offers Tented and replaced it
+  # with Plugged free of charge (2026-09-23, fab/jlc_cart_2026-09-23_y9/02_*).
+  # Plugged is solder mask in the hole, not a fill and cap, so the Y9 fix still
+  # keeps every via out of the pads (ACCEPTANCE I).
   order_spec: data/order_spec.json
   # What scripts/60_export_fab.sh writes for a human to look at. There is no
   # iso preview: 60_export_fab.sh renders top and bottom only.
@@ -86,7 +88,9 @@ fab:
     B.Cu: signal
   via:
     in_pad_policy: forbidden
-    covering: none
+    # Plugged (JLC, 2026-09-23): solder mask in the barrel, no fill or cap.
+    # S7_viapad reads it as an open barrel and keeps judging (barrel_is_closed).
+    covering: Plugged
     # Decision, 2026-09-23 (ACCEPTANCE I): a PTH hit with a drill at most this
     # is a via, larger is a component hole. Vias here are 0.305 mm, the
     # smallest component hole is 0.6 mm. The harness's S7_viapad needs it to

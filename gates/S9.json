@@ -2,86 +2,174 @@
   "gate": "S9",
   "title": "JLC cart insertion (no payment)",
   "status": "pass",
-  "timestamp": "2026-08-29T13:09+08:00",
+  "timestamp": "2026-09-23T23:44+08:00",
   "history": [
     "18:46 2026-08-28: Y5 / SMT026082861630 — deleted 21:12 (ESP32-WROOM-32E body over the ADS1299, R_CC1 under the USB-C shell; gates/S5_L7.json, S5_L8.json, ACCEPTANCE H)",
     "21:12 2026-08-28: Y6 / SMT026082862202 — replaced 12:12 2026-08-29 via 'Edit Order' (same PCB upload, BOM re-uploaded) after the cold-eyes functional review's free BOM upgrades (reports/functional_review_2026-08-29.md, bom_fixes R29-1..R29-5)",
     "12:12 2026-08-29: Y7 / SMT026082960247 — current",
-    "13:09 2026-08-29: Y8 / SMT026082960311 — current (BOM re-uploaded again via 'Edit Order' after R29-6: R_Q_EN_B/R_Q_IO0_B 10k -> 470k on ngspice evidence, gates/S3_sim.json 29/29)"
+    "13:09 2026-08-29: Y8 / SMT026082960311 — current (BOM re-uploaded again via 'Edit Order' after R29-6: R_Q_EN_B/R_Q_IO0_B 10k -> 470k on ngspice evidence, gates/S3_sim.json 29/29)",
+    "13:09 2026-08-29: Y8 / SMT026082960311 -- superseded 2026-09-23: 106 via drills inside SMD solder-mask openings (Gerber; harness census 112), not orderable with Tented vias (STATUS.md, ACCEPTANCE I). Full Y8 record kept under y8_record below.",
+    "23:44 2026-09-23: Y13 (Brain Canvas revision 'Y9', HEAD 8a89179) -- current"
   ],
-  "operator": "Claude (claude-in-chrome, user's logged-in JLCPCB session)",
+  "operator": "Claude (claude-in-chrome, owner's logged-in JLCPCB session; the owner signed in and accepted JLC's updated Privacy Policy themselves)",
   "cart_url": "https://cart.jlcpcb.com/shopcart/cart",
-  "order_page": "https://cart.jlcpcb.com/smt-order/ (cartAccessId / pcbFileNo は JLC アカウント内のアクセス ID のため記録しない — カートの「Edit Order」から開く)",
-  "package": "Gerber: fab/Therapia_EEG-HRV_Rev.A.zip (copper identical since commit 1c8a769); BOM/CPL: commit 0faeed7 (31 rows / 133 parts)",
+  "order_page": "https://cart.jlcpcb.com/smt-order/ (pcbFileNo is a JLC account access id and is not recorded -- open it from the cart's 'Edit Order')",
+  "revision": "Brain Canvas 'Y9' = brain_canvas_kicad HEAD 8a89179 (S7v via-in-pad fix, S7p, S7d, S7j, S7n); JLC numbers cart items per account, so the item is Y13",
+  "uploaded": {
+    "gerber_zip": "fab/Therapia_EEG-HRV_Rev.A.zip",
+    "gerber_zip_sha256": "00dd48f4f33af232f20750fd31b50eeff00e26e1e8a83ddc8f55198a42007890",
+    "bom": "fab/BOM_JLCPCB.csv",
+    "bom_sha256": "740b7ef770e0f92966bacccd05d4f4c22db05e700f65c14165a29d2a8be07c30",
+    "cpl": "fab/CPL_JLCPCB.csv",
+    "cpl_sha256": "f46e2d6e414f0b62c88f649bca0737eaa0009b35387f9e450790e6981c6b3b41",
+    "vs_y8": "BOM byte-identical; CPL differs in one row (C_VREFP_10n Y -110.480 -> -110.580, S7j 23a6080); zip is the Y9 copper (fab/gerber is byte-identical to the zip contents, checked 2026-09-23)"
+  },
+  "jlc_detected": "Detected 4 layer board of 45.01x61.82mm",
   "items": [
     {
       "kind": "PCB",
-      "name": "Therapia_EEG-HRV_Rev.A_Y8",
-      "order_no": "Y8-10641515A",
-      "spec": "4 layers, 1.6 mm, Green, ENIG, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm",
+      "name": "Therapia_EEG-HRV_Rev.A_Y13",
+      "order_no": "Y13-10641515A",
+      "spec": "4 layers, 1.6 mm, Green, white silkscreen, FR4 TG135, ENIG 1U\", outer 1 oz / inner 0.5 oz, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm, min via 0.3mm/(0.4/0.45mm), outline +-0.2 mm, Mark on PCB = Remove Mark, Flying Probe Fully Test",
+      "via_covering": "Plugged (JLC replaced Tented with Plugged free of charge, 2026-09-23; Tented greyed out: 'The Via Tented option is upgraded to Via Plugged for free.' -- screenshot 02; lead ruling 2026-09-23)",
+      "via_covering_ipc_4761": "unverified (JLC help article pcb-via-covering and blog five-via-finishes, read 2026-09-23, give no IPC-4761 Type for Plugged)",
+      "confirm_production_file": "Yes, 'Do not confirm automatically' ticked (human confirms within 48 h)",
       "qty_panels": 5,
       "build_time": "3 days",
-      "price_usd": 46.0
+      "price_usd": {
+        "engineering_fee": 25.0,
+        "via_covering": 0.0,
+        "surface_finish": 17.3,
+        "board": 3.8,
+        "confirm_production_file": 1.05,
+        "total": 47.15
+      }
     },
     {
       "kind": "Standard PCBA",
-      "name": "Therapia_EEG-HRV_Rev.A_Y8",
-      "order_no": "SMT026082960311-10641515A",
-      "spec": "Top side, 31 BOM rows / 133 parts per board, Confirm Parts Placement = Yes (do not confirm automatically), edge rails/fiducials by JLCPCB, Product Description = Research/Education/DIY -> Development Board (HS 847330)",
+      "name": "Therapia_EEG-HRV_Rev.A_Y13",
+      "order_no": "SMT026092362927-10641515A",
+      "spec": "Top side, 31 BOM rows / 133 parts per board, edge rails/fiducials Added by JLCPCB, Confirm Parts Placement = Yes ('Do not confirm automatically' ticked), Parts Selection By Customer, advanced options left at defaults, Product Description = Research/Education/DIY/Entertainment -> Development Board (HS 847330)",
       "qty_panels": 2,
       "build_time": "5-6 days",
-      "price_usd": 228.74
+      "price_usd": {
+        "setup": 25.75,
+        "stencil": 8.27,
+        "panel": 0.0,
+        "components_31_items": 130.67,
+        "feeders_loading_fee": 46.5,
+        "smt_assembly": 2.32,
+        "confirm_parts_placement": 0.45,
+        "hand_soldering": 3.61,
+        "manual_assembly": 0.4,
+        "packaging": 0.5,
+        "total": 218.48
+      }
     }
   ],
-  "total_usd_excl_shipping": 274.74,
+  "total_usd_excl_shipping": 265.63,
+  "vs_y8_usd": {
+    "pcb": "+1.15 (46.00 -> 47.15; +1.05 is Confirm Production file)",
+    "pcba": "-10.26 (228.74 -> 218.48)",
+    "total": "-9.11 (274.74 -> 265.63)"
+  },
   "payment": "NOT made (user decision pending)",
   "untouched_cart_items": [
-    "Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A",
-    "Ganglion_01_JLCPCB_gerbers_Y4 PCBA SMT026081261592-10641515A"
+    "Therapia_M5_EEG_AFE_P2_6L_Y12 PCB Y12-10641515A / PCBA SMT026090362951-10641515A",
+    "Therapia_M5_EEG_AFE_Rev.A_Y10 PCB Y10-10641515A / PCBA SMT026090360332-10641515A",
+    "Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A / PCBA SMT026081261592-10641515A (expired, '[C22401621,C415554] out of stock')"
   ],
+  "y8_cart_items": "PENDING DELETION: Y8-10641515A / SMT026082960311-10641515A still in the cart; deletion waits for the owner's explicit yes",
   "bom_checks": {
     "rows_detected": 31,
     "rows_confirmed": 31,
     "rows_shortfall": 0,
-    "cart_vs_repo_bom": "all 31 LCSC numbers identical to fab/BOM_JLCPCB.csv @ 0faeed7 (checked from the page text)",
+    "cart_vs_repo_bom": "all 31 LCSC numbers identical to fab/BOM_JLCPCB.csv (740b7ef7...), read from the page after the fixes below",
     "manual_actions": [
-      "12 multi-designator rows flagged 'multiple types of parts' ticked by hand",
-      "U_USB: JLC auto-matched C7464026 again -> restored C84681"
-    ],
-    "bom_upgrades_2026-08-29": [
-      {
-        "designators": "C_CM1P..C_CM8N (16)",
-        "from": "C1588 1nF X7R 0603",
-        "to": "C163508 CL10C102JB8NNNC 1nF C0G 50V 0603 (Extended)",
-        "why": "ADS1299 input node: C0G per SBAS499 §12.1, no piezo noise, better CMRR matching"
-      },
-      {
-        "designators": "C_NLDO_OUT, C_LM_IN",
-        "from": "C12530 2.2uF 6.3V / C52923 1uF 25V",
-        "to": "C23733 CL05A475MP5NRNC 4.7uF 10V 0402 (Basic)",
-        "why": "effective capacitance after DC bias (Samsung fetched curves): 1.19uF -> 3.02uF at 2.5 V; 0.42uF -> 1.6uF at 5 V"
-      },
-      {
-        "designators": "C_AVDD_P59",
-        "from": "C1525 100nF",
-        "to": "C52923 1uF 0402",
-        "why": "ADS1299 pin 59 charge-pump supply wants 1uF (SBAS499 §6); return net stays GND (Rev.B)"
-      },
-      {
-        "designators": "R_Q_EN_B, R_Q_IO0_B",
-        "from": "C25804 10k",
-        "to": "C23178 0603WAF4703T5E 470k 0603 (Basic)",
-        "why": "CH340C at 5 V forward-biases the OFF transistor's B-C junction; ngspice: ESP_EN idle 4.24 V (10k) -> 3.41 V (470k), truth table intact, EN 1uF discharge 1.6 ms. 100k was rejected (3.69 V, reverse-active gain)"
-      }
+      "12 multi-designator rows flagged 'multiple types of parts' ticked by hand (same 12 as Y8)",
+      "U_USB: JLC auto-matched C7464026 again -> restored C84681 (JLCPCB stock 105,331)"
     ]
   },
   "placement_checks": {
-    "method": "JLC Component Placements viewer re-checked after the BOM re-upload (same CPL): U_MCU 32UE model on the pad rows with the U.FL end at -X, R_CC1 clear of the USB-C shell, other parts unchanged from the verified Y6 set",
-    "cpl_rotation_changes": "U_MCU 0 -> 90 (data/cpl_overrides.json); everything else unchanged"
+    "method": "JLC Component Placements 3D viewer, positions compared against CPL offsets from U_ADS (scale from the TQFP body) and pin-1 dots against pad 1 read from board/Therapia_EEG-HRV.kicad_pcb",
+    "C_VCAP3": "north of U_ADS, horizontal (CPL 180), body centred on its pads, position within ~1 px of the CPL offset",
+    "C_VCAP3_H": "north of U_ADS, vertical (CPL 90), on its pads, 0.19 mm north of C_VCAP3 as in the CPL",
+    "C_VCAP4": "south of U_ADS, vertical (CPL -90), on its pads, beside C_VCAP1_H",
+    "C_VREFP_10n": "south of C_VCAP4, horizontal (CPL 0), on its pads at the S7j position (Y -110.580), beside C_VREFP_100n",
+    "U_ADS": "pin-1 dot at the top of the west pin column = pad 1 (140.61, 98.35 KiCad)",
+    "U_MCU": "32UE, pin-1 dot at the west end of the south pad row = pad 1 (155.96, 106.53 KiCad); pad-less end (U.FL) faces west toward U_ADS; CPL rotation 90 as before",
+    "J1": "opening at the east board edge; pin-1 dot at the south end of the west pad row = pad 1 GND (175.79, 114.19 KiCad); JLC also draws a second dot at the north end (pad 12, also GND) -- a library marker, body orientation correct",
+    "screenshots": "fab/jlc_cart_2026-09-23_y9/05..09"
   },
+  "screenshots_dir": "fab/jlc_cart_2026-09-23_y9/",
   "next": [
-    "user pays at JLC (tick only the two Therapia_EEG-HRV_Rev.A_Y8 rows)",
-    "answer JLC DFM / Confirm Parts Placement within 72 h",
+    "owner: explicit yes to delete the two Y8 rows (or delete them), then pay only the two Therapia_EEG-HRV_Rev.A_Y13 rows",
+    "answer JLC Confirm Production file within 48 h and Confirm Parts Placement within 72 h",
     "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR, measure U0RXD idle voltage)"
-  ]
+  ],
+  "y8_record": {
+    "timestamp": "2026-08-29T13:09+08:00",
+    "package": "Gerber: fab/Therapia_EEG-HRV_Rev.A.zip (copper identical since commit 1c8a769); BOM/CPL: commit 0faeed7 (31 rows / 133 parts)",
+    "items": [
+      {
+        "kind": "PCB",
+        "name": "Therapia_EEG-HRV_Rev.A_Y8",
+        "order_no": "Y8-10641515A",
+        "spec": "4 layers, 1.6 mm, Green, ENIG, Panel by JLCPCB 1x1 with 12.5 mm rails on four sides (86.82 x 70.01 mm), board 61.82 x 45.01 mm",
+        "qty_panels": 5,
+        "build_time": "3 days",
+        "price_usd": 46.0
+      },
+      {
+        "kind": "Standard PCBA",
+        "name": "Therapia_EEG-HRV_Rev.A_Y8",
+        "order_no": "SMT026082960311-10641515A",
+        "spec": "Top side, 31 BOM rows / 133 parts per board, Confirm Parts Placement = Yes (do not confirm automatically), edge rails/fiducials by JLCPCB, Product Description = Research/Education/DIY -> Development Board (HS 847330)",
+        "qty_panels": 2,
+        "build_time": "5-6 days",
+        "price_usd": 228.74
+      }
+    ],
+    "total_usd_excl_shipping": 274.74,
+    "bom_checks": {
+      "rows_detected": 31,
+      "rows_confirmed": 31,
+      "rows_shortfall": 0,
+      "cart_vs_repo_bom": "all 31 LCSC numbers identical to fab/BOM_JLCPCB.csv @ 0faeed7 (checked from the page text)",
+      "manual_actions": [
+        "12 multi-designator rows flagged 'multiple types of parts' ticked by hand",
+        "U_USB: JLC auto-matched C7464026 again -> restored C84681"
+      ],
+      "bom_upgrades_2026-08-29": [
+        {
+          "designators": "C_CM1P..C_CM8N (16)",
+          "from": "C1588 1nF X7R 0603",
+          "to": "C163508 CL10C102JB8NNNC 1nF C0G 50V 0603 (Extended)",
+          "why": "ADS1299 input node: C0G per SBAS499 §12.1, no piezo noise, better CMRR matching"
+        },
+        {
+          "designators": "C_NLDO_OUT, C_LM_IN",
+          "from": "C12530 2.2uF 6.3V / C52923 1uF 25V",
+          "to": "C23733 CL05A475MP5NRNC 4.7uF 10V 0402 (Basic)",
+          "why": "effective capacitance after DC bias (Samsung fetched curves): 1.19uF -> 3.02uF at 2.5 V; 0.42uF -> 1.6uF at 5 V"
+        },
+        {
+          "designators": "C_AVDD_P59",
+          "from": "C1525 100nF",
+          "to": "C52923 1uF 0402",
+          "why": "ADS1299 pin 59 charge-pump supply wants 1uF (SBAS499 §6); return net stays GND (Rev.B)"
+        },
+        {
+          "designators": "R_Q_EN_B, R_Q_IO0_B",
+          "from": "C25804 10k",
+          "to": "C23178 0603WAF4703T5E 470k 0603 (Basic)",
+          "why": "CH340C at 5 V forward-biases the OFF transistor's B-C junction; ngspice: ESP_EN idle 4.24 V (10k) -> 3.41 V (470k), truth table intact, EN 1uF discharge 1.6 ms. 100k was rejected (3.69 V, reverse-active gain)"
+        }
+      ]
+    },
+    "placement_checks": {
+      "method": "JLC Component Placements viewer re-checked after the BOM re-upload (same CPL): U_MCU 32UE model on the pad rows with the U.FL end at -X, R_CC1 clear of the USB-C shell, other parts unchanged from the verified Y6 set",
+      "cpl_rotation_changes": "U_MCU 0 -> 90 (data/cpl_overrides.json); everything else unchanged"
+    }
+  }
 }
