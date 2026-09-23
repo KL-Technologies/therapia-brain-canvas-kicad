@@ -48,6 +48,7 @@ from __future__ import annotations
 
 import ctypes
 import json
+import shutil
 import os
 import subprocess
 import sys
@@ -330,10 +331,15 @@ def _decode(value):
 # per-attempt failure rate leaves well under 1 % residual risk, and a case
 # that still fails reports the error rather than silently losing a result.
 _FLAKY = "failed to parse .func"
+# 2026-09-23: that was the only deck family that needed compatibility mode,
+# and sim/lib/pspice_native.py now gives it ngspice-native models, so nothing
+# here runs in PSpice mode any more. `retries` defaults to 1: a failure is
+# reported, not retried away. The retry stays available for a caller that
+# must knowingly run a PSpice-mode deck.
 
 
 def run_netlist(netlist_text, commands=None, timeout=300, keep_dir=None, python=None,
-                pre_commands=None, retries=8):
+                pre_commands=None, retries=1):
     """Run one netlist in a fresh ngspice subprocess and return a SimResult.
 
     ``netlist_text``  full SPICE deck.  A ``.control``/``.endc`` block inside
@@ -374,6 +380,10 @@ def _run_once(netlist_text, commands, timeout, keep_dir, python, pre_commands):
         return SimResult(False, tail, {}, error="worker produced no result (rc=%d)" % rc, returncode=rc)
     with open(out) as fh:
         data = json.load(fh)
+    if not keep_dir:
+        # Each run's result.json carries every vector; left behind they filled
+        # the disk after a few hundred runs (2026-09-23).
+        shutil.rmtree(workdir, ignore_errors=True)
     plots = dict(
         (pl, dict((k, _decode(v)) for k, v in vecs.items()))
         for pl, vecs in data.get("plots", {}).items()

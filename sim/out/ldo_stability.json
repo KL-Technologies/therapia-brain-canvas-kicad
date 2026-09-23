@@ -1,7 +1,7 @@
 {
   "case": "ldo_stability",
   "pass": true,
-  "timestamp": "2026-09-23T15:54:51",
+  "timestamp": "2026-09-23T16:56:34",
   "checks": [
     {
       "name": "TLV70025 Cout above datasheet minimum in the WORST corner",

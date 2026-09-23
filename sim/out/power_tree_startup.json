@@ -1,7 +1,7 @@
 {
   "case": "power_tree_startup",
   "pass": true,
-  "timestamp": "2026-09-23T15:54:51",
+  "timestamp": "2026-09-23T16:56:34",
   "checks": [
     {
       "name": "TPS72325 EN asserted",

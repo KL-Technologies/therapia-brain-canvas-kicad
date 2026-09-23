@@ -41,17 +41,17 @@ import simutil as su                                            # noqa: E402
 
 MODELS = os.path.join(os.path.dirname(HERE), "models")
 LIB = os.path.join(MODELS, "behavioral.lib")
-# TI's own unencrypted PSpice models, used unmodified.  They parse only in
-# ngspice's PSpice compatibility mode, which the driver switches on BEFORE
-# sourcing the deck (a .options line would be too late).
-VENDOR_LM2664 = os.path.join(MODELS, "vendor", "lm2664_ti.lib")
-VENDOR_TPS = os.path.join(MODELS, "vendor", "tps72325_ti.lib")
-# ngspice's PSpice compatibility mode is needed to parse TI's models, but in
-# ngspice 45.2 it intermittently fails while injecting its own helper
-# definitions ("failed to parse .func in: .func pwr(x a)"), which kills the
-# library.  It is therefore switched on ONLY for the decks that actually
-# contain a vendor model, never for the behavioural full-tree deck.
-PRE = ["set ngbehavior=psa"]
+# TI's own unencrypted PSpice models, read through the ngspice-native copies
+# sim/lib/pspice_native.py writes from them (the TI text stays verbatim in
+# models/vendor/). In PSpice compatibility mode ngspice 45.2 prepends helper
+# functions to every deck and now and then fails to parse the first one
+# (".func pwr(x a)"), which is what made this case flaky; the native copies
+# need no compatibility mode, so the helpers are never injected. Measured
+# against the PSpice-mode run: identical to five digits (LM2664 V(out) at 1
+# and 30 mA, ripple; TPS72325 V(out) enabled and at EN = 0 V).
+VENDOR_LM2664 = os.path.join(MODELS, "vendor", "native", "lm2664_ti.lib")
+VENDOR_TPS = os.path.join(MODELS, "vendor", "native", "tps72325_ti.lib")
+PRE = []
 
 # Model choice, and why it is split.
 #

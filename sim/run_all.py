@@ -57,6 +57,10 @@ def main():
     ap.add_argument("--python", default=sys.executable)
     args = ap.parse_args()
 
+    # the ngspice-native copies of TI's models, rebuilt from the verbatim
+    # files every run so the two can never drift apart
+    subprocess.run([args.python, os.path.join(HERE, "lib", "pspice_native.py")],
+                   check=True, stdout=subprocess.DEVNULL)
     names = args.only or CASES
     checks, results, models, notes = [], {}, {}, []
     for name in names:
