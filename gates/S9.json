@@ -9,7 +9,8 @@
     "12:12 2026-08-29: Y7 / SMT026082960247 — current",
     "13:09 2026-08-29: Y8 / SMT026082960311 — current (BOM re-uploaded again via 'Edit Order' after R29-6: R_Q_EN_B/R_Q_IO0_B 10k -> 470k on ngspice evidence, gates/S3_sim.json 29/29)",
     "13:09 2026-08-29: Y8 / SMT026082960311 -- superseded 2026-09-23: 106 via drills inside SMD solder-mask openings (Gerber; harness census 112), not orderable with Tented vias (STATUS.md, ACCEPTANCE I). Full Y8 record kept under y8_record below.",
-    "23:44 2026-09-23: Y13 (Brain Canvas revision 'Y9', HEAD 8a89179) -- current"
+    "23:44 2026-09-23: Y13 (Brain Canvas revision 'Y9', HEAD 8a89179) -- current",
+    "2026-09-23: Y8-10641515A / SMT026082960311-10641515A deleted from the cart (one delete removes the PCB and its PCBA) after the owner's explicit yes ('1 OK', relayed by the lead) -- screenshot 12"
   ],
   "operator": "Claude (claude-in-chrome, owner's logged-in JLCPCB session; the owner signed in and accepted JLC's updated Privacy Policy themselves)",
   "cart_url": "https://cart.jlcpcb.com/shopcart/cart",
@@ -79,7 +80,7 @@
     "Therapia_M5_EEG_AFE_Rev.A_Y10 PCB Y10-10641515A / PCBA SMT026090360332-10641515A",
     "Ganglion_01_JLCPCB_gerbers_Y4 PCB Y4-10641515A / PCBA SMT026081261592-10641515A (expired, '[C22401621,C415554] out of stock')"
   ],
-  "y8_cart_items": "PENDING DELETION: Y8-10641515A / SMT026082960311-10641515A still in the cart; deletion waits for the owner's explicit yes",
+  "y8_cart_items": "DELETED 2026-09-23 after the owner's explicit yes; cart now holds Y13 (this board), M5 Y12, M5 Y10 and the expired Ganglion Y4 -- fab/jlc_cart_2026-09-23_y9/12_cart_final_y8_deleted.jpg",
   "bom_checks": {
     "rows_detected": 31,
     "rows_confirmed": 31,
@@ -103,7 +104,7 @@
   },
   "screenshots_dir": "fab/jlc_cart_2026-09-23_y9/",
   "next": [
-    "owner: explicit yes to delete the two Y8 rows (or delete them), then pay only the two Therapia_EEG-HRV_Rev.A_Y13 rows",
+    "owner: pay only the two Therapia_EEG-HRV_Rev.A_Y13 rows",
     "answer JLC Confirm Production file within 48 h and Confirm Parts Placement within 72 h",
     "bring-up per reports/bringup_checklist.md (MISC1=0x00, ADS1299 reset after tPOR, measure U0RXD idle voltage)"
   ],
