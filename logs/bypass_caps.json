@@ -1,0 +1,318 @@
+{
+  "step": "S7j",
+  "moved": [
+    {
+      "ref": "C_VCAP4",
+      "before": {
+        "ref": "C_VCAP4",
+        "at_mm": [
+          148.448,
+          112.766
+        ],
+        "rot": 0.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VCAP4",
+            "at_mm": [
+              148.028,
+              112.766
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              148.868,
+              112.766
+            ]
+          }
+        ]
+      },
+      "after": {
+        "at_mm": [
+          146.912,
+          109.426
+        ],
+        "rot": -90.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VCAP4",
+            "at_mm": [
+              146.912,
+              109.006
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              146.912,
+              109.846
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ref": "C_VCAP3",
+      "before": {
+        "ref": "C_VCAP3",
+        "at_mm": [
+          144.118,
+          94.262
+        ],
+        "rot": 90.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VCAP3",
+            "at_mm": [
+              144.118,
+              94.682
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              144.118,
+              93.842
+            ]
+          }
+        ]
+      },
+      "after": {
+        "at_mm": [
+          146.412,
+          94.448
+        ],
+        "rot": 180.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VCAP3",
+            "at_mm": [
+              146.832,
+              94.448
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              145.992,
+              94.448
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ref": "C_VCAP3_H",
+      "before": {
+        "ref": "C_VCAP3_H",
+        "at_mm": [
+          146.412,
+          94.448
+        ],
+        "rot": 180.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VCAP3",
+            "at_mm": [
+              146.832,
+              94.448
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              145.992,
+              94.448
+            ]
+          }
+        ]
+      },
+      "after": {
+        "at_mm": [
+          144.118,
+          94.262
+        ],
+        "rot": 90.0,
+        "pads": [
+          {
+            "pad": "1",
+            "net": "VCAP3",
+            "at_mm": [
+              144.118,
+              94.682
+            ]
+          },
+          {
+            "pad": "2",
+            "net": "AVSS",
+            "at_mm": [
+              144.118,
+              93.842
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "removed": [
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "B.Cu",
+      "start_mm": [
+        146.9115,
+        109.007
+      ],
+      "end_mm": [
+        148.067,
+        111.75
+      ],
+      "width_mm": 0.254,
+      "uuid": "8084e8f1-1d73-40c6-8f1b-5e6e9c081541"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "B.Cu",
+      "start_mm": [
+        148.067,
+        111.75
+      ],
+      "end_mm": [
+        147.3685,
+        114.036
+      ],
+      "width_mm": 0.254,
+      "uuid": "de27655c-688f-4459-833a-30c6bb38c0d7"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "B.Cu",
+      "start_mm": [
+        147.381,
+        114.036
+      ],
+      "end_mm": [
+        147.5845,
+        114.29
+      ],
+      "width_mm": 0.203,
+      "uuid": "57189374-dec1-4dfa-9fc7-c04db6c64a9e"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "B.Cu",
+      "start_mm": [
+        147.5845,
+        114.29
+      ],
+      "end_mm": [
+        147.686,
+        114.4425
+      ],
+      "width_mm": 0.203,
+      "uuid": "598d5c8d-a625-438c-9875-b59885f53770"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "F.Cu",
+      "start_mm": [
+        147.686,
+        114.4425
+      ],
+      "end_mm": [
+        147.5845,
+        113.274
+      ],
+      "width_mm": 0.203,
+      "uuid": "599c2dca-84e6-4223-b166-645f64adb0a2"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "F.Cu",
+      "start_mm": [
+        147.5845,
+        113.274
+      ],
+      "end_mm": [
+        147.381,
+        113.1725
+      ],
+      "width_mm": 0.203,
+      "uuid": "aeecb2a7-0d83-4a84-93e7-ab4f212a69da"
+    },
+    {
+      "kind": "track",
+      "net": "VCAP4",
+      "layer": "F.Cu",
+      "start_mm": [
+        147.3685,
+        113.1725
+      ],
+      "end_mm": [
+        148.029,
+        112.766
+      ],
+      "width_mm": 0.203,
+      "uuid": "f3669cff-9cda-4bf6-8ff1-9eb8a5460b61"
+    },
+    {
+      "kind": "via",
+      "net": "VCAP4",
+      "pos_mm": [
+        146.9115,
+        109.007
+      ],
+      "dia_mm": 0.6095,
+      "drill_mm": 0.305,
+      "uuid": "377808ea-2a97-4fb5-9b01-769e9bd4fc19"
+    },
+    {
+      "kind": "via",
+      "net": "VCAP4",
+      "pos_mm": [
+        147.686,
+        114.4425
+      ],
+      "dia_mm": 0.6095,
+      "drill_mm": 0.305,
+      "uuid": "b92e6449-026c-4bfe-b3f9-99ab818c7ea9"
+    }
+  ],
+  "not_done": {
+    "C_VCAP1": {
+      "pin_pitch_gap_mm": 0.22,
+      "C_VCAP1_H_gap_below_pin_mm": 0.208,
+      "C_VCAP1_H_to_C_VCAP2_gap_mm": 0.314,
+      "track_needs_mm": 0.381,
+      "AVSS_bus_F": "y 109.769, x 146.924..151.293",
+      "VREFP_bus_F": "y 111.496, x 145.921..151.750",
+      "C_VCAP1_body_mm": [
+        3.2,
+        1.6
+      ]
+    }
+  },
+  "vcap4_moved": true,
+  "vcap3_swapped": true,
+  "pad_clashes": [],
+  "unconnected": [
+    0,
+    0
+  ],
+  "pad_nets_unchanged": true
+}

@@ -22,7 +22,7 @@
       "note": "an allow-list entry that no longer overlaps is dead weight and should be deleted"
     }
   ],
-  "timestamp": "2026-09-23T15:52:21",
+  "timestamp": "2026-09-23T16:54:05",
   "notes": "141 footprints measured (fab=135, pads=6). 3 overlapping pairs, 3 of them allowed, 3 containments; 1 further pairs inside 0.15 mm. 0 of the failures are part-on-part, 0 are part-on-hole. ACCEPTANCE H: pass",
   "board": "board/Therapia_EEG-HRV.kicad_pcb",
   "gap_threshold_mm": 0.15,
@@ -1031,16 +1031,6 @@
       "ref": "C_VCAP3",
       "source": "fab",
       "box_mm": [
-        143.817,
-        93.711,
-        144.4489,
-        94.8429
-      ]
-    },
-    {
-      "ref": "C_VCAP3_H",
-      "source": "fab",
-      "box_mm": [
         145.861,
         94.1171,
         146.9929,
@@ -1048,13 +1038,23 @@
       ]
     },
     {
+      "ref": "C_VCAP3_H",
+      "source": "fab",
+      "box_mm": [
+        143.817,
+        93.711,
+        144.4489,
+        94.8429
+      ]
+    },
+    {
       "ref": "C_VCAP4",
       "source": "fab",
       "box_mm": [
-        147.8926,
-        112.4905,
-        148.9735,
-        113.0714
+        146.6066,
+        108.8706,
+        147.1875,
+        109.9515
       ]
     },
     {

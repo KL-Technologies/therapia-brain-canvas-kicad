@@ -138,7 +138,7 @@ def main():
               sorted(bom_refs) == sorted(cpl_refs)),
         check("DNP and mechanical parts in neither file", [],
               sorted(excluded & (set(bom_refs) | set(cpl_refs)))),
-        check("placements unchanged since 2026-08-16", 120,
+        check("placements unchanged since 2026-08-16", 119,
               placement.get("unchanged"),
               note="129 parts existed in August; the 9 that differ are the L1 "
                    "repair (AMS1117), four S5 nudges (C_3V3_H, C_AVSS_B, "
@@ -147,8 +147,12 @@ def main():
                    "USB-C shell, and U_MCU -- which did not move at all: only "
                    "its CPL rotation did, 0 -> 90, because the 32UE's JLC "
                    "footprint is drawn along Y (data/cpl_overrides.json). "
+                   "S7j (2026-09-23) added a tenth: C_VCAP4, moved under ADS "
+                   "pin 26 for SBAS499C 12.1 (logs/bypass_caps.json). C_VCAP3 "
+                   "and C_VCAP3_H traded places, but both are new since "
+                   "August and not in this count. "
                    "Each is listed in vs_august_placement"),
-        check("parts moved since August are all accounted for", 9,
+        check("parts moved since August are all accounted for", 10,
               len(placement.get("moved", []))),
         check("parts new since August", ["C_VCAP1_H", "C_VCAP2", "C_VCAP3",
                                          "C_VCAP3_H"],
@@ -182,16 +186,18 @@ def main():
                        .get("gerber_attr_deletes", 0))),
         check("ODB++ netlist names the same nets", 79,
               log["odb"].get("nets")),
-        check("ODB++ point count = pads + vias", 671,
+        check("ODB++ point count = pads + vias", 669,
               log["odb"].get("netlist_points"),
               note="678 until L7: USB_CC1 cannot enter J1 pad 4 from the "
                    "west, so it crosses the pad column on B.Cu and the board "
                    "gained two vias (gates/S5_L7.json), 680; S7v removed two "
                    "AVSS vias that reached nothing but F.Cu (logs/"
                    "viapad_fix.json), 678 again; the C_LM_FLY.1 hop became a "
-                   "straight F.Cu line, 676; S7d removed five one-layer "
+                   "straight F.Cu line, 676; S7j took C_VCAP4's two vias out "
+                   "when the capacitor moved under its pin, 674; S7d removed "
+                   "five one-layer "
                    "vias at the ends of dangling stubs (logs/"
-                   "dangling_prune.json), 671. The same counts show in "
+                   "dangling_prune.json), 669. The same counts show in "
                    "ACCEPTANCE D's IPC-D-356 check"),
         check(".gbrjob agrees on layers, thickness, stackup and rules", True,
               log["gbrjob"].get("ok")),

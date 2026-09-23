@@ -1,17 +1,6 @@
 {
   "before": {
     "C_VCAP3_H": {
-      "straight_mm": 2.1015,
-      "path": {
-        "vias": 0,
-        "length_mm": 2.1,
-        "hops": 3,
-        "layers": [
-          "F.Cu"
-        ]
-      }
-    },
-    "C_VCAP3": {
       "straight_mm": 3.3598,
       "path": {
         "vias": 2,
@@ -24,6 +13,17 @@
           "In2.Cu"
         ]
       }
+    },
+    "C_VCAP3": {
+      "straight_mm": 2.1015,
+      "path": {
+        "vias": 0,
+        "length_mm": 2.1,
+        "hops": 3,
+        "layers": [
+          "F.Cu"
+        ]
+      }
     }
   },
   "net": "VCAP3",
@@ -31,15 +31,15 @@
   "sites": {
     "C_VCAP3_H": {
       "ok": false,
-      "was_mm": 2.1015,
-      "sites_examined": 0,
-      "reason": "no position between 0.4 and 2.10 mm of pin 55 clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
-    },
-    "C_VCAP3": {
-      "ok": false,
       "was_mm": 3.3598,
       "sites_examined": 312,
       "reason": "no position between 0.4 and 3.36 mm of pin 55 clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    },
+    "C_VCAP3": {
+      "ok": false,
+      "was_mm": 2.1015,
+      "sites_examined": 0,
+      "reason": "no position between 0.4 and 2.10 mm of pin 55 clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
     }
   }
 }

@@ -16,7 +16,7 @@ export KC="${KC:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}"
 export KPY="${KPY:-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3}"
 PY3="$(command -v python3)"
 
-STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7p S7v S7d S7m S7b S7c S7 S7_body S7_viapad S7_paste S7_maskweb S8)
+STEPS=(S0 S1 S1B S2 S2B S4a S3 S4 S5_uuids S5_L1 S5_L2 S5_L3 S5_L4 S5_L5 S5_L7 S5_L8 S5_L9 S5_mask S6 S7a S7j S7p S7v S7d S7m S7b S7c S7 S7_body S7_viapad S7_paste S7_maskweb S8)
 FORCE=0; FROM=""; DO_COMMIT=1
 
 gate_pass() {  # $1 = step id
@@ -32,7 +32,7 @@ root = sys.argv[1]
 print("%-5s %-6s %-19s %s" % ("STEP", "PASS", "TIMESTAMP", "CHECKS (failed)"))
 for step in ("S0", "S1", "S1B", "S2", "S2B", "S4a", "S3", "S4",
              "S5_uuids", "S5_L1", "S5_L2", "S5_L3", "S5_L4", "S5_L5",
-             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7p", "S7v",
+             "S5_L7", "S5_L8", "S5_L9", "S5_mask", "S6", "S7a", "S7j", "S7p", "S7v",
              "S7d", "S7m", "S7b", "S7c", "S7", "S7_body", "S7_viapad",
              "S7_paste", "S7_maskweb", "S8"):
     p = os.path.join(root, "gates", "%s.json" % step)
@@ -191,6 +191,12 @@ run_step S6 "run the DRC repair loop to convergence" \
 # --- S7: the ECO, the reviews and the acceptance gate -----------------------
 run_step S7a "apply ECO-5 and the BOM corrections" \
   "$KPY" "$ROOT/scripts/45_apply_eco5_and_bom.py" --root "$ROOT" || exit 1
+
+# SBAS499C 12.1 / afe-adc J1: the VCAP bypass capacitors on their pins' layer.
+# Before the via work, because it frees and takes up the space S7v then works
+# in. C_VCAP4 moves under its pin, C_VCAP3 and C_VCAP3_H trade places.
+run_step S7j "put the VCAP bypass capacitors on their pins' layer" \
+  "$KPY" "$ROOT/scripts/73_bypass_caps.py" --root "$ROOT" || exit 1
 
 # ACCEPTANCE J: the EasyEDA import drew its own F.Paste shapes beside the pads,
 # 168 of them past the copper (up to 0.134 mm). Clipped back to the pads here;

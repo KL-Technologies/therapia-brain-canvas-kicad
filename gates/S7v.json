@@ -16,8 +16,8 @@
     },
     {
       "name": "via count = before - functionless removed + room edits",
-      "expected": 237,
-      "actual": 237,
+      "expected": 235,
+      "actual": 235,
       "pass": true
     },
     {
@@ -51,6 +51,6 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T15:50:28",
-  "notes": "117 vias found in SMD mask openings, 115 moved out (tiers {'1': 114, '2': 0, '3': 1, '4': 0}), 0 unresolved; vias 241 -> 237, unconnected 0 -> 0."
+  "timestamp": "2026-09-23T16:51:40",
+  "notes": "116 vias found in SMD mask openings, 114 moved out (tiers {'1': 113, '2': 0, '3': 1, '4': 0}), 0 unresolved; vias 239 -> 235, unconnected 0 -> 0."
 }

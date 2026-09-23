@@ -866,7 +866,7 @@
   "sets_match": true,
   "vs_2026_08_16": {
     "file": "/Users/dev/projects/therapia-device/cerelog_research/fab_2026-08-16/Therapia_EEG-HRV_CPL.xlsx",
-    "unchanged": 120,
+    "unchanged": 119,
     "moved": [
       {
         "ref": "AMS1117",
@@ -897,6 +897,12 @@
         "dx_mm": 1.016,
         "dy_mm": -2.286,
         "drot_deg": 90.0
+      },
+      {
+        "ref": "C_VCAP4",
+        "dx_mm": -1.536,
+        "dy_mm": 3.34,
+        "drot_deg": -90.0
       },
       {
         "ref": "C_VREFP_10n",

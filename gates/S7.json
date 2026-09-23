@@ -160,19 +160,19 @@
     {
       "name": "D IPC-D-356 feature counts",
       "expected": [
-        232,
+        230,
         417,
         16,
         6
       ],
       "actual": [
-        232,
+        230,
         417,
         16,
         6
       ],
       "pass": true,
-      "note": "vias were 239 until L7 moved R_CC1 out of the USB-C shell; USB_CC1 has to cross J1's pad column on B.Cu, which costs two (gates/S5_L7.json). S7v then took out two AVSS vias in the C_VREFP_10n / C_VREFP_100n pads that reached no layer but F.Cu -- each sat in a 0.5 mm AVSS fill island of its own inside the In2 AVDD pour -- 241 -> 239 (logs/viapad_fix.json, 'removed'), and the C_LM_FLY.1 room edit replaced a two-via B.Cu hop with the straight F.Cu line, 239 -> 237; S7d removed five vias that touched one layer only, the ends of dangling stubs, 239 -> 234 (logs/dangling_prune.json). ACCEPTANCE D allows a recorded change"
+      "note": "vias were 239 until L7 moved R_CC1 out of the USB-C shell; USB_CC1 has to cross J1's pad column on B.Cu, which costs two (gates/S5_L7.json). S7v then took out two AVSS vias in the C_VREFP_10n / C_VREFP_100n pads that reached no layer but F.Cu -- each sat in a 0.5 mm AVSS fill island of its own inside the In2 AVDD pour -- 241 -> 239 (logs/viapad_fix.json, 'removed'), and the C_LM_FLY.1 room edit replaced a two-via B.Cu hop with the straight F.Cu line, and S7j took C_VCAP4's two vias out when the capacitor moved under its pin, 239 -> 235; S7d removed five vias that touched one layer only, the ends of dangling stubs, 235 -> 230 (logs/dangling_prune.json). ACCEPTANCE D allows a recorded change"
     },
     {
       "name": "E gerber set complete",
@@ -277,17 +277,17 @@
       "pass": true
     }
   ],
-  "timestamp": "2026-09-23T15:52:21",
+  "timestamp": "2026-09-23T16:54:05",
   "notes": "ACCEPTANCE.md A-G. The document is frozen; this is its implementation. D and E are settled by lib/gerber_parse.py reading the plotted files, not by KiCad reading its own output.",
   "drc": {
-    "violations": 425,
+    "violations": 437,
     "errors": 0,
-    "warnings": 425,
+    "warnings": 437,
     "unconnected": 0,
     "by_type": {
       "silk_overlap": 199,
-      "silk_over_copper": 155,
-      "courtyards_overlap": 63,
+      "silk_over_copper": 163,
+      "courtyards_overlap": 67,
       "clearance": 5,
       "silk_edge_clearance": 2,
       "starved_thermal": 1
@@ -308,8 +308,8 @@
   "board": {
     "counts": {
       "footprints": 141,
-      "tracks": 1377,
-      "vias": 232,
+      "tracks": 1369,
+      "vias": 230,
       "npth_pads": 6,
       "pth_pads": 16
     },
@@ -487,7 +487,7 @@
     },
     "layers": {
       "In1.Cu": {
-        "flashes": 248,
+        "flashes": 246,
         "draws": 0,
         "regions": 1,
         "clear_flashes": 0,
@@ -503,7 +503,7 @@
         "empty": false
       },
       "In2.Cu": {
-        "flashes": 248,
+        "flashes": 246,
         "draws": 0,
         "regions": 26,
         "clear_flashes": 0,
@@ -519,8 +519,8 @@
         "empty": false
       },
       "B.Cu": {
-        "flashes": 248,
-        "draws": 341,
+        "flashes": 246,
+        "draws": 337,
         "regions": 0,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -599,8 +599,8 @@
         "empty": false
       },
       "F.Cu": {
-        "flashes": 665,
-        "draws": 1036,
+        "flashes": 663,
+        "draws": 1032,
         "regions": 2,
         "clear_flashes": 0,
         "clear_draws": 0,
@@ -620,7 +620,7 @@
         "regions": 3,
         "clear_flashes": 0,
         "clear_draws": 0,
-        "clear_regions": 425,
+        "clear_regions": 424,
         "file": "Therapia_EEG-HRV-F_Silkscreen.gto",
         "format": "4.6",
         "unit": "MM",
@@ -649,7 +649,7 @@
       "F.Mask": {
         "flashes": 0,
         "draws": 0,
-        "regions": 425,
+        "regions": 424,
         "clear_flashes": 0,
         "clear_draws": 0,
         "clear_regions": 0,
@@ -778,10 +778,10 @@
     "copper_in_npth_rings": [],
     "npth_clear": true,
     "copper_coverage": {
-      "F.Cu": 0.252,
-      "In1.Cu": 0.9543,
-      "In2.Cu": 0.9368,
-      "B.Cu": 0.1056
+      "F.Cu": 0.2516,
+      "In1.Cu": 0.9544,
+      "In2.Cu": 0.9369,
+      "B.Cu": 0.1049
     },
     "planes_filled": true,
     "paste": {
@@ -791,14 +791,14 @@
     },
     "ipc_d356": {
       "present": true,
-      "features": 671,
+      "features": 669,
       "unparsed_lines": 0,
       "header": [
         "P  CODE 00",
         "P  UNITS CUST 0",
         "P  arrayDim   N"
       ],
-      "vias": 232,
+      "vias": 230,
       "smd": 417,
       "through_pads": 16,
       "npth": 6,
@@ -912,10 +912,10 @@
         "net_differs": 0,
         "disagreements": [],
         "ok": true,
-        "gerber_attr_sets": 934,
+        "gerber_attr_sets": 933,
         "gerber_attr_deletes": 181,
-        "flashes_carrying_a_net": 665,
-        "flashes": 665
+        "flashes_carrying_a_net": 663,
+        "flashes": 663
       }
     },
     "gbrjob": {
@@ -956,7 +956,7 @@
     "odb": {
       "present": true,
       "nets": 79,
-      "netlist_points": 671,
+      "netlist_points": 669,
       "names": [
         "A1_ELEC",
         "A2_ELEC",
@@ -1040,7 +1040,7 @@
       ]
     },
     "pth": {
-      "hits": 252,
+      "hits": 250,
       "tools": {
         "1": 0.3,
         "2": 0.305,
@@ -1110,11 +1110,11 @@
   "previews": {
     "preview_top.png": {
       "exists": true,
-      "bytes": 169189
+      "bytes": 168890
     },
     "preview_bottom.png": {
       "exists": true,
-      "bytes": 91284
+      "bytes": 90724
     }
   }
 }

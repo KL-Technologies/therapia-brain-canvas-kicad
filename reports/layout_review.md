@@ -19,7 +19,7 @@ DS §12.1: *"Do not place vias between bypass capacitors and the active device. 
 | C_VREFP_10u | 24 (VREFP) | 配線 | 6.46 | 9.40 | 0 | はい | OK | AVSS | 1.03 |
 | C_VREFP_100n | 24 (VREFP) | 配線 | 3.40 | 6.47 | 0 | はい | OK | AVSS | 1.96 |
 | C_VREFP_10n | 24 (VREFP) | 配線 | 2.83 | 2.55 | 0 | はい | OK | AVSS | 1.92 |
-| C_VCAP4 | 26 (VCAP4) | 配線 | 5.24 | 9.00 | 2 | はい | **NG** | AVSS | 0.60 |
+| C_VCAP4 | 26 (VCAP4) | 配線 | 1.36 | 1.36 | 0 | はい | OK | AVSS | 1.83 |
 | C_VCAP1 | 28 (VCAP1) | 配線 | 9.89 | 17.40 | 2 | はい | **NG** | AVSS | 0.95 |
 | C_VCAP1_H | 28 (VCAP1) | 配線 | 1.36 | 1.36 | 0 | はい | OK | AVSS | 2.51 |
 | C_VCAP2 | 30 (VCAP2) | 配線 | 1.53 | 1.53 | 0 | はい | OK | AVSS | 0.94 |
@@ -29,25 +29,24 @@ DS §12.1: *"Do not place vias between bypass capacitors and the active device. 
 | C_AVDD1_100n | 54 (AVDD1) | ベタ | 3.95 | 配線経路なし | — | はい | — | AVSS | 3.65 |
 | C_AVDD1_10n | 54 (AVDD1) | ベタ | 4.98 | 配線経路なし | — | はい | — | AVSS | 5.87 |
 | C_AVDD1_10u | 54 (AVDD1) | ベタ | 5.54 | 配線経路なし | — | はい | — | AVSS | 1.41 |
-| C_VCAP3 | 55 (VCAP3) | 配線 | 3.36 | 4.39 | 2 | はい | **NG** | AVSS | 2.75 |
-| C_VCAP3_H | 55 (VCAP3) | 配線 | 2.10 | 2.10 | 0 | はい | OK | AVSS | 2.91 |
+| C_VCAP3 | 55 (VCAP3) | 配線 | 2.10 | 2.10 | 0 | はい | OK | AVSS | 2.91 |
+| C_VCAP3_H | 55 (VCAP3) | 配線 | 3.36 | 4.39 | 2 | はい | **NG** | AVSS | 2.75 |
 | C_AVDD_P59 | 59 (AVDD) | ベタ | 4.50 | 配線経路なし | — | はい | — | GND | 0.57 |
 | C_DVDD_P58 | 48 (DVDD) | 配線 | 11.48 | 22.11 | 0 | はい | OK | GND | 0.65 |
 | C_DVDD_H | 48 (DVDD) | 配線 | 12.09 | 17.14 | 0 | はい | OK | GND | 0.70 |
 | C_DVDD_P40 | 50 (DVDD) | 配線 | 6.23 | 13.67 | 0 | はい | OK | GND | 0.70 |
 | C_DVDD_10u | 50 (DVDD) | 配線 | 9.89 | 18.01 | 0 | はい | OK | GND | 0.72 |
 | C_AVSS_P17 | 20 (AVSS) | ベタ | 6.28 | 配線経路なし | — | はい | — | GND | 0.60 |
-| C_AVSS_H | 20 (AVSS) | ベタ | 9.49 | 配線経路なし | — | はい | — | GND | 0.56 |
+| C_AVSS_H | 20 (AVSS) | ベタ | 9.49 | 配線経路なし | — | はい | — | GND | 0.57 |
 | C_AVSS_P30 | 32 (AVSS) | ベタ | 9.29 | 配線経路なし | — | はい | — | GND | 0.63 |
-| C_AVSS_P37 | 57 (AVSS) | ベタ | 16.22 | 配線経路なし | — | はい | — | GND | 0.69 |
+| C_AVSS_P37 | 57 (AVSS) | ベタ | 16.22 | 配線経路なし | — | はい | — | GND | 0.58 |
 | C_AVSS_P60 | 58 (AVSS) | ベタ | 17.79 | 配線経路なし | — | はい | — | GND | 0.58 |
 | C_AVSS_B | 58 (AVSS) | ベタ | 19.23 | 配線経路なし | — | はい | — | GND | 0.73 |
 
-**配線で配る電源のうち、ビアを挟んでいるのは 3 経路。**
+**配線で配る電源のうち、ビアを挟んでいるのは 2 経路。**
 
-- `C_VCAP4` → ADS ピン 26（VCAP4）: ビア 2 個・銅箔 9.00 mm
 - `C_VCAP1` → ADS ピン 28（VCAP1）: ビア 2 個・銅箔 17.40 mm
-- `C_VCAP3` → ADS ピン 55（VCAP3）: ビア 2 個・銅箔 4.39 mm
+- `C_VCAP3_H` → ADS ピン 55（VCAP3）: ビア 2 個・銅箔 4.39 mm
 
 ## 2. VREFP の 3 個は近い順に並んでいるか
 
@@ -90,7 +89,7 @@ DS §12.1 は「グラウンドプレーンが切れていたり他の配線が�
 
 In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
-> **表の「またぐ」は問題ではない。** 入力配線のリターン電流が流れるのは**直下ではなく最も近いリファレンス面**で、この基板ではそれが **In1（GND、1 枚もの・2497.1 mm²・基板面積の 90%）**。In1 に切れ目が無い以上リターン経路は連続しており（第 4 節で実測）、In2 の境界越えはリターンの断絶にはならない。下表は「入力の下に何があるか」の記録であって合否ではない。
+> **表の「またぐ」は問題ではない。** 入力配線のリターン電流が流れるのは**直下ではなく最も近いリファレンス面**で、この基板ではそれが **In1（GND、1 枚もの・2498.2 mm²・基板面積の 90%）**。In1 に切れ目が無い以上リターン経路は連続しており（第 4 節で実測）、In2 の境界越えはリターンの断絶にはならない。下表は「入力の下に何があるか」の記録であって合否ではない。
 
 | 入力 | またぐ領域数 | 遷移回数 | 領域 |
 |---|---|---|---|
@@ -156,17 +155,17 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 | ネット | 層 | 外形 | 面積 [mm²] | 基板面積比 |
 |---|---|---|---|---|
 | CHASSIS_GND | F.Cu | 2 | 43.16 | 1.6% |
-| GND | In1.Cu | 1 | 2497.14 | 89.7% |
-| AVSS | In2.Cu | 5 | 841.58 | 30.2% |
+| GND | In1.Cu | 1 | 2498.18 | 89.8% |
+| AVSS | In2.Cu | 5 | 842.10 | 30.3% |
 | USB_5V | In2.Cu | 5 | 360.89 | 13.0% |
 | VDD_ESP | In2.Cu | 1 | 329.44 | 11.8% |
 | USB_5V | In2.Cu | 1 | 282.70 | 10.2% |
-| AVDD | In2.Cu | 1 | 280.33 | 10.1% |
+| AVDD | In2.Cu | 1 | 280.86 | 10.1% |
 | VDD_ESP | In2.Cu | 8 | 215.61 | 7.7% |
 | VDD_ESP | In2.Cu | 1 | 75.36 | 2.7% |
 | VDD_ESP | In2.Cu | 4 | 0.00 | 0.0% |
 
-**In1 = GND が 1 枚もので 2497.1 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
+**In1 = GND が 1 枚もので 2498.2 mm²（基板面積の 90%）。**分割は無く、これがすべての信号のリターン面になっている。チェックリスト B-3 が本基板に推奨した形そのもの。
 
 **空に近いベタが 1 枚ある**: VDD_ESP@In2.Cu (4 外形, 0.0000 mm²)。VDD_ESP は 3 枚のベタに分かれており（S5 の申し送り）、そのうち 1 枚は充填の結果ほぼ何も残っていない。電気的には他の 2 枚が VDD_ESP を配っているので実害は無いが、**この 1 枚は何もしていない**。DRC も `isolated_copper` / `copper_sliver` を報告していない。
 
@@ -194,9 +193,9 @@ In2 は電源ベタ（AVDD / AVSS / USB_5V / VDD_ESP ほか）。
 
 | 部品 | 現在 [mm] | 調べた位置 | 結果 |
 |---|---|---|---|
-| C_VCAP3 → U_ADS.55 | 3.36 | 108 | no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
-| C_VCAP3_H → U_ADS.55 | 2.10 | 0 | no position between 0.4 mm and 2.10 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
+| C_VCAP3 → U_ADS.55 | 2.10 | 0 | no position between 0.4 mm and 2.10 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
+| C_VCAP3_H → U_ADS.55 | 3.36 | 108 | no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
 | C_VCAP1 → U_ADS.28 | 9.89 | 0 | no position between 0.4 mm and 6.00 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
 | C_VCAP1_H → U_ADS.28 | 1.36 | 0 | no position between 0.4 mm and 1.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
-| C_VCAP4 → U_ADS.26 | 5.24 | 62 | no position between 0.4 mm and 5.24 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
+| C_VCAP4 → U_ADS.26 | 1.36 | 0 | no position between 0.4 mm and 1.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via |
 

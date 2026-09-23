@@ -146,26 +146,23 @@
       "pin": "26",
       "signal": "VCAP4",
       "pad": "1",
-      "straight_mm": 5.2383,
+      "straight_mm": 1.358,
       "same_layer_as_ic": true,
       "on_target_net": true,
       "distributed_as_plane": false,
       "path": {
-        "vias": 2,
-        "length_mm": 8.9997,
-        "hops": 10,
+        "vias": 0,
+        "length_mm": 1.359,
+        "hops": 3,
         "layers": [
-          "B.Cu",
-          "F.Cu",
-          "In1.Cu",
-          "In2.Cu"
+          "F.Cu"
         ]
       },
-      "vias_in_path": 2,
+      "vias_in_path": 0,
       "j1_applies": true,
-      "j1_ok": false,
+      "j1_ok": true,
       "return_net": "AVSS",
-      "return_via_mm": 0.5999
+      "return_via_mm": 1.8314
     },
     {
       "cap": "C_VCAP1",
@@ -340,6 +337,29 @@
       "pin": "55",
       "signal": "VCAP3",
       "pad": "1",
+      "straight_mm": 2.1015,
+      "same_layer_as_ic": true,
+      "on_target_net": true,
+      "distributed_as_plane": false,
+      "path": {
+        "vias": 0,
+        "length_mm": 2.1,
+        "hops": 3,
+        "layers": [
+          "F.Cu"
+        ]
+      },
+      "vias_in_path": 0,
+      "j1_applies": true,
+      "j1_ok": true,
+      "return_net": "AVSS",
+      "return_via_mm": 2.9107
+    },
+    {
+      "cap": "C_VCAP3_H",
+      "pin": "55",
+      "signal": "VCAP3",
+      "pad": "1",
       "straight_mm": 3.3598,
       "same_layer_as_ic": true,
       "on_target_net": true,
@@ -360,29 +380,6 @@
       "j1_ok": false,
       "return_net": "AVSS",
       "return_via_mm": 2.7533
-    },
-    {
-      "cap": "C_VCAP3_H",
-      "pin": "55",
-      "signal": "VCAP3",
-      "pad": "1",
-      "straight_mm": 2.1015,
-      "same_layer_as_ic": true,
-      "on_target_net": true,
-      "distributed_as_plane": false,
-      "path": {
-        "vias": 0,
-        "length_mm": 2.1,
-        "hops": 3,
-        "layers": [
-          "F.Cu"
-        ]
-      },
-      "vias_in_path": 0,
-      "j1_applies": true,
-      "j1_ok": true,
-      "return_net": "AVSS",
-      "return_via_mm": 2.9107
     },
     {
       "cap": "C_AVDD_P59",
@@ -522,7 +519,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.5561
+      "return_via_mm": 0.5749
     },
     {
       "cap": "C_AVSS_P30",
@@ -554,7 +551,7 @@
       "j1_applies": false,
       "j1_ok": null,
       "return_net": "GND",
-      "return_via_mm": 0.6857
+      "return_via_mm": 0.5765
     },
     {
       "cap": "C_AVSS_P60",
@@ -1024,7 +1021,7 @@
       "layer": "In1.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 2497.14
+      "area_mm2": 2498.18
     },
     {
       "net": "USB_5V",
@@ -1045,14 +1042,14 @@
       "layer": "In2.Cu",
       "outlines": 1,
       "holes": 0,
-      "area_mm2": 280.33
+      "area_mm2": 280.86
     },
     {
       "net": "AVSS",
       "layer": "In2.Cu",
       "outlines": 5,
       "holes": 0,
-      "area_mm2": 841.58
+      "area_mm2": 842.1
     },
     {
       "net": "USB_5V",
@@ -1150,20 +1147,20 @@
     {
       "ref": "C_VCAP3",
       "target": "U_ADS.55",
-      "now_mm": 3.3598,
-      "sites_examined": 108,
-      "better": null,
-      "ok": false,
-      "reason": "no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
-    },
-    {
-      "ref": "C_VCAP3_H",
-      "target": "U_ADS.55",
       "now_mm": 2.1015,
       "sites_examined": 0,
       "better": null,
       "ok": false,
       "reason": "no position between 0.4 mm and 2.10 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+    },
+    {
+      "ref": "C_VCAP3_H",
+      "target": "U_ADS.55",
+      "now_mm": 3.3598,
+      "sites_examined": 108,
+      "better": null,
+      "ok": false,
+      "reason": "no position between 0.4 mm and 3.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
     },
     {
       "ref": "C_VCAP1",
@@ -1186,11 +1183,11 @@
     {
       "ref": "C_VCAP4",
       "target": "U_ADS.26",
-      "now_mm": 5.2383,
-      "sites_examined": 62,
+      "now_mm": 1.358,
+      "sites_examined": 0,
       "better": null,
       "ok": false,
-      "reason": "no position between 0.4 mm and 5.24 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
+      "reason": "no position between 0.4 mm and 1.36 mm of the pin clears the neighbouring bodies, courtyards and copper while reaching the pin without a via"
     }
   ]
 }

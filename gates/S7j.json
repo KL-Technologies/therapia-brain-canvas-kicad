@@ -1,0 +1,27 @@
+{
+  "step": "S7j",
+  "pass": true,
+  "checks": [
+    {
+      "name": "new pads clear other nets by the rule",
+      "expected": 0,
+      "actual": 0,
+      "pass": true,
+      "note": "[]"
+    },
+    {
+      "name": "unconnected items",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "name": "every pad on the net it had",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "timestamp": "2026-09-23T16:48:16",
+  "notes": "C_VCAP4 under pin 26 (True), C_VCAP3 <-> C_VCAP3_H swapped (True); C_VCAP1 not moved -- walled in on F.Cu, see logs/bypass_caps.json."
+}

@@ -6,8 +6,8 @@
 
 | | |
 |---|---|
-| アナログ系アイテム | 770 → 853 |
-| 差分 | 284 |
+| アナログ系アイテム | 770 → 843 |
+| 差分 | 296 |
 | 説明できない差分 | **0** |
 | 入力・電極ネットの差分 | **0** |
 
@@ -80,8 +80,8 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 
 | 層 | 画像 | 不変 [px] | 追加 [px] | 削除 [px] | 変化率 |
 |---|---|---|---|---|---|
-| F.Cu | `reports/copper_xor_f_cu.png` | 264292 | 29055 | 11703 | 13.36% |
-| B.Cu | `reports/copper_xor_b_cu.png` | 107022 | 17901 | 16836 | 24.50% |
+| F.Cu | `reports/copper_xor_f_cu.png` | 263927 | 28966 | 12068 | 13.46% |
+| B.Cu | `reports/copper_xor_b_cu.png` | 106328 | 17742 | 17530 | 24.91% |
 
 > F.Cu の画像で、**基板左半分（12 ピンヘッダ・入力抵抗 16 個・CM コンデンサ 16 個・そこから ADS1299 までの配線）が一様に灰色**であることが、上の「差分 0 件」の目視版。赤緑が固まっているのは ADS1299 北側（VCAP 系）、中央下（BIAS/ECO-5）、右下（AMS1117 の移設と USB-C 周り）の 3 箇所だけ。
 
@@ -101,6 +101,8 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 | S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) | 18 |
 | S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,107.648) | 2 |
 | S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103) | 4 |
+| bypass_caps repair: bypass_caps recorded touching VCAP4 at (146.911,109.007) | 4 |
+| bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) | 8 |
 | drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700) | 4 |
 | eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159) | 3 |
 | viapad_fix repair: viapad_fix recorded touching AVDD at (140.219,109.883) | 3 |
@@ -138,6 +140,8 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 | 部品.パッド | ネット | 位置 [mm] | 寸法 [mm] | 移動 [mm] | 由来 |
 |---|---|---|---|---|---|
 | C_VCAP1.1 | VCAP1 | (150.542, 112.766) → (152.258, 116.527) | 0.80×0.90 → 1.15×1.80 | 4.1340 | ECO-3#11 VCAP1 to 1206 |
+| C_VCAP4.1 | VCAP4 | (148.028, 112.766) → (146.912, 109.006) | 0.50×0.54 → 0.50×0.54 | 3.9221 | bypass_caps repair: bypass_caps recorded touching VCAP4 at (146.911,109.007) |
+| C_VCAP4.2 | AVSS | (148.868, 112.766) → (146.912, 109.846) | 0.50×0.54 → 0.50×0.54 | 3.5146 | ECO-1#4/5 VCAP2, VCAP3 |
 | C_VREFP_10u.2 | AVSS | (151.129, 110.480) → (150.937, 108.751) | 0.80×0.90 → 1.15×1.80 | 1.7396 | ECO-1#4/5 VCAP2, VCAP3 |
 | C_VREFP_10u.1 | VREFP | (149.729, 110.480) → (150.937, 111.701) | 0.80×0.90 → 1.15×1.80 | 1.7176 | ECO-3#12 VREFP 10u to 1206 |
 | C_VCAP1.2 | AVSS | (151.942, 112.766) → (152.258, 113.577) | 0.80×0.90 → 1.15×1.80 | 0.8704 | ECO-1#4/5 VCAP2, VCAP3 |
@@ -147,13 +151,14 @@ removed  via  SRB1           (130.1600, 89.1440) d0.6095/0.3050
 
 ## 追加・削除された銅
 
-### 削除（98 件）
+### 削除（108 件）
 
 ```
 ECO-1#1 TPS72325 EN          trk  TPS_NR         F.Cu          (155.0520, 114.3660) -> (155.0520, 114.5440) w0.2030
 ECO-1#1 TPS72325 EN          via  VNEG5          (148.8545, 122.2150) d0.6095/0.3050
 ECO-1#2 RESV1                pad  AVDD           U_ADS.31 (149.4120, 107.6480) 0.280x1.800
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP1.2 (151.9420, 112.7660) 0.800x0.900
+ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP4.2 (148.8680, 112.7660) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10n.2 (146.7600, 110.4800) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10u.2 (151.1290, 110.4800) 0.800x0.900
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (143.9165, 109.2100) -> (144.0790, 109.9720) w0.2540
@@ -174,7 +179,6 @@ ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (143.9190, 109.0575) d0.6095/0.
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (145.9205, 112.7660) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (146.9115, 110.4800) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (148.7910, 110.4800) d0.6095/0.3050
-ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (148.8670, 112.7660) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (149.9085, 109.0070) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (151.4960, 113.7820) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (151.9405, 112.7660) d0.6095/0.3050
@@ -217,6 +221,16 @@ S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,11
 S5_L2 repair: clearance Track+Via nets=AVDD,GND at (144.689,111.344) (145.315,110.760) via  AVDD           (145.0315, 112.7660) d0.6095/0.3050
 S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,107.648) via  AVDD           (142.1615, 110.4800) d0.6095/0.3050
 S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103) via  AVDD           (144.1300, 116.8810) d0.6095/0.3050
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (146.911,109.007) trk  VCAP4          B.Cu          (146.9115, 109.0070) -> (148.0670, 111.7500) w0.2540
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (146.911,109.007) via  VCAP4          (146.9115, 109.0070) d0.6095/0.3050
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) pad  VCAP4          C_VCAP4.1 (148.0280, 112.7660) 0.500x0.540
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) trk  VCAP4          B.Cu          (147.3685, 114.0360) -> (148.0670, 111.7500) w0.2540
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) trk  VCAP4          B.Cu          (147.3810, 114.0360) -> (147.5845, 114.2900) w0.2030
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) trk  VCAP4          B.Cu          (147.5845, 114.2900) -> (147.6860, 114.4425) w0.2030
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) trk  VCAP4          F.Cu          (147.3685, 113.1725) -> (148.0290, 112.7660) w0.2030
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) trk  VCAP4          F.Cu          (147.3810, 113.1725) -> (147.5845, 113.2740) w0.2030
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) trk  VCAP4          F.Cu          (147.5845, 113.2740) -> (147.6860, 114.4425) w0.2030
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (147.686,114.442) via  VCAP4          (147.6860, 114.4425) d0.6095/0.3050
 drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700) trk  AVDD           F.Cu          (150.8865, 93.0050) -> (150.8865, 93.3095) w0.2030
 drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700) via  AVDD           (150.8865, 93.3095) d0.6095/0.3050
 eco_apply repair: eco_apply recorded touching AVDD at (149.108,109.159) trk  AVDD           F.Cu          (149.1085, 109.0070) -> (149.4080, 108.7020) w0.2540
@@ -263,8 +277,9 @@ ECO-1#2 RESV1                trk  AVDD           F.Cu          (144.4145, 107.64
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP1.2 (152.2580, 113.5770) 1.150x1.800
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP1_H.2 (147.9120, 109.8460) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP2.2 (149.5860, 109.1720) 0.500x0.540
-ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3.2 (144.1180, 93.8420) 0.500x0.540
-ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3_H.2 (145.9920, 94.4480) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3.2 (145.9920, 94.4480) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP3_H.2 (144.1180, 93.8420) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VCAP4.2 (146.9120, 109.8460) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10n.2 (146.8100, 110.4800) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  AVSS           C_VREFP_10u.2 (150.9370, 108.7510) 1.150x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           B.Cu          (143.9190, 109.1845) -> (144.0790, 109.9720) w0.2540
@@ -276,7 +291,6 @@ ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (145.9205, 112.76
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.8090, 110.4800) -> (146.9115, 110.4800) w0.2030
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (146.9240, 109.7690) -> (146.9740, 110.4800) w0.2030
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (147.8638, 109.7690) -> (147.9120, 109.8460) w0.2032
-ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (148.8670, 112.7660) -> (148.9297, 113.3627) w0.3048
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.2100, 114.5440) -> (149.2100, 114.6420) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.2100, 114.6420) -> (149.3600, 115.0900) w0.2540
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (149.5860, 109.1720) -> (149.9085, 109.0070) w0.2032
@@ -291,7 +305,6 @@ ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (151.9405, 112.76
 ECO-1#4/5 VCAP2, VCAP3       trk  AVSS           F.Cu          (152.5128, 112.1693) -> (152.5755, 112.7660) w0.3048
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (143.9190, 109.1845) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (146.1136, 113.3604) d0.6095/0.3050
-ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (148.9297, 113.3627) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (149.2100, 114.6420) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (150.4088, 109.6313) d0.6095/0.3050
 ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (151.5692, 114.4782) d0.6095/0.3050
@@ -300,8 +313,8 @@ ECO-1#4/5 VCAP2, VCAP3       via  AVSS           (152.5128, 112.1693) d0.6095/0.
 ECO-1#4/5 VCAP2, VCAP3       pad  VCAP2          C_VCAP2.1 (148.7460, 109.1720) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  VCAP2          U_ADS.30 (148.9120, 107.6480) 0.280x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP2          F.Cu          (148.7460, 109.1720) -> (148.9120, 107.6480) w0.2032
-ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3.1 (144.1180, 94.6820) 0.500x0.540
-ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3_H.1 (146.8320, 94.4480) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3.1 (146.8320, 94.4480) 0.500x0.540
+ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          C_VCAP3_H.1 (144.1180, 94.6820) 0.500x0.540
 ECO-1#4/5 VCAP2, VCAP3       pad  VCAP3          U_ADS.55 (146.9120, 96.5480) 0.280x1.800
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          B.Cu          (144.1232, 95.2397) -> (146.9120, 97.5640) w0.2032
 ECO-1#4/5 VCAP2, VCAP3       trk  VCAP3          B.Cu          (146.9120, 97.5640) -> (146.9738, 97.7542) w0.2032
@@ -379,6 +392,7 @@ S5_L5 repair: clearance Track+Via nets=AVDD,AVSS at (143.919,109.058) (144.415,1
 S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103) trk  AVDD           B.Cu          (144.1300, 116.8810) -> (144.1405, 116.9805) w0.2030
 S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103) trk  AVDD           F.Cu          (144.1300, 116.8810) -> (144.1405, 116.9805) w0.3048
 S5_L5 repair: clearance Track+Via nets=AVDD,GND at (145.908,114.490) (146.111,115.103) via  AVDD           (144.1405, 116.9805) d0.6095/0.3050
+bypass_caps repair: bypass_caps recorded touching VCAP4 at (146.911,109.007) pad  VCAP4          C_VCAP4.1 (146.9120, 109.0060) 0.500x0.540
 drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700) trk  AVDD           F.Cu          (150.8865, 94.1985) -> (150.8865, 94.1985) w0.2030
 drc_import repair: clearance AVDD,AVSS at (150.887,93.309) (151.407,92.700) via  AVDD           (150.8865, 94.1985) d0.6095/0.3050
 viapad_fix repair: viapad_fix recorded touching AVDD at (140.219,109.883) trk  AVDD           F.Cu          (140.2193, 109.8833) -> (140.2820, 110.4800) w0.3048

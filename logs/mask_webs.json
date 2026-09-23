@@ -2,7 +2,7 @@
   "step": "S7m",
   "web_mm": 0.1,
   "board_wide_margin_mm": 0.0508,
-  "pairs_below_before": 38,
+  "pairs_below_before": 39,
   "different_net_fixed": [
     {
       "pads": [
@@ -333,6 +333,20 @@
       "side": "F.Mask",
       "copper_gap_mm": 1.5e-05,
       "dam_before_mm": -0.101585,
+      "why": "same net: the two openings print as one, which joins nothing that is not already joined"
+    },
+    {
+      "pads": [
+        "C_VCAP4.2",
+        "C_VREFP_10n.2"
+      ],
+      "nets": [
+        "AVSS",
+        "AVSS"
+      ],
+      "side": "F.Mask",
+      "copper_gap_mm": 0.114006,
+      "dam_before_mm": 0.012406,
       "why": "same net: the two openings print as one, which joins nothing that is not already joined"
     },
     {
