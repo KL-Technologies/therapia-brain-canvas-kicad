@@ -510,6 +510,13 @@ packs:
         - pth_inside_courtyard
         - npth_inside_courtyard
         - footprint_filters_mismatch
+# harness Q670: the DRC's schematic parity has no KiCad schematic to read
+# here; declared so it is skipped out loud, not in silence.
+sources:
+  schematic:
+    kind: none
+    why: "imported from EasyEDA Pro (import/ProPrj_Therapia_EEG-HRV_2026-08-28_v2.epro) and repaired in KiCad; the schematic lives in EasyEDA and the design has no KiCad schematic"
+    connectivity_checked_by: "S1B (contract parity: contract/netlist_contract.json, from the EasyEDA schematic netlist, against the board; gates/S1B.json)"
 paths:
   contract: contract/netlist_contract.json
   contract_overrides: contract/contract_overrides.json
